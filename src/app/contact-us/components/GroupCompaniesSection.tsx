@@ -30,7 +30,7 @@ const companies = [
 
 export default function GroupCompaniesSection() {
     return (
-        <section className="bg-primary/13 py-20">
+        <section className="bg-primary/13 py-16 lg:py-20">
             <Section>
                 {/* Top Content */}
                 <div className="grid gap-10 lg:grid-cols-12">

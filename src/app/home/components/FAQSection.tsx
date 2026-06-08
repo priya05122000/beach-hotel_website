@@ -46,7 +46,7 @@ export default function FAQSection() {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
-        <section className="bg-primary/18 py-20">
+        <section className="bg-primary/18 py-16 lg:py-20">
             <Section>
                 {/* Header */}
                 <div>

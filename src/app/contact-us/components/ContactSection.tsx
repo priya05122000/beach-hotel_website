@@ -15,7 +15,7 @@ export default function ContactSection() {
                 <div className="absolute inset-0 bg-black/30" />
             </div>
 
-            <Section className="relative z-10 py-20 lg:py-28">
+            <Section className="relative z-10 py-16 lg:py-20 lg:py-28">
                 <div className="grid items-center gap-12 lg:grid-cols-2">
                     {/* Left Content */}
                     <div className="">

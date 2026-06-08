@@ -3,7 +3,7 @@ import Section from "@/src/components/common/Section";
 
 export default function StorySection() {
     return (
-        <section className="bg-primary/19 py-20">
+        <section className="bg-primary/19 py-16 lg:py-20">
             <Section>
                 <div className="grid items-center gap-12 lg:grid-cols-2">
 

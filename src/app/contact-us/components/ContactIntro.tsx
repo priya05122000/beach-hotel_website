@@ -2,7 +2,7 @@ import Section from "@/src/components/common/Section";
 
 export default function ContactIntro() {
     return (
-        <section className="bg-primary py-20 lg:py-28">
+        <section className="bg-primary py-16 lg:py-20 lg:py-28">
             <Section>
                 <div className="grid gap-12 lg:grid-cols-12">
                     {/* Left Content */}

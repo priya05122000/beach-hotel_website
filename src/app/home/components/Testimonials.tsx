@@ -148,7 +148,7 @@ export default function Testimonials() {
     }, [emblaApi]);
 
     return (
-        <div className="bg-surface py-20 rounded-[20px]">
+        <div className="bg-surface py-16 lg:py-20 rounded-[20px]">
             <CenterSection>
                 <div className="grid min-h-75 grid-cols-1 gap-6 sm:min-h-87.5 sm:grid-cols-2 xl:min-h-100 xl:grid-cols-2 xl:gap-10 ">
 

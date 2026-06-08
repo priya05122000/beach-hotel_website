@@ -69,7 +69,7 @@ export default function HotelGallerySection() {
             {/* HOTEL SECTION 1 */}
             <section
                 id="hotel-section"
-                className="bg-primary/43 py-20 scroll-mt-32"
+                className="bg-primary/43 py-16 lg:py-20 scroll-mt-32"
             >
                 <Section>
                     <div className="mb-8">
@@ -107,7 +107,7 @@ export default function HotelGallerySection() {
             </section>
 
             {/* HOTEL SECTION 2 */}
-            <section className="bg-primary/19 py-20">
+            <section className="bg-primary/19 py-16 lg:py-20">
                 <Section>
                     <div className="grid grid-cols-2 gap-4">
                         <GalleryCard
@@ -134,7 +134,7 @@ export default function HotelGallerySection() {
             {/* SPA SECTION 1 */}
             <section
                 id="spa-section"
-                className="bg-primary/13 py-20 scroll-mt-32"
+                className="bg-primary/13 py-16 lg:py-20 scroll-mt-32"
             >
                 <Section>
                     <div className="mb-8">
@@ -171,7 +171,7 @@ export default function HotelGallerySection() {
             </section>
 
             {/* SPA SECTION 2 */}
-            <section className="bg-primary/7 py-20">
+            <section className="bg-primary/7 py-16 lg:py-20">
                 <Section>
                     <div className="grid grid-cols-2 gap-4">
                         <GalleryCard

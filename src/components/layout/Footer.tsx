@@ -62,7 +62,7 @@ function SocialButton({ href, children }: { href: string; children: React.ReactN
 export default function Footer() {
     return (
         <Section className="bg-primary text-white">
-            <footer className="mx-auto py-20">
+            <footer className="mx-auto py-16 lg:py-20">
                 <div className="grid gap-20 lg:grid-cols-12 ">
                     {/* Left Section */}
                     <div className="lg:col-span-6">

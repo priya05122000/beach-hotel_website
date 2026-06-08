@@ -68,7 +68,7 @@ const DestinationHighlight = () => {
     return (
         <>
             {sections.map((s, i) => (
-                <section key={i} className={`${s.bgClass} py-20`}>
+                <section key={i} className={`${s.bgClass} py-16 lg:py-20`}>
                     <Section>
                         <div className="grid items-stretch gap-8 lg:grid-cols-12">
                             {s.reverse ? (

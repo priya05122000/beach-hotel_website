@@ -1,12 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+
 import Section from "../common/Section";
-import Image from "next/image";
 
 const NAV_LINKS = [
     { href: "/", label: "Home" },
@@ -21,10 +22,12 @@ export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
 
+    const isActive = (href: string) => pathname === href;
+
     return (
         <header className="fixed top-0 left-0 z-50 w-full">
             {/* Announcement Bar */}
-            <div className="h-10  bg-white">
+            <div className="h-10 bg-white">
                 <Marquee
                     speed={40}
                     gradient={false}
@@ -37,18 +40,18 @@ export default function Header() {
                     </span>
 
                     <span className="mx-16">
-                        EXCLUSIVE 10% OFF VOUCHER INSIDE, BOOK NOW & SAVE 10% ON YOUR FIRST
-                        ORDER.
+                        EXCLUSIVE 10% OFF VOUCHER INSIDE, BOOK NOW & SAVE 10% ON YOUR
+                        FIRST ORDER.
                     </span>
                 </Marquee>
             </div>
 
             <Section className="relative">
-                {/* Floating Navbar */}
-                <div className="mt-5 ">
-                    <div className="mx-auto flex  items-center justify-between">
+                {/* Navbar */}
+                <div className="mt-5">
+                    <div className="mx-auto flex items-center justify-between">
                         {/* Logo */}
-                        <div className="mr-3 p-3   bg-primary/60 rounded-md h-12 flex items-center justify-center shadow-lg backdrop-blur-md">
+                        <div className="mr-3 flex h-12 items-center justify-center rounded-md bg-primary/60 p-3 shadow-lg backdrop-blur-md">
                             <Image
                                 src="/logo.png"
                                 alt="Logo"
@@ -59,75 +62,79 @@ export default function Header() {
                             />
                         </div>
 
-                        <div className=" flex  h-12">
-                            {/* Navigation Container */}
-                            <div className="flex  items-center rounded-md bg-primary/60 px-3 shadow-lg backdrop-blur-md">
+                        {/* Navigation + CTA */}
+                        <div className="flex h-12">
+                            {/* Navigation */}
+                            <div className="flex items-center rounded-md bg-primary/60 px-3 shadow-lg backdrop-blur-md">
                                 {/* Desktop Menu */}
                                 <ul className="hidden items-center lg:flex">
-                                    {NAV_LINKS.map((link) => (
-                                        <li key={link.href}>
+                                    {NAV_LINKS.map(({ href, label }) => (
+                                        <li key={href}>
                                             <Link
-                                                href={link.href}
-                                                className={`px-4 py-2 text-sm transition-colors ${pathname === link.href
-                                                    ? "rounded text-accent"
-                                                    : "text-white hover:text-accent"
+                                                href={href}
+                                                className={`px-4 py-2 text-sm transition-colors ${isActive(href)
+                                                        ? "rounded text-accent"
+                                                        : "text-white hover:text-accent"
                                                     }`}
                                             >
-                                                {link.label}
+                                                {label}
                                             </Link>
                                         </li>
                                     ))}
                                 </ul>
 
-                                {/* Mobile Menu Button */}
+                                {/* Mobile Menu Trigger */}
                                 <button
                                     onClick={() => setMenuOpen(true)}
                                     className="text-white lg:hidden"
+                                    aria-label="Open menu"
                                 >
                                     <Menu size={28} />
                                 </button>
                             </div>
 
-                            {/* CTA Button */}
+                            {/* CTA */}
                             <button className="ml-3 hidden h-12 rounded-md bg-accent px-6 text-sm font-semibold text-white shadow-lg md:block">
                                 BOOK MY STAY
                             </button>
                         </div>
-
                     </div>
                 </div>
 
                 {/* Mobile Menu */}
                 <div
                     className={`fixed inset-0 z-999 bg-[#1E1E8A] transition-all duration-300 lg:hidden ${menuOpen
-                        ? "visible opacity-100"
-                        : "invisible opacity-0"
+                            ? "visible opacity-100"
+                            : "invisible opacity-0"
                         }`}
                 >
+                    {/* Close Button */}
                     <button
                         onClick={() => setMenuOpen(false)}
-                        className="absolute right-6 top-6 text-white"
+                        className="absolute top-6 right-6 text-white"
+                        aria-label="Close menu"
                     >
                         <X size={32} />
                     </button>
 
+                    {/* Mobile Navigation */}
                     <ul className="flex h-full flex-col items-center justify-center gap-8">
-                        {NAV_LINKS.map((link) => (
-                            <li key={link.href}>
+                        {NAV_LINKS.map(({ href, label }) => (
+                            <li key={href}>
                                 <Link
-                                    href={link.href}
+                                    href={href}
                                     onClick={() => setMenuOpen(false)}
-                                    className={`text-xl ${pathname === link.href
-                                        ? "text-orange-400"
-                                        : "text-white"
+                                    className={`text-xl ${isActive(href)
+                                            ? "text-accent"
+                                            : "text-white"
                                         }`}
                                 >
-                                    {link.label}
+                                    {label}
                                 </Link>
                             </li>
                         ))}
 
-                        <button className="mt-4 rounded-md bg-[#FF8A00] px-6 py-3 font-semibold text-white">
+                        <button className="mt-4 rounded-md bg-accent px-6 py-3 font-semibold text-white">
                             BOOK MY STAY
                         </button>
                     </ul>

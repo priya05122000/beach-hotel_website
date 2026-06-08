@@ -1,6 +1,11 @@
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+
 // import { Toaster } from "sonner";
 
 const dmSans = DM_Sans({
@@ -16,7 +21,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
         className={`
           ${dmSans.variable}

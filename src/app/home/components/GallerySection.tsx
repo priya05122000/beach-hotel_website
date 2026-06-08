@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import { typography } from "@/src/lib/typography";
 
 const galleryImages = [
     "/home/hero-1.png",
@@ -16,15 +17,15 @@ const galleryImages = [
 export default function GallerySection() {
     return (
         <Section>
-            <section className="py-20 bg-white">
-                <div className="mx-auto max-w-7xl ">
+            <section className="py-16 lg:py-20 bg-white">
+                <div className="mx-auto">
                     {/* Heading */}
                     <div className="mb-12">
                         <p className="text-xs uppercase tracking-[0.3em] text-primary">
                             Gallery
                         </p>
 
-                        <h2 className="mt-2 text-4xl font-light text-primary max-w-sm">
+                        <h2 className={`mt-2 text-4xl font-light text-gray max-w-sm  ${typography.textThXl}`}>
                             Experience At The Beach Hotel
                         </h2>
                     </div>
@@ -35,7 +36,7 @@ export default function GallerySection() {
                         <div className="col-span-12 md:col-span-4 md:row-span-2">
                             <GalleryCard
                                 image={galleryImages[0]}
-                                className="h-125"
+                                className="h-72 md:h-96 lg:h-125"
                             />
                         </div>
 
@@ -43,7 +44,7 @@ export default function GallerySection() {
                         <div className="col-span-12 md:col-span-4">
                             <GalleryCard
                                 image={galleryImages[1]}
-                                className="h-61.25"
+                                className="h-60 md:h-46.5 lg:h-61"
                             />
                         </div>
 
@@ -51,7 +52,7 @@ export default function GallerySection() {
                         <div className="col-span-12 md:col-span-4 md:row-span-2">
                             <GalleryCard
                                 image={galleryImages[2]}
-                                className="h-125"
+                                className="h-72 md:h-96 lg:h-125"
                             />
                         </div>
 
@@ -59,7 +60,7 @@ export default function GallerySection() {
                         <div className="col-span-12 md:col-span-4">
                             <GalleryCard
                                 image={galleryImages[3]}
-                                className="h-61.25"
+                                className="h-60 md:h-46.5 lg:h-61"
                             />
                         </div>
 
@@ -67,28 +68,28 @@ export default function GallerySection() {
                         <div className="col-span-12 md:col-span-4">
                             <GalleryCard
                                 image={galleryImages[4]}
-                                className="h-55"
+                                className="h-52 md:h-60 lg:h-55"
                             />
                         </div>
 
                         <div className="col-span-12 md:col-span-2">
                             <GalleryCard
                                 image={galleryImages[5]}
-                                className="h-55"
+                                className="h-52 md:h-60 lg:h-55"
                             />
                         </div>
 
                         <div className="col-span-12 md:col-span-2">
                             <GalleryCard
                                 image={galleryImages[6]}
-                                className="h-55"
+                                className="h-52 md:h-60 lg:h-55"
                             />
                         </div>
 
                         <div className="col-span-12 md:col-span-4">
                             <GalleryCard
                                 image={galleryImages[7]}
-                                className="h-55"
+                                className="h-52 md:h-60 lg:h-55"
                             />
                         </div>
                     </div>
@@ -122,13 +123,15 @@ function GalleryCard({
     hover:bg-right
     shadow-xl ${className} `}
         >
-            <Image
-                src={image}
-                alt="Gallery Image"
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-700 rounded-lg  p-0.75 "
-            />
+            <div className="relative h-full w-full overflow-hidden rounded">
+                <Image
+                    src={image}
+                    alt="Gallery Image"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+            </div>
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/0 transition-all duration-50" />

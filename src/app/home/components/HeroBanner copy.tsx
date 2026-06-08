@@ -5,8 +5,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { CalendarDays, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import CenterSection from "@/src/components/common/CenterSection";
-import { typography } from "@/src/lib/typography";
-import Link from "next/link";
 
 const slides = [
     {
@@ -92,7 +90,7 @@ export default function HeroBanner() {
                     <div className="absolute bottom-10 left-1/2 z-20 w-full  -translate-x-1/2 ">
 
                         <CenterSection>
-                            <form className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl">
+                            <form className="flex flex-wrap items-center gap-2 bg-primary/14 p-4 backdrop-blur-xl">
 
                                 {/* Check In */}
                                 <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
@@ -158,7 +156,7 @@ export default function HeroBanner() {
             {/* Bottom Content - 20% */}
             <div className="flex h-[40vh] items-center justify-center bg-primary px-4 text-white relative">
 
-                <div className="pointer-events-none absolute  bottom-0 sm:-bottom-2 lg:-bottom-4 xl:-bottom-6 ">
+                <div className="pointer-events-none absolute -bottom-6 ">
 
                     <Image
                         src="/home/thebeach_hotel.png"
@@ -172,7 +170,7 @@ export default function HeroBanner() {
 
 
                 <div className="z-0 text-center">
-                    <h1 className={`${typography.textTwoXl} font-bold uppercase`}>
+                    <h1 className="text-2xl font-bold uppercase">
                         The Beach Hotel
                     </h1>
 
@@ -180,22 +178,13 @@ export default function HeroBanner() {
                         Erumanayakkanpatti Beach Road, Kanyakumari 629702, India
                     </p>
 
-                    <div className="mt-4 flex items-center justify-center gap-4">
-                        <div className="mt-2 flex items-center justify-center gap-4">
-                            <Link
-                                href="/about-us"
-                                className="flex h-10 w-40 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold uppercase text-white shadow-lg"
-                            >
-                                About Us
-                            </Link>
-
-                            <Link
-                                href="tel:+911234567890"
-                                className="flex h-10 w-40 items-center justify-center rounded-md bg-white px-6 text-sm font-semibold text-primary shadow-lg"
-                            >
-                                +91 12345 67890
-                            </Link>
-                        </div>
+                    <div className="mt-2 flex items-center justify-center gap-4">
+                        <button className="mt-4 rounded-md bg-accent px-6 h-10 text-sm font-semibold text-white shadow-lg uppercase w-40">
+                            About Us
+                        </button>
+                        <button className="mt-4 rounded-md bg-white px-6 h-10 text-sm font-semibold text-primary shadow-lg w-40">
+                            +91 12345 67890
+                        </button>
                     </div>
                 </div>
 
