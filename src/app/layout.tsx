@@ -1,18 +1,19 @@
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { DM_Sans, Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-
-// import { Toaster } from "sonner";
-
-const dmSans = DM_Sans({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export default async function RootLayout({
@@ -21,14 +22,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body
-        className={`
-          ${dmSans.variable}
-          ${dmSans.className}
-          antialiased
-        `}
-      >
+    <html lang="en" >
+      <body className={`${plusJakarta.variable} ${inter.variable} font-inter antialiased`}>
+
         <ClientLayout>
           {children}
         </ClientLayout>
