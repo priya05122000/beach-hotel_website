@@ -52,7 +52,7 @@ export default function StorySection() {
                                 Our Story
                             </h3>
 
-                            <p className="max-w-[180px] text-sm leading-relaxed text-white/90">
+                            <p className="max-w-[180px] text-sm leading-relaxed text-white">
                                 Hotel Facilities Are Designated Spaces
                                 And Services Designed To Enhance The
                                 Guest Experience

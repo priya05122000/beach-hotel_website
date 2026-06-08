@@ -134,7 +134,7 @@ export default function HeroBanner() {
                                     <input
                                         type="text"
                                         placeholder="Promo Code"
-                                        className="w-full bg-transparent outline-none placeholder:text-white/70 text-sm"
+                                        className="w-full bg-transparent outline-none placeholder:text-white text-sm"
                                     />
                                 </div>
 

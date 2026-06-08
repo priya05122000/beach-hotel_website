@@ -21,11 +21,11 @@ export default function GallerySection() {
                 <div className="mx-auto">
                     {/* Heading */}
                     <div className="mb-12">
-                        <p className="text-xs uppercase tracking-[0.3em] text-primary">
+                        <p className="text-xs uppercase tracking-[0.2em] text-primary">
                             Gallery
                         </p>
 
-                        <h2 className={`mt-2 text-4xl font-light text-gray max-w-sm  ${typography.textThXl}`}>
+                        <h2 className={`mt-2 text-4xl font-normal text-gray max-w-sm  ${typography.textFoXl}`}>
                             Experience At The Beach Hotel
                         </h2>
                     </div>

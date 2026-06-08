@@ -10,9 +10,9 @@ export const typography = {
     textTwoXl: "text-lg sm:text-xl lg:text-2xl",
 
     // Body
-    textXl: "text-lg sm:text-xl",
-    textLg: "text-base lg:text-lg",
-    textBase: "text-sm lg:text-base",
+    textXl: "text-base sm:text-lg lg:text-xl",
+    textLg: "text-sm sm:text-base lg:text-lg",
+    textBase: "text-sm sm:text-base",
 
     // // Small Text
     // textSm: "text-sm",

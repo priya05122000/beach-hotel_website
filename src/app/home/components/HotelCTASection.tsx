@@ -7,7 +7,7 @@ export default function HotelCTASection() {
 
         <div className="relative overflow-hidden">
             {/* Background Image */}
-            <div className="relative h-137 w-full overflow-hidden">
+            <div className="relative h-100 lg:h-135 w-full overflow-hidden">
                 <Image
                     src="/home/cta-banner.jpg"
                     alt="Hotel Staff"
@@ -15,7 +15,7 @@ export default function HotelCTASection() {
                     className="object-cover"
                 />
 
-                <div className="absolute inset-0 w-2/3 bg-linear-to-r from-primary via-primary/90 to-transparent" />
+                <div className="absolute inset-0 w-full md:w-2/3 bg-linear-to-r from-primary via-primary/90 to-transparent" />
 
                 {/* Content */}
                 <div className="absolute inset-0 z-10 flex items-center">
@@ -28,10 +28,10 @@ export default function HotelCTASection() {
                             </p>
 
                             <div className="space-x-4 mt-6">
-                                <button className="rounded-md bg-accent px-6 h-10 text-sm font-semibold text-white shadow-lg uppercase w-40">
+                                <button className="rounded-md bg-accent px-6 h-10 text-sm font-normal text-white shadow-lg uppercase w-40">
                                     Sign in
                                 </button>
-                                <button className="rounded-md bg-white px-6 h-10 text-sm font-semibold text-primary shadow-lg w-40 uppercase">
+                                <button className="rounded-md bg-white px-6 h-10 text-sm font-normal text-primary shadow-lg w-40 uppercase">
                                     Enroll Now
                                 </button>
                             </div>

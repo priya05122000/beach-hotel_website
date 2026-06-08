@@ -26,7 +26,7 @@ const offers = [
     },
 ];
 
-const hoverImage = "/home/hover-image.png";
+const hoverImage = "/home/hoverimage.png";
 
 const ExclusiveOffersSection = () => {
 
@@ -36,7 +36,7 @@ const ExclusiveOffersSection = () => {
     return (
         <Section className="py-16 lg:py-20">
 
-            <h2 className={`${typography.textThXl} text-gray uppercase font-normal mb-10 `}>
+            <h2 className={`${typography.textFoXl} font-arizona text-gray uppercase font-normal mb-10 `}>
                 Exclusive Offers
             </h2>
             <div className="grid gap-6 xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -69,17 +69,51 @@ const ExclusiveOffersSection = () => {
                                 />
 
                                 {/* Hover Image */}
-                                <Image
+                                {/* <Image
                                     src={hoverImage}
                                     alt="Hover"
                                     fill
                                     className={`
-        absolute inset-0 object-cover transition-opacity duration-700
+        absolute inset-0  object-cover transition-opacity duration-700
         opacity-0
         lg:group-hover:opacity-100
         ${isActive ? "opacity-100 lg:opacity-0" : ""}
     `}
-                                />
+                                /> */}
+
+                                <div className="absolute inset-0 z-10 pointer-events-none">
+                                    <svg
+                                        className="absolute bottom-0 right-0 w-full h-full"
+                                        viewBox="0 0 400 500"
+                                        preserveAspectRatio="none"
+                                    >
+                                        <path
+                                            //                                         d="
+                                            //   M0 0
+                                            //   H260
+                                            //   C250 20 235 40 220 65
+                                            //   L180 130
+                                            //   C170 145 175 160 190 170
+                                            //   L280 235
+                                            //   C300 250 300 285 275 295
+                                            //   L170 315
+                                            //   C145 320 135 335 135 355
+                                            //   L145 500
+                                            //   C145 320 135 335 135 355
+                                            //   L145 500
+                                            //   L0 500
+                                            //   Z
+                                            //   "
+
+                                            d="
+    M0 0
+    H260
+    C250 20 235 40 220 65
+    "
+                                            fill="rgba(0,0,0,0.65)"
+                                        />
+                                    </svg>
+                                </div>
 
                             </div>
 
@@ -87,7 +121,7 @@ const ExclusiveOffersSection = () => {
                             <div className="absolute inset-0 z-20 flex flex-col justify-end p-5">
                                 {/* Top Row - Always Visible */}
                                 <div className="flex items-center justify-between">
-                                    <div className="inline-flex  bg-linear-to-r from-primary to-accent p-0.5 h-10 text-sm font-semibold text-white rounded-xs">
+                                    <div className="inline-flex  bg-linear-to-r from-primary to-accent p-0.5 h-10 text-sm font-normal text-white rounded-xs">
 
                                         <span
                                             className={`

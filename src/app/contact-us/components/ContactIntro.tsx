@@ -7,7 +7,7 @@ export default function ContactIntro() {
                 <div className="grid gap-12 lg:grid-cols-12">
                     {/* Left Content */}
                     <div className="lg:col-span-5">
-                        <p className="mb-3 text-xs uppercase tracking-widest text-white/70">
+                        <p className="mb-3 text-xs uppercase tracking-widest text-white">
                             Contact Us
                         </p>
 
@@ -30,7 +30,7 @@ export default function ContactIntro() {
                             The Beach Hotel
                         </h3>
 
-                        <p className="max-w-xs leading-relaxed text-white/80">
+                        <p className="max-w-xs leading-relaxed text-white">
                             Erumanayakkanpatti Beach Road,
                             <br />
                             Kanyakumari 629702, India
@@ -45,7 +45,7 @@ export default function ContactIntro() {
 
                         <a
                             href="tel:04652237491"
-                            className="text-white/80 transition hover:text-white"
+                            className="text-white transition hover:text-white"
                         >
                             04652 237 491
                         </a>

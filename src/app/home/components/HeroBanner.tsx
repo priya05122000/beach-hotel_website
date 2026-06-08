@@ -136,14 +136,14 @@ export default function HeroBanner() {
                                     <input
                                         type="text"
                                         placeholder="Promo Code"
-                                        className="w-full bg-transparent outline-none placeholder:text-white/70 text-sm"
+                                        className="w-full bg-transparent outline-none placeholder:text-white text-sm"
                                     />
                                 </div>
 
                                 {/* Button */}
                                 <button
                                     type="submit"
-                                    className="h-10 bg-accent px-8 text-sm font-semibold uppercase text-white transition hover:opacity-90"
+                                    className="h-10 bg-accent px-8 text-sm font-normal uppercase text-white transition hover:opacity-90"
                                 >
                                     Book Now
                                 </button>
@@ -172,7 +172,7 @@ export default function HeroBanner() {
 
 
                 <div className="z-0 text-center">
-                    <h1 className={`${typography.textTwoXl} font-bold uppercase`}>
+                    <h1 className={`${typography.textTwoXl} font-arizona font-bold uppercase`}>
                         The Beach Hotel
                     </h1>
 
@@ -184,14 +184,14 @@ export default function HeroBanner() {
                         <div className="mt-2 flex items-center justify-center gap-4">
                             <Link
                                 href="/about-us"
-                                className="flex h-10 w-40 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold uppercase text-white shadow-lg"
+                                className="flex h-10 w-40 items-center justify-center rounded-md bg-accent px-6 text-sm font-normal uppercase text-white shadow-lg"
                             >
                                 About Us
                             </Link>
 
                             <Link
                                 href="tel:+911234567890"
-                                className="flex h-10 w-40 items-center justify-center rounded-md bg-white px-6 text-sm font-semibold text-primary shadow-lg"
+                                className="flex h-10 w-40 items-center justify-center rounded-md bg-white px-6 text-sm font-normal text-primary shadow-lg"
                             >
                                 +91 12345 67890
                             </Link>

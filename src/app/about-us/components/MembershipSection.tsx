@@ -76,7 +76,7 @@ export default function MembershipSection() {
                                     {item.title}
                                 </h3>
 
-                                <p className="text-sm text-white/90">
+                                <p className="text-sm text-white">
                                     {item.description}
                                 </p>
                             </div>

@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { Menu, X } from "lucide-react";
 
 import Section from "../common/Section";
+import { typography } from "@/src/lib/typography";
 
 const NAV_LINKS = [
     { href: "/", label: "Home" },
@@ -33,7 +33,7 @@ export default function Header() {
                     gradient={false}
                     pauseOnHover
                     autoFill
-                    className="h-full text-base font-semibold uppercase text-primary"
+                    className="h-full text-base font-normal font-arizona uppercase text-primary"
                 >
                     <span className="mx-16">
                         10% OFF EVERYTHING - LIMITED TIME!
@@ -48,33 +48,37 @@ export default function Header() {
 
             <Section className="relative">
                 {/* Navbar */}
-                <div className="mt-5">
+                <div className="mt-5 ">
                     <div className="mx-auto flex items-center justify-between">
-                        {/* Logo */}
-                        <div className="mr-3 flex h-12 items-center justify-center rounded-md bg-primary/60 p-3 shadow-lg backdrop-blur-md">
-                            <Image
-                                src="/logo.png"
-                                alt="Logo"
-                                width={42}
-                                height={42}
-                                priority
-                                className="h-9 object-contain"
-                            />
-                        </div>
+
 
                         {/* Navigation + CTA */}
-                        <div className="flex h-12">
+                        <div className="flex h-12 w-full justify-between rounded-md backdrop-blur-md overflow-hidden bg-primary/60 shadow-lg">
+
+                            {/* Logo */}
+                            <div className="mr-3 flex h-12 items-center justify-center p-3  ">
+                                {/* <Image
+                                    src="/logo.png"
+                                    alt="Logo"
+                                    width={42}
+                                    height={42}
+                                    priority
+                                    className="h-9 object-contain"
+                                /> */}
+                                <p className={`text-white font-arizona uppercase font-medium tracking-wider ${typography.textTwoXl}`}>The Beach Hotel</p>
+                            </div>
+
                             {/* Navigation */}
-                            <div className="flex items-center rounded-md bg-primary/60 px-3 shadow-lg backdrop-blur-md">
+                            <div className="flex items-center px-3 ">
                                 {/* Desktop Menu */}
-                                <ul className="hidden items-center lg:flex">
+                                <ul className="hidden items-center xl:flex">
                                     {NAV_LINKS.map(({ href, label }) => (
                                         <li key={href}>
                                             <Link
                                                 href={href}
                                                 className={`px-4 py-2 text-sm transition-colors ${isActive(href)
-                                                        ? "rounded text-accent"
-                                                        : "text-white hover:text-accent"
+                                                    ? "rounded text-accent"
+                                                    : "text-white hover:text-accent"
                                                     }`}
                                             >
                                                 {label}
@@ -86,26 +90,32 @@ export default function Header() {
                                 {/* Mobile Menu Trigger */}
                                 <button
                                     onClick={() => setMenuOpen(true)}
-                                    className="text-white lg:hidden"
+                                    className="text-white xl:hidden"
                                     aria-label="Open menu"
                                 >
                                     <Menu size={28} />
                                 </button>
                             </div>
 
-                            {/* CTA */}
-                            <button className="ml-3 hidden h-12 rounded-md bg-accent px-6 text-sm font-semibold text-white shadow-lg md:block">
-                                BOOK MY STAY
-                            </button>
+
                         </div>
+
+                        {/* CTA */}
+                        {/* <button className="ml-3 hidden h-12 w-auto rounded-md bg-accent px-6 text-sm font-normal text-white shadow-lg md:block">
+                            BOOK MY STAY
+                        </button> */}
+
+                        <button className="ml-3 hidden h-12 w-36 shrink-0 whitespace-nowrap rounded-md bg-accent px-6 text-sm font-normal text-white shadow-lg md:block">
+                            BOOK MY STAY
+                        </button>
                     </div>
                 </div>
 
                 {/* Mobile Menu */}
                 <div
-                    className={`fixed inset-0 z-999 bg-[#1E1E8A] transition-all duration-300 lg:hidden ${menuOpen
-                            ? "visible opacity-100"
-                            : "invisible opacity-0"
+                    className={`fixed inset-0 z-999 bg-primary transition-all duration-300 xl:hidden ${menuOpen
+                        ? "visible opacity-100"
+                        : "invisible opacity-0"
                         }`}
                 >
                     {/* Close Button */}
@@ -125,8 +135,8 @@ export default function Header() {
                                     href={href}
                                     onClick={() => setMenuOpen(false)}
                                     className={`text-xl ${isActive(href)
-                                            ? "text-accent"
-                                            : "text-white"
+                                        ? "text-accent"
+                                        : "text-white"
                                         }`}
                                 >
                                     {label}

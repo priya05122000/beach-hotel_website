@@ -29,11 +29,11 @@ export default function AmenitiesSection() {
                 <div className="mx-auto  px-4">
                     {/* Heading */}
                     <div className="mb-10 text-center">
-                        <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">
+                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
                             Amenities
                         </p>
 
-                        <h2 className={`mt-2 text-4xl font-light text-gray ${typography.textThXl}`}>
+                        <h2 className={`mt-2 text-4xl font-arizona font-normal text-gray ${typography.textFoXl}`}>
                             Amenities
                         </h2>
                     </div>

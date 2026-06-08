@@ -13,7 +13,7 @@ const ExploreDestinationSection = () => {
 
                         {/* Left */}
                         <div>
-                            <h2 className={`max-w-xl ${typography.textFiXl} font-bold leading-tight text-primary `}>
+                            <h2 className={`max-w-xl ${typography.textFiXl}  font-normal leading-tight text-primary font-arizona uppercase`}>
                                 Step Out Of Bed And Straight Onto The Sun-Kissed Sands Of Kanyakumari.
                             </h2>
                         </div>
@@ -27,7 +27,7 @@ const ExploreDestinationSection = () => {
                                 Fitness Centers, Restaurants/Bars, Meeting Rooms, And Parking.
                             </p>
 
-                            <button className="mt-6 flex items-center gap-2 border border-gray-400 px-5 h-10 py-2 text-sm uppercase transition hover:bg-primary hover:text-white">
+                            <button className="mt-6 flex items-center gap-2 border border-primary px-5 h-10 py-2 text-sm uppercase transition font-normal hover:bg-primary text-primary hover:text-white">
                                 Explore
                                 <span>&#8594;</span>
                             </button>

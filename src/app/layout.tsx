@@ -1,20 +1,6 @@
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-  variable: "--font-jakarta",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-  variable: "--font-inter",
-});
+import { arizonaFlare, majesty } from "../lib/font";
 
 export default async function RootLayout({
   children,
@@ -22,8 +8,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" >
-      <body className={`${plusJakarta.variable} ${inter.variable} font-inter antialiased`}>
+    <html
+      lang="en"
+      className={`${arizonaFlare.variable} ${majesty.variable}`}
+    >
+      <body className="antialiased">
 
         <ClientLayout>
           {children}

@@ -19,7 +19,7 @@ export default function ContactSection() {
                 <div className="grid items-center gap-12 lg:grid-cols-2">
                     {/* Left Content */}
                     <div className="">
-                        <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white/70">
+                        <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white">
                             Enquire
                         </p>
 
@@ -43,7 +43,7 @@ export default function ContactSection() {
                                 Prefer to Message Us?
                             </h3>
 
-                            <p className="mt-2 text-sm text-white/70">
+                            <p className="mt-2 text-sm text-white">
                                 Fill out the form, and our team will get back to
                                 you as soon as possible.
                             </p>
@@ -53,7 +53,7 @@ export default function ContactSection() {
                                     <input
                                         type="text"
                                         placeholder="Full name"
-                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white/60 focus:outline-none"
+                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white focus:outline-none"
                                     />
                                 </div>
 
@@ -61,7 +61,7 @@ export default function ContactSection() {
                                     <input
                                         type="email"
                                         placeholder="Email"
-                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white/60 focus:outline-none"
+                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white focus:outline-none"
                                     />
                                 </div>
 
@@ -69,7 +69,7 @@ export default function ContactSection() {
                                     <input
                                         type="tel"
                                         placeholder="Mobile number"
-                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white/60 focus:outline-none"
+                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white focus:outline-none"
                                     />
                                 </div>
 
@@ -77,7 +77,7 @@ export default function ContactSection() {
                                     <input
                                         type="text"
                                         placeholder="Location"
-                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white/60 focus:outline-none"
+                                        className="w-full border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white focus:outline-none"
                                     />
                                 </div>
 
@@ -85,11 +85,11 @@ export default function ContactSection() {
                                     <textarea
                                         rows={3}
                                         placeholder="Message"
-                                        className="w-full resize-none border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white/60 focus:outline-none"
+                                        className="w-full resize-none border-b border-white/20 bg-transparent pb-3 text-white placeholder:text-white focus:outline-none"
                                     />
                                 </div>
 
-                                <label className="flex items-start gap-3 text-xs text-white/70">
+                                <label className="flex items-start gap-3 text-xs text-white">
                                     <input
                                         type="checkbox"
                                         className="mt-1"
