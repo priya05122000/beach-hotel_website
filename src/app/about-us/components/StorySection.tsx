@@ -1,43 +1,44 @@
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import { typography } from "@/src/lib/typography";
 
 export default function StorySection() {
     return (
         <section className="bg-primary/19 py-16 lg:py-20">
             <Section>
                 <div className="grid items-center gap-12 lg:grid-cols-2">
+                    {/* Content */}
+                    <div className="lg:max-w-md">
+                        <div className="mb-4">
+                            <p className="text-xs uppercase tracking-[0.2em] text-primary">
+                                Story
+                            </p>
 
-                    {/* Left Content */}
-                    <div className="max-w-md">
-                        <p className="mb-2 text-xs uppercase tracking-[0.25em] text-primary">
-                            Story
-                        </p>
-                        <p className="mb-3 font-semibold text-base uppercase tracking-[0.25em] text-primary">
-                            Our Story
-                        </p>
+                            <h2
+                                className={`mt-2 max-w-sm text-primary ${typography.textFoXl}`}
+                            >
+                                Our Story
+                            </h2>
+                        </div>
 
-                        <h2 className="text-5xl font-semibold leading-tight text-primary">
-                            Step Out Of Bed
-                            <br />
-                            And Straight Onto
-                            <br />
-                            The Sun-Kissed
-                            <br />
-                            Sands Of
-                            <br />
-                            Kanyakumari.
-                        </h2>
+                        <h3
+                            className={`max-w-xl font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                        >
+                            Step Out Of Bed And Straight Onto The Sun-Kissed Sands
+                            Of Kanyakumari.
+                        </h3>
 
-                        <p className="mt-8 max-w-sm text-base text-primary leading-relaxed text-accent">
-                            Hotel Facilities Are Designated Spaces
-                            And Services Designed To Enhance The Guest
-                            Experience.
+                        <p
+                            className={`mt-4 max-w-sm text-primary ${typography.textLg}`}
+                        >
+                            Hotel facilities are designated spaces and services
+                            designed to enhance the guest experience.
                         </p>
                     </div>
 
-                    {/* Right Image */}
+                    {/* Image Section */}
                     <div className="relative">
-                        <div className="relative h-[500px] w-full overflow-hidden">
+                        <div className="relative h-100 sm:h-125 w-full overflow-hidden">
                             <Image
                                 src="/home/hero-1.png"
                                 alt="Hotel Room"
@@ -47,19 +48,21 @@ export default function StorySection() {
                         </div>
 
                         {/* Floating Card */}
-                        <div className="absolute -top-6 right-0 bg-primary p-6 text-white shadow-xl">
-                            <h3 className="mb-3 text-3xl font-semibold">
+                        <div className="absolute -top-6 right-0 bg-primary p-5 text-white shadow-xl">
+                            <h3
+                                className={`${typography.textThXl} max-w-sm text-white`}
+                            >
                                 Our Story
                             </h3>
 
-                            <p className="max-w-[180px] text-sm leading-relaxed text-white">
-                                Hotel Facilities Are Designated Spaces
-                                And Services Designed To Enhance The
-                                Guest Experience
+                            <p
+                                className={`mt-4 max-w-45 text-white ${typography.textBase}`}
+                            >
+                                Hotel facilities are designated spaces and services
+                                designed to enhance the guest experience.
                             </p>
                         </div>
                     </div>
-
                 </div>
             </Section>
         </section>

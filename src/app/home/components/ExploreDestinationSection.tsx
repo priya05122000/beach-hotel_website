@@ -12,11 +12,9 @@ const ExploreDestinationSection = () => {
                     <div className=" grid gap-8 sm:grid-cols-2 lg:items-start">
 
                         {/* Left */}
-                        <div>
-                            <h2 className={`max-w-xl ${typography.textFiXl}  font-normal leading-tight text-primary font-arizona uppercase`}>
-                                Step Out Of Bed And Straight Onto The Sun-Kissed Sands Of Kanyakumari.
-                            </h2>
-                        </div>
+                        <h2 className={`max-w-xl ${typography.textFiXl}  font-normal leading-tight text-primary font-arizona uppercase`}>
+                            Step Out Of Bed And Straight Onto The Sun-Kissed Sands Of Kanyakumari.
+                        </h2>
 
                         {/* Right */}
                         <div className="flex flex-col items-start sm:items-end">
