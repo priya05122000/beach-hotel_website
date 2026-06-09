@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import { typography } from "@/src/lib/typography";
 
 const companies = [
     {
@@ -33,21 +34,22 @@ export default function GroupCompaniesSection() {
         <section className="bg-primary/13 py-16 lg:py-20">
             <Section>
                 {/* Top Content */}
-                <div className="grid gap-10 lg:grid-cols-12">
-                    <div className="lg:col-span-4">
-                        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-primary">
+                <div className="grid gap-6 lg:gap-10 lg:grid-cols-12">
+                    <div className="lg:col-span-5">
+
+                        <p className="text-xs mb-2  uppercase tracking-[0.2em] text-primary">
                             Brands
                         </p>
 
-                        <h2 className="text-4xl font-semibold leading-tight text-primary lg:text-6xl">
-                            Our Group Of
-                            <br />
-                            Companies
-                        </h2>
+                        <h3
+                            className={`max-w-xl font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                        >
+                            Our Group of Companies
+                        </h3>
                     </div>
 
-                    <div className="lg:col-span-8 lg:pt-10">
-                        <p className="max-w-4xl text-2xl leading-relaxed text-neutral-500">
+                    <div className="lg:col-span-7  lg:pt-8">
+                        <p className={`max-w-4xl ${typography.textXl} leading-relaxed text-gray`}>
                             Hotel Sangam | Chennai Inn | Rameshwaram Grand |
                             Temple Citi AR Residency | Comorin Grand |
                             Hotel Seaview | Hotel Seaface Ocean Heritage |
@@ -57,24 +59,24 @@ export default function GroupCompaniesSection() {
                 </div>
 
                 {/* Cards */}
-                <div className="mt-20 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
                     {companies.map((company) => (
                         <div key={company.name}>
-                            <div className="flex h-28 items-center  ">
+                            <div className="flex h-14  items-center  ">
                                 <Image
                                     src={company.logo}
                                     alt={company.name}
                                     width={180}
                                     height={80}
-                                    className="h-auto w-auto object-contain"
+                                    className="h-full w-auto object-contain"
                                 />
                             </div>
 
-                            <h3 className="mt-8 text-2xl font-medium text-primary">
+                            <h3 className={`mt-6 lg:mt-8 text-2xl font-medium font-arizona text-primary ${typography.textXl} `}>
                                 {company.name}
                             </h3>
 
-                            <p className="mt-4 text-base leading-relaxed text-neutral-500">
+                            <p className={`mt-4 ${typography.textBase}  text-gray`}>
                                 {company.address}
                             </p>
                         </div>

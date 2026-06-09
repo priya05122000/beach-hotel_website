@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import { typography } from "@/src/lib/typography";
 
 export default function StoryPreviewSection() {
     return (
@@ -8,34 +9,36 @@ export default function StoryPreviewSection() {
                 {/* Top Content */}
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
 
-                    {/* Left */}
-                    <div>
-                        <h2 className="max-w-md text-5xl font-semibold leading-tight text-primary">
-                            Step Out Of Bed
-                            <br />
-                            And Straight Onto
-                        </h2>
-                    </div>
+                    <h3
+                        className={`font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                    >
+                        Step Out Of Bed And Straight Onto The Sun-Kissed Sands
+                        Of Kanyakumari.
+                    </h3>
 
                     {/* Right */}
                     <div>
-                        <h3 className="mb-4 text-3xl font-semibold text-primary">
+                        <h2
+                            className={` max-w-sm text-primary ${typography.textFoXl}`}
+                        >
                             Our Story
-                        </h3>
+                        </h2>
 
-                        <p className="max-w-xl text-lg leading-relaxed text-primary/90">
-                            Hotel Facilities Are Designated Spaces And Services
-                            Designed To Enhance The Guest Experience.
+                        <p
+                            className={`mt-4 max-w-lg text-primary ${typography.textLg}`}
+                        >
+                            Hotel facilities are designated spaces and services
+                            designed to enhance the guest experience.
                         </p>
                     </div>
                 </div>
 
                 {/* Images */}
-                <div className=" mt-16 grid grid-cols-12 gap-4">
+                <div className=" mt-12 grid grid-cols-12 gap-4">
 
                     {/* 3 Columns */}
-                    <div className="col-span-12 lg:col-span-3">
-                        <div className="relative h-[320px]">
+                    <div className="col-span-12 sm:col-span-3">
+                        <div className="relative h-60 lg:h-80">
                             <Image
                                 src="/home/hero-1.png"
                                 alt="Story 1"
@@ -46,8 +49,8 @@ export default function StoryPreviewSection() {
                     </div>
 
                     {/* 6 Columns */}
-                    <div className="col-span-12 lg:col-span-6">
-                        <div className="relative h-[320px]">
+                    <div className="col-span-12 sm:col-span-6">
+                        <div className="relative h-60 lg:h-80">
                             <Image
                                 src="/home/hero-2.png"
                                 alt="Story 2"
@@ -58,8 +61,8 @@ export default function StoryPreviewSection() {
                     </div>
 
                     {/* 3 Columns */}
-                    <div className="col-span-12 lg:col-span-3">
-                        <div className="relative h-[320px]">
+                    <div className="col-span-12 sm:col-span-3">
+                        <div className="relative h-60 lg:h-80">
                             <Image
                                 src="/home/hero-1.png"
                                 alt="Story 3"
