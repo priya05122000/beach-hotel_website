@@ -44,7 +44,7 @@ export default function MembershipSection() {
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
                         backgroundImage:
-                            "url('/home/hero-1.png')",
+                            "url('/home/hero-1.webp')",
                     }}
                 />
 

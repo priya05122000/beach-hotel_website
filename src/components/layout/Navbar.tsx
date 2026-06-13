@@ -8,6 +8,9 @@ import { Menu, X } from "lucide-react";
 
 import Section from "../common/Section";
 import { typography } from "@/src/lib/typography";
+import { Announcement } from "@/src/types";
+
+
 
 const NAV_LINKS = [
     { href: "/", label: "Home" },
@@ -18,7 +21,14 @@ const NAV_LINKS = [
     { href: "/contact-us", label: "Contact Us" },
 ];
 
-export default function Header() {
+
+interface AnnouncementProps {
+    announcementData: Announcement[];
+}
+
+
+export default function Header({ announcementData }: AnnouncementProps) {
+
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
 
@@ -35,14 +45,14 @@ export default function Header() {
                     autoFill
                     className="h-full text-base font-normal font-arizona uppercase text-primary"
                 >
-                    <span className="mx-16">
-                        10% OFF EVERYTHING - LIMITED TIME!
-                    </span>
-
-                    <span className="mx-16">
-                        EXCLUSIVE 10% OFF VOUCHER INSIDE, BOOK NOW & SAVE 10% ON YOUR
-                        FIRST ORDER.
-                    </span>
+                    {announcementData?.map((item) => (
+                        <span
+                            key={item.id}
+                            className="mx-16"
+                        >
+                            {item.description}
+                        </span>
+                    ))}
                 </Marquee>
             </div>
 

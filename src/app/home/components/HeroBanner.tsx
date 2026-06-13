@@ -7,21 +7,13 @@ import { CalendarDays, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import CenterSection from "@/src/components/common/CenterSection";
 import { typography } from "@/src/lib/typography";
 import Link from "next/link";
+import type { Banner } from "@/src/types";
 
-const slides = [
-    {
-        id: 1,
-        image: "/home/hero-1.png",
-        alt: "Hotel Exterior",
-    },
-    {
-        id: 2,
-        image: "/home/hero-2.png",
-        alt: "Hotel Room",
-    },
-];
+interface HeroBannerProps {
+    slides: Banner[];
+}
 
-export default function HeroBanner() {
+export default function HeroBanner({ slides }: HeroBannerProps) {
     const [emblaRef, emblaApi] = useEmblaCarousel(
         {
             loop: true,
@@ -39,6 +31,11 @@ export default function HeroBanner() {
     const scrollPrev = () => emblaApi?.scrollPrev();
     const scrollNext = () => emblaApi?.scrollNext();
 
+
+    const BASE_URL =
+        process.env.NEXT_PUBLIC_API_URL;
+    console.log("BASE_URL:", BASE_URL);
+
     return (
         <>
             <section className="relative h-screen">
@@ -51,14 +48,22 @@ export default function HeroBanner() {
                                 className="relative min-w-0 flex-[0_0_100%]"
                             >
                                 <div className="relative h-full w-full">
-                                    <Image
-                                        src={slide.image}
-                                        alt={slide.alt}
+                                    {/* <Image
+                                        src={`${BASE_URL}/uploads/${slide.image_url}`}
+                                        alt={slide.title}
                                         fill
                                         priority={index === 0}
                                         loading={index === 0 ? undefined : "lazy"}
                                         quality={90}
                                         sizes="100vw"
+                                        className="object-cover"
+                                    /> */}
+
+                                    <Image
+                                        unoptimized
+                                        src={`${BASE_URL}/uploads/${slide.image_url}`}
+                                        alt={slide.title}
+                                        fill
                                         className="object-cover"
                                     />
                                 </div>
@@ -87,19 +92,15 @@ export default function HeroBanner() {
                         <ChevronRight className="h-7 w-7" />
                     </button>
 
-
                     {/* Hero Content */}
-                    <div className="absolute bottom-10 left-1/2 z-20 w-full  -translate-x-1/2 ">
-
+                    <div className="absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2">
                         <CenterSection>
                             <form className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl">
 
                                 {/* Check In */}
                                 <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
                                     <CalendarDays size={16} className="mr-2" />
-
                                     <span className="text-sm">Check In</span>
-
                                     <input
                                         type="date"
                                         className="absolute inset-0 cursor-pointer opacity-0"
@@ -108,11 +109,8 @@ export default function HeroBanner() {
 
                                 {/* Check Out */}
                                 <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
-
                                     <CalendarDays size={16} className="mr-2" />
-
                                     <span className="text-sm">Check Out</span>
-
                                     <input
                                         type="date"
                                         className="absolute inset-0 cursor-pointer opacity-0"
@@ -122,7 +120,6 @@ export default function HeroBanner() {
                                 {/* Guests */}
                                 <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
                                     <Users size={16} className="mr-2" />
-
                                     <select className="w-full bg-transparent outline-none text-sm">
                                         <option className="text-black">1 Guest</option>
                                         <option className="text-black">2 Guests</option>
@@ -149,17 +146,14 @@ export default function HeroBanner() {
                                 </button>
                             </form>
                         </CenterSection>
-
                     </div>
                 </div>
-
             </section>
 
-            {/* Bottom Content - 20% */}
+            {/* Bottom Content */}
             <div className="flex h-[40vh] items-center justify-center bg-primary px-4 text-white relative">
 
-                <div className="pointer-events-none absolute  bottom-0 sm:-bottom-2 lg:-bottom-4 xl:-bottom-6 ">
-
+                <div className="pointer-events-none absolute bottom-0 sm:-bottom-2 lg:-bottom-4 xl:-bottom-6">
                     <Image
                         src="/home/thebeach_hotel.png"
                         alt="The Beach Hotel"
@@ -167,9 +161,7 @@ export default function HeroBanner() {
                         height={1200}
                         className="w-full h-full object-cover"
                     />
-
                 </div>
-
 
                 <div className="z-0 text-center">
                     <h1 className={`${typography.textTwoXl} font-arizona font-bold uppercase`}>
@@ -198,8 +190,6 @@ export default function HeroBanner() {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </>
     );
