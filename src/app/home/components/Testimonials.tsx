@@ -167,8 +167,6 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                 const aos = anim?.['data-aos'];
                                 const aosDuration = anim?.['data-aos-duration'];
 
-                                console.log("IMAGE:", t.image_url);
-
 
                                 return (
                                     <div
