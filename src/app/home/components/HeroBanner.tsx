@@ -1,31 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { CalendarDays, ChevronLeft, ChevronRight, Users } from "lucide-react";
+import { ChevronLeft, ChevronRight, Users } from "lucide-react";
 import CenterSection from "@/src/components/common/CenterSection";
 import { typography } from "@/src/lib/typography";
 import Link from "next/link";
 import type { Banner } from "@/src/types";
+import DatePicker from "@/src/components/ui/DatePicker";
 
 interface HeroBannerProps {
   slides: Banner[];
 }
 
 export default function HeroBanner({ slides }: HeroBannerProps) {
+  const [checkIn, setCheckIn] = useState<Date | undefined>();
+  const [checkOut, setCheckOut] = useState<Date | undefined>();
+  const [guests, setGuests] = useState<string>("");
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      align: "start",
-    },
-    [
-      Autoplay({
-        delay: 4000,
-        stopOnInteraction: false,
-        stopOnMouseEnter: true,
-      }),
-    ],
+    { loop: true, align: "start" },
+    [Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })],
   );
 
   const scrollPrev = () => emblaApi?.scrollPrev();
@@ -36,23 +33,11 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
   return (
     <>
       <section className="relative h-screen">
-        {/* Hero Carousel - 80% */}
         <div className="relative h-screen overflow-hidden" ref={emblaRef}>
           <div className="flex h-full">
-            {slides.map((slide, index) => (
+            {slides.map((slide) => (
               <div key={slide.id} className="relative min-w-0 flex-[0_0_100%]">
                 <div className="relative h-full w-full">
-                  {/* <Image
-                                        src={`${BASE_URL}/uploads/${slide.image_url}`}
-                                        alt={slide.title}
-                                        fill
-                                        priority={index === 0}
-                                        loading={index === 0 ? undefined : "lazy"}
-                                        quality={90}
-                                        sizes="100vw"
-                                        className="object-cover"
-                                    /> */}
-
                   <Image
                     unoptimized
                     src={`${BASE_URL}/uploads/${slide.image_url}`}
@@ -86,38 +71,46 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
             <ChevronRight className="h-7 w-7" />
           </button>
 
-          {/* Hero Content */}
+          {/* Hero Booking Form */}
           <div className="absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2">
             <CenterSection>
-              <form className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl">
-                {/* Check In */}
-                <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
-                  <CalendarDays size={16} className="mr-2" />
-                  <span className="text-sm">Check In</span>
-                  <input
-                    type="date"
-                    className="absolute inset-0 cursor-pointer opacity-0"
-                  />
-                </div>
+              <form
+                className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <DatePicker
+                  value={checkIn}
+                  onChange={(date) => {
+                    setCheckIn(date);
+                    if (date && checkOut && date >= checkOut) setCheckOut(undefined);
+                  }}
+                  placeholder="Check In"
+                  disabled={{ before: new Date() }}
+                  variant="light"
+                />
 
-                {/* Check Out */}
-                <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
-                  <CalendarDays size={16} className="mr-2" />
-                  <span className="text-sm">Check Out</span>
-                  <input
-                    type="date"
-                    className="absolute inset-0 cursor-pointer opacity-0"
-                  />
-                </div>
+                <DatePicker
+                  value={checkOut}
+                  onChange={setCheckOut}
+                  placeholder="Check Out"
+                  disabled={{ before: checkIn ?? new Date() }}
+                  defaultMonth={checkIn}
+                  variant="light"
+                />
 
                 {/* Guests */}
                 <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
-                  <Users size={16} className="mr-2" />
-                  <select className="w-full bg-transparent outline-none text-sm">
-                    <option className="text-black">1 Guest</option>
-                    <option className="text-black">2 Guests</option>
-                    <option className="text-black">3 Guests</option>
-                    <option className="text-black">4 Guests</option>
+                  <Users size={16} className="mr-2 shrink-0 opacity-70" />
+                  <select
+                    value={guests}
+                    onChange={(e) => setGuests(e.target.value)}
+                    className="w-full bg-transparent outline-none text-sm cursor-pointer"
+                  >
+                    <option value="" disabled className="text-black">Guests</option>
+                    <option value="1" className="text-black">1 Guest</option>
+                    <option value="2" className="text-black">2 Guests</option>
+                    <option value="3" className="text-black">3 Guests</option>
+                    <option value="4" className="text-black">4 Guests</option>
                   </select>
                 </div>
 
@@ -126,14 +119,13 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
                   <input
                     type="text"
                     placeholder="Promo Code"
-                    className="w-full bg-transparent outline-none placeholder:text-white text-sm"
+                    className="w-full bg-transparent outline-none placeholder:text-white/60 text-sm"
                   />
                 </div>
 
-                {/* Button */}
                 <button
                   type="submit"
-                  className="h-10 bg-accent px-8 text-sm font-normal uppercase text-white transition hover:opacity-90"
+                  className="h-10 bg-accent px-8 text-sm font-normal uppercase text-white transition hover:opacity-90 cursor-pointer"
                 >
                   Book Now
                 </button>
@@ -156,9 +148,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
         </div>
 
         <div className="z-0 text-center">
-          <h1
-            className={`${typography.textTwoXl} font-arizona font-bold uppercase`}
-          >
+          <h1 className={`${typography.textTwoXl} font-arizona font-bold uppercase`}>
             The Beach Hotel
           </h1>
 
