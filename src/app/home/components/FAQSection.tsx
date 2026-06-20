@@ -118,7 +118,7 @@ export default function FAQSection({
                         <div className="sticky top-24">
                             <div className="overflow-hidden rounded-md">
                                 <Image
-                                    src="/home/hero-1.png"
+                                    src="/home/hero-1.webp"
                                     alt="FAQ"
                                     width={700}
                                     height={800}
