@@ -498,6 +498,31 @@ export interface FAQ {
   deleted_at?: string | null;
 }
 
+export interface NearbyDestination {
+  id: number;
+
+  tag_name?: string;
+
+  title: string;
+
+  short_description?: string;
+  description?: string;
+
+  image_url?: string | string[];
+
+  is_active?: boolean;
+
+  display_order?: number;
+
+  created_by?: number;
+  updated_by?: number;
+  deleted_by?: number;
+
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
+}
+
 export interface ActivityLog {
   id: number;
 

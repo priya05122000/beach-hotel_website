@@ -13,7 +13,7 @@ const page = async () => {
 
     return (
         <>
-            <CommonBanner />
+            <CommonBanner title="Gallery" />
             <GalleryTabs galleries={galleryCategoryData.data} />
             <HotelGallerySection galleries={galleryData.data} galleryCategories={galleryCategoryData.data} />
         </>

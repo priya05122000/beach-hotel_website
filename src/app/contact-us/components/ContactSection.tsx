@@ -1,21 +1,93 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
+import { submitContactEnquiry } from "@/src/service/contact";
 
 const INPUT_CLASS =
     "w-full border-b border-white/10 bg-transparent pb-3 text-white placeholder:text-white focus:outline-none";
 
-const FORM_FIELDS = [
-    { type: "text", placeholder: "Full name" },
-    { type: "email", placeholder: "Email" },
-    { type: "tel", placeholder: "Mobile number" },
-    { type: "text", placeholder: "Location" },
-];
+const initialForm = {
+    full_name: "",
+    email: "",
+    phone_number: "",
+    location: "",
+    message: "",
+    consent: false,
+};
 
 export default function ContactSection() {
+    const [form, setForm] = useState(initialForm);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState(false);
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value, type } = e.target;
+        setForm((prev) => ({
+            ...prev,
+            [name]:
+                type === "checkbox"
+                    ? (e.target as HTMLInputElement).checked
+                    : value,
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setError(null);
+
+        if (!form.full_name.trim() || !form.email.trim() || !form.phone_number.trim()) {
+            setError("Full name, email, and mobile number are required.");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email)) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(form.phone_number)) {
+            setError("Please enter a valid 10-digit mobile number.");
+            return;
+        }
+
+        if (!form.consent) {
+            setError("Please accept the terms to proceed.");
+            return;
+        }
+
+        try {
+            setLoading(true);
+            const result = await submitContactEnquiry({
+                full_name: form.full_name,
+                email: form.email,
+                phone_number: form.phone_number,
+                location: form.location,
+                message: form.message,
+            });
+
+            if (result.success) {
+                setSuccess(true);
+                setForm(initialForm);
+            } else {
+                setError(result.message || "Something went wrong. Please try again.");
+            }
+        } catch {
+            setError("Server error. Please try again later.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <section className="relative overflow-hidden">
-            {/* Background */}
             <div className="absolute inset-0">
                 <Image
                     src="/home/hero-1.webp"
@@ -23,7 +95,6 @@ export default function ContactSection() {
                     fill
                     className="object-cover"
                 />
-
                 <div className="absolute inset-0 bg-black/30" />
             </div>
 
@@ -34,7 +105,6 @@ export default function ContactSection() {
                         <p className="mb-4 text-xs uppercase tracking-[0.2em] text-white">
                             Enquire
                         </p>
-
                         <h2
                             className={`max-w-xl font-arizona font-semibold leading-tight text-white ${typography.textFiXl}`}
                         >
@@ -51,49 +121,87 @@ export default function ContactSection() {
                             >
                                 Prefer to Message Us?
                             </h3>
-
                             <p className="mt-2 text-xs text-white">
                                 Fill out the form, and our team will get back to
                                 you as soon as possible.
                             </p>
 
-                            <form className="mt-8 space-y-6">
-                                {FORM_FIELDS.map((field) => (
+                            {success ? (
+                                <div className="mt-8 rounded bg-white/10 p-4 text-center text-sm text-white">
+                                    Thank you! We&apos;ll get back to you shortly.
+                                </div>
+                            ) : (
+                                <form className="mt-8 space-y-6" onSubmit={handleSubmit} noValidate>
                                     <input
-                                        key={field.placeholder}
-                                        type={field.type}
-                                        placeholder={field.placeholder}
+                                        type="text"
+                                        name="full_name"
+                                        placeholder="Full name"
+                                        value={form.full_name}
+                                        onChange={handleChange}
                                         className={INPUT_CLASS}
                                     />
-                                ))}
-
-                                <textarea
-                                    rows={2}
-                                    placeholder="Message"
-                                    className={`${INPUT_CLASS} resize-none`}
-                                />
-
-                                <label className="flex items-start gap-3 text-xs text-white">
                                     <input
-                                        type="checkbox"
-                                        className="mt-1"
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        value={form.email}
+                                        onChange={handleChange}
+                                        className={INPUT_CLASS}
+                                    />
+                                    <input
+                                        type="tel"
+                                        name="phone_number"
+                                        placeholder="Mobile number"
+                                        value={form.phone_number}
+                                        onChange={handleChange}
+                                        maxLength={10}
+                                        className={INPUT_CLASS}
+                                    />
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        placeholder="Location"
+                                        value={form.location}
+                                        onChange={handleChange}
+                                        className={INPUT_CLASS}
+                                    />
+                                    <textarea
+                                        rows={2}
+                                        name="message"
+                                        placeholder="Message"
+                                        value={form.message}
+                                        onChange={handleChange}
+                                        className={`${INPUT_CLASS} resize-none`}
                                     />
 
-                                    <span>
-                                        Our doctors provide expert medical advice
-                                        and consultation for all your eye care
-                                        needs. Get in touch with our team to
-                                        discuss.
-                                    </span>
-                                </label>
+                                    <label className="flex items-start gap-3 text-xs text-white cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            name="consent"
+                                            checked={form.consent}
+                                            onChange={handleChange}
+                                            className="mt-1"
+                                        />
+                                        <span>
+                                            I agree to be contacted by the team regarding
+                                            my enquiry. My information will be handled
+                                            in accordance with the privacy policy.
+                                        </span>
+                                    </label>
 
-                                <button
-                                    type="submit"
-                                    className="h-10 w-full rounded bg-accent font-medium text-white transition hover:opacity-90"
-                                >
-                                    Send Message
-                                </button>
-                            </form>
+                                    {error && (
+                                        <p className="text-sm text-red-300">{error}</p>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="h-10 w-full rounded bg-accent font-medium text-white transition hover:opacity-90 disabled:opacity-60"
+                                    >
+                                        {loading ? "Sending..." : "Send Message"}
+                                    </button>
+                                </form>
+                            )}
                         </div>
                     </div>
                 </div>

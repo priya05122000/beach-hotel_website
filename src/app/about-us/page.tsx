@@ -8,7 +8,7 @@ import MembershipSection from './components/MembershipSection'
 const page = () => {
     return (
         <>
-            <CommonBanner />
+            <CommonBanner title="About Us" />
             <StorySection />
             <SectionHeading />
             <StoryPreviewSection />
