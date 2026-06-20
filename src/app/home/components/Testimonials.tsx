@@ -218,7 +218,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                 aria-hidden="true"
                             /> */}
 
-                            <svg xmlns="http://www.w3.org/2000/svg" height={40} viewBox="0 0 310 310"><path d="M70.62 54.59 20 155.84v101.25h101.25V155.84H70.62l50.63-101.25zM290 52.91h-50.62l-50.63 101.25v101.25H290V154.16h-50.62z" fill="#040286"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height={40} viewBox="0 0 310 310"><path d="M70.62 54.59 20 155.84v101.25h101.25V155.84H70.62l50.63-101.25zM290 52.91h-50.62l-50.63 101.25v101.25H290V154.16h-50.62z" fill="#012644"></path></svg>
                         </div>
 
                         <div className="overflow-hidden" ref={emblaRef}>

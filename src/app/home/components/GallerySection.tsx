@@ -155,7 +155,7 @@ function GalleryCard({
 
     return (
         <div
-            className={`group relative overflow-hidden rounded-md p-0.75 bg-[linear-gradient(to_right,#040286,#FF992AC2,#040286,#040286,#FF992AC2,#040286)] bg-size-[250%] bg-left duration-1000 transition-all hover:bg-right shadow-xl ${className}`}
+            className={`group relative overflow-hidden rounded-md p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%] bg-left duration-1000 transition-all hover:bg-right shadow-xl ${className}`}
         >
             <div className="relative h-full w-full overflow-hidden rounded">
 

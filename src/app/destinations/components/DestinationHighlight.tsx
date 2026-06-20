@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 
 const gradientBase =
-    'p-0.75 bg-[linear-gradient(to_right,#040286,#FF992AC2,#040286,#040286,#FF992AC2,#040286)] bg-size-[250%] bg-left duration-1000 transition-all hover:bg-right shadow-xl'
+    'p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%] bg-left duration-1000 transition-all hover:bg-right shadow-xl'
 
 type ImageCardProps = {
     src: string
