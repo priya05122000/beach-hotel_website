@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronLeft, ChevronRight, Users } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import GuestPicker from "@/src/components/ui/GuestPicker";
 import CenterSection from "@/src/components/common/CenterSection";
 import { typography } from "@/src/lib/typography";
 import Link from "next/link";
@@ -18,7 +19,6 @@ interface HeroBannerProps {
 export default function HeroBanner({ slides }: HeroBannerProps) {
   const [checkIn, setCheckIn] = useState<Date | undefined>();
   const [checkOut, setCheckOut] = useState<Date | undefined>();
-  const [guests, setGuests] = useState<string>("");
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "start" },
@@ -99,20 +99,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
                 />
 
                 {/* Guests */}
-                <div className="relative flex h-10 min-w-45 rounded-md flex-1 items-center border border-white/40 px-4 text-white">
-                  <Users size={16} className="mr-2 shrink-0 opacity-70" />
-                  <select
-                    value={guests}
-                    onChange={(e) => setGuests(e.target.value)}
-                    className="w-full bg-transparent outline-none text-sm cursor-pointer"
-                  >
-                    <option value="" disabled className="text-black">Guests</option>
-                    <option value="1" className="text-black">1 Guest</option>
-                    <option value="2" className="text-black">2 Guests</option>
-                    <option value="3" className="text-black">3 Guests</option>
-                    <option value="4" className="text-black">4 Guests</option>
-                  </select>
-                </div>
+                <GuestPicker variant="light" />
 
                 {/* Promo Code */}
                 <div className="flex h-10 flex-1 rounded-md min-w-45 items-center border border-white/40 px-4 text-white">

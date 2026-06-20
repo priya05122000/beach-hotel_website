@@ -15,7 +15,7 @@ export default function AboutHotelSection() {
                     <p
                         className={`mt-4 text-primary ${typography.textLg}`}
                     >
-                        Hotel facilities areÂ designated spaces and services designed to enhance. Hotel facilities areÂ designated spaces and services designed to enhance
+                        Hotel facilities area designated spaces and services designed to enhance. Hotel facilities area designated spaces and services designed to enhance
                     </p>
                 </div>
             </Section>
