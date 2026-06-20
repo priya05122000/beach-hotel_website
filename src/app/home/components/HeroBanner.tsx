@@ -147,14 +147,13 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
             <div className="mt-2 flex items-center justify-center gap-4">
               <Link
                 href="/about-us"
-                className="flex h-10 w-40 items-center justify-center rounded-md bg-accent px-6 text-sm font-normal uppercase text-primary shadow-lg"
+                className="flex h-10  items-center justify-center rounded-md bg-accent px-6 text-sm font-normal uppercase text-primary shadow-lg"
               >
                 About Us
               </Link>
-
               <Link
                 href="tel:+911234567890"
-                className="flex h-10 w-40 items-center justify-center rounded-md bg-white px-6 text-sm font-normal text-primary shadow-lg"
+                className="flex h-10  items-center justify-center rounded-md bg-white px-6 text-sm font-normal text-primary shadow-lg"
               >
                 +91 12345 67890
               </Link>

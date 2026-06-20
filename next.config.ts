@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
     qualities: [60, 70, 75, 80, 90],
 
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.thebeachhotel.in",
+        pathname: "/uploads/**",
+      },
       // {
       //   protocol: "https",
       //   hostname: "api.izhtech.com",

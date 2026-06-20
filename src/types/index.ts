@@ -72,7 +72,7 @@ export interface OrgUser {
   org_id: number;
   role_id: number;
 
-  name : string;
+  name: string;
   email?: string | null;
   password_hash?: string | null;
 
@@ -501,15 +501,15 @@ export interface FAQ {
 export interface NearbyDestination {
   id: number;
 
-  tag_name?: string;
+  destination_name: string;
+  distance?: string;
 
-  title: string;
+  image_url?: string | string[];
 
   short_description?: string;
   description?: string;
 
-  image_url?: string | string[];
-
+  is_featured?: boolean;
   is_active?: boolean;
 
   display_order?: number;

@@ -91,7 +91,7 @@ export default function FAQSection({
                                             </span>
 
                                             <span className="text-gray cursor-pointer">
-                                                {isOpen ? "âˆ’" : "+"}
+                                                {isOpen ? "-" : "+"}
                                             </span>
                                         </button>
 
