@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
@@ -39,7 +39,7 @@ export default function DatePicker({
 
   const triggerClass =
     variant === "light"
-      ? "border border-white/40 text-white"
+      ? "border border-white/40 text-white rounded-md"
       : "border border-silver text-foreground";
 
   return (
@@ -56,7 +56,7 @@ export default function DatePicker({
         </span>
       </button>
 
-      {/* Calendar popup — opens above the trigger */}
+      {/* Calendar popup â€” opens above the trigger */}
       {open && (
         <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-72 rounded-none bg-primary shadow-2xl border border-silver/60">
           <DayPicker
@@ -87,7 +87,7 @@ export default function DatePicker({
               root: "p-4 select-none",
 
               month_caption:
-                "flex items-center justify-center h-8 mb-3 font-arizona font-bold text-accent text-sm uppercase tracking-widest",
+                "flex items-center justify-center h-8 mb-3 font-bold text-accent text-sm uppercase tracking-widest",
 
               nav: "absolute top-0 left-4 right-4 flex items-center justify-between pointer-events-none",
               button_previous:

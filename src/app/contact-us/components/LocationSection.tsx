@@ -1,4 +1,4 @@
-import Section from "@/src/components/common/Section";
+﻿import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 
 export default function LocationSection() {
@@ -7,7 +7,7 @@ export default function LocationSection() {
             <Section>
                 {/* Heading */}
                 <div className="max-w-sm">
-                    <h2 className={`max-w-xl font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                    <h2 className={`max-w-xl font-semibold leading-tight text-primary ${typography.textFiXl}`}
                     >
                         Need Help or
                         <br />
@@ -21,7 +21,7 @@ export default function LocationSection() {
                 </div>
 
                 {/* Map */}
-                <div className="mt-12 overflow-hidden rounded-md shadow-xl">
+                <div className="mt-12 overflow-hidden rounded-[14px] shadow-xl">
                     <iframe
                         src="https://www.google.com/maps?q=Kanyakumari&output=embed"
                         width="100%"

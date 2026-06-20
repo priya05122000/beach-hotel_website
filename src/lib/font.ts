@@ -1,29 +1,14 @@
-import localFont from "next/font/local";
+import { Marcellus, Inter } from "next/font/google";
 
-export const arizonaFlare = localFont({
-    src: "../fonts/ABCArizonaFlareVariable-Trial.ttf",
-    variable: "--font-arizona",
+export const marcellus = Marcellus({
+    weight: "400",
+    subsets: ["latin"],
+    variable: "--font-marcellus",
     display: "swap",
 });
 
-export const majesty = localFont({
-    src: [
-        {
-            path: "../fonts/majesty-light.otf",
-            weight: "300",
-            style: "normal",
-        },
-        {
-            path: "../fonts/majesty-regular.otf",
-            weight: "400",
-            style: "normal",
-        },
-        {
-            path: "../fonts/majesty-bold.otf",
-            weight: "700",
-            style: "normal",
-        },
-    ],
-    variable: "--font-majesty",
+export const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
     display: "swap",
 });

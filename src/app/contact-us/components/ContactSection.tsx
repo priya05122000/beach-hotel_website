@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -106,18 +106,20 @@ export default function ContactSection() {
                             Enquire
                         </p>
                         <h2
-                            className={`max-w-xl font-arizona font-semibold leading-tight text-white ${typography.textFiXl}`}
+                            className={`max-w-xl font-semibold leading-tight text-white ${typography.textFiXl}`}
                         >
-                            Step Out Of Bed And Straight Onto The Sun-Kissed Sands
-                            Of Kanyakumari.
+                            Reserve Your Moment of Quiet Luxury
                         </h2>
+                        <p className="mt-4 text-sm text-white/80 max-w-sm leading-relaxed">
+                            A quiet moment away from the coast is all it takes to begin your journey. Share your details and our team will respond with care.
+                        </p>
                     </div>
 
                     {/* Form Card */}
                     <div className="lg:flex lg:justify-end">
-                        <div className="w-full lg:max-w-lg overflow-hidden rounded-sm bg-primary/62 p-4 shadow-lg backdrop-blur-md lg:p-6">
+                        <div className="w-full lg:max-w-lg overflow-hidden rounded-[14px] bg-primary/62 p-4 shadow-lg backdrop-blur-md lg:p-6">
                             <h3
-                                className={`font-arizona font-semibold text-white ${typography.textTwoXl}`}
+                                className={` font-semibold text-white ${typography.textTwoXl}`}
                             >
                                 Prefer to Message Us?
                             </h3>
@@ -196,7 +198,7 @@ export default function ContactSection() {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="h-10 w-full rounded bg-accent font-medium text-white transition hover:opacity-90 disabled:opacity-60"
+                                        className="h-10 w-full rounded bg-accent font-medium text-primary transition hover:opacity-90 disabled:opacity-60"
                                     >
                                         {loading ? "Sending..." : "Send Message"}
                                     </button>

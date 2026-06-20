@@ -153,13 +153,13 @@ export default function Testimonials({ reviews }: TestimonialProps) {
     const limitedReviews = reviews.slice(0, 6);
 
     return (
-        <div className="bg-surface py-16 lg:py-20  rounded-[20px]">
+        <div className="bg-surface py-16 lg:py-20  rounded-[14px]">
             <CenterSection>
                 <div className="grid grid-cols-1 gap-6 min-h-87.5 lg:min-h-90 sm:grid-cols-12 xl:gap-10 ">
 
                     {/* Left Side Images */}
                     <div className="relative col-span-6 xl:col-span-5 min-h-55  flex items-center justify-center w-full">
-                        <div className=" w-full relative  flex  items-center justify-center rounded-xl p-4 min-h-80 sm:p-6">
+                        <div className=" w-full relative  flex  items-center justify-center rounded-md p-4 min-h-80 sm:p-6">
 
                             {limitedReviews.map((t, index) => {
                                 const ui = reviewStyles[index % reviewStyles.length];
@@ -197,7 +197,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                             width={100}
                                             height={100}
                                             unoptimized
-                                            className={`object-cover rounded-2xl sm:rounded-3xl shadow-[0px_4px_4px_0px_#00000040] border-2 transition-all duration-300 ${activeIndex === index
+                                            className={`object-cover rounded-md shadow-[0px_4px_4px_0px_#00000040] border-2 transition-all duration-300 ${activeIndex === index
                                                 ? "bg-linear-to-r from-primary via-accent/76 to-primary"
                                                 : "border-white grayscale "
                                                 } ${ui.size}`}
@@ -211,7 +211,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                     </div>
 
                     {/* Right Side Content */}
-                    <div className="flex min-h-70 col-span-6 xl:col-span-7  flex-col justify-center rounded-xl py-6 sm:px-6 sm:min-h-80 sm:py-8 lg:pl-10">
+                    <div className="flex min-h-70 col-span-6 xl:col-span-7  flex-col justify-center rounded-[14px] py-6 sm:px-6 sm:min-h-80 sm:py-8 lg:pl-10">
                         <div className="mb-2 hidden sm:block">
                             {/* <Quote
                                 className="h-10 w-10 rotate-180 text-primary"

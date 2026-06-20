@@ -1,65 +1,76 @@
-import Section from "@/src/components/common/Section";
+﻿import Image from "next/image";
 import { typography } from "@/src/lib/typography";
 
 export default function ContactIntro() {
     return (
-        <section className="bg-primary py-16 lg:py-20">
-            <Section>
-                <div className="grid gap-10 lg:grid-cols-12">
-                    {/* Left Content */}
-                    <div className="lg:max-w-md lg:col-span-5">
-                        <div className="mb-4">
-                            <p className="text-xs uppercase tracking-[0.2em] text-white">
-                                Contact Us
-                            </p>
+        <section className="grid sm:grid-cols-[1.3fr_2fr] sm:min-h-screen">
+            {/* Left â€” Hotel Image */}
+            <div className="relative hidden sm:block min-h-75 lg:min-h-120">
+                <Image
+                    src="/contact-us/contact.jpg"
+                    alt="The Beach Hotel exterior"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+            </div>
 
-                            <h2
-                                className={`mt-2 max-w-sm text-white ${typography.textFoXl}`}
-                            >
-                                Contact Us
-                            </h2>
+
+            {/* Right â€” Content */}
+            <div className="bg-primary px-6 sm:px-4 py-16 lg:py-20 flex flex-col justify-center">
+                <div className="px-0 md:px-4 lg:px-12 ">
+
+                    <p className="text-xs uppercase tracking-[0.2em] text-white mb-4">
+                        Contact Us
+                    </p>
+
+                    <h2
+                        className={` font-semibold leading-tight text-white mb-10 max-w-lg ${typography.textFiXl}`}
+                    >
+                        A Collection of Refined Moments and Quiet Luxury
+
+                    </h2>
+
+                    {/* Address & Phone row */}
+                    <div className="grid grid-cols-2 gap-8 mb-10">
+                        <div>
+                            <h3 className={`font-semibold text-white mb-2 ${typography.textXl}`}>
+                                The Beach Hotel
+                            </h3>
+                            <p className="text-sm text-white/80 leading-relaxed">
+                                Erumanayakkanpatti Beach Road,
+                                <br />
+                                Kanyakumari 629702, India
+                            </p>
                         </div>
 
-                        <h3
-                            className={`max-w-xl font-arizona font-semibold leading-tight text-white ${typography.textFiXl}`}
-                        >
-                            Step Out Of Bed And Straight Onto The Sun-Kissed Sands
-                            Of Kanyakumari.
-                        </h3>
-
-
+                        <div>
+                            <h3 className={`font-semibold text-white mb-2 ${typography.textXl}`}>
+                                Phone number
+                            </h3>
+                            <a
+                                href="tel:04652237491"
+                                className="text-sm text-white/80 hover:text-white transition"
+                            >
+                                04652 237 491
+                            </a>
+                        </div>
                     </div>
 
-                    {/* Address */}
-                    <div className="lg:col-span-4">
-                        <h3 className={`mb-3 text-white ${typography.textXl}`}
-                        >
-                            The Beach Hotel
-                        </h3>
-
-                        <p className={`text-sm leading-relaxed text-white`}>
-                            Erumanayakkanpatti Beach Road,
-                            <br />
-                            Kanyakumari 629702, India
-                        </p>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="lg:col-span-3">
-                        <h3 className={`mb-3 text-white ${typography.textXl}`}
-                        >
-                            Phone number
-                        </h3>
-
+                    {/* Get Direction button */}
+                    <div>
                         <a
-                            href="tel:04652237491"
-                            className="text-white text-sm transition hover:text-white"
+                            href="https://maps.google.com/?q=Erumanayakkanpatti+Beach+Road,+Kanyakumari+629702,+India"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block bg-accent px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white hover:opacity-90 transition"
                         >
-                            04652 237 491
+                            Get Direction
                         </a>
                     </div>
+
                 </div>
-            </Section>
+            </div>
         </section>
     );
 }

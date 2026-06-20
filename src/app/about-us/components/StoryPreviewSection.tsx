@@ -1,34 +1,34 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 
 export default function StoryPreviewSection() {
     return (
-        <section className="bg-primary/13 py-16 lg:py-20">
+        <section className="bg-cream py-16 lg:py-20">
             <Section>
                 {/* Top Content */}
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
 
-                    <h3
-                        className={`font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                    <h2
+                        className={` font-semibold leading-tight text-primary ${typography.textFiXl}`}
                     >
-                        Step Out Of Bed And Straight Onto The Sun-Kissed Sands
-                        Of Kanyakumari.
-                    </h3>
+                        Coastal Hotel Stay in Kanniyakumari
+
+                    </h2>
 
                     {/* Right */}
                     <div>
-                        <h2
+                        <h3
                             className={` max-w-sm text-primary ${typography.textFoXl}`}
                         >
                             Our Story
-                        </h2>
+                        </h3>
 
                         <p
                             className={`mt-4 max-w-lg text-primary ${typography.textLg}`}
                         >
-                            Hotel facilities are designated spaces and services
-                            designed to enhance the guest experience.
+                            A calm and welcoming stay in Kanyakumari with well-kept spaces and warm hospitality, designed for a relaxed and comfortable visit.
+
                         </p>
                     </div>
                 </div>

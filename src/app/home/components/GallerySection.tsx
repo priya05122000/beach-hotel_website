@@ -49,7 +49,8 @@ export default function GallerySection({
                         <h2
                             className={`mt-2 text-4xl font-normal text-gray max-w-sm ${typography.textFoXl}`}
                         >
-                            Experience At The Beach Hotel
+                            A efined visual language of the stay
+
                         </h2>
                     </div>
 
@@ -155,9 +156,9 @@ function GalleryCard({
 
     return (
         <div
-            className={`group relative overflow-hidden rounded-md p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%] bg-left duration-1000 transition-all hover:bg-right shadow-xl ${className}`}
+            className={`group relative overflow-hidden rounded-[14px] p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%] bg-left duration-1000 transition-all hover:bg-right shadow-xl ${className}`}
         >
-            <div className="relative h-full w-full overflow-hidden rounded">
+            <div className="relative h-full w-full overflow-hidden rounded-xl">
 
                 {isVideo ? (
                     playVideo ? (

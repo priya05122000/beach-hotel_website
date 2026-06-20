@@ -1,4 +1,4 @@
-import Section from '@/src/components/common/Section'
+﻿import Section from '@/src/components/common/Section'
 import { getNearbyDestinationData } from '@/src/service/nearbyDestination'
 import { typography } from '@/src/lib/typography'
 import type { NearbyDestination } from '@/src/types'
@@ -19,7 +19,7 @@ type ImageCardProps = {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({ src, alt = '', heightClass = '' }) => {
-    const classes = `relative ${heightClass} min-h-0 group overflow-hidden rounded-md ${gradientBase}`
+    const classes = `relative ${heightClass} min-h-0 group overflow-hidden rounded-[14px] ${gradientBase}`
     return (
         <div className={classes}>
             <Image src={src} alt={alt} fill className="object-cover p-1" />
@@ -37,13 +37,13 @@ type ContentProps = { destination: NearbyDestination }
 const LeftContent: React.FC<ContentProps> = ({ destination }) => (
     <div className="order-1 lg:col-span-4 flex flex-col justify-center">
         {destination.tag_name && (
-            <span className="rounded bg-primary px-3 py-1 text-xs font-semibold uppercase text-white font-arizona w-fit">
+            <span className="rounded bg-primary px-3 py-1 text-xs font-semibold uppercase text-white w-fit">
                 {destination.tag_name}
             </span>
         )}
 
         <h2
-            className={`mt-6 lg:mt-8 max-w-xl font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+            className={`mt-6 lg:mt-8 max-w-xl font-semibold leading-tight text-primary ${typography.textFiXl}`}
         >
             {destination.title}
         </h2>

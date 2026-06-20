@@ -12,7 +12,7 @@ const page = () => {
             <ContactIntro />
             <GroupCompaniesSection />
             <ContactSection />
-            <LocationSection />
+            {/* <LocationSection /> */}
         </>
     )
 }

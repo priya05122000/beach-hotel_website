@@ -1,70 +1,114 @@
-import Image from "next/image";
+﻿import CenterSection from "@/src/components/common/CenterSection";
 import Section from "@/src/components/common/Section";
-import { typography } from "@/src/lib/typography";
+import Image from "next/image";
 
-export default function StorySection() {
+const photos = [
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel room", rotate: "-9deg", zIndex: 1 },
+    { src: "/home/hero-2.png", alt: "Hotel sign", rotate: "4deg", zIndex: 3 },
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel", rotate: "-5deg", zIndex: 2 },
+    { src: "/home/hero-1.webp", alt: "Hotel guest", rotate: "12deg", zIndex: 5 },
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel view", rotate: "4deg", zIndex: 6 },
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel view", rotate: "-20deg", zIndex: 0 },
+];
+
+function PhotoStrip() {
     return (
-        <section className="bg-primary/19 py-16 lg:py-20">
-            <Section>
-                <div className="grid items-center gap-12 lg:grid-cols-2">
-                    {/* Content */}
-                    <div className="lg:max-w-md">
-                        <div className="mb-4">
-                            <p className="text-xs uppercase tracking-[0.2em] text-primary">
-                                Story
-                            </p>
-
-                            <h2
-                                className={`mt-2 max-w-sm text-primary ${typography.textFoXl}`}
-                            >
-                                Our Story
-                            </h2>
-                        </div>
-
-                        <h3
-                            className={`max-w-xl font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
-                        >
-                            Step Out Of Bed And Straight Onto The Sun-Kissed Sands
-                            Of Kanyakumari.
-                        </h3>
-
-                        <p
-                            className={`mt-4 max-w-sm text-primary ${typography.textLg}`}
-                        >
-                            Hotel facilities are designated spaces and services
-                            designed to enhance the guest experience.
-                        </p>
-                    </div>
-
-                    {/* Image Section */}
-                    <div className="relative">
-                        <div className="relative h-100 sm:h-125 w-full overflow-hidden">
+        <Section>
+            {/* Mobile: vertical stack, each photo one by one with its rotation */}
+            <div className="md:hidden flex flex-col items-center gap-10 py-10 ">
+                {photos.map((photo, index) => (
+                    <div
+                        key={index}
+                        className="bg-white shadow-xl p-2 w-[60%]"
+                        style={{
+                            transform: `rotate(${photo.rotate})`,
+                            zIndex: photo.zIndex,
+                        }}
+                    >
+                        <div className="relative w-full h-60" >
                             <Image
-                                src="/home/hero-1.webp"
-                                alt="Hotel Room"
+                                src={photo.src}
+                                alt={photo.alt}
                                 fill
+                                unoptimized
                                 className="object-cover"
                             />
                         </div>
+                    </div>
+                ))}
+            </div>
 
-                        {/* Floating Card */}
-                        <div className="absolute -top-6 right-0 bg-primary p-5 text-white shadow-xl">
-                            <h3
-                                className={`${typography.textThXl} max-w-sm text-white`}
-                            >
-                                Our Story
-                            </h3>
+            {/* Desktop: overlapping fan layout */}
+            <div className="hidden md:block relative  h-36 lg:h-44 xl:h-56  ">
+                <div className="absolute  left-1/2 top-0 flex h-full -translate-x-1/2 -translate-y-1/3 items-center justify-center">
+                    {photos.map((photo, index) => (
+                        <div
+                            key={index}
+                            className="shrink-0 bg-white shadow-xl w-28 lg:w-36 xl:w-48 p-1.5 md:p-2 "
+                            style={{
+                                transform: `rotate(${photo.rotate})`,
+                                zIndex: photo.zIndex,
+                            }}
+                        >
+                            <div className="relative w-full h-36 lg:h-44 xl:h-56">
+                                <Image
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    fill
+                                    unoptimized
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Section>
+    );
+}
 
-                            <p
-                                className={`mt-4 max-w-45 text-white ${typography.textBase}`}
-                            >
-                                Hotel facilities are designated spaces and services
-                                designed to enhance the guest experience.
+export default function StorySection() {
+    return (
+        <section className="bg-primary">
+            <PhotoStrip />
+
+            <CenterSection>
+                <div className="py-16 lg:py-20">
+                    <div className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-20">
+                        {/* Left Content */}
+                        <div>
+                            <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.3rem)] font-bold leading-tight text-accent">
+                                Step Out Of Bed
+                                <br />
+                                And Straight Onto
+                            </h2>
+
+                            <p className="mb-3 text-sm font-semibold text-white">
+                                Contact Front Desk
+                            </p>
+
+                            <p className="text-xs leading-relaxed text-white/50">
+                                Hotel Facilities Are Designated Space
+                            </p>
+                        </div>
+
+                        {/* Right Content */}
+                        <div className="space-y-6">
+                            <p className="text-sm leading-relaxed text-white">
+                                Hotel Facilities Are Designated Spaces And Services Designed To
+                                Enhance The Guest Experience. Hotel Facilities Are Designated
+                                Spaces.
+                            </p>
+
+                            <p className="text-sm leading-relaxed text-white">
+                                Hotel Facilities Are Designated Spaces And Services Designed To
+                                Enhance The Guest Experience. Hotel Facilities Are Designated
+                                Spaces.
                             </p>
                         </div>
                     </div>
                 </div>
-            </Section>
+            </CenterSection>
         </section>
     );
 }

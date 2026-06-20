@@ -14,7 +14,7 @@ const CommonBanner = ({ title }: { title: string }) => {
                 className="object-cover h-110"
             />
             <div className='absolute inset-x-0 bottom-6 flex justify-center text-white'>
-                <span className="text-2xl font-semibold">{title}</span>
+                <h1 className="text-2xl font-semibold">{title}</h1>
             </div>
         </div>
     )

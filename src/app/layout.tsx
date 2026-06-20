@@ -1,6 +1,6 @@
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { arizonaFlare, majesty } from "../lib/font";
+import { marcellus, inter } from "../lib/font";
 
 export default async function RootLayout({
   children,
@@ -10,9 +10,9 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${arizonaFlare.variable} ${majesty.variable}`}
+      className={`${marcellus.variable} ${inter.variable}`}
     >
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden">
 
         <ClientLayout>
           {children}

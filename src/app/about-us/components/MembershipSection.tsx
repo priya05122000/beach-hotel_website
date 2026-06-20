@@ -1,4 +1,4 @@
-import Section from "@/src/components/common/Section";
+﻿import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 import {
     Gift,
@@ -53,11 +53,11 @@ export default function MembershipSection() {
 
                 <div className="relative z-10 ">
 
-                    <h3
-                        className={`font-arizona mb-12 text-center font-semibold leading-tight text-white ${typography.textFiXl}`}
+                    <h2
+                        className={` mb-12 text-center font-semibold leading-tight text-white ${typography.textFiXl}`}
                     >
                         Join The Beach Hotel
-                    </h3>
+                    </h2>
 
                     {/* Benefits */}
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -76,7 +76,7 @@ export default function MembershipSection() {
                                         />
                                     </div>
 
-                                    <h3 className={`mb-2 ${typography.textXl} font-semibold font-arizona`}>
+                                    <h3 className={`mb-2 ${typography.textXl} font-semibold`}>
                                         {item.title}
                                     </h3>
 

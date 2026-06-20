@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -7,8 +7,8 @@ import Marquee from "react-fast-marquee";
 import { Menu, X } from "lucide-react";
 
 import Section from "../common/Section";
-import { typography } from "@/src/lib/typography";
 import { Announcement } from "@/src/types";
+import Image from "next/image";
 
 
 
@@ -35,7 +35,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const isActive = (href: string) => pathname === href;
 
     return (
-        <header className="fixed top-0 left-0 z-50 w-full">
+        <header className="fixed top-0 left-0 z-50 w-full overflow-x-hidden">
             {/* Announcement Bar */}
             <div className="h-10 bg-white">
                 <Marquee
@@ -43,7 +43,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     gradient={false}
                     pauseOnHover
                     autoFill
-                    className="h-full text-base font-normal font-arizona uppercase text-primary"
+                    className="h-full text-base font-normal uppercase text-primary"
                 >
                     {announcementData?.map((item) => (
                         <span
@@ -56,31 +56,25 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </Marquee>
             </div>
 
-            <Section className="relative">
-                {/* Navbar */}
-                <div className="mt-5 ">
-                    <div className="mx-auto flex items-center justify-between">
+            <Section className="relative ">
+                <div className="mt-5">
+                    <div className="mx-auto flex items-center justify-between h-16 xl:h-20 overflow-hidden">
+                        <div className="relative h-full">
+                            <div className="absolute  bg-primary h-12 xl:h-14 bottom-0 left-0 right-0"></div>
+
+                            <Image
+                                src="/navbar_logo.png"
+                                alt="Logo"
+                                width={300}
+                                height={150}
+                                priority
+                                className="relative z-10 w-auto h-full object-contain"
+                            />
+                        </div>
 
 
-                        {/* Navigation + CTA */}
-                        <div className="flex h-12 w-full justify-between rounded-md backdrop-blur-md overflow-hidden bg-primary/60 shadow-lg">
-
-                            {/* Logo */}
-                            <div className="mr-3 flex h-12 items-center justify-center p-3  ">
-                                {/* <Image
-                                    src="/logo.png"
-                                    alt="Logo"
-                                    width={42}
-                                    height={42}
-                                    priority
-                                    className="h-9 object-contain"
-                                /> */}
-                                <p className={`text-white font-arizona uppercase font-medium tracking-wider ${typography.textTwoXl}`}>The Beach Hotel</p>
-                            </div>
-
-                            {/* Navigation */}
-                            <div className="flex items-center px-3 ">
-                                {/* Desktop Menu */}
+                        <div className="flex items-center gap-2 md:gap-3">
+                            <div className="flex items-center px-3 py-2 bg-primary/60 backdrop-blur-md shadow-[0px_4px_4px_0px_#00000040] rounded-md">
                                 <ul className="hidden items-center xl:flex">
                                     {NAV_LINKS.map(({ href, label }) => (
                                         <li key={href}>
@@ -97,7 +91,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                     ))}
                                 </ul>
 
-                                {/* Mobile Menu Trigger */}
                                 <button
                                     onClick={() => setMenuOpen(true)}
                                     className="text-white xl:hidden"
@@ -107,28 +100,20 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 </button>
                             </div>
 
-
+                            <button className="hidden h-10 w-36 shrink-0 whitespace-nowrap rounded-md bg-accent px-6 text-sm font-normal text-primary shadow-[0px_4px_4px_0px_#00000040] md:block">
+                                BOOK MY STAY
+                            </button>
                         </div>
 
-                        {/* CTA */}
-                        {/* <button className="ml-3 hidden h-12 w-auto rounded-md bg-accent px-6 text-sm font-normal text-white shadow-lg md:block">
-                            BOOK MY STAY
-                        </button> */}
-
-                        <button className="ml-3 hidden h-12 w-36 shrink-0 whitespace-nowrap rounded-md bg-accent px-6 text-sm font-normal text-white shadow-lg md:block">
-                            BOOK MY STAY
-                        </button>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
                 <div
                     className={`fixed inset-0 z-999 bg-primary transition-all duration-300 xl:hidden ${menuOpen
                         ? "visible opacity-100"
                         : "invisible opacity-0"
                         }`}
                 >
-                    {/* Close Button */}
                     <button
                         onClick={() => setMenuOpen(false)}
                         className="absolute top-6 right-6 text-white"
@@ -137,7 +122,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         <X size={32} />
                     </button>
 
-                    {/* Mobile Navigation */}
                     <ul className="flex h-full flex-col items-center justify-center gap-8">
                         {NAV_LINKS.map(({ href, label }) => (
                             <li key={href}>
@@ -154,7 +138,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             </li>
                         ))}
 
-                        <button className="mt-4 rounded-md bg-accent px-6 py-3 font-semibold text-white">
+                        <button className="mt-4 rounded-md bg-accent px-6 py-3 font-semibold text-primary">
                             BOOK MY STAY
                         </button>
                     </ul>

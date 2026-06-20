@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -75,7 +75,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
           <div className="absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2">
             <CenterSection>
               <form
-                className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl"
+                className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl rounded-[14px]"
                 onSubmit={(e) => e.preventDefault()}
               >
                 <DatePicker
@@ -99,7 +99,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
                 />
 
                 {/* Guests */}
-                <div className="relative flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
+                <div className="relative flex h-10 min-w-45 rounded-md flex-1 items-center border border-white/40 px-4 text-white">
                   <Users size={16} className="mr-2 shrink-0 opacity-70" />
                   <select
                     value={guests}
@@ -115,7 +115,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
                 </div>
 
                 {/* Promo Code */}
-                <div className="flex h-10 flex-1 min-w-45 items-center border border-white/40 px-4 text-white">
+                <div className="flex h-10 flex-1 rounded-md min-w-45 items-center border border-white/40 px-4 text-white">
                   <input
                     type="text"
                     placeholder="Promo Code"
@@ -125,7 +125,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
 
                 <button
                   type="submit"
-                  className="h-10 bg-accent px-8 text-sm font-normal uppercase text-white transition hover:opacity-90 cursor-pointer"
+                  className="h-10 bg-accent px-8 text-sm font-normal uppercase text-primary transition hover:opacity-90 cursor-pointer rounded-md"
                 >
                   Book Now
                 </button>
@@ -148,7 +148,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
         </div>
 
         <div className="z-0 text-center">
-          <h1 className={`${typography.textTwoXl} font-arizona font-bold uppercase`}>
+          <h1 className={`${typography.textTwoXl} font-bold uppercase`}>
             The Beach Hotel
           </h1>
 
@@ -160,7 +160,7 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
             <div className="mt-2 flex items-center justify-center gap-4">
               <Link
                 href="/about-us"
-                className="flex h-10 w-40 items-center justify-center rounded-md bg-accent px-6 text-sm font-normal uppercase text-white shadow-lg"
+                className="flex h-10 w-40 items-center justify-center rounded-md bg-accent px-6 text-sm font-normal uppercase text-primary shadow-lg"
               >
                 About Us
               </Link>

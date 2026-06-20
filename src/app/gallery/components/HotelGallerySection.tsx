@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -49,9 +49,9 @@ const GalleryCard = ({
 
     return (
         <div
-            className={`group relative overflow-hidden rounded-md p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%_100%] bg-left transition-all duration-1000 hover:bg-right shadow-xl ${className}`}
+            className={`group relative overflow-hidden rounded-[14px] p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%_100%] bg-left transition-all duration-1000 hover:bg-right shadow-xl ${className}`}
         >
-            <div className="relative h-full w-full overflow-hidden rounded-md">
+            <div className="relative h-full w-full overflow-hidden rounded-[14px]">
                 {isVideo ? (
                     playVideo ? (
                         <video
@@ -118,7 +118,7 @@ function GallerySection({
                 {(title || description) && (
                     <div className="mb-6 sm:mb-8">
                         {title && (
-                            <span className="rounded bg-accent px-3 py-1 text-xs font-semibold uppercase text-white font-arizona">
+                            <span className="rounded bg-accent px-3 py-1 text-xs font-semibold uppercase text-primary">
                                 {title}
                             </span>
                         )}

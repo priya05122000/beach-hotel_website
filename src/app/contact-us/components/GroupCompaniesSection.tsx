@@ -1,88 +1,123 @@
+﻿"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
+import CenterSection from "@/src/components/common/CenterSection";
+
+const HOTEL_NAMES =
+    "Hotel Sangam | Chennai Inn | Rameshwaram Grand | Temple Citi AR Residency | Comorin Grand | Hotel Seaview | Hotel Seaface Ocean Heritage | Triveni Tourist Home | Gopinivas Grand";
 
 const companies = [
     {
         name: "Seashore & Co",
         logo: "/contact-us/seashore.png",
-        address:
-            "2/12, East Car Street, Kanyakumari, Tamilnadu, India - 629702",
+        address: "2/12, East Car Street, Kanyakumari, Tamilnadu, India - 629702",
+        description:
+            "Description About The Hotel Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience, Distinct From Individual Room Amenities. Key Offerings",
     },
     {
-        name: "GT Holidays Pvt LTD",
-        logo: "/contact-us/follicle.png",
+        name: "Gt Holidays",
+        logo: "/contact-us/gtholidays.png",
         address:
             "No.1, Gemini Parsn, Kodambakkam High Road, Nungambakkam, Chennai - 600006 Tamil Nadu, India.",
+        description:
+            "Description About The Hotel Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience, Distinct From Individual Room Amenities. Key Offerings",
     },
     {
         name: "Sri Maniya College",
         logo: "/contact-us/srimaniya.png",
         address:
             "No: 6/66-D1, Government Hospital Road, Kanyakumari, Tamil Nadu - 629702.",
+        description:
+            "Description About The Hotel Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience, Distinct From Individual Room Amenities. Key Offerings",
     },
     {
         name: "Follicle",
-        logo: "/contact-us/gtholidays.png",
+        logo: "/contact-us/follicle.png",
         address:
-            "NO 2/75, Customs Colony, Opp To Jain College, Omr Service Road Elliamman Nagar, Thoraipakkam-600097",
+            "NO 2/75, Customs Colony, Opp To Jain College, OMR Service Road, Elliamman Nagar, Thoraipakkam - 600097",
+        description:
+            "Description About The Hotel Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience, Distinct From Individual Room Amenities. Key Offerings",
     },
 ];
 
 export default function GroupCompaniesSection() {
-    return (
-        <section className="bg-primary/13 py-16 lg:py-20">
-            <Section>
-                {/* Top Content */}
-                <div className="grid gap-6 lg:gap-10 lg:grid-cols-12">
-                    <div className="lg:col-span-5">
+    const [activeIndex, setActiveIndex] = useState(0);
+    const active = companies[activeIndex];
 
-                        <p className="text-xs mb-2  uppercase tracking-[0.2em] text-primary">
+    return (
+        <section className="bg-cream py-16 lg:py-20">
+            <CenterSection>
+                <div className="grid gap-20 lg:grid-cols-[1fr_3fr]">
+                    {/* Left â€” Title + Tab List */}
+                    <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-primary mb-3">
                             Brands
                         </p>
-
-                        <h3
-                            className={`max-w-xl font-arizona font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                        <h2
+                            className={` font-semibold leading-tight text-primary mb-10 ${typography.textFoXl}`}
                         >
-                            Our Group of Companies
-                        </h3>
+                            Our Group Of Companies
+                        </h2>
+
+                        <div className="divide-y divide-primary/20  ">
+                            {companies.map((company, i) => (
+                                <button
+                                    key={company.name}
+                                    onClick={() => setActiveIndex(i)}
+                                    className={`w-full text-left py-4 text-base font-medium transition-colors ${i === activeIndex
+                                        ? "text-primary"
+                                        : "text-primary/50 hover:text-primary"
+                                        }`}
+                                >
+                                    {company.name}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="lg:col-span-7  lg:pt-8">
-                        <p className={`max-w-4xl ${typography.textXl} leading-relaxed text-gray`}>
-                            Hotel Sangam | Chennai Inn | Rameshwaram Grand |
-                            Temple Citi AR Residency | Comorin Grand |
-                            Hotel Seaview | Hotel Seaface Ocean Heritage |
-                            Triveni Tourist Home | Gopinivas Grand
-                        </p>
-                    </div>
-                </div>
-
-                {/* Cards */}
-                <div className="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-                    {companies.map((company) => (
-                        <div key={company.name}>
-                            <div className="flex h-14  items-center  ">
-                                <Image
-                                    src={company.logo}
-                                    alt={company.name}
-                                    width={180}
-                                    height={80}
-                                    className="h-full w-auto object-contain"
-                                />
-                            </div>
-
-                            <h3 className={`mt-6 lg:mt-8 text-2xl font-medium font-arizona text-primary ${typography.textXl} `}>
-                                {company.name}
-                            </h3>
-
-                            <p className={`mt-4 ${typography.textBase}  text-gray`}>
-                                {company.address}
+                    {/* Right â€” Hotel Names Box + Company Detail */}
+                    <div className="flex flex-col gap-8">
+                        {/* Hotel names bordered box */}
+                        <div className=" rounded ">
+                            <p className={`leading-relaxed text-primary/80 ${typography.textBase}`}>
+                                {HOTEL_NAMES}
                             </p>
                         </div>
-                    ))}
+
+                        <div className="grid gap-6 sm:grid-cols-2">
+                            <div>
+                                <div className="relative h-24 w-full mb-6">
+                                    <Image
+                                        src={active.logo}
+                                        alt={active.name}
+                                        fill
+                                        className="object-contain object-left"
+                                    />
+                                </div>
+
+                                <h3
+                                    className={` font-semibold text-primary ${typography.textXl}`}
+                                >
+                                    {active.name}
+                                </h3>
+
+                                <p className={`mt-1 text-gray ${typography.textBase}`}>
+                                    {active.address}
+                                </p>
+                            </div>
+
+                            <div>
+                                <p className={`text-gray leading-relaxed ${typography.textBase}`}>
+                                    {active.description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </Section>
+            </CenterSection>
         </section>
     );
 }

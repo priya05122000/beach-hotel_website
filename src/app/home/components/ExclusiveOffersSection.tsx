@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useCallback } from "react";
 import Section from "@/src/components/common/Section";
@@ -125,9 +125,9 @@ export default function ExclusiveOffersSection({
   );
 
   return (
-    <Section className="py-16 lg:py-20">
+    <Section className="pt-32 pb-16  lg:pt-40 lg:pb-20">
       <h2
-        className={`${typography.textFoXl} font-arizona text-gray uppercase font-normal mb-10`}
+        className={`${typography.textFoXl} text-gray uppercase font-normal mb-10`}
       >
         Exclusive Offers
       </h2>
@@ -149,9 +149,9 @@ export default function ExclusiveOffersSection({
                   isActive
                 )
               }
-              className="group relative h-100 xl:h-110 overflow-hidden rounded-3xl p-0.75 bg-linear-to-br from-accent to-primary"
+              className="group relative h-100 xl:h-110 overflow-hidden rounded-[14px] p-0.75 bg-linear-to-br from-accent to-primary"
             >
-              <div className="relative h-full w-full overflow-hidden rounded-[20px]">
+              <div className="relative h-full w-full overflow-hidden rounded-xl">
                 <Image
                   src={imageUrl}
                   alt={offer.title}
@@ -175,9 +175,9 @@ export default function ExclusiveOffersSection({
 
               <div className="absolute inset-0 z-20 flex flex-col justify-end p-5">
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex bg-linear-to-r from-primary to-accent p-0.75 h-10 text-sm text-white rounded-xs">
+                  <div className="inline-flex bg-linear-to-r from-primary to-accent p-0.5 h-10 text-sm text-white rounded-md">
                     <span
-                      className={`flex items-center px-2 transition-all duration-700 bg-dusty lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
+                      className={`flex items-center px-2 transition-all duration-700 rounded-sm bg-dusty lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
                           ? "bg-white text-primary lg:bg-dusty lg:text-white"
                           : ""
                         }`}
@@ -187,7 +187,7 @@ export default function ExclusiveOffersSection({
                   </div>
 
                   <button
-                    className={`flex h-10 w-10 items-center justify-center rounded-xs border border-primary bg-white text-primary transition-all duration-700 lg:group-hover:scale-105 ${isActive
+                    className={`flex h-10 w-10 items-center justify-center rounded-md border border-primary bg-white text-primary transition-all duration-700 lg:group-hover:scale-105 ${isActive
                         ? "scale-105 lg:scale-100"
                         : ""
                       }`}
