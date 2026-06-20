@@ -18,7 +18,7 @@ export default function ContactSection() {
             {/* Background */}
             <div className="absolute inset-0">
                 <Image
-                    src="/home/hero-1.png"
+                    src="/home/hero-1.webp"
                     alt="Luxury Room"
                     fill
                     className="object-cover"

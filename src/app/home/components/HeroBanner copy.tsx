@@ -9,7 +9,7 @@ import CenterSection from "@/src/components/common/CenterSection";
 const slides = [
     {
         id: 1,
-        image: "/home/hero-1.png",
+        image: "/home/hero-1.webp",
         alt: "Hotel Exterior",
     },
     {

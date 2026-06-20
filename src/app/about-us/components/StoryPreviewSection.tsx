@@ -40,7 +40,7 @@ export default function StoryPreviewSection() {
                     <div className="col-span-12 sm:col-span-3">
                         <div className="relative h-60 lg:h-80">
                             <Image
-                                src="/home/hero-1.png"
+                                src="/home/hero-1.webp"
                                 alt="Story 1"
                                 fill
                                 className="object-cover"
@@ -64,7 +64,7 @@ export default function StoryPreviewSection() {
                     <div className="col-span-12 sm:col-span-3">
                         <div className="relative h-60 lg:h-80">
                             <Image
-                                src="/home/hero-1.png"
+                                src="/home/hero-1.webp"
                                 alt="Story 3"
                                 fill
                                 className="object-cover"

@@ -40,7 +40,7 @@ export default function StorySection() {
                     <div className="relative">
                         <div className="relative h-100 sm:h-125 w-full overflow-hidden">
                             <Image
-                                src="/home/hero-1.png"
+                                src="/home/hero-1.webp"
                                 alt="Hotel Room"
                                 fill
                                 className="object-cover"

@@ -45,17 +45,17 @@ const Gallery: React.FC = () => (
     <div className="order-2 lg:order-1 lg:col-span-8 h-full">
         {/* Mobile: single stacked column */}
         <div className="flex flex-col gap-3 h-64 sm:h-80 lg:hidden">
-            <ImageCard src="/home/hero-1.png" heightClass="flex-1" />
+            <ImageCard src="/home/hero-1.webp" heightClass="flex-1" />
         </div>
 
         {/* Desktop: original 2-column grid */}
         <div className="hidden lg:grid grid-cols-12 gap-3 h-full">
             <div className="col-span-5 flex flex-col gap-3 h-full min-h-0">
-                <ImageCard src="/home/hero-1.png" heightClass="flex-1" />
-                <ImageCard src="/home/hero-1.png" heightClass="flex-1" />
+                <ImageCard src="/home/hero-1.webp" heightClass="flex-1" />
+                <ImageCard src="/home/hero-1.webp" heightClass="flex-1" />
             </div>
             <div className="col-span-7 h-full min-h-0">
-                <ImageCard src="/home/hero-1.png" heightClass="h-full" />
+                <ImageCard src="/home/hero-1.webp" heightClass="h-full" />
             </div>
         </div>
     </div>

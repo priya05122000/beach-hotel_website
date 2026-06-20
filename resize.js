@@ -16,7 +16,7 @@
 
 const sharp = require("sharp");
 
-sharp("public/home/hero-1.png")
+sharp("public/home/hero-1.webp")
     // .resize({
     //     width: 800,
     //     height: 1000,

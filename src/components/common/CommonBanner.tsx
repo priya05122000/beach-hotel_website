@@ -5,7 +5,7 @@ const CommonBanner = () => {
     return (
         <div className='relative w-full'>
             <Image
-                src="/home/hero-1.png"
+                src="/home/hero-1.webp"
                 alt=""
                 width={1600}
                 height={900}

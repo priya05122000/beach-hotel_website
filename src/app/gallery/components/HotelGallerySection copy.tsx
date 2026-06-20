@@ -107,7 +107,7 @@ export default function HotelGallerySection({
             // Temporary images
             cards: [
                 {
-                    src: "/home/hero-1.png",
+                    src: "/home/hero-1.webp",
                     alt: item.category_name,
                     className:
                         "h-40 sm:h-56 lg:h-72",
@@ -119,7 +119,7 @@ export default function HotelGallerySection({
                         "h-40 sm:h-56 lg:h-72",
                 },
                 {
-                    src: "/home/hero-1.png",
+                    src: "/home/hero-1.webp",
                     alt: item.category_name,
                     className:
                         "col-span-2 h-48 sm:h-64 lg:h-80",

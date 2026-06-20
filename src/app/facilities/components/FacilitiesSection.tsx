@@ -4,25 +4,25 @@ import Section from "@/src/components/common/Section";
 const facilities = [
     {
         title: "SPA AREA",
-        image: "/home/hero-1.png",
+        image: "/home/hero-1.webp",
         description:
             "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience",
     },
     {
         title: "DELUXE ROOM",
-        image: "/home/hero-1.png",
+        image: "/home/hero-1.webp",
         description:
             "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience",
     },
     {
         title: "RESTAURANT",
-        image: "/home/hero-1.png",
+        image: "/home/hero-1.webp",
         description:
             "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience",
     },
     {
         title: "SWIMMING POOL",
-        image: "/home/hero-1.png",
+        image: "/home/hero-1.webp",
         description:
             "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience",
     },
