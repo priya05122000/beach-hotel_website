@@ -31,7 +31,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
             <img
                 src={src}
                 alt={alt}
-                className="h-full w-full object-cover p-1"
+                className="h-full w-full object-cover p-0.5 rounded-xl"
             />
         </div>
     );
@@ -61,7 +61,7 @@ type ContentProps = { destination: NearbyDestination }
 const LeftContent: React.FC<ContentProps> = ({ destination }) => (
     <div className="order-1 lg:col-span-4 flex flex-col justify-center">
         {destination.destination_name && (
-            <span className="rounded bg-primary px-3 py-1 text-xs font-semibold uppercase text-white w-fit">
+            <span className="rounded-md bg-primary px-3 py-1 text-xs font-semibold uppercase text-white w-fit">
                 {destination.destination_name}
             </span>
         )}

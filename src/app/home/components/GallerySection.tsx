@@ -49,7 +49,7 @@ export default function GallerySection({
                         <h2
                             className={`mt-2 text-4xl font-normal text-gray max-w-sm ${typography.textFoXl}`}
                         >
-                            A efined visual language of the stay
+                            A Refined visual language of the stay
 
                         </h2>
                     </div>
@@ -210,7 +210,7 @@ function GalleryCard({
 
             </div>
 
-            <div className="absolute inset-0 bg-black/0 transition-all duration-50" />
+            <div className="absolute inset-0 bg-black/0 pointer-events-none transition-all duration-50" />
         </div>
     );
 }

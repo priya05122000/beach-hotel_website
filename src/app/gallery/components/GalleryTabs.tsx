@@ -49,13 +49,13 @@ export default function GalleryTabs({
                                     }
                                     className={`relative whitespace-nowrap shrink-0 px-4 pb-3 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${active === gallery.id
                                             ? "text-white"
-                                            : "text-white hover:text-accent"
+                                            : "text-white hover:text-primary"
                                         }`}
                                 >
                                     {gallery.category_name}
 
                                     {active === gallery.id && (
-                                        <span className="absolute -bottom-0.5 left-0 z-10 h-0.5 w-full bg-accent" />
+                                        <span className="absolute -bottom-0.5 left-0 z-10 h-0.5 w-full bg-primary" />
                                     )}
                                 </button>
                             ))}

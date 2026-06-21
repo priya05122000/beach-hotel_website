@@ -15,23 +15,19 @@ function PhotoStrip() {
     return (
         <Section>
             {/* Mobile: vertical stack, each photo one by one with its rotation */}
-            <div className="md:hidden flex flex-col items-center gap-10 py-10 ">
-                {photos.map((photo, index) => (
+            <div className="md:hidden flex flex-col  items-center gap-10 pt-16  ">
+                {photos.slice(0, 4).map((photo, index) => (
                     <div
                         key={index}
-                        className="bg-white shadow-xl p-2 w-[60%]"
-                        style={{
-                            transform: `rotate(${photo.rotate})`,
-                            zIndex: photo.zIndex,
-                        }}
+                        className="bg-white shadow-xl p-1 w-full rounded-md"
                     >
-                        <div className="relative w-full h-60" >
+                        <div className="relative w-full h-60">
                             <Image
                                 src={photo.src}
                                 alt={photo.alt}
                                 fill
                                 unoptimized
-                                className="object-cover"
+                                className="object-cover rounded-sm"
                             />
                         </div>
                     </div>
@@ -44,7 +40,7 @@ function PhotoStrip() {
                     {photos.map((photo, index) => (
                         <div
                             key={index}
-                            className="shrink-0 bg-white shadow-xl w-28 lg:w-36 xl:w-48 p-1.5 md:p-2 "
+                            className="shrink-0 bg-white rounded-md shadow-xl w-28 lg:w-36 xl:w-48 p-1 "
                             style={{
                                 transform: `rotate(${photo.rotate})`,
                                 zIndex: photo.zIndex,
@@ -56,7 +52,7 @@ function PhotoStrip() {
                                     alt={photo.alt}
                                     fill
                                     unoptimized
-                                    className="object-cover"
+                                    className="object-cover  rounded-sm"
                                 />
                             </div>
                         </div>

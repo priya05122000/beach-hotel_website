@@ -17,6 +17,15 @@ interface TestimonialProps {
 
 type AnimationKey = keyof typeof ANIMATIONS;
 
+const getImageSrc = (img?: string | null) => {
+    const fallback = "/home/default.jpg";
+    if (!img) return fallback;
+    const s = String(img).trim();
+    if (!s) return fallback;
+    if (s.startsWith("http://") || s.startsWith("https://")) return s;
+    return `${process.env.NEXT_PUBLIC_API_URL}/uploads/${s.replace(/^\/+/, "")}`;
+};
+
 
 const reviewStyles = [
     {
@@ -192,7 +201,8 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
 
                                         <Image
-                                            src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${t.image_url}`}
+                                            // src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${t.image_url}`}
+                                            src={getImageSrc(t.image_url)}
                                             alt={t.guest_name || "Guest Review"}
                                             width={100}
                                             height={100}
