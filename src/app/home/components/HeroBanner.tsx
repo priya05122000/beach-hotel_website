@@ -36,14 +36,18 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
       <section className="relative h-screen">
 
         <div className="absolute bg-linear-to-b from-black/60 to-transparent top-0 left-0 right-0 z-30 mt-10 py-5 flex justify-center">
-          <Image
-            src="/navbar_logo.svg"
-            alt="Logo"
-            width={500}
-            height={250}
-            priority
-            className="h-24 md:h-28 w-auto object-contain"
-          />
+          <Link href="/"
+          >
+            <Image
+              src="/navbar_logo.svg"
+              alt="Logo"
+              width={500}
+              height={250}
+              priority
+              className="h-24 md:h-28 w-auto object-contain"
+            />
+          </Link>
+
         </div>
 
         <div className="relative h-screen overflow-hidden" ref={emblaRef}>
@@ -136,14 +140,14 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
       </section>
 
       {/* Bottom Content */}
-      <div className="flex h-[40vh] items-center justify-center bg-primary px-4 text-white relative">
+      <div className="flex h-[50vh] items-center justify-center bg-primary px-4 text-white relative overflow-hidden">
         <div className="pointer-events-none absolute bottom-0 sm:-bottom-2 lg:-bottom-4 xl:-bottom-6">
           <Image
-            src="/home/thebeach_hotel.png"
+            src="/home/thebeach_hotel.svg"
             alt="The Beach Hotel"
             width={1920}
             height={1200}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
           />
         </div>
 

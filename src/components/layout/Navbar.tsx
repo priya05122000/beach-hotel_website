@@ -113,7 +113,7 @@ export default function Header({
 
                     <Section>
                         <div className="">
-                            <div className="grid h-16 grid-cols-2 items-center xl:h-20">
+                            <div className="grid h-16 grid-cols-2 items-center">
                                 {/* Left Side */}
                                 <div>
                                     {/* Logo Here */}
