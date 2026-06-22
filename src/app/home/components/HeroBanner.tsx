@@ -32,7 +32,20 @@ export default function HeroBanner({ slides }: HeroBannerProps) {
 
   return (
     <>
+
       <section className="relative h-screen">
+
+        <div className="absolute bg-linear-to-b from-black/60 to-transparent top-0 left-0 right-0 z-30 mt-10 py-5 flex justify-center">
+          <Image
+            src="/navbar_logo.svg"
+            alt="Logo"
+            width={500}
+            height={250}
+            priority
+            className="h-24 md:h-28 w-auto object-contain"
+          />
+        </div>
+
         <div className="relative h-screen overflow-hidden" ref={emblaRef}>
           <div className="flex h-full">
             {slides.map((slide) => (

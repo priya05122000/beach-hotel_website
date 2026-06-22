@@ -5,7 +5,7 @@ import Image from "next/image";
 const ExploreDestinationSection = () => {
     return (
         <section className="bg-white py-16 lg:py-20">
-            <div className="container mx-auto">
+            <div className=" mx-auto">
 
                 {/* Top Content */}
                 <Section>
@@ -33,7 +33,7 @@ const ExploreDestinationSection = () => {
                 </Section>
 
                 {/* Image */}
-                <div className="relative  h-140 lg:h-180 xl:h-220 overflow-hidden rounded-[14px]">
+                <div className="relative  h-140 lg:h-180 xl:h-220 ">
                     <Image
                         src="/home/kanyakumari-statue.png"
                         alt="Kanyakumari"
