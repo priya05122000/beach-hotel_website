@@ -82,6 +82,8 @@ export default function Header({
         pathname === href;
 
     return (
+
+        
         <>
             <header
                 className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ease-in-out ${showHeader ? "translate-y-0" : "-translate-y-full"
