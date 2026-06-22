@@ -2,17 +2,23 @@
 
 import { useState } from "react";
 import Section from "@/src/components/common/Section";
+import { GalleryCategory } from "@/src/types";
 
-export default function GalleryTabs() {
-    const [active, setActive] = useState("hotel");
+interface GalleryTabsProps {
+    galleries: GalleryCategory[];
+}
 
-    const scrollToSection = (
-        id: string,
-        tab: "hotel" | "spa"
-    ) => {
-        setActive(tab);
+export default function GalleryTabs({
+    galleries,
+}: GalleryTabsProps) {
+    const [active, setActive] = useState<number | null>(
+        galleries[0]?.id ?? null
+    );
 
-        const element = document.getElementById(id);
+    const scrollToSection = (id: number) => {
+        setActive(id);
+
+        const element = document.getElementById(`gallery-${id}`);
 
         if (!element) return;
 
@@ -33,71 +39,26 @@ export default function GalleryTabs() {
         <div className="bg-primary/43 pt-10">
             <Section>
                 <div className="flex justify-center">
-                    <div className="relative inline-block">
-                        {/* Bottom Border */}
-                        <div className="absolute bottom-0 left-0 h-0.5 w-full bg-white" />
+                    <div className="relative w-full overflow-x-auto scrollbar-none [&::-webkit-scrollbar]:hidden">
+                        <div className="relative flex items-center gap-8 w-max sm:px-0 sm:mx-auto border-b-2 border-white">
+                            {galleries.map((gallery) => (
+                                <button
+                                    key={gallery.id}
+                                    onClick={() =>
+                                        scrollToSection(gallery.id)
+                                    }
+                                    className={`relative whitespace-nowrap shrink-0 px-4 pb-3 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${active === gallery.id
+                                            ? "text-white"
+                                            : "text-white hover:text-primary"
+                                        }`}
+                                >
+                                    {gallery.category_name}
 
-                        <div className="flex items-center gap-10">
-                            {/* Hotels */}
-                            <button
-                                onClick={() =>
-                                    scrollToSection(
-                                        "hotel-section",
-                                        "hotel"
-                                    )
-                                }
-                                className={`relative px-4 pb-3 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${active === "hotel"
-                                        ? "text-primary"
-                                        : "text-white hover:text-accent"
-                                    }`}
-                            >
-                                Hotels
-
-                                {active === "hotel" && (
-                                    <span className="absolute bottom-0 left-0 z-10 h-0.5 w-full bg-accent" />
-                                )}
-                            </button>
-
-                            {/* Spa */}
-                            <button
-                                onClick={() =>
-                                    scrollToSection(
-                                        "spa-section",
-                                        "spa"
-                                    )
-                                }
-                                className={`relative px-4 pb-3 text-xs font-medium uppercase tracking-wider transition-all duration-300 ${active === "spa"
-                                        ? "text-primary"
-                                        : "text-white hover:text-accent"
-                                    }`}
-                            >
-                                Spa
-
-                                {active === "spa" && (
-                                    <span className="absolute bottom-0 left-0 z-10 h-0.5 w-full bg-accent" />
-                                )}
-                            </button>
-
-                            {/* Other Tabs */}
-                            <button className="px-4 pb-3 text-xs font-medium uppercase tracking-wider text-white transition hover:text-accent">
-                                Rooms
-                            </button>
-
-                            <button className="px-4 pb-3 text-xs font-medium uppercase tracking-wider text-white transition hover:text-accent">
-                                Dining
-                            </button>
-
-                            <button className="px-4 pb-3 text-xs font-medium uppercase tracking-wider text-white transition hover:text-accent">
-                                Fitness
-                            </button>
-
-                            <button className="px-4 pb-3 text-xs font-medium uppercase tracking-wider text-white transition hover:text-accent">
-                                Pool
-                            </button>
-
-                            <button className="px-4 pb-3 text-xs font-medium uppercase tracking-wider text-white transition hover:text-accent">
-                                Meeting
-                            </button>
+                                    {active === gallery.id && (
+                                        <span className="absolute -bottom-0.5 left-0 z-10 h-0.5 w-full bg-primary" />
+                                    )}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>

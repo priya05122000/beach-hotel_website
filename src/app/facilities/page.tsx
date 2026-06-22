@@ -4,7 +4,7 @@ import FacilitiesSection from './components/FacilitiesSection'
 const page = () => {
     return (
         <>
-            <CommonBanner />
+            <CommonBanner title="Facilities" />
             <FacilitiesSection />
         </>
     )

@@ -1,67 +1,110 @@
-import Image from "next/image";
+﻿import CenterSection from "@/src/components/common/CenterSection";
 import Section from "@/src/components/common/Section";
+import Image from "next/image";
+
+const photos = [
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel room", rotate: "-9deg", zIndex: 1 },
+    { src: "/home/hero-2.png", alt: "Hotel sign", rotate: "4deg", zIndex: 3 },
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel", rotate: "-5deg", zIndex: 2 },
+    { src: "/home/hero-1.webp", alt: "Hotel guest", rotate: "12deg", zIndex: 5 },
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel view", rotate: "4deg", zIndex: 6 },
+    { src: "/home/kanyakumari-statue.png", alt: "Hotel view", rotate: "-20deg", zIndex: 0 },
+];
+
+function PhotoStrip() {
+    return (
+        <Section>
+            {/* Mobile: vertical stack, each photo one by one with its rotation */}
+            <div className="md:hidden flex flex-col  items-center gap-10 pt-16  ">
+                {photos.slice(0, 4).map((photo, index) => (
+                    <div
+                        key={index}
+                        className="bg-white shadow-xl p-1 w-full rounded-md"
+                    >
+                        <div className="relative w-full h-60">
+                            <Image
+                                src={photo.src}
+                                alt={photo.alt}
+                                fill
+                                unoptimized
+                                className="object-cover rounded-sm"
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Desktop: overlapping fan layout */}
+            <div className="hidden md:block relative  h-36 lg:h-44 xl:h-56  ">
+                <div className="absolute  left-1/2 top-0 flex h-full -translate-x-1/2 -translate-y-1/3 items-center justify-center">
+                    {photos.map((photo, index) => (
+                        <div
+                            key={index}
+                            className="shrink-0 bg-white rounded-md shadow-xl w-28 lg:w-36 xl:w-48 p-1 "
+                            style={{
+                                transform: `rotate(${photo.rotate})`,
+                                zIndex: photo.zIndex,
+                            }}
+                        >
+                            <div className="relative w-full h-36 lg:h-44 xl:h-56">
+                                <Image
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    fill
+                                    unoptimized
+                                    className="object-cover  rounded-sm"
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </Section>
+    );
+}
 
 export default function StorySection() {
     return (
-        <section className="bg-primary/19 py-16 lg:py-20">
-            <Section>
-                <div className="grid items-center gap-12 lg:grid-cols-2">
+        <section className="bg-primary">
+            <PhotoStrip />
 
-                    {/* Left Content */}
-                    <div className="max-w-md">
-                        <p className="mb-2 text-xs uppercase tracking-[0.25em] text-primary">
-                            Story
-                        </p>
-                        <p className="mb-3 font-semibold text-base uppercase tracking-[0.25em] text-primary">
-                            Our Story
-                        </p>
+            <CenterSection>
+                <div className="py-16 lg:py-20">
+                    <div className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-20">
+                        {/* Left Content */}
+                        <div>
+                            <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.3rem)] font-bold leading-tight text-accent">
+                                Step Out Of Bed
+                                <br />
+                                And Straight Onto
+                            </h2>
 
-                        <h2 className="text-5xl font-semibold leading-tight text-primary">
-                            Step Out Of Bed
-                            <br />
-                            And Straight Onto
-                            <br />
-                            The Sun-Kissed
-                            <br />
-                            Sands Of
-                            <br />
-                            Kanyakumari.
-                        </h2>
+                            <p className="mb-3 text-sm font-semibold text-white">
+                                Contact Front Desk
+                            </p>
 
-                        <p className="mt-8 max-w-sm text-base text-primary leading-relaxed text-accent">
-                            Hotel Facilities Are Designated Spaces
-                            And Services Designed To Enhance The Guest
-                            Experience.
-                        </p>
-                    </div>
-
-                    {/* Right Image */}
-                    <div className="relative">
-                        <div className="relative h-[500px] w-full overflow-hidden">
-                            <Image
-                                src="/home/hero-1.png"
-                                alt="Hotel Room"
-                                fill
-                                className="object-cover"
-                            />
+                            <p className="text-xs leading-relaxed text-white/50">
+                                Hotel Facilities Are Designated Space
+                            </p>
                         </div>
 
-                        {/* Floating Card */}
-                        <div className="absolute -top-6 right-0 bg-primary p-6 text-white shadow-xl">
-                            <h3 className="mb-3 text-3xl font-semibold">
-                                Our Story
-                            </h3>
+                        {/* Right Content */}
+                        <div className="space-y-6">
+                            <p className="text-sm leading-relaxed text-white">
+                                Hotel Facilities Are Designated Spaces And Services Designed To
+                                Enhance The Guest Experience. Hotel Facilities Are Designated
+                                Spaces.
+                            </p>
 
-                            <p className="max-w-[180px] text-sm leading-relaxed text-white/90">
-                                Hotel Facilities Are Designated Spaces
-                                And Services Designed To Enhance The
-                                Guest Experience
+                            <p className="text-sm leading-relaxed text-white">
+                                Hotel Facilities Are Designated Spaces And Services Designed To
+                                Enhance The Guest Experience. Hotel Facilities Are Designated
+                                Spaces.
                             </p>
                         </div>
                     </div>
-
                 </div>
-            </Section>
+            </CenterSection>
         </section>
     );
 }

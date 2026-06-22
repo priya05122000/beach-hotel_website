@@ -1,25 +1,29 @@
-import CenterSection from "@/src/components/common/CenterSection";
+﻿import CenterSection from "@/src/components/common/CenterSection";
 import { typography } from "@/src/lib/typography";
 import {
-    Dumbbell,
-    Wifi,
-    Car,
-    Utensils,
+    BedDouble,
+    Leaf,
     Waves,
+    Presentation,
+    PartyPopper,
     BellRing,
+    Crown,
+    Utensils,
+    Car,
     ShieldCheck,
-    Coffee,
 } from "lucide-react";
 
 const amenities = [
-    { title: "Fitness Center", icon: Dumbbell },
-    { title: "Free WiFi", icon: Wifi },
-    { title: "Parking", icon: Car },
-    { title: "Restaurant", icon: Utensils },
-    { title: "Swimming Pool", icon: Waves },
-    { title: "Room Service", icon: BellRing },
-    { title: "24/7 Security", icon: ShieldCheck },
-    { title: "Coffee Lounge", icon: Coffee },
+    { title: "Rooms & Suites", icon: BedDouble },
+    { title: "Spa & Wellness", icon: Leaf },
+    { title: "Infinity Pool", icon: Waves },
+    { title: "Business Meetings", icon: Presentation },
+    { title: "Events & Celebrations", icon: PartyPopper },
+    { title: "Guest Services", icon: BellRing },
+    { title: "Executive Lounge", icon: Crown },
+    { title: "Fine Dining", icon: Utensils },
+    { title: "Transport & Parking", icon: Car },
+    { title: "Safety & Security", icon: ShieldCheck },
 ];
 
 export default function AmenitiesSection() {
@@ -29,17 +33,17 @@ export default function AmenitiesSection() {
                 <div className="mx-auto  px-4">
                     {/* Heading */}
                     <div className="mb-10 text-center">
-                        <p className="text-xs font-medium uppercase tracking-[0.3em] text-primary">
+                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
                             Amenities
                         </p>
 
-                        <h2 className={`mt-2 text-4xl font-light text-gray ${typography.textThXl}`}>
+                        <h2 className={`mt-2 text-4xl font-normal text-gray ${typography.textFoXl}`}>
                             Amenities
                         </h2>
                     </div>
 
                     {/* Grid */}
-                    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4 ">                        {amenities.map((item) => {
+                    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 ">                        {amenities.map((item) => {
                         const Icon = item.icon;
 
                         return (
@@ -51,7 +55,7 @@ export default function AmenitiesSection() {
     overflow-hidden
     rounded-md
     p-0.5
-    bg-[linear-gradient(to_right,#040286,#FF992AC2,#040286,#040286,#FF992AC2,#040286)]
+    bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)]
     bg-size-[250%]
     bg-left
     duration-1000
@@ -61,10 +65,10 @@ export default function AmenitiesSection() {
   "
                             >
                                 <div
-                                    className="  group flex items-center gap-3 p-2 inset-0.5 transition-all duration-300  rounded-sm bg-soft-accent"
+                                    className="  group flex items-center gap-3 p-2 inset-0.5 transition-all duration-300  rounded-sm bg-soft-accent h-full"
                                 >
                                     {/* Icon */}
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-accent text-white">
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-accent text-white">
                                         <Icon
                                             size={16}
                                             className="transition-transform duration-500 group-hover:rotate-360"

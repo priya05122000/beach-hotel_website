@@ -1,33 +1,29 @@
-import Section from "@/src/components/common/Section";
+﻿import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 import Image from "next/image";
 
 const ExploreDestinationSection = () => {
     return (
         <section className="bg-white py-16 lg:py-20">
-            <div className="container mx-auto">
+            <div className=" mx-auto">
 
                 {/* Top Content */}
                 <Section>
                     <div className=" grid gap-8 sm:grid-cols-2 lg:items-start">
 
                         {/* Left */}
-                        <div>
-                            <h2 className={`max-w-xl ${typography.textFiXl} font-bold leading-tight text-primary `}>
-                                Step Out Of Bed And Straight Onto The Sun-Kissed Sands Of Kanyakumari.
-                            </h2>
-                        </div>
+                        <h2 className={`max-w-xl ${typography.textFoXl}  font-normal leading-tight text-primary uppercase`}>
+                            Kanniyakumari's most extraordinary luxury address - where every horizon is yours alone, at the meeting point of three oceans.
+                        </h2>
 
                         {/* Right */}
-                        <div className="flex flex-col items-start sm:items-end">
+                        <div className="flex flex-col items-start sm:items-end ">
                             <p className={`max-w-xl sm:text-right ${typography.textXl}`}>
-                                Hotel Facilities Are Designated Spaces And Services Designed To
-                                Enhance The Guest Experience, Distinct From Individual Room
-                                Amenities. Key Offerings Include 24-Hour Reception, Swimming Pools,
-                                Fitness Centers, Restaurants/Bars, Meeting Rooms, And Parking.
+                                Rising at the iconic edge of India, where oceans meet in a rare natural confluence, our hotel stands in a setting of quiet distinction. The meeting of converging tides and endless blue waters creates a calm sense of place, where sea, sky and light move in harmony. Here, luxury is defined not by excess, but by stillness, space and the natural rhythm of the coastline.
+
                             </p>
 
-                            <button className="mt-6 flex items-center gap-2 border border-gray-400 px-5 h-10 py-2 text-sm uppercase transition hover:bg-primary hover:text-white">
+                            <button className="mt-6 flex items-center gap-2 border border-primary px-5 h-10 py-2 text-sm uppercase transition font-normal hover:bg-primary text-primary hover:text-white rounded-md">
                                 Explore
                                 <span>&#8594;</span>
                             </button>
@@ -37,7 +33,7 @@ const ExploreDestinationSection = () => {
                 </Section>
 
                 {/* Image */}
-                <div className="relative  h-140 lg:h-180 xl:h-220 overflow-hidden rounded-md">
+                <div className="relative  h-140 lg:h-180 xl:h-220 ">
                     <Image
                         src="/home/kanyakumari-statue.png"
                         alt="Kanyakumari"

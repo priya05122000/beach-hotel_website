@@ -1,13 +1,20 @@
+﻿import Section from "@/src/components/common/Section";
+import { typography } from "@/src/lib/typography";
+
 export default function SectionHeading() {
     return (
-        <section className="bg-primary/9 py-16 lg:py-20 md:py-28 lg:py-32">
-            <div className="mx-auto max-w-5xl px-4 text-center">
-                <h2 className="text-4xl font-semibold leading-tight text-primary     md:text-5xl">
-                    Step Out Of Bed And Straight Onto The
-                    <br />
-                    Sun-Kissed Sands Of Kanyakumari.
-                </h2>
+        <Section className="bg-primary/9">
+            <div className=" py-16 lg:py-28 md:py-20 ">
+                <div className="mx-auto max-w-5xl  text-center">
+                    <h3
+                        className={` font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                    >
+                        Step Out Of Bed And Straight Onto The Sun-Kissed Sands
+                        Of Kanyakumari.
+                    </h3>
+                </div>
             </div>
-        </section>
+        </Section>
+
     );
 }

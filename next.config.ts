@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+
+  allowedDevOrigins: ["192.168.1.7"],
+
   /* config options here */
   output: "standalone",
   trailingSlash: false,
@@ -15,21 +18,38 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.izhtech.com",
+        hostname: "api.thebeachhotel.in",
+        pathname: "/uploads/**",
+      },
+      // {
+      //   protocol: "https",
+      //   hostname: "api.izhtech.com",
+      //   pathname: "/uploads/**",
+      // },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "5000",
         pathname: "/uploads/**",
       },
       {
         protocol: "http",
-        hostname: "localhost",
-        port: "7700",
+        hostname: "192.168.1.7",
+        port: "5000",
         pathname: "/uploads/**",
       },
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "7700",
-        pathname: "/images/**",
-      },
+      // {
+      //   protocol: "http",
+      //   hostname: "localhost",
+      //   port: "7700",
+      //   pathname: "/images/**",
+      // },
+      // {
+      //   protocol: "http",
+      //   hostname: "localhost",
+      //   port: "5000",
+      //   pathname: "/**",
+      // },
     ],
   },
 

@@ -8,11 +8,11 @@ import LocationSection from './components/LocationSection'
 const page = () => {
     return (
         <>
-            <CommonBanner />
+            <CommonBanner title="Contact Us" />
             <ContactIntro />
             <GroupCompaniesSection />
             <ContactSection />
-            <LocationSection />
+            {/* <LocationSection /> */}
         </>
     )
 }

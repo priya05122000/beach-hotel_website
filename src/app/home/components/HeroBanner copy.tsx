@@ -9,7 +9,7 @@ import CenterSection from "@/src/components/common/CenterSection";
 const slides = [
     {
         id: 1,
-        image: "/home/hero-1.png",
+        image: "/home/hero-1.webp",
         alt: "Hotel Exterior",
     },
     {
@@ -134,7 +134,7 @@ export default function HeroBanner() {
                                     <input
                                         type="text"
                                         placeholder="Promo Code"
-                                        className="w-full bg-transparent outline-none placeholder:text-white/70 text-sm"
+                                        className="w-full bg-transparent outline-none placeholder:text-white text-sm"
                                     />
                                 </div>
 

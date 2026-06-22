@@ -14,11 +14,8 @@ const config: Config = {
 
     extend: {
       fontFamily: {
-
-        sans: [
-          "var(--font-dm-sans)",
-          "sans-serif",
-        ],
+        sans: ["var(--font-inter)", "sans-serif"],
+        arizona: ["var(--font-marcellus)", "serif"],
       },
     },
   },

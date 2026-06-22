@@ -3,129 +3,141 @@
 import { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-
 import { ANIMATIONS } from "@/src/components/common/Animations";
-import { Calendar, Quote, Star } from "lucide-react";
-import Paragraph from "@/src/components/common/Paragraph";
-import Span from "@/src/components/common/Span";
-import Heading from "@/src/components/common/Heading";
+import { Calendar } from "lucide-react";
 import CenterSection from "@/src/components/common/CenterSection";
+import { typography } from "@/src/lib/typography";
+import { GuestReview } from "@/src/types";
+
+
+interface TestimonialProps {
+    reviews: GuestReview[];
+}
+
 
 type AnimationKey = keyof typeof ANIMATIONS;
 
-type Testimonial = {
-    id: number;
-    name: string;
-    date: string;
-    stars: number;
-    image: string;
-    message: string;
-    location: string;
-    position: string;
-    size: string;
-    animations: AnimationKey;
+const getImageSrc = (img?: string | null) => {
+    const fallback = "/home/default.jpg";
+    if (!img) return fallback;
+    const s = String(img).trim();
+    if (!s) return fallback;
+    if (s.startsWith("http://") || s.startsWith("https://")) return s;
+    return `${process.env.NEXT_PUBLIC_API_URL}/uploads/${s.replace(/^\/+/, "")}`;
 };
 
-const testimonials: Testimonial[] = [
+
+const reviewStyles = [
     {
-        id: 1,
-        name: "James Carter",
-        date: "02/04/2025",
-        stars: 5,
-        image: "/home/uk.webp",
-        message:
-            "I did my eye check at Bejan Singh Eye Hospital for cataract issues. The doctors explained everything clearly, and the surgery went smoothly. My vision is now sharp and comfortable.",
-        location: "United Kingdom",
-        position: "top-0 left-0",
-        size: "lg:w-[140px] lg:h-[140px] sm:w-[120px] sm:h-[120px] w-[100px] h-[100px]",
+        position: "top-0 left-4",
+        size: "  w-[120px] h-[120px] sm:w-[110px] sm:h-[110px] lg:w-[120px] lg:h-[120px]",
         animations: "fadeRight",
     },
     {
-        id: 2,
-        name: "Sophia Martinez",
-        date: "18/03/2025",
-        stars: 5,
-        image: "/home/spain.webp",
-        message:
-            "At Bejan Singh Eye Hospital, a detailed vision check and refractive error correction were carried out for me. The results were excellent, and my glasses prescription is perfect now.",
-        location: "Spain",
-        position: "top-10 sm:top-20 right-0 lg:right-10",
-        size: "lg:w-[110px] lg:h-[110px] sm:w-[90px] sm:h-[90px] w-[70px] h-[70px]",
+        position: " top-2 left-1/2 translate-x-[calc(-50%-(-18px))]",
+        size: "w-[90px] h-[90px] lg:w-[100px] lg:h-[100px]",
         animations: "fadeDown",
     },
     {
-        id: 3,
-        name: "Amina Hassan",
-        date: "05/01/2025",
-        stars: 4,
-        image: "/home/uae.webp",
-        message: "I visited Bejan Singh Eye Hospital for dry eye treatment. The testing was thorough, and the treatment plan worked very well. My eyes feel relaxed and healthy now.",
-        location: "United Arab Emirates",
+        position: "top-15 right-0",
+        size: "w-[90px] h-[90px] lg:w-[100px] lg:h-[100px]",
+        animations: "fadeLeft",
+    },
+    {
         position: "bottom-10 left-0",
-        size: "lg:w-[100px] lg:h-[100px] sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]",
+        size: "w-[90px] h-[90px] lg:w-[100px] lg:h-[100px]",
         animations: "fadeRight",
     },
     {
-        id: 4,
-        name: "Michael O’Connor",
-        date: "28/02/2025",
-        stars: 5,
-        image: "/home/ireland.webp",
-        message: "I had my glaucoma screening and follow-up care at Bejan Singh Eye Hospital. The diagnosis was accurate, and treatment started on time. I feel confident about my eye health.",
-        location: "Ireland",
-        position: "bottom-0 md:bottom-25 right-2/5 sm:right-1/3 lg:right-1/2",
-        size: "lg:w-[100px] lg:h-[100px] sm:w-[120px] sm:h-[120px] w-[100px] h-[100px] xl:h-[130px] xl:w-[130px]",
+        position: " bottom-12.5 left-1/2 translate-x-[calc(-50%-(8px))]",
+        size: "  w-[120px] h-[120px] sm:w-[110px] sm:h-[110px] lg:w-[120px] lg:h-[120px]",
         animations: "fadeUp",
     },
     {
-        id: 5,
-        name: "Daniel Wong",
-        date: "10/05/2025",
-        stars: 4,
-        image: "/home/singapore.webp",
-        message: "For a diabetic eye examination, Bejan Singh Eye Hospital was my choice. The doctors detected early changes and guided me properly. The care felt professional and reassuring.",
-        location: "Singapore",
-        position: "bottom-0 right-1/8 sm:right-1/12 lg:right-30",
-        size: "lg:w-[100px] lg:h-[100px] sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]",
-        animations: "fadeUp",
-    },
-    {
-        id: 6,
-        name: "Fatima Al Noor",
-        date: "10/05/2025",
-        stars: 5,
-        image: "/home/oman.webp",
-        message: "My child’s eye check at Bejan Singh Eye Hospital focused on squint correction advice. The evaluation was very careful, and the guidance was clear. The results were truly amazing.",
-        location: "Oman",
-        position: "top-10 sm:left-1/3 sm:left-3/8 lg:left-2/5",
-        size: "lg:w-[100px] lg:h-[100px] sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]",
-        animations: "fadeDown",
+        position: "bottom-0 right-4",
+        size: "w-[90px] h-[90px] lg:w-[100px] lg:h-[100px]",
+        animations: "fadeLeft",
     },
 ];
 
-// Reusable StarRating for DRY and accessibility
-function StarRating({ stars, max = 5 }: { stars: number; max?: number }) {
+
+function StarIcon({
+    type = "full",
+}: {
+    type: "full" | "half" | "empty";
+}) {
+    if (type === "half") {
+        return (
+            <div className="relative w-5 h-5">
+                {/* Empty Star */}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                    className="absolute inset-0 w-5 h-5 fill-primary/18"
+                >
+                    <path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z" />
+                </svg>
+
+                {/* Half Filled */}
+                <div className="absolute inset-0 overflow-hidden w-1/2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 640"
+                        className="w-5 h-5 fill-[#FFE433]"
+                    >
+                        <path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z" />
+                    </svg>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div
-            className="flex gap-1 mt-2"
-            aria-label={`Rating: ${stars} out of ${max} stars`}
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 640 640"
+            className={`w-5 h-5 ${type === "full"
+                ? "fill-[#FFE433]"
+                : "fill-gray/30"
+                }`}
         >
-            {[...Array(stars)].map((_, i) => (
-                <span key={i} className="text-yellow-400 text-base" aria-hidden="true">
-                    {/* <Star /> */}
-                    <Star />
-                </span>
-            ))}
-            {[...Array(max - stars)].map((_, i) => (
-                <span key={i} className="text-gray-300 text-base" aria-hidden="true">
-                    <Star />
-                </span>
-            ))}
+            <path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z" />
+        </svg>
+    );
+}
+
+function StarRating({
+    stars,
+    max = 5,
+}: {
+    stars: number;
+    max?: number;
+}) {
+    return (
+        <div className="flex gap-1 mt-2">
+            {Array.from({ length: max }).map((_, index) => {
+                const value = index + 1;
+
+                let type: "full" | "half" | "empty" = "empty";
+
+                if (stars >= value) {
+                    type = "full";
+                } else if (stars >= value - 0.5) {
+                    type = "half";
+                }
+
+                return (
+                    <StarIcon
+                        key={index}
+                        type={type}
+                    />
+                );
+            })}
         </div>
     );
 }
 
-export default function Testimonials() {
+export default function Testimonials({ reviews }: TestimonialProps) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -147,98 +159,111 @@ export default function Testimonials() {
         };
     }, [emblaApi]);
 
+    const limitedReviews = reviews.slice(0, 6);
+
     return (
-        <div className="bg-surface py-16 lg:py-20 rounded-[20px]">
+        <div className="bg-surface py-16 lg:py-20  rounded-[14px]">
             <CenterSection>
-                <div className="grid min-h-75 grid-cols-1 gap-6 sm:min-h-87.5 sm:grid-cols-2 xl:min-h-100 xl:grid-cols-2 xl:gap-10 ">
+                <div className="grid grid-cols-1 gap-6 min-h-87.5 lg:min-h-90 sm:grid-cols-12 xl:gap-10 ">
 
                     {/* Left Side Images */}
-                    <div className="relative flex min-h-55 items-center justify-center rounded-xl p-4 sm:min-h-80 sm:p-6">
-                        {testimonials.map((t, index) => {
-                            const anim = ANIMATIONS[t.animations] as Record<string, any> | undefined;
-                            const aos = anim?.['data-aos'];
-                            const aosDuration = anim?.['data-aos-duration'];
+                    <div className="relative col-span-6 xl:col-span-5 min-h-55  flex items-center justify-center w-full">
+                        <div className=" w-full relative  flex  items-center justify-center rounded-md p-4 min-h-80 sm:p-6">
 
-                            return (
-                                <div
-                                    key={t.id}
-                                    data-aos={aos}
-                                    data-aos-duration={aosDuration}
-                                    suppressHydrationWarning
-                                    onClick={() => {
-                                        setActiveIndex(index);
-                                        emblaApi?.scrollTo(index);
-                                    }}
-                                    className={`absolute ${t.position} cursor-pointer transition-transform duration-300 hover:scale-105`.replace(/\s+/g, ' ').trim()}
-                                    tabIndex={0}
-                                    role="button"
-                                    aria-label={`Select testimonial from ${t.name}`}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter" || e.key === " ") {
+                            {limitedReviews.map((t, index) => {
+                                const ui = reviewStyles[index % reviewStyles.length];
+                                const anim = ANIMATIONS[ui.animations as AnimationKey];
+                                const aos = anim?.['data-aos'];
+                                const aosDuration = anim?.['data-aos-duration'];
+
+
+                                return (
+                                    <div
+                                        key={t.id}
+                                        data-aos={aos}
+                                        data-aos-duration={aosDuration}
+                                        suppressHydrationWarning
+                                        onClick={() => {
                                             setActiveIndex(index);
                                             emblaApi?.scrollTo(index);
-                                        }
-                                    }}
-                                >
-                                    <Image
-                                        src={t.image}
-                                        alt={`Portrait of ${t.name} from ${t.location}`}
-                                        width={100}
-                                        height={100}
-                                        className={`object-cover rounded-2xl sm:rounded-3xl shadow-lg ${t.size}`}
-                                        style={{
-                                            border:
-                                                activeIndex === index
-                                                    ? "3px solid #53BE90"
-                                                    : "3px solid #fff",
                                         }}
-                                        loading="lazy"
-                                    />
-                                </div>
-                            );
-                        })}
+                                        className={`absolute ${ui.position} cursor-pointer transition-transform duration-300 hover:scale-105`.replace(/\s+/g, ' ').trim()}
+                                        tabIndex={0}
+                                        role="button"
+                                        aria-label={`Select testimonial from ${t.guest_name}`}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter" || e.key === " ") {
+                                                setActiveIndex(index);
+                                                emblaApi?.scrollTo(index);
+                                            }
+                                        }}
+                                    >
+
+
+                                        <Image
+                                            // src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${t.image_url}`}
+                                            src={getImageSrc(t.image_url)}
+                                            alt={t.guest_name || "Guest Review"}
+                                            width={100}
+                                            height={100}
+                                            unoptimized
+                                            className={`object-cover rounded-md shadow-[0px_4px_4px_0px_#00000040] border-2 transition-all duration-300 ${activeIndex === index
+                                                ? "bg-linear-to-r from-primary via-accent/76 to-primary"
+                                                : "border-white grayscale "
+                                                } ${ui.size}`}
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
+
                     </div>
 
                     {/* Right Side Content */}
-                    <div className="flex min-h-55  flex-col justify-center rounded-xl py-6 sm:px-6 sm:min-h-80 sm:py-8 lg:pl-10">
+                    <div className="flex min-h-70 col-span-6 xl:col-span-7  flex-col justify-center rounded-[14px] py-6 sm:px-6 sm:min-h-80 sm:py-8 lg:pl-10">
                         <div className="mb-2 hidden sm:block">
-                            <Quote
+                            {/* <Quote
                                 className="h-10 w-10 rotate-180 text-primary"
                                 aria-hidden="true"
-                            />
+                            /> */}
+
+                            <svg xmlns="http://www.w3.org/2000/svg" height={40} viewBox="0 0 310 310"><path d="M70.62 54.59 20 155.84v101.25h101.25V155.84H70.62l50.63-101.25zM290 52.91h-50.62l-50.63 101.25v101.25H290V154.16h-50.62z" fill="#012644"></path></svg>
                         </div>
 
                         <div className="overflow-hidden" ref={emblaRef}>
                             <div className="flex">
-                                {testimonials.map((item) => (
+                                {reviews.map((item) => (
                                     <div
                                         key={item.id}
                                         className="min-w-0 flex-[0_0_100%]"
                                     >
-                                        <Paragraph
-                                            size="base"
-                                            className="mb-4 max-w-lg leading-relaxed text-dark"
+                                        <p
+                                            className={`max-w-lg text-gray ${typography.textLg}`}
                                         >
-                                            {item.message}
-                                        </Paragraph>
+                                            {item.review}
+                                        </p>
 
-                                        <Span className="flex items-center gap-2 text-dark">
-                                            <Calendar className="h-4 w-4" />
-                                            {item.date}
-                                        </Span>
 
-                                        <Heading
-                                            level={5}
-                                            className="mt-4 text-primary"
+                                        <span className="flex items-center mt-2  gap-1 text-dark text-xs">
+                                            <Calendar className="w-3 h-3" />
+                                            {item.created_at
+                                                ? new Date(item.created_at).toLocaleDateString("en-IN")
+                                                : ""}
+                                        </span>
+
+                                        <p
+                                            className={`text-primary font-semibold mt-2 ${typography.textXl}`}
                                         >
-                                            {item.name}
-                                        </Heading>
+                                            {item.guest_name}
+                                        </p>
 
-                                        <Span className="text-sm text-dark">
+                                        {/* <span className="text-sm text-dark">
                                             {item.location}
-                                        </Span>
 
-                                        <StarRating stars={item.stars} />
+                                        </span> */}
+
+                                        <StarRating stars={item.rating ?? 0} />
                                     </div>
                                 ))}
                             </div>
@@ -246,7 +271,7 @@ export default function Testimonials() {
                     </div>
 
                 </div>
-            </CenterSection>
-        </div>
+            </CenterSection >
+        </div >
     );
 }

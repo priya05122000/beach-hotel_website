@@ -1,117 +1,109 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import { typography } from "@/src/lib/typography";
+import { FAQ, FaqCategory } from "@/src/types";
 
-const faqData = [
-    {
-        question: "Hotel Management?",
-        answer:
-            "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience.",
-    },
-    {
-        question: "Hotel Management?",
-        answer:
-            "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience.",
-    },
-    {
-        question: "Hotel Management?",
-        answer:
-            "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience.",
-    },
-    {
-        question: "Hotel Management?",
-        answer:
-            "Hotel Facilities Are Designated Spaces And Services Designed To Enhance The Guest Experience.",
-    },
-];
+interface FAQSectionProps {
+    faqCategories: FaqCategory[];
+    faqDatas: FAQ[];
+}
+interface FAQSectionProps {
+    faqCategories: FaqCategory[];
+}
 
-const categories = [
-    "Stay",
-    "Dining",
-    "Facilities",
-    "Spa",
-    "Events",
-    "Booking",
-    "Location",
-    "Loyalty",
-    "Brand",
-];
 
-export default function FAQSection() {
-    const [activeCategory, setActiveCategory] =
-        useState("Loyalty");
+export default function FAQSection({
+    faqCategories,
+    faqDatas,
+}: FAQSectionProps) {
+    const [activeCategory, setActiveCategory] = useState(
+        faqCategories?.[0]?.category_name || ""
+    );
 
     const [openIndex, setOpenIndex] = useState(0);
+
+    const activeCategoryData = faqCategories.find(
+        (category) => category.category_name === activeCategory
+    );
+
+    const filteredFaqs = faqDatas.filter(
+        (faq) => faq.category_id === activeCategoryData?.id
+    );
 
     return (
         <section className="bg-primary/18 py-16 lg:py-20">
             <Section>
                 {/* Header */}
                 <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="text-sm uppercase tracking-[0.2em] text-primary">
                         FAQ
                     </p>
 
-                    <h2 className="mt-2 text-4xl font-medium text-primary">
+                    <h2
+                        className={`mt-2 ${typography.textFoXl} font-normal text-gray`}
+                    >
                         FAQ
                     </h2>
 
                     {/* Categories */}
-                    <div className="mt-8 flex flex-wrap gap-2">
-                        {categories.map((item) => (
+                    <div className="mt-8 flex flex-wrap justify-center sm:justify-start gap-2">
+                        {faqCategories.map((category) => (
                             <button
-                                key={item}
-                                onClick={() =>
-                                    setActiveCategory(item)
-                                }
-                                className={`px-4 py-2 text-[11px] uppercase transition ${activeCategory === item
-                                    ? "bg-primary text-white"
-                                    : "bg-white text-primary"
+                                key={category.id}
+                                onClick={() => {
+                                    setActiveCategory(category.category_name);
+                                    setOpenIndex(0);
+                                }}
+                                className={`px-4 py-2 rounded-md text-xs uppercase transition ${activeCategory === category.category_name
+                                        ? "bg-primary text-white"
+                                        : "bg-white text-primary"
                                     }`}
                             >
-                                {item}
+                                {category.category_name}
                             </button>
                         ))}
                     </div>
                 </div>
 
                 {/* Content */}
-                {/* Content */}
-                <div className="mt-16 grid gap-20 lg:grid-cols-12">
+                <div className="mt-16 grid gap-10 lg:gap-20 xl:gap-30 sm:grid-cols-2 xl:grid-cols-[1.5fr_1fr]">
                     {/* FAQ */}
-                    <div className="lg:col-span-7">
+                    <div>
                         <div className="space-y-8">
-                            {faqData.map((faq, index) => {
+                            {filteredFaqs.map((faq, index) => {
                                 const isOpen = openIndex === index;
 
                                 return (
-                                    <div key={index}>
+                                    <div key={faq.id}>
                                         <button
                                             onClick={() =>
                                                 setOpenIndex(
                                                     isOpen ? -1 : index
                                                 )
                                             }
-                                            className="flex w-full items-start justify-between text-left"
+                                            className={`flex w-full items-start justify-between text-left ${typography.textTwoXl}`}
                                         >
-                                            <span className="text-3xl text-primary">
+                                            <span className="text-primary">
                                                 {faq.question}
                                             </span>
 
-                                            <span className="text-3xl text-neutral-500">
-                                                {isOpen ? "−" : "+"}
+                                            <span className="text-gray cursor-pointer">
+                                                {isOpen ? "-" : "+"}
                                             </span>
                                         </button>
 
                                         <div
                                             className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen
-                                                    ? "mt-4 max-h-32 opacity-100"
+                                                    ? "mt-4 max-h-40 opacity-100"
                                                     : "max-h-0 opacity-0"
                                                 }`}
                                         >
-                                            <p className="max-w-lg text-lg leading-relaxed text-neutral-500">
+                                            <p
+                                                className={`max-w-md xl:max-w-xl ${typography.textLg} text-gray`}
+                                            >
                                                 {faq.answer}
                                             </p>
                                         </div>
@@ -122,15 +114,15 @@ export default function FAQSection() {
                     </div>
 
                     {/* Image */}
-                    <div className="lg:col-span-5">
+                    <div className="hidden sm:block">
                         <div className="sticky top-24">
-                            <div className="overflow-hidden rounded-md">
+                            <div className="overflow-hidden rounded-[14px]">
                                 <Image
-                                    src="/home/hero-1.png"
+                                    src="/home/faq.jpg"
                                     alt="FAQ"
                                     width={700}
                                     height={800}
-                                    className="h-[400px] w-full object-cover"
+                                    className="h-100 w-full object-cover"
                                 />
                             </div>
                         </div>
