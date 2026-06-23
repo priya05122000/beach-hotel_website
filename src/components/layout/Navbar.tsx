@@ -8,13 +8,14 @@ import { X } from "lucide-react";
 
 import Section from "../common/Section";
 import { Announcement } from "@/src/types";
+import Image from "next/image";
 
 const NAV_LINKS = [
 
     { href: "/stay", label: "Stay" },
     { href: "/explore", label: "Explore" },
     { href: "/company", label: "Company" },
-    { href: "/contact-us", label: "Contact Us" },
+    { href: "/contact-us", label: "ContactUs" },
 ];
 // const NAV_LINKS = [
 //     { href: "/", label: "Home" },
@@ -89,7 +90,7 @@ export default function Header({
                     `}
             >
                 {/* Announcement Bar */}
-                <div className="h-10 overflow-hidden bg-white/50 backdrop-blur-md">
+                <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled ? "h-0" : "h-10"}`}>
                     <Marquee
                         speed={40}
                         gradient={false}
@@ -105,31 +106,42 @@ export default function Header({
                     </Marquee>
                 </div>
                 <div
-                    className={`transition-all duration-700 ease-out ${scrolled
-                        ? "bg-primary/14  backdrop-blur-xl  shadow-lg"
-                        : "bg-transparent backdrop-blur-0 shadow-none"
+                    className={`transition-all duration-700 ease-out relative ${scrolled
+                        ? "bg-transparent backdrop-blur-xl  shadow-lg"
+                        : "bg-transparent backdrop-blur-xl shadow-lg"
                         }`}
                 >
 
                     <Section>
-                        <div className="">
-                            <div className="grid h-16 grid-cols-2 items-center">
-                                {/* Left Side */}
-                                <div>
-                                    {/* Logo Here */}
+                        <div>
+                            <div className="grid h-16 relative grid-cols-3 items-center">
+                                {/* Left Side - intentionally empty */}
+                                <div />
+
+                                {/* Center - Logo */}
+                                <div className="flex justify-center ">
+                                    <Link href="/" className="inline-flex items-center ">
+                                        <Image
+                                            width={300}
+                                            height={150}
+                                            alt="Navbar logo"
+                                            src="/toplogo.svg"
+                                            className="h-10 w-auto"
+                                        />
+                                    </Link>
                                 </div>
 
-                                {/* Right Side */}
+                                {/* Right Side - Navigation */}
                                 <div className="flex items-center justify-end">
                                     {/* Desktop Navigation */}
-                                    <ul className="hidden xl:flex items-center gap-8">
+                                    <ul className="hidden lg:flex items-center gap-8">
                                         {NAV_LINKS.map(({ href, label }) => (
                                             <li key={href}>
                                                 <Link
                                                     href={href}
-                                                    className={`transition-colors ${isActive(href)
+                                                    className={`transition-colors font-semibold text-sm ${isActive(href)
                                                         ? "text-accent"
-                                                        : "text-white hover:text-accent"
+                                                        : "text-primary hover:text-accent"
                                                         }`}
                                                 >
                                                     {label}
@@ -141,7 +153,7 @@ export default function Header({
                                     {/* Mobile Menu Button */}
                                     <button
                                         onClick={() => setMenuOpen(true)}
-                                        className="cursor-pointer text-white xl:hidden"
+                                        className="cursor-pointer text-sm font-semibold text-primary hover:text-accent lg:hidden  underline underline-offset-2"
                                         aria-label="Open Menu"
                                     >
                                         Menu
@@ -155,7 +167,7 @@ export default function Header({
 
             {/* Mobile Menu */}
             <div
-                className={`fixed inset-0 z-999 bg-primary transition-all duration-300 xl:hidden ${menuOpen
+                className={`fixed inset-0 z-999 bg-primary transition-all duration-300 lg:hidden ${menuOpen
                     ? "visible opacity-100"
                     : "invisible opacity-0"
                     }`}
@@ -184,7 +196,7 @@ export default function Header({
                         </li>
                     ))}
 
-                    <button className="mt-4 rounded-md bg-accent px-6 py-3 font-semibold text-primary">
+                    <button className="mt-4  bg-accent px-6 py-3 font-semibold text-primary">
                         BOOK MY STAY
                     </button>
                 </ul>

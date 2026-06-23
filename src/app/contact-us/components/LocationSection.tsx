@@ -21,7 +21,7 @@ export default function LocationSection() {
                 </div>
 
                 {/* Map */}
-                <div className="mt-12 overflow-hidden rounded-[14px] shadow-xl">
+                <div className="mt-12 overflow-hidden  shadow-xl">
                     <iframe
                         src="https://www.google.com/maps?q=Kanyakumari&output=embed"
                         width="100%"

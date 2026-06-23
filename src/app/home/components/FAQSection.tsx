@@ -57,7 +57,7 @@ export default function FAQSection({
                                     setActiveCategory(category.category_name);
                                     setOpenIndex(0);
                                 }}
-                                className={`px-4 py-2 rounded-md text-xs uppercase transition ${activeCategory === category.category_name
+                                className={`px-4 py-2  text-xs uppercase transition ${activeCategory === category.category_name
                                         ? "bg-primary text-white"
                                         : "bg-white text-primary"
                                     }`}
@@ -116,7 +116,7 @@ export default function FAQSection({
                     {/* Image */}
                     <div className="hidden sm:block">
                         <div className="sticky top-24">
-                            <div className="overflow-hidden rounded-[14px]">
+                            <div className="overflow-hidden ">
                                 <Image
                                     src="/home/faq.jpg"
                                     alt="FAQ"

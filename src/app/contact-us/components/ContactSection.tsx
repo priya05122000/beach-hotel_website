@@ -117,7 +117,7 @@ export default function ContactSection() {
 
                     {/* Form Card */}
                     <div className="lg:flex lg:justify-end">
-                        <div className="w-full lg:max-w-lg overflow-hidden rounded-[14px] bg-primary/62 p-4 shadow-lg backdrop-blur-md lg:p-6">
+                        <div className="w-full lg:max-w-lg overflow-hidden  bg-primary/62 p-4 shadow-lg backdrop-blur-md lg:p-6">
                             <h3
                                 className={` font-semibold text-white ${typography.textTwoXl}`}
                             >

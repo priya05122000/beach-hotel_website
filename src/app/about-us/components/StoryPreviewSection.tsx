@@ -43,7 +43,7 @@ export default function StoryPreviewSection() {
                                 src="/home/hero-1.webp"
                                 alt="Story 1"
                                 fill
-                                className="object-cover rounded-[14px]"
+                                className="object-cover "
                             />
                         </div>
                     </div>
@@ -55,7 +55,7 @@ export default function StoryPreviewSection() {
                                 src="/home/hero-2.png"
                                 alt="Story 2"
                                 fill
-                                className="object-cover rounded-[14px]"
+                                className="object-cover "
                             />
                         </div>
                     </div>
@@ -67,7 +67,7 @@ export default function StoryPreviewSection() {
                                 src="/home/hero-1.webp"
                                 alt="Story 3"
                                 fill
-                                className="object-cover rounded-[14px]"
+                                className="object-cover "
                             />
                         </div>
                     </div>

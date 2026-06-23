@@ -47,7 +47,7 @@ const socialIcons: { href: string; label: string; path: string }[] = [
 export default function Footer() {
   return (
     <footer>
-      <Section className="bg-primary w-full relative text-white overflow-hidden z-10 pt-10 lg:pt-20">
+      <Section className="bg-primary w-full relative text-white overflow-hidden z-10 pt-10 lg:pt-20 px-6 sm:px-0">
         <div className="h-full flex flex-col justify-between font-arizona-light space-y-10">
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-6">
             {/* Left: description + CTA + socials + contact */}
@@ -68,9 +68,9 @@ export default function Footer() {
 
                 <div className="animated-border inline-block w-auto relative overflow-hidden">
                   <div className="inline-flex items-center gap-3 px-4 h-10 bg-primary rounded-xs ">
-                    <p className="text-sm font-medium text-white ">
+                    <button className="cursor-pointer text-sm font-medium text-white ">
                       Book My Stay
-                    </p>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -122,14 +122,14 @@ export default function Footer() {
                         key={item.label}
                         href={item.href}
                         aria-label={item.label}
-                        className="border border-gray-700 p-1.5"
+                        className="border border-gray-700 p-1.5 rounded-xs hover:border-gray-500 transition-colors"
                       >
                         <Image
                           src={item.path}
                           alt={item.label}
                           width={28}
                           height={28}
-                          className="w-6 h-6"
+                          className="w-4 h-4"
                         />
                       </Link>
                     ))}
@@ -183,7 +183,7 @@ export default function Footer() {
 
                   <div className="flex gap-2 text-base hover:text-accent transition-colors">
                     <MapPin size={16} className="mt-0.5" />
-                    123 Beach Road, Goa, India
+                    Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
                   </div>
                 </div>
               </div>

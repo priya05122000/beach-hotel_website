@@ -13,7 +13,7 @@ type ImageCardProps = {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({ src, alt = '', heightClass = '' }) => {
-    const classes = `relative ${heightClass} min-h-0 group overflow-hidden rounded-md ${gradientBase}`
+    const classes = `relative ${heightClass} min-h-0 group overflow-hidden  ${gradientBase}`
     return (
         <div className={classes}>
             <Image src={src} alt={alt} fill className="object-cover p-1" />

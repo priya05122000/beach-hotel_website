@@ -60,7 +60,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 <div className="mt-5 bg-amber-600">
                     <div className="mx-auto flex items-center justify-between h-16 xl:h-20 overflow-hidden">
                         <div className="relative h-full">
-                            <div className="absolute rounded-t-md  bg-primary h-12 xl:h-14 bottom-0 left-0 right-0"></div>
+                            <div className="absolute   bg-primary h-12 xl:h-14 bottom-0 left-0 right-0"></div>
                             <Image
                                 src="/navbar_logo.png"
                                 alt="Logo"
@@ -73,7 +73,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
 
                         <div className="flex items-center gap-2 md:gap-3">
-                            <div className="flex items-center px-3 py-2 bg-primary/60 backdrop-blur-md shadow-[0px_4px_4px_0px_#00000040] rounded-md">
+                            <div className="flex items-center px-3 py-2 bg-primary/60 backdrop-blur-md shadow-[0px_4px_4px_0px_#00000040] ">
                                 <ul className="hidden items-center xl:flex">
                                     {NAV_LINKS.map(({ href, label }) => (
                                         <li key={href}>
@@ -99,7 +99,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 </button>
                             </div>
 
-                            <button className="hidden h-10 w-36 shrink-0 whitespace-nowrap rounded-md bg-accent px-6 text-sm font-normal text-primary shadow-[0px_4px_4px_0px_#00000040] md:block">
+                            <button className="hidden h-10 w-36 shrink-0 whitespace-nowrap  bg-accent px-6 text-sm font-normal text-primary shadow-[0px_4px_4px_0px_#00000040] md:block">
                                 BOOK MY STAY
                             </button>
                         </div>
@@ -137,7 +137,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             </li>
                         ))}
 
-                        <button className="mt-4 rounded-md bg-accent px-6 py-3 font-semibold text-primary">
+                        <button className="mt-4  bg-accent px-6 py-3 font-semibold text-primary">
                             BOOK MY STAY
                         </button>
                     </ul>

@@ -61,7 +61,7 @@ export default function Footer() {
                             <div>
                                 <Link
                                     href="/booking"
-                                    className="inline-flex items-center text-primary px-4 h-10 rounded-md text-xs lg:text-sm-sans-regular tracking-widest cursor-pointer bg-accent uppercase"
+                                    className="inline-flex items-center text-primary px-4 h-10  text-xs lg:text-sm-sans-regular tracking-widest cursor-pointer bg-accent uppercase"
                                 >
                                     Book My Stay
                                 </Link>

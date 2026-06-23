@@ -53,7 +53,7 @@ export default function AmenitiesSection() {
     group
     relative
     overflow-hidden
-    rounded-md
+
     p-0.5
     bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)]
     bg-size-[250%]
@@ -65,10 +65,10 @@ export default function AmenitiesSection() {
   "
                             >
                                 <div
-                                    className="  group flex items-center gap-3 p-2 inset-0.5 transition-all duration-300  rounded-sm bg-soft-accent h-full"
+                                    className="  group flex items-center gap-3 p-2 inset-0.5 transition-all duration-300   bg-soft-accent h-full"
                                 >
                                     {/* Icon */}
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-accent text-white">
+                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center  bg-accent text-white">
                                         <Icon
                                             size={16}
                                             className="transition-transform duration-500 group-hover:rotate-360"

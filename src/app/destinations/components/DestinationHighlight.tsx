@@ -24,14 +24,14 @@ const ImageCard: React.FC<ImageCardProps> = ({
     alt = "",
     heightClass = "",
 }) => {
-    const classes = `relative ${heightClass} min-h-0 group overflow-hidden rounded-[14px] ${gradientBase}`;
+    const classes = `relative ${heightClass} min-h-0 group overflow-hidden  ${gradientBase}`;
 
     return (
         <div className={classes}>
             <img
                 src={src}
                 alt={alt}
-                className="h-full w-full object-cover p-0.5 rounded-xl"
+                className="h-full w-full object-cover p-0.5 "
             />
         </div>
     );
@@ -61,7 +61,7 @@ type ContentProps = { destination: NearbyDestination }
 const LeftContent: React.FC<ContentProps> = ({ destination }) => (
     <div className="order-1 lg:col-span-4 flex flex-col justify-center">
         {destination.destination_name && (
-            <span className="rounded-md bg-primary px-3 py-1 text-xs font-semibold uppercase text-white w-fit">
+            <span className=" bg-primary px-3 py-1 text-xs font-semibold uppercase text-white w-fit">
                 {destination.destination_name}
             </span>
         )}

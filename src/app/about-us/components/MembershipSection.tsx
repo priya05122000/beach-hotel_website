@@ -69,7 +69,7 @@ export default function MembershipSection() {
                                     key={item.id}
                                     className="text-center text-white"
                                 >
-                                    <div className="group mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-md border border-white bg-accent/92 text-white transition-all duration-300 hover:bg-highlight">
+                                    <div className="group mx-auto mb-5 flex h-12 w-12 items-center justify-center  border border-white bg-accent/92 text-white transition-all duration-300 hover:bg-highlight">
                                         <Icon
                                             size={20}
                                             className="transition-transform duration-700 ease-in-out group-hover:rotate-360"

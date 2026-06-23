@@ -257,7 +257,7 @@ export default function RoomShowcaseSection() {
         {rooms.map((room, i) => (
           <div
             key={room.number}
-            className="absolute h-32 w-48 overflow-hidden rounded-xs sm:h-36 sm:w-56 lg:h-40 xl:h-50 lg:w-64"
+            className="absolute h-32 w-48 overflow-hidden  sm:h-36 sm:w-56 lg:h-40 xl:h-50 lg:w-64"
             style={{ zIndex: i + 1 }}
           >
             <div

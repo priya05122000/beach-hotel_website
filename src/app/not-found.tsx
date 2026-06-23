@@ -13,7 +13,7 @@ export default function NotFound() {
 
             <a
                 href="/"
-                className="mt-8 rounded-md bg-black px-6 py-3 text-white transition hover:opacity-90"
+                className="mt-8  bg-black px-6 py-3 text-white transition hover:opacity-90"
             >
                 Back to Home
             </a>

@@ -5,7 +5,7 @@
   --foreground: #171717;
   --primary: #012644;
   --accent: #FFC13B;
-  --cream:#FFF4DC;
+  --cream: #FFF4DC;
   --soft-accent: #ffe6ca;
   --surface: #F4F4FF;
   --gray: #696868;
@@ -24,6 +24,8 @@
   --color-gray: var(--gray);
   --color-dusty: var(--dusty);
   --color-silver: var(--silver);
+  --font-arizona-sans-bold: var(--font-arizona-sans-bold);
+
 
 }
 
@@ -39,21 +41,32 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  /* font-family: var(--font-inter), sans-serif; */
 }
-
-h1, h2, h3, h4, h5, h6 {
+/*
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-marcellus), serif;
-}
+} */
 
 @layer utilities {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .font-arizona-sans-bold {
+    font-family: var(--font-arizona-sans-bold);
+  }
+
 }
 
 
@@ -85,15 +98,13 @@ h1, h2, h3, h4, h5, h6 {
 .animated-border {
   padding: 2px;
   border-radius: 2px;
-  background: linear-gradient(
-    90deg,
-    #012644,
-    #FFC13BC2,
-    #012644,
-    #012644,
-    #FFC13BC2,
-    #012644
-  );
+  background: linear-gradient(90deg,
+      #012644,
+      #FFC13BC2,
+      #012644,
+      #012644,
+      #FFC13BC2,
+      #012644);
   background-size: 250% 250%;
   animation: gradientMove 4s linear infinite;
 }
@@ -102,6 +113,7 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 250% 50%;
   }

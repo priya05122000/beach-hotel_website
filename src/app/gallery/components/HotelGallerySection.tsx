@@ -49,9 +49,9 @@ const GalleryCard = ({
 
     return (
         <div
-            className={`group relative overflow-hidden rounded-[14px] p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%_100%] bg-left transition-all duration-1000 hover:bg-right shadow-xl ${className}`}
+            className={`group relative overflow-hidden  p-0.75 bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)] bg-size-[250%_100%] bg-left transition-all duration-1000 hover:bg-right shadow-xl ${className}`}
         >
-            <div className="relative h-full w-full overflow-hidden rounded-xl">
+            <div className="relative h-full w-full overflow-hidden ">
                 {isVideo ? (
                     playVideo ? (
                         <video
@@ -76,7 +76,7 @@ const GalleryCard = ({
                             />
 
                             <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                                <div className="flex h-16 w-16 items-center justify-center rounded-md bg-white/90 shadow-lg">
+                                <div className="flex h-16 w-16 items-center justify-center  bg-white/90 shadow-lg">
                                     <Play
                                         size={30}
                                         className="ml-1 text-primary"
@@ -118,7 +118,7 @@ function GallerySection({
                 {(title || description) && (
                     <div className="mb-6 sm:mb-8">
                         {title && (
-                            <span className="rounded-md bg-accent px-3 py-1 text-xs font-semibold uppercase text-primary">
+                            <span className=" bg-accent px-3 py-1 text-xs font-semibold uppercase text-primary">
                                 {title}
                             </span>
                         )}

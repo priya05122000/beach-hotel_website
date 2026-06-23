@@ -41,7 +41,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
 
     const triggerClass =
         variant === "light"
-            ? "border border-white/40 text-white rounded-md"
+            ? "border border-white/40 text-white "
             : "border border-silver text-foreground";
 
     return (

@@ -19,7 +19,7 @@ function PhotoStrip() {
                 {photos.slice(0, 4).map((photo, index) => (
                     <div
                         key={index}
-                        className="bg-white shadow-xl p-1 w-full rounded-md"
+                        className="bg-white shadow-xl p-1 w-full "
                     >
                         <div className="relative w-full h-60">
                             <Image
@@ -27,7 +27,7 @@ function PhotoStrip() {
                                 alt={photo.alt}
                                 fill
                                 unoptimized
-                                className="object-cover rounded-sm"
+                                className="object-cover "
                             />
                         </div>
                     </div>
@@ -40,7 +40,7 @@ function PhotoStrip() {
                     {photos.map((photo, index) => (
                         <div
                             key={index}
-                            className="shrink-0 bg-white rounded-md shadow-xl w-28 lg:w-36 xl:w-48 p-1 "
+                            className="shrink-0 bg-white  shadow-xl w-28 lg:w-36 xl:w-48 p-1 "
                             style={{
                                 transform: `rotate(${photo.rotate})`,
                                 zIndex: photo.zIndex,
@@ -52,7 +52,7 @@ function PhotoStrip() {
                                     alt={photo.alt}
                                     fill
                                     unoptimized
-                                    className="object-cover  rounded-sm"
+                                    className="object-cover  "
                                 />
                             </div>
                         </div>

@@ -82,7 +82,7 @@ const BlobOverlay = ({
       href={imageSrc}
       x="0"
       y="0"
-      width="100%"
+      width="1024"
       height="1170"
       preserveAspectRatio="xMidYMid slice"
       filter={`url(#frostedBlur-${id})`}
@@ -94,7 +94,7 @@ const BlobOverlay = ({
       y="0"
       width="1024"
       height="1170"
-      fill="#FFC13B"
+      fill="#FF992A"
       fillOpacity="0.61"
       mask={`url(#blobMask-${id})`}
     />
@@ -102,7 +102,7 @@ const BlobOverlay = ({
     <rect
       x="0"
       y="0"
-      width="100%"
+      width="1024"
       height="1170"
       fill={`url(#specular-${id})`}
       mask={`url(#blobMask-${id})`}
@@ -127,7 +127,7 @@ export default function ExclusiveOffersSection({
   return (
     <Section className="pt-32 pb-16  lg:pt-40 lg:pb-20">
       <h2
-        className={`text-sm font-arizona-sans-bold  text-gray text-center tracking-[83%] uppercase font-normal mb-10`}
+        className={`${typography.textFoXl} text-gray uppercase font-normal mb-10`}
       >
         Exclusive Offers
       </h2>
@@ -149,7 +149,7 @@ export default function ExclusiveOffersSection({
                   isActive
                 )
               }
-              className="group relative h-100 xl:h-110 overflow-hidden "
+              className="group relative h-100 xl:h-110 overflow-hidden  p-0.75 bg-linear-to-br from-accent to-primary"
             >
               <div className="relative h-full w-full overflow-hidden ">
                 <Image
@@ -162,8 +162,8 @@ export default function ExclusiveOffersSection({
 
                 <div
                   className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-700 opacity-0 lg:group-hover:opacity-100 ${isActive
-                    ? "opacity-100 lg:opacity-0"
-                    : ""
+                      ? "opacity-100 lg:opacity-0"
+                      : ""
                     }`}
                 >
                   <BlobOverlay
@@ -175,24 +175,34 @@ export default function ExclusiveOffersSection({
 
               <div className="absolute inset-0 z-20 flex flex-col justify-end p-5">
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex bg-linear-to-r from-primary to-accent p-0.5 h-10 text-sm text-primary ">
+                  <div className="inline-flex bg-linear-to-r from-primary to-accent p-0.5 h-10 text-sm text-white ">
                     <span
-                      className={`flex items-center px-2 transition-all duration-700  bg-accent lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
-                        ? "bg-white text-primary lg:bg-accent lg:text-white"
-                        : ""
+                      className={`flex items-center px-2 transition-all duration-700  bg-dusty lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
+                          ? "bg-white text-primary lg:bg-dusty lg:text-white"
+                          : ""
                         }`}
                     >
                       EXCLUSIVE OFFER
                     </span>
                   </div>
 
-
+                  <button
+                    className={`flex h-10 w-10 items-center justify-center  border border-primary bg-white text-primary transition-all duration-700 lg:group-hover:scale-105 ${isActive
+                        ? "scale-105 lg:scale-100"
+                        : ""
+                      }`}
+                    aria-label={`Open details for ${offer.title}`}
+                  >
+                    <ArrowUpRight
+                      size={20}
+                    />
+                  </button>
                 </div>
 
                 <div
                   className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] pb-5 lg:pb-0 max-h-0 opacity-0 translate-y-4 lg:group-hover:max-h-32 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 ${isActive
-                    ? "max-h-32 opacity-100 translate-y-0 lg:max-h-0 lg:opacity-0 lg:translate-y-4"
-                    : ""
+                      ? "max-h-32 opacity-100 translate-y-0 lg:max-h-0 lg:opacity-0 lg:translate-y-4"
+                      : ""
                     }`}
                 >
                   <p
