@@ -14,7 +14,8 @@ const rooms = [
     number: "01",
     label: "Ocean View Suite",
     title: "Horizons Unbound",
-    subtitle: "See the world from a new perspective. Here, the ocean meets the sky in a seamless embrace, offering a front-row seat to nature's grandeur.",
+    subtitle:
+      "See the world from a new perspective. Here, the ocean meets the sky in a seamless embrace, offering a front-row seat to nature's grandeur.",
     description:
       "Perched at the confluence of three oceans, our Ocean View Suites offer an uninterrupted panorama where sea and sky dissolve into one. Floor-to-ceiling glass frames the eternal meeting of waters in an experience of rare stillness.",
     supportingImage: "/facilities/1.jpg",
@@ -24,7 +25,8 @@ const rooms = [
     number: "02",
     label: "Deluxe Sea Room",
     title: "The Gentle Shore",
-    subtitle: "Where the tide meets tranquility, our Deluxe Sea Rooms offer a serene escape. Wake to the soft murmur of waves and let the ocean's rhythm guide your day.",
+    subtitle:
+      "Where the tide meets tranquility, our Deluxe Sea Rooms offer a serene escape.",
     description:
       "Elegantly appointed with natural textures and soft coastal hues, these rooms invite the rhythm of the tide into your everyday. Step onto your private balcony as morning light dances across the sea.",
     supportingImage: "/facilities/2.jpg",
@@ -34,7 +36,8 @@ const rooms = [
     number: "03",
     label: "Royal Penthouse",
     title: "Crown of Kanniyakumari",
-    subtitle: "A sanctuary above the clouds, the Royal Penthouse commands the full sweep of the legendary three-ocean horizon. Private plunge pool, butler service, and a living room that opens to the endless blue.",
+    subtitle:
+      "A sanctuary above the clouds, the Royal Penthouse commands the full sweep of the legendary three-ocean horizon.",
     description:
       "A sanctuary above the clouds, the Royal Penthouse commands the full sweep of the legendary three-ocean horizon. Private plunge pool, butler service, and a living room that opens to the endless blue.",
     supportingImage: "/facilities/3.jpg",
@@ -44,7 +47,8 @@ const rooms = [
     number: "04",
     label: "Signature Suite",
     title: "The Sacred Coast",
-    subtitle: "Where ancient pilgrimage meets modern luxury, our Signature Suites blend Kanniyakumari's sacred heritage with the finest contemporary comfort for a truly unique coastal retreat.",
+    subtitle:
+      "Where ancient pilgrimage meets modern luxury, our Signature Suites blend Kanniyakumari's sacred heritage.",
     description:
       "Where ancient pilgrimage meets modern luxury — our Signature Suites blend Kanniyakumari's sacred heritage with the finest contemporary comfort for a truly unique coastal retreat.",
     supportingImage: "/facilities/4.jpg",
@@ -215,42 +219,45 @@ export default function RoomShowcaseSection() {
             ref={(el) => {
               contentRefs.current[i] = el;
             }}
-            className="absolute inset-0 px-7 pt-15 sm:px-12 lg:px-14 xl:px-16"
+            className="absolute inset-0 flex flex-col justify-between px-7 pt-15 pb-10 xl:pb-20 sm:px-12 lg:px-14 xl:px-16"
           >
-            <div className="flex items-baseline gap-3">
-              <p className="text-xl sm:text-3xl font-medium uppercase text-accent/55">
-                {room.number}
+            <div>
+              <div className="flex items-baseline gap-3">
+                <p className="text-xl sm:text-3xl font-medium uppercase text-accent/55">
+                  {room.number}
+                </p>
+                <h2
+                  className={`font-normal leading-[1.08] text-white ${typography.textFiXl}`}
+                >
+                  {room.title}
+                </h2>
+              </div>
+
+              <p className="text-xs sm:text-sm max-w-xs leading-[1.75] text-white/52 lg:max-w-sm">
+                {room.subtitle}
               </p>
-              {/* <span className="mb-4 block text-[9px] font-medium uppercase tracking-[0.22em] text-white/35 sm:text-[10px]">
-                            {room.label}
-                        </span> */}
-              <h2
-                className={`font-normal leading-[1.08] text-white ${typography.textFiXl}`}
-              >
-                {room.title}
-              </h2>
             </div>
 
-            <p
-              className="text-xs sm:text-sm max-w-xs leading-[1.75] text-white/52 lg:max-w-sm"
-            >
-              {room.subtitle}
-            </p>
-            {/* <button className="group mt-6 flex w-fit items-center gap-3 text-[10px] font-medium uppercase tracking-[0.26em] text-white/35 transition-all duration-300 hover:text-accent">
-              <span>Explore Suite</span>
-              <span className="inline-block h-px w-6 bg-current transition-all duration-500 group-hover:w-11" />
-            </button> */}
+            <div>
+              <p className="text-xs sm:text-sm max-w-xs leading-[1.75] text-white/52 lg:max-w-sm">
+                {room.description}
+              </p>
+              <button className="group mt-6 flex w-fit items-center gap-3 text-[10px] font-medium uppercase tracking-[0.26em] text-white/35 transition-all duration-300 hover:text-accent">
+                <span>Explore Suite</span>
+                <span className="inline-block h-px w-6 bg-current transition-all duration-500 group-hover:w-11" />
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
       {/* ── Supporting images (left, fixed position) ─────────────── */}
       {/* Separate layer so image position is never affected by text height */}
-      <div className="absolute bottom-10 left-7 z-20 sm:bottom-12 sm:left-12 lg:bottom-14 lg:left-14 xl:left-16">
+      <div className="absolute top-50 left-7 z-20 sm:top-70 lg:top-65 lg:left-14 xl:left-16">
         {rooms.map((room, i) => (
           <div
             key={room.number}
-            className="absolute bottom-0 left-0 h-32 w-48 overflow-hidden rounded-xs sm:h-36 sm:w-56 lg:h-40 lg:w-64"
+            className="absolute h-32 w-48 overflow-hidden rounded-xs sm:h-36 sm:w-56 lg:h-40 xl:h-50 lg:w-64"
             style={{ zIndex: i + 1 }}
           >
             <div
