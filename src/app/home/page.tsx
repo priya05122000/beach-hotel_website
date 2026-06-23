@@ -1,6 +1,7 @@
 import HeroBanner from "./components/HeroBanner";
 import ExploreDestinationSection from "./components/ExploreDestinationSection";
 import AmenitiesSection from "./components/AmenitiesSection";
+import RoomShowcaseSection from "./components/RoomShowcaseSection";
 import GallerySection from "./components/GallerySection";
 import HotelCTASection from "./components/HotelCTASection";
 import Testimonials from "./components/Testimonials";
@@ -39,6 +40,7 @@ export default async function HomePage() {
             <ExclusiveOffersSection offerDatas={offerDatas.data} />
             <ExploreDestinationSection />
             <AmenitiesSection />
+            <RoomShowcaseSection />
 
             <GallerySection galleries={randomGalleryItems} />
 
