@@ -95,7 +95,7 @@ const BlobOverlay = ({
       width="1024"
       height="1170"
       fill="#FFC13B"
-      fillOpacity="0.61"
+      fillOpacity="0.42"
       mask={`url(#blobMask-${id})`}
     />
 
@@ -127,10 +127,14 @@ export default function ExclusiveOffersSection({
   return (
     <Section className="pt-32 pb-16  lg:pt-40 lg:pb-20">
       <h2
-        className={`text-sm font-arizona-sans-bold  text-gray text-center tracking-[83%] uppercase font-normal mb-10`}
+        className={`text-sm font-arizona-sans-bold  text-gray text-center tracking-[83%] uppercase font-normal `}
       >
         Exclusive Offers
       </h2>
+
+      <p className={`max-w-md ml-auto my-10 sm:text-right ${typography.textXl}`}>
+        Hotel facilities are designated spaces and services designed to enhance the guest
+      </p>
 
       <div className="grid gap-6 xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
         {offerDatas.map((offer, index) => {
@@ -175,9 +179,9 @@ export default function ExclusiveOffersSection({
 
               <div className="absolute inset-0 z-20 flex flex-col justify-end p-5">
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex bg-linear-to-r from-primary to-accent p-0.5 h-10 text-sm text-primary ">
+                  <div className="inline-flex group-hover:bg-linear-to-r from-primary to-accent p-0.5 h-8 text-sm text-white bg-primary/24 ">
                     <span
-                      className={`flex items-center px-2 transition-all duration-700  bg-accent lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
+                      className={`flex items-center px-2 transition-all duration-700   lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
                         ? "bg-white text-primary lg:bg-accent lg:text-white"
                         : ""
                         }`}

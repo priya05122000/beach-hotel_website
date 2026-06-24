@@ -1,4 +1,5 @@
-﻿import CenterSection from "@/src/components/common/CenterSection";
+import CenterSection from "@/src/components/common/CenterSection";
+import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 import {
     BedDouble,
@@ -11,6 +12,7 @@ import {
     Utensils,
     Car,
     ShieldCheck,
+    type LucideIcon,
 } from "lucide-react";
 
 const amenities = [
@@ -26,65 +28,68 @@ const amenities = [
     { title: "Safety & Security", icon: ShieldCheck },
 ];
 
+function IconCard({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
+    return (
+        <div className="flex flex-col items-center gap-3 ">
+            <div className=" w-24 aspect-2/3 rounded-full   bg-linear-to-r from-primary via-accent/76 to-primary p-px shadow-[0px_4px_4px_0px_#00000040]">
+                <div className="bg-ivory w-full h-full rounded-full flex items-center justify-center">
+                    <Icon size={50} strokeWidth={1.5} className="text-primary" />
+
+                </div>
+            </div>
+            <p className="text-[11px] text-center text-primary/60 leading-tight">{title}</p>
+        </div>
+    );
+}
+
+function Editorial({ align = "left" }: { align?: "left" | "right" }) {
+    const isRight = align === "right";
+    return (
+        <div className={`flex h-full flex-col  ${isRight ? "items-end text-right" : "items-start text-left"}`}>
+            <p className={`${typography.textXl} text-primary mb-4 uppercase`}>
+                Step out of bed and straight<br />
+                sun-kissed sands of Kanyakumari
+            </p>
+            <p className={typography.textXl}>
+                Hotel Facilities Are Designated Spaces And Services Designed To
+                Enhance The Guest Experience, Distinct From Individual Room
+                Amenities. Key Offerings Include 24-Hour Reception,
+            </p>
+            <hr className="mt-6 w-[calc(100%-30px)] border border-gray" />
+        </div>
+    );
+}
+
 export default function AmenitiesSection() {
     return (
-        <CenterSection>
-            <section className="bg-white py-16 lg:py-20">
-                <div className="mx-auto  px-4">
-                    {/* Heading */}
-                    <div className="mb-10 text-center">
-                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-                            Amenities
-                        </p>
+        <CenterSection className="bg-ivory py-16">
+            <section className=" relative space-y-16">
 
-                        <h2 className={`mt-2 text-4xl font-normal text-gray ${typography.textFoXl}`}>
-                            Amenities
-                        </h2>
-                    </div>
+                {/* Watermark label — top */}
+                <h2 className="text-sm font-arizona-sans-bold text-gray text-center tracking-[83%] uppercase font-normal mb-10">
+                    A M E N I T I E S
+                </h2>
 
-                    {/* Grid */}
-                    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 ">                        {amenities.map((item) => {
-                        const Icon = item.icon;
-
-                        return (
-                            <div
-                                key={item.title}
-                                className="
-    group
-    relative
-    overflow-hidden
-
-    p-0.5
-    bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)]
-    bg-size-[250%]
-    bg-left
-    duration-1000
-    transition-all
-    hover:bg-right
-    shadow-xl
-  "
-                            >
-                                <div
-                                    className="  group flex items-center gap-3 p-2 inset-0.5 transition-all duration-300   bg-soft-accent h-full"
-                                >
-                                    {/* Icon */}
-                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center  bg-accent text-white">
-                                        <Icon
-                                            size={16}
-                                            className="transition-transform duration-500 group-hover:rotate-360"
-                                        />
-                                    </div>
-
-                                    {/* Text */}
-                                    <p className="text-sm font-medium text-primary">
-                                        {item.title}
-                                    </p>
-                                </div>
-                            </div>
-                        );
-                    })}
+                <div className="grid grid-cols-[3fr_5fr] items-end h-86">
+                    <Editorial align="left" />
+                    <div className="grid grid-cols-5 gap-4">
+                        {amenities.slice(0, 5).map((item) => (
+                            <IconCard key={item.title} icon={item.icon} title={item.title} />
+                        ))}
                     </div>
                 </div>
+
+                <div className="grid grid-cols-[5fr_3fr] items-end gap-6">
+                    <div className="grid grid-cols-5 gap-4">
+                        {amenities.slice(5).map((item) => (
+                            <IconCard key={item.title} icon={item.icon} title={item.title} />
+                        ))}
+                    </div>
+                    <p className="text-sm font-arizona-sans-bold text-gray text-end tracking-widest uppercase font-normal ">
+                        A M E N I T I E S
+                    </p>
+                </div>
+
             </section>
         </CenterSection>
     );

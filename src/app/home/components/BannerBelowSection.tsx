@@ -23,29 +23,28 @@ const BannerBelowSection = () => {
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: wrapperRef.current,
-                        start: "top 25%",
-                        end: "50% 25%",
+                        start: "bottom 95%",
+                        end: "top 0%",
                         scrub: 1.5,
-                        
+                        // markers: true,
                     },
                 }
             );
         }, wrapperRef);
-
         return () => ctx.revert();
     }, []);
 
     return (
-        <div ref={wrapperRef} className="relative h-[200vh]">
-            <div className="sticky top-[25vh] flex h-[50vh] items-center justify-center bg-primary px-4 text-white overflow-hidden">
+        <div ref={wrapperRef} className="relative h-[50vh]">
+            <div className="sticky top-[25vh] flex h-[50vh] items-center justify-center bg-primary px-4 py-10 text-white overflow-hidden">
                 {/* Image — hidden initially, animated in by GSAP */}
                 <div
                     ref={imageRef}
-                    className="pointer-events-none absolute bottom-0 sm:-bottom-2 lg:-bottom-4 xl:-bottom-6"
+                    className="pointer-events-none absolute bottom-0 "
                     style={{ opacity: 0 }}
                 >
                     <Image
-                        src="/home/thebeach_hotel.svg"
+                        src="/home/thebeachhotel.svg"
                         alt="The Beach Hotel"
                         width={1920}
                         height={1200}
@@ -54,7 +53,7 @@ const BannerBelowSection = () => {
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative z-10 text-center">
+                <div className="relative z-10 text-center  h-[25vh] ">
                     <h1 className={`${typography.textTwoXl} font-bold uppercase`}>
                         The Beach Hotel
                     </h1>

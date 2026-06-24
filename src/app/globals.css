@@ -11,6 +11,7 @@
   --gray: #696868;
   --dusty: #bc8d59;
   --silver: #D9D9D9;
+  --ivory: #FFFBF7;
 }
 
 @theme inline {
@@ -21,6 +22,7 @@
   --color-surface: var(--surface);
   --color-soft-accent: var(--soft-accent);
   --color-cream: var(--cream);
+  --color-ivory:var(--ivory);
   --color-gray: var(--gray);
   --color-dusty: var(--dusty);
   --color-silver: var(--silver);
@@ -43,6 +45,7 @@ body {
   color: var(--foreground);
   /* font-family: var(--font-inter), sans-serif; */
 }
+
 /*
 h1,
 h2,

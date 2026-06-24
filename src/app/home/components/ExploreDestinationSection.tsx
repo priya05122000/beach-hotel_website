@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const ExploreDestinationSection = () => {
     return (
-        <section className="bg-white py-16 lg:py-20">
+        <section className="bg-white pt-16 lg:pt-20">
             <div className=" mx-auto">
 
                 {/* Top Content */}
@@ -17,13 +17,16 @@ const ExploreDestinationSection = () => {
                         </h2>
 
                         {/* Right */}
-                        <div className="flex flex-col items-start sm:items-end justify-end h-full ">
-                            <p className={`max-w-xl sm:text-right ${typography.textXl}`}>
-                                Rising at the iconic edge of India, where oceans meet in a rare natural confluence, our hotel stands in a setting of quiet distinction. The meeting of converging tides and endless blue waters creates a calm sense of place, where sea, sky and light move in harmony. Here, luxury is defined not by excess, but by stillness, space and the natural rhythm of the coastline.
+                        <div className="relative  flex flex-col items-start sm:items-end justify-end h-full ">
 
-                            </p>
+                            <div className=" relative">
+                                <span aria-hidden="true" className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 w-[0.5px] bg-gray h-[calc(100%-25px)]" />
+                                <p className={`max-w-xl sm:text-right sm:pr-10 ${typography.textXl}`}>
+                                    Rising at the iconic edge of India, where oceans meet in a rare natural confluence, our hotel stands in a setting of quiet distinction. The meeting of converging tides and endless blue waters creates a calm sense of place, where sea, sky and light move in harmony. Here, luxury is defined not by excess, but by stillness, space and the natural rhythm of the coastline.
+                                </p>
+                            </div>
 
-                            <button className="mt-6 flex items-center gap-2 border border-primary px-5 h-10 py-2 text-sm uppercase transition font-normal hover:bg-primary text-primary hover:text-white ">
+                            <button className="mt-6 mr-10 flex items-center gap-2   h-10 py-2 text-sm uppercase transition font-normal hover:bg-primary text-primary hover:text-white ">
                                 Explore
                                 <span>&#8594;</span>
                             </button>
@@ -52,7 +55,7 @@ const ExploreDestinationSection = () => {
 
                     <div className="absolute top-0 left-0 right-0 h-10 sm:h-40 bg-linear-to-b from-white to-transparent" />
 
-                    <div className="absolute bottom-0 left-0 right-0 h-10 sm:h-40 bg-linear-to-t from-white to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 h-10 sm:h-40 bg-linear-to-t from-ivory to-transparent" />
                 </div>
             </div>
         </section>

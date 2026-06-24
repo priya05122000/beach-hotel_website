@@ -42,8 +42,9 @@ export default async function HomePage() {
             <BannerBelowSection />
             <ExclusiveOffersSection offerDatas={offerDatas.data} />
             <ExploreDestinationSection />
-            <CinematicSplitSection />
             <AmenitiesSection />
+
+            <CinematicSplitSection />
             <RoomShowcaseSection />
 
             <GallerySection galleries={randomGalleryItems} />
