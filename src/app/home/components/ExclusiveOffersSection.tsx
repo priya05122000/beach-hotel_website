@@ -127,7 +127,7 @@ export default function ExclusiveOffersSection({
   return (
     <Section className="pt-32 pb-16  lg:pt-40 lg:pb-20">
       <h2
-        className={`text-sm font-arizona-sans-bold  text-gray text-center tracking-[83%] uppercase font-normal `}
+        className={`text-sm font-arizona-sans-bold  text-gray text-center tracking-[70%] sm:tracking-[83%] uppercase font-normal `}
       >
         Exclusive Offers
       </h2>
