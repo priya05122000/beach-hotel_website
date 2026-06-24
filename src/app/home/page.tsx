@@ -39,12 +39,12 @@ export default async function HomePage() {
     return (
         <>
             <HeroBanner />
-            {/* <BannerBelowSection /> */}
+            <BannerBelowSection />
             <ExclusiveOffersSection offerDatas={offerDatas.data} />
             <ExploreDestinationSection />
             <CinematicSplitSection />
             <AmenitiesSection />
-            {/* <RoomShowcaseSection /> */}
+            <RoomShowcaseSection />
 
             <GallerySection galleries={randomGalleryItems} />
 
