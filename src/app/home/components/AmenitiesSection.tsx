@@ -30,8 +30,20 @@ const amenities = [
 function IconCard({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
     return (
         <div className="flex flex-col items-center gap-5 sm:gap-3">
-            <div className="w-full sm:w-20 xl:w-24 h-24 sm:h-28 xl:h-34 aspect-1/2 rounded-full bg-linear-to-b from-primary via-accent/76 to-primary p-px shadow-[0px_4px_4px_0px_#00000040]">
-                <div className="bg-ivory w-full h-full rounded-full flex items-center justify-center">
+            <div className="w-full sm:w-20 xl:w-24 h-24 sm:h-28 xl:h-34 aspect-1/2 rounded-full bg-linear-to-b from-primary via-accent/76 to-primary  shadow-[0px_4px_4px_0px_#00000040]
+
+             group
+    relative
+    overflow-hidden
+    p-px
+    bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)]
+    bg-size-[250%]
+    bg-left
+    duration-1000
+    transition-all
+    hover:bg-right
+            ">
+                <div className="bg-ivory transition-all duration-300    w-full h-full rounded-full flex items-center justify-center">
                     <Icon strokeWidth={1.5} className="text-primary w-full h-full p-4 sm:p-6" />
                 </div>
             </div>
