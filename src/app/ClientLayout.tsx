@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import AOSInit from "../components/common/AOSInit";
-import LenisProvider from "./components/LenisProvider";
+import LenisProvider from "../components/LenisProvider";
 import { getAnnouncementsData } from "../service/announcement";
 import Footer from "../components/layout/Footer";
 
