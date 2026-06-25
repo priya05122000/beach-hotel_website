@@ -1,6 +1,6 @@
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { marcellus, inter,arizonaSansBold } from "../lib/font";
+import {  arizonaSansBold, arizonaFlareRegular, arizonaSansRegular } from "../lib/font";
 
 export default async function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${marcellus.variable} ${inter.variable} ${arizonaSansBold.variable}`}
+      className={` ${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable}`}
     >
       <body className="antialiased overflow-x-hidden">
 

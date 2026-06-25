@@ -22,12 +22,13 @@
   --color-surface: var(--surface);
   --color-soft-accent: var(--soft-accent);
   --color-cream: var(--cream);
-  --color-ivory:var(--ivory);
+  --color-ivory: var(--ivory);
   --color-gray: var(--gray);
   --color-dusty: var(--dusty);
   --color-silver: var(--silver);
   --font-arizona-sans-bold: var(--font-arizona-sans-bold);
-
+  --font-arizona-flare-regular: var(--font-arizona-flare-regular);
+  --font-arizona-sans-regular: var(--font-arizona-sans-regular);
 
 }
 
@@ -46,15 +47,71 @@ body {
   /* font-family: var(--font-inter), sans-serif; */
 }
 
-/*
-h1,
-h2,
-h3,
+
+h1 {
+  font-family: var(--font-arizona-sans-regular);
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0.28pc;
+}
+
+h2 {
+  font-family: var(--font-arizona-sans-regular);
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 2.4px;
+}
+
+h3 {
+  font-family: var(--font-arizona-sans-regular);
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 1.8px;
+}
+
+button {
+  font-family: var(--font-arizona-sans-regular);
+  font-size: 14px;
+  letter-spacing: 1.8px;
+}
+
+
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+
 h4,
 h5,
 h6 {
-  font-family: var(--font-marcellus), serif;
-} */
+  font-family: var(--font-arizona-sans-regular);
+}
+
+p {
+  font-family: var(--font-arizona-flare-regular), serif;
+  font-size: 15px;
+  letter-spacing: 0.6px;
+}
+
+
 
 @layer utilities {
   .scrollbar-hide {
@@ -70,6 +127,25 @@ h6 {
     font-family: var(--font-arizona-sans-bold);
   }
 
+  .font-arizona-flare-regular {
+    font-family: var(--font-arizona-flare-regular);
+  }
+
+  .font-arizona-sans-regular {
+    font-family: var(--font-arizona-sans-regular);
+  }
+
+  .text-h1 {
+    font-size: 20px;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  @media (min-width: 1024px) {
+    .text-h1 {
+      font-size: 40px;
+    }
+  }
 }
 
 

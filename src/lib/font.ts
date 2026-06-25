@@ -21,3 +21,15 @@ export const arizonaSansBold = localFont({
     variable: "--font-arizona-sans-bold",
     display: "swap",
 });
+
+export const arizonaFlareRegular = localFont({
+    src: "../fonts/ABCArizona-FlareRegular.otf",
+    variable: "--font-arizona-flare-regular",
+    display: "swap",
+});
+
+export const arizonaSansRegular = localFont({
+    src: "../fonts/ABCArizona-SansRegular.otf",
+    variable: "--font-arizona-sans-regular",
+    display: "swap",
+});
