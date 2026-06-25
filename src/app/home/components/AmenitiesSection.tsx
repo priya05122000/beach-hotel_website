@@ -47,7 +47,7 @@ function IconCard({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
                     <Icon strokeWidth={1.5} className="text-primary w-full h-full p-4 sm:p-6" />
                 </div>
             </div>
-            <p className="text-xs text-center text-primary/60 leading-tight">{title}</p>
+            <p className="text-center text-primary/60 ">{title}</p>
         </div>
     );
 }
@@ -56,11 +56,11 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
     const isRight = align === "right";
     return (
         <div className={`flex pb-4 lg:pb-20 sm:w-1/2 lg:w-full flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-            <p className={`${typography.textXl} text-primary mb-4 uppercase`}>
+            <p className={` text-primary font-bold mb-4 uppercase`}>
                 Step out of bed and straight<br />
                 sun-kissed sands of Kanyakumari
             </p>
-            <p className={typography.textXl}>
+            <p>
                 Hotel Facilities Are Designated Spaces And Services Designed To
                 Enhance The Guest Experience, Distinct From Individual Room
                 Amenities. Key Offerings Include 24-Hour Reception,
@@ -73,8 +73,8 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
 export default function AmenitiesSection() {
     return (
         <CenterSection className="bg-ivory py-16 lg:py-20">
-            <h2 className="text-sm font-arizona-sans-bold text-gray text-center tracking-[70%] sm:tracking-[83%] pb-10 uppercase font-normal">
-                A M E N I T I E S
+            <h2 className="  text-gray text-center  pb-10 uppercase font-normal">
+                AMENITIES
             </h2>
 
             <section className="relative px-4 sm:px-0 space-y-10 ">
@@ -94,7 +94,7 @@ export default function AmenitiesSection() {
                     {/* Row 1 — tablet: stacked | desktop: 3fr+5fr */}
                     <div className="grid grid-cols-1 lg:grid-cols-[3fr_5fr] space-y-5 lg:space-y-0 lg:gap-5 items-end">
                         <Editorial align="left" />
-                        <div className="grid grid-cols-5 w-2/3 ml-auto lg:w-full gap-5">
+                        <div className="grid grid-cols-5 w-3/4 ml-auto lg:w-full gap-5">
                             {amenities.slice(0, 5).map((item) => (
                                 <IconCard key={item.title} icon={item.icon} title={item.title} />
                             ))}
@@ -103,12 +103,12 @@ export default function AmenitiesSection() {
 
                     {/* Row 2 — tablet: stacked | desktop: 5fr+3fr with label */}
                     <div className="grid grid-cols-1 lg:grid-cols-[5fr_3fr] gap-5 items-end">
-                        <div className="grid grid-cols-5 w-2/3 lg:w-full gap-5">
+                        <div className="grid grid-cols-5 w-3/4 lg:w-full gap-5">
                             {amenities.slice(5).map((item) => (
                                 <IconCard key={item.title} icon={item.icon} title={item.title} />
                             ))}
                         </div>
-                        <p className="hidden lg:block text-sm font-arizona-sans-bold text-gray text-end tracking-widest uppercase font-normal">
+                        <p className="hidden lg:block  text-gray text-end  uppercase font-normal">
                             A M E N I T I E S
                         </p>
                     </div>

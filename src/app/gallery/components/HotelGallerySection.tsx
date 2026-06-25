@@ -125,7 +125,7 @@ function GallerySection({
 
                         {description && (
                             <p
-                                className={`mt-4 max-w-4xl ${typography.textBase} leading-relaxed text-primary`}
+                                className={`mt-4 max-w-4xl ${typography.textBase}  text-primary`}
                             >
                                 {description}
                             </p>

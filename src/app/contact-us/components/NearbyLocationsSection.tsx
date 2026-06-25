@@ -46,7 +46,7 @@ function LocationNode({ icon, label, side }: LocationNodeProps) {
       }`}
     >
       <Image src={icon} alt="Icon" width={24} height={24} className="w-5 h-5" />
-      <p className="text-xs font-semibold text-primary uppercase tracking-wide leading-tight whitespace-pre-line">
+      <p className="text-xs font-semibold text-primary uppercase tracking-wide  whitespace-pre-line">
         {label}
       </p>
     </div>
@@ -142,7 +142,7 @@ export default function NearbyLocationsSection() {
                 height={24}
                 className="w-5 h-5"
               />
-              <p className="text-[11px] font-semibold text-primary uppercase tracking-wide leading-tight whitespace-pre-line">
+              <p className="text-[11px] font-semibold text-primary uppercase tracking-wide  whitespace-pre-line">
                 {loc.label}
               </p>
               <span className="text-[10px] text-primary/70">{loc.time}</span>

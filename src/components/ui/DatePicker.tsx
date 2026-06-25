@@ -48,7 +48,7 @@ export default function DatePicker({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className={`flex h-10 w-full items-center px-4 text-sm cursor-pointer ${triggerClass}`}
+        className={`flex h-10 w-full items-center px-4  cursor-pointer ${triggerClass}`}
       >
         <CalendarDays size={16} className="mr-2 shrink-0 opacity-70" />
         <span className={value ? "" : "opacity-60"}>
@@ -87,7 +87,7 @@ export default function DatePicker({
               root: "p-4 select-none",
 
               month_caption:
-                "flex items-center justify-center h-8 mb-3 font-bold text-accent text-sm uppercase tracking-widest",
+                "flex items-center justify-center h-8 mb-3 font-bold text-accent  uppercase tracking-widest",
 
               nav: "absolute top-0 left-4 right-4 flex items-center justify-between pointer-events-none",
               button_previous:
@@ -103,7 +103,7 @@ export default function DatePicker({
               week: "flex",
               day: "flex-1 flex items-center justify-center p-0",
               day_button:
-                "w-9 h-9 flex items-center justify-center text-sm text-white rounded transition-colors cursor-pointer hover:bg-soft-accent hover:text-primary hover:font-bold",
+                "w-9 h-9 flex items-center justify-center  text-white rounded transition-colors cursor-pointer hover:bg-soft-accent hover:text-primary hover:font-bold",
 
               selected: "[&>button]:bg-accent! [&>button]:text-white! [&>button]:rounded",
               today: "[&>button]:font-bold [&>button]:text-accent",

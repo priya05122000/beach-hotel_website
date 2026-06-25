@@ -16,7 +16,7 @@ export default function HeroLocationSection() {
         <div className="flex flex-col justify-center">
           <div>
             <h1
-              className={`font-semibold leading-tight text-primary ${typography.textFiXl}`}
+              className={`font-semibold  text-primary ${typography.textFiXl}`}
             >
               A Premier Category (A)
               <br />

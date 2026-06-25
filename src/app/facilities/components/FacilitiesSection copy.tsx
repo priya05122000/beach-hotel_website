@@ -48,12 +48,12 @@ export default async function FacilitiesSection() {
                                     {(item as any).facility_name ?? (item as any).title ?? (item as any).name ?? "Facility"}
                                 </h3>
 
-                                {/* <p className="mb-4 max-w-md text-lg leading-relaxed text-primary">
+                                {/* <p className="mb-4 max-w-md text-lg  text-primary">
                                 {(item as any).short_description ?? (item as any).description ?? ""}
                             </p> */}
 
                                 <p
-                                    className="text-lg leading-relaxed text-primary"
+                                    className="text-lg  text-primary"
                                     suppressHydrationWarning
                                     dangerouslySetInnerHTML={{ __html: (item as any).description ?? "" }}
                                 />

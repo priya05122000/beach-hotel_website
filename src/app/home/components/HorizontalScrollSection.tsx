@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Section from "@/src/components/common/Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,42 +98,42 @@ export default function HorizontalScrollSection() {
     return (
         <div
             ref={sectionRef}
-            className="relative h-screen overflow-hidden  "
+            className="relative h-screen overflow-hidden "
         >
             {/* ── Horizontal image track ──────────────────────────────── */}
             {/* trackRef sits directly in the section so GSAP measures scrollWidth correctly */}
             <div
                 ref={trackRef}
-                className="absolute top-0  left-0 flex items-start gap-4  will-change-transform"
+                className="absolute top-0   pt-16 lg:pt-20 left-0 flex items-start gap-4  will-change-transform"
                 style={{ width: "max-content", height: `${CARD_H + 48}px` }}
             >
-                    {items.map((item) => {
-                        const overlaysImage = item.imgH > captionY;
-                        return (
+                {items.map((item) => {
+                    const overlaysImage = item.imgH > captionY;
+                    return (
+                        <div
+                            key={item.id}
+                            className="relative flex-shrink-0 w-96"
+                            style={{ height: `${CARD_H}px` }}
+                        >
+                            {/* Image fills from top */}
                             <div
-                                key={item.id}
-                                className="relative flex-shrink-0 w-96"
-                                style={{ height: `${CARD_H}px` }}
+                                className="absolute top-0 left-0 right-0 overflow-hidden"
+                                style={{ height: `${item.imgH}px` }}
                             >
-                                {/* Image fills from top */}
-                                <div
-                                    className="absolute top-0 left-0 right-0 overflow-hidden"
-                                    style={{ height: `${item.imgH}px` }}
-                                >
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        fill
-                                        unoptimized
-                                        className="object-cover"
-                                    />
-                                    {overlaysImage && (
-                                        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/50 to-transparent" />
-                                    )}
-                                </div>
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    fill
+                                    unoptimized
+                                    className="object-cover"
+                                />
+                                {overlaysImage && (
+                                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/50 to-transparent" />
+                                )}
+                            </div>
 
-                                {/* Caption — same Y inside every card */}
-                                {/* <div
+                            {/* Caption — same Y inside every card */}
+                            {/* <div
                                     className="absolute left-0"
                                     style={{ bottom: `${CAPTION_OFFSET}px` }}
                                 >
@@ -141,33 +142,29 @@ export default function HorizontalScrollSection() {
                                             {item.id}.
                                         </span>
                                         <div>
-                                            <p className="text-[11px] font-medium leading-snug">
+                                            <p className="text-[11px] font-medium ">
                                                 {item.title}
                                             </p>
-                                            <p className="text-[10px] text-gray-500 leading-snug">
+                                            <p className="text-[10px] text-gray-500 ">
                                                 {item.location}
                                             </p>
                                         </div>
                                     </div>
                                 </div> */}
-                            </div>
-                        );
-                    })}
+                        </div>
+                    );
+                })}
             </div>
 
+
             {/* ── Bottom: filters · counter · "Projects" ─────────────── */}
-            <div className="absolute bottom-0 left-0 right-0 flex items-end justify-end px-12 pb-8">
-
-
-
-
+            <div className="absolute max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0 pb-16 lg:pb-20 bottom-0 left-0 right-0 flex items-end justify-end ">
                 {/* Large display heading */}
-                <p
-                    className="font-arizona  leading-none select-none text-black/85"
-                    style={{ fontSize: "clamp(4.5rem, 9vw, 9rem)", marginBottom: "-0.08em" }}
-                >
+                <h2 className={`mt-2 uppercase font-normal text-gray  `}>
+
                     Destination
-                </p>
+                </h2>
+
             </div>
         </div>
     );

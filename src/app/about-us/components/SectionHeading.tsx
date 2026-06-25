@@ -7,7 +7,7 @@ export default function SectionHeading() {
             <div className=" py-16 lg:py-28 md:py-20 ">
                 <div className="mx-auto max-w-5xl  text-center">
                     <h3
-                        className={` font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                        className={` font-semibold  text-primary ${typography.textFiXl}`}
                     >
                         Step Out Of Bed And Straight Onto The Sun-Kissed Sands
                         Of Kanyakumari.

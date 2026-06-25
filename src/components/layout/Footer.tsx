@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
-import { MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -52,23 +52,23 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-6">
             {/* Left: description + CTA + socials + contact */}
             <div className="flex flex-col gap-5">
-              <p className="text-lg lg:text-xl leading-relaxed uppercase tracking-wide sm:max-w-sm xl:max-w-lg ">
+              <h3 className="uppercase  sm:max-w-sm xl:max-w-lg ">
                 Let the charm of the coastline and luxurious comforts set the
                 stage for an unforgettable stay amidst breathtaking views and
                 refined comfort.
-              </p>
+              </h3>
 
               <div>
                 {/* <Link
                   href="/booking"
-                  className=" items-center text-white px-4 h-10 rounded-xs text-sm font-arizona-sans-regular tracking-widest cursor-pointer bg-accent"
+                  className=" items-center text-white px-4 h-10  text-sm font-arizona-sans-regular tracking-widest cursor-pointer bg-accent"
                 >
                   Book My Stay
                 </Link> */}
 
                 <div className="animated-border inline-block w-auto relative overflow-hidden">
-                  <div className="inline-flex items-center gap-3 px-4 h-10 bg-primary rounded-xs ">
-                    <button className="cursor-pointer text-sm font-medium text-white ">
+                  <div className="inline-flex items-center gap-3 px-4 h-10 bg-primary  ">
+                    <button className="cursor-pointer  font-medium text-white ">
                       Book My Stay
                     </button>
                   </div>
@@ -83,7 +83,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-xs tracking-widest uppercase hover:text-accent transition-colors"
+                      className="text-xs font-arizona-flare-regular tracking-widest uppercase hover:text-accent transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -99,7 +99,7 @@ export default function Footer() {
                   <li key={`${link.label}-${i}`}>
                     <Link
                       href={link.href}
-                      className="text-xs tracking-widest uppercase hover:text-accent transition-colors"
+                      className="text-xs font-arizona-flare-regular tracking-widest uppercase hover:text-accent transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -113,7 +113,7 @@ export default function Footer() {
             <div className=" flex flex-col justify-between gap-5">
               <div>
                 <div className="mt-6 lg:mt-4 xl:mt-2">
-                  <p className="text-base lg:text-lg tracking-wider mb-3">
+                  <p className="uppercase mb-3">
                     Follow Us
                   </p>
                   <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ export default function Footer() {
                         key={item.label}
                         href={item.href}
                         aria-label={item.label}
-                        className="border border-gray-700 p-1.5 rounded-xs hover:border-gray-500 transition-colors"
+                        className="border border-gray-700 p-1.5  hover:border-gray-500 transition-colors"
                       >
                         <Image
                           src={item.path}
@@ -135,54 +135,25 @@ export default function Footer() {
                     ))}
                   </div>
                 </div>
-                <div className="flex flex-col space-y-2 mt-4">
+                <div className="flex flex-col space-y-2 mt-8">
                   <a
                     href="tel:+915467898765"
-                    className="flex items-center gap-2 text-sm lg:text-base hover:text-accent transition-colors"
+                    className="flex items-center gap-2  hover:text-accent transition-colors"
                   >
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="16"
-                      height="16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="shrink-0"
-                    >
-                      <path
-                        d="M5.11596 12.7268L8.15456 9.08666C8.46255 8.69067 8.61655 8.49267 8.69726 8.27061C8.76867 8.07411 8.79821 7.86486 8.784 7.65628C8.76793 7.42055 8.67477 7.18766 8.48846 6.72187L7.77776 4.94513C7.50204 4.25581 7.36417 3.91116 7.12635 3.68525C6.91678 3.48618 6.65417 3.3519 6.37009 3.29856C6.0477 3.23803 5.68758 3.32806 4.96733 3.50812L3 4.00002C3 14 9.99969 21 20 21L20.4916 19.0324C20.6717 18.3122 20.7617 17.952 20.7012 17.6297C20.6478 17.3456 20.5136 17.083 20.3145 16.8734C20.0886 16.6356 19.7439 16.4977 19.0546 16.222L17.4691 15.5878C16.9377 15.3752 16.672 15.2689 16.4071 15.2608C16.1729 15.2536 15.9404 15.3013 15.728 15.4002C15.4877 15.512 15.2854 15.7144 14.8807 16.1191L11.7943 19.1569"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <Phone size={15} />
                     +91 54678 98765
                   </a>
 
                   <a
                     href="mailto:support@thebeachhotel.in"
-                    className="flex items-center gap-2 text-base hover:text-accent transition-colors"
+                    className="flex items-center gap-2 hover:text-accent transition-colors"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="16"
-                      height="16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="shrink-0"
-                    >
-                      <rect width="20" height="16" x="2" y="4" rx="2" />
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
+                    <Mail  size={15}/>
                     support@thebeachhotel.in
                   </a>
 
-                  <div className="flex gap-2 text-base hover:text-accent transition-colors">
-                    <MapPin size={16} className="mt-0.5" />
+                  <div className="flex gap-2  hover:text-accent transition-colors">
+                    <MapPin size={15} className="mt-0.5" />
                     Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
                   </div>
                 </div>
@@ -190,7 +161,7 @@ export default function Footer() {
 
               {/* Bottom bar */}
               <div className="sm:mb-4">
-                <div className="flex items-center gap-2 text-xs text-white uppercase">
+                <div className="flex items-center gap-2 text-[10px] font-arizona-flare-regular tracking-widest text-white uppercase">
                   <Link
                     href={`${process.env.NEXT_PUBLIC_SITE_URL}/terms-and-conditions`}
                     className="transition-colors hover:underline underline-offset-4 decoration-white/50  hover:text-white"

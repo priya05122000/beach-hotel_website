@@ -13,6 +13,7 @@ import Section from "@/src/components/common/Section";
 gsap.registerPlugin(ScrollTrigger);
 
 import type { LucideIcon } from "lucide-react";
+import CenterSection from "@/src/components/common/CenterSection";
 
 interface RoomHighlight {
     text: string;
@@ -92,22 +93,23 @@ function RoomCard({ room }: { room: Room }) {
             </div>
 
             <div className="pt-6">
-                <h3 className={`font-bold uppercase mb-4 ${typography.textTwoXl}`}>
+                <h3 className={`font-bold uppercase mb-4 `}>
                     {room.name}
                 </h3>
 
-                <div className="flex gap-2 flex-wrap mb-4">
-                    {room.views.map((view) => (
-                        <span
+                <div className="flex gap-2 border border-primary/15 w-fit flex-wrap mb-4">
+                    {room.views.map((view, index) => (
+                        <p
                             key={view}
-                            className="border rounded-full px-3 py-1 text-xs"
+                            className={` px-3 py-1 text-xs ${index === 1 ? "bg-primary/15 text-gray" : ""
+                                }`}
                         >
                             {view}
-                        </span>
+                        </p>
                     ))}
                 </div>
 
-                <p className={`${typography.textBase} mb-5`}>
+                <p className={` mb-5`}>
                     {room.description}
                 </p>
 
@@ -117,7 +119,7 @@ function RoomCard({ room }: { room: Room }) {
                         return (
                             <li key={i} className="flex items-center gap-2">
                                 <Icon size={16} className="shrink-0 text-gray-500" />
-                                <span>{item.text}</span>
+                                <p>{item.text}</p>
                             </li>
                         );
                     })}
@@ -163,11 +165,11 @@ export default function RoomCardsSection() {
     }, []);
 
     return (
-        <Section className="py-16 lg:py-20">
+        <CenterSection className="py-16 lg:py-20">
 
             {/* Heading */}
             <div className="mb-8 lg:mb-12 text-center">
-                <h2 className={`mt-2 text-4xl font-normal text-gray  ${typography.textFoXl}`}>
+                <h2 className={`mt-2 uppercase font-normal text-gray  `}>
                     Room Types
                 </h2>
             </div>
@@ -189,6 +191,6 @@ export default function RoomCardsSection() {
                     ))}
                 </div>
             </div>
-        </Section>
+        </CenterSection>
     );
 }

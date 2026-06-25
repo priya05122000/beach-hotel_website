@@ -121,7 +121,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
             {/* Heading */}
             <div className="mb-8 lg:mb-12">
-                <h2 className={`mt-2 text-4xl font-normal text-gray max-w-sm ${typography.textFoXl}`}>
+                <h2 className={`mt-2  uppercase font-normal text-gray max-w-sm `}>
                     Reviews
                 </h2>
             </div>
@@ -158,10 +158,10 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                         />
                                     </div>
                                     <div>
-                                        <p className="font-bold text-[15px] text-black leading-tight">
+                                        <p className="font-bold uppercase text-black ">
                                             {item.guest_name ?? "Anonymous"}
                                         </p>
-                                        <p className="text-sm text-black/50 mt-0.5">
+                                        <p className=" text-black/50 mt-0.5">
                                             {item.review_title ?? "Verified Guest"}
                                         </p>
                                     </div>
@@ -170,7 +170,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
 
                                 {/* Review text */}
-                                <p className="text-black/75 text-[15px] leading-relaxed sm:max-w-[70%] my-3 ">
+                                <p className="text-black/75   sm:max-w-[70%] my-3 ">
                                     {item.review}
                                 </p>
 
@@ -190,13 +190,13 @@ export default function Testimonials({ reviews }: TestimonialProps) {
             <div className="hidden sm:flex items-end justify-between mt-10 gap-4">
                 <div className="w-[80%]">
                     <div className="relative inline-flex items-center w-14 h-10">
-                        <span className="absolute left-0 top-0 text-lg font-semibold">{pad(activeIndex + 1)}</span>
+                        <span className="absolute left-0 top-0  font-semibold">{pad(activeIndex + 1)}</span>
                         <span className="absolute left-1/2 top-1/2 w-[1.5px] h-full bg-gray-400 -translate-x-1/2 -translate-y-1/2 rotate-25" />
-                        <span className="absolute right-0 bottom-0 text-lg font-semibold">{pad(total)}</span>
+                        <span className="absolute right-0 bottom-0  font-semibold">{pad(total)}</span>
                     </div>
                 </div>
                 <div className="w-[20%] shrink-0">
-                    <a href="#" className="text-[15px] font-semibold text-black hover:opacity-60 transition-opacity whitespace-nowrap">
+                    <a href="#" className=" text-[15px] lg:text-base font-arizona-flare-regular text-gray  transition-opacity whitespace-nowrap">
                         Learn more <span className="underline underline-offset-2">About us</span>
                     </a>
                 </div>
@@ -208,9 +208,9 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                 <div className="flex justify-between items-center">
                     {/* Counter */}
                     <div className="relative    inline-flex items-center w-14 h-10 ">
-                        <span className="absolute left-0 top-0 text-lg font-semibold">{pad(activeIndex + 1)}</span>
+                        <span className="absolute left-0 top-0  font-semibold">{pad(activeIndex + 1)}</span>
                         <span className="absolute left-1/2 top-1/2 w-[1.5px] h-full bg-gray-400 -translate-x-1/2 -translate-y-1/2 rotate-25" />
-                        <span className="absolute right-0 bottom-0 text-lg font-semibold">{pad(total)}</span>
+                        <span className="absolute right-0 bottom-0  font-semibold">{pad(total)}</span>
                     </div>
 
                     {/* Arrows spread full width */}
@@ -229,7 +229,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
                 {/* Learn more */}
                 <div className="text-end">
-                    <a href="#" className="text-[15px] font-semibold text-black hover:opacity-60 transition-opacity whitespace-nowrap">
+                    <a href="#" className="text-[15px] lg:text-base font-arizona-flare-regular font-semibold text-black hover:opacity-60 transition-opacity whitespace-nowrap">
                         Learn more <span className="underline underline-offset-2">About us</span>
                     </a>
                 </div>

@@ -10,7 +10,7 @@ export default function StoryPreviewSection() {
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
 
                     <h2
-                        className={` font-semibold leading-tight text-primary ${typography.textFiXl}`}
+                        className={` font-semibold  text-primary ${typography.textFiXl}`}
                     >
                         Coastal Hotel Stay in Kanniyakumari
 

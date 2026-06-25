@@ -66,7 +66,7 @@ const LeftContent: React.FC<ContentProps> = ({ destination }) => (
             </span>
         )}
         <h2
-            className={`mt-6 lg:mt-8 max-w-xl font-semibold leading-tight text-primary ${typography.textFiXl}`}
+            className={`mt-6 lg:mt-8 max-w-xl font-semibold  text-primary ${typography.textFiXl}`}
         >
             {destination.short_description}
         </h2>

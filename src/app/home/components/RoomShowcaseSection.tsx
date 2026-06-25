@@ -162,7 +162,7 @@ export default function RoomShowcaseSection() {
 
 
         {/* ── LEFT — text panels + thumbnail ───────────────────── */}
-        <div className="absolute top-6 bottom-6 left-6 right-[calc(50%+4px)] overflow-hidden rounded-2xl">
+        <div className="absolute top-6 bottom-6 left-6 right-[calc(50%+4px)] overflow-hidden ">
 
           {/* Background image stack — crossfades on scroll */}
           {/* <div className="absolute inset-0">
@@ -194,24 +194,19 @@ export default function RoomShowcaseSection() {
             >
               <div>
 
-                <h2 className="font-extrabold text-[clamp(1.8rem,3.2vw,2.6rem)] tracking-[-0.04em] leading-tight">
+                <h2 className="font-extrabold  ">
                   {item.title}
                 </h2>
-                <p className="mt-3 mb-8 text-[rgba(18,18,18,0.7)] text-[clamp(0.85rem,1.1vw,1.05rem)] leading-relaxed max-w-85">
+                <p className="mt-3 mb-8 text-gray   max-w-85">
                   {item.description}
                 </p>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2 no-underline px-5 mb-5 py-3.5 rounded-full text-[#121212] text-sm font-medium w-fit"
+                  className="inline-flex items-center gap-2 no-underline px-5 mb-5 h-10  text-black  font-medium w-fit"
                   style={{ backgroundColor: item.linkColor }}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none">
-                    <path
-                      fill="#121212"
-                      d="M5 2c0 1.105-1.895 2-3 2a2 2 0 1 1 0-4c1.105 0 3 .895 3 2ZM11 3.5c0 1.105-.895 3-2 3s-2-1.895-2-3a2 2 0 1 1 4 0ZM6 9a2 2 0 1 1-4 0c0-1.105.895-3 2-3s2 1.895 2 3Z"
-                    />
-                  </svg>
-                  <span>Learn More</span>
+
+                  <p>Learn More</p>
                 </a>
               </div>
 
@@ -237,7 +232,7 @@ export default function RoomShowcaseSection() {
           </div>
 
           {/* Thumbnail stack — same clip-path reveal as right images */}
-          <div className="absolute bottom-14 left-10 lg:left-14 w-45 h-30 lg:w-55 lg:h-37 overflow-hidden rounded-xl">
+          <div className="absolute bottom-14 left-10 lg:left-14 w-45 h-30 lg:w-55 lg:h-37 overflow-hidden ">
             {items.map((item, i) => (
               <div
                 key={item.id}
@@ -258,7 +253,7 @@ export default function RoomShowcaseSection() {
         </div>
 
         {/* ── RIGHT — large image stack ─────────────────────────── */}
-        <div className="absolute top-6 bottom-6 right-6 left-[calc(50%+4px)] overflow-hidden rounded-2xl">
+        <div className="absolute top-6 bottom-6 right-6 left-[calc(50%+4px)] overflow-hidden ">
           {items.map((item, i) => (
             <div
               key={item.id}

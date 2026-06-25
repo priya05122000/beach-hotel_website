@@ -127,12 +127,12 @@ export default function ExclusiveOffersSection({
   return (
     <Section className="pt-32 pb-16  lg:pt-40 lg:pb-20">
       <h2
-        className={`text-sm font-arizona-sans-bold  text-gray text-center tracking-[70%] sm:tracking-[83%] uppercase font-normal `}
+        className={` text-gray text-center uppercase font-normal `}
       >
         Exclusive Offers
       </h2>
 
-      <p className={`max-w-md ml-auto my-10 sm:text-right ${typography.textXl}`}>
+      <p className={`max-w-md ml-auto my-10 sm:text-right `}>
         Hotel facilities are designated spaces and services designed to enhance the guest
       </p>
 
@@ -179,15 +179,15 @@ export default function ExclusiveOffersSection({
 
               <div className="absolute inset-0 z-20 flex flex-col justify-end p-5">
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex group-hover:bg-linear-to-r from-primary to-accent p-0.5 h-8 text-sm text-white bg-primary/24 ">
-                    <span
+                  <div className="inline-flex group-hover:bg-linear-to-r from-primary to-accent p-0.5 h-8 text-white bg-primary/24 ">
+                    <p
                       className={`flex items-center px-2 transition-all duration-700   lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
                         ? "bg-white text-primary lg:bg-accent lg:text-white"
                         : ""
                         }`}
                     >
                       EXCLUSIVE OFFER
-                    </span>
+                    </p>
                   </div>
 
 
@@ -200,7 +200,7 @@ export default function ExclusiveOffersSection({
                     }`}
                 >
                   <p
-                    className={`lg:mt-3 leading-snug text-white ${typography.textBase}`}
+                    className={`lg:mt-3  text-white `}
                   >
                     {offer.short_description}
                   </p>

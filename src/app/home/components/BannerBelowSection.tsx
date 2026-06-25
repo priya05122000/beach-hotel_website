@@ -54,15 +54,15 @@ const BannerBelowSection = () => {
 
                 {/* Content — always visible */}
                 <div className="relative z-10 text-center  h-[25vh] ">
-                    <h1 className={`${typography.textTwoXl} font-bold uppercase`}>
+                    <p className={`font-bold uppercase`}>
                         The Beach Hotel
-                    </h1>
+                    </p>
 
-                    <p className="mt-2 text-sm max-w-80 text-white font-extralight uppercase">
+                    <p className="mt-2  max-w-80 text-white/40 font-extralight uppercase">
                         Erumanayakkanpatti Beach Road, Kanyakumari 629702, India
                     </p>
 
-                    <p className="mt-2 text-sm max-w-80 text-white font-extralight uppercase">
+                    <p className="mt-2  max-w-80 text-white/40 font-extralight uppercase">
                         +91 23456 78654 | +91 43567 86547
                     </p>
                 </div>

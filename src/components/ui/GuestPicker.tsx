@@ -50,7 +50,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className={`flex h-10 w-full items-center px-4 text-sm cursor-pointer ${triggerClass}`}
+                className={`flex h-10 w-full items-center px-4  cursor-pointer ${triggerClass}`}
             >
                 <Users size={16} className="mr-2 shrink-0 opacity-70" />
                 <span>{label}</span>
@@ -61,15 +61,15 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                 <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-64 rounded-none bg-primary shadow-2xl border border-silver/60 p-4">
 
                     {/* Month-caption style header */}
-                    <p className="flex items-center justify-center h-8 mb-3 font-bold text-accent text-sm uppercase tracking-widest">
+                    <p className="flex items-center justify-center h-8 mb-3 font-bold text-accent  uppercase tracking-widest">
                         Guests
                     </p>
 
                     {/* Adults row */}
                     <div className="flex items-center justify-between py-3 border-b border-white/10">
                         <div>
-                            <p className="text-sm font-semibold text-white">Adults</p>
-                            <p className="text-xs text-white/50">Age 13+</p>
+                            <p className=" font-semibold text-white">Adults</p>
+                            <p className=" text-white/50">Age 13+</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <button
@@ -80,7 +80,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                             >
                                 <Minus size={12} />
                             </button>
-                            <span className="w-4 text-center text-sm font-semibold text-white">
+                            <span className="w-4 text-center  font-semibold text-white">
                                 {adults}
                             </span>
                             <button
@@ -97,8 +97,8 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                     {/* Children row */}
                     <div className="flex items-center justify-between py-3 border-b border-white/10">
                         <div>
-                            <p className="text-sm font-semibold text-white">Children</p>
-                            <p className="text-xs text-white/50">Age 0–12</p>
+                            <p className=" font-semibold text-white">Children</p>
+                            <p className=" text-white/50">Age 0–12</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <button
@@ -109,7 +109,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                             >
                                 <Minus size={12} />
                             </button>
-                            <span className="w-4 text-center text-sm font-semibold text-white">
+                            <span className="w-4 text-center font-semibold text-white">
                                 {children}
                             </span>
                             <button
@@ -127,7 +127,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                     <button
                         type="button"
                         onClick={() => setOpen(false)}
-                        className="mt-3 w-full h-9 bg-accent text-xs font-semibold uppercase tracking-widest text-white hover:opacity-90 transition cursor-pointer"
+                        className="mt-3 w-full h-9 bg-accent  font-semibold uppercase tracking-widest text-white hover:opacity-90 transition cursor-pointer"
                     >
                         Done
                     </button>

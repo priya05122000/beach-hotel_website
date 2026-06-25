@@ -17,9 +17,9 @@ export default function TrustedBySection() {
     <Section className="bg-white py-12 md:py-20">
       <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
-          {/* <p className={`${typography.textXl} font-semibold text-primary leading-snug whitespace-nowrap`}> */}
+          {/* <p className={`${typography.textXl} font-semibold text-primary  whitespace-nowrap`}> */}
           <p
-            className={`text-xl font-semibold text-primary leading-snug whitespace-nowrap`}
+            className={`text-xl font-semibold text-primary  whitespace-nowrap`}
           >
             Trusted by 50+
             <br />

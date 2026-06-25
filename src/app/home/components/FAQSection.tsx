@@ -38,12 +38,12 @@ export default function FAQSection({
             <Section>
                 {/* Header */}
                 <div>
-                    <p className="text-sm uppercase tracking-[0.2em] text-primary">
+                    <p className="uppercase tracking-[0.2em] text-primary">
                         FAQ
                     </p>
 
                     <h2
-                        className={`mt-2 ${typography.textFoXl} font-normal text-gray`}
+                        className={`mt-2  font-normal text-gray`}
                     >
                         FAQ
                     </h2>
@@ -57,9 +57,9 @@ export default function FAQSection({
                                     setActiveCategory(category.category_name);
                                     setOpenIndex(0);
                                 }}
-                                className={`px-4 py-2  text-xs uppercase transition ${activeCategory === category.category_name
-                                        ? "bg-primary text-white"
-                                        : "bg-white text-primary"
+                                className={`px-4 py-2   uppercase transition ${activeCategory === category.category_name
+                                    ? "bg-primary text-white"
+                                    : "bg-white text-primary"
                                     }`}
                             >
                                 {category.category_name}
@@ -86,23 +86,23 @@ export default function FAQSection({
                                             }
                                             className={`flex w-full items-start justify-between text-left ${typography.textTwoXl}`}
                                         >
-                                            <span className="text-primary">
+                                            <p className="text-primary  uppercase">
                                                 {faq.question}
-                                            </span>
+                                            </p>
 
-                                            <span className="text-gray cursor-pointer">
+                                            <p className="text-gray cursor-pointer">
                                                 {isOpen ? "-" : "+"}
-                                            </span>
+                                            </p>
                                         </button>
 
                                         <div
                                             className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen
-                                                    ? "mt-4 max-h-40 opacity-100"
-                                                    : "max-h-0 opacity-0"
+                                                ? "mt-4 max-h-40 opacity-100"
+                                                : "max-h-0 opacity-0"
                                                 }`}
                                         >
                                             <p
-                                                className={`max-w-md xl:max-w-xl ${typography.textLg} text-gray`}
+                                                className={`max-w-md xl:max-w-xl  text-gray`}
                                             >
                                                 {faq.answer}
                                             </p>

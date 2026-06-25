@@ -89,7 +89,7 @@ export default function HeroBanner() {
 
                 <button
                   type="submit"
-                  className="h-10 bg-accent px-8 text-sm font-normal uppercase text-primary transition hover:opacity-90 cursor-pointer shadow-[0px_4px_4px_0px_#00000040]"
+                  className="h-10 bg-accent px-8  font-normal uppercase text-primary transition hover:opacity-90 cursor-pointer shadow-[0px_4px_4px_0px_#00000040]"
                 >
                   Book Now
                 </button>

@@ -73,7 +73,7 @@ export default function StorySection() {
                     <div className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-20">
                         {/* Left Content */}
                         <div>
-                            <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.3rem)] font-bold leading-tight text-accent">
+                            <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.3rem)] font-bold  text-accent">
                                 Step Out Of Bed
                                 <br />
                                 And Straight Onto
@@ -83,20 +83,20 @@ export default function StorySection() {
                                 Contact Front Desk
                             </p>
 
-                            <p className="text-xs leading-relaxed text-white/50">
+                            <p className="text-xs  text-white/50">
                                 Hotel Facilities Are Designated Space
                             </p>
                         </div>
 
                         {/* Right Content */}
                         <div className="space-y-6">
-                            <p className="text-sm leading-relaxed text-white">
+                            <p className="text-sm  text-white">
                                 Hotel Facilities Are Designated Spaces And Services Designed To
                                 Enhance The Guest Experience. Hotel Facilities Are Designated
                                 Spaces.
                             </p>
 
-                            <p className="text-sm leading-relaxed text-white">
+                            <p className="text-sm  text-white">
                                 Hotel Facilities Are Designated Spaces And Services Designed To
                                 Enhance The Guest Experience. Hotel Facilities Are Designated
                                 Spaces.

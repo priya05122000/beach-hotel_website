@@ -49,25 +49,23 @@ body {
 
 
 h1 {
-  font-family: var(--font-arizona-sans-regular);
+  font-family: var(--font-arizona-flare-regular);
   font-size: 32px;
-  line-height: 1.1;
   font-weight: 400;
   letter-spacing: 0.28pc;
 }
 
 h2 {
-  font-family: var(--font-arizona-sans-regular);
+  font-family: var(--font-arizona-flare-regular);
   font-size: 24px;
-  line-height: 1.1;
   font-weight: 400;
   letter-spacing: 2.4px;
+
 }
 
 h3 {
   font-family: var(--font-arizona-sans-regular);
   font-size: 18px;
-  line-height: 1.1;
   font-weight: 400;
   letter-spacing: 1.8px;
 }
@@ -77,8 +75,6 @@ button {
   font-size: 14px;
   letter-spacing: 1.8px;
 }
-
-
 
 @media (min-width: 1024px) {
   h1 {
@@ -93,7 +89,7 @@ button {
     font-size: 20px;
   }
 
-  p {
+  p,input {
     font-size: 16px;
   }
 }
@@ -105,7 +101,7 @@ h6 {
   font-family: var(--font-arizona-sans-regular);
 }
 
-p {
+p,input {
   font-family: var(--font-arizona-flare-regular), serif;
   font-size: 15px;
   letter-spacing: 0.6px;
@@ -135,17 +131,6 @@ p {
     font-family: var(--font-arizona-sans-regular);
   }
 
-  .text-h1 {
-    font-size: 20px;
-    line-height: 1.1;
-    font-weight: 400;
-  }
-
-  @media (min-width: 1024px) {
-    .text-h1 {
-      font-size: 40px;
-    }
-  }
 }
 
 

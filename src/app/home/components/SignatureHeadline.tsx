@@ -9,19 +9,17 @@ const SignatureHeadline = () => {
             <div className=" py-16 lg:py-20 ">
                 <div className="mx-auto   text-center">
 
-                    <h2
+                    <div
                         className="
         uppercase
-        tracking-[0.28em]
-        leading-[2.1]
-        text-[20px]
-        md:text-[24px]
+text-[32px] lg:text-[40px]
+font-arizona-flare-regular
         font-light
         text-primary
       ">
                         Step out of bed and <span className='text-silver'>straight</span> onto the sun-kissed <span className='text-silver'>sands</span> of Kanyakumari. Step out of bed and <span className='text-silver'>straight</span>.
 
-                    </h2>
+                    </div>
 
                 </div>
             </div>

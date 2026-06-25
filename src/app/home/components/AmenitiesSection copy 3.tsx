@@ -37,7 +37,7 @@ function IconCard({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
 
                 </div>
             </div>
-            <p className="text-xs text-center text-primary/60 leading-tight">{title}</p>
+            <p className="text-xs text-center text-primary/60 ">{title}</p>
         </div>
     );
 }

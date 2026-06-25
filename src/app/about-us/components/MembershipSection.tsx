@@ -54,7 +54,7 @@ export default function MembershipSection() {
                 <div className="relative z-10 ">
 
                     <h2
-                        className={` mb-12 text-center font-semibold leading-tight text-white ${typography.textFiXl}`}
+                        className={` mb-12 text-center font-semibold  text-white ${typography.textFiXl}`}
                     >
                         Join The Beach Hotel
                     </h2>

@@ -111,14 +111,14 @@ export default function ContactFormSection() {
     <Section id="contact-form" className="bg-primary py-16 lg:py-20">
       <div className="mb-4 md:mb-6 lg:mb-8">
         <h2
-          className={`font-semibold leading-tight text-white ${typography.textFoXl}`}
+          className={`font-semibold  text-white ${typography.textFoXl}`}
         >
           Need More Information? <br /> Get in Touch
         </h2>
       </div>
       <div className="flex flex-col justify-center items-center gap-6">
         <div className="w-full md:w-100 xl:w-120">
-          <p className="text-white/60 text-sm leading-relaxed">
+          <p className="text-white/60 text-sm ">
             Leave a request and we will consult you on available rooms and
             packages.
           </p>
@@ -245,7 +245,7 @@ export default function ContactFormSection() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-white text-primary text-sm font-semibold uppercase tracking-[0.12em] py-3.5 rounded-sm hover:bg-white/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+            className="w-full bg-white text-primary text-sm font-semibold uppercase tracking-[0.12em] py-3.5  hover:bg-white/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
           >
             {loading ? "Sending…" : "Submit Request"}
           </button>
