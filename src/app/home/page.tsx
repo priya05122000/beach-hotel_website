@@ -52,7 +52,7 @@ export default async function HomePage() {
 
             {/* <HotelCTASection /> */}
 
-            <CinematicSplitSection />
+            {/* <CinematicSplitSection /> */}
 
             <Testimonials reviews={guestReviewData.data} />
             <FAQSection faqDatas={faqDatas.data} faqCategories={faqCategories.data} />
