@@ -44,8 +44,8 @@ export default async function HomePage() {
             <ExploreDestinationSection />
             <AmenitiesSection />
 
-            <CinematicSplitSection />
             <RoomShowcaseSection />
+            <CinematicSplitSection />
 
             <GallerySection galleries={randomGalleryItems} />
 
