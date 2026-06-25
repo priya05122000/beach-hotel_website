@@ -5,7 +5,7 @@ import { MapPin } from "lucide-react";
 
 export default function HeroLocationSection() {
   return (
-    <Section className="bg-ivory py-12 md:py-16">
+    <Section className="bg-white py-12 md:py-16">
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-2 mb-8 md:mb-14 xl:mb-20">
         {/* Left Panel */}
         <p className={`font-semibold text-primary ${typography.textThXl}`}>
