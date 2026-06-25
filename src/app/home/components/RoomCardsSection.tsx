@@ -1,19 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Maximize2, Users, BedDouble, Sofa } from "lucide-react";
 
 import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import type { LucideIcon } from "lucide-react";
+
 interface RoomHighlight {
     text: string;
     accent: boolean;
+    icon: LucideIcon;
 }
 
 interface Room {
@@ -33,9 +37,9 @@ const rooms: Room[] = [
         description:
             "An exquisitely designed and artfully curated haven of calm in the heart of the city.",
         highlights: [
-            { text: "55 sqm on average", accent: false },
-            { text: "Up to 3 guests", accent: true },
-            { text: "1 king bed", accent: true },
+            { text: "55 sqm on average", accent: false, icon: Maximize2 },
+            { text: "Up to 3 guests", accent: true, icon: Users },
+            { text: "1 king bed", accent: true, icon: BedDouble },
         ],
         images: [
             "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=80",
@@ -48,9 +52,9 @@ const rooms: Room[] = [
         description:
             "Feel entirely at home in the Paiza Bay Suite overlooking the ocean.",
         highlights: [
-            { text: "75 sqm on average", accent: false },
-            { text: "Up to 3 guests", accent: true },
-            { text: "Living room", accent: true },
+            { text: "75 sqm on average", accent: false, icon: Maximize2 },
+            { text: "Up to 3 guests", accent: true, icon: Users },
+            { text: "Living room", accent: true, icon: Sofa },
         ],
         images: [
             "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=80",
@@ -108,9 +112,15 @@ function RoomCard({ room }: { room: Room }) {
                 </p>
 
                 <ul className="space-y-2">
-                    {room.highlights.map((item, i) => (
-                        <li key={i}>• {item.text}</li>
-                    ))}
+                    {room.highlights.map((item, i) => {
+                        const Icon = item.icon;
+                        return (
+                            <li key={i} className="flex items-center gap-2">
+                                <Icon size={16} className="shrink-0 text-gray-500" />
+                                <span>{item.text}</span>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>
@@ -154,6 +164,13 @@ export default function RoomCardsSection() {
 
     return (
         <Section className="py-16 lg:py-20">
+
+            {/* Heading */}
+            <div className="mb-8 lg:mb-12 text-center">
+                <h2 className={`mt-2 text-4xl font-normal text-gray  ${typography.textFoXl}`}>
+                    Room Types
+                </h2>
+            </div>
             <div
                 ref={sectionRef}
                 className="min-h-screen flex items-center"
