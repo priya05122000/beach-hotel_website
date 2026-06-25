@@ -8,44 +8,44 @@ gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
-    id: "green",
-    title: "Green Cityscape",
+    id: "restaurant",
+    title: "Restaurant",
     description:
-      "Vibrant streets with vertical gardens and solar buildings. This oasis thrives on renewable energy, smart transport, and green spaces for biodiversity.",
-    linkColor: "#D5FF37",
+      "Savour world-class cuisine crafted by our award-winning chefs. From candlelit dinners overlooking the ocean to vibrant open-air brunches, every meal is a curated experience.",
+    linkColor: "#E8D5B0",
     image:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/cu8978xjlsjjpjk52ta0.webp",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
   },
   {
-    id: "blue",
-    title: "Blue Urban Oasis",
+    id: "resort",
+    title: "Luxury Resort",
     description:
-      "Avenues with azure facades and eco-structures. This hub uses clean energy, smart transit, and parks for urban wildlife.",
-    linkColor: "#7DD6FF",
+      "Immerse yourself in an oasis of refined elegance. Our resort seamlessly blends contemporary design with natural surroundings, offering an unrivalled escape for the discerning traveller.",
+    linkColor: "#B0D5C8",
     image:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/trh7c8ufv1dqfrofdytd.webp",
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80",
   },
   {
-    id: "pink",
-    title: "Fluid Architecture",
+    id: "pool",
+    title: "Infinity Pool",
     description:
-      "Desert refuge with fluid architecture and glowing interiors. This sanctuary harnesses solar power, sustainable design, and natural harmony for resilient living.",
-    linkColor: "#FFA0B0",
+      "Drift into serenity in our signature infinity pool, where sky and sea merge at the horizon. Enjoy poolside cocktails, private cabanas, and breathtaking panoramic views.",
+    linkColor: "#A8C8E8",
     image:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/aw6qwur0pggp5r03whjq.webp",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
   },
   {
-    id: "orange",
-    title: "Martian Arches",
+    id: "spa",
+    title: "Spa & Wellness",
     description:
-      "Ethereal structures arc over tranquil waters, bathed in the glow of a setting Martian sun. This desolate beauty showcases the stark, captivating landscape of the red planet.",
-    linkColor: "#FFA17B",
+      "Surrender to total well-being at our sanctuary spa. Ancient healing rituals meet modern therapies, guiding you to deep restoration of body, mind, and spirit.",
+    linkColor: "#D4B8D8",
     image:
-      "https://ik.imagekit.io/kg2nszxjp/GSAP%20pinned%20image%20mask%20reveal%20on%20scroll/sqwn8u84zd1besgl0zpd.webp",
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
   },
 ];
 
-const bgColors = ["#EDF9FF", "#FFECF2", "#FFE8DB"];
+const bgColors = ["#FDF6EC", "#EDF5F1", "#EAF3FA"];
 const N = items.length;
 
 export default function RoomShowcaseSection() {

@@ -3,6 +3,7 @@ import ExploreDestinationSection from "./components/ExploreDestinationSection";
 import AmenitiesSection from "./components/AmenitiesSection";
 import RoomShowcaseSection from "./components/RoomShowcaseSection";
 import RoomCardsSection from "./components/RoomCardsSection";
+import HorizontalScrollSection from "./components/HorizontalScrollSection";
 import GallerySection from "./components/GallerySection";
 import HotelCTASection from "./components/HotelCTASection";
 import Testimonials from "./components/Testimonials";
@@ -48,6 +49,7 @@ export default async function HomePage() {
 
             <RoomShowcaseSection />
             <RoomCardsSection />
+            <HorizontalScrollSection />
 
             {/* <GallerySection galleries={randomGalleryItems} /> */}
 
