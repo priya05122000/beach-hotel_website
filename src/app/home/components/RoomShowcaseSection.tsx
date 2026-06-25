@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Section from "@/src/components/common/Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -151,16 +152,20 @@ export default function RoomShowcaseSection() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative h-screen overflow-hidden">
+    <Section className="relative">
 
       {/* Section-scoped background — color changes stay contained here */}
       <div ref={sectionBgRef} className="absolute inset-0" style={{ zIndex: 0 }} />
 
-      {/* ── LEFT — text panels + thumbnail ───────────────────── */}
-      <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+      <div ref={sectionRef} className="relative h-screen overflow-hidden ">
 
-        {/* Background image stack — crossfades on scroll */}
-        {/* <div className="absolute inset-0">
+
+
+        {/* ── LEFT — text panels + thumbnail ───────────────────── */}
+        <div className="absolute top-6 bottom-6 left-6 right-[calc(50%+4px)] overflow-hidden rounded-2xl">
+
+          {/* Background image stack — crossfades on scroll */}
+          {/* <div className="absolute inset-0">
           {items.map((item, i) => (
             <div
               key={item.id}
@@ -179,67 +184,90 @@ export default function RoomShowcaseSection() {
 
         <div className="absolute inset-0 backdrop-blur-xl bg-white/35" /> */}
 
-        {/* Text panels — all stacked, GSAP controls visibility */}
-        {items.map((item, i) => (
-          <div
-            key={item.id}
-            ref={(el) => { textRefs.current[i] = el; }}
-            className="absolute inset-0 flex flex-col justify-center px-10 lg:px-14"
-            style={{ visibility: i === 0 ? "visible" : "hidden", opacity: i === 0 ? 1 : 0 }}
-          >
-
-
-            <h2 className="font-extrabold text-[clamp(1.8rem,3.2vw,2.6rem)] tracking-[-0.04em] leading-tight">
-              {item.title}
-            </h2>
-            <p className="mt-3 mb-8 text-[rgba(18,18,18,0.7)] text-[clamp(0.85rem,1.1vw,1.05rem)] leading-relaxed max-w-85">
-              {item.description}
-            </p>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 no-underline px-5 py-3.5 rounded-full text-[#121212] text-sm font-medium w-fit"
-              style={{ backgroundColor: item.linkColor }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none">
-                <path
-                  fill="#121212"
-                  d="M5 2c0 1.105-1.895 2-3 2a2 2 0 1 1 0-4c1.105 0 3 .895 3 2ZM11 3.5c0 1.105-.895 3-2 3s-2-1.895-2-3a2 2 0 1 1 4 0ZM6 9a2 2 0 1 1-4 0c0-1.105.895-3 2-3s2 1.895 2 3Z"
-                />
-              </svg>
-              <span>Learn More</span>
-            </a>
-          </div>
-        ))}
-
-        {/* Vertical progress line */}
-        <div className="absolute left-6 top-0 bottom-0 flex flex-col items-center justify-center">
-          <div className="relative h-[52%] w-px bg-black/10">
-            <div
-              ref={progressFillRef}
-              className="absolute left-0 top-0 h-full w-full bg-black/40"
-              style={{ transform: "scaleY(0)", transformOrigin: "top center" }}
-            />
-            {items.map((_, i) => (
-              <div
-                key={i}
-                className="absolute left-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/25"
-                style={{ top: `${(i / (N - 1)) * 100}%` }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Thumbnail stack — same clip-path reveal as right images */}
-        <div className="absolute bottom-14 left-10 lg:left-14 w-45 h-30 lg:w-55 lg:h-37 overflow-hidden rounded-xl">
+          {/* Text panels — all stacked, GSAP controls visibility */}
           {items.map((item, i) => (
             <div
               key={item.id}
-              ref={(el) => { thumbWrapRefs.current[i] = el; }}
+              ref={(el) => { textRefs.current[i] = el; }}
+              className="absolute  inset-0 flex flex-col justify-center px-10 lg:px-14"
+              style={{ visibility: i === 0 ? "visible" : "hidden", opacity: i === 0 ? 1 : 0 }}
+            >
+              <div>
+
+                <h2 className="font-extrabold text-[clamp(1.8rem,3.2vw,2.6rem)] tracking-[-0.04em] leading-tight">
+                  {item.title}
+                </h2>
+                <p className="mt-3 mb-8 text-[rgba(18,18,18,0.7)] text-[clamp(0.85rem,1.1vw,1.05rem)] leading-relaxed max-w-85">
+                  {item.description}
+                </p>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 no-underline px-5 mb-5 py-3.5 rounded-full text-[#121212] text-sm font-medium w-fit"
+                  style={{ backgroundColor: item.linkColor }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none">
+                    <path
+                      fill="#121212"
+                      d="M5 2c0 1.105-1.895 2-3 2a2 2 0 1 1 0-4c1.105 0 3 .895 3 2ZM11 3.5c0 1.105-.895 3-2 3s-2-1.895-2-3a2 2 0 1 1 4 0ZM6 9a2 2 0 1 1-4 0c0-1.105.895-3 2-3s2 1.895 2 3Z"
+                    />
+                  </svg>
+                  <span>Learn More</span>
+                </a>
+              </div>
+
+            </div>
+          ))}
+
+          {/* Vertical progress line */}
+          <div className="absolute left-6 top-0 bottom-0 flex flex-col items-center justify-center">
+            <div className="relative h-[52%] w-px bg-black/10">
+              <div
+                ref={progressFillRef}
+                className="absolute left-0 top-0 h-full w-full bg-black/40"
+                style={{ transform: "scaleY(0)", transformOrigin: "top center" }}
+              />
+              {items.map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute left-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/25"
+                  style={{ top: `${(i / (N - 1)) * 100}%` }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Thumbnail stack — same clip-path reveal as right images */}
+          <div className="absolute bottom-14 left-10 lg:left-14 w-45 h-30 lg:w-55 lg:h-37 overflow-hidden rounded-xl">
+            {items.map((item, i) => (
+              <div
+                key={item.id}
+                ref={(el) => { thumbWrapRefs.current[i] = el; }}
+                className="absolute inset-0"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  ref={(el) => { thumbRefs.current[i] = el; }}
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        {/* ── RIGHT — large image stack ─────────────────────────── */}
+        <div className="absolute top-6 bottom-6 right-6 left-[calc(50%+4px)] overflow-hidden rounded-2xl">
+          {items.map((item, i) => (
+            <div
+              key={item.id}
+              ref={(el) => { rightWrapRefs.current[i] = el; }}
               className="absolute inset-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                ref={(el) => { thumbRefs.current[i] = el; }}
+                ref={(el) => { rightImgRefs.current[i] = el; }}
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"
@@ -249,26 +277,7 @@ export default function RoomShowcaseSection() {
         </div>
 
       </div>
+    </Section>
 
-      {/* ── RIGHT — large image stack ─────────────────────────── */}
-      <div className="absolute inset-y-0 right-0 w-[50%] overflow-hidden">
-        {items.map((item, i) => (
-          <div
-            key={item.id}
-            ref={(el) => { rightWrapRefs.current[i] = el; }}
-            className="absolute inset-0"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              ref={(el) => { rightImgRefs.current[i] = el; }}
-              src={item.image}
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-
-    </div>
   );
 }
