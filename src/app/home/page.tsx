@@ -2,6 +2,7 @@ import HeroBanner from "./components/HeroBanner";
 import ExploreDestinationSection from "./components/ExploreDestinationSection";
 import AmenitiesSection from "./components/AmenitiesSection";
 import RoomShowcaseSection from "./components/RoomShowcaseSection";
+import RoomCardsSection from "./components/RoomCardsSection";
 import GallerySection from "./components/GallerySection";
 import HotelCTASection from "./components/HotelCTASection";
 import Testimonials from "./components/Testimonials";
@@ -45,11 +46,14 @@ export default async function HomePage() {
             <AmenitiesSection />
 
             <RoomShowcaseSection />
+            <RoomCardsSection />
+
+            {/* <GallerySection galleries={randomGalleryItems} /> */}
+
+            {/* <HotelCTASection /> */}
+
             <CinematicSplitSection />
 
-            <GallerySection galleries={randomGalleryItems} />
-
-            <HotelCTASection />
             <Testimonials reviews={guestReviewData.data} />
             <FAQSection faqDatas={faqDatas.data} faqCategories={faqCategories.data} />
         </>
