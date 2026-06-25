@@ -14,7 +14,7 @@ const partners = [
 
 export default function TrustedBySection() {
   return (
-    <Section className="bg-ivory py-12 md:py-20">
+    <Section className="bg-white py-12 md:py-20">
       <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
           {/* <p className={`${typography.textXl} font-semibold text-primary leading-snug whitespace-nowrap`}> */}

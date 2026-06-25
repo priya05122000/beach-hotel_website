@@ -4,13 +4,13 @@ import Image from "next/image";
 
 const leftLocations = [
   {
-    icon: "/icons/beach.svg",
+    icon: "/icons/blue_beach.svg",
     label: "Kanyakumari\nBeach",
     time: "10 min",
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/icons/airport.svg",
+    icon: "/icons/blue_airport.svg",
     label: "Airport",
     time: "< 5 min",
     length: "md:w-20 lg:w-30 xl:w-40",
@@ -19,13 +19,13 @@ const leftLocations = [
 
 const rightLocations = [
   {
-    icon: "/icons/cart.svg",
+    icon: "/icons/blue_cart.svg",
     label: "Shopping Mall\nSPITSA",
     time: "10 min",
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/icons/hill.svg",
+    icon: "/icons/blue_hill.svg",
     label: "Thiruvalluvar\nStatue",
     time: "5 min",
     length: "md:w-20 lg:w-30 xl:w-40",
@@ -46,7 +46,7 @@ function LocationNode({ icon, label, side }: LocationNodeProps) {
       }`}
     >
       <Image src={icon} alt="Icon" width={24} height={24} className="w-5 h-5" />
-      <p className="text-xs font-semibold text-white uppercase tracking-wide leading-tight whitespace-pre-line">
+      <p className="text-xs font-semibold text-primary uppercase tracking-wide leading-tight whitespace-pre-line">
         {label}
       </p>
     </div>
@@ -63,11 +63,11 @@ function ArrowRow({ time, direction, length }: ArrowRowProps) {
   const isLeft = direction === "left-to-center";
   return (
     <div className={`flex flex-col items-center ${length}`}>
-      <span className="text-xs text-white mb-1">{time}</span>
+      <span className="text-xs text-primary mb-1">{time}</span>
       <div className="relative flex items-center w-full">
-        {isLeft ? <ChevronLeft className="text-white w-4 h-5" /> : <></>}
-        <div className="flex-1 h-px bg-white" />
-        {isLeft ? <></> : <ChevronRight className="text-white w-4 h-5" />}
+        {isLeft ? <ChevronLeft className="text-primary w-4 h-5" /> : <></>}
+        <div className="flex-1 border-b-2 border-primary" />
+        {isLeft ? <></> : <ChevronRight className="text-primary w-4 h-5" />}
       </div>
     </div>
   );
@@ -75,7 +75,7 @@ function ArrowRow({ time, direction, length }: ArrowRowProps) {
 
 export default function NearbyLocationsSection() {
   return (
-    <Section className="bg-primary py-10">
+    <Section className="bg-white pb-10 lg:pb-16">
       {/* Desktop layout */}
       <div className="hidden md:flex items-center justify-center gap-0">
         {/* Left column: two rows stacked */}
@@ -94,11 +94,11 @@ export default function NearbyLocationsSection() {
 
         <div className="px-4 lg:px-8">
           <Image
-            src="/navbar_logo.svg"
+            src="/blue_logo.png"
             alt="logo"
-            width={100}
-            height={100}
-            className="h-60 w-60"
+            width={200}
+            height={200}
+            className="h-60 w-60 xl:w-80"
           />
         </div>
 
@@ -127,7 +127,7 @@ export default function NearbyLocationsSection() {
             height={100}
             className="h-25 w-60"
           />
-          <p className="text-white pt-4 text-sm uppercase">Nearby location</p>
+          <p className="text-primary pt-4 text-sm uppercase">Nearby location</p>
         </div>
         <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
           {[...leftLocations, ...rightLocations].map((loc, i) => (
@@ -142,10 +142,10 @@ export default function NearbyLocationsSection() {
                 height={24}
                 className="w-5 h-5"
               />
-              <p className="text-[11px] font-semibold text-white uppercase tracking-wide leading-tight whitespace-pre-line">
+              <p className="text-[11px] font-semibold text-primary uppercase tracking-wide leading-tight whitespace-pre-line">
                 {loc.label}
               </p>
-              <span className="text-[10px] text-white/70">{loc.time}</span>
+              <span className="text-[10px] text-primary/70">{loc.time}</span>
             </div>
           ))}
         </div>

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
-import FormField from "@/src/components/ui/FormField";
 import { submitContactEnquiry } from "@/src/service/contact";
 
 const initialForm = {
@@ -109,176 +108,149 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section id="contact-form" className="bg-white py-16 lg:py-20">
-      <Section>
-        <div className="grid lg:grid-cols-[5fr_7fr] gap-6 items-stretch">
-          <div className="bg-primary rounded-2xl p-8 lg:p-10 flex flex-col gap-6">
-            <div>
-              {/* Badge */}
-              <span className="inline-block bg-accent text-primary text-[11px] font-semibold uppercase tracking-[0.15em] px-4 py-1.5 rounded-full mb-3">
-                Contact Us
-              </span>
+    <Section id="contact-form" className="bg-primary py-16 lg:py-20">
+      <div className="mb-4 md:mb-6 lg:mb-8">
+        <h2
+          className={`font-semibold leading-tight text-white ${typography.textFoXl}`}
+        >
+          Need More Information? <br /> Get in Touch
+        </h2>
+      </div>
+      <div className="flex flex-col justify-center items-center gap-6">
+        <div className="w-full md:w-100 xl:w-120">
+          <p className="text-white/60 text-sm leading-relaxed">
+            Leave a request and we will consult you on available rooms and
+            packages.
+          </p>
+        </div>
 
-              <h2
-                className={`font-semibold leading-tight text-white ${typography.textFoXl}`}
-              >
-                Need More Information? Get in Touch
-              </h2>
-
-              <p className="mt-4 text-sm text-white/60 leading-relaxed max-w-100">
-                Contact us today for tailored hospitality experiences and expert
-                advice. We&apos;re eager to make your stay memorable.
-              </p>
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="flex flex-col gap-6 w-full md:w-100 xl:w-120"
+        >
+          {/* Row 1 — First / Last name */}
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
+                First Name*
+              </label>
+              <input
+                type="text"
+                name="first_name"
+                value={form.first_name}
+                onChange={handleChange}
+                className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
+              />
+              {errors.first_name && (
+                <p className="text-[11px] text-red-400 mt-0.5">
+                  {errors.first_name}
+                </p>
+              )}
             </div>
-
-            {/* Contact details */}
-            <div className="flex flex-col gap-6">
-              {contactDetails.map(({ icon: Icon, label, value, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 group"
-                >
-                  <div className="shrink-0 w-9 h-9 rounded-full bg-white/10 flex items-center justify-center transition-colors duration-200">
-                    <Icon size={15} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.12em] text-white/40 mb-0.5">
-                      {label}
-                    </p>
-                    <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-200 whitespace-pre-line">
-                      {value}
-                    </p>
-                  </div>
-                </a>
-              ))}
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
+                Last Name*
+              </label>
+              <input
+                type="text"
+                name="last_name"
+                value={form.last_name}
+                onChange={handleChange}
+                className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
+              />
+              {errors.last_name && (
+                <p className="text-[11px] text-red-400 mt-0.5">
+                  {errors.last_name}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* ── Right form panel ── */}
-          <div className="flex flex-col justify-center py-2 lg:px-6">
-            <span className="inline-flex items-center self-start bg-silver/30 text-primary/60 text-[11px] font-medium px-3 py-1 rounded-full mb-2 tracking-wide">
-              Get in touch
-            </span>
-
-            <h3
-              className={`font-semibold text-primary leading-tight ${typography.textFoXl}`}
-            >
-              Send Message
-            </h3>
-
-            <p className="mt-1 mb-5 text-sm text-gray leading-relaxed max-w-md">
-              Please fill out the form below with your details and message, and
-              our team will get back to you as soon as possible.
-            </p>
-
-            {success ? (
-              <div className="rounded-lg border border-accent/40 bg-accent/10 p-6 text-center">
-                <p className="text-sm font-semibold text-primary">
-                  Thank you! We&apos;ll get back to you shortly.
-                </p>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                noValidate
-                className="flex flex-col gap-4"
-              >
-                {/* Row 1 — First / Last name */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <FormField
-                    as="input"
-                    type="text"
-                    name="first_name"
-                    placeholder="First Name*"
-                    value={form.first_name}
-                    onChange={handleChange}
-                    error={errors.first_name}
-                  />
-                  <FormField
-                    as="input"
-                    type="text"
-                    name="last_name"
-                    placeholder="Last Name*"
-                    value={form.last_name}
-                    onChange={handleChange}
-                    error={errors.last_name}
-                  />
-                </div>
-
-                {/* Row 2 — Email / Phone */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <FormField
-                    as="input"
-                    type="email"
-                    name="email"
-                    placeholder="Email*"
-                    value={form.email}
-                    onChange={handleChange}
-                    error={errors.email}
-                  />
-                  <FormField
-                    as="input"
-                    type="tel"
-                    name="phone_number"
-                    placeholder="Phone*"
-                    value={form.phone_number}
-                    onChange={handleChange}
-                    maxLength={10}
-                    error={errors.phone_number}
-                  />
-                </div>
-
-                {/* Row 3 — Message */}
-                <FormField
-                  as="textarea"
-                  name="message"
-                  placeholder="Write Message"
-                  value={form.message}
-                  onChange={handleChange}
-                  rows={3}
-                  error={errors.message}
-                />
-
-                {/* Consent */}
-                <label className="flex items-start gap-3 text-xs text-gray cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="consent"
-                    checked={form.consent}
-                    onChange={handleChange}
-                    className="mt-0.5 accent-primary"
-                  />
-                  <span>
-                    I agree to be contacted by the team regarding my enquiry. My
-                    information will be handled in accordance with the privacy
-                    policy.
-                  </span>
-                </label>
-                {errors.consent && (
-                  <p className="text-[11px] text-red-500 -mt-2">
-                    {errors.consent}
-                  </p>
-                )}
-
-                {serverError && (
-                  <p className="text-sm text-red-500">{serverError}</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="mt-2 self-start bg-accent text-primary text-sm font-semibold px-8 py-3 rounded-full hover:opacity-90 transition-opacity duration-200 disabled:opacity-60 cursor-pointer"
-                >
-                  {loading ? "Sending…" : "Send Message"}
-                </button>
-              </form>
+          {/* Row 2 — Email */}
+          <div className="flex flex-col gap-1">
+            <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
+              Email*
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
+            />
+            {errors.email && (
+              <p className="text-[11px] text-red-400 mt-0.5">{errors.email}</p>
             )}
           </div>
-        </div>
-      </Section>
-    </section>
+
+          {/* Row 3 — Phone */}
+          <div className="flex flex-col gap-1">
+            <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
+              Phone*
+            </label>
+            <input
+              type="tel"
+              name="phone_number"
+              value={form.phone_number}
+              onChange={handleChange}
+              maxLength={10}
+              className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
+            />
+            {errors.phone_number && (
+              <p className="text-[11px] text-red-400 mt-0.5">
+                {errors.phone_number}
+              </p>
+            )}
+          </div>
+
+          {/* Row 4 — Message */}
+          <div className="flex flex-col gap-1">
+            <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
+              Message*
+            </label>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              rows={2}
+              className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200 resize-none"
+            />
+            {errors.message && (
+              <p className="text-[11px] text-red-400 mt-0.5">
+                {errors.message}
+              </p>
+            )}
+          </div>
+
+          {/* Consent */}
+          <label className="flex items-start gap-3 text-xs text-white/40 cursor-pointer">
+            <input
+              type="checkbox"
+              name="consent"
+              checked={form.consent}
+              onChange={handleChange}
+              className="mt-0.5 accent-white"
+            />
+            <span>
+              I agree to be contacted by the team regarding my enquiry.
+            </span>
+          </label>
+          {errors.consent && (
+            <p className="text-[11px] text-red-400 -mt-4">{errors.consent}</p>
+          )}
+
+          {serverError && <p className="text-sm text-red-400">{serverError}</p>}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-white text-primary text-sm font-semibold uppercase tracking-[0.12em] py-3.5 rounded-sm hover:bg-white/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+          >
+            {loading ? "Sending…" : "Submit Request"}
+          </button>
+        </form>
+      </div>
+    </Section>
   );
 }
