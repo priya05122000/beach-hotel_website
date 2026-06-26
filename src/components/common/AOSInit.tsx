@@ -14,17 +14,12 @@ export default function AOSInit() {
             once: false,
             mirror: true,
         });
-        const handleScroll = () => {
-            AOS.refresh();
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
     }, []);
 
     useEffect(() => {
-        AOS.refresh();
+        // Defer until after React finishes painting the new route
+        const id = setTimeout(() => AOS.refreshHard(), 50);
+        return () => clearTimeout(id);
     }, [pathname]);
 
     return null;

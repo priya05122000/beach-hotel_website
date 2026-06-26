@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
-import { MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroLocationSection() {
   return (
@@ -53,9 +54,25 @@ export default function HeroLocationSection() {
             />
           </div>
 
-          <div className="mt-3 text-[11px] flex gap-1 items-start justify-end">
-            <MapPin size={12} className="inline mt-1" />
-            <p>Beach Rd, Kanniyakumari, <br /> Tamil Nadu 629702, India</p>
+          <div className="mt-3 text-[11px] flex gap-1 items-start justify-between">
+            <div className="flex flex-col gap-px">
+              <div className="flex gap-1 items-center">
+                <Phone size={12} />
+                <Link href="tel:04652237491">04652 237 491</Link>
+              </div>
+              <div className="flex gap-1 items-center">
+                <Mail size={12} />
+                <Link href="mailto:thebeachhotel@gmail.com">
+                  thebeachhotel@gmail.com
+                </Link>
+              </div>
+            </div>
+            <div className="flex gap-1 items-start">
+              <MapPin size={12} className="mt-1" />
+              <Link href="https://maps.google.com/?q=Erumanayakkanpatti+Beach+Road,+Kanyakumari">
+                Beach Rd, Kanniyakumari, <br /> Tamil Nadu 629702, India
+              </Link>
+            </div>
           </div>
         </div>
       </div>
