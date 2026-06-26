@@ -18,7 +18,7 @@ const NAV_LINKS = [
         label: "Stay",
         children: [
             { href: "/rooms", label: "Room" },
-            { href: "/stay/facility", label: "Facility" },
+            { href: "/facilities", label: "Facility" },
         ],
     },
     {
