@@ -6,7 +6,7 @@ export const BLOG_DATA: Blog[] = [
     title: "A Morning Walk Along the Shore",
     slug: "morning-walk-along-the-shore",
     image_url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-    sub_title: "The beach at sunrise is a different world entirely",
+    sub_title: "The beach at sunrise is a different world entirely — one where the tide moves in quiet rhythm, the horizon glows with the first warmth of day, and the only sound that matters is the steady, unhurried breath of the sea pulling you gently back to yourself.",
     tag_1: "Nature",
     tag_2: "Wellness",
     description_1:
@@ -31,7 +31,7 @@ export const BLOG_DATA: Blog[] = [
     title: "The Art of Doing Nothing Well",
     slug: "art-of-doing-nothing-well",
     image_url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80",
-    sub_title: "Why the best luxury is simply time",
+    sub_title: "In a world that rewards busyness above all else, the most radical and restorative thing a hotel can offer is unhurried time — no agenda, no programme, no pressure to be anywhere except exactly where you already are, watching the light move slowly across the water.",
     tag_1: "Wellness",
     tag_2: "Experience",
     description_1:
@@ -56,7 +56,7 @@ export const BLOG_DATA: Blog[] = [
     title: "Where Three Oceans Meet",
     slug: "where-three-oceans-meet",
     image_url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-    sub_title: "Kanniyakumari's singular geography explained",
+    sub_title: "At the very tip of the Indian subcontinent, three great bodies of water — the Bay of Bengal, the Arabian Sea, and the Indian Ocean — converge in a confluence that has drawn pilgrims, sailors, and curious travelers for centuries, each leaving changed by what they witnessed.",
     tag_1: "Destination",
     tag_2: "Culture",
     description_1:
@@ -81,7 +81,7 @@ export const BLOG_DATA: Blog[] = [
     title: "Seafood Worth Travelling For",
     slug: "seafood-worth-travelling-for",
     image_url: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80",
-    sub_title: "Coastal cooking at its most honest",
+    sub_title: "Along this coastline, the fishing boats return before dawn and the kitchen fires follow shortly after — a daily rhythm that produces food of extraordinary freshness, guided by what the sea offered that morning rather than what a fixed menu decided weeks in advance.",
     tag_1: "Food",
     tag_2: "Culture",
     description_1:
@@ -106,7 +106,7 @@ export const BLOG_DATA: Blog[] = [
     title: "Sunset Ritual at the Cape",
     slug: "sunset-ritual-at-the-cape",
     image_url: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
-    sub_title: "Why every evening here feels like a ceremony",
+    sub_title: "At Kanniyakumari, the sun descends into the sea each evening with a quiet drama that draws strangers to the shoreline without any announcement — a shared, wordless ritual where the sky performs and everyone watching seems to understand instinctively that some moments simply ask for silence.",
     tag_1: "Experience",
     tag_2: "Nature",
     description_1:
@@ -131,7 +131,7 @@ export const BLOG_DATA: Blog[] = [
     title: "Packing Light for a Beach Stay",
     slug: "packing-light-for-a-beach-stay",
     image_url: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80",
-    sub_title: "A practical guide to leaving the unnecessary behind",
+    sub_title: "The coast has a way of exposing everything you packed but never needed — a liberating lesson that the best beach stays are built not on preparation for every scenario, but on the willingness to arrive light, let go of options, and trust the simplicity of the shore.",
     tag_1: "Travel",
     tag_2: "Tips",
     description_1:
