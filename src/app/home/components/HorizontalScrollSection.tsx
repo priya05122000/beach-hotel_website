@@ -25,7 +25,7 @@ const items = [
         title: "Ocean Terrace",
         location: "Bali, Indonesia",
         image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
-        imgH: 445,
+        imgH: 380,
     },
     {
         id: 14,
@@ -39,7 +39,7 @@ const items = [
         title: "Coral Villa",
         location: "Seychelles",
         image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80",
-        imgH: 445,
+        imgH: 380,
     },
     {
         id: 16,
@@ -53,7 +53,7 @@ const items = [
         title: "Palm Haven",
         location: "Mauritius",
         image: "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=900&q=80",
-        imgH: 445,
+        imgH: 380,
     },
     {
         id: 18,
@@ -104,22 +104,23 @@ export default function HorizontalScrollSection() {
             {/* trackRef sits directly in the section so GSAP measures scrollWidth correctly */}
             <div
                 ref={trackRef}
-                className="absolute top-0   pt-16 lg:pt-20 left-0 flex items-start gap-4  will-change-transform"
-                style={{ width: "max-content", height: `${CARD_H + 48}px` }}
+                className="absolute top-0   pt-16 lg:pt-20  left-0 flex items-start gap-4  will-change-transform"
             >
                 {items.map((item) => {
                     const overlaysImage = item.imgH > captionY;
                     return (
                         <div
                             key={item.id}
-                            className="relative flex-shrink-0 w-96"
-                            style={{ height: `${CARD_H}px` }}
+                            className="relative shrink-0 w-96 "
                         >
                             {/* Image fills from top */}
                             <div
-                                className="absolute top-0 left-0 right-0 overflow-hidden"
+                                className="absolute top-0 left-0 right-0 "
                                 style={{ height: `${item.imgH}px` }}
                             >
+                                <div>
+
+                                </div>
                                 <Image
                                     src={item.image}
                                     alt={item.title}
@@ -127,30 +128,28 @@ export default function HorizontalScrollSection() {
                                     unoptimized
                                     className="object-cover"
                                 />
-                                {overlaysImage && (
+                                {/* {overlaysImage && (
                                     <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/50 to-transparent" />
-                                )}
-                            </div>
+                                )} */}
 
-                            {/* Caption — same Y inside every card */}
-                            {/* <div
-                                    className="absolute left-0"
-                                    style={{ bottom: `${CAPTION_OFFSET}px` }}
-                                >
-                                    <div className="flex items-start gap-1.5">
-                                        <span className="text-[15px] font-semibold leading-none mt-[1px]">
+                                <div className="absolute -bottom-16">
+                                    <div className="flex items-end gap-2">
+                                        <span className="text-5xl font-semibold leading-none text-gray-900 mt-0.5">
                                             {item.id}.
                                         </span>
-                                        <div>
-                                            <p className="text-[11px] font-medium ">
+                                        <div className="flex flex-col gap-0.5">
+                                            <p className="font-medium text-gray-900 leading-tight">
                                                 {item.title}
                                             </p>
-                                            <p className="text-[10px] text-gray-500 ">
+                                            <p className="text-gray-400 leading-tight">
                                                 {item.location}
                                             </p>
                                         </div>
                                     </div>
-                                </div> */}
+                                </div>
+                            </div>
+
+
                         </div>
                     );
                 })}

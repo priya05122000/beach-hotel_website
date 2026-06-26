@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import type { LucideIcon } from "lucide-react";
 import CenterSection from "@/src/components/common/CenterSection";
+import Link from "next/link";
 
 interface RoomHighlight {
     text: string;
@@ -72,7 +73,7 @@ function RoomCard({ room }: { room: Room }) {
         <div className="flex flex-col">
             <div
                 ref={emblaRef}
-                className="relative overflow-hidden aspect-[4/3]"
+                className="relative overflow-hidden aspect-3/2"
             >
                 <div className="flex h-full">
                     {room.images.map((src, i) => (
@@ -124,6 +125,10 @@ function RoomCard({ room }: { room: Room }) {
                         );
                     })}
                 </ul>
+
+                <Link href="/gallery" className="flex cursor-pointer items-center gap-1 text-sm text-gray-700 tracking-wider font-arizona-flare-regular mt-10  py-1 whitespace-nowrap underline underline-offset-2">
+                    View Details
+                </Link>
             </div>
         </div>
     );
@@ -165,32 +170,43 @@ export default function RoomCardsSection() {
     }, []);
 
     return (
-        <CenterSection className="py-16 lg:py-20">
+        <div className="py-16 lg:py-20">
+            <CenterSection  >
 
-            {/* Heading */}
-            <div className="mb-8 lg:mb-12 text-center">
-                <h2 className={`mt-2 uppercase font-normal text-gray  `}>
-                    Room Types
-                </h2>
-            </div>
-            <div
-                ref={sectionRef}
-                className="min-h-screen flex items-center"
-            >
-                <div className="grid lg:grid-cols-2 gap-16 w-full">
-                    {rooms.map((room, index) => (
-                        <div
-                            key={room.id}
-                            ref={(el) => {
-                                cardsRef.current[index] = el;
-                            }}
-                            className={index === 1 ? "lg:mt-24" : ""}
-                        >
-                            <RoomCard room={room} />
-                        </div>
-                    ))}
+                {/* Heading */}
+                <div className="mb-8 lg:mb-12 text-center">
+                    <h2 className={`mt-2 uppercase font-normal text-gray  `}>
+                        Room Types
+                    </h2>
+                    <p className="max-w-lg mx-auto mt-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, ipsa. Hic impedit quo maiores ab reprehenderit delectus corporis quam nostrum?</p>
                 </div>
-            </div>
-        </CenterSection>
+                <div
+                    ref={sectionRef}
+                    className="min-h-screen flex items-center "
+                >
+                    <div className="grid lg:grid-cols-2 gap-16 w-full">
+                        {rooms.map((room, index) => (
+                            <div
+                                key={room.id}
+                                ref={(el) => {
+                                    cardsRef.current[index] = el;
+                                }}
+                                className={index === 1 ? "lg:mt-24" : ""}
+                            >
+                                <RoomCard room={room} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </CenterSection>
+
+            <Section >
+                <Link href="/gallery" className="flex  cursor-pointer items-center justify-end gap-1 text-sm text-end text-gray-700 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
+                    View All
+                </Link>
+            </Section>
+        </div>
+
+
     );
 }

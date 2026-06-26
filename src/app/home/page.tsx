@@ -51,7 +51,6 @@ export default async function HomePage() {
             <RoomCardsSection />
             <HorizontalScrollSection />
 
-            {/* <GallerySection galleries={randomGalleryItems} /> */}
 
             {/* <HotelCTASection /> */}
 
@@ -61,6 +60,9 @@ export default async function HomePage() {
 
             <Testimonials reviews={guestReviewData.data} />
             {/* <FAQSection faqDatas={faqDatas.data} faqCategories={faqCategories.data} /> */}
+
+            <GallerySection galleries={randomGalleryItems} />
+
         </>
     );
 }

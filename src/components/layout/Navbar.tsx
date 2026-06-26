@@ -25,7 +25,7 @@ const NAV_LINKS = [
         href: "/explore",
         label: "Explore",
         children: [
-            { href: "/explore/gallery", label: "Gallery" },
+            { href: "/gallery", label: "Gallery" },
             { href: "/destinations", label: "Destination" },
         ],
     },
@@ -56,6 +56,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const [scrolled, setScrolled] = useState(false);
     const [animating, setAnimating] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [isOverDark, setIsOverDark] = useState(false);
 
     const pathname = usePathname();
 
@@ -73,6 +74,20 @@ export default function Header({ announcementData }: AnnouncementProps) {
         const onScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
+    useEffect(() => {
+        const checkDarkSection = () => {
+            const elements = document.elementsFromPoint(window.innerWidth / 2, 48);
+            const overDark = elements.some((el) => {
+                if (el.closest("header")) return false;
+                return el.classList.contains("bg-primary");
+            });
+            setIsOverDark(overDark);
+        };
+        window.addEventListener("scroll", checkDarkSection, { passive: true });
+        checkDarkSection();
+        return () => window.removeEventListener("scroll", checkDarkSection);
     }, []);
 
     useEffect(() => {
@@ -396,9 +411,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         }}
                                     >
                                         <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
-                                            <Menu size={16} className="text-primary" />
+                                            <Menu size={16} className={`${isOverDark && !open ? "text-white" : "text-primary"}`} />
                                         </span>
-                                        <span className="text-[10px] tracking-[0.15em] uppercase font-semibold text-primary">
+                                        <span className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary"}`}>
                                             Menu
                                         </span>
                                     </span>
@@ -412,9 +427,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         }}
                                     >
                                         <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
-                                            <X size={16} className="text-primary" />
+                                            <X size={16} className={`${isOverDark && !open ? "text-white" : "text-primary"}`} />
                                         </span>
-                                        <span className="text-[10px] tracking-[0.15em] uppercase font-semibold text-primary">
+                                        <span className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary"}`} >
                                             Close
                                         </span>
                                     </span>
