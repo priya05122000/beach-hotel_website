@@ -521,12 +521,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                     >
                                         +91 54678 98765
                                     </a>
-                                    <a
-                                        href="mailto:support@thebeachhotel.in"
-                                        className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light no-underline hover:text-primary transition-colors duration-200"
-                                    >
-                                        support@thebeachhotel.in
-                                    </a>
+
                                     <p className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light">
                                         Beach Rd, Kanniyakumari, TN 629702
                                     </p>
