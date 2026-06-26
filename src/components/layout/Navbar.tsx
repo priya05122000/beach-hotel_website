@@ -299,11 +299,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                         <div className="relative h-16 flex items-center">
 
-                            {/* Logo — transitions between center and left on scroll */}
+                            {/* Logo */}
+                            {/* Logo */}
                             <div
                                 style={{
                                     position: "absolute",
-                                    left: scrolled ? 0 : "50%",
+                                    left: scrolled ? "0%" : "50%",
                                     transform: scrolled ? "translateX(0)" : "translateX(-50%)",
                                     transition: "left 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)",
                                 }}
