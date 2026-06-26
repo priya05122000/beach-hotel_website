@@ -12,7 +12,7 @@ export default async function RootLayout({
       lang="en"
       className={` ${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable}`}
     >
-      <body className="antialiased overflow-x-hidden">
+      <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
 
         <ClientLayout>
           {children}

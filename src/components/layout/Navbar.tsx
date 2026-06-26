@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
-import { X, ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 import Section from "../common/Section";
 import { Announcement } from "@/src/types";
@@ -38,48 +38,36 @@ const NAV_LINKS = [
     { href: "/contact-us", label: "Contact Us" },
 ];
 
+const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
+const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
+
 interface AnnouncementProps {
     announcementData: Announcement[];
 }
 
 export default function Header({ announcementData }: AnnouncementProps) {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [showHeader, setShowHeader] = useState(true);
+    const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [animating, setAnimating] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-    const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
     const pathname = usePathname();
-    const lastScrollY = useRef(0);
+    const overlayRef = useRef<HTMLDivElement>(null);
+    const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
+    const metaRef = useRef<HTMLDivElement>(null);
+    const imageRef = useRef<HTMLDivElement>(null); // <-- Add this
     const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
-        const onScroll = () => {
-            const currentY = window.scrollY;
-            setScrolled(currentY > 50);
-
-            if (menuOpen) {
-                setShowHeader(true);
-                return;
-            }
-
-            if (currentY > lastScrollY.current && currentY > 80) {
-                setShowHeader(false);
-            } else {
-                setShowHeader(true);
-            }
-
-            lastScrollY.current = currentY;
-        };
-
+        const onScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
-    }, [menuOpen]);
+    }, []);
 
     useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
+        document.body.style.overflow = open ? "hidden" : "";
         return () => { document.body.style.overflow = ""; };
-    }, [menuOpen]);
+    }, [open]);
 
     const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
@@ -92,17 +80,121 @@ export default function Header({ announcementData }: AnnouncementProps) {
         dropdownTimerRef.current = setTimeout(() => setActiveDropdown(null), 150);
     };
 
-    const toggleMobileExpanded = (label: string) => {
-        setMobileExpanded((prev) => (prev === label ? null : label));
+    const runOpen = () => {
+        const overlay = overlayRef.current;
+        const links = linksRef.current;
+        const meta = metaRef.current;
+        const image = imageRef.current;
+
+        if (!overlay || !meta) return;
+
+        setAnimating(true);
+
+        overlay.style.visibility = "visible";
+        overlay.style.clipPath = "inset(100% 0 0 0)";
+        overlay.style.transition = "none";
+
+        if (image) {
+            image.style.transition = "none";
+            image.style.clipPath = "inset(100% 0 0 0)";
+            image.style.transform = "scale(1.1)";
+            image.style.opacity = "0";
+        }
+
+
+        requestAnimationFrame(() => {
+            if (!overlay) return;
+            overlay.style.transition = `clip-path 0.85s ${EASE}`;
+            overlay.style.clipPath = "inset(0% 0 0 0)";
+        });
+
+        setTimeout(() => {
+            if (!image) return;
+
+            image.style.transition =
+                `clip-path 1s ${EASE_OUT},
+         transform 1.2s ${EASE_OUT},
+         opacity .8s ease`;
+
+            image.style.clipPath = "inset(0% 0 0 0)";
+            image.style.transform = "scale(1)";
+            image.style.opacity = "1";
+        }, 250);
+
+        links.forEach((el, i) => {
+            if (!el) return;
+            el.style.transition = "none";
+            el.style.transform = "translateY(110%)";
+            setTimeout(() => {
+                if (!el) return;
+                el.style.transition = `transform 0.85s ${EASE_OUT}`;
+                el.style.transform = "translateY(0%)";
+            }, 300 + i * 80);
+        });
+
+        meta.style.transition = "none";
+        meta.style.opacity = "0";
+        meta.style.transform = "translateY(20px)";
+        setTimeout(() => {
+            if (!meta) return;
+            meta.style.transition = `opacity 0.7s ease, transform 0.7s ${EASE_OUT}`;
+            meta.style.opacity = "1";
+            meta.style.transform = "translateY(0)";
+        }, 600);
+
+        setTimeout(() => setAnimating(false), 900);
+    };
+
+    const runClose = () => {
+        const overlay = overlayRef.current;
+        const links = linksRef.current;
+        const meta = metaRef.current;
+        const image = imageRef.current;
+
+        if (!overlay || !meta) return;
+
+        setAnimating(true);
+
+        meta.style.transition = "opacity 0.2s ease";
+        meta.style.opacity = "0";
+
+        if (image) {
+            image.style.transition = `opacity 0.3s ease`;
+            image.style.opacity = "0";
+        }
+
+        overlay.style.transition = `clip-path 0.75s ${EASE}`;
+        overlay.style.clipPath = "inset(0% 0 100% 0)";
+
+        setTimeout(() => {
+            if (!overlay) return;
+            overlay.style.visibility = "hidden";
+            // reset links silently so they're ready for next open
+            links.forEach((el) => {
+                if (!el) return;
+                el.style.transition = "none";
+                el.style.transform = "translateY(110%)";
+            });
+            setAnimating(false);
+        }, 800);
+    };
+
+    const toggle = () => {
+        if (animating) return;
+        if (open) {
+            setOpen(false);
+            runClose();
+        } else {
+            setOpen(true);
+            runOpen();
+        }
     };
 
     return (
         <>
-            <header
-                className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ease-in-out ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
-            >
-                {/* Announcement Bar */}
-                <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled ? "h-0" : "h-10"}`}>
+            <header className="fixed inset-x-0 top-0 z-[100]">
+                {/* Announcement Bar — hides on scroll, navbar stays */}
+                <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled || open ? "h-0" : "h-10"}`}>
                     <Marquee
                         speed={40}
                         gradient={false}
@@ -118,13 +210,13 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     </Marquee>
                 </div>
 
-                <div className="transition-all duration-700 ease-out relative bg-transparent backdrop-blur-xl shadow-lg">
+                {/* Main nav bar — always visible */}
+                <div className="bg-transparent backdrop-blur-xl shadow-lg">
                     <Section>
-                        <div className="grid h-16 relative grid-cols-3 items-center">
-                            {/* Left Side */}
+                        <div className="grid h-16 grid-cols-3 items-center">
                             <div />
 
-                            {/* Center - Logo */}
+                            {/* Center — Logo */}
                             <div className="flex justify-center">
                                 <Link href="/" className="inline-flex items-center">
                                     <Image
@@ -137,9 +229,10 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 </Link>
                             </div>
 
-                            {/* Right Side - Desktop Nav */}
+                            {/* Right — nav links (desktop, not scrolled) OR hamburger (desktop scrolled + mobile) */}
                             <div className="flex items-center justify-end">
-                                <ul className="hidden lg:flex items-center gap-8">
+                                {/* Desktop nav links: visible when not scrolled and overlay closed */}
+                                <ul className={`hidden lg:flex items-center gap-8 transition-opacity duration-300 ${scrolled || open ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
                                     {NAV_LINKS.map(({ href, label, children }) => (
                                         <li
                                             key={href}
@@ -149,7 +242,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         >
                                             <Link
                                                 href={href}
-                                                className={`inline-flex items-center gap-1 transition-colors font-semibold  text-xs lg:text-sm tracking-[0.6px] ${isActive(href) ? "text-accent" : "text-primary hover:text-accent"}`}
+                                                className={`inline-flex items-center gap-1 transition-colors font-semibold text-xs lg:text-sm tracking-[0.6px] ${isActive(href) ? "text-accent" : "text-primary hover:text-accent"}`}
                                             >
                                                 {label}
                                                 {children && (
@@ -160,11 +253,8 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                                 )}
                                             </Link>
 
-                                            {/* Dropdown */}
                                             {children && (
-                                                <div
-                                                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${activeDropdown === label ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"}`}
-                                                >
+                                                <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${activeDropdown === label ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"}`}>
                                                     <ul className="bg-white shadow-lg min-w-35 py-2">
                                                         {children.map((child) => (
                                                             <li key={child.href}>
@@ -183,13 +273,21 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                     ))}
                                 </ul>
 
-                                {/* Mobile Menu Button */}
+                                {/* Hamburger — mobile always, desktop when scrolled or overlay open */}
                                 <button
-                                    onClick={() => setMenuOpen(true)}
-                                    className="cursor-pointer text-xs lg:text-sm tracking-[0.6px] font-semibold text-primary hover:text-accent lg:hidden underline underline-offset-2"
-                                    aria-label="Open Menu"
+                                    onClick={toggle}
+                                    aria-label={open ? "Close menu" : "Open menu"}
+                                    aria-expanded={open}
+                                    className={`relative z-[110] cursor-pointer p-2 w-10 h-10 bg-transparent border-0
+                                        flex ${scrolled || open ? "lg:flex" : "lg:hidden"}
+                                    `}
                                 >
-                                    Menu
+                                    {open ? (
+
+                                        <X size={20} className="text-primary" />
+                                    ) : (
+                                        <Menu size={22} className="text-primary" />
+                                    )}
                                 </button>
                             </div>
                         </div>
@@ -197,66 +295,108 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </div>
             </header>
 
-            {/* Mobile Menu */}
+            {/* Fullscreen overlay */}
             <div
-                className={`fixed inset-0 z-999 bg-primary transition-all duration-300 lg:hidden ${menuOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+                ref={overlayRef}
+                className="fixed inset-0 z-[90] bg-white overflow-hidden flex flex-col justify-center"
+                style={{ visibility: "hidden", clipPath: "inset(100% 0 0 0)" }}
             >
-                <button
-                    onClick={() => setMenuOpen(false)}
-                    className="absolute top-6 right-6 cursor-pointer text-white"
-                    aria-label="Close Menu"
-                >
-                    <X size={32} />
-                </button>
+                <Section>
+                    {/* Content area — equal four-side spacing, top offset accounts for header */}
+                    <div className="flex flex-1 min-h-0 gap-8 lg:gap-12 px-8 lg:px-14  ">
 
-                <ul className="flex h-full flex-col items-center justify-center gap-6">
-                    {NAV_LINKS.map(({ href, label, children }) => (
-                        <li key={href} className="w-full max-w-xs text-center">
-                            {children ? (
-                                <>
-                                    <button
-                                        onClick={() => toggleMobileExpanded(label)}
-                                        className={`inline-flex items-center gap-2 text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(href) ? "text-accent" : "text-white"}`}
-                                    >
-                                        {label}
-                                        <ChevronDown
-                                            size={18}
-                                            className={`transition-transform duration-200 ${mobileExpanded === label ? "rotate-180" : ""}`}
-                                        />
-                                    </button>
-
-                                    <ul
-                                        className={`overflow-hidden transition-all duration-300 ${mobileExpanded === label ? "max-h-40 mt-3" : "max-h-0"}`}
-                                    >
-                                        {children.map((child) => (
-                                            <li key={child.href} className="py-1">
-                                                <Link
-                                                    href={child.href}
-                                                    onClick={() => setMenuOpen(false)}
-                                                    className={`text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(child.href) ? "text-accent" : "text-white/70 hover:text-white"}`}
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </>
-                            ) : (
-                                <Link
-                                    href={href}
-                                    onClick={() => setMenuOpen(false)}
-                                    className={`text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(href) ? "text-accent" : "text-white"}`}
+                        {/* Left — image with text overlay (desktop only) */}
+                        <div
+                            ref={imageRef}
+                            className="hidden lg:flex flex-col w-[38%] shrink-0 relative overflow-hidden"
+                        >
+                            <Image
+                                src="/contact-us/contact.jpg"
+                                alt="The Beach Hotel"
+                                fill
+                                className="object-cover"
+                            />
+                            {/* gradient so bottom text is readable */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+                            {/* Text overlaid at bottom — same style as nav links */}
+                            <div className="relative z-10 mt-auto p-8">
+                                <p
+                                    className="text-white font-extralight leading-[1.1] tracking-[-0.02em]"
+                                    style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.8rem)" }}
                                 >
-                                    {label}
-                                </Link>
-                            )}
-                        </li>
-                    ))}
+                                    The Beach<br />Hotel
+                                </p>
+                                <p className="text-white/40 text-[11px] tracking-[0.22em] uppercase font-light mt-3">
+                                    Kanyakumari, India
+                                </p>
+                            </div>
+                        </div>
 
-                    <button className="mt-4 bg-accent px-6 py-3 font-semibold text-primary">
-                        BOOK MY STAY
-                    </button>
-                </ul>
+                        {/* Right — nav links */}
+                        <div className="flex-1 flex flex-col justify-between min-w-0">
+                            <nav className="flex-1 flex flex-col justify-center">
+                                <ul className="list-none m-0 p-0">
+                                    {NAV_LINKS.map((link, i) => (
+                                        <li key={link.label} className="border-t border-white/10 pt-3 pb-2">
+                                            {/* overflow-hidden is the reveal mask */}
+                                            <div className="overflow-hidden">
+                                                <a
+                                                    ref={(el) => { linksRef.current[i] = el; }}
+                                                    href={link.href}
+                                                    onClick={() => { setOpen(false); runClose(); }}
+                                                    className="block text-primary text-[32px] lg:text-[40px]  font-arizona-sans-regular font-extralight  transition-colors duration-300"
+                                                    style={{ transform: "translateY(110%)" }}
+                                                >
+                                                    {link.label}
+                                                </a>
+                                            </div>
+
+                                            {link.children && (
+                                                <div className="mt-2 flex gap-6 flex-wrap">
+                                                    {link.children.map((child) => (
+                                                        <a
+                                                            key={child.href}
+                                                            href={child.href}
+                                                            onClick={() => { setOpen(false); runClose(); }}
+                                                            className="text-[11px] uppercase tracking-[0.2em] text-primary/40 transition-colors duration-200 no-underline"
+                                                        >
+                                                            {child.label}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                                    <li className="border-t border-white/[0.07] h-px" />
+                                </ul>
+                            </nav>
+
+                            {/* Bottom meta */}
+                            <div
+                                ref={metaRef}
+                                className="flex items-end justify-between pt-6 shrink-0"
+                                style={{ opacity: 0, transform: "translateY(20px)" }}
+                            >
+                                <div>
+                                    <p className="text-primary text-[11px] tracking-[0.25em] uppercase mb-1 font-light">
+                                        Beach Hotel
+                                    </p>
+                                    <p className="text-primary text-[11px] tracking-[0.25em] uppercase font-light">
+                                        Kanyakumari, India
+                                    </p>
+                                </div>
+                                <a
+                                    href="/contact-us"
+                                    onClick={() => { setOpen(false); runClose(); }}
+                                    className="bg-accent px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary no-underline transition-opacity duration-200 hover:opacity-80"
+                                >
+                                    Book My Stay
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </Section>
+
             </div>
         </>
     );

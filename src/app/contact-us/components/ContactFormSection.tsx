@@ -128,6 +128,9 @@ export default function ContactFormSection() {
           onSubmit={handleSubmit}
           noValidate
           className="flex flex-col gap-6 w-full md:w-100 xl:w-120"
+          data-gramm="false"
+          data-gramm_editor="false"
+          data-enable-grammarly="false"
         >
           {/* Row 1 — First / Last name */}
           <div className="grid sm:grid-cols-2 gap-6">

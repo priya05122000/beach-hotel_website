@@ -36,10 +36,6 @@
   font-family: var(--font-dm-sans);
 } */
 
-html,
-body {
-  overflow-x: hidden;
-}
 
 body {
   background: var(--background);
@@ -47,6 +43,22 @@ body {
   /* font-family: var(--font-inter), sans-serif; */
 }
 
+html,
+body {
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+  /* Chrome, Safari, Edge */
+}
 
 h1 {
   font-family: var(--font-arizona-flare-regular);
@@ -89,7 +101,8 @@ button {
     font-size: 20px;
   }
 
-  p,input {
+  p,
+  input {
     font-size: 16px;
   }
 }
@@ -101,7 +114,8 @@ h6 {
   font-family: var(--font-arizona-sans-regular);
 }
 
-p,input {
+p,
+input {
   font-family: var(--font-arizona-flare-regular), serif;
   font-size: 15px;
   letter-spacing: 0.6px;
