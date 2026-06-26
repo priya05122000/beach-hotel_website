@@ -1,13 +1,14 @@
 import CommonBanner from '@/src/components/common/CommonBanner'
 import FacilitiesSection from './components/FacilitiesSection'
+import { getFacilitiesData } from '@/src/service/facilities'
 
-const page = () => {
+export default async function page() {
+    const { data: facilities } = await getFacilitiesData()
+
     return (
         <>
             <CommonBanner title="Facilities" />
-            <FacilitiesSection />
+            <FacilitiesSection facilities={facilities} />
         </>
     )
 }
-
-export default page
