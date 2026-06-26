@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Users,
   BedDouble,
@@ -16,8 +19,41 @@ import Section from "@/src/components/common/Section";
 import RoomSlider from "./RoomSlider";
 import Pill from "./Pill";
 
+gsap.registerPlugin(ScrollTrigger);
+
 function RoomRow({ room, index }: { room: Room; index: number }) {
   const isEven = index % 2 === 0;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+
+        gsap.fromTo(
+          card,
+          { yPercent: i === 0 ? 30 : 15 },
+          {
+            yPercent: i === 0 ? -30 : -15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+              invalidateOnRefresh: true,
+              markers: false,
+            },
+          }
+        );
+      });
+
+      ScrollTrigger.refresh();
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const amenities = [
     { icon: Wifi, label: "Free Wi-Fi", show: room.wifi },
@@ -28,9 +64,9 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
   ].filter((a) => a.show);
 
   return (
-    <div className="py-16 md:py-20">
+    <div ref={sectionRef} className="py-16 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-        <div className={`${isEven ? "lg:order-1" : "lg:order-2"}`}>
+        <div ref={(el) => { cardsRef.current[0] = el; }} className={`${isEven ? "lg:order-1" : "lg:order-2"}`}>
 
           <RoomSlider images={room.images} name={room.name} />
 
@@ -93,6 +129,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
         </div>
 
         <div
+          ref={(el) => { cardsRef.current[1] = el; }}
           className={`
           flex flex-col justify-center gap-6 p-8 lg:p-12 xl:p-16
           ${isEven ? "lg:order-2" : "lg:order-1"}
