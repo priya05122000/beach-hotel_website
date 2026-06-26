@@ -5,79 +5,74 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import CenterSection from "@/src/components/common/CenterSection";
-import type { Facility } from "@/src/types";
+import { Maximize2, Users, BedDouble, Sofa } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import type { LucideIcon } from "lucide-react";
+import CenterSection from "@/src/components/common/CenterSection";
+import type { Facility } from "@/src/types";
+import Section from "@/src/components/common/Section";
+
+interface Props {
+    facilities: Facility[];
+}
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
-function getImages(imageUrl: string | string[] | undefined): string[] {
-    if (!imageUrl) return ["/placeholder.jpg"];
-    const urls = Array.isArray(imageUrl) ? imageUrl : [imageUrl];
-    return urls.map((u) => `${API_URL}/uploads/${u}`);
-}
 
-function RoomCard({ facility }: { facility: Facility }) {
-    const [emblaRef] = useEmblaCarousel({ loop: true });
-    const images = getImages(facility.image_url);
+const getImages = (image_url?: string | string[]) => {
+    if (!image_url) return [];
 
-    return (
-        <div className="flex flex-col">
-            <div ref={emblaRef} className="relative overflow-hidden aspect-[4/3]">
-                <div className="flex h-full">
-                    {images.map((src, i) => (
-                        <div key={i} className="relative flex-[0_0_100%]">
-                            <Image
-                                src={src}
-                                alt={facility.facility_name}
-                                fill
-                                unoptimized
-                                className="object-cover"
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
+    if (Array.isArray(image_url)) {
+        return image_url.filter(Boolean);
+    }
 
-            <div className="pt-6">
-                <h3 className="font-bold uppercase mb-4">
-                    {facility.facility_name}
-                </h3>
+    try {
+        const parsed = JSON.parse(image_url);
 
-                {facility.short_description && (
-                    <p className="mb-5">{facility.short_description}</p>
-                )}
-            </div>
-        </div>
-    );
-}
+        if (Array.isArray(parsed)) {
+            return parsed.filter(Boolean);
+        }
 
-export default function FacilitiesSection({ facilities }: { facilities: Facility[] }) {
+        return [];
+    } catch {
+        return image_url ? [image_url] : [];
+    }
+};
+
+
+
+export default function FacilitiesSection({ facilities }: Props) {
+
     const sectionRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    const active = facilities
-        .filter((f) => f.is_active !== false)
-        .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
+    const colParallax = [
+        { from: 5, to: -20 },
+        { from: -15, to: 15 },
+        { from: 10, to: -30 },
+    ];
+    const mtClasses = ["", "lg:mt-60", "lg:mt-80"];
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             cardsRef.current.forEach((card, index) => {
                 if (!card) return;
 
+                const { from, to } = colParallax[index % 3];
+
                 gsap.fromTo(
                     card,
-                    { yPercent: index === 0 ? 10 : 20 },
+                    { yPercent: from },
                     {
-                        yPercent: index === 0 ? -10 : -20,
+                        yPercent: to,
                         ease: "none",
                         scrollTrigger: {
                             trigger: sectionRef.current,
                             start: "top bottom",
                             end: "bottom top",
-                            scrub: 1,
+                            scrub: 1.5,
                             invalidateOnRefresh: true,
                             markers: false,
                         },
@@ -91,26 +86,90 @@ export default function FacilitiesSection({ facilities }: { facilities: Facility
         return () => ctx.revert();
     }, []);
 
+    const gridItems = facilities.flatMap((facility) => {
+        const images = getImages(facility.image_url);
+
+        const image =
+            images.length > 0
+                ? `${API_URL}/uploads/${images[0]}`
+                : "/placeholder.jpg";
+
+        return [
+            {
+                type: "image" as const,
+                facility,
+                image,
+            },
+            {
+                type: "content" as const,
+                facility,
+            },
+        ];
+    });
+
+
+    // Split items into 3 independent columns
+    const columns = [[], [], []] as (typeof gridItems)[];
+
+    gridItems.forEach((item, index) => {
+        columns[index % 3].push(item);
+    });
+
     return (
-        <CenterSection className="py-16 lg:py-20">
-            <div className="mb-8 lg:mb-12 text-center">
-                <h2 className="mt-2 uppercase font-normal text-gray">
-                    Room Types
-                </h2>
-            </div>
-            <div ref={sectionRef} className="min-h-screen flex items-center">
-                <div className="grid lg:grid-cols-2 gap-16 w-full">
-                    {active.map((facility, index) => (
+        <Section className="py-16 lg:py-20">
+
+            <div
+                ref={sectionRef}
+                className="min-h-screen flex items-center"
+            >
+                <div className="grid lg:grid-cols-3   w-full">
+                    {gridItems.map((item, index) => (
                         <div
-                            key={facility.id}
-                            ref={(el) => { cardsRef.current[index] = el; }}
-                            className={index === 1 ? "lg:mt-24" : ""}
-                        >
-                            <RoomCard facility={facility} />
+                            key={index}
+                            ref={(el) => {
+                                cardsRef.current[index] = el;
+                            }}
+                            className={`
+        ${mtClasses[index % 3]}
+        flex
+        ${index % 3 === 0
+                                    ? "justify-start"
+                                    : index % 3 === 1
+                                        ? "justify-center"
+                                        : "justify-end"
+                                }
+    `}                     >
+                            {item.type === "image" ? (
+                                <div className="relative overflow-hidden h-90 w-2/3 flex ">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.facility.facility_name}
+                                        fill
+                                        unoptimized
+                                        className="object-cover"
+                                    />
+                                </div>
+                            ) : (
+                                <div className=" ">
+
+                                    <p className="mb-2">{String(item.facility.id).padStart(2, "0")}</p>
+
+                                    <h3 className="mb-4 font-bold uppercase border-primary/10 border-b py-2">
+                                        {item.facility.facility_name}
+                                    </h3>
+
+                                    <div
+                                        suppressHydrationWarning
+                                        dangerouslySetInnerHTML={{
+                                            __html: item.facility.description ?? "",
+                                        }}
+                                    />
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
             </div>
-        </CenterSection>
+        </Section>
     );
 }
