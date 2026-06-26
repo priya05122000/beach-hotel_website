@@ -60,7 +60,7 @@ export default async function HomePage() {
             <SignatureHeadline />
 
             <Testimonials reviews={guestReviewData.data} />
-            <FAQSection faqDatas={faqDatas.data} faqCategories={faqCategories.data} />
+            {/* <FAQSection faqDatas={faqDatas.data} faqCategories={faqCategories.data} /> */}
         </>
     );
 }

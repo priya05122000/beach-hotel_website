@@ -5,10 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 
 import Section from "../common/Section";
 import { Announcement } from "@/src/types";
-import Image from "next/image";
+
+// ─── Constants ───────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
     {
@@ -41,9 +43,13 @@ const NAV_LINKS = [
 const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
 const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+
 interface AnnouncementProps {
     announcementData: Announcement[];
 }
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Header({ announcementData }: AnnouncementProps) {
     const [open, setOpen] = useState(false);
@@ -52,11 +58,16 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
     const pathname = usePathname();
+
+    // Refs for animated elements in the overlay
     const overlayRef = useRef<HTMLDivElement>(null);
+    const imageRef = useRef<HTMLDivElement>(null);
     const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
+    const childLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
     const metaRef = useRef<HTMLDivElement>(null);
-    const imageRef = useRef<HTMLDivElement>(null); // <-- Add this
     const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    // ── Effects ──────────────────────────────────────────────────────────────
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 50);
@@ -69,7 +80,10 @@ export default function Header({ announcementData }: AnnouncementProps) {
         return () => { document.body.style.overflow = ""; };
     }, [open]);
 
-    const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    const isActive = (href: string) =>
+        pathname === href || pathname.startsWith(href + "/");
 
     const handleMouseEnter = (label: string) => {
         if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
@@ -80,104 +94,167 @@ export default function Header({ announcementData }: AnnouncementProps) {
         dropdownTimerRef.current = setTimeout(() => setActiveDropdown(null), 150);
     };
 
+    const handleLinkClick = () => {
+        setOpen(false);
+        runClose();
+    };
+
+    // Silently snap all animated elements back to their start state
+    const resetAll = () => {
+        linksRef.current.forEach((el) => {
+            if (!el) return;
+            el.style.transition = "none";
+            el.style.transform = "translateY(110%)";
+        });
+        childLinksRef.current.forEach((el) => {
+            if (!el) return;
+            el.style.transition = "none";
+            el.style.opacity = "0";
+            el.style.transform = "translateY(10px)";
+        });
+        const meta = metaRef.current;
+        if (meta) {
+            meta.style.transition = "none";
+            meta.style.opacity = "0";
+            meta.style.transform = "translateY(20px)";
+        }
+    };
+
+    // ── Animation: open ──────────────────────────────────────────────────────
+
     const runOpen = () => {
         const overlay = overlayRef.current;
-        const links = linksRef.current;
-        const meta = metaRef.current;
         const image = imageRef.current;
-
+        const meta = metaRef.current;
         if (!overlay || !meta) return;
 
         setAnimating(true);
+        resetAll();
 
+        // Overlay: start clipped at bottom, transitions off
         overlay.style.visibility = "visible";
         overlay.style.clipPath = "inset(100% 0 0 0)";
         overlay.style.transition = "none";
 
+        // Image: start clipped + scaled in
         if (image) {
             image.style.transition = "none";
             image.style.clipPath = "inset(100% 0 0 0)";
-            image.style.transform = "scale(1.1)";
+            image.style.transform = "scale(1.08)";
             image.style.opacity = "0";
         }
 
-
+        // Double rAF ensures the browser paints the reset before starting transitions
         requestAnimationFrame(() => {
-            if (!overlay) return;
-            overlay.style.transition = `clip-path 0.85s ${EASE}`;
-            overlay.style.clipPath = "inset(0% 0 0 0)";
+            requestAnimationFrame(() => {
+                overlay.style.transition = `clip-path 0.85s ${EASE}`;
+                overlay.style.clipPath = "inset(0% 0 0 0)";
+            });
         });
 
+        // Image reveal
         setTimeout(() => {
             if (!image) return;
-
-            image.style.transition =
-                `clip-path 1s ${EASE_OUT},
-         transform 1.2s ${EASE_OUT},
-         opacity .8s ease`;
-
+            image.style.transition = `clip-path 1s ${EASE_OUT}, transform 1.2s ${EASE_OUT}, opacity 0.8s ease`;
             image.style.clipPath = "inset(0% 0 0 0)";
             image.style.transform = "scale(1)";
             image.style.opacity = "1";
-        }, 250);
+        }, 200);
 
-        links.forEach((el, i) => {
+        // Parent links slide up (staggered)
+        linksRef.current.forEach((el, i) => {
             if (!el) return;
-            el.style.transition = "none";
-            el.style.transform = "translateY(110%)";
             setTimeout(() => {
                 if (!el) return;
-                el.style.transition = `transform 0.85s ${EASE_OUT}`;
+                el.style.transition = `transform 0.75s ${EASE_OUT}`;
                 el.style.transform = "translateY(0%)";
-            }, 300 + i * 80);
+            }, 280 + i * 75);
         });
 
-        meta.style.transition = "none";
-        meta.style.opacity = "0";
-        meta.style.transform = "translateY(20px)";
+        // Child links fade + slide up after their parent
+        let childIdx = 0;
+        NAV_LINKS.forEach((link, i) => {
+            if (!link.children) return;
+            const parentDelay = 280 + i * 75 + 120;
+            link.children.forEach((_, j) => {
+                const el = childLinksRef.current[childIdx++];
+                if (!el) return;
+                setTimeout(() => {
+                    if (!el) return;
+                    el.style.transition = `opacity 0.5s ease, transform 0.5s ${EASE_OUT}`;
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0)";
+                }, parentDelay + j * 50);
+            });
+        });
+
+        // Meta block fades in last
         setTimeout(() => {
             if (!meta) return;
-            meta.style.transition = `opacity 0.7s ease, transform 0.7s ${EASE_OUT}`;
+            meta.style.transition = `opacity 0.6s ease, transform 0.6s ${EASE_OUT}`;
             meta.style.opacity = "1";
             meta.style.transform = "translateY(0)";
-        }, 600);
+        }, 580);
 
         setTimeout(() => setAnimating(false), 900);
     };
 
+    // ── Animation: close ─────────────────────────────────────────────────────
+
     const runClose = () => {
         const overlay = overlayRef.current;
-        const links = linksRef.current;
-        const meta = metaRef.current;
         const image = imageRef.current;
-
+        const meta = metaRef.current;
         if (!overlay || !meta) return;
 
         setAnimating(true);
 
-        meta.style.transition = "opacity 0.2s ease";
+        // Meta out
+        meta.style.transition = "opacity 0.2s ease, transform 0.2s ease";
         meta.style.opacity = "0";
+        meta.style.transform = "translateY(10px)";
 
+        // Child links fade out (staggered)
+        childLinksRef.current.forEach((el, i) => {
+            if (!el) return;
+            setTimeout(() => {
+                if (!el) return;
+                el.style.transition = "opacity 0.2s ease";
+                el.style.opacity = "0";
+            }, i * 20);
+        });
+
+        // Parent links slide down (visible exit, staggered)
+        linksRef.current.forEach((el, i) => {
+            if (!el) return;
+            setTimeout(() => {
+                if (!el) return;
+                el.style.transition = `transform 0.55s ${EASE}`;
+                el.style.transform = "translateY(110%)";
+            }, 50 + i * 40);
+        });
+
+        // Image clips out to bottom
         if (image) {
-            image.style.transition = `opacity 0.3s ease`;
+            image.style.transition = `clip-path 0.55s ${EASE}, opacity 0.35s ease`;
+            image.style.clipPath = "inset(0% 0 100% 0)";
             image.style.opacity = "0";
         }
 
-        overlay.style.transition = `clip-path 0.75s ${EASE}`;
-        overlay.style.clipPath = "inset(0% 0 100% 0)";
+        // Overlay closes slightly after
+        setTimeout(() => {
+            overlay.style.transition = `clip-path 0.65s ${EASE}`;
+            overlay.style.clipPath = "inset(0% 0 100% 0)";
+        }, 120);
 
         setTimeout(() => {
-            if (!overlay) return;
             overlay.style.visibility = "hidden";
-            // reset links silently so they're ready for next open
-            links.forEach((el) => {
-                if (!el) return;
-                el.style.transition = "none";
-                el.style.transform = "translateY(110%)";
-            });
+            resetAll();
             setAnimating(false);
         }, 800);
     };
+
+    // ── Toggle ────────────────────────────────────────────────────────────────
 
     const toggle = () => {
         if (animating) return;
@@ -190,10 +267,16 @@ export default function Header({ announcementData }: AnnouncementProps) {
         }
     };
 
+    // ── Render ────────────────────────────────────────────────────────────────
+
+    // Counter used during render to assign consecutive child ref indices
+    let childIdx = 0;
+
     return (
         <>
             <header className="fixed inset-x-0 top-0 z-[100]">
-                {/* Announcement Bar — hides on scroll, navbar stays */}
+
+                {/* Announcement bar — collapses on scroll */}
                 <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled || open ? "h-0" : "h-10"}`}>
                     <Marquee
                         speed={40}
@@ -210,14 +293,25 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     </Marquee>
                 </div>
 
-                {/* Main nav bar — always visible */}
-                <div className="bg-transparent backdrop-blur-xl shadow-lg">
+                {/* Main nav bar */}
+                <div className="bg-transparent">
                     <Section>
-                        <div className="grid h-16 grid-cols-3 items-center">
-                            <div />
+                        {/*
+                            Logo is absolutely positioned so its left/transform can
+                            animate smoothly between centered (not scrolled) and
+                            left-aligned (scrolled) without a layout jump.
+                        */}
+                        <div className="relative h-16 flex items-center">
 
-                            {/* Center — Logo */}
-                            <div className="flex justify-center">
+                            {/* Logo — transitions between center and left on scroll */}
+                            <div
+                                style={{
+                                    position: "absolute",
+                                    left: scrolled ? 0 : "50%",
+                                    transform: scrolled ? "translateX(0)" : "translateX(-50%)",
+                                    transition: "left 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)",
+                                }}
+                            >
                                 <Link href="/" className="inline-flex items-center">
                                     <Image
                                         width={300}
@@ -229,8 +323,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 </Link>
                             </div>
 
-                            {/* Right — nav links (desktop, not scrolled) OR hamburger (desktop scrolled + mobile) */}
-                            <div className="flex items-center justify-end">
+                            {/* Right — desktop nav links + hamburger */}
+                            <div className="ml-auto flex items-center">
+
                                 {/* Desktop nav links: visible when not scrolled and overlay closed */}
                                 <ul className={`hidden lg:flex items-center gap-8 transition-opacity duration-300 ${scrolled || open ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
                                     {NAV_LINKS.map(({ href, label, children }) => (
@@ -273,21 +368,50 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                     ))}
                                 </ul>
 
-                                {/* Hamburger — mobile always, desktop when scrolled or overlay open */}
+                                {/*
+                                    Hamburger / Close button.
+                                    Both states live in the DOM stacked vertically;
+                                    overflow-hidden clips whichever is off-screen.
+                                    On toggle they slide past each other (slot-machine).
+                                    Icon rotates 90° on hover.
+                                */}
                                 <button
                                     onClick={toggle}
                                     aria-label={open ? "Close menu" : "Open menu"}
                                     aria-expanded={open}
-                                    className={`relative z-[110] cursor-pointer p-2 w-10 h-10 bg-transparent border-0
-                                        flex ${scrolled || open ? "lg:flex" : "lg:hidden"}
-                                    `}
+                                    className={`group relative z-[110] cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-center ${scrolled || open ? "lg:flex" : "lg:hidden"}`}
                                 >
-                                    {open ? (
+                                    {/* Menu label — slides up out of view when opening */}
+                                    <span
+                                        className="flex items-center gap-2"
+                                        style={{
+                                            transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
+                                            transform: open ? "translateY(-100%)" : "translateY(0)",
+                                        }}
+                                    >
+                                        <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
+                                            <Menu size={16} className="text-primary" />
+                                        </span>
+                                        <span className="text-[10px] tracking-[0.15em] uppercase font-semibold text-primary">
+                                            Menu
+                                        </span>
+                                    </span>
 
-                                        <X size={20} className="text-primary" />
-                                    ) : (
-                                        <Menu size={22} className="text-primary" />
-                                    )}
+                                    {/* Close label — slides up into view when opening */}
+                                    <span
+                                        className="absolute inset-0 flex items-center gap-2"
+                                        style={{
+                                            transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
+                                            transform: open ? "translateY(0)" : "translateY(100%)",
+                                        }}
+                                    >
+                                        <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
+                                            <X size={16} className="text-primary" />
+                                        </span>
+                                        <span className="text-[10px] tracking-[0.15em] uppercase font-semibold text-primary">
+                                            Close
+                                        </span>
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -295,20 +419,20 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </div>
             </header>
 
-            {/* Fullscreen overlay */}
+            {/* ── Fullscreen overlay ─────────────────────────────────────────── */}
             <div
                 ref={overlayRef}
                 className="fixed inset-0 z-[90] bg-white overflow-hidden flex flex-col justify-center"
                 style={{ visibility: "hidden", clipPath: "inset(100% 0 0 0)" }}
             >
                 <Section>
-                    {/* Content area — equal four-side spacing, top offset accounts for header */}
-                    <div className="flex flex-1 min-h-0 gap-8 lg:gap-12 px-8 lg:px-14  ">
+                    <div className="flex flex-1 min-h-0 gap-8 lg:gap-12 ">
 
-                        {/* Left — image with text overlay (desktop only) */}
+                        {/* Left — image panel (desktop only) */}
                         <div
                             ref={imageRef}
                             className="hidden lg:flex flex-col w-[38%] shrink-0 relative overflow-hidden"
+                            style={{ clipPath: "inset(100% 0 0 0)", transform: "scale(1.08)", opacity: 0 }}
                         >
                             <Image
                                 src="/contact-us/contact.jpg"
@@ -316,9 +440,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 fill
                                 className="object-cover"
                             />
-                            {/* gradient so bottom text is readable */}
                             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
-                            {/* Text overlaid at bottom — same style as nav links */}
                             <div className="relative z-10 mt-auto p-8">
                                 <p
                                     className="text-white font-extralight leading-[1.1] tracking-[-0.02em]"
@@ -332,42 +454,52 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             </div>
                         </div>
 
-                        {/* Right — nav links */}
+                        {/* Right — nav links + meta */}
                         <div className="flex-1 flex flex-col justify-between min-w-0">
                             <nav className="flex-1 flex flex-col justify-center">
                                 <ul className="list-none m-0 p-0">
                                     {NAV_LINKS.map((link, i) => (
-                                        <li key={link.label} className="border-t border-white/10 pt-3 pb-2">
-                                            {/* overflow-hidden is the reveal mask */}
+                                        <li key={link.label} className="border-t border-primary/10 pt-3 pb-2">
+
+                                            {/* Parent link — overflow-hidden acts as the reveal mask */}
                                             <div className="overflow-hidden">
                                                 <a
                                                     ref={(el) => { linksRef.current[i] = el; }}
                                                     href={link.href}
-                                                    onClick={() => { setOpen(false); runClose(); }}
-                                                    className="block text-primary text-[32px] lg:text-[40px]  font-arizona-sans-regular font-extralight  transition-colors duration-300"
+                                                    onClick={handleLinkClick}
+                                                    className="block text-primary text-[32px] lg:text-[40px] font-arizona-sans-regular font-extralight transition-colors duration-300"
                                                     style={{ transform: "translateY(110%)" }}
                                                 >
                                                     {link.label}
                                                 </a>
                                             </div>
 
+                                            {/* Child links — each wrapped in an animated span */}
                                             {link.children && (
                                                 <div className="mt-2 flex gap-6 flex-wrap">
-                                                    {link.children.map((child) => (
-                                                        <a
-                                                            key={child.href}
-                                                            href={child.href}
-                                                            onClick={() => { setOpen(false); runClose(); }}
-                                                            className="text-[11px] uppercase tracking-[0.2em] text-primary/40 transition-colors duration-200 no-underline"
-                                                        >
-                                                            {child.label}
-                                                        </a>
-                                                    ))}
+                                                    {link.children.map((child) => {
+                                                        const refIdx = childIdx++;
+                                                        return (
+                                                            <span
+                                                                key={child.href}
+                                                                ref={(el) => { childLinksRef.current[refIdx] = el; }}
+                                                                style={{ opacity: 0, transform: "translateY(10px)", display: "inline-block" }}
+                                                            >
+                                                                <a
+                                                                    href={child.href}
+                                                                    onClick={handleLinkClick}
+                                                                    className="text-[11px] uppercase tracking-[0.2em] text-primary/40 transition-colors duration-200 no-underline hover:text-primary/70"
+                                                                >
+                                                                    {child.label}
+                                                                </a>
+                                                            </span>
+                                                        );
+                                                    })}
                                                 </div>
                                             )}
                                         </li>
                                     ))}
-                                    <li className="border-t border-white/[0.07] h-px" />
+                                    <li className="border-t border-primary/10 h-px" />
                                 </ul>
                             </nav>
 
@@ -387,16 +519,16 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 </div>
                                 <a
                                     href="/contact-us"
-                                    onClick={() => { setOpen(false); runClose(); }}
+                                    onClick={handleLinkClick}
                                     className="bg-accent px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary no-underline transition-opacity duration-200 hover:opacity-80"
                                 >
                                     Book My Stay
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </Section>
-
             </div>
         </>
     );
