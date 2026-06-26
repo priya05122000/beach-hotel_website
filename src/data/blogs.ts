@@ -6,11 +6,15 @@ export const BLOG_DATA: Blog[] = [
     title: "A Morning Walk Along the Shore",
     slug: "morning-walk-along-the-shore",
     image_url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-    sub_title: "The beach at sunrise is a different world entirely",
-    description:
-      "There is something deeply restorative about walking barefoot on the sand while the world is still quiet. The tide draws in and out with a rhythm older than memory, and for a few minutes everything else falls away.",
-    second_description:
-      "Guests at our beachfront property often tell us these early walks become the highlight of their stay — a ritual they carry home long after checkout.",
+    sub_title: "The beach at sunrise is a different world entirely — one where the tide moves in quiet rhythm, the horizon glows with the first warmth of day, and the only sound that matters is the steady, unhurried breath of the sea pulling you gently back to yourself.",
+    tag_1: "Nature",
+    tag_2: "Wellness",
+    description_1:
+      "There is something deeply restorative about walking barefoot on the sand while the world is still quiet. The tide draws in and out with a rhythm older than memory, and for a few minutes everything else falls away. The cool water brushes against your feet, the horizon glows gold, and the only sound is the steady breath of the sea. It is one of those rare moments where the body and mind finally agree to slow down and simply exist in the present.",
+    description_2:
+      "Guests at our beachfront property often tell us these early walks become the highlight of their stay — a ritual they carry home long after checkout. Many return year after year not for the amenities or the cuisine, but for this singular hour before breakfast. The shoreline looks different each morning: some days glassy calm, others restless and wild. That unpredictability is precisely the point. Nature never repeats itself, and neither does the walk that follows its edge at dawn.",
+    description_3:
+      "We recommend starting before six, when the fishing boats are still returning and the beach belongs almost entirely to you. Bring nothing except perhaps a light shawl. Leave the phone behind if you can manage it. The shore does not ask anything of you except your attention, and in return it offers a kind of clarity that no spa treatment or meditation app has ever quite replicated. Begin your morning here, and the rest of the day arranges itself with surprising ease.",
     category_id: "nature",
     is_published: true,
     active: true,
@@ -26,12 +30,16 @@ export const BLOG_DATA: Blog[] = [
     id: "2",
     title: "The Art of Doing Nothing Well",
     slug: "art-of-doing-nothing-well",
-    image_url: "https://images.unsplash.com/photo-1540541338537-1220059a7075?w=800&q=80",
-    sub_title: "Why the best luxury is simply time",
-    description:
-      "Modern travel often packs every hour. We believe the most indulgent thing a hotel can offer is permission to slow down — a hammock, a view, and absolutely nowhere to be.",
-    second_description:
-      "Our philosophy has always been that a great stay leaves you feeling less busy, not more cultured. Rest is the amenity we protect most carefully.",
+    image_url: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80",
+    sub_title: "In a world that rewards busyness above all else, the most radical and restorative thing a hotel can offer is unhurried time — no agenda, no programme, no pressure to be anywhere except exactly where you already are, watching the light move slowly across the water.",
+    tag_1: "Wellness",
+    tag_2: "Experience",
+    description_1:
+      "Modern travel often packs every hour with activities, itineraries, and curated experiences until the holiday itself becomes another form of exhaustion. We believe the most indulgent thing a hotel can offer is permission to slow down — a hammock, a view, and absolutely nowhere to be. There is a skill to true rest that most of us have quietly forgotten. It requires practice, a willingness to feel slightly bored at first, and then the gradual recognition that boredom is actually the gateway to something much more valuable.",
+    description_2:
+      "Our philosophy has always been that a great stay leaves you feeling less busy, not more cultured. Rest is the amenity we protect most carefully. We do not fill your mornings with wellness programmes or your evenings with compulsory entertainment. The pool is there when you want it. The terrace is always open. The kitchen will feed you whenever hunger arrives. Beyond that, the schedule is entirely yours to ignore. Guests who surrender to this rhythm within the first day or two almost always say the same thing: they had forgotten what it felt like.",
+    description_3:
+      "The research on rest is unambiguous. Sleep improves cognition, unstructured time accelerates creativity, and genuine idleness reduces cortisol in ways that a gym session simply cannot match. We are not suggesting you do nothing for the entire week — though if you do, we will not judge you. We are suggesting you build at least one afternoon into your stay that has no agenda whatsoever. Sit by the water. Watch the light change. Let the sea do the thinking for a while. You may be surprised what surfaces when you stop trying.",
     category_id: "wellness",
     is_published: true,
     active: true,
@@ -48,11 +56,15 @@ export const BLOG_DATA: Blog[] = [
     title: "Where Three Oceans Meet",
     slug: "where-three-oceans-meet",
     image_url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-    sub_title: "Kanniyakumari's singular geography explained",
-    description:
-      "At the southernmost tip of India, the Bay of Bengal, the Arabian Sea, and the Indian Ocean converge. Standing at that point, you can watch three distinct water colours blending at the horizon.",
-    second_description:
-      "For centuries sailors used this confluence as a landmark. Today it draws travellers who want to stand at the edge of the subcontinent and feel, for a moment, the full scale of the ocean.",
+    sub_title: "At the very tip of the Indian subcontinent, three great bodies of water — the Bay of Bengal, the Arabian Sea, and the Indian Ocean — converge in a confluence that has drawn pilgrims, sailors, and curious travelers for centuries, each leaving changed by what they witnessed.",
+    tag_1: "Destination",
+    tag_2: "Culture",
+    description_1:
+      "At the southernmost tip of India, the Bay of Bengal, the Arabian Sea, and the Indian Ocean converge in a confluence that has drawn pilgrims, sailors, and travellers for centuries. Standing at that point, you can watch three distinct water colours blending at the horizon — deep blue, green-grey, and a warmer turquoise that shifts with the light and the season. The geology here is ancient and humbling, and the sensation of standing at the very edge of the subcontinent is unlike anything else on the Indian coastline.",
+    description_2:
+      "For centuries sailors used this confluence as a landmark, navigating by the unusual currents and the distinctive colour gradients visible even from a distance at sea. Today it draws travellers who want to stand at the edge of the subcontinent and feel, for a moment, the full scale of the ocean. The Vivekananda Rock Memorial sits offshore, reachable by ferry, and on clear days you can see the Thiruvalluvar Statue rising from the water with extraordinary dignity. The town that has grown around this geography carries its sacred weight gently and well.",
+    description_3:
+      "The best time to appreciate the confluence is at dawn, when both the sunrise over the bay and the last stars over the Arabian Sea are visible simultaneously — a phenomenon unique to this latitude. Fishermen who have worked these waters for generations will tell you the currents here behave differently from anywhere else they have sailed, unpredictable and strangely alive. We are fortunate to be positioned within walking distance of the point, and we encourage every guest to make the short walk at least once during their stay. It is the kind of view that resets your sense of scale.",
     category_id: "destination",
     is_published: true,
     active: true,
@@ -69,11 +81,15 @@ export const BLOG_DATA: Blog[] = [
     title: "Seafood Worth Travelling For",
     slug: "seafood-worth-travelling-for",
     image_url: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80",
-    sub_title: "Coastal cooking at its most honest",
-    description:
-      "The fishing boats return before dawn. By breakfast the catch is already in the kitchen — tuna, mackerel, prawns so fresh they barely need seasoning. Coastal Tamil Nadu has a culinary tradition that deserves far more attention.",
-    second_description:
-      "Our kitchen works directly with local fishermen, meaning the menu changes with the sea. What arrived this morning determines what is on your plate this evening.",
+    sub_title: "Along this coastline, the fishing boats return before dawn and the kitchen fires follow shortly after — a daily rhythm that produces food of extraordinary freshness, guided by what the sea offered that morning rather than what a fixed menu decided weeks in advance.",
+    tag_1: "Food",
+    tag_2: "Culture",
+    description_1:
+      "The fishing boats return before dawn. By the time the kitchen fires are lit, the catch is already on the counter — tuna, mackerel, kingfish, and prawns so fresh they barely need seasoning. Coastal Tamil Nadu has a culinary tradition built entirely around this proximity to the sea, and it deserves far more attention than it receives from the wider food world. The techniques are ancient, the spice combinations are precise, and the flavour of fish cooked within hours of leaving the water is something that no amount of refrigeration can replicate elsewhere.",
+    description_2:
+      "Our kitchen works directly with the local fishing community, meaning the menu changes not by season but by morning. What arrived today determines what is on your plate this evening. There is no fixed seafood menu in the way that inland restaurants understand the term. Instead there is a daily conversation between the catch and the cook, shaped by what was abundant, what was unexpected, and what the chef believes deserves to be showcased. Guests who trust this process are rarely disappointed. Those who ask for something specific are gently redirected toward something better.",
+    description_3:
+      "The preparation philosophy here is restraint first. A well-handled piece of fish needs little intervention — perhaps coconut, curry leaf, mustard seed, and the heat of a cast iron pan. The complexity comes from the quality of the ingredient, not from technique applied on top of it. We offer a tasting format for dinner that allows the kitchen to guide you through six to eight small dishes representing the best of what arrived that morning. It is the most honest meal we know how to serve, and for many guests it becomes the meal they describe first when someone asks about their trip.",
     category_id: "food",
     is_published: true,
     active: true,
@@ -90,11 +106,15 @@ export const BLOG_DATA: Blog[] = [
     title: "Sunset Ritual at the Cape",
     slug: "sunset-ritual-at-the-cape",
     image_url: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
-    sub_title: "Why every evening here feels like a ceremony",
-    description:
-      "At Kanniyakumari, the sun sets into the sea on one side and, on full-moon nights, the moon rises from the same water on the other. This dual spectacle draws quiet crowds every evening to the shoreline.",
-    second_description:
-      "We keep our terrace open late on these evenings. A drink, a chair, and the sky doing the rest — no programme required.",
+    sub_title: "At Kanniyakumari, the sun descends into the sea each evening with a quiet drama that draws strangers to the shoreline without any announcement — a shared, wordless ritual where the sky performs and everyone watching seems to understand instinctively that some moments simply ask for silence.",
+    tag_1: "Experience",
+    tag_2: "Nature",
+    description_1:
+      "At Kanniyakumari, the sun sets into the sea on the western horizon while, on full-moon nights, the moon rises from the same water on the east. This dual spectacle — unique on the Indian subcontinent — draws quiet crowds to the shoreline every evening without advertisement or announcement. People arrive instinctively, find a piece of rock or sand, and stand in collective silence as the sky performs. There is no commentary needed. The light changes so quickly and so dramatically that conversation feels like an interruption of something that deserves full attention.",
+    description_2:
+      "We keep our terrace open late on these evenings. A drink, a chair facing west, and the sky doing the rest — no programme required. Some guests bring a book and never open it. Others arrive planning to stay for fifteen minutes and are still there an hour later, reluctant to leave before the last colour has faded. The quality of light here in the final thirty minutes before sunset is extraordinary — warm, horizontal, and somehow both soft and intensely vivid at the same time. Photographers who visit once almost always return with better equipment.",
+    description_3:
+      "The ritual quality of the Kanniyakumari sunset is not accidental. This is a place that has been considered sacred for a very long time, and the evening gathering at the water carries something of that weight even for visitors with no particular spiritual orientation. There is a communal quality to watching the sun disappear that transcends language and background. Strangers stand side by side in comfortable silence. Children go quiet. The sea, which has been active and vocal all day, seems to settle as the light fades. We think of this hour as the hotel's best amenity, and it costs nothing at all.",
     category_id: "experience",
     is_published: true,
     active: true,
@@ -111,11 +131,15 @@ export const BLOG_DATA: Blog[] = [
     title: "Packing Light for a Beach Stay",
     slug: "packing-light-for-a-beach-stay",
     image_url: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80",
-    sub_title: "A practical guide to leaving the unnecessary behind",
-    description:
-      "Sand gets into everything. The salt air is relentless. And you will almost certainly spend more time in a swimsuit than in anything else you brought. A coastal stay rewards the traveller who packs with restraint.",
-    second_description:
-      "We have compiled the essentials our guests actually use versus the suitcase full of outfits that never leaves the wardrobe — a checklist worth reading before you zip up.",
+    sub_title: "The coast has a way of exposing everything you packed but never needed — a liberating lesson that the best beach stays are built not on preparation for every scenario, but on the willingness to arrive light, let go of options, and trust the simplicity of the shore.",
+    tag_1: "Travel",
+    tag_2: "Tips",
+    description_1:
+      "Sand gets into everything. The salt air is relentless. And you will almost certainly spend more time in a swimsuit than in anything else you brought. A coastal stay rewards the traveller who packs with genuine restraint. The impulse to prepare for every scenario — the formal dinner, the unexpected cold evening, the day trip that requires different shoes — tends to produce a suitcase full of items that never leave the wardrobe. We have watched thousands of guests arrive and depart, and the ones who pack least always seem to move through their stay with the most ease.",
+    description_2:
+      "We have compiled the essentials our guests actually use versus the suitcase full of outfits that never see daylight. The short list: two or three swimsuits, one light layer for evenings, comfortable walking sandals, a wide-brimmed hat, high-SPF sunscreen, and a small bag for day trips. Beyond that, most things can be borrowed, bought locally, or simply done without. The beach does not require a wardrobe. It requires willingness. Guests who travel light report something that sounds almost philosophical: that having fewer choices each morning actually produces a greater sense of freedom rather than limitation.",
+    description_3:
+      "The practical advice we give most often is about what not to bring. Leave the formal wear unless you have a specific occasion planned. Leave the multiple pairs of shoes — two at most, and one of them should be something you do not mind getting wet. Leave the hairdryer if your hair will tolerate the sea air, which, once you accept its ambitions, produces a result that takes forty minutes of effort to replicate at home. Bring a good book, a reusable water bottle, and enough sunscreen to last the full stay. The rest, genuinely, takes care of itself.",
     category_id: "travel",
     is_published: true,
     active: true,

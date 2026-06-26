@@ -18,9 +18,8 @@ export default function BlogCard({ blog }: Props) {
 
   return (
     <article className="group flex flex-col">
-      {/* Image */}
       <Link href={`/blog/${blog.slug}`} className="block overflow-hidden">
-        <div className="relative w-full aspect-[4/3] overflow-hidden">
+        <div className="relative w-full h-90 xl:h-100 overflow-hidden">
           <Image
             src={blog.image_url}
             alt={blog.title}
@@ -32,22 +31,21 @@ export default function BlogCard({ blog }: Props) {
         </div>
       </Link>
 
-      {/* Content */}
       <div className="pt-5 flex flex-col flex-1">
         {date && (
-          <p className="text-gray text-xs font-arizona-sans-regular tracking-widest uppercase mb-2">
+          <div className="text-gray text-xs font-arizona-sans-regular tracking-widest uppercase mb-2">
             {date}
-          </p>
+          </div>
         )}
 
         <Link href={`/blog/${blog.slug}`}>
-          <h3 className="font-arizona-flare-regular font-normal text-foreground leading-snug mb-2 hover:text-primary transition-colors">
+          <h3 className="font-arizona-flare-regular text-foreground leading-snug mb-2 hover:text-primary transition-colors">
             {blog.title}
           </h3>
         </Link>
 
         <p className="text-gray text-sm leading-relaxed mb-5 line-clamp-3">
-          {blog.description}
+          {blog.description_1}
         </p>
 
         {/* CTA */}
