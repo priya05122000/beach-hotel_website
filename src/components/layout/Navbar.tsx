@@ -17,7 +17,7 @@ const NAV_LINKS = [
         href: "/stay",
         label: "Stay",
         children: [
-            { href: "/stay/room", label: "Room" },
+            { href: "/rooms", label: "Room" },
             { href: "/stay/facility", label: "Facility" },
         ],
     },
@@ -26,7 +26,7 @@ const NAV_LINKS = [
         label: "Explore",
         children: [
             { href: "/explore/gallery", label: "Gallery" },
-            { href: "/explore/destination", label: "Destination" },
+            { href: "/destinations", label: "Destination" },
         ],
     },
     {
@@ -34,7 +34,7 @@ const NAV_LINKS = [
         label: "Company",
         children: [
             { href: "/company/about-us", label: "About Us" },
-            { href: "/company/blog", label: "Blog" },
+            { href: "/blog", label: "Blog" },
         ],
     },
     { href: "/contact-us", label: "Contact Us" },
@@ -530,7 +530,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 <a
                                     href="/contact-us"
                                     onClick={handleLinkClick}
-                                    className="bg-accent px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary no-underline transition-opacity duration-200 hover:opacity-80"
+                                    className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary hover:underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
                                 >
                                     Book My Stay
                                 </a>
