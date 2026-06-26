@@ -45,7 +45,7 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     const desktopCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    const mtClasses = ["", "lg:mt-10", "lg:mt-20", "lg:mt-30"];
+    const mtClasses = ["", "lg:mt-20", "lg:mt-20", "lg:mt-40"];
     const alignClasses = ["justify-start", "justify-center", "justify-center", "justify-end"];
 
     useEffect(() => {
@@ -162,7 +162,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                 </div>
 
                 {/* ── Desktop (1024px+): 4-col with stagger offsets and parallax ── */}
-                <div className="hidden lg:grid grid-cols-4 gap-10 w-full">
+                <div className="hidden lg:grid grid-cols-4 gap-16 w-full">
                     {gridItems.map((item, index) => (
                         <div
                             key={index}
@@ -170,7 +170,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                             className={`${mtClasses[index % 4]} ${alignClasses[index % 4]} flex`}
                         >
                             {item.type === "image" ? (
-                                <div className="relative overflow-hidden h-90 w-full">
+                                <div className="relative overflow-hidden h-80 w-full">
                                     <Image
                                         src={item.image}
                                         alt={item.facility.facility_name}
@@ -180,7 +180,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                     />
                                 </div>
                             ) : (
-                                <div className="h-90">
+                                <div className="h-80">
                                     <p className="mb-2">{String(item.facility.id).padStart(2, "0")}</p>
                                     <h3 className="mb-4 font-bold uppercase border-primary/10 border-b py-2">
                                         {item.facility.facility_name}
