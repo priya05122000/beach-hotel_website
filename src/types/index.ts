@@ -529,8 +529,11 @@ export interface Blog {
   slug: string;
   image_url: string;
   sub_title: string;
-  description: string;
-  second_description: string;
+  tag_1: string;
+  tag_2: string;
+  description_1: string;
+  description_2: string;
+  description_3: string;
   category_id: string;
   is_published: boolean;
   active: boolean;
