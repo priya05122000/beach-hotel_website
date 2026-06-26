@@ -13,6 +13,7 @@ import {
     ShieldCheck,
     type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 const amenities = [
     { title: "Rooms & Suites", icon: BedDouble },
@@ -108,9 +109,9 @@ export default function AmenitiesSection() {
                                 <IconCard key={item.title} icon={item.icon} title={item.title} />
                             ))}
                         </div>
-                        <p className="hidden lg:block  text-gray text-end  uppercase font-normal">
-                            A M E N I T I E S
-                        </p>
+                        <Link href="/facilities" className="hidden lg:block  text-gray text-end underline underline-offset-4   uppercase font-normal">
+                            View All
+                        </Link>
                     </div>
                 </div>
             </section>
