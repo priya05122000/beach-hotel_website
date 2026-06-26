@@ -523,6 +523,26 @@ export interface NearbyDestination {
   deleted_at?: string | null;
 }
 
+export interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  image_url: string;
+  sub_title: string;
+  description: string;
+  second_description: string;
+  category_id: string;
+  is_published: boolean;
+  active: boolean;
+  created_by: string | null;
+  updated_by: string | null;
+  deleted_by: string | null;
+  published_at: string | null;
+  created_at: string | null;
+  updated_at: string | null;
+  deleted_at: string | null;
+}
+
 export interface ActivityLog {
   id: number;
 

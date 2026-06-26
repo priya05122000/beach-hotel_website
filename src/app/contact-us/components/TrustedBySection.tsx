@@ -44,6 +44,7 @@ export default function TrustedBySection() {
                   src={partner.logo}
                   alt={partner.name}
                   fill
+                  sizes="(max-width: 1024px) 64px, 144px"
                   className="object-contain"
                 />
               </div>
