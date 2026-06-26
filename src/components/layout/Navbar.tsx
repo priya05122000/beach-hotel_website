@@ -131,12 +131,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
         setAnimating(true);
         resetAll();
 
-        // Overlay: start clipped at bottom, transitions off
+        // Overlay clips in immediately
         overlay.style.visibility = "visible";
         overlay.style.clipPath = "inset(100% 0 0 0)";
         overlay.style.transition = "none";
 
-        // Image: start clipped + scaled in
         if (image) {
             image.style.transition = "none";
             image.style.clipPath = "inset(100% 0 0 0)";
@@ -144,7 +143,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
             image.style.opacity = "0";
         }
 
-        // Double rAF ensures the browser paints the reset before starting transitions
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 overlay.style.transition = `clip-path 0.85s ${EASE}`;
@@ -152,30 +150,32 @@ export default function Header({ announcementData }: AnnouncementProps) {
             });
         });
 
-        // Image reveal
+        // ── Everything below shifted by +600ms ──────────────────────
+
+        // Image reveal — was 200ms, now 800ms
         setTimeout(() => {
             if (!image) return;
             image.style.transition = `clip-path 1s ${EASE_OUT}, transform 1.2s ${EASE_OUT}, opacity 0.8s ease`;
             image.style.clipPath = "inset(0% 0 0 0)";
             image.style.transform = "scale(1)";
             image.style.opacity = "1";
-        }, 200);
+        }, 800);
 
-        // Parent links slide up (staggered)
+        // Parent links — was 280 + i*75, now 880 + i*75
         linksRef.current.forEach((el, i) => {
             if (!el) return;
             setTimeout(() => {
                 if (!el) return;
                 el.style.transition = `transform 0.75s ${EASE_OUT}`;
                 el.style.transform = "translateY(0%)";
-            }, 280 + i * 75);
+            }, 880 + i * 75);
         });
 
-        // Child links fade + slide up after their parent
+        // Child links — was 280 + i*75 + 120, now 880 + i*75 + 120
         let childIdx = 0;
         NAV_LINKS.forEach((link, i) => {
             if (!link.children) return;
-            const parentDelay = 280 + i * 75 + 120;
+            const parentDelay = 880 + i * 75 + 120;
             link.children.forEach((_, j) => {
                 const el = childLinksRef.current[childIdx++];
                 if (!el) return;
@@ -188,15 +188,15 @@ export default function Header({ announcementData }: AnnouncementProps) {
             });
         });
 
-        // Meta block fades in last
+        // Meta — was 580ms, now 1180ms
         setTimeout(() => {
             if (!meta) return;
             meta.style.transition = `opacity 0.6s ease, transform 0.6s ${EASE_OUT}`;
             meta.style.opacity = "1";
             meta.style.transform = "translateY(0)";
-        }, 580);
+        }, 1180);
 
-        setTimeout(() => setAnimating(false), 900);
+        setTimeout(() => setAnimating(false), 1500);
     };
 
     // ── Animation: close ─────────────────────────────────────────────────────
@@ -294,13 +294,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </div>
 
                 {/* Main nav bar */}
-                <div className="bg-transparent">
+                <div className={`transition-colors duration-500 bg-transparent"}`}>
                     <Section>
-                        {/*
-                            Logo is absolutely positioned so its left/transform can
-                            animate smoothly between centered (not scrolled) and
-                            left-aligned (scrolled) without a layout jump.
-                        */}
+
                         <div className="relative h-16 flex items-center">
 
                             {/* Logo — transitions between center and left on scroll */}
@@ -327,7 +323,8 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             <div className="ml-auto flex items-center">
 
                                 {/* Desktop nav links: visible when not scrolled and overlay closed */}
-                                <ul className={`hidden lg:flex items-center gap-8 transition-opacity duration-300 ${scrolled || open ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
+                                <ul className={`hidden lg:flex items-center gap-8 transition-opacity duration-200 ${scrolled || open ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
+                                    }`}>
                                     {NAV_LINKS.map(({ href, label, children }) => (
                                         <li
                                             key={href}
@@ -375,15 +372,23 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                     On toggle they slide past each other (slot-machine).
                                     Icon rotates 90° on hover.
                                 */}
+                                {/* Button — ensure overflow-hidden works with explicit height */}
                                 <button
                                     onClick={toggle}
                                     aria-label={open ? "Close menu" : "Open menu"}
                                     aria-expanded={open}
-                                    className={`group relative z-[110] cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-center ${scrolled || open ? "lg:flex" : "lg:hidden"}`}
+                                    className={`group relative z-[110] cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-center transition-all duration-200 ${scrolled || open
+                                        ? "w-20 pointer-events-auto"
+                                        : "w-0 pointer-events-none"
+                                        }`}
+                                    style={{
+                                        opacity: open ? 1 : scrolled ? 1 : 0,
+                                        transitionDelay: open ? "900ms" : scrolled ? "150ms" : "0ms",
+                                    }}
                                 >
-                                    {/* Menu label — slides up out of view when opening */}
+                                    {/* Menu span */}
                                     <span
-                                        className="flex items-center gap-2"
+                                        className="absolute inset-0 flex items-center gap-2"
                                         style={{
                                             transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                                             transform: open ? "translateY(-100%)" : "translateY(0)",
@@ -397,7 +402,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         </span>
                                     </span>
 
-                                    {/* Close label — slides up into view when opening */}
+                                    {/* Close span */}
                                     <span
                                         className="absolute inset-0 flex items-center gap-2"
                                         style={{
@@ -509,12 +514,21 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 className="flex items-end justify-between pt-6 shrink-0"
                                 style={{ opacity: 0, transform: "translateY(20px)" }}
                             >
-                                <div>
-                                    <p className="text-primary text-[11px] tracking-[0.25em] uppercase mb-1 font-light">
-                                        Beach Hotel
-                                    </p>
-                                    <p className="text-primary text-[11px] tracking-[0.25em] uppercase font-light">
-                                        Kanyakumari, India
+                                <div className="flex flex-col gap-1">
+
+                                    <a href="tel:+915467898765"
+                                        className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light no-underline hover:text-primary transition-colors duration-200"
+                                    >
+                                        +91 54678 98765
+                                    </a>
+                                    <a
+                                        href="mailto:support@thebeachhotel.in"
+                                        className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light no-underline hover:text-primary transition-colors duration-200"
+                                    >
+                                        support@thebeachhotel.in
+                                    </a>
+                                    <p className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light">
+                                        Beach Rd, Kanniyakumari, TN 629702
                                     </p>
                                 </div>
                                 <a
@@ -527,9 +541,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             </div>
                         </div>
 
-                    </div>
-                </Section>
-            </div>
+                    </div >
+                </Section >
+            </div >
         </>
     );
 }
+
+
