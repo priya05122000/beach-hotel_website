@@ -70,9 +70,38 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
     // ── Effects ──────────────────────────────────────────────────────────────
 
+    // useEffect(() => {
+    //     const onScroll = () => setScrolled(window.scrollY > 50);
+    //     window.addEventListener("scroll", onScroll, { passive: true });
+    //     return () => window.removeEventListener("scroll", onScroll);
+    // }, []);
+
+    const [hideNav, setHideNav] = useState(false);
+
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 50);
+        const onScroll = () => {
+            setScrolled(window.scrollY > 50);
+
+            const footer = document.getElementById("footer");
+            const header = document.querySelector("header");
+
+            if (!footer || !header) return;
+
+            const headerHeight = header.getBoundingClientRect().height;
+
+            // Footer absolute position
+            const footerTop = footer.offsetTop;
+
+            // Navbar bottom absolute position
+            const navBottom = window.scrollY + headerHeight;
+
+            // Hide only 10px before footer
+            setHideNav(navBottom >= footerTop - 50);
+        };
+
         window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
@@ -289,8 +318,14 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
     return (
         <>
-            <header className="fixed inset-x-0 top-0 z-[100]">
+            {/* <header className="fixed inset-x-0 top-0 z-[100]"> */}
 
+            <header
+                className="fixed inset-x-0 top-0 z-[100] transition-transform duration-500"
+                style={{
+                    transform: hideNav ? "translateY(-100%)" : "translateY(0)",
+                }}
+            >
                 {/* Announcement bar — collapses on scroll */}
                 <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled || open ? "h-0" : "h-10"}`}>
                     <Marquee

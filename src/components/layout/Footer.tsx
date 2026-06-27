@@ -46,7 +46,7 @@ const socialIcons: { href: string; label: string; path: string }[] = [
 
 export default function Footer() {
   return (
-    <footer>
+    <footer id="footer">
       <Section className="bg-primary w-full relative text-white overflow-hidden z-10 pt-10 lg:pt-20 px-6 sm:px-0">
         <div className="h-full flex flex-col justify-between font-arizona-light space-y-10">
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-6">
@@ -148,7 +148,7 @@ export default function Footer() {
                     href="mailto:support@thebeachhotel.in"
                     className="flex items-center gap-2 hover:text-accent transition-colors"
                   >
-                    <Mail  size={15}/>
+                    <Mail size={15} />
                     support@thebeachhotel.in
                   </a>
 
