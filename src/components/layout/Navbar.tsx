@@ -436,12 +436,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                                             {children && (
                                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${activeDropdown === label ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"}`}>
-                                                    <ul className="bg-white shadow-lg min-w-35 py-2">
+                                                    <ul className="bg-primary/40 backdrop-blur-md shadow-lg min-w-30 py-2">
                                                         {children.map((child) => (
                                                             <li key={child.href}>
                                                                 <Link
                                                                     href={child.href}
-                                                                    className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(child.href) ? "text-accent bg-cream" : "text-primary hover:text-accent hover:bg-cream"}`}
+                                                                    className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(child.href) ? "text-accent " : "text-white hover:text-accent"}`}
                                                                 >
                                                                     {child.label}
                                                                 </Link>
