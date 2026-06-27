@@ -1,25 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
 import type { NearbyDestination } from "@/src/types";
 import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
+import DestinationImageSlider from "./DestinationImageSlider";
 
 interface Props {
   destinations: NearbyDestination[];
 }
-
-const getImageSrc = (img?: string | string[] | null): string => {
-  const fallback = "/home/hero-1.webp";
-  if (!img) return fallback;
-  const raw = Array.isArray(img) ? img[0] : img;
-  if (!raw) return fallback;
-  const s = String(raw).trim();
-  if (!s) return fallback;
-  if (s.startsWith("http://") || s.startsWith("https://")) return s;
-  return `${process.env.NEXT_PUBLIC_API_URL}/uploads/${s.replace(/^\/+/, "")}`;
-};
 
 function DestinationItem({ destination }: { destination: NearbyDestination }) {
   return (
@@ -31,13 +20,9 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
           </p>
         </div>
         <div className="flex flex-col w-full h-full items-start justify-center gap-6 sm:gap-10">
-          <Image
-            src={getImageSrc(destination.image_url)}
-            alt={destination.destination_name}
-            width={450}
-            height={300}
-            className="object-cover h-50 w-80 lg:h-55 lg:w-90 xl:h-70 xl:w-118"
-            sizes="(max-width: 768px) 100vw, 52vw"
+          <DestinationImageSlider
+            images={destination.image_url}
+            name={destination.destination_name}
           />
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
             <h2

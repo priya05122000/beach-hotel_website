@@ -14,17 +14,6 @@ interface NearbyHeroBannerProps {
   destinations: NearbyDestination[];
 }
 
-const getImageSrc = (img?: string | string[] | null): string => {
-  const fallback = "/home/hero-1.webp";
-  if (!img) return fallback;
-  const raw = Array.isArray(img) ? img[0] : img;
-  if (!raw) return fallback;
-  const s = String(raw).trim();
-  if (!s) return fallback;
-  if (s.startsWith("http://") || s.startsWith("https://")) return s;
-  return `${process.env.NEXT_PUBLIC_API_URL}/uploads/${s.replace(/^\/+/, "")}`;
-};
-
 const FALLBACK_SLIDES = [
   {
     id: 1,
@@ -48,6 +37,15 @@ const FALLBACK_SLIDES = [
     image_url: "/home/hero-1.webp",
   },
 ];
+
+function getFirstImage(imageUrl: string): string {
+  try {
+    const parsed = JSON.parse(imageUrl);
+    return Array.isArray(parsed) ? parsed[0] : imageUrl;
+  } catch {
+    return imageUrl;
+  }
+}
 
 export default function NearbyHeroBanner({
   destinations,
@@ -74,43 +72,44 @@ export default function NearbyHeroBanner({
         onSwiper={setSwiperInstance}
         onSlideChange={(swiper) => setSelectedIndex(swiper.realIndex)}
         className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 1, background: "black" }}
+        style={{ zIndex: 1}}
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id} className="relative w-full h-full">
             <Image
-              src={getImageSrc(slide.image_url)}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${getFirstImage(slide.image_url as string)}`}
               alt={slide.destination_name}
               fill
               priority={index === 0}
-              unoptimized
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/0 to-black/60" />
-            <div className="absolute px-6 md:left-40 lg:left-1/3 xl:right-1/3 bottom-20 sm:bottom-40 z-10 flex flex-col">
-              <div className="max-w-xs sm:max-w-md">
-                <p className="text-white/70 uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 font-arizona-sans-regular">
-                  Nearby Destinations
-                </p>
-                <h1 className="text-white font-arizona-flare-regular font-normal leading-tight mb-4">
-                  {slide.destination_name}
-                </h1>
-                {slide.short_description && (
-                  <p className="text-white/80 max-w-md leading-relaxed">
-                    {slide.short_description}
-                  </p>
-                )}
-                {"distance" in slide &&
-                  (slide as NearbyDestination).distance && (
-                    <span className="inline-block mt-4 text-accent text-sm font-arizona-sans-regular tracking-widest uppercase">
-                      {(slide as NearbyDestination).distance} away
-                    </span>
-                  )}
-              </div>
-            </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/0 to-black/60 pointer-events-none" style={{ zIndex: 5 }} />
+
+      <div className="absolute px-6 md:left-40 lg:left-1/3 xl:right-1/3 bottom-20 sm:bottom-40 flex flex-col pointer-events-none" style={{ zIndex: 10 }}>
+        <div className="max-w-xs sm:max-w-md">
+          <p className="text-white/70 uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 font-arizona-sans-regular">
+            Nearby Destinations
+          </p>
+          <h1 className="text-white font-arizona-flare-regular font-normal leading-tight mb-4">
+            {slides[selectedIndex]?.destination_name}
+          </h1>
+          {slides[selectedIndex]?.short_description && (
+            <p className="text-white/80 max-w-md leading-relaxed">
+              {slides[selectedIndex].short_description}
+            </p>
+          )}
+          {"distance" in (slides[selectedIndex] ?? {}) &&
+            (slides[selectedIndex] as NearbyDestination).distance && (
+              <span className="inline-block mt-4 text-accent text-sm font-arizona-sans-regular tracking-widest uppercase">
+                {(slides[selectedIndex] as NearbyDestination).distance} away
+              </span>
+            )}
+        </div>
+      </div>
 
       {/* Dot pagination */}
       <div className="absolute bottom-5 sm:bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
