@@ -86,8 +86,6 @@ export default function FacilitiesSplitHero() {
 
     return (
         <div ref={containerRef} className="relative h-[150vh] w-full overflow-hidden bg-ivory">
-
-            {/* ── Image — starts full width, scrolls to right 50% ──────── */}
             <div
                 ref={imageWrapRef}
                 className="absolute top-0 left-0 h-full overflow-hidden"
