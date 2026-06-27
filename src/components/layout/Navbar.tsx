@@ -69,6 +69,18 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const animTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        const check = () => {
+            setIsDesktop(window.innerWidth >= 1280); // xl breakpoint
+        };
+
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
+
     // ── Effects ──────────────────────────────────────────────────────────────
 
     // useEffect(() => {
@@ -296,7 +308,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
             scheduleAnim(() => {
                 if (!el) return;
                 el.style.transition = `transform 0.55s ${EASE}`;
-                el.style.transform = "translateY(110%)";
+                el.style.transform = "translateY(-110%)";
             }, 50 + i * 40);
         });
 
@@ -367,7 +379,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                 {/* Main nav bar */}
                 <div className={`transition-colors duration-500 bg-transparent"}`}>
-                    <Section>
+                    <div className="px-6  xl:px-10">
 
                         <div className="relative h-16 flex items-center">
 
@@ -396,8 +408,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             <div className="ml-auto flex items-center">
 
                                 {/* Desktop nav links: visible when not scrolled and overlay closed */}
-                                <ul className={`hidden lg:flex items-center gap-8 transition-opacity duration-200 ${scrolled || open ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
-                                    }`}>
+                                <ul
+                                    className={`hidden lg:flex items-center gap-8 transition-opacity duration-300 ${isDesktop && !scrolled && !open
+                                        ? "opacity-100 pointer-events-auto"
+                                        : "opacity-0 pointer-events-none"
+                                        }`}
+                                >
                                     {NAV_LINKS.map(({ href, label, children }) => (
                                         <li
                                             key={href}
@@ -450,18 +466,31 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                     onClick={toggle}
                                     aria-label={open ? "Close menu" : "Open menu"}
                                     aria-expanded={open}
-                                    className={`group relative z-[110] cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-center transition-all duration-200 ${scrolled || open
-                                        ? "w-20 pointer-events-auto"
-                                        : "w-0 pointer-events-none"
+                                    className={`group relative z-[110] cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-end transition-all duration-300 ${!isDesktop || scrolled || open
+                                        ? "w-16 opacity-100 pointer-events-auto"
+                                        : "w-0 opacity-0 pointer-events-none"
                                         }`}
                                     style={{
-                                        opacity: open ? 1 : scrolled ? 1 : 0,
-                                        transitionDelay: open ? "900ms" : scrolled ? "150ms" : "0ms",
+                                        opacity: !isDesktop
+                                            ? 1
+                                            : open
+                                                ? 1
+                                                : scrolled
+                                                    ? 1
+                                                    : 0,
+
+                                        transitionDelay: !isDesktop
+                                            ? "0ms"
+                                            : open
+                                                ? "900ms"
+                                                : scrolled
+                                                    ? "150ms"
+                                                    : "0ms",
                                     }}
                                 >
                                     {/* Menu span */}
                                     <span
-                                        className="absolute inset-0 flex items-center gap-2"
+                                        className="absolute inset-0 flex items-center justify-between "
                                         style={{
                                             transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                                             transform: open ? "translateY(-100%)" : "translateY(0)",
@@ -477,7 +506,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                                     {/* Close span */}
                                     <span
-                                        className="absolute inset-0 flex items-center gap-2"
+                                        className="absolute inset-0 flex items-center justify-between "
                                         style={{
                                             transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                                             transform: open ? "translateY(0)" : "translateY(100%)",
@@ -493,7 +522,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 </button>
                             </div>
                         </div>
-                    </Section>
+                    </div>
                 </div>
             </header>
 
@@ -590,19 +619,19 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 <div className="flex flex-col gap-1">
 
                                     <a href="tel:+915467898765"
-                                        className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light no-underline hover:text-primary transition-colors duration-200"
+                                        className="text-primary text-xs tracking-wide uppercase no-underline hover:text-primary transition-colors duration-200"
                                     >
                                         +91 54678 98765
                                     </a>
 
-                                    <p className="text-primary/50 text-[11px] tracking-[0.2em] uppercase font-light">
+                                    <p className="text-primary text-xs tracking-wider uppercase font-light">
                                         Beach Rd, Kanniyakumari, TN 629702
                                     </p>
                                 </div>
                                 <a
                                     href="/contact-us"
                                     onClick={handleLinkClick}
-                                    className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary hover:underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                                    className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
                                 >
                                     Book My Stay
                                 </a>

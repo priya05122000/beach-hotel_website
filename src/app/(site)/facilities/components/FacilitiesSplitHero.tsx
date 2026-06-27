@@ -13,144 +13,208 @@ const TEXT_LINES = [
     "demand more.",
 ];
 
+const PARAGRAPH = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
+Quae sequi suscipit itaque ducimus? Eveniet a beatae
+tempore neque odio, adipisci fugiat? Non incidunt error
+necessitatibus est, vel quaerat ex fugit blanditiis
+mollitia, quam accusantium ratione explicabo consequatur!
+Asperiores, repellendus vel!`;
+
 export default function FacilitiesSplitHero() {
+    // ── Desktop refs ──────────────────────────────────────────────
     const containerRef = useRef<HTMLDivElement>(null);
     const imageWrapRef = useRef<HTMLDivElement>(null);
     const imageInnerRef = useRef<HTMLDivElement>(null);
-    const leftPanelRef = useRef<HTMLDivElement>(null);
-    const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
-    const taglineRef = useRef<HTMLSpanElement>(null);
-    const ctaRef = useRef<HTMLAnchorElement>(null);
+    const desktopPanelRef = useRef<HTMLDivElement>(null);
+    const desktopTaglineRef = useRef<HTMLSpanElement>(null);
+    const desktopLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const desktopCtaRef = useRef<HTMLAnchorElement>(null);
+    const desktopParaRef = useRef<HTMLParagraphElement>(null);
+
+    // ── Mobile refs ───────────────────────────────────────────────
+    const mobilePanelRef = useRef<HTMLDivElement>(null);
+    const mobileTaglineRef = useRef<HTMLSpanElement>(null);
+    const mobileLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const mobileCtaRef = useRef<HTMLAnchorElement>(null);
+    const mobileParaRef = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
+        const mm = gsap.matchMedia();
+
+        // ── Mobile animation (< 768 px) ───────────────────────────
+        mm.add("(max-width: 767px)", () => {
+            gsap.set(mobilePanelRef.current, { opacity: 1 });
+            const tl = gsap.timeline({ delay: 0.2 });
+            tl.fromTo(mobileTaglineRef.current, { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: "power3.out" })
+                .fromTo(
+                    mobileLineRefs.current,
+                    { yPercent: 110 },
+                    { yPercent: 0, duration: 0.55, ease: "power3.out", stagger: 0.1 },
+                    ">-0.1"
+                )
+                .fromTo(mobileCtaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, ">-0.1")
+                .fromTo(mobileParaRef.current, { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, ">-0.1");
+        });
+
+        // ── Desktop animation (≥ 768 px) ──────────────────────────
+        mm.add("(min-width: 768px)", () => {
+            gsap.set(desktopPanelRef.current, { opacity: 0 });
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
                     end: "+=120%",
-                    scrub: 1.2,
+                    scrub: 1,
                     pin: true,
                     anticipatePin: 1,
                 },
             });
 
-            // ── Phase 1: image shrinks from full-width to right 50% ──────
             tl.to(imageWrapRef.current, {
                 left: "50%",
                 width: "50%",
+                height: "100vh",
+                top: "20vh",
                 ease: "none",
                 duration: 1,
             }, 0);
 
-            // Subtle zoom-in on the image itself as container shrinks
             tl.to(imageInnerRef.current, {
                 scale: 1.08,
-                ease: "none",
+                ease: "power2.inOut",
                 duration: 1,
             }, 0);
 
-            // ── Phase 2: left panel fades in (starts at 30% of timeline) ─
-            tl.to(leftPanelRef.current, {
-                opacity: 1,
-                ease: "none",
-                duration: 0.4,
-            }, 0.3);
+            tl.to(desktopPanelRef.current, { opacity: 1, duration: 0.2 }, ">");
 
-            // Tagline slides up
-            tl.fromTo(taglineRef.current,
-                { yPercent: 110 },
-                { yPercent: 0, ease: "power2.out", duration: 0.4 },
-                0.35
-            );
+            tl.fromTo(desktopTaglineRef.current, { yPercent: 110 }, { yPercent: 0, duration: 0.35, ease: "power3.out" }, ">");
 
-            // Heading lines — staggered mask reveal
-            lineRefs.current.forEach((line, i) => {
-                tl.fromTo(line,
-                    { yPercent: 110 },
-                    { yPercent: 0, ease: "power2.out", duration: 0.5 },
-                    0.4 + i * 0.12
-                );
+            desktopLineRefs.current.forEach((line) => {
+                tl.fromTo(line, { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, ">-0.15");
             });
 
-            // CTA
-            tl.fromTo(ctaRef.current,
-                { opacity: 0, yPercent: 30 },
-                { opacity: 1, yPercent: 0, ease: "power2.out", duration: 0.4 },
-                0.8
-            );
-        }, containerRef);
+            tl.fromTo(desktopCtaRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, ">-0.1");
 
-        return () => ctx.revert();
+            tl.fromTo(desktopParaRef.current, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power4.out" }, ">-0.15");
+        });
+
+        return () => mm.revert();
     }, []);
 
     return (
-        <div ref={containerRef} className="relative h-[150vh] w-full overflow-hidden bg-ivory">
-            <div
-                ref={imageWrapRef}
-                className="absolute top-0 left-0 h-full overflow-hidden"
-                style={{ width: "100%", willChange: "left, width" }}
-            >
-                <div ref={imageInnerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-                    <Image
-                        src="/facilities/1.jpg"
-                        alt="Hotel Facilities"
-                        fill
-                        priority
-                        className="object-cover"
-                    />
-                    {/* Overlay — fades as image moves right */}
+        <>
+            {/* ── Mobile layout (< md) ─────────────────────────────────── */}
+            <div className="flex flex-col md:hidden w-full">
+                <div className="relative w-full" style={{ height: "80vw", minHeight: 240 }}>
+                    <Image src="/facilities/1.jpg" alt="Hotel Facilities" fill priority className="object-cover" />
                     <div className="absolute inset-0 bg-black/20" />
                 </div>
+
+                <div ref={mobilePanelRef} className="px-6 py-10 flex flex-col gap-6" style={{ opacity: 0 }}>
+                    <div>
+                        <div className="overflow-hidden mb-4">
+                            <span
+                                ref={mobileTaglineRef}
+                                className="block text-[11px] tracking-[0.3em] uppercase text-dusty font-arizona-sans-regular"
+                                style={{ display: "inline-block" }}
+                            >
+                                Our Facilities
+                            </span>
+                        </div>
+
+                        <h2
+                            className="font-arizona-flare-regular text-primary leading-[0.95]"
+                            style={{ fontSize: "clamp(2.2rem, 9vw, 3.5rem)", fontWeight: 400 }}
+                        >
+                            {TEXT_LINES.map((line, i) => (
+                                <span key={i} className="block overflow-hidden">
+                                    <span ref={(el) => { mobileLineRefs.current[i] = el; }} className="block" style={{ display: "block" }}>
+                                        {line}
+                                    </span>
+                                </span>
+                            ))}
+                        </h2>
+
+                        <a
+                            ref={mobileCtaRef}
+                            href="#facilities"
+                            className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-8 group"
+                            style={{ opacity: 0 }}
+                        >
+                            <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
+                            Explore All
+                        </a>
+                    </div>
+
+                    <div className="overflow-hidden">
+                        <p ref={mobileParaRef} className="text-sm">{PARAGRAPH}</p>
+                    </div>
+                </div>
             </div>
 
-            {/* ── Left text panel — revealed as image moves right ───────── */}
-            <div
-                ref={leftPanelRef}
-                className="absolute top-0 left-0 w-1/2 h-full flex flex-col justify-center px-10 lg:px-16 z-10 pointer-events-none"
-                style={{ opacity: 0 }}
-            >
-                {/* Tagline */}
-                <div className="overflow-hidden mb-6">
-                    <span
-                        ref={taglineRef}
-                        className="block text-[11px] tracking-[0.3em] uppercase text-dusty font-arizona-sans-regular"
-                        style={{ display: "inline-block" }}
-                    >
-                        Our Facilities
-                    </span>
+            {/* ── Desktop layout (≥ md) — scroll-animated split ────────── */}
+            <div ref={containerRef} className="relative h-[120vh] w-full overflow-hidden hidden md:block">
+                <div
+                    ref={imageWrapRef}
+                    className="absolute top-0 left-0 overflow-hidden"
+                    style={{ width: "100%", height: "120vh", willChange: "left,width,height,top" }}
+                >
+                    <div ref={imageInnerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
+                        <Image src="/facilities/1.jpg" alt="Hotel Facilities" fill priority className="object-cover" />
+                        <div className="absolute inset-0 bg-black/20" />
+                    </div>
                 </div>
 
-                {/* Heading — each line mask-revealed */}
-                <h2
-                    className="font-arizona-flare-regular text-primary leading-[0.95]"
-                    style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
-                >
-                    {TEXT_LINES.map((line, i) => (
-                        <span key={i} className="block overflow-hidden">
-                            <span
-                                ref={(el) => { lineRefs.current[i] = el; }}
-                                className="block"
-                                style={{ display: "block" }}
-                            >
-                                {line}
-                            </span>
-                        </span>
-                    ))}
-                </h2>
-
-                {/* CTA */}
-                <a
-                    ref={ctaRef}
-                    href="#facilities"
-                    className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-10 pointer-events-auto group"
+                <div
+                    ref={desktopPanelRef}
+                    className="absolute py-16 lg:py-20 top-0 left-0 w-full h-[calc(100%-10vh)] z-10 pointer-events-none px-6 sm:px-4"
                     style={{ opacity: 0 }}
                 >
-                    <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
-                    Explore All
-                </a>
-            </div>
+                    <div className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
+                        <div className="flex flex-col h-full justify-evenly w-1/2">
+                            <div>
+                                <div className="overflow-hidden mb-4">
+                                    <span
+                                        ref={desktopTaglineRef}
+                                        className="block text-[11px] tracking-[0.3em] uppercase text-dusty font-arizona-sans-regular"
+                                        style={{ display: "inline-block" }}
+                                    >
+                                        Our Facilities
+                                    </span>
+                                </div>
 
-        </div>
+                                <h2
+                                    className="font-arizona-flare-regular text-primary leading-[0.95]"
+                                    style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
+                                >
+                                    {TEXT_LINES.map((line, i) => (
+                                        <span key={i} className="block overflow-hidden">
+                                            <span ref={(el) => { desktopLineRefs.current[i] = el; }} className="block" style={{ display: "block" }}>
+                                                {line}
+                                            </span>
+                                        </span>
+                                    ))}
+                                </h2>
+
+                                <a
+                                    ref={desktopCtaRef}
+                                    href="#facilities"
+                                    className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-10 pointer-events-auto group"
+                                    style={{ opacity: 0 }}
+                                >
+                                    <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
+                                    Explore All
+                                </a>
+                            </div>
+
+                            <div className="max-w-xs lg:mx-auto overflow-hidden">
+                                <p ref={desktopParaRef} className="text-sm">{PARAGRAPH}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }

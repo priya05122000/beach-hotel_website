@@ -89,9 +89,9 @@ export default function FacilitiesSection({ facilities }: Props) {
     });
 
     return (
-        <Section className="py-16 lg:py-20">
+        <Section className="pb-16 pt-32 lg:pt-40 lg:pb-20">
 
-            
+
 
             <div ref={sectionRef} className="min-h-screen flex items-center">
 
