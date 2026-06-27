@@ -7,7 +7,7 @@ interface Props {
 
 export default function GalleryList({ sections }: Props) {
   return (
-    <div className="py-16 lg:py-20 flex flex-col gap-15 lg:gap-30">
+    <div className="flex flex-col">
       {sections.map((section, index) => (
         <GallerySectionBlock key={section.id} section={section} index={index} />
       ))}

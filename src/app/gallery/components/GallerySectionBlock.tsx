@@ -50,26 +50,26 @@ export default function GallerySectionBlock({ section, index }: Props) {
     <div ref={wrapperRef} className="will-change-transform origin-center">
       <Section className="">
         <div
-          className={`relative grid grid-cols-1 ${isEven ? "lg:grid-cols-[0.5fr_1.6fr_1fr]" : "lg:grid-cols-[1fr_1.6fr_0.5fr]"} min-h-130 lg:min-h-150 gap-6`}
+          className={`relative grid grid-cols-1 ${isEven ? "lg:grid-cols-[0.5fr_1.6fr_1fr]" : "lg:grid-cols-[1fr_1.6fr_0.5fr]"} min-h-130 lg:min-h-150 gap-6 border-b border-silver py-16 lg:py-20`}
         >
-          <div className={`${isEven ? "" : "lg:order-3"}`} />
+          <div className={`hidden lg:block${isEven ? "" : "lg:order-3"}`} />
           <div
-            className={` absolute inset-0 z-10
-              flex flex-col ${isEven ? "items-start" : "items-end"} justify-center
+            className={` lg:absolute lg:inset-0 lg:z-10
+              flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
             `}
           >
             <h2 className="font-arizona-flare-regular font-normal text-primary leading-tight">
               {section.category}
             </h2>
 
-            <p className="text-gray text-sm leading-relaxed font-arizona-flare-regular max-w-xs">
+            <p className="text-gray text-sm leading-relaxed font-arizona-flare-regular max-w-lg lg:max-w-xs">
               {section.description}
             </p>
           </div>
 
           <div
             className={`
-              relative min-h-70 lg:min-h-0 border-b lg:border-b-0
+              relative min-h-70 lg:min-h-0
               ${isEven ? "lg:order-2" : "lg:order-2"}
             `}
           >
@@ -85,11 +85,11 @@ export default function GallerySectionBlock({ section, index }: Props) {
 
           <div
             className={`
-              flex flex-col gap-6
-              ${isEven ? "lg:order-3" : "lg:order-1 lg:border-r border-silver"}
+              flex lg:flex-col gap-6
+              ${isEven ? "lg:order-3" : "lg:order-1"}
             `}
           >
-            <div className="relative flex-1 min-h-45 border-b border-silver">
+            <div className="relative flex-1 min-h-45">
               <Image
                 src={section.images.top}
                 alt={`${section.category} top`}
