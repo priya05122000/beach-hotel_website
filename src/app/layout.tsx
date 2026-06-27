@@ -1,6 +1,9 @@
 import "./globals.css";
-import ClientLayout from "./ClientLayout";
-import {  arizonaSansBold, arizonaFlareRegular, arizonaSansRegular } from "../lib/font";
+import {
+  arizonaSansBold,
+  arizonaFlareRegular,
+  arizonaSansRegular,
+} from "../lib/font";
 
 export default async function RootLayout({
   children,
@@ -13,16 +16,12 @@ export default async function RootLayout({
       className={` ${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable}`}
     >
       <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
-
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        {children}
         {/*
         <Toaster
           position="top-right"
           richColors
         /> */}
-
       </body>
     </html>
   );
