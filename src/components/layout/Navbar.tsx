@@ -67,6 +67,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const childLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
     const metaRef = useRef<HTMLDivElement>(null);
     const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const animTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
     // ── Effects ──────────────────────────────────────────────────────────────
 
@@ -124,7 +125,26 @@ export default function Header({ announcementData }: AnnouncementProps) {
         return () => { document.body.style.overflow = ""; };
     }, [open]);
 
+    // Cancel all pending animation timers on unmount or route change
+    useEffect(() => {
+        return () => {
+            animTimersRef.current.forEach(clearTimeout);
+            animTimersRef.current = [];
+        };
+    }, [pathname]);
+
     // ── Helpers ──────────────────────────────────────────────────────────────
+
+    const scheduleAnim = (fn: () => void, delay: number) => {
+        const id = setTimeout(fn, delay);
+        animTimersRef.current.push(id);
+        return id;
+    };
+
+    const clearAnimTimers = () => {
+        animTimersRef.current.forEach(clearTimeout);
+        animTimersRef.current = [];
+    };
 
     const isActive = (href: string) =>
         pathname === href || pathname.startsWith(href + "/");
@@ -172,6 +192,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         const meta = metaRef.current;
         if (!overlay || !meta) return;
 
+        clearAnimTimers();
         setAnimating(true);
         resetAll();
 
@@ -197,7 +218,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         // ── Everything below shifted by +600ms ──────────────────────
 
         // Image reveal — was 200ms, now 800ms
-        setTimeout(() => {
+        scheduleAnim(() => {
             if (!image) return;
             image.style.transition = `clip-path 1s ${EASE_OUT}, transform 1.2s ${EASE_OUT}, opacity 0.8s ease`;
             image.style.clipPath = "inset(0% 0 0 0)";
@@ -208,7 +229,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         // Parent links — was 280 + i*75, now 880 + i*75
         linksRef.current.forEach((el, i) => {
             if (!el) return;
-            setTimeout(() => {
+            scheduleAnim(() => {
                 if (!el) return;
                 el.style.transition = `transform 0.75s ${EASE_OUT}`;
                 el.style.transform = "translateY(0%)";
@@ -223,7 +244,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
             link.children.forEach((_, j) => {
                 const el = childLinksRef.current[childIdx++];
                 if (!el) return;
-                setTimeout(() => {
+                scheduleAnim(() => {
                     if (!el) return;
                     el.style.transition = `opacity 0.5s ease, transform 0.5s ${EASE_OUT}`;
                     el.style.opacity = "1";
@@ -233,14 +254,14 @@ export default function Header({ announcementData }: AnnouncementProps) {
         });
 
         // Meta — was 580ms, now 1180ms
-        setTimeout(() => {
+        scheduleAnim(() => {
             if (!meta) return;
             meta.style.transition = `opacity 0.6s ease, transform 0.6s ${EASE_OUT}`;
             meta.style.opacity = "1";
             meta.style.transform = "translateY(0)";
         }, 1180);
 
-        setTimeout(() => setAnimating(false), 1500);
+        scheduleAnim(() => setAnimating(false), 1500);
     };
 
     // ── Animation: close ─────────────────────────────────────────────────────
@@ -251,6 +272,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         const meta = metaRef.current;
         if (!overlay || !meta) return;
 
+        clearAnimTimers();
         setAnimating(true);
 
         // Meta out
@@ -261,7 +283,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         // Child links fade out (staggered)
         childLinksRef.current.forEach((el, i) => {
             if (!el) return;
-            setTimeout(() => {
+            scheduleAnim(() => {
                 if (!el) return;
                 el.style.transition = "opacity 0.2s ease";
                 el.style.opacity = "0";
@@ -271,7 +293,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         // Parent links slide down (visible exit, staggered)
         linksRef.current.forEach((el, i) => {
             if (!el) return;
-            setTimeout(() => {
+            scheduleAnim(() => {
                 if (!el) return;
                 el.style.transition = `transform 0.55s ${EASE}`;
                 el.style.transform = "translateY(110%)";
@@ -286,12 +308,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
         }
 
         // Overlay closes slightly after
-        setTimeout(() => {
+        scheduleAnim(() => {
             overlay.style.transition = `clip-path 0.65s ${EASE}`;
             overlay.style.clipPath = "inset(0% 0 100% 0)";
         }, 120);
 
-        setTimeout(() => {
+        scheduleAnim(() => {
             overlay.style.visibility = "hidden";
             resetAll();
             setAnimating(false);
