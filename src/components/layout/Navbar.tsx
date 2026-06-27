@@ -33,7 +33,7 @@ const NAV_LINKS = [
         href: "/company",
         label: "Company",
         children: [
-            { href: "/company/about-us", label: "About Us" },
+            { href: "/about-us", label: "About Us" },
             { href: "/blog", label: "Blog" },
         ],
     },

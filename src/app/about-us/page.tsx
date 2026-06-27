@@ -5,6 +5,7 @@ import SectionHeading from './components/SectionHeading'
 import StoryPreviewSection from './components/StoryPreviewSection'
 import MembershipSection from './components/MembershipSection'
 import AboutHotelSection from './components/AboutHotelSection'
+import FAQAboutSection from './components/FAQAboutSection'
 
 const page = () => {
     return (
@@ -16,6 +17,7 @@ const page = () => {
             {/* <SectionHeading /> */}
             <StoryPreviewSection />
             <MembershipSection />
+            <FAQAboutSection />
         </>
     )
 }
