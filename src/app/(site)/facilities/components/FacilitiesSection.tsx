@@ -45,7 +45,7 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     const desktopCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    const mtClasses = ["", "lg:mt-20", "lg:mt-20", "lg:mt-40"];
+    const mtClasses = ["", "lg:mt-30", "lg:mt-20", "lg:mt-40"];
     const alignClasses = ["justify-start", "justify-center", "justify-center", "justify-end"];
 
     useEffect(() => {
