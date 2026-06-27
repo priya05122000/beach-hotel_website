@@ -28,13 +28,9 @@ export default function BlogIntro({ blog }: Props) {
       <div className="grid md:grid-cols-[0.8fr_1fr] pt-10 gap-3">
         <p className="text-gray tracking-[0.25em]">{blog.tag_2}</p>
         <div className="flex flex-col gap-6 md:gap-10">
-          <p className="text-primary font-arizona-sans-regular leading-relaxed max-w-md">
-            {blog.description_2}
-          </p>
+          <div className="text-primary font-arizona-sans-regular leading-relaxed max-w-md" dangerouslySetInnerHTML={{__html: blog.description_1}} />
           <div className="border-t border-silver" />
-          <p className="text-primary leading-snug pt-5 max-w-md">
-            {blog.description_3}
-          </p>
+          <div className="text-primary leading-snug pt-5 max-w-md" dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
         </div>
       </div>
     </Section>

@@ -15,7 +15,7 @@ export default function BlogHero({ blog }: Props) {
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={blog.image_url}
+          src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${blog.image_url}`}
           alt={blog.title}
           fill
           priority

@@ -20,9 +20,10 @@ export default function BlogStatement({ blog }: Props) {
         <div className="grid grid-cols-2 sm:gap-10 mt-10 lg:mt-20 pt-5 md:pt-5 border-t border-silver">
           <div />
 
-          <p className="text-primary text-sm font-arizona-flare-regular leading-relaxed sm:text-right">
-            {blog.description_3}
-          </p>
+          <div
+            className="text-primary text-sm font-arizona-flare-regular leading-relaxed sm:text-right"
+            dangerouslySetInnerHTML={{ __html: blog.description_3 }}
+          />
         </div>
       </div>
     </Section>

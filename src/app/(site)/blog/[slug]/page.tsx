@@ -1,4 +1,4 @@
-import { BLOG_DATA } from "@/src/data/blogs";
+import { getBlogBySlug } from "@/src/service/blogs";
 import { notFound } from "next/navigation";
 import BlogHero from "./components/BlogHero";
 import BlogStatement from "./components/BlogStatement";
@@ -10,9 +10,9 @@ interface Props {
 
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params;
-  const blog = BLOG_DATA.find((b) => b.slug === slug);
+  const res = await getBlogBySlug(slug);
 
-  if (!blog) notFound();
+  const blog = res.data;
 
   return (
     <div>

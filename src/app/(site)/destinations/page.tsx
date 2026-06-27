@@ -4,11 +4,12 @@ import NearbyDestinationsSection from "./components/NearbyDestinationsSection";
 
 export default async function NearbyPage() {
     const { data: destinations } = await getNearbyDestinationData();
+    const activeDestinations = destinations.filter((d) => d.is_active !== false);
 
     return (
         <div>
-            <NearbyHeroBanner destinations={destinations} />
-            <NearbyDestinationsSection destinations={destinations} />
+            <NearbyHeroBanner destinations={activeDestinations} />
+            <NearbyDestinationsSection destinations={activeDestinations} />
         </div>
     );
 }
