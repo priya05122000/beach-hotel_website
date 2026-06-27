@@ -45,7 +45,7 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     const desktopCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    const mtClasses = ["", "lg:mt-20", "lg:mt-20", "lg:mt-40"];
+    const mtClasses = ["", "lg:mt-30", "lg:mt-50", "lg:mt-70"];
     const alignClasses = ["justify-start", "justify-center", "justify-center", "justify-end"];
 
     useEffect(() => {
@@ -89,9 +89,9 @@ export default function FacilitiesSection({ facilities }: Props) {
     });
 
     return (
-        <Section className="py-16 lg:py-20">
+        <Section className="pb-16 pt-32 lg:pt-40 lg:pb-20">
 
-            
+
 
             <div ref={sectionRef} className="min-h-screen flex items-center">
 
@@ -165,7 +165,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                 </div>
 
                 {/* ── Desktop (1024px+): 4-col with stagger offsets and parallax ── */}
-                <div className="hidden lg:grid grid-cols-4 gap-16 w-full">
+                <div className="hidden lg:grid grid-cols-4  lg:gap-10 xl:gap-16 w-full">
                     {gridItems.map((item, index) => (
                         <div
                             key={index}
@@ -183,7 +183,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                     />
                                 </div>
                             ) : (
-                                <div className="h-80">
+                                <div className="h-60 ">
                                     <p className="mb-2">{String(item.facility.id).padStart(2, "0")}</p>
                                     <h3 className="mb-4 font-bold uppercase border-primary/10 border-b py-2">
                                         {item.facility.facility_name}
