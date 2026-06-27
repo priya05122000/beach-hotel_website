@@ -90,6 +90,9 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     return (
         <Section className="py-16 lg:py-20">
+
+            
+
             <div ref={sectionRef} className="min-h-screen flex items-center">
 
                 {/* ── Mobile (<768px): single column, image → content, no animation ── */}
