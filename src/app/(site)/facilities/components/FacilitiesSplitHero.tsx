@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -38,7 +38,7 @@ export default function FacilitiesSplitHero() {
     const mobileCtaRef = useRef<HTMLAnchorElement>(null);
     const mobileParaRef = useRef<HTMLParagraphElement>(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const mm = gsap.matchMedia();
 
         // ── Mobile animation (< 768 px) ───────────────────────────

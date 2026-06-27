@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -24,7 +24,7 @@ export default function ZoomRevealSection() {
     const paraRef = useRef<HTMLParagraphElement>(null);
     const btnRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const section = sectionRef.current;
         const imageWrapper = imageWrapperRef.current;
         const content = contentRef.current;

@@ -1,12 +1,18 @@
 import CommonBanner from "@/src/components/common/CommonBanner";
 import GalleryList from "./components/GalleryList";
-import { GALLERY_SECTIONS } from "@/src/data/gallery-sections";
+import { getGalleryData } from "@/src/service/galleries";
+import { getGalleryCategoriesData } from "@/src/service/gallery-categories";
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const [{ data: categories }, { data: galleries }] = await Promise.all([
+    getGalleryCategoriesData(),
+    getGalleryData(),
+  ]);
+
   return (
     <>
       <CommonBanner title="Gallery" />
-      <GalleryList sections={GALLERY_SECTIONS} />
+      <GalleryList sections={categories} galleries={galleries} />
     </>
   );
 }

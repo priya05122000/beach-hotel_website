@@ -201,7 +201,7 @@ export default function RoomCardsSection() {
             </CenterSection>
 
             <Section >
-                <Link href="/gallery" className="flex  cursor-pointer items-center justify-end gap-1 text-sm text-end text-gray-700 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
+                <Link href="/rooms" className="flex  cursor-pointer items-center justify-end gap-1 text-sm text-end text-gray-700 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
                     View All
                 </Link>
             </Section>

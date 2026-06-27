@@ -21,7 +21,7 @@ export default function BlogCard({ blog }: Props) {
       <Link href={`/blog/${blog.slug}`} className="block overflow-hidden">
         <div className="relative w-full h-90 xl:h-100 overflow-hidden">
           <Image
-            src={blog.image_url}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${blog.image_url}`}
             alt={blog.title}
             fill
             unoptimized
@@ -44,9 +44,10 @@ export default function BlogCard({ blog }: Props) {
           </h3>
         </Link>
 
-        <p className="text-gray text-sm leading-relaxed mb-5 line-clamp-3">
-          {blog.description_1}
-        </p>
+        <div
+          className="text-gray text-sm leading-relaxed mb-5 line-clamp-3"
+          dangerouslySetInnerHTML={{ __html: blog.description_1 }}
+        />
 
         {/* CTA */}
         <Link

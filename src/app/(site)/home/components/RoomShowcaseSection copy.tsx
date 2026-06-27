@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { typography } from "@/src/lib/typography";
 import gsap from "gsap";
@@ -63,7 +63,7 @@ export default function RoomShowcaseSection() {
   const imgRefs = useRef<(HTMLDivElement | null)[]>([]);
   const supportImgRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 

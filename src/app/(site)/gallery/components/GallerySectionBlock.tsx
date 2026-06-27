@@ -4,17 +4,18 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { GallerySection } from "@/src/data/gallery-sections";
+import type { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
-  section: GallerySection;
+  section: GalleryCategory;
+  galleries: Gallery[];
   index: number;
 }
 
-export default function GallerySectionBlock({ section, index }: Props) {
+export default function GallerySectionBlock({ section, galleries, index }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,6 +46,27 @@ export default function GallerySectionBlock({ section, index }: Props) {
   }, []);
 
   const isEven = index % 2 === 0;
+  const apiBase = process.env.NEXT_PUBLIC_API_URL;
+
+  const imageItems = galleries.filter((g) => g.media_type === "image" && g.media_url);
+  const videoItems = galleries.filter((g) => g.media_type === "video" && g.media_url);
+
+  const allMedia = [...imageItems, ...videoItems].slice(0, 5);
+
+  const first = allMedia[0] ?? null;
+  const slotMedia = [
+    allMedia[0] ?? first,
+    allMedia[1] ?? first,
+    allMedia[2] ?? first,
+    allMedia[3] ?? first,
+    allMedia[4] ?? first,
+  ];
+
+  const mainUrl = first ? `${apiBase}/uploads/${first.media_url}` : null;
+  const mainIsVideo = first?.media_type === "video";
+
+  const topItem = slotMedia[1] ?? slotMedia[0];
+  const bottomItem = slotMedia[2] ?? slotMedia[1] ?? slotMedia[0];
 
   return (
     <div ref={wrapperRef} className="will-change-transform origin-center">
@@ -59,11 +81,11 @@ export default function GallerySectionBlock({ section, index }: Props) {
             `}
           >
             <h2 className="font-arizona-flare-regular font-normal text-primary leading-tight">
-              {section.category}
+              {section.category_name}
             </h2>
 
             <p className="text-gray text-sm leading-relaxed font-arizona-flare-regular max-w-lg lg:max-w-xs">
-              {section.description}
+              {section.short_description}
             </p>
           </div>
 
@@ -73,14 +95,27 @@ export default function GallerySectionBlock({ section, index }: Props) {
               ${isEven ? "lg:order-2" : "lg:order-2"}
             `}
           >
-            <Image
-              src={section.images.main}
-              alt={section.category}
-              fill
-              unoptimized
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-            />
+            {mainUrl && (
+              mainIsVideo ? (
+                <video
+                  src={mainUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={mainUrl}
+                  alt={section.category_name}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+              )
+            )}
           </div>
 
           <div
@@ -90,24 +125,50 @@ export default function GallerySectionBlock({ section, index }: Props) {
             `}
           >
             <div className="relative flex-1 min-h-45">
-              <Image
-                src={section.images.top}
-                alt={`${section.category} top`}
-                fill
-                unoptimized
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 25vw"
-              />
+              {topItem && (
+                topItem.media_type === "video" ? (
+                  <video
+                    src={`${apiBase}/uploads/${topItem.media_url}`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={`${apiBase}/uploads/${topItem.media_url}`}
+                    alt={`${section.category_name} top`}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 25vw"
+                  />
+                )
+              )}
             </div>
             <div className="relative flex-1 min-h-45">
-              <Image
-                src={section.images.bottom}
-                alt={`${section.category} bottom`}
-                fill
-                unoptimized
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 25vw"
-              />
+              {bottomItem && (
+                bottomItem.media_type === "video" ? (
+                  <video
+                    src={`${apiBase}/uploads/${bottomItem.media_url}`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={`${apiBase}/uploads/${bottomItem.media_url}`}
+                    alt={`${section.category_name} bottom`}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 25vw"
+                  />
+                )
+              )}
             </div>
           </div>
         </div>

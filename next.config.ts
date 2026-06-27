@@ -1,31 +1,25 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-
   allowedDevOrigins: ["192.168.1.7"],
 
   /* config options here */
   output: "standalone",
   trailingSlash: false,
 
-
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 640, 768, 1024, 1280, 1440, 1600],
     imageSizes: [64, 96, 128, 256, 384],
     qualities: [60, 70, 75, 80, 90],
+    unoptimized: process.env.NODE_ENV === "development" ? true : false,
 
     remotePatterns: [
       {
         protocol: "https",
         hostname: "api.thebeachhotel.in",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "api.izhtech.com",
-      //   pathname: "/uploads/**",
-      // },
       {
         protocol: "http",
         hostname: "localhost",
@@ -38,18 +32,6 @@ const nextConfig: NextConfig = {
         port: "5000",
         pathname: "/uploads/**",
       },
-      // {
-      //   protocol: "http",
-      //   hostname: "localhost",
-      //   port: "7700",
-      //   pathname: "/images/**",
-      // },
-      // {
-      //   protocol: "http",
-      //   hostname: "localhost",
-      //   port: "5000",
-      //   pathname: "/**",
-      // },
     ],
   },
 
@@ -78,7 +60,6 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
@@ -111,12 +92,10 @@ const nextConfig: NextConfig = {
               frame-ancestors *;
             `.replace(/\n/g, ""),
           },
-
         ],
       },
     ];
   },
-
 };
 
 export default nextConfig;

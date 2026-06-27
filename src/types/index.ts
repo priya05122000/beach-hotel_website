@@ -6,6 +6,11 @@ export interface ApiListResponse<T> {
   data: T[];
 }
 
+export interface ApiSingleResponse<T> {
+  success: boolean;
+  data: T;
+}
+
 export interface Module {
   module_id: number;
   module_name: string;
