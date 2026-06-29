@@ -5,20 +5,12 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "HOME", href: "/" },
-  { label: "ABOUT US", href: "/about" },
+  { label: "ABOUT US", href: "/about-us" },
   { label: "HOTEL FACILITIES", href: "/facilities" },
   { label: "GALLERY", href: "/gallery" },
   { label: "NEARBY DESTINATION", href: "/nearby" },
-  { label: "CONTACT US", href: "/contact" },
-];
-
-const spaLinks = [
   { label: "Rooms & Suites", href: "/rooms" },
-  { label: "Dining", href: "/dining" },
-  { label: "Spa", href: "/spa" },
-  { label: "Infinity Pool", href: "/infinity-pool" },
-  { label: "Executive Lounge", href: "/executive-lounge" },
-  { label: "Transportation", href: "/transportation" },
+  { label: "CONTACT US", href: "/contact-us" },
 ];
 
 const socialIcons: { href: string; label: string; path: string }[] = [
@@ -92,20 +84,24 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Right: spa/secondary links */}
-            <div>
-              <ul className="flex flex-col gap-2">
-                {spaLinks.map((link, i) => (
-                  <li key={`${link.label}-${i}`}>
-                    <Link
-                      href={link.href}
-                      className="text-xs font-arizona-flare-regular tracking-widest uppercase hover:text-accent transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+            <div className="flex flex-col gap-5">
+              <div>
+                <p className="text-xs font-arizona-flare-regular tracking-widest uppercase text-accent mb-3">
+                  Working Hours
+                </p>
+                <ul className="flex flex-col gap-1.5">
+                  <li className="text-xs font-arizona-flare-regular tracking-widest uppercase">
+                    Front Desk — 24 / 7
                   </li>
-                ))}
-              </ul>
+                  <li className="text-xs font-arizona-flare-regular tracking-widest uppercase">
+                    Check-In — 10:00 AM to 5:00 PM
+                  </li>
+                  <li className="text-xs font-arizona-flare-regular tracking-widest uppercase">
+                    Room Service — 24 / 7
+                  </li>
+                </ul>
+                <p className="text-xs font-arizona-flare-regular tracking-widest mt-4 max-w-xs">Warm, intuitive service ensuring your stay is perfectly seamless throughout.</p>
+              </div>
             </div>
           </div>
 
@@ -113,9 +109,7 @@ export default function Footer() {
             <div className=" flex flex-col justify-between gap-5">
               <div>
                 <div className="mt-6 lg:mt-4 xl:mt-2">
-                  <p className="uppercase mb-3">
-                    Follow Us
-                  </p>
+                  <p className="uppercase mb-3">Follow Us</p>
                   <div className="flex items-center gap-3">
                     {socialIcons.map((item) => (
                       <Link
