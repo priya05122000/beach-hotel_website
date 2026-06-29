@@ -633,7 +633,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                           >
                             <span className="relative inline-block pb-1 transition-all duration-300">
                               {link.label}
-                              <span className="absolute left-0 bottom-0 h-px w-full bg-primary/70 origin-left transition-transform duration-500 scale-x-0 group-hover:scale-x-100" />
+                              <span className={`absolute left-0 bottom-0 h-px w-full bg-primary/70 origin-left transition-transform duration-500 ${isActive(link.href!) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
                             </span>
                           </a>
                         ) : (
@@ -677,7 +677,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 >
                                   <span className="relative inline-block pb-0.5">
                                     {child.label}
-                                    <span className="absolute left-0 bottom-0 h-px w-full bg-primary/70 origin-left transition-transform duration-500 scale-x-0 group-hover/child:scale-x-100" />
+                                    <span className={`absolute left-0 bottom-0 h-px w-full bg-primary/70 origin-left transition-transform duration-500 ${isActive(child.href) ? "scale-x-100" : "scale-x-0 group-hover/child:scale-x-100"}`} />
                                   </span>
                                 </a>
                               </span>
