@@ -53,8 +53,8 @@ const BannerBelowSection = () => {
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative z-10 text-center  h-[25vh] ">
-                    <p className={`font-bold uppercase`}>
+                <div className="relative type-body z-10 text-center  h-[25vh] ">
+                    <p className="uppercase text-white">
                         The Beach Hotel
                     </p>
 

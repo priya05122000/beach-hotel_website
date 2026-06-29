@@ -21,7 +21,7 @@ export default function BlogStatement({ blog }: Props) {
           <div />
 
           <div
-            className="text-primary text-sm font-arizona-flare-regular leading-relaxed sm:text-right"
+            className="text-primary-dark text-sm font-arizona-flare-regular leading-relaxed sm:text-right"
             dangerouslySetInnerHTML={{ __html: blog.description_3 }}
           />
         </div>

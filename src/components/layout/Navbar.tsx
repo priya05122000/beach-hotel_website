@@ -381,7 +381,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         gradient={false}
                         pauseOnHover
                         autoFill
-                        className="h-full text-xs font-arizona-flare-regular tracking-[0.6px] font-normal uppercase text-primary"
+                        className="h-full text-xs font-arizona-flare-regular tracking-[0.6px] font-normal uppercase text-primary-dark"
                     >
                         {announcementData?.map((item) => (
                             <span key={item.id} className="mx-16">
@@ -447,7 +447,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
         ? "text-accent"
         : isOverDark
           ? "text-white hover:text-accent"
-          : "text-primary hover:text-accent"
+          : "text-primary-dark hover:text-accent"
     }`}
                         >
                           {label}
@@ -461,7 +461,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                       ) : (
                         <span
                           className={`inline-flex items-center gap-1 font-semibold text-xs lg:text-sm tracking-[0.6px] cursor-default select-none
-    ${isOverDark ? "text-white" : "text-primary"}`}
+    ${isOverDark ? "text-white" : "text-primary-dark"}`}
                         >
                           {label}
                           {children && (
@@ -481,7 +481,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             className={` backdrop-blur-md shadow-lg min-w-30 py-2 ${
                               isOverDark
                                 ? "text-white bg-white/10 hover:text-accent"
-                                : "text-primary hover:text-accent bg-primary/40"
+                                : "text-primary-dark hover:text-accent bg-primary/40"
                             }`}
                           >
                             {children.map((child) => (
@@ -541,11 +541,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
                       <Menu
                         size={16}
-                        className={`${isOverDark && !open ? "text-white" : "text-primary"}`}
+                        className={`${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
                       />
                     </span>
                     <span
-                      className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary"}`}
+                      className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
                     >
                       Menu
                     </span>
@@ -562,11 +562,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
                       <X
                         size={16}
-                        className={`${isOverDark && !open ? "text-white" : "text-primary"}`}
+                        className={`${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
                       />
                     </span>
                     <span
-                      className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary"}`}
+                      className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
                     >
                       Close
                     </span>
@@ -632,7 +632,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             ref={(el) => { linksRef.current[i] = el; }}
                             href={link.href}
                             onClick={handleLinkClick}
-                            className="group text-[16px] uppercase tracking-[0.2em] text-primary transition-colors font-arizona-flare-regular duration-300"
+                            className="group text-[16px] uppercase tracking-[0.2em] text-primary-dark transition-colors font-arizona-flare-regular duration-300"
                           >
                             <span className="relative inline-block pb-1 transition-all duration-300">
                               {link.label}
@@ -642,7 +642,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         ) : (
                           <span
                             ref={(el) => { linksRef.current[i] = el as unknown as HTMLAnchorElement; }}
-                            className="text-primary/40 text-[14px] lg:text-[16px] font-arizona-sans-regular font-extralight cursor-default select-none"
+                            className="text-primary-dark/40 text-[14px] lg:text-[16px] font-arizona-sans-regular font-extralight cursor-default select-none"
                             style={{ transform: "translateY(110%)", display: "block" }}
                           >
                             <span className="relative pb-1">
@@ -672,7 +672,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 <a
                                   href={child.href}
                                   onClick={handleLinkClick}
-                                  className="group/child text-[16px] uppercase tracking-[0.2em] text-primary font-arizona-flare-regular transition-colors duration-200"
+                                  className="group/child text-[16px] uppercase tracking-[0.2em] text-primary-dark font-arizona-flare-regular transition-colors duration-200"
                                 >
                                   <span className="relative inline-block pb-0.5">
                                     {child.label}
@@ -698,19 +698,19 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+915467898765"
-                    className="text-primary text-xs tracking-wide uppercase no-underline hover:text-primary transition-colors duration-200"
+                    className="text-primary-dark text-xs tracking-wide uppercase no-underline hover:text-primary-dark transition-colors duration-200"
                   >
                     +91 54678 98765
                   </a>
 
-                  <p className="text-primary text-xs tracking-wider uppercase font-light">
+                  <p className="text-primary-dark text-xs tracking-wider uppercase font-light">
                     Beach Rd, Kanniyakumari, TN 629702
                   </p>
                 </div>
                 <a
                   href="/contact-us"
                   onClick={handleLinkClick}
-                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary-dark underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
                 >
                   Book My Stay
                 </a>

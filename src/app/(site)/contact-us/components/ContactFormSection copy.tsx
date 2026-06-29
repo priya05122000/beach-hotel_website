@@ -248,7 +248,7 @@
 //           <button
 //             type="submit"
 //             disabled={loading}
-//             className="w-full bg-white text-primary text-sm font-semibold uppercase tracking-[0.12em] py-3.5  hover:bg-white/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+//             className="w-full bg-white text-primary-dark text-sm font-semibold uppercase tracking-[0.12em] py-3.5  hover:bg-white/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
 //           >
 //             {loading ? "Sending…" : "Submit Request"}
 //           </button>

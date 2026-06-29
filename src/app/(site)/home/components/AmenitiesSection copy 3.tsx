@@ -33,11 +33,11 @@ function IconCard({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
         <div className="flex flex-col items-center gap-3 ">
             <div className=" w-24 aspect-2/3 rounded-full   bg-linear-to-r from-primary via-accent/76 to-primary p-px shadow-[0px_4px_4px_0px_#00000040]">
                 <div className="bg-ivory w-full h-full rounded-full flex items-center justify-center">
-                    <Icon size={50} strokeWidth={1.5} className="text-primary" />
+                    <Icon size={50} strokeWidth={1.5} className="text-primary-dark" />
 
                 </div>
             </div>
-            <p className="text-xs text-center text-primary/60 ">{title}</p>
+            <p className="text-xs text-center text-primary-dark/60 ">{title}</p>
         </div>
     );
 }
@@ -46,7 +46,7 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
     const isRight = align === "right";
     return (
         <div className={`flex h-full flex-col  ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-            <p className={`${typography.textXl} text-primary mb-4 uppercase`}>
+            <p className={`${typography.textXl} text-primary-dark mb-4 uppercase`}>
                 Step out of bed and straight<br />
                 sun-kissed sands of Kanyakumari
             </p>

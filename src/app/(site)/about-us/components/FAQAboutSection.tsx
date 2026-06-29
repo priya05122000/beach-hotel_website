@@ -17,7 +17,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
     <Section className=" py-16 lg:py-20">
       <div className="mb-6 lg:mb-10 flex items-start justify-between gap-4">
         <h2
-          className={`font-normal text-primary leading-tight ${typography.textFoXl}`}
+          className={`font-normal text-primary-dark leading-tight ${typography.textFoXl}`}
         >
           GOT QUESTIONS?
           <br />
@@ -27,7 +27,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
         </h2>
 
         <p
-          className={`hidden sm:block text-right text-primary max-w-60 leading-snug ${typography.textBase}`}
+          className={`hidden sm:block text-right text-primary-dark max-w-60 leading-snug ${typography.textBase}`}
         >
           We&apos;ve gathered answers to everything you might be wondering about
         </p>

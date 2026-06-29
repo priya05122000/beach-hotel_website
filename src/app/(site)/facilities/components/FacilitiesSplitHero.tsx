@@ -124,7 +124,7 @@ export default function FacilitiesSplitHero() {
                         </div>
 
                         <h2
-                            className="font-arizona-flare-regular text-primary leading-[0.95]"
+                            className="font-arizona-flare-regular text-primary-dark leading-[0.95]"
                             style={{ fontSize: "clamp(2.2rem, 9vw, 3.5rem)", fontWeight: 400 }}
                         >
                             {TEXT_LINES.map((line, i) => (
@@ -185,7 +185,7 @@ export default function FacilitiesSplitHero() {
                                 </div>
 
                                 <h2
-                                    className="font-arizona-flare-regular text-primary leading-[0.95]"
+                                    className="font-arizona-flare-regular text-primary-dark leading-[0.95]"
                                     style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
                                 >
                                     {TEXT_LINES.map((line, i) => (

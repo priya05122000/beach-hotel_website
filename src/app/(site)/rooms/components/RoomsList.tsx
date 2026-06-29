@@ -144,7 +144,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
             <p className="text-xs text-gray font-arizona-sans-regular tracking-widest uppercase mb-0.5">
               From
             </p>
-            <p className="font-arizona-flare-regular text-primary text-xl">
+            <p className="font-arizona-flare-regular text-primary-dark text-xl">
               ₹{room.price_per_night.toLocaleString("en-IN")}
               <span className="text-gray text-xs font-arizona-sans-regular tracking-widest ml-1">
                 / night
@@ -174,7 +174,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
             {room.type}
           </p>
 
-          <h2 className="font-arizona-flare-regular font-normal text-primary leading-tight">
+          <h2 className="font-arizona-flare-regular font-normal text-primary-dark leading-tight">
             {room.name}
           </h2>
 
@@ -192,11 +192,11 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
   return (
     <Section className="">
       <div className="grid grid-cols-[0.5fr_1fr] border-b border-silver pb-10 pt-16 lg:py-20">
-        <div className="text-primary flex gap-3 items-center h-25">
+        <div className="text-primary-dark flex gap-3 items-center h-25">
           <Sparkle size={10} fill="#012644" className="" />{" "}
           <p>Rooms & Suites</p>
         </div>
-        <div className="text-xl text-primary font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
+        <div className="text-xl text-primary-dark font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
           Our accommodations are appointed with bespoke furnishings, the finest
           linens and thoughtful touches at every turn — from serene inland

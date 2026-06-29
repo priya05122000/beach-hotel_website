@@ -129,7 +129,7 @@ export default function ZoomRevealSection() {
                             {HEADLINE_LINES.map((line, i) => (
                                 <h2
                                     key={i}
-                                    className="text-3xl sm:text-4xl font-normal text-primary leading-tight"
+                                    className="text-3xl sm:text-4xl font-normal text-primary-dark leading-tight"
                                 >
                                     {line}
                                 </h2>
@@ -141,7 +141,7 @@ export default function ZoomRevealSection() {
                         </p>
                         <Link
                             href="/contact-us"
-                            className="inline-flex items-center text-xs font-semibold tracking-[0.18em] uppercase text-primary border border-primary px-7 py-3.5 hover:bg-primary hover:text-white transition-colors duration-300"
+                            className="inline-flex items-center text-xs font-semibold tracking-[0.18em] uppercase text-primary-dark border border-primary px-7 py-3.5 hover:bg-primary hover:text-white transition-colors duration-300"
                         >
                             Book My Stay
                         </Link>
@@ -175,7 +175,7 @@ export default function ZoomRevealSection() {
                                 <div key={i} className="overflow-hidden leading-tight">
                                     <span
                                         ref={(el) => { linesRef.current[i] = el; }}
-                                        className="block text-[2.6rem] font-normal text-primary"
+                                        className="block text-[2.6rem] font-normal text-primary-dark"
                                     >
                                         {line}
                                     </span>
@@ -192,7 +192,7 @@ export default function ZoomRevealSection() {
                         <div ref={btnRef} className="w-fit">
                             <Link
                                 href="/contact-us"
-                                className="inline-flex items-center text-xs font-semibold tracking-[0.18em] uppercase text-primary border border-primary px-7 py-3.5 hover:bg-primary hover:text-white transition-colors duration-300"
+                                className="inline-flex items-center text-xs font-semibold tracking-[0.18em] uppercase text-primary-dark border border-primary px-7 py-3.5 hover:bg-primary hover:text-white transition-colors duration-300"
                             >
                                 Book My Stay
                             </Link>

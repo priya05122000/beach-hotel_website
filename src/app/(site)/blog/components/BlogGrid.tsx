@@ -10,7 +10,7 @@ export default function BlogGrid({ blogs }: Props) {
   return (
     <Section className="py-16 lg:py-20">
       {/* <div className="flex items-end justify-between mb-10 lg:mb-14 border-b border-silver pb-6">
-        <h2 className="font-arizona-flare-regular font-normal text-primary uppercase">
+        <h2 className="font-arizona-flare-regular font-normal text-primary-dark uppercase">
           Latest Articles
         </h2>
         <p className="text-gray text-sm font-arizona-sans-regular tracking-widest uppercase hidden sm:block">

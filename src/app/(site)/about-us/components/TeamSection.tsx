@@ -75,7 +75,7 @@ const TeamSection = () => {
                     {/* Left label */}
                     <div className="col-span-12 sm:col-span-3  lg:col-span-2 flex items-center h-full pt-2">
                         <p className="tracking-[0.25em]  text-gray flex items-center gap-2">
-                            <span className="text-primary font-semibold"><Sparkle size={10} fill='#012644' /></span>
+                            <span className="text-primary-dark font-semibold"><Sparkle size={10} fill='#012644' /></span>
                             Discover
                         </p>
                     </div>
@@ -84,7 +84,7 @@ const TeamSection = () => {
                     <div className="col-span-12 sm:col-span-8 flex flex-col gap-10 sm:gap-12 ">
                         <div
                             ref={revealRef}
-                            className="text-primary font-arizona-flare-regular text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-none flex flex-wrap gap-x-[0.25em]"
+                            className="text-primary-dark font-arizona-flare-regular text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-none flex flex-wrap gap-x-[0.25em]"
                         >
                             {REVEAL_WORDS.map((word, i) => (
                                 <span key={i} className="overflow-hidden inline-block leading-tight">

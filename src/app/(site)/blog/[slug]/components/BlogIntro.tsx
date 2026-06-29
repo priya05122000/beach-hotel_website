@@ -17,7 +17,7 @@ export default function BlogIntro({ blog }: Props) {
 
         <div>
           <h3
-            className="font-arizona-flare-regular text-primary leading-snug"
+            className="font-arizona-flare-regular text-primary-dark leading-snug"
             style={{ fontSize: "clamp(16px, 6.5vw, 32px)" }}
           >
             {blog.sub_title}
@@ -28,9 +28,9 @@ export default function BlogIntro({ blog }: Props) {
       <div className="grid md:grid-cols-[0.8fr_1fr] pt-10 gap-3">
         <p className="text-gray tracking-[0.25em]">{blog.tag_2}</p>
         <div className="flex flex-col gap-6 md:gap-10">
-          <div className="text-primary font-arizona-sans-regular leading-relaxed max-w-md" dangerouslySetInnerHTML={{__html: blog.description_1}} />
+          <div className="text-primary-dark font-arizona-sans-regular leading-relaxed max-w-md" dangerouslySetInnerHTML={{__html: blog.description_1}} />
           <div className="border-t border-silver" />
-          <div className="text-primary leading-snug pt-5 max-w-md" dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
+          <div className="text-primary-dark leading-snug pt-5 max-w-md" dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
         </div>
       </div>
     </Section>

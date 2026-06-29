@@ -42,7 +42,7 @@ export default function GallerySection({
 
                     {/* Heading */}
                     <div className="mb-12">
-                        <p className="text-xs uppercase tracking-[0.2em] text-primary">
+                        <p className="text-xs uppercase tracking-[0.2em] text-primary-dark">
                             Gallery
                         </p>
 
@@ -190,7 +190,7 @@ function GalleryCard({
                                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg">
                                     <Play
                                         size={24}
-                                        className="ml-1 text-primary"
+                                        className="ml-1 text-primary-dark"
                                         fill="currentColor"
                                     />
                                 </div>

@@ -108,7 +108,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         gradient={false}
                         pauseOnHover
                         autoFill
-                        className="h-full text-xs font-arizona-flare-regular tracking-[0.6px] font-normal uppercase text-primary"
+                        className="h-full text-xs font-arizona-flare-regular tracking-[0.6px] font-normal uppercase text-primary-dark"
                     >
                         {announcementData?.map((item) => (
                             <span key={item.id} className="mx-16">
@@ -149,7 +149,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         >
                                             <Link
                                                 href={href}
-                                                className={`inline-flex items-center gap-1 transition-colors font-semibold  text-xs lg:text-sm tracking-[0.6px] ${isActive(href) ? "text-accent" : "text-primary hover:text-accent"}`}
+                                                className={`inline-flex items-center gap-1 transition-colors font-semibold  text-xs lg:text-sm tracking-[0.6px] ${isActive(href) ? "text-accent" : "text-primary-dark hover:text-accent"}`}
                                             >
                                                 {label}
                                                 {children && (
@@ -170,7 +170,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                                             <li key={child.href}>
                                                                 <Link
                                                                     href={child.href}
-                                                                    className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(child.href) ? "text-accent bg-cream" : "text-primary hover:text-accent hover:bg-cream"}`}
+                                                                    className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(child.href) ? "text-accent bg-cream" : "text-primary-dark hover:text-accent hover:bg-cream"}`}
                                                                 >
                                                                     {child.label}
                                                                 </Link>
@@ -186,7 +186,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 {/* Mobile Menu Button */}
                                 <button
                                     onClick={() => setMenuOpen(true)}
-                                    className="cursor-pointer text-xs lg:text-sm tracking-[0.6px] font-semibold text-primary hover:text-accent lg:hidden underline underline-offset-2"
+                                    className="cursor-pointer text-xs lg:text-sm tracking-[0.6px] font-semibold text-primary-dark hover:text-accent lg:hidden underline underline-offset-2"
                                     aria-label="Open Menu"
                                 >
                                     Menu
@@ -253,7 +253,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         </li>
                     ))}
 
-                    <button className="mt-4 bg-accent px-6 py-3 font-semibold text-primary">
+                    <button className="mt-4 bg-accent px-6 py-3 font-semibold text-primary-dark">
                         BOOK MY STAY
                     </button>
                 </ul>

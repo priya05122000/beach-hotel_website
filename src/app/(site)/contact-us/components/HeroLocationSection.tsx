@@ -9,14 +9,14 @@ export default function HeroLocationSection() {
     <Section className="bg-white py-16 lg:py-20">
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-2 mb-8 md:mb-14 xl:mb-20">
         {/* Left Panel */}
-        <p className={`font-semibold text-primary ${typography.textThXl}`}>
+        <p className={`font-semibold text-primary-dark ${typography.textThXl}`}>
           A Conversation <br /> Begins Your  Journey
         </p>
         {/* Right Panel */}
         <div className="flex flex-col justify-center">
           <div className="max-w-lg">
             <div
-              className={` font-arizona-flare-regular leading-tight  text-primary ${typography.textSixXl}`}
+              className={` font-arizona-flare-regular leading-tight  text-primary-dark ${typography.textSixXl}`}
             >
               Your perfect stay begins the moment you reach out.
             </div>

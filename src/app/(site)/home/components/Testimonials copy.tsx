@@ -224,7 +224,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                     <div className="flex min-h-70 col-span-6 xl:col-span-7  flex-col justify-center  py-6 sm:px-6 sm:min-h-80 sm:py-8 lg:pl-10">
                         <div className="mb-2 hidden sm:block">
                             {/* <Quote
-                                className="h-10 w-10 rotate-180 text-primary"
+                                className="h-10 w-10 rotate-180 text-primary-dark"
                                 aria-hidden="true"
                             /> */}
 
@@ -253,7 +253,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                         </span>
 
                                         <p
-                                            className={`text-primary font-semibold mt-2 ${typography.textXl}`}
+                                            className={`text-primary-dark font-semibold mt-2 ${typography.textXl}`}
                                         >
                                             {item.guest_name}
                                         </p>

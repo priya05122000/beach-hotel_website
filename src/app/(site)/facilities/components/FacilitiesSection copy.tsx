@@ -44,16 +44,16 @@ export default async function FacilitiesSection() {
 
                             {/* Content */}
                             <div className="sm:col-span-5 sm:py-10">
-                                <h3 className="mb-6 text-4xl font-semibold uppercase text-primary">
+                                <h3 className="mb-6 text-4xl font-semibold uppercase text-primary-dark">
                                     {(item as any).facility_name ?? (item as any).title ?? (item as any).name ?? "Facility"}
                                 </h3>
 
-                                {/* <p className="mb-4 max-w-md text-lg  text-primary">
+                                {/* <p className="mb-4 max-w-md text-lg  text-primary-dark">
                                 {(item as any).short_description ?? (item as any).description ?? ""}
                             </p> */}
 
                                 <p
-                                    className="text-lg  text-primary"
+                                    className="text-lg  text-primary-dark"
                                     suppressHydrationWarning
                                     dangerouslySetInnerHTML={{ __html: (item as any).description ?? "" }}
                                 />

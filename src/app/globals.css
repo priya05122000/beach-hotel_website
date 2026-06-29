@@ -1,10 +1,14 @@
 @import "tailwindcss";
 @import "aos/dist/aos.css";
 
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --primary: #012644;
+  --primary-dark: #000b19;
   --accent: #FFC13B;
   --cream: #FFF4DC;
   --soft-accent: #ffe6ca;
@@ -12,45 +16,87 @@
   --gray: #696868;
   --dusty: #bc8d59;
   --silver: #D9D9D9;
-  --ivory: rgb(255, 251, 247);
+  --ivory: #fffbf7;
+  --charcoal: #333333
 }
 
+/* ─────────────────────────────────────────────
+   TAILWIND v4 THEME MAPPING
+───────────────────────────────────────────── */
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-accent: var(--accent);
-  --color-surface: var(--surface);
-  --color-soft-accent: var(--soft-accent);
   --color-cream: var(--cream);
+  --color-soft-accent: var(--soft-accent);
+  --color-surface: var(--surface);
   --color-ivory: var(--ivory);
   --color-gray: var(--gray);
   --color-dusty: var(--dusty);
   --color-silver: var(--silver);
+  --color-primary-dark: var(--primary-dark);
+  --color-charcoal: var(--charcoal);
+
+  /* Fonts */
   --font-arizona-sans-bold: var(--font-arizona-sans-bold);
   --font-arizona-flare-regular: var(--font-arizona-flare-regular);
   --font-arizona-sans-regular: var(--font-arizona-sans-regular);
 
+  /* Type scale — display */
+  --text-display-2xl: clamp(56px, 8vw, 96px);
+  /* Hero/Banner */
+  --text-display-xl: clamp(48px, 6vw, 80px);
+  /* Big hero */
+  --text-display-lg: clamp(40px, 5vw, 64px);
+  /* Section hero */
+  --text-display-md: clamp(32px, 4vw, 48px);
+  /* Display */
+  --text-display-sm: clamp(32px, 4vw, 44px);
+
+  /* Type scale — headings */
+  --text-h1: clamp(32px, 4vw, 40px);
+  --text-h2: clamp(24px, 3vw, 32px);
+  --text-h3: clamp(20px, 2.5vw, 28px);
+  --text-h4: clamp(18px, 2vw, 24px);
+  --text-h5: clamp(16px, 1.5vw, 20px);
+  --text-h6: clamp(14px, 1.2vw, 16px);
+
+  /* Type scale — body */
+  --text-body-xl: clamp(18px, 1.8vw, 20px);
+  /* Lead text */
+  --text-body-lg: clamp(16px, 1.5vw, 18px);
+  --text-body: clamp(15px, 1.2vw, 16px);
+  --text-body-sm: 14px;
+
+  /* Type scale — interactive */
+  --text-button-lg: 16px;
+  --text-button: 14px;
+  --text-button-sm: 12px;
+  --text-label-lg: 14px;
+  --text-label: 12px;
+  --text-label-sm: 11px;
+
+  /* Type scale — inline */
+  --text-caption: 12px;
+  --text-overline: 11px;
+  --text-link: inherit;
 }
 
-/* html {
-  font-family: var(--font-dm-sans);
-} */
-
-
+/* ─────────────────────────────────────────────
+   BASE STYLES
+───────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
-  /* font-family: var(--font-inter), sans-serif; */
 }
 
 html,
 body {
   overflow-x: hidden;
   -ms-overflow-style: none;
-  /* IE & Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 html::-webkit-scrollbar,
@@ -58,73 +104,14 @@ body::-webkit-scrollbar {
   width: 0;
   height: 0;
   display: none;
-  /* Chrome, Safari, Edge */
 }
 
-h1 {
-  font-family: var(--font-arizona-flare-regular);
-  font-size: 32px;
-  font-weight: 400;
-  letter-spacing: 0.28pc;
-}
-
-h2 {
-  font-family: var(--font-arizona-flare-regular);
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 2.4px;
-}
-
-h3 {
-  font-family: var(--font-arizona-sans-regular);
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 1.8px;
-}
-
-p,
-input {
-  font-family: var(--font-arizona-flare-regular), serif;
-  font-size: 15px;
-  letter-spacing: 0.6px;
-}
-
-button {
-  font-family: var(--font-arizona-sans-regular);
-  font-size: 14px;
-  letter-spacing: 1.8px;
-}
-
-@media (min-width: 1024px) {
-  h1 {
-    font-size: 40px;
-  }
-
-  h2 {
-    font-size: 32px;
-  }
-
-  h3 {
-    font-size: 20px;
-  }
-
-  p,
-  input {
-    font-size: 16px;
-  }
-}
-
-
-h4,
-h5,
-h6 {
-  font-family: var(--font-arizona-sans-regular);
-}
-
-
-
-
+/* ─────────────────────────────────────────────
+   UTILITY CLASSES
+───────────────────────────────────────────── */
 @layer utilities {
+
+  /* Scrollbar */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -134,6 +121,7 @@ h6 {
     display: none;
   }
 
+  /* Font family helpers */
   .font-arizona-sans-bold {
     font-family: var(--font-arizona-sans-bold);
   }
@@ -146,30 +134,169 @@ h6 {
     font-family: var(--font-arizona-sans-regular);
   }
 
+  /* ── Display ── */
+  .type-display-2xl {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-display-2xl);
+  }
+
+  .type-display-xl {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-display-xl);
+  }
+
+  .type-display-lg {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-display-lg);
+  }
+
+  .type-display-md {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-display-md)
+  }
+
+  .type-display-sm {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-display-sm);
+  }
+
+  /* ── Headings ── */
+  .type-h1 {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-h1);
+  }
+
+  .type-h2 {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-h2);
+  }
+
+  .type-h3 {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-h3);
+  }
+
+  .type-h4 {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-h4);
+  }
+
+  .type-h5 {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-h5);
+
+  }
+
+  .type-h6 {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-h6);
+
+  }
+
+  /* ── Body / Paragraph ── */
+  .type-body-xl {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-body-xl);
+    letter-spacing: .6px;
+  }
+
+  .type-body-lg {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-body-lg);
+    color: var(--text-primary-dark);
+    letter-spacing: .6px;
+  }
+
+  .type-body {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-body);
+    color: var(--color-charcoal);
+    letter-spacing: .6px;
+  }
+
+  .type-body-sm {
+    font-family: var(--font-arizona-flare-regular);
+    font-size: var(--text-body-sm);
+    letter-spacing: .6px;
+  }
+
+  /* ── Button ── */
+  .type-button-lg {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-button-lg);
+  }
+
+  .type-button {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-button);
+  }
+
+  .type-button-sm {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-button-sm);
+  }
+
+  /* ── Label ── */
+  .type-label-lg {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-label-lg);
+  }
+
+  .type-label {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-label);
+  }
+
+  .type-label-sm {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-label-sm);
+  }
+
+  /* ── Inline ── */
+  .type-caption {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-caption);
+  }
+
+  .type-overline {
+    font-family: var(--font-arizona-sans-bold);
+    font-size: var(--text-overline);
+    text-transform: uppercase;
+  }
+
+  /* ── Links ── */
+  .type-link {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-link);
+    line-height: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  .type-link:hover {
+    opacity: 0.7;
+  }
+
+  .type-link-nav {
+    font-family: var(--font-arizona-sans-regular);
+    font-size: var(--text-label);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .type-link-nav:hover {
+    opacity: 0.6;
+  }
 }
 
-
-.card {
-  width: 400px;
-  height: 500px;
-  background: #ff9d2f;
-  position: relative;
-}
-
-/* svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-} */
-
-
+/* ─────────────────────────────────────────────
+   COMPONENTS
+───────────────────────────────────────────── */
 .custom-shape {
   background: #ff9d2f;
-
   -webkit-mask: url("/shapes/offer-shape.svg") no-repeat center;
   -webkit-mask-size: cover;
-
   mask: url("/shapes/offer-shape.svg") no-repeat center;
   mask-size: cover;
 }
@@ -188,6 +315,9 @@ h6 {
   animation: gradientMove 4s linear infinite;
 }
 
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────────── */
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;

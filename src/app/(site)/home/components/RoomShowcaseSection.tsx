@@ -148,8 +148,6 @@ export default function RoomShowcaseSection() {
   return (
     <Section className="relative">
 
-
-
       <div ref={sectionRef} className="relative h-screen overflow-hidden">
 
         {/* Image Frame */}
@@ -201,7 +199,7 @@ export default function RoomShowcaseSection() {
                         opacity: i === 0 ? 1 : 0,
                       }}
                     >
-                      <h2 className="text-5xl font-bold text-white">
+                      <h2 className="type-h1  text-white">
                         {item.title}
                       </h2>
 

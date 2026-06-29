@@ -26,7 +26,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
           />
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
             <h2
-              className={`font-arizona-flare-regular font-normal text-primary leading-tight mb-2 ${typography.textFiXl}`}
+              className={`font-arizona-flare-regular font-normal text-primary-dark leading-tight mb-2 ${typography.textFiXl}`}
             >
               {destination.destination_name}
             </h2>
@@ -49,7 +49,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             )}
             <a
               href="#"
-              className="group inline-flex items-center gap-3 text-sm font-arizona-sans-regular text-primary uppercase tracking-widest"
+              className="group inline-flex items-center gap-3 text-sm font-arizona-sans-regular text-primary-dark uppercase tracking-widest"
             >
               <span className="relative flex items-center justify-center">
                 <span className="block w-2 h-2 rounded-full border border-gray/40 transition-all duration-400 ease-in-out group-hover:scale-0 group-hover:opacity-0" />

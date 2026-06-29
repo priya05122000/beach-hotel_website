@@ -23,7 +23,7 @@ const StatementSection = () => {
                     {/* Left label */}
                     <div className="col-span-12 sm:col-span-3  lg:col-span-2 flex items-center h-full pt-2">
                         <p className="tracking-[0.25em]  text-gray flex items-center gap-2">
-                            <span className="text-primary font-semibold"><Sparkle size={10} fill='#012644' /></span>
+                            <span className="text-primary-dark font-semibold"><Sparkle size={10} fill='#012644' /></span>
                             Discover
                         </p>
                     </div>
@@ -31,7 +31,7 @@ const StatementSection = () => {
                     {/* Statement + categories */}
                     <div className="col-span-12 sm:col-span-8 flex flex-col gap-10 sm:gap-12 ">
                         <div
-                            className="text-primary font-arizona-flare-regular text-[42px] lg:text-[50px] leading-tight"
+                            className="text-primary-dark font-arizona-flare-regular text-[42px] lg:text-[50px] leading-tight"
 
                         >
                             We welcome guests who seek the extraordinary — where three oceans meet the horizon.

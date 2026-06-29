@@ -10,7 +10,7 @@ export default function StoryPreviewSection() {
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
 
                     <h2
-                        className={` font-semibold  text-primary ${typography.textFiXl}`}
+                        className={` font-semibold  text-primary-dark ${typography.textFiXl}`}
                     >
                         Coastal Hotel Stay in Kanniyakumari
 
@@ -19,13 +19,13 @@ export default function StoryPreviewSection() {
                     {/* Right */}
                     <div>
                         <h3
-                            className={` max-w-sm text-primary ${typography.textFoXl}`}
+                            className={` max-w-sm text-primary-dark ${typography.textFoXl}`}
                         >
                             Our Story
                         </h3>
 
                         <p
-                            className={`mt-4 max-w-lg text-primary ${typography.textLg}`}
+                            className={`mt-4 max-w-lg text-primary-dark ${typography.textLg}`}
                         >
                             A calm and welcoming stay in Kanyakumari with well-kept spaces and warm hospitality, designed for a relaxed and comfortable visit.
 

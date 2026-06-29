@@ -9,10 +9,10 @@ const ExploreDestinationSection = () => {
 
                 {/* Top Content */}
                 <Section>
-                    <div className=" grid gap-8 sm:grid-cols-2 lg:items-start  sm:h-110 mb-10 sm:mb-0">
+                    <div className=" grid gap-8 sm:grid-cols-2 lg:items-start  sm:h-full mb-10 sm:mb-0">
 
                         {/* Left */}
-                        <div className={`max-w-xl text-[32px] lg:text-[40px] font-normal font-arizona-sans-regular  text-primary uppercase `}>
+                        <div className={`max-w-xl type-display-sm  text-primary-dark uppercase `}>
                             Kanniyakumari's most extraordinary luxury address - where every horizon is yours alone, at the meeting point of three oceans.
                         </div>
 
@@ -21,12 +21,12 @@ const ExploreDestinationSection = () => {
 
                             <div className=" relative">
                                 <span aria-hidden="true" className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 w-[0.5px] bg-gray h-[calc(100%-25px)]" />
-                                <p className={`max-w-xl sm:text-right sm:pr-10 ${typography.textXl}`}>
+                                <p className={`max-w-xl type-body-xl sm:text-right text-charcoal sm:pr-10`}>
                                     Rising at the iconic edge of India, where oceans meet in a rare natural confluence, our hotel stands in a setting of quiet distinction. The meeting of converging tides and endless blue waters creates a calm sense of place, where sea, sky and light move in harmony. Here, luxury is defined not by excess, but by stillness, space and the natural rhythm of the coastline.
                                 </p>
                             </div>
 
-                            <button className="mt-6 mr-10 flex items-center gap-2   h-10 py-2  uppercase transition font-normal  text-primary cursor-pointer ">
+                            <button className="mt-6 mr-10 flex items-center gap-2 h-10 py-2  uppercase transition font-normal  text-primary-dark cursor-pointer ">
                                 Explore
                                 <span>&#8594;</span>
                             </button>

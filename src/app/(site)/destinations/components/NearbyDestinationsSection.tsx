@@ -27,7 +27,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
           />
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
             <h2
-              className={`font-arizona-flare-regular font-normal capitalize text-primary leading-tight mb-4 ${typography.textFiXl}`}
+              className={`font-arizona-flare-regular font-normal capitalize text-primary-dark leading-tight mb-4 ${typography.textFiXl}`}
             >
               {destination.short_description}
             </h2>
@@ -42,7 +42,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             )}
             {/* <a
               href="#"
-              className="group inline-flex items-center gap-3 text-sm font-arizona-sans-regular text-primary uppercase tracking-widest"
+              className="group inline-flex items-center gap-3 text-sm font-arizona-sans-regular text-primary-dark uppercase tracking-widest"
             >
               <span className="relative flex items-center justify-center">
                 <span className="block w-2 h-2 rounded-full border border-gray/40 transition-all duration-400 ease-in-out group-hover:scale-0 group-hover:opacity-0" />
@@ -60,7 +60,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
               </span>
             </a> */}
 
-            <Button label="Explore Destination" href="#" className="text-[13px] text-primary font-semibold hover:text-primary/80"/>
+            <Button label="Explore Destination" href="#" className="text-[13px] text-primary-dark font-semibold hover:text-primary-dark/80"/>
           </div>
         </div>
         <div className="flex items-end">
@@ -85,10 +85,10 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   return (
     <Section className="py-16 lg:py-20">
       <div className="grid grid-cols-[0.5fr_1fr] border-b border-silver pb-10">
-        <div className="text-primary flex gap-3 items-center h-25">
+        <div className="text-primary-dark flex gap-3 items-center h-25">
           <Sparkle size={10} fill="#012644" className="" /> <p>Nearby Destinations</p>
         </div>
-        <div className="text-xl text-primary font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
+        <div className="text-xl text-primary-dark font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two
           thousand years, and a hidden hinterland of misted mountains, secret

@@ -26,10 +26,10 @@ export default function HotelCTASection() {
                             </p>
 
                             <div className="space-x-4 mt-6 flex">
-                                <button className=" bg-accent px-6 h-10 text-sm font-normal text-primary shadow-lg uppercase">
+                                <button className=" bg-accent px-6 h-10 text-sm font-normal text-primary-dark shadow-lg uppercase">
                                     Sign in
                                 </button>
-                                <button className=" bg-white px-6 h-10 text-sm font-normal text-primary shadow-lg  uppercase">
+                                <button className=" bg-white px-6 h-10 text-sm font-normal text-primary-dark shadow-lg  uppercase">
                                     Create Account
                                 </button>
                             </div>

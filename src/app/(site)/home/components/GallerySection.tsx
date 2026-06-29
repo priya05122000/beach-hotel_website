@@ -65,7 +65,7 @@ function MediaImage({ item }: { item: MediaItem }) {
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                     <div className="flex h-12 w-12 items-center justify-center bg-white/90">
-                        <Play size={20} className="ml-1 text-primary" fill="currentColor" />
+                        <Play size={20} className="ml-1 text-primary-dark" fill="currentColor" />
                     </div>
                 </div>
             </button>

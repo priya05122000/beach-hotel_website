@@ -39,7 +39,7 @@ export default function BlogCard({ blog }: Props) {
         )}
 
         <Link href={`/blog/${blog.slug}`}>
-          <h3 className="font-arizona-flare-regular text-foreground leading-snug mb-2 hover:text-primary transition-colors">
+          <h3 className="font-arizona-flare-regular text-foreground leading-snug mb-2 hover:text-primary-dark transition-colors">
             {blog.title}
           </h3>
         </Link>

@@ -127,16 +127,16 @@ export default function ExclusiveOffersSection({
   return (
     <Section className="pt-16 pb-16  lg:pt-20 lg:pb-20">
       <h2
-        className={` text-gray text-center uppercase font-normal `}
+        className={` text-gray text-center uppercase font-normal type-h5 tracking-[73%]  lg:tracking-[83%] `}
       >
         Exclusive Offers
       </h2>
 
-      <p className={`max-w-md ml-auto my-10 sm:text-right `}>
+      <p className={`max-w-md  ml-auto my-10 type-body sm:text-right `}>
         Hotel facilities are designated spaces and services designed to enhance the guest
       </p>
 
-      <div className="grid gap-6 xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
         {offerDatas.map((offer, index) => {
           const isActive = activeCard === offer.id;
 
@@ -199,14 +199,14 @@ export default function ExclusiveOffersSection({
                   <div className="inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent">
                     <p
                       className={`flex items-center px-2 transition-all duration-700 uppercase text-white ${isActive
-                        ? "bg-white text-primary lg:bg-transparent lg:text-white"
+                        ? "bg-white text-primary-dark lg:bg-transparent lg:text-white"
                         : ""
                         }`}
                     >
                       Weekday 50% off
                     </p>
                   </div>
-                  <p className={`text-white flex items-center gap-2 text-sm transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}>
+                  <p className={`text-white flex items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}>
                     6787Hkjh68 <Copy className="w-4 h-4 cursor-pointer" />
                   </p>
                 </div>

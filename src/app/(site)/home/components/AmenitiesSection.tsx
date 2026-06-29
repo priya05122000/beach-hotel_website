@@ -27,7 +27,7 @@ function IconCard({ iconUrl, title }: { iconUrl: string; title: string }) {
                     </div>
                 </div>
             </div>
-            <p className="text-center text-primary/60 ">{title}</p>
+            <p className="text-center text-gray type-body-sm ">{title}</p>
         </div>
     );
 }
@@ -36,11 +36,11 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
     const isRight = align === "right";
     return (
         <div className={`flex pb-4 lg:pb-20 sm:w-1/2 lg:w-full flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-            <p className={` text-primary font-bold mb-4 uppercase`}>
+            <p className={` text-primary-dark  font-bold mb-4 uppercase`}>
                 Step out of bed and straight<br />
                 sun-kissed sands of Kanyakumari
             </p>
-            <p>
+            <p className="text-charcoal">
                 Hotel Facilities Are Designated Spaces And Services Designed To
                 Enhance The Guest Experience, Distinct From Individual Room
                 Amenities. Key Offerings Include 24-Hour Reception,
@@ -66,14 +66,14 @@ export default async function AmenitiesSection() {
 
     return (
         <CenterSection className="bg-ivory py-16 lg:py-20">
-            <h2 className="  text-gray text-center  pb-10 uppercase font-normal">
+            <h2 className="type-h5 tracking-[73%]  lg:tracking-[83%]  text-gray text-center  pb-10 uppercase font-normal">
                 AMENITIES
             </h2>
 
-            <section className="relative px-4 sm:px-0 space-y-10 ">
+            <section className="relative px-4 sm:px-0 space-y-10 type-body">
 
                 {/* Mobile only: editorial + 8 icons in 4+4 grid */}
-                <div className="sm:hidden space-y-8">
+                <div className="sm:hidden space-y-8 ">
                     <Editorial align="left" />
                     <div className="grid grid-cols-4 gap-5">
                         {active.slice(0, 8).map((item) => {

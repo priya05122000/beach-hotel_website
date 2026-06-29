@@ -53,10 +53,9 @@ const SignatureHeadline = () => {
                     <div
                         className="
               uppercase
-              text-[37px] lg:text-[45px]
-              font-arizona-flare-regular
+             type-display-sm
               font-light
-              text-primary
+              text-primary-dark
             "
                     >
                         {LINES.map((line, i) => (

@@ -80,7 +80,7 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
               flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
             `}
           >
-            <h2 className="font-arizona-flare-regular font-normal text-primary leading-tight">
+            <h2 className="font-arizona-flare-regular font-normal text-primary-dark leading-tight">
               {section.category_name}
             </h2>
 

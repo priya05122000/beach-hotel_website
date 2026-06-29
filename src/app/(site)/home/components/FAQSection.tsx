@@ -38,7 +38,7 @@ export default function FAQSection({
             <Section>
                 {/* Header */}
                 <div>
-                    <p className="uppercase tracking-[0.2em] text-primary">
+                    <p className="uppercase tracking-[0.2em] text-primary-dark">
                         FAQ
                     </p>
 
@@ -59,7 +59,7 @@ export default function FAQSection({
                                 }}
                                 className={`px-4 py-2   uppercase transition ${activeCategory === category.category_name
                                     ? "bg-primary text-white"
-                                    : "bg-white text-primary"
+                                    : "bg-white text-primary-dark"
                                     }`}
                             >
                                 {category.category_name}
@@ -86,7 +86,7 @@ export default function FAQSection({
                                             }
                                             className={`flex w-full items-start justify-between text-left ${typography.textTwoXl}`}
                                         >
-                                            <p className="text-primary  uppercase">
+                                            <p className="text-primary-dark  uppercase">
                                                 {faq.question}
                                             </p>
 

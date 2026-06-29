@@ -21,12 +21,12 @@ export default function FormField(props: FormFieldProps) {
   const { label, error, className = "", as = "input", ...rest } = props;
 
   const base =
-    "w-full bg-surface border border-silver/60 px-4 py-3 text-sm text-primary placeholder:text-gray/60 focus:outline-none focus:border-primary/50 transition-colors duration-200";
+    "w-full bg-surface border border-silver/60 px-4 py-3 text-sm text-primary-dark placeholder:text-gray/60 focus:outline-none focus:border-primary/50 transition-colors duration-200";
 
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label className="text-xs font-semibold uppercase tracking-[0.12em] text-primary/60">
+        <label className="text-xs font-semibold uppercase tracking-[0.12em] text-primary-dark/60">
           {label}
         </label>
       )}

@@ -50,15 +50,15 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className={`flex h-10 w-full items-center px-4  cursor-pointer ${triggerClass}`}
+                className={`flex h-10 w-full items-center px-4 type-caption  cursor-pointer ${triggerClass}`}
             >
                 <Users size={16} className="mr-2 shrink-0 opacity-70" />
-                <span>{label}</span>
+                <span className="">{label}</span>
             </button>
 
             {/* Dropdown — matches DatePicker popup style */}
             {open && (
-                <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-64 rounded-none bg-primary shadow-2xl border border-silver/60 p-4">
+                <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-64 rounded-none bg-primary shadow-2xl border border-silver/60 type-caption p-4">
 
                     {/* Month-caption style header */}
                     <p className="flex items-center justify-center h-8 mb-3 font-bold text-accent  uppercase tracking-widest">
@@ -76,7 +76,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                                 type="button"
                                 onClick={() => updateAdults(adults - 1)}
                                 disabled={adults <= 1}
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
+                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
                                 <Minus size={12} />
                             </button>
@@ -87,7 +87,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                                 type="button"
                                 onClick={() => updateAdults(adults + 1)}
                                 disabled={adults >= 10}
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
+                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
                                 <Plus size={12} />
                             </button>
@@ -105,7 +105,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                                 type="button"
                                 onClick={() => updateChildren(children - 1)}
                                 disabled={children <= 0}
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
+                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
                                 <Minus size={12} />
                             </button>
@@ -116,7 +116,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                                 type="button"
                                 onClick={() => updateChildren(children + 1)}
                                 disabled={children >= 10}
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
+                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
                                 <Plus size={12} />
                             </button>
