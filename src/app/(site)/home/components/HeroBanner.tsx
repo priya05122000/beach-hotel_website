@@ -16,7 +16,6 @@ export default function HeroBanner() {
 
   return (
     <>
-
       <section className="relative h-screen">
         <div className="relative h-screen overflow-hidden" >
           <div className="flex h-full">
