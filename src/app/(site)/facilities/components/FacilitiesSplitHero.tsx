@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,11 +41,10 @@ export default function FacilitiesSplitHero() {
         mm.add("(max-width: 767px)", () => {
             gsap.set(mobilePanelRef.current, { opacity: 1 });
             const tl = gsap.timeline({ delay: 0.2 });
-            gsap.set([mobileTaglineRef.current, ...mobileLineRefs.current], { yPercent: 110 });
-            tl.to(mobileTaglineRef.current, { yPercent: 0, duration: 0.5, ease: "power3.out" })
-                .to(mobileLineRefs.current, { yPercent: 0, duration: 0.55, ease: "power3.out", stagger: 0.1 }, ">-0.1")
-                .fromTo(mobileCtaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, ">-0.1")
-                .fromTo(mobileParaRef.current, { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, ">-0.1");
+            applySlideUp([mobileTaglineRef.current], { timeline: tl, duration: 0.5 });
+            applySlideUp(mobileLineRefs.current, { timeline: tl, position: ">-0.1", stagger: 0.1, duration: 0.55 });
+            tl.fromTo(mobileCtaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, ">-0.1");
+            tl.fromTo(mobileParaRef.current, { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, ">-0.1");
         });
 
         // ── Desktop animation (≥ 768 px) ──────────────────────────
@@ -79,11 +79,10 @@ export default function FacilitiesSplitHero() {
 
             tl.to(desktopPanelRef.current, { opacity: 1, duration: 0.2 }, ">");
 
-            gsap.set([desktopTaglineRef.current, ...desktopLineRefs.current], { yPercent: 110 });
-            gsap.set(desktopParaRef.current, { yPercent: 110, opacity: 0 });
-            tl.to(desktopTaglineRef.current, { yPercent: 0, duration: 0.35, ease: "power3.out" }, ">");
-            tl.to(desktopLineRefs.current, { yPercent: 0, duration: 0.45, ease: "power3.out", stagger: 0.1 }, ">-0.15");
+            applySlideUp([desktopTaglineRef.current], { timeline: tl, position: ">", duration: 0.35 });
+            applySlideUp(desktopLineRefs.current, { timeline: tl, position: ">-0.15", stagger: 0.1, duration: 0.45 });
             tl.fromTo(desktopCtaRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, ">-0.1");
+            gsap.set(desktopParaRef.current, { yPercent: 110, opacity: 0 });
             tl.to(desktopParaRef.current, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power4.out" }, ">-0.15");
         });
 

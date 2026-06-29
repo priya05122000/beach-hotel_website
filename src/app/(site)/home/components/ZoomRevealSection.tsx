@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 import Section from "@/src/components/common/Section";
 import CenterSection from "@/src/components/common/CenterSection";
 
@@ -46,7 +47,6 @@ export default function ZoomRevealSection() {
                     transformOrigin: "center center",
                 });
                 gsap.set(content, { opacity: 0, x: 40 });
-                gsap.set(lines, { yPercent: 110 });
                 if (paraRef.current) gsap.set(paraRef.current, { opacity: 0, y: 24 });
                 if (btnRef.current) gsap.set(btnRef.current, { opacity: 0, y: 16 });
 
@@ -67,7 +67,7 @@ export default function ZoomRevealSection() {
 
                 // Phase 2 — right content reveals
                 tl.to(content, { opacity: 1, x: 0, duration: 0.4 });
-                tl.to(lines, { yPercent: 0, stagger: 0.14, duration: 0.55, ease: "power3.out" }, "<");
+                applySlideUp(lines, { timeline: tl, position: "<", stagger: 0.14, duration: 0.55 });
                 tl.to(paraRef.current, { opacity: 1, y: 0, duration: 0.4 }, "-=0.25");
                 tl.to(btnRef.current, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2");
             }, section);

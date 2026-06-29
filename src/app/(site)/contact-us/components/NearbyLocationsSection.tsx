@@ -25,7 +25,7 @@ const rightLocations = [
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/contact-us/thiru.png",
+    icon: "/icons/thiru.png",
     label: "Thiruvalluvar Statue and\nVivekananda Rock Memorial",
     time: "5 min",
     length: "md:w-20 lg:w-30 xl:w-40",

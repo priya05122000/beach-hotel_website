@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 const IMAGE_SRC = "/banner/gallery.webp";
 
@@ -27,7 +28,6 @@ export default function GalleryBanner() {
             const rightLine = rightRef.current;
 
             gsap.set(".leftReveal", { clipPath: "inset(0 100% 0 0)" });
-            gsap.set([...leftLines, rightLine], { yPercent: 110 });
             gsap.set(".readReveal", { yPercent: 100 });
 
             const tl = gsap.timeline();
@@ -40,27 +40,10 @@ export default function GalleryBanner() {
             });
 
             // NOR + MOUNTAINS
-            tl.to(
-                leftLines,
-                {
-                    yPercent: 0,
-                    duration: 0.8,
-                    stagger: 0.13,
-                    ease: "power3.out",
-                },
-                ">0.1"
-            );
+            applySlideUp(leftLines, { timeline: tl, position: ">0.1", stagger: 0.13, duration: 0.8 });
 
             // WAY
-            tl.to(
-                rightLine,
-                {
-                    yPercent: 0,
-                    duration: 0.7,
-                    ease: "power3.out",
-                },
-                "<0.2"
-            );
+            applySlideUp([rightLine], { timeline: tl, position: "<0.2", duration: 0.7 });
 
             // Read More
             tl.to(

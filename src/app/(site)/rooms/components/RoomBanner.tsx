@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,13 +67,11 @@ export default function RoomBanner() {
                     ease: "none",
                 });
 
-                // ② Left lines — overlap zoom at 0.3
-                gsap.set(leftLines, { yPercent: 110 });
-                tl.to(leftLines, { yPercent: 0, duration: 2, ease: "power3.out", stagger: 0.1 }, 0);
+                // ② Left lines — overlap zoom at 0
+                applySlideUp(leftLines, { timeline: tl, position: 0, stagger: 0.1, duration: 2 });
 
-                // ③ Right line — 1s after left lines start
-                gsap.set(rightLine, { yPercent: 110 });
-                tl.to(rightLine, { yPercent: 0, duration: 2, ease: "power3.out" }, 0.3);
+                // ③ Right line — 0.3 after left lines start
+                applySlideUp([rightLine], { timeline: tl, position: 0.3, duration: 2 });
             }, section);
 
             return () => ctx.revert();
@@ -100,29 +99,17 @@ export default function RoomBanner() {
                     }
                 );
 
-                gsap.set(mobileLineLeftRef.current, { yPercent: 110 });
-                gsap.to(mobileLineLeftRef.current, {
-                    yPercent: 0,
+                applySlideUp([mobileLineLeftRef.current], {
+                    trigger: mobileImage,
+                    start: "top 65%",
                     duration: 0.7,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: mobileImage,
-                        start: "top 65%",
-                        toggleActions: "play none none none",
-                    },
                 });
 
-                gsap.set(mobileLineRightRef.current, { yPercent: 110 });
-                gsap.to(mobileLineRightRef.current, {
-                    yPercent: 0,
+                applySlideUp([mobileLineRightRef.current], {
+                    trigger: mobileImage,
+                    start: "top 65%",
                     duration: 0.7,
                     delay: 0.5,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: mobileImage,
-                        start: "top 65%",
-                        toggleActions: "play none none none",
-                    },
                 });
             }, section);
 

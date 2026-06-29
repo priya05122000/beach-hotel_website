@@ -36,6 +36,48 @@ export interface SlideUpOptions {
     scope?: HTMLElement | null;
 }
 
+/**
+ * applySlideUp — plain function version, safe to call inside useLayoutEffect / matchMedia callbacks.
+ *
+ * Usage inside a timeline:
+ *   applySlideUp(lineRefs.current, { timeline: tl, position: 0, stagger: 0.1, duration: 2 });
+ *
+ * Usage with ScrollTrigger (standalone):
+ *   applySlideUp(lineRefs.current, { trigger: sectionRef.current, start: "top 80%" });
+ */
+export function applySlideUp(
+    els: (HTMLElement | null)[],
+    {
+        trigger,
+        start = "top 75%",
+        toggleActions = "play none none none",
+        stagger = 0,
+        duration = 0.8,
+        ease = "power3.out",
+        delay = 0,
+        timeline,
+        position,
+    }: Omit<SlideUpOptions, "targets" | "scope">
+) {
+    const valid = els.filter(Boolean) as HTMLElement[];
+    if (valid.length === 0) return;
+
+    gsap.set(valid, { yPercent: 110 });
+
+    if (timeline) {
+        timeline.to(valid, { yPercent: 0, duration, ease, stagger, delay }, position);
+    } else {
+        gsap.to(valid, {
+            yPercent: 0,
+            duration,
+            ease,
+            stagger,
+            delay,
+            scrollTrigger: trigger ? { trigger, start, toggleActions } : undefined,
+        });
+    }
+}
+
 export function useSlideUp({
     targets,
     trigger,
