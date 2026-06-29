@@ -89,7 +89,7 @@ export default function GalleryBanner() {
                             ref={(el) => {
                                 leftRefs.current[0] = el;
                             }}
-                            className="block  font-arizona-flare-regular tracking-wider font-bold bg-clip-text text-transparent  leading-none"
+                            className="block type-display-lg tracking-wider font-bold bg-clip-text text-transparent  leading-none"
                             style={{
                                 fontSize: displaySize,
                                 ...clipStyle,
@@ -115,7 +115,7 @@ export default function GalleryBanner() {
                     </div>
 
                     <div className="overflow-hidden w-full mt-10  text-end">
-                        <p className="readReveal  ">
+                        <p className="readReveal  type-body">
                             Read More
                         </p>
                         {/* <hr className="w-1/2 ml-auto mt-4" /> */}

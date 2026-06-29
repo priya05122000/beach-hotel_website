@@ -7,13 +7,13 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const normalizeImages = (url?: string | string[] | null): string[] => {
-    if (!url) return [];
-    if (Array.isArray(url)) return url;
-    try {
-        const parsed = JSON.parse(url);
-        if (Array.isArray(parsed)) return parsed;
-    } catch { }
-    return [url];
+  if (!url) return [];
+  if (Array.isArray(url)) return url;
+  try {
+    const parsed = JSON.parse(url);
+    if (Array.isArray(parsed)) return parsed;
+  } catch { }
+  return [url];
 };
 
 export default function RoomSlider({
@@ -66,14 +66,14 @@ export default function RoomSlider({
       <button
         onClick={prev}
         aria-label="Previous image"
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer"
       >
         <ChevronLeft size={16} strokeWidth={1.5} />
       </button>
       <button
         onClick={next}
         aria-label="Next image"
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer"
       >
         <ChevronRight size={16} strokeWidth={1.5} />
       </button>
