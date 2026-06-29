@@ -44,7 +44,13 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
       );
     });
 
-    applySlideUp([titleRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    mm.add("all", () => {
+      applySlideUp([titleRef.current], {
+        trigger: sectionRef.current,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      });
+    });
 
     return () => mm.revert();
   }, []);

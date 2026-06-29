@@ -20,8 +20,8 @@ export default function HeroLocationSection() {
   const topSectionRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([headingRef.current], { trigger: topSectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
-    applySlideUp([subRef.current], { trigger: topSectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    applySlideUp([headingRef.current], { trigger: topSectionRef.current, start: "top 85%", toggleActions: "play none none none" });
+    applySlideUp([subRef.current], { trigger: topSectionRef.current, start: "top 85%", toggleActions: "play none none none" });
   }, []);
 
   useEffect(() => {

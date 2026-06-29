@@ -14,7 +14,7 @@ export default function BlogIntro({ blog }: Props) {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([titleRef.current], { trigger: wrapperRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    applySlideUp([titleRef.current], { trigger: wrapperRef.current, start: "top 85%", toggleActions: "play none none none" });
   }, []);
 
   return (

@@ -24,8 +24,8 @@ const AboutUs = () => {
     }, []);
 
     useLayoutEffect(() => {
-        applySlideUp([titleRef.current], { trigger: sectionRef.current, start: "top 75%", toggleActions: "play reverse play reverse" });
-        applySlideUp([subtitleRef.current], { trigger: sectionRef.current, start: "top 25%", toggleActions: "play reverse play reverse" });
+        applySlideUp([titleRef.current], { trigger: sectionRef.current, start: "top 75%", toggleActions: "play none none none" });
+        applySlideUp([subtitleRef.current], { trigger: sectionRef.current, start: "top 60%", toggleActions: "play none none none" });
     }, []);
 
     return (
