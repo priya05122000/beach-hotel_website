@@ -1,7 +1,7 @@
 /**
  * useSlideUp — GSAP text reveal utility (yPercent: 110 → 0)
  *
- * Standalone (ScrollTrigger, plays once on scroll):
+ * Standalone (ScrollTrigger, replays on every scroll up/down):
  *   useSlideUp({ targets: lineRefs.current, trigger: sectionRef.current })
  *
  * With options:
@@ -50,7 +50,7 @@ export function applySlideUp(
     {
         trigger,
         start = "top 75%",
-        toggleActions = "play none none none",
+        toggleActions = "play reverse play reverse",
         stagger = 0,
         duration = 0.8,
         ease = "power3.out",
@@ -82,7 +82,7 @@ export function useSlideUp({
     targets,
     trigger,
     start = "top 75%",
-    toggleActions = "play none none none",
+    toggleActions = "play reverse play reverse",
     stagger = 0,
     duration = 0.8,
     ease = "power3.out",

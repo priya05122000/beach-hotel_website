@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ interface Props {
 
 export default function GallerySectionBlock({ section, galleries, index }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -37,6 +39,8 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
         },
       },
     );
+
+    applySlideUp([titleRef.current], { trigger: el, start: "top 80%", toggleActions: "play reverse play reverse" });
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => {
@@ -80,9 +84,11 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
               flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
             `}
           >
-            <h2 className="type-display-lg mb-4 font-semibold text-primary-dark leading-tight">
-              {section.category_name}
-            </h2>
+            <div className="overflow-hidden mb-4">
+              <h2 ref={titleRef} className="type-display-lg font-semibold text-primary-dark leading-tight">
+                {section.category_name}
+              </h2>
+            </div>
 
             <p className={`text-charcoal  type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
               {section.short_description}

@@ -20,6 +20,11 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
       touchMultiplier: 2,
     });
 
+    // Keep ScrollTrigger's cached scroll position in sync with Lenis's
+    // virtual scroll, otherwise enter/leave detection drifts after the
+    // first trigger and reverse/replay stops firing at the right spot.
+    lenis.on("scroll", ScrollTrigger.update);
+
     const rafCallback = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);

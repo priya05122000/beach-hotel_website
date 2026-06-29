@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import { applySlideUp } from '@/src/lib/gsap/useSlideUp';
 
 const AboutUs = () => {
     const bgRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLElement>(null);
+    const titleRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,6 +19,10 @@ const AboutUs = () => {
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useLayoutEffect(() => {
+        applySlideUp([titleRef.current], { trigger: sectionRef.current, start: "top 75%", toggleActions: "play reverse play reverse" });
     }, []);
 
     return (
@@ -42,10 +48,13 @@ const AboutUs = () => {
 
             {/* First 100vh — left content */}
             <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20" style={{ height: '100vh' }}>
-                <div
-                    className="text-white type-display-2xl leading-none "
-                >
-                    Where Every<br />Wave Tells<br />Our Story
+                <div className="overflow-hidden">
+                    <div
+                        ref={titleRef}
+                        className="text-white type-display-2xl leading-none "
+                    >
+                        Where Every<br />Wave Tells<br />Our Story
+                    </div>
                 </div>
                 <p className="text-white/50 type-body uppercase mt-8 flex items-center gap-3">
                     <span className="inline-block w-8 h-px bg-white/40" />
