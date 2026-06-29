@@ -40,7 +40,7 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
       },
     );
 
-    applySlideUp([titleRef.current], { trigger: el, start: "top 80%", toggleActions: "play reverse play reverse" });
+    applySlideUp([titleRef.current], { trigger: el, start: "top 85%", toggleActions: "play none none none" });
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => {

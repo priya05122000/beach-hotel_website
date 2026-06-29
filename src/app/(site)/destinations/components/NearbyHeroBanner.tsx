@@ -1,7 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -53,13 +52,8 @@ export default function NearbyHeroBanner({
 }: NearbyHeroBannerProps) {
   const slides = destinations.length > 0 ? destinations : FALLBACK_SLIDES;
 
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
-
-  useLayoutEffect(() => {
-    applySlideUp([titleRef.current], {});
-  }, []);
 
   const scrollTo = (index: number) => {
     swiperInstance?.slideTo(index);
@@ -100,11 +94,9 @@ export default function NearbyHeroBanner({
           {/* <p className="text-white/70 uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 font-arizona-sans-regular">
             Nearby Destinations
           </p> */}
-          <div className="overflow-hidden mb-4">
-            <h1 ref={titleRef} className="text-white type-display-sm leading-tight">
-              {slides[selectedIndex]?.destination_name}
-            </h1>
-          </div>
+          <h1 className="text-white type-display-sm leading-tight mb-4">
+            {slides[selectedIndex]?.destination_name}
+          </h1>
           {slides[selectedIndex]?.short_description && (
             <p className="text-white type-body max-w-md leading-relaxed">
               {slides[selectedIndex].short_description}

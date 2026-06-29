@@ -19,7 +19,7 @@ export default function TrustedBySection() {
   const headingRef = useRef<HTMLParagraphElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 85%", toggleActions: "play none none none" });
   }, []);
 
   return (

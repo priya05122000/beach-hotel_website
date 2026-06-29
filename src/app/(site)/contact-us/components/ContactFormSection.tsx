@@ -66,7 +66,7 @@ export default function ContactFormSection() {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 85%", toggleActions: "play none none none" });
   }, []);
 
   const [form, setForm] = useState(initialForm);
