@@ -22,7 +22,7 @@ const CommonBanner = ({
                 className={`object-cover ${className}`}
             />
             <div className='absolute inset-x-0 z-10 bottom-10 flex justify-center text-white'>
-                <h1 className="text-2xl font-semibold">{title}</h1>
+                <h1 className="type-body-xl font-semibold">{title}</h1>
             </div>
             <div className='absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent' />
         </div>

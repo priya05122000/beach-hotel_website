@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
-import { typography } from "@/src/lib/typography";
 import type { FAQ } from "@/src/types";
 
 interface FAQAboutSectionProps {
@@ -16,19 +15,15 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
   return (
     <Section className=" py-16 lg:py-20">
       <div className="mb-6 lg:mb-10 flex items-start justify-between gap-4">
-        <h2
-          className={`font-normal text-primary-dark leading-tight ${typography.textFoXl}`}
-        >
+        <h2 className="type-h4  font-normal text-primary-dark leading-tight">
           YOUR QUESTIONS,
           <br />
-          <div className="font-light mt-2 text-charcoal text-sm lg:text-base leading-snug max-w-xs md:max-w-sm">
+          <div className="type-body font-light mt-2 text-charcoal leading-snug max-w-xs md:max-w-sm">
             thoughtfully answered — so all that's left is to arrive
           </div>
         </h2>
 
-        <p
-          className={`hidden sm:block text-right text-primary-dark max-w-60 leading-snug ${typography.textBase}`}
-        >
+        <p className="hidden sm:block type-body text-right text-primary-dark max-w-60 leading-snug">
           We&apos;ve gathered answers to everything you might be wondering about
         </p>
       </div>
@@ -45,7 +40,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
           </div>
 
           <p
-            className={`italic text-gray leading-relaxed max-w-60 ${typography.textLg}`}
+            className="type-body italic text-charcoal leading-relaxed max-w-60"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             «&thinsp;We believe every stay in Kanyakumari should be
@@ -63,23 +58,20 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 text-left"
                 >
-                  <p className={`text-foreground ${typography.textBase}`}>
+                  <p className="type-body-lg font-semibold text-primary-dark ">
                     {faq.question}
                   </p>
 
-                  <span className="shrink-0 flex h-7 w-7 items-center justify-center text-gray text-sm transition-transform duration-300">
+                  <span className="shrink-0 flex h-7 w-7 items-center justify-center text-gray type-label transition-transform duration-300">
                     {isOpen ? "↑" : "↓"}
                   </span>
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    isOpen ? "mt-3 max-h-40 opacity-100" : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "mt-3 max-h-40 opacity-100" : "max-h-0 opacity-0"
+                    }`}
                 >
-                  <p
-                    className={`text-gray leading-relaxed ${typography.textBase}`}
-                  >
+                  <p className="type-body text-charcoal leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
