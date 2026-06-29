@@ -635,6 +635,10 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             href={link.href}
                             onClick={handleLinkClick}
                             className="group text-[16px] uppercase tracking-[0.2em] text-primary-dark transition-colors font-arizona-flare-regular duration-300"
+                            style={{
+                              transform: "translateY(110%)",
+                              display: "block",
+                            }}
                           >
                             <span className="relative inline-block pb-1 transition-all duration-300">
                               {link.label}
@@ -706,11 +710,13 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     href="tel:+915467898765"
                     className="text-primary-darktext-[16px] tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
                   >
-                    <span className="text-[10px]">Enquiry:</span>  +91 54678 98765
+                    <span className="text-[10px]">Enquiry:</span> +91 54678
+                    98765
                   </a>
 
                   <p className="text-primary-darktext-xs tracking-wider uppercase font-light">
-                   <span className="text-[10px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
+                    <span className="text-[10px]">Address:</span> Beach Rd,
+                    Kanniyakumari, TN 629702
                   </p>
                 </div>
                 {/* <a
