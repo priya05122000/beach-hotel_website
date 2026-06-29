@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 import Section from "../common/Section";
@@ -38,6 +38,19 @@ const NAV_LINKS = [
   { href: "/contact-us", label: "Contact Us" },
 ];
 
+const NAV_LEFT = [
+  { href: "/rooms", label: "Room" },
+  { href: "/facilities", label: "Facility" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/destinations", label: "Destination" },
+];
+
+const NAV_RIGHT = [
+  { href: "/blog", label: "Blog" },
+  { href: "/about-us", label: "About Us" },
+  { href: "/contact-us", label: "Contact Us" },
+];
+
 const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
 const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
 
@@ -53,7 +66,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [animating, setAnimating] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isOverDark, setIsOverDark] = useState(false);
 
   const pathname = usePathname();
@@ -64,14 +76,13 @@ export default function Header({ announcementData }: AnnouncementProps) {
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const childLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
   const metaRef = useRef<HTMLDivElement>(null);
-  const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const animTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const check = () => {
-      setIsDesktop(window.innerWidth >= 1280); // xl breakpoint
+      setIsDesktop(window.innerWidth >= 1024); // lg breakpoint
     };
 
     check();
@@ -166,15 +177,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
-
-  const handleMouseEnter = (label: string) => {
-    if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
-    setActiveDropdown(label);
-  };
-
-  const handleMouseLeave = () => {
-    dropdownTimerRef.current = setTimeout(() => setActiveDropdown(null), 150);
-  };
 
   const handleLinkClick = () => {
     setOpen(false);
@@ -394,9 +396,35 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
         {/* Main nav bar */}
         <div className={`transition-colors duration-500 bg-transparent"}`}>
-          <div className="px-6  xl:px-10">
-            <div className="relative h-16 flex items-center">
-              {/* Logo — centered (visible when not scrolled) */}
+          <div className="px-8 xl:px-20">
+            <div className="relative h-16 flex items-center justify-between">
+
+              {/* ── Left nav links (desktop, not scrolled) ── */}
+              <ul
+                className={`hidden lg:flex items-center gap-6 transition-opacity duration-300 ${
+                  isDesktop && !scrolled && !open && !animating
+                    ? "opacity-100 pointer-events-auto"
+                    : "opacity-0 pointer-events-none"
+                }`}
+              >
+                {NAV_LEFT.map(({ href, label }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className={`relative font-semibold text-sm tracking-[0.6px] uppercase transition-colors pb-0.5
+                        after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:origin-left after:transition-transform after:duration-300
+                        ${isActive(href) ? "after:scale-x-100" : "after:scale-x-0"}
+                        ${isOverDark ? "text-white hover:text-accent after:bg-white" : "text-primary-dark hover:text-accent after:bg-primary-dark"}
+                      `}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* ── Logo — always centered absolutely ── */}
+              {/* Centered logo (not scrolled) */}
               <div
                 className="absolute left-1/2 -translate-x-1/2"
                 style={{
@@ -416,8 +444,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </Link>
               </div>
 
-              {/* Logo — left-aligned (visible when scrolled) */}
+              {/* Left-aligned logo (scrolled) */}
               <div
+                className="absolute left-0"
                 style={{
                   opacity: scrolled ? 1 : 0,
                   transition: "opacity 0.5s ease",
@@ -435,96 +464,44 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </Link>
               </div>
 
-              {/* Right — desktop nav links + hamburger */}
-              <div className="ml-auto flex items-center">
-                {/* Desktop nav links: visible when not scrolled and overlay closed */}
+              {/* ── Right nav links + Book button + hamburger ── */}
+              <div className="flex items-center ml-auto">
+                {/* Right nav links (desktop, not scrolled) */}
                 <ul
-                  className={`hidden lg:flex items-center gap-8 transition-opacity duration-300 ${
+                  className={`hidden lg:flex items-center gap-6 transition-opacity duration-300 ${
                     isDesktop && !scrolled && !open && !animating
                       ? "opacity-100 pointer-events-auto"
                       : "opacity-0 pointer-events-none"
                   }`}
                 >
-                  {NAV_LINKS.map(({ href, label, children }) => (
-                    <li
-                      key={label}
-                      className="relative"
-                      onMouseEnter={() =>
-                        children ? handleMouseEnter(label) : undefined
-                      }
-                      onMouseLeave={children ? handleMouseLeave : undefined}
-                    >
-                      {href ? (
-                        <Link
-                          href={href}
-                          className={`inline-flex items-center gap-1 transition-colors font-semibold text-xs lg:text-sm tracking-[0.6px] uppercase
-    ${
-      isActive(href)
-        ? "text-accent"
-        : isOverDark
-          ? "text-white hover:text-accent"
-          : "text-primary-dark hover:text-accent"
-    }`}
-                        >
-                          {label}
-                          {children && (
-                            <ChevronDown
-                              size={14}
-                              className={`transition-transform duration-200 ${activeDropdown === label ? "rotate-180" : ""}`}
-                            />
-                          )}
-                        </Link>
-                      ) : (
-                        <span
-                          className={`inline-flex items-center gap-1 font-semibold text-xs lg:text-sm tracking-[0.6px] uppercase cursor-default select-none
-    ${isOverDark ? "text-white" : "text-primary"}`}
-                        >
-                          {label}
-                          {children && (
-                            <ChevronDown
-                              size={14}
-                              className={`transition-transform duration-200 ${activeDropdown === label ? "rotate-180" : ""}`}
-                            />
-                          )}
-                        </span>
-                      )}
-
-                      {children && (
-                        <div
-                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${activeDropdown === label ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"}`}
-                        >
-                          <ul
-                            className={` backdrop-blur-md shadow-lg min-w-30 py-2 ${
-                              isOverDark
-                                ? "text-white bg-white/10 hover:text-accent"
-                                : "text-primary-dark hover:text-accent bg-primary/40"
-                            }`}
-                          >
-                            {children.map((child) => (
-                              <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] uppercase transition-colors ${isActive(child.href) ? "text-accent " : "text-white hover:text-accent"}`}
-                                >
-                                  {child.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                  {NAV_RIGHT.map(({ href, label }) => (
+                    <li key={label}>
+                      <Link
+                        href={href}
+                        className={`relative font-semibold text-sm tracking-[0.6px] uppercase transition-colors pb-0.5
+                          after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:origin-left after:transition-transform after:duration-300
+                          ${isActive(href) ? "after:scale-x-100" : "after:scale-x-0"}
+                          ${isOverDark ? "text-white hover:text-accent after:bg-white" : "text-primary-dark hover:text-accent after:bg-primary-dark"}
+                        `}
+                      >
+                        {label}
+                      </Link>
                     </li>
                   ))}
+                  <li>
+                    <Link href="/contact-us">
+                      <div className="animated-border inline-block w-auto relative overflow-hidden">
+                        <div className="inline-flex items-center gap-3 px-4 h-8 bg-primary">
+                          <span className="font-medium text-white text-xs tracking-[0.6px] uppercase">
+                            Book My Stay
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
                 </ul>
 
-                {/*
-                                    Hamburger / Close button.
-                                    Both states live in the DOM stacked vertically;
-                                    overflow-hidden clips whichever is off-screen.
-                                    On toggle they slide past each other (slot-machine).
-                                    Icon rotates 90° on hover.
-                                */}
-                {/* Button — ensure overflow-hidden works with explicit height */}
+                {/* Hamburger / Close button */}
                 <button
                   onClick={toggle}
                   aria-label={open ? "Close menu" : "Open menu"}
@@ -536,7 +513,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   }`}
                   style={{
                     opacity: !isDesktop ? 1 : open ? 1 : scrolled ? 1 : 0,
-
                     transitionDelay: !isDesktop
                       ? "0ms"
                       : open
@@ -548,7 +524,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 >
                   {/* Menu span */}
                   <span
-                    className="absolute inset-0 flex items-center justify-between "
+                    className="absolute inset-0 flex items-center justify-between"
                     style={{
                       transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                       transform: open ? "translateY(-100%)" : "translateY(0)",
@@ -569,7 +545,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                   {/* Close span */}
                   <span
-                    className="absolute inset-0 flex items-center justify-between "
+                    className="absolute inset-0 flex items-center justify-between"
                     style={{
                       transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                       transform: open ? "translateY(0)" : "translateY(100%)",

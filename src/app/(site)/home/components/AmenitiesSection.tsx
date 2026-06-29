@@ -49,9 +49,7 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
       className={`flex pb-4 lg:pb-20 sm:w-1/2 lg:w-full flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}
     >
       <p className={` text-primary-dark  font-bold mb-4 uppercase`}>
-        Step out of bed and straight
-        <br />
-        sun-kissed sands of Kanyakumari
+        Thoughtful Indulgences For Every Moment Of Your Stay
       </p>
       <p className="text-charcoal">
         Hotel Facilities Are Designated Spaces And Services Designed To Enhance
