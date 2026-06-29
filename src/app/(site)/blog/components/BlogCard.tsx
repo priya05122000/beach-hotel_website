@@ -61,7 +61,7 @@ export default function BlogCard({ blog }: Props) {
             className="transition-transform duration-300 group-hover/link:translate-x-1"
           />
         </Link> */}
-        <Button href={`/blog/${blog.slug}`} className="mt-auto text-[13px] text-primary font-semibold hover:text-primary/80">
+        <Button href={`/blog/${blog.slug}`} className="mt-auto text-[13px] text-primary-darkfont-semibold hover:text-primary/80">
           More Details
         </Button>
       </div>

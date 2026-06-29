@@ -704,25 +704,25 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+915467898765"
-                    className="text-primary text-[16px] tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
+                    className="text-primary-darktext-[16px] tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
                   >
                     <span className="text-[10px]">Enquiry:</span>  +91 54678 98765
                   </a>
 
-                  <p className="text-primary text-xs tracking-wider uppercase font-light">
+                  <p className="text-primary-darktext-xs tracking-wider uppercase font-light">
                    <span className="text-[10px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
                   </p>
                 </div>
                 {/* <a
                   href="/contact-us"
                   onClick={handleLinkClick}
-                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary-darkunderline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
                 >
                   Book My Stay
                 </a> */}
                 <Button
                   href="/contact-us"
-                  className="text-[11px] tracking-[0.2em] font-semibold text-primary w-45"
+                  className="text-[11px] tracking-[0.2em] font-semibold text-primary-darkw-45"
                 >
                   Book My Stay
                 </Button>
