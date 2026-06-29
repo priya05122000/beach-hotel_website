@@ -67,11 +67,7 @@ export default function ZoomRevealSection() {
 
                 // Phase 2 — right content reveals
                 tl.to(content, { opacity: 1, x: 0, duration: 0.4 });
-                tl.to(
-                    lines,
-                    { yPercent: 0, stagger: 0.14, duration: 0.55, ease: "power3.out" },
-                    "<"
-                );
+                tl.to(lines, { yPercent: 0, stagger: 0.14, duration: 0.55, ease: "power3.out" }, "<");
                 tl.to(paraRef.current, { opacity: 1, y: 0, duration: 0.4 }, "-=0.25");
                 tl.to(btnRef.current, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2");
             }, section);

@@ -1,11 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import CenterSection from "@/src/components/common/CenterSection";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useSlideUp } from "@/src/lib/gsap/useSlideUp";
 
 const LINES: React.ReactNode[] = [
     <>Kanniyakumari&apos;s most extraordinary</>,
@@ -18,33 +15,14 @@ const SignatureHeadline = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
-    useLayoutEffect(() => {
-        const section = sectionRef.current;
-        const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
-        if (!section || lines.length === 0) return;
-
-        gsap.set(lines, { yPercent: 110 });
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                start: "top 75%",
-                toggleActions: "play none none none",
-            },
-        });
-
-        tl.to(lines, {
-            yPercent: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.12,
-        });
-
-        return () => {
-            tl.scrollTrigger?.kill();
-            tl.kill();
-        };
-    }, []);
+    useSlideUp({
+        targets: lineRefs.current,
+        trigger: sectionRef.current,
+        start: "top 75%",
+        stagger: 0.12,
+        duration: 0.8,
+        scope: sectionRef.current,
+    });
 
     return (
         <CenterSection className="">

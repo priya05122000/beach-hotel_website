@@ -36,7 +36,6 @@ export default function RoomBanner() {
 
                 if (!rightLine || leftLines.length === 0) return;
 
-                gsap.set([...leftLines, rightLine], { yPercent: 110 });
                 gsap.set(imageWrapper, {
                     left: "50%",
                     top: "50%",
@@ -68,27 +67,12 @@ export default function RoomBanner() {
                 });
 
                 // ② Left lines — overlap zoom at 0.3
-                tl.to(
-                    leftLines,
-                    {
-                        yPercent: 0,
-                        duration: 2,
-                        ease: "power3.out",
-                        stagger: 0.1,
-                    },
-                    0
-                );
+                gsap.set(leftLines, { yPercent: 110 });
+                tl.to(leftLines, { yPercent: 0, duration: 2, ease: "power3.out", stagger: 0.1 }, 0);
 
                 // ③ Right line — 1s after left lines start
-                tl.to(
-                    rightLine,
-                    {
-                        yPercent: 0,
-                        duration: 2,
-                        ease: "power3.out",
-                    },
-                    0.3
-                );
+                gsap.set(rightLine, { yPercent: 110 });
+                tl.to(rightLine, { yPercent: 0, duration: 2, ease: "power3.out" }, 0.3);
             }, section);
 
             return () => ctx.revert();
@@ -116,10 +100,7 @@ export default function RoomBanner() {
                     }
                 );
 
-                gsap.set([mobileLineLeftRef.current, mobileLineRightRef.current], {
-                    yPercent: 110,
-                });
-
+                gsap.set(mobileLineLeftRef.current, { yPercent: 110 });
                 gsap.to(mobileLineLeftRef.current, {
                     yPercent: 0,
                     duration: 0.7,
@@ -131,6 +112,7 @@ export default function RoomBanner() {
                     },
                 });
 
+                gsap.set(mobileLineRightRef.current, { yPercent: 110 });
                 gsap.to(mobileLineRightRef.current, {
                     yPercent: 0,
                     duration: 0.7,
