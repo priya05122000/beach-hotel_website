@@ -1,30 +1,33 @@
+import Link from "next/link";
+
 type ButtonProps = {
   label: string;
+  className?: string;
 } & ({ href: string; action?: never } | { action: () => void; href?: never });
 
-export const Button = ({ label, href, action }: ButtonProps) => {
+export const Button = ({ label, href, action, className }: ButtonProps) => {
   const inner = (
-    <button>
-      <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
+    <>
+      <span className="inline-block w-8 h-px bg-current transition-all duration-300 group-hover:w-14" />
       {label}
-    </button>
+    </>
   );
 
   if (href) {
     return (
-      <a
+      <Link
         href={href}
-        className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold group mt-2"
+        className={`inline-flex items-center gap-3 uppercase group${className ? ` ${className}` : ""}`}
       >
         {inner}
-      </a>
+      </Link>
     );
   }
 
   return (
     <button
       onClick={action}
-      className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold group mt-2"
+      className={`inline-flex items-center gap-3 uppercase group${className ? ` ${className}` : ""}`}
     >
       {inner}
     </button>
