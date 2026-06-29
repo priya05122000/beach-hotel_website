@@ -9,8 +9,8 @@ const page = () => {
     <div className="pt-20 md:pt-18">
       <HeroLocationSection />
       <NearbyLocationsSection />
-      <TrustedBySection />
       <ContactFormSection />
+      <TrustedBySection />
       <LocationSection />
     </div>
   );
