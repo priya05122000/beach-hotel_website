@@ -16,9 +16,9 @@ export default function GalleryList({ sections, galleries }: Props) {
     <div className="flex flex-col">
       <Section>
         <div className="grid sm:grid-cols-[0.5fr_1fr]">
-          <div className="text-primary-darkflex gap-3 items-center mb-4 sm:mb-0 sm:h-25">
+          <div className="text-primary-dark flex gap-3 items-center mb-4 sm:mb-0 sm:h-25">
             <Sparkle size={10} fill="#012644" className="" />{" "}
-            <p>Nearby Destinations</p>
+            <p>Gallery</p>
           </div>
           <div className="text-xl text-primary-darkfont-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
             Kanyakumari is a destination of many wonders — a sacred shore where

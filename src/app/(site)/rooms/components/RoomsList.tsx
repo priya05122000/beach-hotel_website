@@ -192,7 +192,7 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
   return (
     <Section className="">
       <div className="grid sm:grid-cols-[0.5fr_1fr] border-b border-silver pb-10 pt-16 lg:py-20">
-        <div className="text-primary-darkflex gap-3 items-center mb-4 sm:mb-0 sm:h-25">
+        <div className="text-primary-dark flex gap-3 items-center mb-4 sm:mb-0 sm:h-25">
           <Sparkle size={10} fill="#012644" className="" />{" "}
           <p>Rooms & Suites</p>
         </div>
