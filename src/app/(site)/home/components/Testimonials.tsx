@@ -131,12 +131,27 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
                 {/* Desktop-only arrows: absolutely positioned so carousel stays as one instance */}
                 <div className="hidden sm:flex absolute top-0 right-0 w-[20%] items-start gap-2 pt-1 z-10">
-                    <button onClick={scrollPrev} aria-label="Previous review" className="text-black hover:opacity-50 transition-opacity">
-                        <MoveLeft strokeWidth="1px" className="w-10 h-10" />
-                    </button>
-                    <button onClick={scrollNext} aria-label="Next review" className="text-black hover:opacity-50 transition-opacity">
-                        <MoveRight strokeWidth="1px" className="w-10 h-10" />
-                    </button>
+                    <div className="flex items-center w-52">
+                        <button
+                            onClick={scrollPrev}
+                            className="text-xl cursor-pointer font-semibold"
+                        >
+                            {pad(activeIndex + 1)}
+                        </button>
+
+                        <div className="w-1/3 h-px bg-gray-300 mx-4" />
+
+                        <button
+                            onClick={scrollNext}
+                            className="text-xl cursor-pointer font-semibold"
+                        >
+                            {pad(
+                                activeIndex === total - 1
+                                    ? 1 // if looping
+                                    : activeIndex + 2
+                            )}
+                        </button>
+                    </div>
                 </div>
 
                 {/* THE single carousel — constrained to 80% on desktop, full width on mobile */}
@@ -188,18 +203,18 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
             {/* ── DESKTOP bottom row ── */}
             <div className="hidden sm:flex items-end justify-between mt-10 gap-4">
-                <div className="w-[80%]">
+                {/* <div className="w-[80%]">
                     <div className="relative inline-flex items-center w-14 h-10">
                         <span className="absolute left-0 top-0  font-semibold">{pad(activeIndex + 1)}</span>
                         <span className="absolute left-1/2 top-1/2 w-[1.5px] h-full bg-gray-400 -translate-x-1/2 -translate-y-1/2 rotate-25" />
                         <span className="absolute right-0 bottom-0  font-semibold">{pad(total)}</span>
                     </div>
-                </div>
-                <div className="w-[20%] shrink-0">
+                </div> */}
+                {/* <div className="w-[20%] shrink-0">
                     <a href="#" className=" text-[15px] lg:text-base font-arizona-flare-regular text-gray  transition-opacity whitespace-nowrap">
                         Learn more <span className="underline underline-offset-2">About us</span>
                     </a>
-                </div>
+                </div> */}
             </div>
 
             {/* ── MOBILE bottom controls ── */}

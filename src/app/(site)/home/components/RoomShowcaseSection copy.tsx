@@ -1,160 +1,148 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import Image from "next/image";
-import { typography } from "@/src/lib/typography";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Subtitles } from "lucide-react";
+import Section from "@/src/components/common/Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const rooms = [
+const items = [
   {
-    number: "01",
-    label: "Ocean View Suite",
-    title: "Horizons Unbound",
-    subtitle:
-      "See the world from a new perspective. Here, the ocean meets the sky in a seamless embrace, offering a front-row seat to nature's grandeur.",
+    id: "restaurant",
+    title: "Restaurant",
     description:
-      "Perched at the confluence of three oceans, our Ocean View Suites offer an uninterrupted panorama where sea and sky dissolve into one. Floor-to-ceiling glass frames the eternal meeting of waters in an experience of rare stillness.",
-    supportingImage: "/facilities/1.jpg",
-    featuredImage: "/home/hero-1.webp",
+      "Savour world-class cuisine crafted by our award-winning chefs. From candlelit dinners overlooking the ocean to vibrant open-air brunches, every meal is a curated experience.",
+    linkColor: "#E8D5B0",
+    image:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
   },
   {
-    number: "02",
-    label: "Deluxe Sea Room",
-    title: "The Gentle Shore",
-    subtitle:
-      "Where the tide meets tranquility, our Deluxe Sea Rooms offer a serene escape.",
+    id: "resort",
+    title: "Luxury Resort",
     description:
-      "Elegantly appointed with natural textures and soft coastal hues, these rooms invite the rhythm of the tide into your everyday. Step onto your private balcony as morning light dances across the sea.",
-    supportingImage: "/facilities/2.jpg",
-    featuredImage: "/home/hero-2.png",
+      "Immerse yourself in an oasis of refined elegance. Our resort seamlessly blends contemporary design with natural surroundings, offering an unrivalled escape for the discerning traveller.",
+    linkColor: "#B0D5C8",
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80",
   },
   {
-    number: "03",
-    label: "Royal Penthouse",
-    title: "Crown of Kanniyakumari",
-    subtitle:
-      "A sanctuary above the clouds, the Royal Penthouse commands the full sweep of the legendary three-ocean horizon.",
+    id: "pool",
+    title: "Infinity Pool",
     description:
-      "A sanctuary above the clouds, the Royal Penthouse commands the full sweep of the legendary three-ocean horizon. Private plunge pool, butler service, and a living room that opens to the endless blue.",
-    supportingImage: "/facilities/3.jpg",
-    featuredImage: "/home/cta.jpg",
+      "Drift into serenity in our signature infinity pool, where sky and sea merge at the horizon. Enjoy poolside cocktails, private cabanas, and breathtaking panoramic views.",
+    linkColor: "#A8C8E8",
+    image:
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
   },
   {
-    number: "04",
-    label: "Signature Suite",
-    title: "The Sacred Coast",
-    subtitle:
-      "Where ancient pilgrimage meets modern luxury, our Signature Suites blend Kanniyakumari's sacred heritage.",
+    id: "spa",
+    title: "Spa & Wellness",
     description:
-      "Where ancient pilgrimage meets modern luxury — our Signature Suites blend Kanniyakumari's sacred heritage with the finest contemporary comfort for a truly unique coastal retreat.",
-    supportingImage: "/facilities/4.jpg",
-    featuredImage: "/home/faq.jpg",
+      "Surrender to total well-being at our sanctuary spa. Ancient healing rituals meet modern therapies, guiding you to deep restoration of body, mind, and spirit.",
+    linkColor: "#D4B8D8",
+    image:
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
   },
 ];
 
+const bgColors = ["#FDF6EC", "#EDF5F1", "#EAF3FA"];
+const N = items.length;
+
 export default function RoomShowcaseSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionBgRef = useRef<HTMLDivElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const imgRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const supportImgRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const thumbRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const thumbWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rightImgRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const rightWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const bgWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const n = rooms.length;
-
-    contentRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.set(el, i === 0 ? { autoAlpha: 1, y: 0 } : { autoAlpha: 0, y: 40 });
+    // Z-index: item 0 on top for all image stacks
+    rightWrapRefs.current.forEach((el, i) => {
+      if (el) el.style.zIndex = String(N - i);
+    });
+    thumbWrapRefs.current.forEach((el, i) => {
+      if (el) el.style.zIndex = String(N - i);
+    });
+    bgWrapRefs.current.forEach((el, i) => {
+      if (el) el.style.zIndex = String(N - i);
     });
 
-    imgRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.set(el, {
-        clipPath: i === 0 ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
-      });
+    const texts = textRefs.current.filter(Boolean) as HTMLDivElement[];
+    const thumbImgs = thumbRefs.current.filter(Boolean) as HTMLImageElement[];
+    const rightImgs = rightImgRefs.current.filter(Boolean) as HTMLImageElement[];
+
+    // Initial state: first item visible, rest hidden
+    gsap.set(texts[0], { autoAlpha: 1, y: 0 });
+    gsap.set(texts.slice(1), { autoAlpha: 0, y: 40 });
+    gsap.set([...rightImgs, ...thumbImgs], {
+      clipPath: "inset(0% 0% 0% 0%)",
+      objectPosition: "0px 0%",
     });
 
-    supportImgRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.set(el, {
-        clipPath: i === 0 ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
-      });
-    });
+    const holdDur = 1.4;
+    const td = 0.6;
 
     if (progressFillRef.current) {
-      gsap.set(progressFillRef.current, {
-        scaleY: 0,
-        transformOrigin: "top center",
-      });
+      gsap.set(progressFillRef.current, { scaleY: 0, transformOrigin: "top center" });
     }
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: "top top",
-        end: `+=${n * window.innerHeight}`,
-        scrub: 2,
+        end: `+=${N * window.innerHeight}`,
         pin: true,
         anticipatePin: 1,
+        scrub: 1,
         onUpdate: (self) => {
           if (progressFillRef.current) {
-            gsap.set(progressFillRef.current, {
-              scaleY: self.progress,
-              transformOrigin: "top center",
-            });
+            gsap.set(progressFillRef.current, { scaleY: self.progress, transformOrigin: "top center" });
           }
         },
       },
     });
 
-    const holdDur = 1.4;
-    const td = 0.6;
-
-    for (let i = 0; i < n - 1; i++) {
+    for (let i = 0; i < N - 1; i++) {
+      // Hold on current item
       tl.to({}, { duration: holdDur });
 
-      const tLabel = `trans${i}`;
-      tl.addLabel(tLabel, ">");
+      const label = `t${i}`;
+      tl.addLabel(label, ">");
 
-      const exitDur = td * 0.5;
+      // Right image: clip away upward + pan
+      tl.to(rightImgs[i], { clipPath: "inset(0% 0% 100% 0%)", objectPosition: "0px 60%", duration: td, ease: "none" }, label);
+      tl.to(rightImgs[i + 1], { objectPosition: "0px 40%", duration: td, ease: "none" }, label);
 
-      // Current text: fade out + subtle upward drift
-      tl.to(
-        contentRefs.current[i],
-        { autoAlpha: 0, y: -30, duration: exitDur, ease: "power2.inOut" },
-        tLabel,
-      );
+      // Thumbnail: identical reveal in sync with right image
+      tl.to(thumbImgs[i], { clipPath: "inset(0% 0% 100% 0%)", objectPosition: "0px 60%", duration: td, ease: "none" }, label);
+      tl.to(thumbImgs[i + 1], { objectPosition: "0px 40%", duration: td, ease: "none" }, label);
 
-      // Images wipe in with a gentle ease
+      // Text: current fades out upward, next fades in from below
+      tl.to(texts[i], { autoAlpha: 0, y: -30, duration: td * 0.5, ease: "power2.inOut" }, label);
       tl.fromTo(
-        imgRefs.current[i + 1],
-        { clipPath: "inset(0% 0% 100% 0%)" },
-        { clipPath: "inset(0% 0% 0% 0%)", duration: td, ease: "power2.inOut" },
-        tLabel,
-      );
-      tl.fromTo(
-        supportImgRefs.current[i + 1],
-        { clipPath: "inset(0% 0% 100% 0%)" },
-        { clipPath: "inset(0% 0% 0% 0%)", duration: td, ease: "power2.inOut" },
-        tLabel,
-      );
-
-      // New text rises in from below after exit completes
-      tl.fromTo(
-        contentRefs.current[i + 1],
+        texts[i + 1],
         { autoAlpha: 0, y: 40 },
-        { autoAlpha: 1, y: 0, duration: td * 0.8, ease: "power3.out" },
-        `${tLabel}+=${exitDur}`,
+        { autoAlpha: 1, y: 0, duration: td * 0.6, ease: "power3.out" },
+        `${label}+=${td * 0.5}`,
       );
+
+      // Left background: fade out current, next is already visible underneath
+      const bgWraps = bgWrapRefs.current.filter(Boolean) as HTMLDivElement[];
+      tl.to(bgWraps[i], { autoAlpha: 0, duration: td, ease: "power2.inOut" }, label);
+
+      // Background color shift — scoped to this section only
+      tl.to(sectionBgRef.current, { backgroundColor: bgColors[i], duration: td * 1.5, ease: "power2.inOut" }, label);
     }
 
+    // Hold on last item
     tl.to({}, { duration: holdDur });
 
     return () => {
@@ -164,121 +152,107 @@ export default function RoomShowcaseSection() {
   }, []);
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-primary"
-    >
-      {/* ── Featured images (right) ──────────────────────────────── */}
-      <div className="absolute inset-0 overflow-hidden lg:left-[42%]">
-        {rooms.map((room, i) => (
-          <div
-            key={room.number}
-            ref={(el) => {
-              imgRefs.current[i] = el;
-            }}
-            className="absolute inset-0"
-            style={{ zIndex: i + 1 }}
-          >
-            <Image
-              src={room.featuredImage}
-              alt={room.title}
-              fill
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover"
-              priority={i === 0}
-            />
-            <div className="absolute inset-0 bg-primary/72 lg:hidden" />
-            <div className="absolute inset-y-0 left-0 hidden w-40 bg-linear-to-r from-primary to-transparent lg:block" />
-          </div>
-        ))}
-      </div>
+    <Section className="relative">
 
-      {/* ── Vertical progress line (desktop) ────────────────────── */}
-      <div className="absolute bottom-0 left-10 top-0 z-30 hidden flex-col items-center justify-center lg:flex">
-        <div className="relative h-[52%] w-px bg-white/10">
-          <div
-            ref={progressFillRef}
-            className="absolute left-0 top-0 h-full w-full origin-top bg-accent"
-            style={{ transform: "scaleY(0)" }}
-          />
-          {rooms.map((_, i) => (
+      {/* Section-scoped background — color changes stay contained here */}
+      <div ref={sectionBgRef} className="absolute inset-0" style={{ zIndex: 0 }} />
+
+      <div ref={sectionRef} className="relative h-screen overflow-hidden ">
+
+
+
+        {/* ── LEFT — text panels + thumbnail ───────────────────── */}
+        <div className="absolute top-6 bottom-6 left-6 right-[calc(50%+4px)] overflow-hidden ">
+
+
+          {items.map((item, i) => (
             <div
-              key={i}
-              className="absolute left-1/2 h-1.25 w-1.25 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/25 ring-1 ring-white/10"
-              style={{ top: `${(i / (rooms.length - 1)) * 100}%` }}
-            />
-          ))}
-        </div>
-      </div>
+              key={item.id}
+              ref={(el) => { textRefs.current[i] = el; }}
+              className="absolute  inset-0 flex flex-col justify-center px-10 lg:px-14"
+              style={{ visibility: i === 0 ? "visible" : "hidden", opacity: i === 0 ? 1 : 0 }}
+            >
+              <div>
 
-      {/* ── Text content panels (left) — fade in/out only ───────── */}
-      <div className="absolute inset-0 z-20 lg:right-[58%]">
-        {rooms.map((room, i) => (
-          <div
-            key={room.number}
-            ref={(el) => {
-              contentRefs.current[i] = el;
-            }}
-            className="absolute inset-0 flex flex-col justify-between px-7 pt-15 pb-10 xl:pb-20 sm:px-12 lg:px-14 xl:px-16"
-          >
-            <div>
-              <div className="flex items-baseline gap-3">
-                <p className="text-xl sm:text-3xl font-medium uppercase text-accent/55">
-                  {room.number}
-                </p>
-                <h2
-                  className={`font-normal leading-[1.08] text-white ${typography.textFiXl}`}
-                >
-                  {room.title}
+                <h2 className="font-extrabold  ">
+                  {item.title}
                 </h2>
+                <p className="mt-3 mb-8 text-gray   max-w-85">
+                  {item.description}
+                </p>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 no-underline px-5 mb-5 h-10  text-black  font-medium w-fit"
+                  style={{ backgroundColor: item.linkColor }}
+                >
+
+                  <p>Learn More</p>
+                </a>
               </div>
 
-              <p className="text-xs sm:text-sm max-w-xs leading-[1.75] text-white/52 lg:max-w-sm">
-                {room.subtitle}
-              </p>
             </div>
+          ))}
 
-            <div>
-              <p className="text-xs sm:text-sm max-w-xs leading-[1.75] text-white/52 lg:max-w-sm">
-                {room.description}
-              </p>
-              <button className="group mt-6 flex w-fit items-center gap-3 text-[10px] font-medium uppercase tracking-[0.26em] text-white/35 transition-all duration-300 hover:text-accent">
-                <span>Explore Suite</span>
-                <span className="inline-block h-px w-6 bg-current transition-all duration-500 group-hover:w-11" />
-              </button>
+          {/* Vertical progress line */}
+          {/* <div className="absolute left-6 top-0 bottom-0 flex flex-col items-center justify-center">
+            <div className="relative h-[52%] w-px bg-black/10">
+              <div
+                ref={progressFillRef}
+                className="absolute left-0 top-0 h-full w-full bg-black/40"
+                style={{ transform: "scaleY(0)", transformOrigin: "top center" }}
+              />
+              {items.map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute left-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/25"
+                  style={{ top: `${(i / (N - 1)) * 100}%` }}
+                />
+              ))}
             </div>
+          </div> */}
+
+          {/* Thumbnail stack — same clip-path reveal as right images */}
+          <div className="absolute bottom-14 left-10 lg:left-14 w-45 h-30 lg:w-55 lg:h-37 overflow-hidden ">
+            {items.map((item, i) => (
+              <div
+                key={item.id}
+                ref={(el) => { thumbWrapRefs.current[i] = el; }}
+                className="absolute inset-0"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  ref={(el) => { thumbRefs.current[i] = el; }}
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* ── Supporting images (left, fixed position) ─────────────── */}
-      {/* Separate layer so image position is never affected by text height */}
-      <div className="absolute top-50 left-7 z-20 sm:top-70 lg:top-65 lg:left-14 xl:left-16">
-        {rooms.map((room, i) => (
-          <div
-            key={room.number}
-            className="absolute h-32 w-48 overflow-hidden  sm:h-36 sm:w-56 lg:h-40 xl:h-50 lg:w-64"
-            style={{ zIndex: i + 1 }}
-          >
+        </div>
+
+        {/* ── RIGHT — large image stack ─────────────────────────── */}
+        <div className="absolute top-6 bottom-6 right-6 left-[calc(50%+4px)] overflow-hidden ">
+          {items.map((item, i) => (
             <div
-              ref={(el) => {
-                supportImgRefs.current[i] = el;
-              }}
+              key={item.id}
+              ref={(el) => { rightWrapRefs.current[i] = el; }}
               className="absolute inset-0"
             >
-              <Image
-                src={room.supportingImage}
-                alt={`${room.title} interior`}
-                fill
-                sizes="256px"
-                className="object-cover"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                ref={(el) => { rightImgRefs.current[i] = el; }}
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-    </div>
+      </div>
+    </Section>
+
   );
 }

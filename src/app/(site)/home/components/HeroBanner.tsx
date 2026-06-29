@@ -16,23 +16,7 @@ export default function HeroBanner() {
 
   return (
     <>
-
       <section className="relative h-screen">
-        <div className="absolute bg-linear-to-b from-black/60 to-transparent top-0 left-0 right-0 z-30 mt-10 py-5 flex justify-center">
-          {/* <Link href="/"
-          >
-            <Image
-              src="/navbar_logo.svg"
-              alt="Logo"
-              width={500}
-              height={250}
-              priority
-              className="h-24 md:h-28 w-auto object-contain"
-            />
-          </Link> */}
-
-        </div>
-
         <div className="relative h-screen overflow-hidden" >
           <div className="flex h-full">
             <div className="relative min-w-0 flex-[0_0_100%]">
@@ -87,12 +71,34 @@ export default function HeroBanner() {
                   />
                 </div>
 
-                <button
+                {/* <button
                   type="submit"
-                  className="h-10 bg-accent px-8  font-normal uppercase text-primary transition hover:opacity-90 cursor-pointer shadow-[0px_4px_4px_0px_#00000040]"
+                  className="h-10  px-8  font-normal uppercase text-primary transition hover:opacity-90 cursor-pointer shadow-[0px_4px_4px_0px_#00000040]"
                 >
                   Book Now
-                </button>
+                </button> */}
+
+                <div className="  bg-linear-to-b from-primary via-accent/76 to-primary  shadow-[0px_4px_4px_0px_#00000040]
+                             group
+                    relative
+                    overflow-hidden
+                    p-px
+                    bg-[linear-gradient(to_right,#012644,#FF992AC2,#012644,#012644,#FF992AC2,#012644)]
+                    bg-size-[250%]
+                    bg-left
+                    duration-1000
+                    transition-all
+                    hover:bg-right
+                            ">
+                  <div className="relative w-full bg-ivory h-auto transition-all duration-300  flex items-center justify-center">
+                    <button
+                      type="submit"
+                      className="h-10  px-8  font-normal uppercase text-primary transition hover:opacity-90 cursor-pointer shadow-[0px_4px_4px_0px_#00000040]"
+                    >
+                      Book Now
+                    </button>
+                  </div>
+                </div>
               </form>
             </CenterSection>
           </div>

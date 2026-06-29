@@ -44,6 +44,7 @@ export default async function HomePage() {
         <>
             <HeroBanner />
             <BannerBelowSection />
+            <SignatureHeadline />
             <ExclusiveOffersSection offerDatas={offerDatas.data} />
             <ExploreDestinationSection />
             <AmenitiesSection />
@@ -57,12 +58,11 @@ export default async function HomePage() {
 
             {/* <CinematicSplitSection /> */}
 
-            <SignatureHeadline />
 
-            <Testimonials reviews={guestReviewData.data} />
             {/* <FAQSection faqDatas={faqDatas.data} faqCategories={faqCategories.data} /> */}
 
             <GallerySection galleries={randomGalleryItems} />
+            <Testimonials reviews={guestReviewData.data} />
 
         </>
     );

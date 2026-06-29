@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Section from "@/src/components/common/Section";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Copy } from "lucide-react";
 import { typography } from "@/src/lib/typography";
 import { Offer } from "@/src/types";
 
@@ -125,7 +125,7 @@ export default function ExclusiveOffersSection({
   );
 
   return (
-    <Section className="pt-32 pb-16  lg:pt-40 lg:pb-20">
+    <Section className="pt-16 pb-16  lg:pt-20 lg:pb-20">
       <h2
         className={` text-gray text-center uppercase font-normal `}
       >
@@ -177,32 +177,37 @@ export default function ExclusiveOffersSection({
                 </div>
               </div>
 
-              <div className="absolute inset-0 z-20 flex flex-col justify-end p-5">
-                <div className="flex items-center justify-between">
-                  <div className="inline-flex group-hover:bg-linear-to-r from-primary to-accent p-0.5 h-8 text-white bg-primary/24 ">
-                    <p
-                      className={`flex items-center px-2 transition-all duration-700   lg:group-hover:bg-white lg:group-hover:text-primary ${isActive
-                        ? "bg-white text-primary lg:bg-accent lg:text-white"
-                        : ""
-                        }`}
-                    >
-                      EXCLUSIVE OFFER
-                    </p>
-                  </div>
+              <div className="absolute inset-0 z-20 flex flex-col p-5">
 
+                {/* Spacer — absorbs expansion so bottom row stays anchored */}
+                <div className="flex-1" />
 
-                </div>
-
+                {/* 1st: Content */}
                 <div
-                  className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] pb-5 lg:pb-0 max-h-0 opacity-0 translate-y-4 lg:group-hover:max-h-32 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 ${isActive
+                  className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] max-h-0 opacity-0 translate-y-4 lg:group-hover:max-h-32 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 ${isActive
                     ? "max-h-32 opacity-100 translate-y-0 lg:max-h-0 lg:opacity-0 lg:translate-y-4"
                     : ""
                     }`}
                 >
-                  <p
-                    className={`lg:mt-3  text-white `}
-                  >
+                  <p className="text-white px-2 pb-3">
                     {offer.short_description}
+                  </p>
+                </div>
+
+                {/* 2nd: Weekday badge + Number side by side */}
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent">
+                    <p
+                      className={`flex items-center px-2 transition-all duration-700 uppercase text-white ${isActive
+                        ? "bg-white text-primary lg:bg-transparent lg:text-white"
+                        : ""
+                        }`}
+                    >
+                      Weekday 50% off
+                    </p>
+                  </div>
+                  <p className={`text-white flex items-center gap-2 text-sm transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}>
+                    6787Hkjh68 <Copy className="w-4 h-4 cursor-pointer" />
                   </p>
                 </div>
               </div>
