@@ -66,7 +66,7 @@ export default function NearbyHeroBanner({
   };
 
   return (
-    <div className="relative w-full  h-screen overflow-hidden">
+    <div className="relative w-full  h-[90vh] sm:h-screen overflow-hidden">
       <Swiper
         modules={[EffectFade, Pagination, Autoplay]}
         effect="fade"

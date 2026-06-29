@@ -20,7 +20,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative h-screen">
+    <section className="relative h-[90vh] sm:h-screen">
       {/* Background Image */}
       <div className="relative h-full overflow-hidden">
         <Image
