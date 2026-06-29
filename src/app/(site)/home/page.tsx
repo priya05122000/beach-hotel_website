@@ -20,6 +20,7 @@ import { getOfferData } from "@/src/service/offers";
 import BannerBelowSection from "./components/BannerBelowSection";
 import CinematicSplitSection from "./components/CinematicSplitSection";
 import SignatureHeadline from "./components/SignatureHeadline";
+import FeaturedHighlightSection from "./components/FeaturedHighlightSection";
 
 export default async function HomePage() {
     const bannerData = await getBannerData();
@@ -48,11 +49,14 @@ export default async function HomePage() {
             <ExclusiveOffersSection offerDatas={offerDatas.data} />
             <ExploreDestinationSection />
             <AmenitiesSection />
+            
 
             <RoomShowcaseSection />
             <RoomCardsSection />
             <HorizontalScrollSection />
             {/* <ZoomRevealSection /> */}
+
+            <FeaturedHighlightSection />
 
             {/* <HotelCTASection /> */}
 

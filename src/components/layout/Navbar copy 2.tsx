@@ -396,13 +396,15 @@ export default function Header({ announcementData }: AnnouncementProps) {
         <div className={`transition-colors duration-500 bg-transparent"}`}>
           <div className="px-6  xl:px-10">
             <div className="relative h-16 flex items-center">
-              {/* Logo — centered (visible when not scrolled) */}
+              {/* Logo */}
+              {/* Logo */}
               <div
-                className="absolute left-1/2 -translate-x-1/2"
                 style={{
-                  opacity: scrolled ? 0 : 1,
-                  transition: "opacity 0.5s ease",
-                  pointerEvents: scrolled ? "none" : "auto",
+                  position: "absolute",
+                  left: scrolled ? "0%" : "50%",
+                  transform: scrolled ? "translateX(0)" : "translateX(-50%)",
+                  transition:
+                    "left 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)",
                 }}
               >
                 <Link href="/" className="inline-flex items-center">
@@ -410,27 +412,10 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     width={300}
                     height={150}
                     alt="Navbar logo"
-                    src={isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg"}
-                    className="h-10 w-auto"
-                  />
-                </Link>
-              </div>
-
-              {/* Logo — left-aligned (visible when scrolled) */}
-              <div
-                style={{
-                  opacity: scrolled ? 1 : 0,
-                  transition: "opacity 0.5s ease",
-                  pointerEvents: scrolled ? "auto" : "none",
-                }}
-              >
-                <Link href="/" className="inline-flex items-center">
-                  <Image
-                    width={300}
-                    height={150}
-                    alt="Navbar logo"
-                    src={isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg"}
-                    className="h-10 w-auto"
+                    src={
+                      isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg"
+                    }
+                    className="h-10 w-auto transition-all duration-300"
                   />
                 </Link>
               </div>
