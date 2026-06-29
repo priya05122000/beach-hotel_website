@@ -6,6 +6,16 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const normalizeImages = (url?: string | string[] | null): string[] => {
+    if (!url) return [];
+    if (Array.isArray(url)) return url;
+    try {
+        const parsed = JSON.parse(url);
+        if (Array.isArray(parsed)) return parsed;
+    } catch { }
+    return [url];
+};
+
 export default function RoomSlider({
   images,
   name,
@@ -13,6 +23,7 @@ export default function RoomSlider({
   images: string[];
   name: string;
 }) {
+  console.log("RoomSlider images:", images);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }),
@@ -30,14 +41,16 @@ export default function RoomSlider({
   const prev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const next = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  const normalizedImages = normalizeImages(images);
+
   return (
     <div className="relative w-full overflow-hidden group">
       <div ref={emblaRef} className="overflow-hidden">
         <div className="flex">
-          {images.map((src, i) => (
+          {normalizedImages.map((src, i) => (
             <div key={i} className="relative flex-[0_0_100%] aspect-4/3">
               <Image
-                src={src}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${src}`}
                 alt={`${name} — image ${i + 1}`}
                 fill
                 unoptimized
@@ -66,7 +79,7 @@ export default function RoomSlider({
       </button>
 
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
-        {images.map((_, i) => (
+        {normalizedImages.map((_, i) => (
           <button
             key={i}
             onClick={() => emblaApi?.scrollTo(i)}

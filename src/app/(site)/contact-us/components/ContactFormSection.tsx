@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
-import { submitContactEnquiry } from "@/src/service/contact";
+import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
+import Link from "next/link";
+import Image from "next/image";
 
 const initialForm = {
   first_name: "",
@@ -33,6 +35,29 @@ const contactDetails = [
     label: "Office Location",
     value: "Erumanayakkanpatti Beach Road,\nKanyakumari 629702, India",
     href: "https://maps.google.com/?q=Erumanayakkanpatti+Beach+Road,+Kanyakumari",
+  },
+];
+
+const socialIcons: { href: string; label: string; path: string }[] = [
+  {
+    href: "https://www.instagram.com/thebeachhotel_/",
+    label: "Instagram",
+    path: "/icons/instagramblue.svg",
+  },
+  {
+    href: "https://www.facebook.com/profile.php?id=61590909593058",
+    label: "Facebook",
+    path: "/icons/facebookblue.svg",
+  },
+  {
+    href: "https://www.youtube.com/@The_Beach_Hotel",
+    label: "YouTube",
+    path: "/icons/youtubeblue.svg",
+  },
+  {
+    href: "https://x.com/TheBeachHotel_",
+    label: "X (Twitter)",
+    path: "/icons/xblue.svg",
   },
 ];
 
@@ -85,11 +110,10 @@ export default function ContactFormSection() {
     }
     try {
       setLoading(true);
-      const result = await submitContactEnquiry({
-        full_name: `${form.first_name} ${form.last_name}`,
+      const result = await submitAppointmentEnquiry({
+        name: `${form.first_name} ${form.last_name}`,
         email: form.email,
-        phone_number: form.phone_number,
-        location: "",
+        phone_number: String(form.phone_number),
         message: form.message,
       });
       if (result.success) {
@@ -108,152 +132,223 @@ export default function ContactFormSection() {
   };
 
   return (
-    <Section id="contact-form" className=" py-16 lg:py-20">
-      <div className="mb-4 md:mb-6 lg:mb-8">
-        <h2
-          className={`font-semibold  text-primary ${typography.textFoXl}`}
-        >
-          Need More Information? <br /> Get in Touch
-        </h2>
-      </div>
-      <div className="flex flex-col justify-center items-center gap-6">
-        <div className="w-full md:w-100 xl:w-120">
-          <p className="text-primary/60 text-sm ">
-            Leave a request and we will consult you on available rooms and
-            packages.
-          </p>
-        </div>
+    <Section id="contact-form" className="px-6 py-16 lg:py-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 px-6">
 
-        <form
-          onSubmit={handleSubmit}
-          noValidate
-          className="flex flex-col gap-6 w-full md:w-100 xl:w-120"
-          data-gramm="false"
-          data-gramm_editor="false"
-          data-enable-grammarly="false"
-        >
-          {/* Row 1 — First / Last name */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
-                First Name*
-              </label>
-              <input
-                type="text"
-                name="first_name"
-                value={form.first_name}
-                onChange={handleChange}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-              />
-              {errors.first_name && (
-                <p className="text-[11px] text-red-400 mt-0.5">
-                  {errors.first_name}
-                </p>
-              )}
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
-                Last Name*
-              </label>
-              <input
-                type="text"
-                name="last_name"
-                value={form.last_name}
-                onChange={handleChange}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-              />
-              {errors.last_name && (
-                <p className="text-[11px] text-red-400 mt-0.5">
-                  {errors.last_name}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Row 2 — Email */}
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
-              Email*
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-            />
-            {errors.email && (
-              <p className="text-[11px] text-red-400 mt-0.5">{errors.email}</p>
-            )}
-          </div>
-
-          {/* Row 3 — Phone */}
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
-              Phone*
-            </label>
-            <input
-              type="tel"
-              name="phone_number"
-              value={form.phone_number}
-              onChange={handleChange}
-              maxLength={10}
-              className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-            />
-            {errors.phone_number && (
-              <p className="text-[11px] text-red-400 mt-0.5">
-                {errors.phone_number}
-              </p>
-            )}
-          </div>
-
-          {/* Row 4 — Message */}
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
-              Message*
-            </label>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              rows={2}
-              className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"
-            />
-            {errors.message && (
-              <p className="text-[11px] text-red-400 mt-0.5">
-                {errors.message}
-              </p>
-            )}
-          </div>
-
-          {/* Consent */}
-          <label className="flex items-start gap-3 text-xs text-primary/40 cursor-pointer">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={form.consent}
-              onChange={handleChange}
-              className="mt-0.5 accent-white"
-            />
-            <span>
-              I agree to be contacted by the team regarding my enquiry.
-            </span>
-          </label>
-          {errors.consent && (
-            <p className="text-[11px] text-red-400 -mt-4">{errors.consent}</p>
-          )}
-
-          {serverError && <p className="text-sm text-red-400">{serverError}</p>}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-primary text-white text-xs  uppercase tracking-[0.12em] py-3.5  hover:bg-primary/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+        <div className="mb-4 md:mb-6 lg:mb-8 max-w-md">
+          <h2
+            className={`font-semibold  text-primary `}
           >
-            {loading ? "Sending…" : "Submit Request"}
-          </button>
-        </form>
+            Your Questions? <br /> Answered
+          </h2>
+
+          <p className="mt-4">Tell us how we may help, and our team will respond with care. Whether it is a question, a special request or the beginning of a reservation, we are delighted to assist.</p>
+          <div className="mt-4 text-[11px] space-y-4 border-t flex flex-col  justify-end border-white/20 pt-4 lg:col-span-3 ">
+            <h2
+              className={`font-semibold  text-primary ${typography.textFoXl}`}
+            >Find Us</h2>
+            <div className="uppercase">
+              <div className={`${typography.textLg} font-arizona-flare-regular`}>The Beach Hotel</div>
+              <div className={`${typography.textLg} font-arizona-flare-regular`}>
+                Beach Road, Kanyakumari,
+                <br />
+                Tamil Nadu 629702, India
+              </div>
+            </div>
+
+            <div>
+              <div>
+                <span className="font-medium text-xs uppercase">General Enquiries :</span>{" "}
+                <Link
+                  href="mailto:info@thebeachhotel.com"
+                  className={`${typography.textLg} hover:underline`}
+                >
+                  info@thebeachhotel.com
+                </Link>
+              </div>
+
+              <div>
+                <span className="font-medium text-xs uppercase">Reception :</span>{" "}
+                <Link
+                  href="tel:+919876543210"
+                  className={`${typography.textLg} hover:underline`}
+                >
+                  +91 98765 43210
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="pt-4">
+            <p className="text-xs uppercase tracking-[0.18em] text-primary/60 mb-3">
+              Follow Us
+            </p>
+
+            <div className="flex items-center gap-3">
+              {socialIcons.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  className="border    border-gray-700 p-1.5  hover:border-gray-500 transition-colors"
+                >
+                  <Image
+                    src={item.path}
+                    alt={item.label}
+                    width={28}
+                    height={28}
+                    className="w-4 h-4"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center gap-6">
+          <div className="w-full md:w-100 xl:w-120">
+            <p className="text-primary/60 text-sm ">
+              Leave a request and we will consult you on available rooms and
+              packages.
+            </p>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className="flex flex-col gap-6 w-full md:w-100 xl:w-120"
+            data-gramm="false"
+            data-gramm_editor="false"
+            data-enable-grammarly="false"
+          >
+            {/* Row 1 — First / Last name */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+                  First Name*
+                </label>
+                <input
+                  type="text"
+                  name="first_name"
+                  value={form.first_name}
+                  onChange={handleChange}
+                  className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                />
+                {errors.first_name && (
+                  <p className="text-[11px] text-red-400 mt-0.5">
+                    {errors.first_name}
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+                  Last Name*
+                </label>
+                <input
+                  type="text"
+                  name="last_name"
+                  value={form.last_name}
+                  onChange={handleChange}
+                  className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                />
+                {errors.last_name && (
+                  <p className="text-[11px] text-red-400 mt-0.5">
+                    {errors.last_name}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Row 2 — Email */}
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+                Email*
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+              />
+              {errors.email && (
+                <p className="text-[11px] text-red-400 mt-0.5">{errors.email}</p>
+              )}
+            </div>
+
+            {/* Row 3 — Phone */}
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+                Phone*
+              </label>
+              <input
+                type="tel"
+                name="phone_number"
+                value={form.phone_number}
+                onChange={handleChange}
+                maxLength={10}
+                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+              />
+              {errors.phone_number && (
+                <p className="text-[11px] text-red-400 mt-0.5">
+                  {errors.phone_number}
+                </p>
+              )}
+            </div>
+
+            {/* Row 4 — Message */}
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+                Message*
+              </label>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                rows={2}
+                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"
+              />
+              {errors.message && (
+                <p className="text-[11px] text-red-400 mt-0.5">
+                  {errors.message}
+                </p>
+              )}
+            </div>
+
+            {/* Consent */}
+            <label className="flex items-start gap-3 text-xs text-primary/40 cursor-pointer">
+              <input
+                type="checkbox"
+                name="consent"
+                checked={form.consent}
+                onChange={handleChange}
+                className="mt-0.5 accent-white"
+              />
+              <span>
+                I agree to be contacted by the team regarding my enquiry.
+              </span>
+            </label>
+            {errors.consent && (
+              <p className="text-[11px] text-red-400 -mt-4">{errors.consent}</p>
+            )}
+
+            {serverError && <p className="text-sm text-red-400">{serverError}</p>}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-primary text-white text-xs  uppercase tracking-[0.12em] py-3.5  hover:bg-primary/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+            >
+              {loading ? "Sending…" : "Submit Request"}
+            </button>
+
+            <div className="text-xs">
+              {success
+                ? "Thank you for reaching out. A member of our team will be in touch shortly. We can't wait to welcome you to the edge of India."
+                : "Your details are kept private and used only to respond to your enquiry. We look forward to welcoming you."}
+            </div>
+          </form>
+        </div>
       </div>
+
     </Section>
   );
 }

@@ -14,12 +14,12 @@ export default function HeroLocationSection() {
         </p>
         {/* Right Panel */}
         <div className="flex flex-col justify-center">
-          <div className="max-w-md">
-            <h1
-              className={`font-semibold  text-primary ${typography.textFiXl}`}
+          <div className="max-w-lg">
+            <div
+              className={` font-arizona-flare-regular leading-tight  text-primary ${typography.textSixXl}`}
             >
               Your perfect stay begins the moment you reach out.
-            </h1>
+            </div>
             <p className="mt-6">
               However you wish to begin, our team is here — attentive, discreet and delighted to help craft a stay beyond compare.
             </p>
@@ -57,80 +57,20 @@ export default function HeroLocationSection() {
 
         </div>
 
-        <div className="flex flex-col items-center justify-end lg:col-span-5 ">
-          <div className="w-full max-w-xs ml-auto">
-            <div className="relative h-60 overflow-hidden">
-              <Image
-                src="/contact-us/contact.jpg"
-                alt="The Beach Hotel exterior"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+        <div className="hidden lg:block lg:col-span-2"></div>
 
-            {/* <div className="mt-3 text-[11px] flex gap-1 items-start justify-between">
-              <div className="flex flex-col gap-px">
-                <div className="flex gap-1 items-center">
-                  <Phone size={12} />
-                  <Link href="tel:04652237491">04652 237 491</Link>
-                </div>
-
-                <div className="flex gap-1 items-center">
-                  <Mail size={12} />
-                  <Link href="mailto:thebeachhotel@gmail.com">
-                    thebeachhotel@gmail.com
-                  </Link>
-                </div>
-              </div>
-
-              <div className="flex gap-1 items-start">
-                <MapPin size={12} className="mt-1 shrink-0" />
-                <Link href="https://maps.google.com/?q=Erumanayakkanpatti+Beach+Road,+Kanyakumari">
-                  Beach Rd, Kanniyakumari, <br />
-                  Tamil Nadu 629702, India
-                </Link>
-              </div>
-            </div> */}
-
-            {/* Additional Contact Details */}
-
+        <div className="lg:col-span-5 flex items-end  ">
+          <div className="relative w-full h-100 overflow-hidden">
+            <Image
+              src="/contact-us/contact.jpg"
+              alt="The Beach Hotel exterior"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
 
-        <div className="mt-4 text-[11px] space-y-4 border-t flex flex-col  justify-end border-white/20 pt-4 lg:col-span-3 ">
-          <h2>Find Us</h2>
-          <div className="uppercase">
-            <div className={`${typography.textLg} font-arizona-flare-regular`}>The Beach Hotel</div>
-            <div className={`${typography.textLg} font-arizona-flare-regular`}>
-              Beach Road, Kanyakumari,
-              <br />
-              Tamil Nadu 629702, India
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <span className="font-medium text-xs uppercase">General Enquiries:</span>{" "}
-              <Link
-                href="mailto:info@thebeachhotel.com"
-                className={`${typography.textLg} hover:underline`}
-              >
-                info@thebeachhotel.com
-              </Link>
-            </div>
-
-            <div>
-              <span className="font-medium text-xs uppercase">Reception:</span>{" "}
-              <Link
-                href="tel:+919876543210"
-                className={`${typography.textLg} hover:underline`}
-              >
-                +91 98765 43210
-              </Link>
-            </div>
-          </div>
-        </div>
       </div>
     </Section>
   );

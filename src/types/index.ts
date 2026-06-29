@@ -4,6 +4,7 @@ export interface ApiListResponse<T> {
   success: boolean;
   total: number;
   data: T[];
+  message?: string;
 }
 
 export interface ApiSingleResponse<T> {
@@ -567,4 +568,55 @@ export interface ActivityLog {
   ip_address?: string;
 
   created_at?: string;
+}
+
+export interface AppointmentRequest {
+  id: string;
+
+  name: string;
+  email: string | null;
+  phone_number: string | null;
+  message: string | null;
+
+  is_handled: boolean;
+  handled_by: number | null;
+
+  created_by: number | null;
+  updated_by: number | null;
+  deleted_by: number | null;
+
+  created_at: string | null;
+  updated_at: string | null;
+  deleted_at: string | null;
+}
+
+export interface Room {
+  id: number;
+
+  name: string;
+  slug: string;
+  type: string | null;
+
+  image_url: string[] | null;
+  description: string | null;
+
+  price_per_night: string | null;
+  max_guests: number | null;
+
+  bed_type: string | null;
+  size: string | null;
+  floor: string | null;
+  view: string | null;
+
+  additional_keys: string[] | null;
+
+  is_active: boolean;
+
+  created_by: number | null;
+  updated_by: number | null;
+  deleted_by: number | null;
+
+  created_at: string | null;
+  updated_at: string | null;
+  deleted_at: string | null;
 }

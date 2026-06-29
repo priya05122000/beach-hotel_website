@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -13,8 +13,17 @@ import {
   Bath,
   Waves,
   MapPin,
+  Tv,
+  UtensilsCrossed,
+  Sofa,
+  LockKeyhole,
+  ConciergeBell,
+  WashingMachine,
+  Accessibility,
+  PawPrint,
+  Sparkles,
 } from "lucide-react";
-import type { Room } from "@/src/data/rooms";
+import type { Room } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import RoomSlider from "./RoomSlider";
 import Pill from "./Pill";
@@ -45,7 +54,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
               invalidateOnRefresh: true,
               markers: false,
             },
-          }
+          },
         );
       });
 
@@ -55,27 +64,50 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
     return () => ctx.revert();
   }, []);
 
-  const amenities = [
-    { icon: Wifi, label: "Free Wi-Fi", show: room.wifi },
-    { icon: Wind, label: "AC", show: room.air_conditioning },
-    { icon: Wine, label: "Minibar", show: room.minibar },
-    { icon: Bath, label: "Bathtub", show: room.bathtub },
-    { icon: Waves, label: "Balcony", show: room.balcony },
-  ].filter((a) => a.show);
+  const AMENITY_MAP: Record<
+    string,
+    { icon: React.ElementType; label: string }
+  > = {
+    "Air Conditioning": { icon: Wind, label: "Air Conditioning" },
+    "Wi-Fi": { icon: Wifi, label: "Wi-Fi" },
+    Minibar: { icon: Wine, label: "Minibar" },
+    Balcony: { icon: Waves, label: "Balcony" },
+    Bathtub: { icon: Bath, label: "Bathtub" },
+    "Private Pool": { icon: Waves, label: "Private Pool" },
+    Jacuzzi: { icon: Sparkles, label: "Jacuzzi" },
+    Kitchen: { icon: UtensilsCrossed, label: "Kitchen" },
+    "Living Room": { icon: Sofa, label: "Living Room" },
+    "Smart TV": { icon: Tv, label: "Smart TV" },
+    "Safe Deposit Box": { icon: LockKeyhole, label: "Safe Deposit Box" },
+    "Room Service": { icon: ConciergeBell, label: "Room Service" },
+    "Laundry Service": { icon: WashingMachine, label: "Laundry Service" },
+    "Wheelchair Accessible": {
+      icon: Accessibility,
+      label: "Wheelchair Accessible",
+    },
+    "Pet Friendly": { icon: PawPrint, label: "Pet Friendly" },
+  };
+  const amenities = (room.additional_keys ?? [])
+    .map((key) => AMENITY_MAP[key])
+    .filter(Boolean) as { icon: React.ElementType; label: string }[];
 
   return (
     <div ref={sectionRef} className="py-16 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-        <div ref={(el) => { cardsRef.current[0] = el; }} className={`${isEven ? "lg:order-1" : "lg:order-2"}`}>
-
-          <RoomSlider images={room.images} name={room.name} />
+        <div
+          ref={(el) => {
+            cardsRef.current[0] = el;
+          }}
+          className={`${isEven ? "lg:order-1" : "lg:order-2"}`}
+        >
+          <RoomSlider images={room.image_url ?? []} name={room.name} />
 
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
             <div className="flex flex-wrap gap-x-6 gap-y-3">
               <div className="flex items-center gap-2 text-gray">
                 <Maximize2 size={13} strokeWidth={1.5} />
                 <span className="text-xs font-arizona-sans-regular tracking-widest uppercase">
-                  {room.size_sqm} sqm
+                  {room.size} sq. ft.
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray">
@@ -129,7 +161,9 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
         </div>
 
         <div
-          ref={(el) => { cardsRef.current[1] = el; }}
+          ref={(el) => {
+            cardsRef.current[1] = el;
+          }}
           className={`
           flex flex-col justify-center gap-6 p-8 lg:p-12 xl:p-16
           ${isEven ? "lg:order-2" : "lg:order-1"}
