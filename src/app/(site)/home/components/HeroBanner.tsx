@@ -18,11 +18,6 @@ export default function HeroBanner() {
     <>
 
       <section className="relative h-screen">
-        <div className="absolute bg-linear-to-b from-black/60 to-transparent top-0 left-0 right-0 z-30 mt-10 py-5 flex justify-center">
-
-
-        </div>
-
         <div className="relative h-screen overflow-hidden" >
           <div className="flex h-full">
             <div className="relative min-w-0 flex-[0_0_100%]">
