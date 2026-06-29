@@ -132,7 +132,7 @@ export default function GalleryBanner() {
                     </div>
 
                     <div className="overflow-hidden w-full mt-10  text-end">
-                        <p className="readReveal  ">
+                        <p className="readReveal  type-body">
                             Read More
                         </p>
                         {/* <hr className="w-1/2 ml-auto mt-4" /> */}
