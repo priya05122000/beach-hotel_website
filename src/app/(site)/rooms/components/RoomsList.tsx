@@ -22,6 +22,7 @@ import {
   Accessibility,
   PawPrint,
   Sparkles,
+  Sparkle,
 } from "lucide-react";
 import type { Room } from "@/src/types";
 import Section from "@/src/components/common/Section";
@@ -190,6 +191,22 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
 export default function RoomsList({ rooms }: { rooms: Room[] }) {
   return (
     <Section className="">
+      <div className="grid grid-cols-[0.5fr_1fr] border-b border-silver pb-10 pt-16 lg:py-20">
+        <div className="text-primary flex gap-3 items-center h-25">
+          <Sparkle size={10} fill="#012644" className="" />{" "}
+          <p>Rooms & Suites</p>
+        </div>
+        <div className="text-xl text-primary font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
+          At The Beach Hotel, every stay is an invitation to refined indulgence.
+          Our accommodations are appointed with bespoke furnishings, the finest
+          linens and thoughtful touches at every turn — from serene inland
+          retreats to coveted sea-view sanctuaries, where floor-to-ceiling glass
+          dissolves the line between suite and ocean and the rhythm of the waves
+          becomes your constant companion. Whichever you choose, you are wrapped
+          in quiet grandeur and impeccable comfort — and wake to the most
+          extraordinary edge of India.
+        </div>
+      </div>
       <div className="divide-y divide-silver">
         {rooms.map((room, index) => (
           <RoomRow key={room.id} room={room} index={index} />

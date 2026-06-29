@@ -91,9 +91,9 @@ export default function NearbyHeroBanner({
 
       <div className="absolute px-6 md:left-40 lg:left-1/3 xl:right-1/3 bottom-20 sm:bottom-40 flex flex-col pointer-events-none" style={{ zIndex: 10 }}>
         <div className="max-w-xs sm:max-w-md">
-          <p className="text-white/70 uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 font-arizona-sans-regular">
+          {/* <p className="text-white/70 uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 font-arizona-sans-regular">
             Nearby Destinations
-          </p>
+          </p> */}
           <h1 className="text-white font-arizona-flare-regular font-normal leading-tight mb-4">
             {slides[selectedIndex]?.destination_name}
           </h1>
