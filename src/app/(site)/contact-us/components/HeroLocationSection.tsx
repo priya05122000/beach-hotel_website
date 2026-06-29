@@ -72,8 +72,8 @@ export default function HeroLocationSection() {
         </div>
       </div>
 
-      <div ref={gridRef} className="grid grid-cols-12 gap-10 py-16 lg:py-20">
-        <div className="col-span-12 sm:col-span-6 lg:col-span-4 space-y-5">
+      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-12 gap-y-10 sm:gap-10 py-16 lg:py-20">
+        <div className="sm:col-span-6 lg:col-span-4 space-y-5">
           <div className="uppercase font-semibold text-primary-dark  type-body-xl leading-tight"> GETTING HERE</div>
           <p className="type-body">
             Set at the southernmost tip of the Indian peninsula, The Beach Hotel is closer than you imagine — and worth every mile.
@@ -90,7 +90,7 @@ export default function HeroLocationSection() {
 
         <div className="hidden lg:block col-span-1 lg:col-span-2"></div>
 
-        <div className="col-span-12 sm:col-span-6 lg:col-span-5 flex items-end">
+        <div className="sm:col-span-6 lg:col-span-5 flex items-end">
           <div className="relative w-full h-100 overflow-hidden">
             <div
               ref={imageInnerRef}

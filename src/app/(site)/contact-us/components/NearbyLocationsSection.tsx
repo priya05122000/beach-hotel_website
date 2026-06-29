@@ -76,7 +76,7 @@ export default function NearbyLocationsSection() {
   return (
     <Section className="bg-ivory py-16 lg:py-20 type-body-sm">
       {/* Desktop layout */}
-      <div className="hidden md:flex items-center justify-center gap-0">
+      <div className="hidden lg:flex items-center justify-center gap-0">
         {/* Left column: two rows stacked */}
         <div className="flex flex-col gap-10">
           {leftLocations.map((loc, i) => (
@@ -116,35 +116,35 @@ export default function NearbyLocationsSection() {
         </div>
       </div>
 
-      {/* Mobile layout */}
-      <div className="md:hidden flex flex-col items-center gap-6">
-        <div className="flex flex-col justify-center items-center">
+      {/* Mobile & tablet layout */}
+      <div className="lg:hidden flex flex-col items-center gap-8">
+        <div className="flex flex-col items-center">
           <Image
-            src="/navbar_logo.svg"
+            src="/blue_logo.png"
             alt="logo"
-            width={100}
-            height={100}
-            className="h-25 w-60"
+            width={120}
+            height={120}
+            className=" object-contain"
           />
-          <p className="text-primary-dark pt-4 text-sm uppercase">Nearby location</p>
+          <p className="text-primary-dark pt-3 type-body uppercase tracking-widest">Nearby Locations</p>
         </div>
-        <div className="grid grid-cols-2 gap-4 w-full max-w-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
           {[...leftLocations, ...rightLocations].map((loc, i) => (
             <div
               key={i}
-              className="flex flex-col items-center text-center bg-white/40 rounded p-3 gap-1"
+              className="flex flex-col items-center text-center bg-white/40 p-4 gap-2"
             >
               <Image
                 src={loc.icon}
                 alt="Icon"
-                width={24}
-                height={24}
-                className="w-5 h-5"
+                width={32}
+                height={32}
+                className="w-8 h-8"
               />
-              <p className="text-[11px]  text-primary-dark uppercase tracking-wide  whitespace-pre-line">
+              <p className="text-[11px] text-primary-dark uppercase tracking-wide whitespace-pre-line">
                 {loc.label}
               </p>
-              <span className="text-primary-dark/70">{loc.time}</span>
+              <span className="text-primary-dark/70 text-xs">{loc.time}</span>
             </div>
           ))}
         </div>
