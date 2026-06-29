@@ -33,7 +33,7 @@ export default function BlogStatement({ blog }: Props) {
         <div className="grid sm:grid-cols-2 sm:gap-10 mt-10 lg:mt-20 pt-5 md:pt-5 border-t border-silver">
           <div className="hidden sm:block" />
           <div
-            className="text-charcoal type-body leading-relaxed sm:text-right"
+            className="blog-content text-charcoal leading-relaxed sm:text-right"
             dangerouslySetInnerHTML={{ __html: blog.description_3 }}
           />
         </div>

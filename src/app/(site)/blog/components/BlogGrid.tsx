@@ -11,10 +11,10 @@ export default function BlogGrid({ blogs }: Props) {
   return (
 
     <Section className="py-16 lg:py-20">
-      <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20">
         {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
         <p className="type-h6 tracking-[73%] text-center sm:text-left  lg:tracking-[83%] uppercase">Blogs</p>
-        <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
+        <div className="type-body-xl text-charcoal lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           There is a story in every corner of this remarkable land, and our
           journal is where we tell them. Wander through insider guides to
           Kanyakumari's coast and countryside, seasonal highlights, and tales

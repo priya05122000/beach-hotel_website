@@ -292,6 +292,94 @@ body::-webkit-scrollbar {
 }
 
 /* ─────────────────────────────────────────────
+   BLOG CONTENT (dangerouslySetInnerHTML rich text)
+───────────────────────────────────────────── */
+.blog-content {
+  font-family: var(--font-arizona-sans-regular);
+  font-size: var(--text-body);
+  letter-spacing: 0.6px;
+  line-height: 1.7;
+}
+
+.blog-content p {
+  font-size: var(--text-body);
+  margin-bottom: 0.75em;
+}
+
+.blog-content p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-content h2 {
+  font-family: var(--font-arizona-sans-bold);
+  font-size: var(--text-h2);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.blog-content h3 {
+  font-family: var(--font-arizona-sans-bold);
+  font-size: var(--text-h3);
+  margin-top: 1.25em;
+  margin-bottom: 0.4em;
+}
+
+.blog-content h4 {
+  font-family: var(--font-arizona-sans-bold);
+  font-size: var(--text-h4);
+  margin-top: 1em;
+  margin-bottom: 0.35em;
+}
+
+.blog-content strong,
+.blog-content b {
+  font-weight: 600;
+}
+
+.blog-content em,
+.blog-content i {
+  font-style: italic;
+}
+
+.blog-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--primary);
+  transition: opacity 0.2s ease;
+}
+
+.blog-content a:hover {
+  opacity: 0.7;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.4em;
+  margin-bottom: 0.75em;
+}
+
+.blog-content ul {
+  list-style: disc;
+}
+
+.blog-content ol {
+  list-style: decimal;
+}
+
+.blog-content li {
+  font-size: var(--text-body);
+  margin-bottom: 0.35em;
+}
+
+.blog-content blockquote {
+  border-left: 2px solid var(--silver);
+  padding-left: 1em;
+  font-style: italic;
+  color: var(--gray);
+  margin: 1em 0;
+}
+
+/* ─────────────────────────────────────────────
    COMPONENTS
 ───────────────────────────────────────────── */
 .custom-shape {

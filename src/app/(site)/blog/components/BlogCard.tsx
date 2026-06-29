@@ -34,7 +34,7 @@ export default function BlogCard({ blog }: Props) {
 
       <div className="pt-5 flex flex-col flex-1">
         {date && (
-          <div className="text-gray text-xs font-arizona-sans-regular tracking-widest uppercase mb-2">
+          <div className="text-gray type-overline font-arizona-sans-regular tracking-widest mb-2">
             {date}
           </div>
         )}
@@ -46,7 +46,7 @@ export default function BlogCard({ blog }: Props) {
         </Link>
 
         <div
-          className="text-charcoal type-body leading-relaxed mb-4 line-clamp-3"
+          className="blog-content text-charcoal leading-relaxed mb-4 line-clamp-3"
           dangerouslySetInnerHTML={{ __html: blog.description_1 }}
         />
 
@@ -61,7 +61,7 @@ export default function BlogCard({ blog }: Props) {
             className="transition-transform duration-300 group-hover/link:translate-x-1"
           />
         </Link> */}
-        <Button href={`/blog/${blog.slug}`} className="mt-auto text-[13px] text-primary-darkfont-semibold hover:text-primary/80">
+        <Button href={`/blog/${blog.slug}`} className="mt-auto type-body-sm text-primary-dark font-semibold hover:text-primary/80">
           More Details
         </Button>
       </div>
