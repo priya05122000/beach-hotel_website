@@ -13,6 +13,7 @@
   --dusty: #bc8d59;
   --silver: #D9D9D9;
   --ivory: rgb(255, 251, 247);
+  --secondary: #333333;
 }
 
 @theme inline {
@@ -27,6 +28,7 @@
   --color-gray: var(--gray);
   --color-dusty: var(--dusty);
   --color-silver: var(--silver);
+  --color-secondary: var(--secondary);
   --font-arizona-sans-bold: var(--font-arizona-sans-bold);
   --font-arizona-flare-regular: var(--font-arizona-flare-regular);
   --font-arizona-sans-regular: var(--font-arizona-sans-regular);

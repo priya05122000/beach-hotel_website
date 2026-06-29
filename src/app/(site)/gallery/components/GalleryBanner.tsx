@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-const IMAGE_SRC = "/home/herobanner.jpg";
+const IMAGE_SRC = "/banner/gallery.webp";
 
 const displaySize = "clamp(3.5rem,11vw,8rem)";
 const subSize = "clamp(2.5rem,11vw,8rem)";

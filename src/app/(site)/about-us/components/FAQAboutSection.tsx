@@ -21,9 +21,9 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
         >
           GOT QUESTIONS?
           <br />
-          <span className="italic font-light text-accent">
-            we&apos;ve got you
-          </span>
+          <div className="font-light mt-2 text-secondary text-sm lg:text-base leading-snug max-w-xs md:max-w-sm">
+            Your questions, thoughtfully answered — so all that's left is to arrive
+          </div>
         </h2>
 
         <p
@@ -67,7 +67,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
                     {faq.question}
                   </p>
 
-                  <span className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full border border-silver text-gray text-sm transition-transform duration-300">
+                  <span className="shrink-0 flex h-7 w-7 items-center justify-center text-gray text-sm transition-transform duration-300">
                     {isOpen ? "↑" : "↓"}
                   </span>
                 </button>

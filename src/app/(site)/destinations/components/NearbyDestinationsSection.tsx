@@ -60,13 +60,18 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
               </span>
             </a> */}
 
-            <Button label="Explore Destination" href="#" className="text-[13px] text-primary font-semibold hover:text-primary/80"/>
+            <Button
+              href="#"
+              className="text-[13px] text-primary font-semibold hover:text-primary/80"
+            >
+              Explore Destination
+            </Button>
           </div>
         </div>
         <div className="flex items-end">
           {destination.description && (
             <div
-              className="text-gray text-xs sm:text-sm tracking-[0.25em] font-arizona-sans-regular"
+              className="text-secondary text-xs sm:text-sm tracking-[0.25em] font-arizona-sans-regular"
               dangerouslySetInnerHTML={{ __html: destination.description }}
             />
           )}
@@ -86,7 +91,8 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
     <Section className="py-16 lg:py-20">
       <div className="grid grid-cols-[0.5fr_1fr] border-b border-silver pb-10">
         <div className="text-primary flex gap-3 items-center h-25">
-          <Sparkle size={10} fill="#012644" className="" /> <p>Nearby Destinations</p>
+          <Sparkle size={10} fill="#012644" className="" />{" "}
+          <p>Nearby Destinations</p>
         </div>
         <div className="text-xl text-primary font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
