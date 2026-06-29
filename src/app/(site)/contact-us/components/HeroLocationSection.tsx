@@ -8,6 +8,7 @@ import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/src/components/common/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,12 +62,15 @@ export default function HeroLocationSection() {
 
             {/* CTA Button */}
             <div className="mt-6 md:mt-8 lg:mt-10">
-              <a
+              {/* <a
                 href="#contact-form"
                 className="inline-block border border-foreground/40 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-primary hover:text-white transition-colors duration-200"
               >
                 Contact A Manager
-              </a>
+              </a> */}
+              <Button href="#contact-form" className="text-sm tracking-[0.1em] font-arizona-sans-bold">
+                Contact A Manager
+              </Button>
             </div>
           </div>
         </div>

@@ -397,11 +397,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
         {/* Main nav bar */}
         <div className={`transition-colors duration-500 bg-transparent"}`}>
           <div className="px-6 xl:px-10">
-            <div className="relative h-16 flex items-center justify-between lg:px-4 xl:px-10">
+            <div className="relative h-16 flex items-center justify-between">
 
               {/* ── Left nav links (desktop, not scrolled) ── */}
               <ul
-                className={`hidden lg:flex items-center gap-6 transition-opacity duration-300 ${
+                className={`hidden lg:flex items-center gap-6 transition-opacity duration-300 lg:pl-4 xl:pl-10 ${
                   isDesktop && !scrolled && !open && !animating
                     ? "opacity-100 pointer-events-auto"
                     : "opacity-0 pointer-events-none"
@@ -468,7 +468,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
               <div className="flex items-center ml-auto">
                 {/* Right nav links (desktop, not scrolled) */}
                 <ul
-                  className={`hidden lg:flex items-center gap-6 transition-opacity duration-300 ${
+                  className={`hidden lg:flex items-center gap-6 transition-opacity duration-300 lg:pr-4 xl:pr-10 ${
                     isDesktop && !scrolled && !open && !animating
                       ? "opacity-100 pointer-events-auto"
                       : "opacity-0 pointer-events-none"
