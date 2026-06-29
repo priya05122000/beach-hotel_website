@@ -38,28 +38,32 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      cardsRef.current.forEach((card, i) => {
-        if (!card) return;
+      const mm = gsap.matchMedia();
 
-        gsap.fromTo(
-          card,
-          { yPercent: i === 0 ? 30 : 15 },
-          {
-            yPercent: i === 0 ? -30 : -15,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-              invalidateOnRefresh: true,
-              markers: false,
+      mm.add("(min-width: 640px)", () => {
+        cardsRef.current.forEach((card, i) => {
+          if (!card) return;
+
+          gsap.fromTo(
+            card,
+            { yPercent: i === 0 ? 30 : 15 },
+            {
+              yPercent: i === 0 ? -30 : -15,
+              ease: "none",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+                invalidateOnRefresh: true,
+                markers: false,
+              },
             },
-          },
-        );
-      });
+          );
+        });
 
-      ScrollTrigger.refresh();
+        ScrollTrigger.refresh();
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -94,7 +98,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
 
   return (
     <div ref={sectionRef} className="py-16 md:py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
         <div
           ref={(el) => {
             cardsRef.current[0] = el;
@@ -104,28 +108,28 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
           <RoomSlider images={room.image_url ?? []} name={room.name} />
 
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
-            <div className="flex flex-wrap gap-x-6 gap-y-3">
+            <div className="flex flex-wrap type-body-sm gap-x-6 gap-y-3">
               <div className="flex items-center gap-2 text-gray">
                 <Maximize2 size={13} strokeWidth={1.5} />
-                <span className="text-xs font-arizona-sans-regular tracking-widest uppercase">
+                <span className=" tracking-widest uppercase">
                   {room.size} sq. ft.
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray">
                 <Users size={13} strokeWidth={1.5} />
-                <span className="text-xs font-arizona-sans-regular tracking-widest uppercase">
+                <span className=" tracking-widest uppercase">
                   Up to {room.max_guests} guests
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray">
                 <BedDouble size={13} strokeWidth={1.5} />
-                <span className="text-xs font-arizona-sans-regular tracking-widest uppercase">
+                <span className=" tracking-widest uppercase">
                   {room.bed_type}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray">
                 <MapPin size={13} strokeWidth={1.5} />
-                <span className="text-xs font-arizona-sans-regular tracking-widest uppercase">
+                <span className=" tracking-widest uppercase">
                   {room.view}
                 </span>
               </div>
@@ -166,19 +170,19 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
             cardsRef.current[1] = el;
           }}
           className={`
-          flex flex-col justify-center gap-6 p-8 lg:p-12 xl:p-16
+          flex flex-col justify-center gap-4 pt-6 pb-2 sm:p-12 xl:p-16
           ${isEven ? "lg:order-2" : "lg:order-1"}
         `}
         >
-          <p className="text-xs font-arizona-sans-regular tracking-[0.3em] uppercase text-gray">
+          <p className=" type-body-sm uppercase  text-gray">
             {room.type}
           </p>
 
-          <h2 className="font-arizona-flare-regular font-normal text-primary-dark leading-tight">
+          <h2 className="type-body-lg  font-semibold text-primary-dark leading-tight">
             {room.name}
           </h2>
 
-          <p className="text-gray leading-relaxed text-sm max-w-md">
+          <p className="text-charcoal leading-relaxed type-body max-w-md">
             {room.description}
           </p>
         </div>
@@ -191,12 +195,10 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
 export default function RoomsList({ rooms }: { rooms: Room[] }) {
   return (
     <Section className="">
-      <div className="grid sm:grid-cols-[0.5fr_1fr] border-b border-silver pb-10 pt-16 lg:py-20">
-        <div className="text-primary-darkflex gap-3 items-center mb-4 sm:mb-0 sm:h-25">
-          <Sparkle size={10} fill="#012644" className="" />{" "}
-          <p>Rooms & Suites</p>
-        </div>
-        <div className="text-xl text-primary-dark font-arizona-flare-regular lg:max-w-md xl:max-w-150 tracking-wide leading-relaxed">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-[0.5fr_1fr] border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+        {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
+        <p className="type-h6 tracking-[73%] text-center lg:text-left  lg:tracking-[83%] uppercase">Rooms & Suites</p>
+        <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
           Our accommodations are appointed with bespoke furnishings, the finest
           linens and thoughtful touches at every turn — from serene inland

@@ -29,7 +29,7 @@ export default function RoomBanner() {
         const mm = gsap.matchMedia();
 
         // ── Desktop ───────────────────────────────────────────────────────
-        mm.add("(min-width: 1024px)", () => {
+        mm.add("(min-width: 768px)", () => {
             const ctx = gsap.context(() => {
                 const leftLines = desktopLineRefs.current.filter(Boolean) as HTMLSpanElement[];
                 const rightLine = desktopLineRightRef.current;
@@ -79,7 +79,7 @@ export default function RoomBanner() {
         });
 
         // ── Mobile ────────────────────────────────────────────────────────
-        mm.add("(max-width: 1023px)", () => {
+        mm.add("(max-width: 767px)", () => {
             const ctx = gsap.context(() => {
                 const mobileImage = mobileImageRef.current;
                 if (!mobileImage) return;
@@ -135,7 +135,7 @@ export default function RoomBanner() {
     return (
         <div ref={sectionRef}>
             {/* ── Mobile ─────────────────────────────────────────────────── */}
-            <div className="lg:hidden relative">
+            <div className="md:hidden relative">
                 <div
                     ref={mobileImageRef}
                     className="relative w-full h-[70vw] max-h-120 overflow-hidden"
@@ -149,13 +149,12 @@ export default function RoomBanner() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
 
-                    <div className="absolute inset-0 grid grid-cols-2 p-6">
+                    <div className="absolute inset-0 grid grid-cols-2 py-16 px-6">
                         <div className="flex items-start">
                             <div className="overflow-hidden">
                                 <h2
                                     ref={mobileLineLeftRef}
-                                    className="font-arizona-flare-regular text-white leading-[0.95]"
-                                    style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
+                                    className="  type-display-md  leading-tight text-white "
                                 >
                                     {TEXT_LINES.map((line, i) => (
                                         <span key={i} className="block">
@@ -170,7 +169,7 @@ export default function RoomBanner() {
                             <div className="overflow-hidden">
                                 <h2
                                     ref={mobileLineRightRef}
-                                    className="text-white font-normal text-3xl sm:text-5xl leading-tight text-right"
+                                    className="text-white  leading-tight type-display-md  text-right"
                                 >
                                     Experience
                                 </h2>
@@ -181,7 +180,7 @@ export default function RoomBanner() {
             </div>
 
             {/* ── Desktop ────────────────────────────────────────────────── */}
-            <div className="hidden lg:block relative overflow-hidden bg-ivory h-screen px-6 sm:px-4">
+            <div className="hidden md:block relative overflow-hidden bg-ivory h-screen">
                 <div
                     ref={imageWrapperRef}
                     className="absolute overflow-hidden"
@@ -197,13 +196,12 @@ export default function RoomBanner() {
                     <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
                 </div>
 
-                <div className="absolute inset-0 grid grid-cols-2 p-12 pointer-events-none max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl  mx-auto px-0 md:px-4 lg:px-12 xl:px-0 my-auto h-[60vh]">
+                <div className="absolute inset-0 grid grid-cols-2 pointer-events-none px-8 md:px-12 lg:px-20 my-auto h-[60vh]">
 
                     <div className="flex items-start">
                         <div className="overflow-hidden">
                             <h2
-                                className="font-arizona-flare-regular text-white leading-tight"
-                                style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
+                                className="type-display-lg text-white leading-tight"
                             >
                                 {TEXT_LINES.map((line, i) => (
                                     <span key={i} className="block overflow-hidden">
@@ -223,8 +221,8 @@ export default function RoomBanner() {
                         <div className="overflow-hidden">
                             <span
                                 ref={desktopLineRightRef}
-                                className="font-arizona-flare-regular text-white leading-tight block"
-                                style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
+                                className="type-display-lg  leading-tight text-white  block"
+
                             >
                                 Experience
                             </span>

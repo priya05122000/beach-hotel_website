@@ -8,7 +8,7 @@ export default async function RoomsPage() {
   return (
     <div>
       {/* <CommonBanner title="Rooms & Suites" /> */}
-      <RoomBanner  />
+      <RoomBanner />
       <RoomsList rooms={rooms} />
     </div>
   );
