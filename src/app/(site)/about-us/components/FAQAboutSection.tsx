@@ -68,9 +68,8 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    isOpen ? "mt-3 max-h-40 opacity-100" : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "mt-3 max-h-40 opacity-100" : "max-h-0 opacity-0"
+                    }`}
                 >
                   <p className="type-body text-charcoal leading-relaxed">
                     {faq.answer}
