@@ -36,7 +36,7 @@ function IconCard({ iconUrl, title }: { iconUrl: string; title: string }) {
           </div>
         </div>
       </div>
-      <p className="text-center text-gray type-body-sm ">{title}</p>
+      <p className="text-center text-gray text-xs lg:text-sm ">{title}</p>
     </div>
   );
 }
