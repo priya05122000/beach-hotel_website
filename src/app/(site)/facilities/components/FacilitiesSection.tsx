@@ -89,7 +89,7 @@ export default function FacilitiesSection({ facilities }: Props) {
     });
 
     return (
-        <Section className="pb-16 pt-32 lg:pt-40 lg:pb-20 type-body">
+        <Section className="pb-16 pt-16 sm:pt-40 lg:pb-20 type-body">
             <div ref={sectionRef} className="min-h-screen flex items-center">
 
                 {/* ── Mobile (<768px): single column, image → content, no animation ── */}

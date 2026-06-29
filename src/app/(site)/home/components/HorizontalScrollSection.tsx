@@ -111,7 +111,7 @@ export default function HorizontalScrollSection() {
                     return (
                         <div
                             key={item.id}
-                            className="relative shrink-0 w-80 "
+                            className="relative shrink-0 w-60 sm:w-80 "
                         >
                             {/* Image fills from top */}
                             <div
