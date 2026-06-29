@@ -23,7 +23,6 @@ export default function RoomSlider({
   images: string[];
   name: string;
 }) {
-  console.log("RoomSlider images:", images);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }),

@@ -60,12 +60,12 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
         </div>
 
         {/* Image + content */}
-        <div className="flex flex-col w-full h-full items-start justify-center gap-4 sm:gap-6 lg:gap-10">
+        <div className="flex flex-col w-full items-start justify-center gap-4 sm:gap-6 lg:gap-10">
           {/* Name visible on mobile & tablet */}
           <p className="type-h6 tracking-widest uppercase lg:hidden">
             {destination.destination_name}
           </p>
-          <div ref={imageWrapRef} className="will-change-transform">
+          <div ref={imageWrapRef} className="will-change-transform w-full sm:w-auto">
             <DestinationImageSlider
               images={destination.image_url}
               name={destination.destination_name}

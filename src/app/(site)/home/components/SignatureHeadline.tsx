@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import CenterSection from "@/src/components/common/CenterSection";
-import { useSlideUp } from "@/src/lib/gsap/useSlideUp";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 const LINES: React.ReactNode[] = [
     <>Kanniyakumari&apos;s most extraordinary</>,
@@ -15,14 +15,15 @@ const SignatureHeadline = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
-    useSlideUp({
-        targets: lineRefs.current,
-        trigger: sectionRef.current,
-        start: "top 75%",
-        stagger: 0.12,
-        duration: 0.8,
-        scope: sectionRef.current,
-    });
+    useLayoutEffect(() => {
+        applySlideUp(lineRefs.current, {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            stagger: 0.12,
+            duration: 0.8,
+            delay:0.2,
+        });
+    }, []);
 
     return (
         <CenterSection className="">
