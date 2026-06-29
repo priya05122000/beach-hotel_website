@@ -8,17 +8,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const TEXT_LINES = [
-    "Spaces crafted",
-    "for those who",
-    "demand more.",
+    "Curated", 
+    "Comforts At ",
+    "The Land's End.",
 ];
 
-const PARAGRAPH = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Quae sequi suscipit itaque ducimus? Eveniet a beatae
-tempore neque odio, adipisci fugiat? Non incidunt error
-necessitatibus est, vel quaerat ex fugit blanditiis
-mollitia, quam accusantium ratione explicabo consequatur!
-Asperiores, repellendus vel!`;
+const PARAGRAPH = `True luxury lies in the freedom to simply be. At The Beach Hotel, every amenity — from sea-view dining and the infinity pool to our signature spa and intuitive concierge — is designed to dissolve the everyday and leave only ease in its place. Whatever your heart desires, you will find it has been considered long before you ask.`;
 
 export default function FacilitiesSplitHero() {
     // ── Desktop refs ──────────────────────────────────────────────
@@ -136,7 +131,7 @@ export default function FacilitiesSplitHero() {
                             ))}
                         </h2>
 
-                        <a
+                        {/* <a
                             ref={mobileCtaRef}
                             href="#facilities"
                             className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-8 group"
@@ -144,7 +139,7 @@ export default function FacilitiesSplitHero() {
                         >
                             <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
                             Explore All
-                        </a>
+                        </a> */}
                     </div>
 
                     <div className="overflow-hidden">
@@ -197,7 +192,7 @@ export default function FacilitiesSplitHero() {
                                     ))}
                                 </h2>
 
-                                <a
+                                {/* <a
                                     ref={desktopCtaRef}
                                     href="#facilities"
                                     className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-10 pointer-events-auto group"
@@ -205,7 +200,7 @@ export default function FacilitiesSplitHero() {
                                 >
                                     <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
                                     Explore All
-                                </a>
+                                </a> */}
                             </div>
 
                             <div className="max-w-xs lg:mx-auto overflow-hidden">

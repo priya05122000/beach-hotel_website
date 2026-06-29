@@ -1,15 +1,16 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 
 type ButtonProps = {
-  label: string;
+  children: ReactNode;
   className?: string;
 } & ({ href: string; action?: never } | { action: () => void; href?: never });
 
-export const Button = ({ label, href, action, className }: ButtonProps) => {
+export const Button = ({ children, href, action, className }: ButtonProps) => {
   const inner = (
     <>
-      <span className="inline-block w-8 h-px bg-current transition-all duration-300 group-hover:w-14" />
-      {label}
+      <span className="inline-block min-w-8 w-8 h-px bg-current transition-all duration-300 group-hover:w-14" />
+      {children}
     </>
   );
 

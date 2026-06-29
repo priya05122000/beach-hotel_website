@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 import Section from "../common/Section";
 import { Announcement } from "@/src/types";
+import { Button } from "../common/button";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -441,7 +442,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                       {href ? (
                         <Link
                           href={href}
-                          className={`inline-flex items-center gap-1 transition-colors font-semibold text-xs lg:text-sm tracking-[0.6px]
+                          className={`inline-flex items-center gap-1 transition-colors font-semibold text-xs lg:text-sm tracking-[0.6px] uppercase
     ${
       isActive(href)
         ? "text-accent"
@@ -460,8 +461,8 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         </Link>
                       ) : (
                         <span
-                          className={`inline-flex items-center gap-1 font-semibold text-xs lg:text-sm tracking-[0.6px] cursor-default select-none
-    ${isOverDark ? "text-white" : "text-primary-dark"}`}
+                          className={`inline-flex items-center gap-1 font-semibold text-xs lg:text-sm tracking-[0.6px] uppercase cursor-default select-none
+    ${isOverDark ? "text-white" : "text-primary"}`}
                         >
                           {label}
                           {children && (
@@ -488,7 +489,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                               <li key={child.href}>
                                 <Link
                                   href={child.href}
-                                  className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] transition-colors ${isActive(child.href) ? "text-accent " : "text-white hover:text-accent"}`}
+                                  className={`block px-5 py-2.5 text-xs lg:text-sm tracking-[0.6px] uppercase transition-colors ${isActive(child.href) ? "text-accent " : "text-white hover:text-accent"}`}
                                 >
                                   {child.label}
                                 </Link>
@@ -626,10 +627,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <li key={link.label} className="pt-3 pb-3">
                       {/* Parent link — overflow-hidden acts as the reveal mask */}
                       <div className="overflow-hidden">
-
                         {link.href ? (
                           <a
-                            ref={(el) => { linksRef.current[i] = el; }}
+                            ref={(el) => {
+                              linksRef.current[i] = el;
+                            }}
                             href={link.href}
                             onClick={handleLinkClick}
                             className="group text-[16px] uppercase tracking-[0.2em] text-primary-dark transition-colors font-arizona-flare-regular duration-300"
@@ -641,13 +643,17 @@ export default function Header({ announcementData }: AnnouncementProps) {
                           </a>
                         ) : (
                           <span
-                            ref={(el) => { linksRef.current[i] = el as unknown as HTMLAnchorElement; }}
-                            className="text-primary-dark/40 text-[14px] lg:text-[16px] font-arizona-sans-regular font-extralight cursor-default select-none"
-                            style={{ transform: "translateY(110%)", display: "block" }}
+                            ref={(el) => {
+                              linksRef.current[i] =
+                                el as unknown as HTMLAnchorElement;
+                            }}
+                            className="text-primary/40 text-[14px] lg:text-[16px] font-arizona-sans-regular font-extralight cursor-default select-none"
+                            style={{
+                              transform: "translateY(110%)",
+                              display: "block",
+                            }}
                           >
-                            <span className="relative pb-1">
-                              {link.label}
-                            </span>
+                            <span className="relative pb-1">{link.label}</span>
                           </span>
                         )}
                       </div>
@@ -692,28 +698,34 @@ export default function Header({ announcementData }: AnnouncementProps) {
               {/* Bottom meta */}
               <div
                 ref={metaRef}
-                className="flex items-end justify-between pt-6 shrink-0"
+                className="flex flex-col sm:flex-row sm:items-end sm:justify-between pt-6 shrink-0 gap-6 sm:gap-0"
                 style={{ opacity: 0, transform: "translateY(20px)" }}
               >
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+915467898765"
-                    className="text-primary-dark text-xs tracking-wide uppercase no-underline hover:text-primary-dark transition-colors duration-200"
+                    className="text-primary text-[16px] tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
                   >
-                    +91 54678 98765
+                    <span className="text-[10px]">Enquiry:</span>  +91 54678 98765
                   </a>
 
-                  <p className="text-primary-dark text-xs tracking-wider uppercase font-light">
-                    Beach Rd, Kanniyakumari, TN 629702
+                  <p className="text-primary text-xs tracking-wider uppercase font-light">
+                   <span className="text-[10px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
                   </p>
                 </div>
-                <a
+                {/* <a
                   href="/contact-us"
                   onClick={handleLinkClick}
-                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary-dark underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
                 >
                   Book My Stay
-                </a>
+                </a> */}
+                <Button
+                  href="/contact-us"
+                  className="text-[11px] tracking-[0.2em] font-semibold text-primary w-45"
+                >
+                  Book My Stay
+                </Button>
               </div>
             </div>
           </div>

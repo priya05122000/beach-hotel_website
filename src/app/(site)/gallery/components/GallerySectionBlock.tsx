@@ -84,7 +84,7 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
               {section.category_name}
             </h2>
 
-            <p className="text-gray text-sm leading-relaxed font-arizona-flare-regular max-w-lg lg:max-w-xs">
+            <p className={`text-gray text-sm leading-relaxed font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
               {section.short_description}
             </p>
           </div>

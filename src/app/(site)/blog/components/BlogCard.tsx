@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Blog } from "@/src/types";
+import { Button } from "@/src/components/common/button";
 
 interface Props {
   blog: Blog;
@@ -49,8 +50,7 @@ export default function BlogCard({ blog }: Props) {
           dangerouslySetInnerHTML={{ __html: blog.description_1 }}
         />
 
-        {/* CTA */}
-        <Link
+        {/* <Link
           href={`/blog/${blog.slug}`}
           className="group/link mt-auto inline-flex items-center gap-3 text-xs font-arizona-sans-regular text-foreground uppercase tracking-widest"
         >
@@ -60,7 +60,10 @@ export default function BlogCard({ blog }: Props) {
             strokeWidth={1.5}
             className="transition-transform duration-300 group-hover/link:translate-x-1"
           />
-        </Link>
+        </Link> */}
+        <Button href={`/blog/${blog.slug}`} className="mt-auto text-[13px] text-primary font-semibold hover:text-primary/80">
+          More Details
+        </Button>
       </div>
     </article>
   );

@@ -8,7 +8,7 @@ export default async function BlogPage() {
 
   return (
     <div>
-      <CommonBanner title="Blog" />
+      <CommonBanner title="NOTES FROM THE BEACH HOTEL" src="/banner/blog.webp" />
       <BlogGrid blogs={activeBlogs} />
     </div>
   );
