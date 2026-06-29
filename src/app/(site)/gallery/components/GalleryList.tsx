@@ -15,8 +15,8 @@ export default function GalleryList({ sections, galleries }: Props) {
   return (
     <div className="flex flex-col">
       <Section>
-        <div className="grid grid-cols-[0.5fr_1fr]">
-          <div className="text-primary flex gap-3 items-center h-25">
+        <div className="grid sm:grid-cols-[0.5fr_1fr]">
+          <div className="text-primary flex gap-3 items-center mb-4 sm:mb-0 sm:h-25">
             <Sparkle size={10} fill="#012644" className="" />{" "}
             <p>Nearby Destinations</p>
           </div>
