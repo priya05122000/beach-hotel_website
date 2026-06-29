@@ -41,9 +41,8 @@ interface LocationNodeProps {
 function LocationNode({ icon, label, side }: LocationNodeProps) {
   return (
     <div
-      className={`flex flex-col items-center text-center gap-1 ${
-        side === "left" ? "mr-2" : "ml-2"
-      }`}
+      className={`flex flex-col items-center text-center gap-1 ${side === "left" ? "mr-2" : "ml-2"
+        }`}
     >
       <Image src={icon} alt="Icon" width={24} height={24} className="w-5 h-5" />
       <p className="text-xs font-semibold text-primary uppercase tracking-wide  whitespace-pre-line">
@@ -75,7 +74,7 @@ function ArrowRow({ time, direction, length }: ArrowRowProps) {
 
 export default function NearbyLocationsSection() {
   return (
-    <Section className="bg-white pb-10 lg:pb-16">
+    <Section className="bg-ivory py-16 lg:py-20">
       {/* Desktop layout */}
       <div className="hidden md:flex items-center justify-center gap-0">
         {/* Left column: two rows stacked */}
@@ -98,7 +97,7 @@ export default function NearbyLocationsSection() {
             alt="logo"
             width={200}
             height={200}
-            className="h-60 w-60 xl:w-80"
+            className="h-60 w-60 xl:w-80 object-contain"
           />
         </div>
 

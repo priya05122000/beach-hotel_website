@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 import Section from "../common/Section";
@@ -355,13 +355,13 @@ export default function Header({ announcementData }: AnnouncementProps) {
             {/* <header className="fixed inset-x-0 top-0 z-[100]"> */}
 
             <header
-                className="fixed inset-x-0 top-0 z-[100] transition-transform duration-500"
+                className="fixed inset-x-0 top-0 z-100 transition-transform duration-500"
                 style={{
                     transform: hideNav ? "translateY(-100%)" : "translateY(0)",
                 }}
             >
                 {/* Announcement bar — collapses on scroll */}
-                <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled || open ? "h-0" : "h-10"}`}>
+                {/* <div className={`overflow-hidden bg-white/50 backdrop-blur-md transition-all duration-500 ease-in-out ${scrolled || open ? "h-0" : "h-10"}`}>
                     <Marquee
                         speed={40}
                         gradient={false}
@@ -375,7 +375,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             </span>
                         ))}
                     </Marquee>
-                </div>
+                </div> */}
 
                 {/* Main nav bar */}
                 <div className={`transition-colors duration-500 bg-transparent"}`}>
@@ -398,8 +398,8 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         width={300}
                                         height={150}
                                         alt="Navbar logo"
-                                        src="/toplogo.svg"
-                                        className="h-10 w-auto"
+                                        src={isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg"}
+                                        className="h-10 w-auto transition-all duration-300"
                                     />
                                 </Link>
                             </div>
@@ -423,7 +423,13 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                         >
                                             <Link
                                                 href={href}
-                                                className={`inline-flex items-center gap-1 transition-colors font-semibold text-xs lg:text-sm tracking-[0.6px] ${isActive(href) ? "text-accent" : "text-primary hover:text-accent"}`}
+                                                className={`inline-flex items-center gap-1 transition-colors font-semibold text-xs lg:text-sm tracking-[0.6px]
+    ${isActive(href)
+                                                        ? "text-accent"
+                                                        : isOverDark
+                                                            ? "text-white hover:text-accent"
+                                                            : "text-primary hover:text-accent"
+                                                    }`}
                                             >
                                                 {label}
                                                 {children && (
@@ -436,7 +442,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                                             {children && (
                                                 <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${activeDropdown === label ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"}`}>
-                                                    <ul className="bg-primary/40 backdrop-blur-md shadow-lg min-w-30 py-2">
+                                                    <ul className={` backdrop-blur-md shadow-lg min-w-30 py-2 ${isActive(href)
+                                                        ? "text-accent"
+                                                        : isOverDark
+                                                            ? "text-white bg-white/10 hover:text-accent"
+                                                            : "text-primary hover:text-accent bg-primary/40"
+                                                        }`}>
                                                         {children.map((child) => (
                                                             <li key={child.href}>
                                                                 <Link
@@ -547,7 +558,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 fill
                                 className="object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+                            <div className="absolute inset-0 bg-linear-to-t from-primary/80 via-primary/10 to-transparent" />
                             <div className="relative z-10 mt-auto p-8">
                                 <p
                                     className="text-white font-extralight leading-[1.1] tracking-[-0.02em]"
@@ -566,11 +577,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             <nav className="flex-1 flex flex-col justify-center">
                                 <ul className="list-none m-0 p-0">
                                     {NAV_LINKS.map((link, i) => (
-                                        <li key={link.label} className="border-t border-primary/10 pt-3 pb-2">
+                                        <li key={link.label} className="pt-3 pb-3">
 
                                             {/* Parent link — overflow-hidden acts as the reveal mask */}
                                             <div className="overflow-hidden">
-                                                <a
+                                                {/* <a
                                                     ref={(el) => { linksRef.current[i] = el; }}
                                                     href={link.href}
                                                     onClick={handleLinkClick}
@@ -578,6 +589,21 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                                     style={{ transform: "translateY(110%)" }}
                                                 >
                                                     {link.label}
+                                                </a> */}
+
+                                                <a
+                                                    ref={(el) => { linksRef.current[i] = el; }}
+                                                    href={link.href}
+                                                    onClick={handleLinkClick}
+                                                    className="group text-primary  text-[32px] lg:text-[40px] font-arizona-sans-regular font-extralight transition-colors duration-300  "
+                                                    style={{ transform: "translateY(110%)" }}
+
+                                                >
+
+                                                    <span className="relative pb-1 transition-all duration-300 group-hover:ml-2">
+                                                        {link.label}
+                                                        <span className="absolute left-0 bottom-0 h-[0.5px] w-full bg-primary/50 origin-right transition-transform duration-600 group-hover:scale-x-0" />
+                                                    </span>
                                                 </a>
                                             </div>
 
@@ -606,7 +632,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                             )}
                                         </li>
                                     ))}
-                                    <li className="border-t border-primary/10 h-px" />
                                 </ul>
                             </nav>
 

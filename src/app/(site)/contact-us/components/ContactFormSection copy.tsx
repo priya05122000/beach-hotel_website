@@ -108,17 +108,17 @@ export default function ContactFormSection() {
   };
 
   return (
-    <Section id="contact-form" className=" py-16 lg:py-20">
+    <Section id="contact-form" className="bg-primary py-16 lg:py-20">
       <div className="mb-4 md:mb-6 lg:mb-8">
         <h2
-          className={`font-semibold  text-primary ${typography.textFoXl}`}
+          className={`font-semibold  text-white ${typography.textFoXl}`}
         >
           Need More Information? <br /> Get in Touch
         </h2>
       </div>
       <div className="flex flex-col justify-center items-center gap-6">
         <div className="w-full md:w-100 xl:w-120">
-          <p className="text-primary/60 text-sm ">
+          <p className="text-white/60 text-sm ">
             Leave a request and we will consult you on available rooms and
             packages.
           </p>
@@ -135,7 +135,7 @@ export default function ContactFormSection() {
           {/* Row 1 — First / Last name */}
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
                 First Name*
               </label>
               <input
@@ -143,7 +143,7 @@ export default function ContactFormSection() {
                 name="first_name"
                 value={form.first_name}
                 onChange={handleChange}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
               />
               {errors.first_name && (
                 <p className="text-[11px] text-red-400 mt-0.5">
@@ -152,7 +152,7 @@ export default function ContactFormSection() {
               )}
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+              <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
                 Last Name*
               </label>
               <input
@@ -160,7 +160,7 @@ export default function ContactFormSection() {
                 name="last_name"
                 value={form.last_name}
                 onChange={handleChange}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
               />
               {errors.last_name && (
                 <p className="text-[11px] text-red-400 mt-0.5">
@@ -172,7 +172,7 @@ export default function ContactFormSection() {
 
           {/* Row 2 — Email */}
           <div className="flex flex-col gap-1">
-            <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+            <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
               Email*
             </label>
             <input
@@ -180,7 +180,7 @@ export default function ContactFormSection() {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+              className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
             />
             {errors.email && (
               <p className="text-[11px] text-red-400 mt-0.5">{errors.email}</p>
@@ -189,7 +189,7 @@ export default function ContactFormSection() {
 
           {/* Row 3 — Phone */}
           <div className="flex flex-col gap-1">
-            <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+            <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
               Phone*
             </label>
             <input
@@ -198,7 +198,7 @@ export default function ContactFormSection() {
               value={form.phone_number}
               onChange={handleChange}
               maxLength={10}
-              className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+              className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200"
             />
             {errors.phone_number && (
               <p className="text-[11px] text-red-400 mt-0.5">
@@ -209,7 +209,7 @@ export default function ContactFormSection() {
 
           {/* Row 4 — Message */}
           <div className="flex flex-col gap-1">
-            <label className="text-[11px] uppercase tracking-[0.12em] text-primary/50 font-medium">
+            <label className="text-[11px] uppercase tracking-[0.12em] text-white/50 font-medium">
               Message*
             </label>
             <textarea
@@ -217,7 +217,7 @@ export default function ContactFormSection() {
               value={form.message}
               onChange={handleChange}
               rows={2}
-              className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary placeholder:text-primary/30 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"
+              className="bg-transparent border-0 border-b border-white/25 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors duration-200 resize-none"
             />
             {errors.message && (
               <p className="text-[11px] text-red-400 mt-0.5">
@@ -227,7 +227,7 @@ export default function ContactFormSection() {
           </div>
 
           {/* Consent */}
-          <label className="flex items-start gap-3 text-xs text-primary/40 cursor-pointer">
+          <label className="flex items-start gap-3 text-xs text-white/40 cursor-pointer">
             <input
               type="checkbox"
               name="consent"
@@ -248,7 +248,7 @@ export default function ContactFormSection() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary text-white text-xs  uppercase tracking-[0.12em] py-3.5  hover:bg-primary/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+            className="w-full bg-white text-primary text-sm font-semibold uppercase tracking-[0.12em] py-3.5  hover:bg-white/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
           >
             {loading ? "Sending…" : "Submit Request"}
           </button>
