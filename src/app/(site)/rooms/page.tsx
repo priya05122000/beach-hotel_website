@@ -1,9 +1,9 @@
 import CommonBanner from "@/src/components/common/CommonBanner";
 import RoomsList from "./components/RoomsList";
-import { ROOMS_DATA } from "@/src/data/rooms";
+import { getRoomsData } from "@/src/service/rooms";
 
-export default function RoomsPage() {
-  const rooms = ROOMS_DATA.filter((r) => r.is_active);
+export default async function RoomsPage() {
+  const { data: rooms } = await getRoomsData();
 
   return (
     <div>

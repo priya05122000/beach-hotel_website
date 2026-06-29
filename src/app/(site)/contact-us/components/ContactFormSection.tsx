@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
-import { submitContactEnquiry } from "@/src/service/contact";
+import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 
 const initialForm = {
   first_name: "",
@@ -85,11 +85,10 @@ export default function ContactFormSection() {
     }
     try {
       setLoading(true);
-      const result = await submitContactEnquiry({
-        full_name: `${form.first_name} ${form.last_name}`,
+      const result = await submitAppointmentEnquiry({
+        name: `${form.first_name} ${form.last_name}`,
         email: form.email,
-        phone_number: form.phone_number,
-        location: "",
+        phone_number: String(form.phone_number),
         message: form.message,
       });
       if (result.success) {
