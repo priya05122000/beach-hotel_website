@@ -106,7 +106,7 @@ export default function GalleryBanner() {
                             ref={(el) => {
                                 leftRefs.current[0] = el;
                             }}
-                            className="block  font-arizona-flare-regular tracking-wider font-bold bg-clip-text text-transparent  leading-none"
+                            className="block type-display-lg tracking-wider font-bold bg-clip-text text-transparent  leading-none"
                             style={{
                                 fontSize: displaySize,
                                 ...clipStyle,

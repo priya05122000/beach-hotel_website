@@ -9,15 +9,15 @@ const ExploreDestinationSection = () => {
 
                 {/* Top Content */}
                 <Section>
-                    <div className=" grid gap-8 sm:grid-cols-2 lg:items-start  sm:h-full mb-10 sm:mb-0">
+                    <div className="grid gap-8 sm:grid-cols-2 min-h-80 sm:min-h-140 lg:min-h-180 xl:min-h-140">
 
                         {/* Left */}
-                        <div className={`max-w-xl type-display-sm  text-primary-dark uppercase `}>
+                        <div className={`max-w-xl type-display-sm text-primary-dark uppercase self-start`}>
                             Kanniyakumari's most extraordinary luxury address - where every horizon is yours alone, at the meeting point of three oceans.
                         </div>
 
                         {/* Right */}
-                        <div className="relative  flex flex-col items-start sm:items-end justify-end h-full ">
+                        <div className="relative flex flex-col items-start sm:items-end justify-end self-end">
 
                             <div className=" relative">
                                 <span aria-hidden="true" className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 w-[0.5px] bg-gray h-[calc(100%-25px)]" />
