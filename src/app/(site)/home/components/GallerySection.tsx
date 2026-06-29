@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import { useState, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import Section from "@/src/components/common/Section";
+import { Gallery } from "@/src/types";
 
 gsap.registerPlugin(ScrollTrigger);
-import { typography } from "@/src/lib/typography";
-import { Gallery } from "@/src/types";
-import Link from "next/link";
 
 interface GallerySectionProps {
     galleries: Gallery[];
@@ -121,8 +120,8 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
                     <MediaImage item={item} />
                 </div>
             </div>
-            <div className="flex items-center type-body justify-between mt-3">
-                <h3 className="font-bold text-gray  leading-snug">
+            <div className="flex items-center  justify-between mt-3">
+                <h3 className="font-bold text-gray  type-body  leading-snug">
                     {item.title || "Gallery"}
                 </h3>
                 <ReadMoreButton />

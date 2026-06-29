@@ -61,7 +61,7 @@
   --text-h3: clamp(20px, 2.5vw, 28px);
   --text-h4: clamp(18px, 2vw, 24px);
   --text-h5: clamp(16px, 1.5vw, 20px);
-  --text-h6: clamp(14px, 1.2vw, 16px);
+  --text-h6: clamp(15px, 1.2vw, 16px);
 
   /* Type scale — body */
   --text-body-xl: clamp(18px, 1.8vw, 20px);
