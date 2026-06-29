@@ -11,10 +11,10 @@ interface Props {
 export default function BlogCard({ blog }: Props) {
   const date = blog.published_at
     ? new Date(blog.published_at).toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
     : null;
 
   return (
@@ -40,13 +40,13 @@ export default function BlogCard({ blog }: Props) {
         )}
 
         <Link href={`/blog/${blog.slug}`}>
-          <h3 className="font-arizona-flare-regular text-foreground leading-snug mb-2 hover:text-primary-dark transition-colors">
+          <h3 className="text-primary-dark type-body-lg font-medium leading-snug mb-2 hover:text-primary-dark hover:underline underline-offset-2 transition-colors">
             {blog.title}
           </h3>
         </Link>
 
         <div
-          className="text-gray text-sm leading-relaxed mb-5 line-clamp-3"
+          className="text-charcoal type-body leading-relaxed mb-4 line-clamp-3"
           dangerouslySetInnerHTML={{ __html: blog.description_1 }}
         />
 

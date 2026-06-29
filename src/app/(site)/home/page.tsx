@@ -50,7 +50,6 @@ export default async function HomePage() {
             <ExploreDestinationSection />
             <AmenitiesSection />
             
-
             <RoomShowcaseSection />
             <RoomCardsSection />
             <HorizontalScrollSection />

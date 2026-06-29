@@ -7,13 +7,15 @@ import Section from "@/src/components/common/Section";
 const FeaturedHighlightSection = () => {
   return (
     <Section className="bg-ivory py-16 lg:py-20">
+
+
       <div className="grid sm:grid-cols-[1fr_1fr_1fr] gap-2">
         <div />
         <div className="col-span-2 flex flex-col text-right">
-          <h2 className="type-display-sm text-primary-dark uppercase mb-4">
+          <h2 className={`mt-2 uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%] `}>
             A SETTING LIKE NO OTHER
           </h2>
-          <p className="type-body-xl text-charcoal mb-10">
+          <p className={`max-w-lg  ml-auto my-10 type-body sm:text-right text-charcoal`}>
             Kanyakumari is a destination of many wonders — a sacred shore where
             sunrise, sunset and moonrise can all be witnessed over the sea,
             where the sands shift through hues of gold and crimson, and where
@@ -42,7 +44,7 @@ const FeaturedHighlightSection = () => {
 
             <div className="relative z-10 flex flex-col justify-between h-full p-6 lg:p-8">
               <div>
-                <p className="type-body font-normal text-white leading-relaxed">
+                <p className="type-body  text-white leading-relaxed">
                   Access your account or create a new profile to manage
                   bookings, view offers and enjoy a smoother stay experience at
                   The Beach Hotel, Kanniyakumari.
@@ -62,7 +64,7 @@ const FeaturedHighlightSection = () => {
           </div>
         </div>
 
-        <div className="hidden md:block"/>
+        <div className="hidden md:block" />
       </div>
     </Section>
   );
