@@ -21,7 +21,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
         >
           GOT QUESTIONS?
           <br />
-          <div className="font-light mt-2 text-secondary text-sm lg:text-base leading-snug max-w-xs md:max-w-sm">
+          <div className="font-light mt-2 text-charcoal text-sm lg:text-base leading-snug max-w-xs md:max-w-sm">
             Your questions, thoughtfully answered — so all that's left is to arrive
           </div>
         </h2>

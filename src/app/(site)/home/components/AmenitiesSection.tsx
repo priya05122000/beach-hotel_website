@@ -66,7 +66,7 @@ export default async function AmenitiesSection() {
 
     return (
         <CenterSection className="bg-ivory py-16 lg:py-20">
-            <h2 className="type-h5 tracking-[73%]  lg:tracking-[83%]  text-gray text-center  pb-10 uppercase font-normal">
+            <h2 className="type-h6 tracking-[73%]  lg:tracking-[83%]  text-gray text-center  pb-10 uppercase font-normal">
                 AMENITIES
             </h2>
 

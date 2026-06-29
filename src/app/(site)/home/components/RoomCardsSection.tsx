@@ -94,7 +94,7 @@ function RoomCard({ room }: { room: Room }) {
             </div>
 
             <div className="pt-6">
-                <h3 className={`font-bold uppercase mb-4 `}>
+                <h3 className={`font-semibold tracking-wider type-body-lg text-primary-dark uppercase mb-4 `}>
                     {room.name}
                 </h3>
 
@@ -110,7 +110,7 @@ function RoomCard({ room }: { room: Room }) {
                     ))}
                 </div>
 
-                <p className={` mb-5`}>
+                <p className={` mb-4 type-body text-charcoal`}>
                     {room.description}
                 </p>
 
@@ -118,7 +118,7 @@ function RoomCard({ room }: { room: Room }) {
                     {room.highlights.map((item, i) => {
                         const Icon = item.icon;
                         return (
-                            <li key={i} className="flex items-center gap-2">
+                            <li key={i} className="flex items-center gap-2 type-body text-charcoal">
                                 <Icon size={16} className="shrink-0 text-gray-500" />
                                 <p>{item.text}</p>
                             </li>
@@ -126,7 +126,7 @@ function RoomCard({ room }: { room: Room }) {
                     })}
                 </ul>
 
-                <Link href="/gallery" className="flex cursor-pointer items-center gap-1 text-sm text-gray-700 tracking-wider font-arizona-flare-regular mt-10  py-1 whitespace-nowrap underline underline-offset-2">
+                <Link href="/gallery" className="flex cursor-pointer items-center gap-1 type-body  text-gray-700 tracking-wider font-arizona-flare-regular mt-10  py-1 whitespace-nowrap underline underline-offset-2">
                     View Details
                 </Link>
             </div>
@@ -175,10 +175,10 @@ export default function RoomCardsSection() {
 
                 {/* Heading */}
                 <div className="mb-8 lg:mb-12 text-center">
-                    <h2 className={`mt-2 uppercase font-normal text-gray  `}>
+                    <h2 className={`mt-2 uppercase  text-gray type-h6 tracking-[73%]  lg:tracking-[83%]  `}>
                         Room Types
                     </h2>
-                    <p className="max-w-lg mx-auto mt-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, ipsa. Hic impedit quo maiores ab reprehenderit delectus corporis quam nostrum?</p>
+                    <p className="max-w-xl mx-auto my-10 text-charcoal type-body">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, ipsa. Hic impedit quo maiores ab reprehenderit delectus corporis quam nostrum?</p>
                 </div>
                 <div
                     ref={sectionRef}

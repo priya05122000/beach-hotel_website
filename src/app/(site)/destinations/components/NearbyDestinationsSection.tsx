@@ -71,7 +71,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
         <div className="flex items-end">
           {destination.description && (
             <div
-              className="text-secondary text-xs sm:text-sm tracking-[0.25em] font-arizona-sans-regular"
+              className="text-charcoal text-xs sm:text-sm tracking-[0.25em] font-arizona-sans-regular"
               dangerouslySetInnerHTML={{ __html: destination.description }}
             />
           )}

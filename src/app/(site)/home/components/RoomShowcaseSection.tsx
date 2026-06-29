@@ -42,7 +42,6 @@ const items = [
   },
 ];
 
-const bgColors = ["#FDF6EC", "#EDF5F1", "#EAF3FA"];
 const N = items.length;
 
 export default function RoomShowcaseSection() {
@@ -199,11 +198,11 @@ export default function RoomShowcaseSection() {
                         opacity: i === 0 ? 1 : 0,
                       }}
                     >
-                      <h2 className="type-h1  text-white">
+                      <h2 className="type-h1 tracking-wider text-white">
                         {item.title}
                       </h2>
 
-                      <p className="my-4 type-body  text-white leading-7">
+                      <p className="my-2 type-body  text-white ">
                         {item.description}
                       </p>
 
@@ -219,7 +218,7 @@ export default function RoomShowcaseSection() {
                 </div>
 
                 {/* Thumbnail */}
-                <div className="relative mt-12 w-56 h-36 overflow-hidden">
+                <div className="relative mt-12 w-full sm:w-56 h-36 overflow-hidden">
 
                   {items.map((item, i) => (
                     <div
