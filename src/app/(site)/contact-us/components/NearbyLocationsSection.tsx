@@ -4,29 +4,29 @@ import Image from "next/image";
 
 const leftLocations = [
   {
-    icon: "/icons/blue_beach.svg",
-    label: "Kanyakumari\nBeach",
-    time: "10 min",
+    icon: "/icons/sunrise.png",
+    label: "Sun Rise and\nSun Set Point",
+    time: "< 1 min",
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/icons/blue_airport.svg",
-    label: "Airport",
-    time: "< 5 min",
+    icon: "/icons/temple.png",
+    label: "Kumari Bhagavathi\nAmman Temple",
+    time: "6 min",
     length: "md:w-20 lg:w-30 xl:w-40",
   },
 ];
 
 const rightLocations = [
   {
-    icon: "/icons/blue_cart.svg",
-    label: "Shopping Mall\nSPITSA",
-    time: "10 min",
+    icon: "/icons/fort.png",
+    label: "Vattakottai\nFort",
+    time: "13 min",
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/icons/blue_hill.svg",
-    label: "Thiruvalluvar\nStatue",
+    icon: "/contact-us/thiru.png",
+    label: "Thiruvalluvar Statue and\nVivekananda Rock Memorial",
     time: "5 min",
     length: "md:w-20 lg:w-30 xl:w-40",
   },
@@ -44,7 +44,7 @@ function LocationNode({ icon, label, side }: LocationNodeProps) {
       className={`flex flex-col items-center text-center gap-1 ${side === "left" ? "mr-2" : "ml-2"
         }`}
     >
-      <Image src={icon} alt="Icon" width={24} height={24} className="w-5 h-5" />
+      <Image src={icon} alt="Icon" width={24} height={24} className="w-10 h-10" />
       <p className="text-xs font-semibold text-primary uppercase tracking-wide  whitespace-pre-line">
         {label}
       </p>

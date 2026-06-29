@@ -1,4 +1,3 @@
-import CommonBanner from "@/src/components/common/CommonBanner";
 import RoomsList from "./components/RoomsList";
 import { getRoomsData } from "@/src/service/rooms";
 import RoomBanner from "./components/RoomBanner";
@@ -9,7 +8,7 @@ export default async function RoomsPage() {
   return (
     <div>
       {/* <CommonBanner title="Rooms & Suites" /> */}
-      <RoomBanner />
+      <RoomBanner  />
       <RoomsList rooms={rooms} />
     </div>
   );
