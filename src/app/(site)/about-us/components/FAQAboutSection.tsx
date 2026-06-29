@@ -14,7 +14,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <Section className="bg-ivory py-16 lg:py-20">
+    <Section className=" py-16 lg:py-20">
       <div className="mb-6 lg:mb-10 flex items-start justify-between gap-4">
         <h2
           className={`font-normal text-primary leading-tight ${typography.textFoXl}`}

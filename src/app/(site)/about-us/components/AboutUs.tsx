@@ -39,8 +39,6 @@ const AboutUs = () => {
                 <div className="absolute inset-0 bg-black/35" />
             </div>
 
-            {/* Divider line */}
-            <div className="absolute left-8 lg:left-16 right-8 lg:right-16 top-1/2 h-px bg-white/15 z-10" />
 
             {/* First 100vh — left content */}
             <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20" style={{ height: '100vh' }}>

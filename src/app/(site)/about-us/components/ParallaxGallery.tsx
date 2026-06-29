@@ -40,7 +40,7 @@ const ParallaxGallery = () => {
     }, []);
 
     return (
-        <section ref={galleryRef} className="bg-ivory py-16 px-8 lg:px-16 lg:py-0">
+        <section ref={galleryRef} className=" py-16 px-8 lg:px-16 lg:py-0">
             <Section>
                 {/* ── Mobile: two overlapping images, no animation ─────────── */}
                 <div className="sm:hidden relative pb-25" >
