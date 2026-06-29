@@ -26,17 +26,9 @@ export default function GalleryBanner() {
             const leftLines = leftRefs.current.filter(Boolean) as HTMLSpanElement[];
             const rightLine = rightRef.current;
 
-            gsap.set(".leftReveal", {
-                clipPath: "inset(0 100% 0 0)",
-            });
-
-            gsap.set([...leftLines, rightLine], {
-                yPercent: 110,
-            });
-
-            gsap.set(".readReveal", {
-                yPercent: 100,
-            });
+            gsap.set(".leftReveal", { clipPath: "inset(0 100% 0 0)" });
+            gsap.set([...leftLines, rightLine], { yPercent: 110 });
+            gsap.set(".readReveal", { yPercent: 100 });
 
             const tl = gsap.timeline();
 
