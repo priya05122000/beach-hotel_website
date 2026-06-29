@@ -4,32 +4,37 @@ import { ReactNode } from "react";
 type ButtonProps = {
   children: ReactNode;
   className?: string;
+  variant?: "default" | "solid" | "bold";
+  lineColor?: string;
 } & ({ href: string; action?: never } | { action: () => void; href?: never });
 
-export const Button = ({ children, href, action, className }: ButtonProps) => {
+const lineHeight = { default: "h-px", solid: "h-[2px]", bold: "h-[3px]" };
+
+export const Button = ({
+  children,
+  href,
+  action,
+  className,
+  variant = "default",
+  lineColor,
+}: ButtonProps) => {
+  const cls = `inline-flex items-center gap-3 uppercase${variant === "bold" ? " font-bold" : ""} group${className ? ` ${className}` : ""}`;
+
   const inner = (
     <>
-      <span className="inline-block min-w-8 w-8 h-px bg-current transition-all duration-300 group-hover:w-14" />
+      <span
+        className={`inline-block min-w-8 w-8 ${lineHeight[variant]} ${variant === "bold" ? (lineColor ?? "bg-current") : "bg-current"} transition-all duration-300 group-hover:w-14`}
+      />
       {children}
     </>
   );
 
-  if (href) {
-    return (
-      <Link
-        href={href}
-        className={`inline-flex items-center gap-3 uppercase group${className ? ` ${className}` : ""}`}
-      >
-        {inner}
-      </Link>
-    );
-  }
-
-  return (
-    <button
-      onClick={action}
-      className={`inline-flex items-center gap-3 uppercase group${className ? ` ${className}` : ""}`}
-    >
+  return href ? (
+    <Link href={href} className={cls}>
+      {inner}
+    </Link>
+  ) : (
+    <button onClick={action} className={cls}>
       {inner}
     </button>
   );

@@ -52,7 +52,7 @@ export default async function HomePage() {
             <RoomShowcaseSection />
             <RoomCardsSection />
             <HorizontalScrollSection />
-            <ZoomRevealSection />
+            {/* <ZoomRevealSection /> */}
 
             {/* <HotelCTASection /> */}
 

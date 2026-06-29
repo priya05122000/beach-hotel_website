@@ -1,4 +1,5 @@
-﻿import Section from "@/src/components/common/Section";
+﻿import { Button } from "@/src/components/common/button";
+import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 import Image from "next/image";
 
@@ -26,10 +27,13 @@ const ExploreDestinationSection = () => {
                                 </p>
                             </div>
 
-                            <button className="mt-6 mr-10 flex items-center gap-2 h-10 py-2  uppercase transition font-normal  text-primary-dark cursor-pointer ">
+                            {/* <button className="mt-6 mr-10 flex items-center gap-2 h-10 py-2  uppercase transition font-normal  text-primary-dark cursor-pointer ">
                                 Explore
                                 <span>&#8594;</span>
-                            </button>
+                            </button> */}
+                            <Button href="/destinations" className="mt-6 sm:w-40 font-normal text-primary-dark cursor-pointer">
+                                Explore
+                            </Button>
                         </div>
                     </div>
 

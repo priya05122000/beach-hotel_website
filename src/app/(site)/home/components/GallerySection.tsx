@@ -148,7 +148,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
             <section className="py-16 lg:py-20 ">
                 <div className="mx-auto">
                     {/* Heading */}
-                    <div className="mb-10">
+                    <div className="mb-16">
                         <h2 className={`mt-2 text-center uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%]`}>
                             Gallery
                         </h2>
