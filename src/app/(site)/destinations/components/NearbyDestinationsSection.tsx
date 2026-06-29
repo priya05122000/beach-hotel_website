@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { MapPin, ArrowRight, Sparkle } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 import type { NearbyDestination } from "@/src/types";
 import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
@@ -19,6 +20,7 @@ interface Props {
 function DestinationItem({ destination }: { destination: NearbyDestination }) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -41,6 +43,8 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
         }
       );
     });
+
+    applySlideUp([titleRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
 
     return () => mm.revert();
   }, []);
@@ -68,9 +72,11 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             />
           </div>
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
-            <h2 className="type-display-sm text-primary-dark leading-tight mb-4">
-              {destination.short_description}
-            </h2>
+            <div className="overflow-hidden mb-4">
+              <h2 ref={titleRef} className="type-display-sm text-primary-dark leading-tight">
+                {destination.short_description}
+              </h2>
+            </div>
 
             {destination.distance && (
               <div className="flex items-center gap-2 text-dusty mb-4">

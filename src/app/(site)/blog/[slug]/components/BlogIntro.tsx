@@ -1,11 +1,22 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
 import type { Blog } from "@/src/types";
 import Section from "@/src/components/common/Section";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 interface Props {
   blog: Blog;
 }
 
 export default function BlogIntro({ blog }: Props) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useLayoutEffect(() => {
+    applySlideUp([titleRef.current], { trigger: wrapperRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+  }, []);
+
   return (
     <Section className="pt-16 lg:pt-20">
       <div className="border-b border-silver pb-10">
@@ -15,12 +26,15 @@ export default function BlogIntro({ blog }: Props) {
           </p>
         </div>
 
-        <div>
-          <h3
-            className="type-h2  text-primary-dark leading-snug"
-          >
-            {blog.sub_title}
-          </h3>
+        <div ref={wrapperRef}>
+          <div className="overflow-hidden">
+            <h3
+              ref={titleRef}
+              className="type-h2  text-primary-dark leading-snug"
+            >
+              {blog.sub_title}
+            </h3>
+          </div>
         </div>
       </div>
 

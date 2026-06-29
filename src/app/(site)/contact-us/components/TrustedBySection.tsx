@@ -1,9 +1,11 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
 const partners = [
   { name: "Seashore & Co", logo: "/contact-us/seashore.png" },
@@ -13,18 +15,28 @@ const partners = [
 ];
 
 export default function TrustedBySection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLParagraphElement>(null);
+
+  useLayoutEffect(() => {
+    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+  }, []);
+
   return (
     <Section className=" py-12 md:py-20">
-      <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+      <div ref={sectionRef} className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
           {/* <p className={`${typography.textXl} font-semibold text-primary-dark  whitespace-nowrap`}> */}
-          <p
-            className={`type-h2 font-semibold leading-tight text-primary-dark  whitespace-nowrap`}
-          >
-            Trusted by 50+
-            <br />
-            top companies
-          </p>
+          <div className="overflow-hidden">
+            <p
+              ref={headingRef}
+              className={`type-h2 font-semibold leading-tight text-primary-dark  whitespace-nowrap`}
+            >
+              Trusted by 50+
+              <br />
+              top companies
+            </p>
+          </div>
         </div>
 
         <div className="w-full min-w-0">

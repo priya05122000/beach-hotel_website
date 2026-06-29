@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Section from "@/src/components/common/Section";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
@@ -61,6 +62,13 @@ const socialIcons: { href: string; label: string; path: string }[] = [
 ];
 
 export default function ContactFormSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useLayoutEffect(() => {
+    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+  }, []);
+
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState<
     Partial<Record<keyof typeof initialForm, string>>
@@ -134,10 +142,12 @@ export default function ContactFormSection() {
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
-        <div className="w-full">
-          <h2 className="type-h2 font-semibold text-primary-dark">
-            Your Questions? <br /> Answered
-          </h2>
+        <div ref={sectionRef} className="w-full">
+          <div className="overflow-hidden">
+            <h2 ref={headingRef} className="type-h2 font-semibold text-primary-dark">
+              Your Questions? <br /> Answered
+            </h2>
+          </div>
 
           <p className="mt-4 type-body max-w-md">Tell us how we may help, and our team will respond with care. Whether it is a question, a special request or the beginning of a reservation, we are delighted to assist.</p>
           <div className="mt-4 space-y-4 border-t flex flex-col justify-end border-white/20 pt-4">
