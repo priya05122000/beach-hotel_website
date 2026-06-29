@@ -133,9 +133,9 @@ export default function ContactFormSection() {
 
   return (
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
-      <div className="grid grid-cols-1 sm:grid-cols-2 px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
-        <div className="mb-4 md:mb-6 lg:mb-8 max-w-md">
+        <div className="w-full">
           <h2
             className={`font-semibold  text-primary-dark `}
           >
@@ -203,8 +203,8 @@ export default function ContactFormSection() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center gap-6">
-          <div className="w-full md:w-100 xl:w-120">
+        <div className="flex flex-col gap-6">
+          <div className="w-full">
             <p className="text-primary-dark/60 text-sm ">
               Leave a request and we will consult you on available rooms and
               packages.
@@ -214,7 +214,7 @@ export default function ContactFormSection() {
           <form
             onSubmit={handleSubmit}
             noValidate
-            className="flex flex-col gap-6 w-full md:w-100 xl:w-120"
+            className="flex flex-col gap-6 w-full"
             data-gramm="false"
             data-gramm_editor="false"
             data-enable-grammarly="false"
