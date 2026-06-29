@@ -184,7 +184,7 @@ export default function RoomCardsSection() {
                     ref={sectionRef}
                     className="min-h-screen flex items-center "
                 >
-                    <div className="grid lg:grid-cols-2 gap-16 w-full">
+                    <div className="grid sm:grid-cols-2 gap-16 w-full">
                         {rooms.map((room, index) => (
                             <div
                                 key={room.id}
