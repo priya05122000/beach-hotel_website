@@ -8,7 +8,7 @@ export default async function NearbyPage() {
 
     return (
         <div>
-            <NearbyHeroBanner destinations={activeDestinations.slice(0,5)} />
+            <NearbyHeroBanner destinations={activeDestinations.slice(0, 5)} />
             <NearbyDestinationsSection destinations={activeDestinations} />
         </div>
     );

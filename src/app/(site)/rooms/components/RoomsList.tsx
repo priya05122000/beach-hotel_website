@@ -197,7 +197,7 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
     <Section className="">
       <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]border-b border-silver pb-10 pt-16 lg:py-20 type-body">
         {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
-        <p className="type-h6 tracking-[73%] text-center lg:text-left  lg:tracking-[83%] uppercase">Rooms & Suites</p>
+        <p className="type-h6 tracking-[73%] text-center sm:text-left  lg:tracking-[83%] uppercase">Rooms & Suites</p>
         <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
           Our accommodations are appointed with bespoke furnishings, the finest

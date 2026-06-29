@@ -60,7 +60,7 @@ export default function NearbyHeroBanner({
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full  h-screen overflow-hidden">
       <Swiper
         modules={[EffectFade, Pagination, Autoplay]}
         effect="fade"
@@ -72,7 +72,7 @@ export default function NearbyHeroBanner({
         onSwiper={setSwiperInstance}
         onSlideChange={(swiper) => setSelectedIndex(swiper.realIndex)}
         className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 1}}
+        style={{ zIndex: 1 }}
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id} className="relative w-full h-full">
@@ -94,17 +94,17 @@ export default function NearbyHeroBanner({
           {/* <p className="text-white/70 uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 font-arizona-sans-regular">
             Nearby Destinations
           </p> */}
-          <h1 className="text-white font-arizona-flare-regular font-normal leading-tight mb-4">
+          <h1 className="text-white type-display-sm leading-tight mb-4">
             {slides[selectedIndex]?.destination_name}
           </h1>
           {slides[selectedIndex]?.short_description && (
-            <p className="text-white/80 max-w-md leading-relaxed">
+            <p className="text-white type-body max-w-md leading-relaxed">
               {slides[selectedIndex].short_description}
             </p>
           )}
           {"distance" in (slides[selectedIndex] ?? {}) &&
             (slides[selectedIndex] as NearbyDestination).distance && (
-              <span className="inline-block mt-4 text-accent text-sm font-arizona-sans-regular tracking-widest uppercase">
+              <span className="inline-block mt-4 text-accent tracking-widest uppercase">
                 {(slides[selectedIndex] as NearbyDestination).distance} away
               </span>
             )}

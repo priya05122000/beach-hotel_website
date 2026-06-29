@@ -45,7 +45,7 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     const desktopCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    const mtClasses = ["", "lg:mt-30", "lg:mt-50", "lg:mt-70"];
+    const mtClasses = ["", "lg:mt-30", "lg:mt-70", "lg:mt-90"];
     const alignClasses = ["justify-start", "justify-center", "justify-center", "justify-end"];
 
     useEffect(() => {
@@ -89,16 +89,13 @@ export default function FacilitiesSection({ facilities }: Props) {
     });
 
     return (
-        <Section className="pb-16 pt-32 lg:pt-40 lg:pb-20">
-
-
-
+        <Section className="pb-16 pt-32 lg:pt-40 lg:pb-20 type-body">
             <div ref={sectionRef} className="min-h-screen flex items-center">
 
                 {/* ── Mobile (<768px): single column, image → content, no animation ── */}
                 <div className="md:hidden w-full space-y-10">
                     {facilities.map((facility, i) => (
-                        <div key={i} className="flex flex-col gap-6">
+                        <div key={i} className="flex flex-col gap-4">
                             <div className="relative overflow-hidden h-60 w-full">
                                 <Image
                                     src={resolveImage(facility)}
@@ -110,11 +107,11 @@ export default function FacilitiesSection({ facilities }: Props) {
                             </div>
                             <div>
                                 <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
-                                <h3 className="mb-4 font-bold uppercase border-primary/10 border-b py-2">
+                                <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">
                                     {facility.facility_name}
                                 </h3>
                                 <div
-                                    suppressHydrationWarning
+                                    suppressHydrationWarning className="text-charcoal"
                                     dangerouslySetInnerHTML={{ __html: facility.description ?? "" }}
                                 />
                             </div>
@@ -141,13 +138,13 @@ export default function FacilitiesSection({ facilities }: Props) {
                         );
 
                         const contentCell = (
-                            <div>
+                            <div className="">
                                 <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
-                                <h3 className="mb-4 font-bold uppercase border-primary/10 border-b py-2">
+                                <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">
                                     {facility.facility_name}
                                 </h3>
                                 <div
-                                    suppressHydrationWarning
+                                    suppressHydrationWarning className="text-charcoal"
                                     dangerouslySetInnerHTML={{ __html: facility.description ?? "" }}
                                 />
                             </div>
@@ -185,11 +182,11 @@ export default function FacilitiesSection({ facilities }: Props) {
                             ) : (
                                 <div className="h-60 ">
                                     <p className="mb-2">{String(item.facility.id).padStart(2, "0")}</p>
-                                    <h3 className="mb-4 font-bold uppercase border-primary/10 border-b py-2">
+                                    <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">
                                         {item.facility.facility_name}
                                     </h3>
                                     <div
-                                        suppressHydrationWarning
+                                        suppressHydrationWarning className="text-charcoal"
                                         dangerouslySetInnerHTML={{ __html: item.facility.description ?? "" }}
                                     />
                                 </div>

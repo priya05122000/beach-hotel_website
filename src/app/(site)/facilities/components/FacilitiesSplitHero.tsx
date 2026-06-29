@@ -9,7 +9,7 @@ import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 gsap.registerPlugin(ScrollTrigger);
 
 const TEXT_LINES = [
-    "Curated", 
+    "Curated",
     "Comforts At ",
     "The Land's End.",
 ];
@@ -89,6 +89,8 @@ export default function FacilitiesSplitHero() {
         return () => mm.revert();
     }, []);
 
+    
+
     return (
         <>
             {/* ── Mobile layout (< md) ─────────────────────────────────── */}
@@ -103,7 +105,7 @@ export default function FacilitiesSplitHero() {
                         <div className="overflow-hidden mb-4">
                             <span
                                 ref={mobileTaglineRef}
-                                className="block text-[11px] tracking-[0.3em] uppercase text-dusty font-arizona-sans-regular"
+                                className="block type-body uppercase text-gray"
                                 style={{ display: "inline-block" }}
                             >
                                 Our Facilities
@@ -111,8 +113,7 @@ export default function FacilitiesSplitHero() {
                         </div>
 
                         <h2
-                            className="font-arizona-flare-regular text-primary-dark leading-[0.95]"
-                            style={{ fontSize: "clamp(2.2rem, 9vw, 3.5rem)", fontWeight: 400 }}
+                            className="type-display-sm uppercase text-primary-dark leading-tight "
                         >
                             {TEXT_LINES.map((line, i) => (
                                 <span key={i} className="block overflow-hidden">
@@ -135,7 +136,7 @@ export default function FacilitiesSplitHero() {
                     </div>
 
                     <div className="overflow-hidden">
-                        <p ref={mobileParaRef} className="text-sm">{PARAGRAPH}</p>
+                        <p ref={mobileParaRef} className="type-body">{PARAGRAPH}</p>
                     </div>
                 </div>
             </div>
@@ -164,7 +165,7 @@ export default function FacilitiesSplitHero() {
                                 <div className="overflow-hidden mb-4">
                                     <span
                                         ref={desktopTaglineRef}
-                                        className="block text-[11px] tracking-[0.3em] uppercase text-dusty font-arizona-sans-regular"
+                                        className="block type-body text-gray uppercase "
                                         style={{ display: "inline-block" }}
                                     >
                                         Our Facilities
@@ -172,8 +173,7 @@ export default function FacilitiesSplitHero() {
                                 </div>
 
                                 <h2
-                                    className="font-arizona-flare-regular text-primary-dark leading-[0.95]"
-                                    style={{ fontSize: "clamp(2.4rem, 5vw, 5.5rem)", fontWeight: 400 }}
+                                    className="type-display-sm uppercase text-primary-dark leading-tight "
                                 >
                                     {TEXT_LINES.map((line, i) => (
                                         <span key={i} className="block overflow-hidden">
@@ -196,7 +196,7 @@ export default function FacilitiesSplitHero() {
                             </div>
 
                             <div className="max-w-xs lg:mx-auto overflow-hidden">
-                                <p ref={desktopParaRef} className="text-sm">{PARAGRAPH}</p>
+                                <p ref={desktopParaRef} className="type-body text-charcoal">{PARAGRAPH}</p>
                             </div>
                         </div>
                     </div>
