@@ -19,7 +19,7 @@ export default function TrustedBySection() {
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
           {/* <p className={`${typography.textXl} font-semibold text-primary-dark  whitespace-nowrap`}> */}
           <p
-            className={`text-xl font-semibold text-primary-dark  whitespace-nowrap`}
+            className={`type-h2 font-semibold leading-tight text-primary-dark  whitespace-nowrap`}
           >
             Trusted by 50+
             <br />

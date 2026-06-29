@@ -71,20 +71,20 @@ const TeamSection = () => {
         <div className='py-16 lg:py-20 bg-primary/4'>
             <Section >
                 {/* Content grid */}
-                <div className="grid grid-cols-12 gap-x-[2.2222222222vw] items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
                     {/* Left label */}
-                    <div className="col-span-12 sm:col-span-3  lg:col-span-2 flex items-center h-full pt-2">
-                        <p className="tracking-[0.25em]  text-gray flex items-center gap-2">
-                            <span className="text-primary-dark font-semibold"><Sparkle size={10} fill='#012644' /></span>
-                            Discover
-                        </p>
+                    <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
+                        <p className="type-h6 tracking-[73%] text-left lg:tracking-[83%] uppercase">Discover</p>
+
                     </div>
 
+                    <div className="hidden sm:block sm:col-span-1" />
+
                     {/* Statement + categories */}
-                    <div className="col-span-12 sm:col-span-8 flex flex-col gap-10 sm:gap-12 ">
+                    <div className="sm:col-span-8 flex flex-col gap-8 sm:gap-12">
                         <div
                             ref={revealRef}
-                            className="text-primary-dark font-arizona-flare-regular text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-none flex flex-wrap gap-x-[0.25em]"
+                            className="text-primary-dark type-display-2xl flex flex-wrap gap-x-[0.25em]"
                         >
                             {REVEAL_WORDS.map((word, i) => (
                                 <span key={i} className="overflow-hidden inline-block leading-tight">
@@ -101,13 +101,9 @@ const TeamSection = () => {
                             ))}
                         </div>
 
-                        <ul className="flex flex-col gap-3 max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
-                            <div
-                                className="text-gray  text-[18px] lg:text-[20px] "
-                            >
-                                We are a team* of like-minded design enthusiasts and tech aficionados that explore the digital frontier with grit and dedication. Intrigued by beauty, fascinated by technology and fuelled with an everlasting devotion to digital craftsmanship and meaningful aesthetics.
-                            </div>
-                        </ul>
+                        <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
+                            We are a team* of like-minded design enthusiasts and tech aficionados that explore the digital frontier with grit and dedication. Intrigued by beauty, fascinated by technology and fuelled with an everlasting devotion to digital craftsmanship and meaningful aesthetics.
+                        </div>
                     </div>
 
                 </div>
@@ -115,28 +111,20 @@ const TeamSection = () => {
 
             <section ref={galleryRef} className="mt-10 sm:mt-0  mb-0 sm:mb-20 px-6 sm:px-4">
                 <div className='max-w-full sm:max-w-xl lg:max-w-4xl xl:max-w-5xl  mx-auto px-0 md:px-4 lg:px-12 xl:px-0'>
-                    {/* ── Mobile: two images + text ─────────── */}
-                    <div className="sm:hidden">
+                    {/* ── Mobile: stacked images + text ─────────── */}
+                    <div className="sm:hidden flex flex-col">
                         {/* Large image — right-aligned */}
                         <div className="relative aspect-3/2 w-[78%] ml-auto">
                             <Image src="/facilities/2.jpg" alt="Hotel room" fill className="object-cover" />
                         </div>
-                        {/* Small portrait + text side by side */}
-                        <div className="  gap-4 -mt-20">
-                            <div className=" w-[48%] shrink-0">
-                                <div className="relative aspect-4/5">
-                                    <Image src="/facilities/3.jpg" alt="Hotel detail" fill className="object-cover" />
-                                </div>
-                                <hr className="mb-3 mt-6" />
-
-                            </div>
-
-                            <div className="w-2/3 ">
-                                <p className="text-[13px] text-gray leading-relaxed">
-                                    *We believe in a fluid team approach that allows us to bring together the best designers, developers and agencies in the world in order to serve the needs of today&apos;s clients.
-                                </p>
-                            </div>
+                        {/* Portrait image — left-aligned, overlapping large */}
+                        <div className="relative aspect-4/5 w-[48%] -mt-20">
+                            <Image src="/facilities/3.jpg" alt="Hotel detail" fill className="object-cover" />
                         </div>
+                        <hr className="mt-6 mb-4 w-1/2" />
+                        <p className="type-body-sm w-2/3 text-gray leading-relaxed">
+                            *We believe in a fluid team approach that allows us to bring together the best designers, developers and agencies in the world in order to serve the needs of today&apos;s clients.
+                        </p>
                     </div>
 
                     {/* ── Desktop: parallax offset grid ─────────────────────────── */}
@@ -164,7 +152,7 @@ const TeamSection = () => {
                                 <Image src="/facilities/1.jpg" alt="Hotel facilities" fill className="object-cover" />
                             </div>
                             <hr className='mt-8 mb-6' />
-                            <p>
+                            <p className='type-body text-charcoal'>
                                 *We believe in a fluid team approach that allows us to bring together the best designers, developers and agencies in the world in order to serve the needs of today’s clients.</p>
                         </div>
 

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Section from "@/src/components/common/Section";
-import { typography } from "@/src/lib/typography";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
 import Image from "next/image";
@@ -136,52 +135,48 @@ export default function ContactFormSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
         <div className="w-full">
-          <h2
-            className={`font-semibold  text-primary-dark `}
-          >
+          <h2 className="type-h2 font-semibold text-primary-dark">
             Your Questions? <br /> Answered
           </h2>
 
-          <p className="mt-4">Tell us how we may help, and our team will respond with care. Whether it is a question, a special request or the beginning of a reservation, we are delighted to assist.</p>
-          <div className="mt-4 text-[11px] space-y-4 border-t flex flex-col  justify-end border-white/20 pt-4 lg:col-span-3 ">
-            <h2
-              className={`font-semibold  text-primary-dark ${typography.textFoXl}`}
-            >Find Us</h2>
+          <p className="mt-4 type-body max-w-md">Tell us how we may help, and our team will respond with care. Whether it is a question, a special request or the beginning of a reservation, we are delighted to assist.</p>
+          <div className="mt-4 space-y-4 border-t flex flex-col justify-end border-white/20 pt-4">
+            <h2 className="type-h5 font-semibold text-primary-dark">Find Us</h2>
             <div className="uppercase">
-              <div className={`${typography.textLg} font-arizona-flare-regular`}>The Beach Hotel</div>
-              <div className={`${typography.textLg} font-arizona-flare-regular`}>
+              <div className="type-body font-arizona-flare-regular">The Beach Hotel</div>
+              <div className="type-body font-arizona-flare-regular">
                 Beach Road, Kanyakumari,
                 <br />
                 Tamil Nadu 629702, India
               </div>
             </div>
 
-            <div>
+            <div className="space-y-1">
               <div>
-                <span className="font-medium text-xs uppercase">General Enquiries :</span>{" "}
+                <span className="type-label-sm font-medium uppercase">General Enquiries :</span>{" "}
                 <Link
                   href="mailto:info@thebeachhotel.com"
-                  className={`${typography.textLg} hover:underline`}
+                  className="type-body hover:underline"
                 >
                   info@thebeachhotel.com
                 </Link>
               </div>
 
               <div>
-                <span className="font-medium text-xs uppercase">Reception :</span>{" "}
+                <span className="type-label-sm font-medium uppercase">Reception :</span>{" "}
                 <Link
                   href="tel:+919876543210"
-                  className={`${typography.textLg} hover:underline`}
+                  className="type-body hover:underline"
                 >
                   +91 98765 43210
                 </Link>
               </div>
             </div>
           </div>
-          <div className="pt-4">
-            <p className="text-xs uppercase tracking-[0.18em] text-primary-dark/60 mb-3">
+          <div className="pt-4 space-y-4">
+            <h2 className="type-h5 font-semibold text-primary-dark">
               Follow Us
-            </p>
+            </h2>
 
             <div className="flex items-center gap-3">
               {socialIcons.map((item) => (
@@ -205,7 +200,7 @@ export default function ContactFormSection() {
         </div>
         <div className="flex flex-col gap-6">
           <div className="w-full">
-            <p className="text-primary-dark/60 text-sm ">
+            <p className="text-xs text-primary-dark/60">
               Leave a request and we will consult you on available rooms and
               packages.
             </p>
@@ -222,7 +217,7 @@ export default function ContactFormSection() {
             {/* Row 1 — First / Last name */}
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
+                <label className="type-label-sm uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
                   First Name*
                 </label>
                 <input
@@ -230,16 +225,16 @@ export default function ContactFormSection() {
                   name="first_name"
                   value={form.first_name}
                   onChange={handleChange}
-                  className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                  className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
                 />
                 {errors.first_name && (
-                  <p className="text-[11px] text-red-400 mt-0.5">
+                  <p className="type-label-sm text-red-400 mt-0.5">
                     {errors.first_name}
                   </p>
                 )}
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[11px] uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
+                <label className="type-label-sm uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
                   Last Name*
                 </label>
                 <input
@@ -247,10 +242,10 @@ export default function ContactFormSection() {
                   name="last_name"
                   value={form.last_name}
                   onChange={handleChange}
-                  className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                  className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
                 />
                 {errors.last_name && (
-                  <p className="text-[11px] text-red-400 mt-0.5">
+                  <p className="type-label-sm text-red-400 mt-0.5">
                     {errors.last_name}
                   </p>
                 )}
@@ -267,7 +262,7 @@ export default function ContactFormSection() {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
               />
               {errors.email && (
                 <p className="text-[11px] text-red-400 mt-0.5">{errors.email}</p>
@@ -285,7 +280,7 @@ export default function ContactFormSection() {
                 value={form.phone_number}
                 onChange={handleChange}
                 maxLength={10}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
+                className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
               />
               {errors.phone_number && (
                 <p className="text-[11px] text-red-400 mt-0.5">
@@ -304,7 +299,7 @@ export default function ContactFormSection() {
                 value={form.message}
                 onChange={handleChange}
                 rows={2}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 text-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"
+                className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"
               />
               {errors.message && (
                 <p className="text-[11px] text-red-400 mt-0.5">
@@ -314,7 +309,7 @@ export default function ContactFormSection() {
             </div>
 
             {/* Consent */}
-            <label className="flex items-start gap-3 text-xs text-primary-dark/40 cursor-pointer">
+            <label className="flex items-start gap-3 type-label text-primary-dark/40 cursor-pointer">
               <input
                 type="checkbox"
                 name="consent"
@@ -327,20 +322,20 @@ export default function ContactFormSection() {
               </span>
             </label>
             {errors.consent && (
-              <p className="text-[11px] text-red-400 -mt-4">{errors.consent}</p>
+              <p className="type-label-sm text-red-400 -mt-4">{errors.consent}</p>
             )}
 
-            {serverError && <p className="text-sm text-red-400">{serverError}</p>}
+            {serverError && <p className="type-body-sm text-red-400">{serverError}</p>}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary text-white text-xs  uppercase tracking-[0.12em] py-3.5  hover:bg-primary/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
+              className="w-full bg-primary text-white type-label uppercase tracking-[0.12em] py-3.5 hover:bg-primary/90 transition-colors duration-200 disabled:opacity-60 cursor-pointer"
             >
               {loading ? "Sending…" : "Submit Request"}
             </button>
 
-            <div className="text-xs">
+            <div className="type-label text-primary-dark/50">
               {success
                 ? "Thank you for reaching out. A member of our team will be in touch shortly. We can't wait to welcome you to the edge of India."
                 : "Your details are kept private and used only to respond to your enquiry. We look forward to welcoming you."}
@@ -349,6 +344,6 @@ export default function ContactFormSection() {
         </div>
       </div>
 
-    </Section>
+    </Section >
   );
 }

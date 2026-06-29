@@ -42,13 +42,12 @@ const AboutUs = () => {
 
             {/* First 100vh — left content */}
             <div className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20" style={{ height: '100vh' }}>
-                <h1
-                    className="text-white font-arizona-flare-regular leading-[0.9] tracking-[-0.01em]"
-                    style={{ fontSize: 'clamp(3.2rem, 9vw, 9rem)', fontWeight: 400 }}
+                <div
+                    className="text-white type-display-2xl leading-none "
                 >
                     Where Every<br />Wave Tells<br />Our Story
-                </h1>
-                <p className="text-white/50 text-[11px] tracking-[0.25em] uppercase mt-8 flex items-center gap-3">
+                </div>
+                <p className="text-white/50 type-body uppercase mt-8 flex items-center gap-3">
                     <span className="inline-block w-8 h-px bg-white/40" />
                     Scroll to explore
                 </p>
@@ -58,12 +57,11 @@ const AboutUs = () => {
             <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-end px-8 lg:px-16" style={{ height: '100vh' }}>
                 <div className="max-w-lg flex flex-col gap-6">
                     <h2
-                        className="text-white font-arizona-flare-regular leading-[1.1]"
-                        style={{ fontSize: 'clamp(1.8rem, 3vw, 3rem)', fontWeight: 400 }}
+                        className="text-white type-display-sm leading-tight "
                     >
                         We believe the sea has a story to tell — and we&apos;ve spent decades making sure you hear it.
                     </h2>
-                    <p className="text-white/55 leading-relaxed">
+                    <p className="text-white/55 type-body leading-relaxed">
                         Nestled at the tip of India where three oceans meet, The Beach Hotel was born from a simple dream: to let every guest wake up to the sound of waves and fall asleep under a sky full of stars.
                     </p>
                     <a
