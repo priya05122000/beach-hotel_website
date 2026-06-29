@@ -134,8 +134,8 @@ export default function HorizontalScrollSection() {
 
                                 <div className="absolute -bottom-16">
                                     <div className="flex items-end gap-2">
-                                        <span className="text-5xl font-semibold leading-none text-gray-900 mt-0.5">
-                                            {item.id}.
+                                        <span className="text-5xl font-extralight leading-none text-gray-900 mt-0.5">
+                                            {item.id}
                                         </span>
                                         <div className="flex flex-col gap-0.5">
                                             <p className="font-medium text-gray-900 leading-tight">

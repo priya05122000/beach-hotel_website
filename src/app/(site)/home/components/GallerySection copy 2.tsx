@@ -2,12 +2,8 @@
 
 import Image from "next/image";
 import { ChevronRight, Play } from "lucide-react";
-import { useState, useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 import Section from "@/src/components/common/Section";
-
-gsap.registerPlugin(ScrollTrigger);
 import { typography } from "@/src/lib/typography";
 import { Gallery } from "@/src/types";
 import Link from "next/link";
@@ -85,44 +81,13 @@ function MediaImage({ item }: { item: MediaItem }) {
 }
 
 function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName: string }) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const innerRef = useRef<HTMLDivElement>(null);
-
-    useLayoutEffect(() => {
-        const container = containerRef.current;
-        const inner = innerRef.current;
-        if (!container || !inner) return;
-
-        const tween = gsap.fromTo(
-            inner,
-            { y: -32 },
-            {
-                y: 32,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: container,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true,
-                },
-            }
-        );
-
-        return () => {
-            tween.scrollTrigger?.kill();
-            tween.kill();
-        };
-    }, []);
-
     return (
         <div>
-            <div ref={containerRef} className={`relative w-full overflow-hidden ${imageClassName}`}>
-                <div ref={innerRef} className="absolute -top-8 -bottom-8 inset-x-0">
-                    <MediaImage item={item} />
-                </div>
+            <div className={`relative w-full overflow-hidden ${imageClassName}`}>
+                <MediaImage item={item} />
             </div>
             <div className="flex items-center justify-between mt-3">
-                <h3 className="font-bold text-gray-900 leading-snug">
+                <h3 className="font-bold  text-gray-900 leading-snug">
                     {item.title || "Gallery"}
                 </h3>
                 <ReadMoreButton />
@@ -148,12 +113,15 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
         <Section className="bg-ivory">
             <section className="py-16 lg:py-20 ">
                 <div className="mx-auto">
+
                     {/* Heading */}
                     <div className="mb-10">
+
                         <h2 className={`mt-2 uppercase text-4xl font-normal text-gray  ${typography.textFoXl}`}>
                             Gallery
                         </h2>
                     </div>
+
                     {/*
                         Layout (desktop):
                         [text col-3 rows 1-2] [item0 col-5 row-1 LARGE] [item1 col-4 row-1 SMALL]

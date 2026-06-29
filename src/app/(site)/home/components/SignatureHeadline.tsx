@@ -1,31 +1,79 @@
-import CenterSection from '@/src/components/common/CenterSection'
-import Section from '@/src/components/common/Section'
-import React from 'react'
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CenterSection from "@/src/components/common/CenterSection";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const LINES: React.ReactNode[] = [
+  <>Kanniyakumari&apos;s most extraordinary</>,
+  <><span className="text-gray/90">luxury address</span> — where every</>,
+  <>horizon is yours alone, at the meeting</>,
+  <>point of <span className="text-gray/90">three oceans</span>.</>,
+];
 
 const SignatureHeadline = () => {
-    return (
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
-        <CenterSection className="bg-primary/4">
-            <div className=" py-16 lg:py-20 ">
-                <div className="mx-auto   text-center">
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
+    if (!section || lines.length === 0) return;
 
-                    <div
-                        className="
-        uppercase
-text-[32px] lg:text-[40px]
-font-arizona-flare-regular
-        font-light
-        text-primary
-      ">
-                        Step out of bed and <span className='text-silver'>straight</span> onto the sun-kissed <span className='text-silver'>sands</span> of Kanyakumari. Step out of bed and <span className='text-silver'>straight</span>.
+    gsap.set(lines, { yPercent: 110 });
 
-                    </div>
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
 
-                </div>
-            </div>
-        </CenterSection>
+    tl.to(lines, {
+      yPercent: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.12,
+    });
 
-    )
-}
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, []);
 
-export default SignatureHeadline
+  return (
+    <CenterSection className="">
+      <div ref={sectionRef} className="pt-32 pb-16 lg:pt-40 lg:pb-20">
+        <div className="mx-auto text-center">
+          <div
+            className="
+              uppercase
+              text-[37px] lg:text-[45px]
+              font-arizona-flare-regular
+              font-light
+              text-primary
+            "
+          >
+            {LINES.map((line, i) => (
+              <span key={i} className="block overflow-hidden">
+                <span
+                  ref={(el) => { lineRefs.current[i] = el; }}
+                  className="block"
+                >
+                  {line}
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </CenterSection>
+  );
+};
+
+export default SignatureHeadline;

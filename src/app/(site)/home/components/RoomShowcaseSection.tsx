@@ -13,7 +13,6 @@ const items = [
     title: "Restaurant",
     description:
       "Savour world-class cuisine crafted by our award-winning chefs. From candlelit dinners overlooking the ocean to vibrant open-air brunches, every meal is a curated experience.",
-    linkColor: "#E8D5B0",
     image:
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
   },
@@ -22,7 +21,6 @@ const items = [
     title: "Luxury Resort",
     description:
       "Immerse yourself in an oasis of refined elegance. Our resort seamlessly blends contemporary design with natural surroundings, offering an unrivalled escape for the discerning traveller.",
-    linkColor: "#B0D5C8",
     image:
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80",
   },
@@ -31,7 +29,6 @@ const items = [
     title: "Infinity Pool",
     description:
       "Drift into serenity in our signature infinity pool, where sky and sea merge at the horizon. Enjoy poolside cocktails, private cabanas, and breathtaking panoramic views.",
-    linkColor: "#A8C8E8",
     image:
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
   },
@@ -40,7 +37,6 @@ const items = [
     title: "Spa & Wellness",
     description:
       "Surrender to total well-being at our sanctuary spa. Ancient healing rituals meet modern therapies, guiding you to deep restoration of body, mind, and spirit.",
-    linkColor: "#D4B8D8",
     image:
       "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
   },
@@ -51,7 +47,6 @@ const N = items.length;
 
 export default function RoomShowcaseSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const sectionBgRef = useRef<HTMLDivElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -138,8 +133,7 @@ export default function RoomShowcaseSection() {
       const bgWraps = bgWrapRefs.current.filter(Boolean) as HTMLDivElement[];
       tl.to(bgWraps[i], { autoAlpha: 0, duration: td, ease: "power2.inOut" }, label);
 
-      // Background color shift — scoped to this section only
-      tl.to(sectionBgRef.current, { backgroundColor: bgColors[i], duration: td * 1.5, ease: "power2.inOut" }, label);
+
     }
 
     // Hold on last item
@@ -154,121 +148,108 @@ export default function RoomShowcaseSection() {
   return (
     <Section className="relative">
 
-      {/* Section-scoped background — color changes stay contained here */}
-      <div ref={sectionBgRef} className="absolute inset-0" style={{ zIndex: 0 }} />
-
-      <div ref={sectionRef} className="relative h-screen overflow-hidden ">
 
 
+      <div ref={sectionRef} className="relative h-screen overflow-hidden">
 
-        {/* ── LEFT — text panels + thumbnail ───────────────────── */}
-        <div className="absolute top-6 bottom-6 left-6 right-[calc(50%+4px)] overflow-hidden ">
+        {/* Image Frame */}
+        <div className="absolute inset-x-0 top-16 lg:top-20 bottom-16 lg:bottom-20 overflow-hidden">
 
-          {/* Background image stack — crossfades on scroll */}
-          {/* <div className="absolute inset-0">
+          {/* Right Image Stack */}
           {items.map((item, i) => (
             <div
               key={item.id}
-              ref={(el) => { bgWrapRefs.current[i] = el; }}
+              ref={(el) => {
+                rightWrapRefs.current[i] = el;
+              }}
               className="absolute inset-0"
             >
               <img
-                src={item.image}
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full object-cover scale-110 opacity-5 backdrop-blur-2xl"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="absolute inset-0 backdrop-blur-xl bg-white/35" /> */}
-
-          {/* Text panels — all stacked, GSAP controls visibility */}
-          {items.map((item, i) => (
-            <div
-              key={item.id}
-              ref={(el) => { textRefs.current[i] = el; }}
-              className="absolute  inset-0 flex flex-col justify-center px-10 lg:px-14"
-              style={{ visibility: i === 0 ? "visible" : "hidden", opacity: i === 0 ? 1 : 0 }}
-            >
-              <div>
-
-                <h2 className="font-extrabold  ">
-                  {item.title}
-                </h2>
-                <p className="mt-3 mb-8 text-gray   max-w-85">
-                  {item.description}
-                </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 no-underline px-5 mb-5 h-10  text-black  font-medium w-fit"
-                  style={{ backgroundColor: item.linkColor }}
-                >
-
-                  <p>Learn More</p>
-                </a>
-              </div>
-
-            </div>
-          ))}
-
-          {/* Vertical progress line */}
-          <div className="absolute left-6 top-0 bottom-0 flex flex-col items-center justify-center">
-            <div className="relative h-[52%] w-px bg-black/10">
-              <div
-                ref={progressFillRef}
-                className="absolute left-0 top-0 h-full w-full bg-black/40"
-                style={{ transform: "scaleY(0)", transformOrigin: "top center" }}
-              />
-              {items.map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute left-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/25"
-                  style={{ top: `${(i / (N - 1)) * 100}%` }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Thumbnail stack — same clip-path reveal as right images */}
-          <div className="absolute bottom-14 left-10 lg:left-14 w-45 h-30 lg:w-55 lg:h-37 overflow-hidden ">
-            {items.map((item, i) => (
-              <div
-                key={item.id}
-                ref={(el) => { thumbWrapRefs.current[i] = el; }}
-                className="absolute inset-0"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  ref={(el) => { thumbRefs.current[i] = el; }}
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-
-        </div>
-
-        {/* ── RIGHT — large image stack ─────────────────────────── */}
-        <div className="absolute top-6 bottom-6 right-6 left-[calc(50%+4px)] overflow-hidden ">
-          {items.map((item, i) => (
-            <div
-              key={item.id}
-              ref={(el) => { rightWrapRefs.current[i] = el; }}
-              className="absolute inset-0"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                ref={(el) => { rightImgRefs.current[i] = el; }}
+                ref={(el) => {
+                  rightImgRefs.current[i] = el;
+                }}
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"
               />
             </div>
           ))}
+
+          {/* Left Blur Panel */}
+          <div className="absolute left-6 top-6 bottom-6 right-6   sm:w-1/2 xl:w-1/3 z-20 flex items-center">
+
+            <div className="relative h-full w-full max-w-xl overflow-hidden">
+
+              {/* Blur Background */}
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-xl" />
+
+              {/* Content */}
+              <div className="relative z-10 flex h-full flex-col justify-center p-6 ">
+
+                {/* Text */}
+                <div className="relative h-62.5">
+
+                  {items.map((item, i) => (
+                    <div
+                      key={item.id}
+                      ref={(el) => {
+                        textRefs.current[i] = el;
+                      }}
+                      className="absolute inset-0"
+                      style={{
+                        visibility: i === 0 ? "visible" : "hidden",
+                        opacity: i === 0 ? 1 : 0,
+                      }}
+                    >
+                      <h2 className="text-5xl font-bold text-white">
+                        {item.title}
+                      </h2>
+
+                      <p className="my-5  text-white/90 leading-7">
+                        {item.description}
+                      </p>
+
+                      <a
+                        href="#"
+                        className="inline-flex py-2 font-medium text-white"
+                      >
+                        Learn More
+                      </a>
+                    </div>
+                  ))}
+
+                </div>
+
+                {/* Thumbnail */}
+                <div className="relative mt-12 w-56 h-36 overflow-hidden">
+
+                  {items.map((item, i) => (
+                    <div
+                      key={item.id}
+                      ref={(el) => {
+                        thumbWrapRefs.current[i] = el;
+                      }}
+                      className="absolute inset-0"
+                    >
+                      <img
+                        ref={(el) => {
+                          thumbRefs.current[i] = el;
+                        }}
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
