@@ -210,7 +210,6 @@ body::-webkit-scrollbar {
   .type-body {
     font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-body);
-    color: var(--color-charcoal);
     letter-spacing: .6px;
   }
 

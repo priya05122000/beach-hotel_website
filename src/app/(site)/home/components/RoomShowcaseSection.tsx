@@ -203,7 +203,7 @@ export default function RoomShowcaseSection() {
                         {item.title}
                       </h2>
 
-                      <p className="my-5  text-white/90 leading-7">
+                      <p className="my-4 type-body  text-white leading-7">
                         {item.description}
                       </p>
 
