@@ -1,19 +1,52 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { MapPin, ArrowRight, Sparkle } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { NearbyDestination } from "@/src/types";
 import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
 import DestinationImageSlider from "./DestinationImageSlider";
 import { Button } from "@/src/components/common/button";
 
+gsap.registerPlugin(ScrollTrigger);
+
 interface Props {
   destinations: NearbyDestination[];
 }
 
 function DestinationItem({ destination }: { destination: NearbyDestination }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageWrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      if (!imageWrapRef.current) return;
+      gsap.fromTo(
+        imageWrapRef.current,
+        { yPercent: -8 },
+        {
+          yPercent: 8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
-    <section className="relative py-16 lg:py-20">
+    <section ref={sectionRef} className="relative py-16 lg:py-20">
       <div className="grid md:grid-cols-[1fr_0.8fr] lg:grid-cols-[0.5fr_1fr_0.8fr] gap-6 lg:gap-10">
         {/* Destination name — desktop sidebar only */}
         <div className="hidden lg:flex items-center">
@@ -28,10 +61,12 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
           <p className="type-h6 tracking-widest uppercase lg:hidden">
             {destination.destination_name}
           </p>
-          <DestinationImageSlider
-            images={destination.image_url}
-            name={destination.destination_name}
-          />
+          <div ref={imageWrapRef} className="will-change-transform">
+            <DestinationImageSlider
+              images={destination.image_url}
+              name={destination.destination_name}
+            />
+          </div>
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
             <h2 className="type-display-sm text-primary-dark leading-tight mb-4">
               {destination.short_description}
@@ -59,7 +94,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
         <div className="flex items-start md:items-end">
           {destination.description && (
             <div
-              className="text-charcoal"
+              className="text-charcoal type-body"
               dangerouslySetInnerHTML={{ __html: destination.description }}
             />
           )}
@@ -96,8 +131,6 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
           <DestinationItem key={destination.id} destination={destination} />
         ))}
       </div>
-
-
     </Section>
   );
 }
