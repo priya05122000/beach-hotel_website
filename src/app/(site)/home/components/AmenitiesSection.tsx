@@ -1,6 +1,5 @@
 import CenterSection from "@/src/components/common/CenterSection";
 import Image from "next/image";
-import Link from "next/link";
 import { getFacilitiesData } from "@/src/service/facilities";
 import { Button } from "@/src/components/common/button";
 

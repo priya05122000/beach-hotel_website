@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import Section from '@/src/components/common/Section';
 import { Sparkle } from 'lucide-react';
+import { applySlideUp } from '@/src/lib/gsap/useSlideUp';
 
 const SERVICES = [
     'Beachfront Accommodation',
@@ -14,6 +15,12 @@ const SERVICES = [
 const StatementSection = () => {
     const imgRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLElement>(null);
+    const textRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        applySlideUp([textRef.current], { trigger: sectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    }, []);
+
     return (
         <section ref={sectionRef} className="relative overflow-hidden pb-16 lg:pb-20">
 
@@ -26,8 +33,10 @@ const StatementSection = () => {
                     <div className="hidden sm:block sm:col-span-1" />
 
                     <div className="sm:col-span-8 flex flex-col gap-8 sm:gap-12">
-                        <div className="type-display-sm text-primary-dark font-arizona-flare-regular leading-tight">
-                            We welcome guests who seek the extraordinary — where three oceans meet the horizon.
+                        <div className="overflow-hidden">
+                            <div ref={textRef} className="type-display-sm text-primary-dark font-arizona-flare-regular leading-tight">
+                                We welcome guests who seek the extraordinary — where three oceans meet the horizon.
+                            </div>
                         </div>
 
                         <ul className="flex flex-col gap-3">

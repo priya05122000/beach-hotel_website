@@ -126,7 +126,7 @@ function RoomCard({ room }: { room: Room }) {
         </ul>
 
         <Link
-          href="/gallery"
+          href="/rooms"
           className="flex cursor-pointer items-center gap-1 type-body  text-gray-700 tracking-wider font-arizona-flare-regular mt-10  py-1 whitespace-nowrap underline underline-offset-2"
         >
           View Details

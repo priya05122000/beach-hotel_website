@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
+import { Button } from "@/src/components/common/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -206,12 +207,12 @@ export default function RoomShowcaseSection() {
                         {item.description}
                       </p>
 
-                      <a
+                      <Button
                         href="#"
                         className="inline-flex py-2 font-medium text-white"
                       >
-                        Learn More
-                      </a>
+                        Explore
+                      </Button>
                     </div>
                   ))}
 

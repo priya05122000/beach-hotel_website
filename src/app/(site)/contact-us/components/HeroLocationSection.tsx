@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 import Image from "next/image";
 import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
 import { Mail, MapPin, Phone } from "lucide-react";
-import Link from "next/link";
 import { Button } from "@/src/components/common/button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,6 +15,14 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HeroLocationSection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const imageInnerRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLParagraphElement>(null);
+  const subRef = useRef<HTMLDivElement>(null);
+  const topSectionRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    applySlideUp([headingRef.current], { trigger: topSectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+    applySlideUp([subRef.current], { trigger: topSectionRef.current, start: "top 80%", toggleActions: "play reverse play reverse" });
+  }, []);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
@@ -43,18 +51,23 @@ export default function HeroLocationSection() {
 
   return (
     <Section className="bg-white ">
-      <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-4  py-16 lg:py-20">
+      <div ref={topSectionRef} className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-4  py-16 lg:py-20">
         {/* Left Panel */}
-        <p className={`font-semibold text-primary-dark  type-h2 leading-tight`}>
-          A Conversation <br /> Begins Your  Journey
-        </p>
+        <div className="overflow-hidden">
+          <p ref={headingRef} className={`font-semibold text-primary-dark  type-h2 leading-tight`}>
+            A Conversation <br /> Begins Your  Journey
+          </p>
+        </div>
         {/* Right Panel */}
         <div className="flex flex-col justify-center">
           <div className="max-w-lg">
-            <div
-              className={` type-display-sm uppercase  leading-tight  text-primary-dark `}
-            >
-              Your perfect stay begins the moment you reach out.
+            <div className="overflow-hidden">
+              <div
+                ref={subRef}
+                className={` type-display-sm uppercase  leading-tight  text-primary-dark `}
+              >
+                Your perfect stay begins the moment you reach out.
+              </div>
             </div>
             <p className="mt-6 type-body">
               However you wish to begin, our team is here — attentive, discreet and delighted to help craft a stay beyond compare.
