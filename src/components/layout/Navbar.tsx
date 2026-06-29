@@ -700,7 +700,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <span className="type-overline text-gray">Enquiry:</span> +91 54678
                     98765
                   </a>
-
                   <p className="text-primary-dark type-body-lg tracking-wider uppercase font-light">
                     <span className="type-overline text-gray">Address:</span> Beach Rd,
                     Kanniyakumari, TN 629702
