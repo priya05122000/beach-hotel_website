@@ -72,7 +72,7 @@ export default function RoomBanner() {
                     leftLines,
                     {
                         yPercent: 0,
-                        duration: 0.5,
+                        duration: 2,
                         ease: "power3.out",
                         stagger: 0.1,
                     },
@@ -84,7 +84,7 @@ export default function RoomBanner() {
                     rightLine,
                     {
                         yPercent: 0,
-                        duration: 0.5,
+                        duration: 2,
                         ease: "power3.out",
                     },
                     0.3
@@ -199,7 +199,7 @@ export default function RoomBanner() {
             </div>
 
             {/* ── Desktop ────────────────────────────────────────────────── */}
-            <div className="hidden lg:block relative overflow-hidden bg-primary h-screen px-6 sm:px-4">
+            <div className="hidden lg:block relative overflow-hidden bg-ivory h-screen px-6 sm:px-4">
                 <div
                     ref={imageWrapperRef}
                     className="absolute overflow-hidden"
