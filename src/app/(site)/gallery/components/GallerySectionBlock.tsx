@@ -80,11 +80,11 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
               flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
             `}
           >
-            <h2 className="type-body-lg mb-4 font-semibold text-primary-dark leading-tight">
+            <h2 className="type-display-lg mb-4 font-semibold text-primary-dark leading-tight">
               {section.category_name}
             </h2>
 
-            <p className={`text-charcoal leading-relaxed type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
+            <p className={`text-charcoal  type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
               {section.short_description}
             </p>
           </div>

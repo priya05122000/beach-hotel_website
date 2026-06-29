@@ -13,22 +13,27 @@ interface Props {
 
 function DestinationItem({ destination }: { destination: NearbyDestination }) {
   return (
-    <section className="space-y-20">
-      <div className="grid sm:grid-cols-[0.5fr_1fr_0.8fr gap-6 lg:gap-10">
-        <div className="hidden sm:flex items-center">
-          <p className="type-h6 text-center sm:text-left  tracking-widest uppercase">
+    <section className="relative py-16 lg:py-20">
+      <div className="grid md:grid-cols-[1fr_0.8fr] lg:grid-cols-[0.5fr_1fr_0.8fr] gap-6 lg:gap-10">
+        {/* Destination name — desktop sidebar only */}
+        <div className="hidden lg:flex items-center">
+          <p className="type-h6 text-left tracking-widest uppercase">
             {destination.destination_name}
           </p>
         </div>
-        <div className="flex flex-col w-full h-full items-start justify-center gap-6 sm:gap-10">
+
+        {/* Image + content */}
+        <div className="flex flex-col w-full h-full items-start justify-center gap-4 sm:gap-6 lg:gap-10">
+          {/* Name visible on mobile & tablet */}
+          <p className="type-h6 tracking-widest uppercase lg:hidden">
+            {destination.destination_name}
+          </p>
           <DestinationImageSlider
             images={destination.image_url}
             name={destination.destination_name}
           />
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
-            <h2
-              className={`type-display-sm text-primary-dark leading-tight mb-4 `}
-            >
+            <h2 className="type-display-sm text-primary-dark leading-tight mb-4">
               {destination.short_description}
             </h2>
 
@@ -41,7 +46,6 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
               </div>
             )}
 
-
             <Button
               href="#"
               className="text-[13px] text-primary font-semibold hover:text-primary/80"
@@ -50,18 +54,20 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             </Button>
           </div>
         </div>
-        <div className="flex items-end">
+
+        {/* Description */}
+        <div className="flex items-start md:items-end">
           {destination.description && (
             <div
-              className="text-charcoal "
+              className="text-charcoal"
               dangerouslySetInnerHTML={{ __html: destination.description }}
             />
           )}
         </div>
       </div>
 
-      {/* Subtle divider at bottom */}
-      <div className="absolute bottom-0 left-6 sm:left-12 lg:left-20 right-6 sm:right-12 lg:right-20 h-px bg-silver" />
+      {/* Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-silver" />
     </section>
   );
 }
@@ -85,7 +91,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
           choose where to wander first.
         </div>
       </div>
-      <div className="py-16 lg:py-20">
+      <div className="">
         {destinations.map((destination) => (
           <DestinationItem key={destination.id} destination={destination} />
         ))}

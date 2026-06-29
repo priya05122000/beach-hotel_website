@@ -43,7 +43,7 @@ export default function DestinationImageSlider({
   const normalizedImages = normalizeImages(images);
 
   return (
-    <div className="relative h-50 w-80 lg:h-55 lg:w-90 xl:h-70 xl:w-118 overflow-hidden group">
+    <div className="relative h-56 w-full sm:h-60 sm:w-80 lg:h-55 lg:w-90 xl:h-70 xl:w-118 overflow-hidden group">
       <div ref={emblaRef} className="h-full overflow-hidden">
         <div className="flex h-full">
           {normalizedImages.map((src, i) => (
@@ -53,7 +53,7 @@ export default function DestinationImageSlider({
                 alt={`${name} — image ${i + 1}`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 52vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 320px, 52vw"
                 priority={i === 0}
               />
             </div>
