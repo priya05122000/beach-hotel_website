@@ -28,7 +28,7 @@ type MediaItem = {
 
 function ReadMoreButton() {
     return (
-        <Link href="/gallery" className="flex cursor-pointer items-center gap-1 text-sm text-gray-700 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
+        <Link href="/gallery" className="flex cursor-pointer items-center gap-1  text-gray-700 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
             Read more
         </Link>
     );
@@ -121,8 +121,8 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
                     <MediaImage item={item} />
                 </div>
             </div>
-            <div className="flex items-center justify-between mt-3">
-                <h3 className="font-bold text-gray-900 leading-snug">
+            <div className="flex items-center type-body justify-between mt-3">
+                <h3 className="font-bold text-gray  leading-snug">
                     {item.title || "Gallery"}
                 </h3>
                 <ReadMoreButton />
@@ -150,7 +150,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                 <div className="mx-auto">
                     {/* Heading */}
                     <div className="mb-10">
-                        <h2 className={`mt-2 uppercase text-4xl font-normal text-gray  ${typography.textFoXl}`}>
+                        <h2 className={`mt-2 text-center uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%]`}>
                             Gallery
                         </h2>
                     </div>
@@ -163,7 +163,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
 
                         {/* Left text — spans both rows on desktop */}
                         <div className="hidden md:flex md:col-span-3 md:row-span-2 flex-col ">
-                            <p className=" text-gray-500 leading-relaxed">
+                            <p className=" text-charcoal leading-relaxed">
                                 Explore the moments and spaces that define your stay with us. Every image tells a story of comfort, elegance, and coastal beauty.
                             </p>
                         </div>

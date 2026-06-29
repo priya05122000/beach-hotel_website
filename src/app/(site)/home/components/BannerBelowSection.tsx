@@ -58,7 +58,7 @@ const BannerBelowSection = () => {
                         The Beach Hotel
                     </p>
 
-                    <p className="mt-2  max-w-80 text-white/40 font-extralight uppercase">
+                    <p className="mt-6  max-w-80 text-white/40 font-extralight uppercase">
                         Erumanayakkanpatti Beach Road, Kanyakumari 629702, India
                     </p>
 

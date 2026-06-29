@@ -127,12 +127,12 @@ export default function ExclusiveOffersSection({
   return (
     <Section className="pt-16 pb-16  lg:pt-20 lg:pb-20">
       <h2
-        className={` text-gray text-center uppercase font-normal type-h5 tracking-[73%]  lg:tracking-[83%] `}
+        className={` text-gray text-center uppercase font-normal type-h6 tracking-[73%]  lg:tracking-[83%] `}
       >
         Exclusive Offers
       </h2>
 
-      <p className={`max-w-md  ml-auto my-10 type-body sm:text-right `}>
+      <p className={`max-w-md  ml-auto my-10 type-body sm:text-right text-charcoal`}>
         Hotel facilities are designated spaces and services designed to enhance the guest
       </p>
 

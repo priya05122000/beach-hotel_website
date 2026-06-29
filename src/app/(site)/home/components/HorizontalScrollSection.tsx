@@ -133,15 +133,15 @@ export default function HorizontalScrollSection() {
                                 )} */}
 
                                 <div className="absolute -bottom-16">
-                                    <div className="flex items-end gap-2">
-                                        <span className="text-5xl font-extralight leading-none text-gray-900 mt-0.5">
+                                    <div className="flex items-end gap-3">
+                                        <span className="text-display-md font-extralight leading-none text-gray-900 mt-0.5">
                                             {item.id}
                                         </span>
-                                        <div className="flex flex-col gap-0.5">
-                                            <p className="font-medium text-gray-900 leading-tight">
+                                        <div className="flex flex-col gap-0.5 type-body">
+                                            <p className="font-semibold text-charcoal  leading-tight">
                                                 {item.title}
                                             </p>
-                                            <p className="text-gray-400 leading-tight">
+                                            <p className="text-gray leading-tight">
                                                 {item.location}
                                             </p>
                                         </div>
@@ -159,7 +159,7 @@ export default function HorizontalScrollSection() {
             {/* ── Bottom: filters · counter · "Projects" ─────────────── */}
             <div className="absolute max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0 pb-16 lg:pb-20 bottom-0 left-0 right-0 flex items-end justify-end ">
                 {/* Large display heading */}
-                <h2 className={`mt-2 uppercase font-normal text-gray  `}>
+                <h2 className={`mt-2 uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%] `}>
 
                     Destination
                 </h2>
