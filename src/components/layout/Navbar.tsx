@@ -396,8 +396,8 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
         {/* Main nav bar */}
         <div className={`transition-colors duration-500 bg-transparent"}`}>
-          <div className="px-8 xl:px-20">
-            <div className="relative h-16 flex items-center justify-between">
+          <div className="px-6 xl:px-10">
+            <div className="relative h-16 flex items-center justify-between lg:px-4 xl:px-10">
 
               {/* ── Left nav links (desktop, not scrolled) ── */}
               <ul
@@ -491,7 +491,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   <li>
                     <Link href="/contact-us">
                       <div className="animated-border inline-block w-auto relative overflow-hidden">
-                        <div className="inline-flex items-center gap-3 px-4 h-8 bg-primary">
+                        <div className="inline-flex items-center gap-3 lg:px-1.5 xl:px-2 h-8 bg-primary">
                           <span className="font-medium text-white text-xs tracking-[0.6px] uppercase">
                             Book My Stay
                           </span>

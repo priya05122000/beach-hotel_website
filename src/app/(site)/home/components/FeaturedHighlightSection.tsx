@@ -51,7 +51,7 @@ const FeaturedHighlightSection = () => {
 
               <div className="mt-8 flex justify-end">
                 <Button
-                  href="/facilities"
+                  href="/"
                   lineColor="bg-white"
                   className="text-white text-sm font-arizona-sans-bold w-30"
                 >
