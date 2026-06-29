@@ -44,7 +44,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-6">
             {/* Left: description + CTA + socials + contact */}
             <div className="flex flex-col gap-5">
-              <h3 className="uppercase  sm:max-w-sm xl:max-w-lg ">
+              <h3 className="type-body-lg uppercase sm:max-w-sm xl:max-w-lg">
                 Let the charm of the coastline and luxurious comforts set the
                 stage for an unforgettable stay amidst breathtaking views and
                 refined comfort.
@@ -60,7 +60,7 @@ export default function Footer() {
 
                 <div className="animated-border inline-block w-auto relative overflow-hidden">
                   <div className="inline-flex items-center gap-3 px-4 h-10 bg-primary  ">
-                    <button className="cursor-pointer  font-medium text-white ">
+                    <button className="type-label cursor-pointer font-medium text-white">
                       Book My Stay
                     </button>
                   </div>
@@ -75,7 +75,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-xs font-arizona-flare-regular tracking-widest uppercase hover:text-accent transition-colors"
+                      className="type-label font-arizona-flare-regular tracking-widest uppercase hover:text-accent transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -86,21 +86,21 @@ export default function Footer() {
 
             <div className="flex flex-col gap-5">
               <div>
-                <p className="text-xs font-arizona-flare-regular tracking-widest uppercase text-accent mb-3">
+                <p className="type-label font-arizona-flare-regular tracking-widest uppercase text-accent mb-3">
                   Working Hours
                 </p>
                 <ul className="flex flex-col gap-1.5">
-                  <li className="text-xs font-arizona-flare-regular tracking-widest uppercase">
+                  <li className="type-label font-arizona-flare-regular tracking-widest uppercase">
                     Front Desk — 24 / 7
                   </li>
-                  <li className="text-xs font-arizona-flare-regular tracking-widest uppercase">
+                  <li className="type-label font-arizona-flare-regular tracking-widest uppercase">
                     Check-In — 10:00 AM to 5:00 PM
                   </li>
-                  <li className="text-xs font-arizona-flare-regular tracking-widest uppercase">
+                  <li className="type-label font-arizona-flare-regular tracking-widest uppercase">
                     Room Service — 24 / 7
                   </li>
                 </ul>
-                <p className="text-xs font-arizona-flare-regular tracking-widest mt-4 max-w-xs">Warm, intuitive service ensuring your stay is perfectly seamless throughout.</p>
+                <p className="type-label font-arizona-flare-regular tracking-widest mt-4 max-w-xs">Warm, intuitive service ensuring your stay is perfectly seamless throughout.</p>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function Footer() {
             <div className=" flex flex-col justify-between gap-5">
               <div>
                 <div className="mt-6 lg:mt-4 xl:mt-2">
-                  <p className="uppercase mb-3">Follow Us</p>
+                  <p className="type-label uppercase mb-3">Follow Us</p>
                   <div className="flex items-center gap-3">
                     {socialIcons.map((item) => (
                       <Link
@@ -132,7 +132,7 @@ export default function Footer() {
                 <div className="flex flex-col space-y-2 mt-8">
                   <a
                     href="tel:+915467898765"
-                    className="flex items-center gap-2  hover:text-accent transition-colors"
+                    className="type-body-sm flex items-center gap-2  hover:text-accent transition-colors"
                   >
                     <Phone size={15} />
                     +91 54678 98765
@@ -140,13 +140,13 @@ export default function Footer() {
 
                   <a
                     href="mailto:support@thebeachhotel.in"
-                    className="flex items-center gap-2 hover:text-accent transition-colors"
+                    className="type-body-sm flex items-center gap-2 hover:text-accent transition-colors"
                   >
                     <Mail size={15} />
                     support@thebeachhotel.in
                   </a>
 
-                  <div className="flex gap-2  hover:text-accent transition-colors">
+                  <div className="type-body-sm flex gap-2  hover:text-accent transition-colors">
                     <MapPin size={15} className="mt-0.5" />
                     Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
                   </div>
@@ -155,7 +155,7 @@ export default function Footer() {
 
               {/* Bottom bar */}
               <div className="sm:mb-4">
-                <div className="flex items-center gap-2 text-[10px] font-arizona-flare-regular tracking-widest text-white uppercase">
+                <div className="flex items-center gap-2 type-overline font-arizona-flare-regular text-white">
                   <Link
                     href={`${process.env.NEXT_PUBLIC_SITE_URL}/terms-and-conditions`}
                     className="transition-colors hover:underline underline-offset-4 decoration-white/50  hover:text-white"

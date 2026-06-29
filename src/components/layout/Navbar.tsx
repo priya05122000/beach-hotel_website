@@ -411,7 +411,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   <li key={label}>
                     <Link
                       href={href}
-                      className={`relative font-semibold text-sm tracking-[0.6px] uppercase transition-colors pb-0.5
+                      className={`relative type-label-lg font-medium tracking-[0.6px] uppercase transition-colors pb-0.5
                         after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:origin-left after:transition-transform after:duration-300
                         ${isActive(href) ? "after:scale-x-100" : "after:scale-x-0"}
                         ${isOverDark ? "text-white hover:text-accent after:bg-white" : "text-primary-dark hover:text-accent after:bg-primary-dark"}
@@ -478,7 +478,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <li key={label}>
                       <Link
                         href={href}
-                        className={`relative font-semibold text-sm tracking-[0.6px] uppercase transition-colors pb-0.5
+                        className={`relative type-label-lg font-medium tracking-[0.6px] uppercase transition-colors pb-0.5
                           after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:origin-left after:transition-transform after:duration-300
                           ${isActive(href) ? "after:scale-x-100" : "after:scale-x-0"}
                           ${isOverDark ? "text-white hover:text-accent after:bg-white" : "text-primary-dark hover:text-accent after:bg-primary-dark"}
@@ -492,7 +492,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <Link href="/contact-us">
                       <div className="animated-border inline-block w-auto relative overflow-hidden">
                         <div className="inline-flex items-center gap-3 lg:px-1.5 xl:px-2 h-8 bg-primary">
-                          <span className="font-medium text-white text-xs tracking-[0.6px] uppercase">
+                          <span className="type-label font-medium text-white tracking-[0.6px] uppercase">
                             Book My Stay
                           </span>
                         </div>
@@ -506,11 +506,10 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   onClick={toggle}
                   aria-label={open ? "Close menu" : "Open menu"}
                   aria-expanded={open}
-                  className={`group relative z-110 cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-end transition-all duration-300 ${
-                    !isDesktop || scrolled || open
-                      ? "w-16 opacity-100 pointer-events-auto"
-                      : "w-0 opacity-0 pointer-events-none"
-                  }`}
+                  className={`group relative z-110 cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-end transition-all duration-300 ${!isDesktop || scrolled || open
+                    ? "w-16 opacity-100 pointer-events-auto"
+                    : "w-0 opacity-0 pointer-events-none"
+                    }`}
                   style={{
                     opacity: !isDesktop ? 1 : open ? 1 : scrolled ? 1 : 0,
                     transitionDelay: !isDesktop
@@ -537,13 +536,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
                       />
                     </span>
                     <span
-                      className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
+                      className={`type-overline font-medium transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
                     >
                       Menu
                     </span>
                   </span>
 
-                  {/* Close span */}
                   <span
                     className="absolute inset-0 flex items-center justify-between"
                     style={{
@@ -558,7 +556,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                       />
                     </span>
                     <span
-                      className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
+                      className={`type-overline font-medium transition-colors duration-300 ${isOverDark && !open ? "text-white" : "text-primary-dark"}`}
                     >
                       Close
                     </span>
@@ -604,7 +602,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   <br />
                   Hotel
                 </p>
-                <p className="text-white/80 text-[11px] tracking-[0.22em] uppercase font-light mt-3">
+                <p className="type-label-sm text-white/80 tracking-[0.22em] uppercase font-light mt-3">
                   Kanyakumari, India
                 </p>
               </div>
@@ -625,7 +623,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             }}
                             href={link.href}
                             onClick={handleLinkClick}
-                            className="group text-[16px] uppercase tracking-[0.2em] text-primary-dark transition-colors font-arizona-flare-regular duration-300"
+                            className="group type-body-lg uppercase tracking-[0.2em] text-primary-dark transition-colors  duration-300"
                             style={{
                               transform: "translateY(110%)",
                               display: "block",
@@ -642,13 +640,13 @@ export default function Header({ announcementData }: AnnouncementProps) {
                               linksRef.current[i] =
                                 el as unknown as HTMLAnchorElement;
                             }}
-                            className="text-primary/40 text-[14px] lg:text-[16px] font-arizona-sans-regular font-extralight cursor-default select-none"
+                            className=" type-body-lg  cursor-default select-none"
                             style={{
                               transform: "translateY(110%)",
                               display: "block",
                             }}
                           >
-                            <span className="relative pb-1">{link.label}</span>
+                            <span className="relative text-gray pb-1">{link.label}</span>
                           </span>
                         )}
                       </div>
@@ -673,7 +671,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 <a
                                   href={child.href}
                                   onClick={handleLinkClick}
-                                  className="group/child text-[16px] uppercase tracking-[0.2em] text-primary-dark font-arizona-flare-regular transition-colors duration-200"
+                                  className="group/child type-body-lg uppercase tracking-[0.2em] text-primary-dark font-arizona-flare-regular transition-colors duration-200"
                                 >
                                   <span className="relative inline-block pb-0.5">
                                     {child.label}
@@ -699,27 +697,26 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 <div className="flex flex-col gap-1">
                   <a
                     href="tel:+915467898765"
-                    className="text-primary-darktext-[16px] tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
+                    className="text-primary-dark type-body-lg tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
                   >
-                    <span className="text-[10px]">Enquiry:</span> +91 54678
+                    <span className="type-overline text-gray">Enquiry:</span> +91 54678
                     98765
                   </a>
-
-                  <p className="text-primary-darktext-xs tracking-wider uppercase font-light">
-                    <span className="text-[10px]">Address:</span> Beach Rd,
+                  <p className="text-primary-dark type-body-lg tracking-wider uppercase font-light">
+                    <span className="type-overline text-gray">Address:</span> Beach Rd,
                     Kanniyakumari, TN 629702
                   </p>
                 </div>
                 {/* <a
                   href="/contact-us"
                   onClick={handleLinkClick}
-                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-semibold text-primary-darkunderline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                  className=" px-6 py-3 text-[11px] tracking-[0.2em] uppercase font-medium text-primary-darkunderline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
                 >
                   Book My Stay
                 </a> */}
                 <Button
                   href="/contact-us"
-                  className="text-[11px] tracking-[0.2em] font-semibold text-primary-darkw-45"
+                  className="type-label-sm tracking-[0.2em] font-medium text-primary-dark w-45"
                 >
                   Book My Stay
                 </Button>
