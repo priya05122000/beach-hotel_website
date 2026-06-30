@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { GuestReview } from "@/src/types";
 import CenterSection from "@/src/components/common/CenterSection";
@@ -99,7 +100,7 @@ function StarRating({
 
 export default function Testimonials({ reviews }: TestimonialProps) {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 4000, stopOnInteraction: false })]);
 
     useEffect(() => {
         if (!emblaApi) return;
