@@ -4,6 +4,7 @@ import {
   arizonaFlareRegular,
   arizonaSansRegular,
 } from "../lib/font";
+import { Toaster } from "react-hot-toast";
 
 export default async function RootLayout({
   children,
@@ -17,11 +18,7 @@ export default async function RootLayout({
     >
       <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
         {children}
-        {/*
-        <Toaster
-          position="top-right"
-          richColors
-        /> */}
+        <Toaster position="top-right" />
       </body>
     </html>
   );
