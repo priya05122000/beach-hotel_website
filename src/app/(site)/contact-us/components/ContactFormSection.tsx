@@ -7,6 +7,7 @@ import Section from "@/src/components/common/Section";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const initialForm = {
   first_name: "",
@@ -66,7 +67,11 @@ export default function ContactFormSection() {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 85%", toggleActions: "play none none none" });
+    applySlideUp([headingRef.current], {
+      trigger: sectionRef.current,
+      start: "top 85%",
+      toggleActions: "play none none none",
+    });
   }, []);
 
   const [form, setForm] = useState(initialForm);
@@ -74,8 +79,6 @@ export default function ContactFormSection() {
     Partial<Record<keyof typeof initialForm, string>>
   >({});
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [serverError, setServerError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -109,7 +112,6 @@ export default function ContactFormSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setServerError(null);
     const next = validate();
     if (Object.keys(next).length > 0) {
       setErrors(next);
@@ -117,22 +119,21 @@ export default function ContactFormSection() {
     }
     try {
       setLoading(true);
-      const result = await submitAppointmentEnquiry({
+      const payload = {
         name: `${form.first_name} ${form.last_name}`,
         email: form.email,
         phone_number: String(form.phone_number),
         message: form.message,
-      });
+      };
+      const result = await submitAppointmentEnquiry(payload);
       if (result.success) {
-        setSuccess(true);
+        toast.success("Thank you! We'll be in touch shortly.");
         setForm(initialForm);
       } else {
-        setServerError(
-          result.message || "Something went wrong. Please try again.",
-        );
+        toast.error(result.message || "Something went wrong. Please try again.");
       }
     } catch {
-      setServerError("Server error. Please try again later.");
+      toast.error("Server error. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -141,19 +142,27 @@ export default function ContactFormSection() {
   return (
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-
         <div ref={sectionRef} className="w-full">
           <div className="overflow-hidden">
-            <h2 ref={headingRef} className="type-h2 font-semibold text-primary-dark">
+            <h2
+              ref={headingRef}
+              className="type-h2 font-semibold text-primary-dark"
+            >
               Your Questions? <br /> Answered
             </h2>
           </div>
 
-          <p className="mt-4 type-body max-w-md">Tell us how we may help, and our team will respond with care. Whether it is a question, a special request or the beginning of a reservation, we are delighted to assist.</p>
+          <p className="mt-4 type-body max-w-md">
+            Tell us how we may help, and our team will respond with care.
+            Whether it is a question, a special request or the beginning of a
+            reservation, we are delighted to assist.
+          </p>
           <div className="mt-4 space-y-4 border-t flex flex-col justify-end border-white/20 pt-4">
             <h2 className="type-h5 font-semibold text-primary-dark">Find Us</h2>
             <div className="uppercase">
-              <div className="type-body font-arizona-flare-regular">The Beach Hotel</div>
+              <div className="type-body font-arizona-flare-regular">
+                The Beach Hotel
+              </div>
               <div className="type-body font-arizona-flare-regular">
                 Beach Road, Kanyakumari,
                 <br />
@@ -163,7 +172,9 @@ export default function ContactFormSection() {
 
             <div className="space-y-1">
               <div>
-                <span className="type-label-sm font-medium uppercase">General Enquiries :</span>{" "}
+                <span className="type-label-sm font-medium uppercase">
+                  General Enquiries :
+                </span>{" "}
                 <Link
                   href="mailto:info@thebeachhotel.com"
                   className="type-body hover:underline"
@@ -173,7 +184,9 @@ export default function ContactFormSection() {
               </div>
 
               <div>
-                <span className="type-label-sm font-medium uppercase">Reception :</span>{" "}
+                <span className="type-label-sm font-medium uppercase">
+                  Reception :
+                </span>{" "}
                 <Link
                   href="tel:+919876543210"
                   className="type-body hover:underline"
@@ -275,7 +288,9 @@ export default function ContactFormSection() {
                 className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
               />
               {errors.email && (
-                <p className="text-[11px] text-red-400 mt-0.5">{errors.email}</p>
+                <p className="text-[11px] text-red-400 mt-0.5">
+                  {errors.email}
+                </p>
               )}
             </div>
 
@@ -332,10 +347,10 @@ export default function ContactFormSection() {
               </span>
             </label>
             {errors.consent && (
-              <p className="type-label-sm text-red-400 -mt-4">{errors.consent}</p>
+              <p className="type-label-sm text-red-400 -mt-4">
+                {errors.consent}
+              </p>
             )}
-
-            {serverError && <p className="type-body-sm text-red-400">{serverError}</p>}
 
             <button
               type="submit"
@@ -346,14 +361,12 @@ export default function ContactFormSection() {
             </button>
 
             <div className="type-label text-primary-dark/50">
-              {success
-                ? "Thank you for reaching out. A member of our team will be in touch shortly. We can't wait to welcome you to the edge of India."
-                : "Your details are kept private and used only to respond to your enquiry. We look forward to welcoming you."}
+              Your details are kept private and used only to respond to your
+              enquiry. We look forward to welcoming you.
             </div>
           </form>
         </div>
       </div>
-
-    </Section >
+    </Section>
   );
 }
