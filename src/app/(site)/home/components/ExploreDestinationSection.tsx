@@ -1,20 +1,49 @@
-﻿import { Button } from "@/src/components/common/button";
+﻿"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { Button } from "@/src/components/common/button";
 import Section from "@/src/components/common/Section";
-import { typography } from "@/src/lib/typography";
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Image from "next/image";
 
 const ExploreDestinationSection = () => {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const headingRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const ctx = gsap.context(() => {
+            if (prefersReduced) return;
+
+            const split = applySplitSlideUp({
+                target: headingRef.current,
+                trigger: sectionRef.current,
+                start: ANIM.start.default,
+                duration: ANIM.duration.base,
+                stagger: ANIM.stagger.base,
+                ease: ANIM.ease.default,
+            });
+
+            return () => split?.revert();
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
         <section className="bg-white pt-16 lg:pt-20">
             <div className=" mx-auto">
 
                 {/* Top Content */}
                 <Section>
-                    <div className="grid gap-8 sm:grid-cols-2 min-h-80 sm:min-h-140 lg:min-h-180 xl:min-h-140">
+                    <div ref={sectionRef} className="grid gap-8 sm:grid-cols-2 min-h-80 sm:min-h-140 lg:min-h-180 xl:min-h-140">
 
                         {/* Left */}
-                        <div className={`max-w-xl type-display-sm text-primary-dark uppercase self-start`}>
-                            Kanniyakumari's most extraordinary luxury address - where every horizon is yours alone, at the meeting point of three oceans.
+                        <div ref={headingRef} className={`max-w-xl type-display-sm text-primary-dark uppercase self-start`}>
+                            Kanniyakumari&apos;s most extraordinary luxury address — where every horizon is yours alone, at the meeting point of three oceans.
                         </div>
 
                         {/* Right */}
@@ -42,7 +71,7 @@ const ExploreDestinationSection = () => {
                 {/* Image */}
                 <div className="relative overflow-hidden h-65  sm:h-screen ">
                     {/* <Image
-                        src="/home/kanyakumari-statue.png"
+                        src="/home/kanyakumari-statue.webp"
                         alt="Kanyakumari"
                         fill
                         className="h-full w-full object-cover object-top-right"

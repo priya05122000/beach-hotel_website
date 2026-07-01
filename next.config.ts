@@ -81,6 +81,11 @@ const nextConfig: NextConfig = {
           },
 
           {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), payment=()",
+          },
+
+          {
             key: "Content-Security-Policy",
             value: `
               default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;

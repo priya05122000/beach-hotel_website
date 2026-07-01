@@ -116,6 +116,8 @@ export default function Footer() {
                         key={item.label}
                         href={item.href}
                         aria-label={item.label}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="border border-gray-700 p-1.5  hover:border-gray-500 transition-colors"
                       >
                         <Image

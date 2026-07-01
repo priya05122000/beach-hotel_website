@@ -116,7 +116,6 @@ export default function ZoomRevealSection() {
                             src={IMAGE_SRC}
                             alt="The Beach Hotel"
                             fill
-                            unoptimized
                             className="object-cover"
                         />
                     </div>
@@ -156,7 +155,6 @@ export default function ZoomRevealSection() {
                             src={IMAGE_SRC}
                             alt="The Beach Hotel"
                             fill
-                            unoptimized
                             className="object-cover"
                         />
                     </div>

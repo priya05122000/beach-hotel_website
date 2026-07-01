@@ -1,14 +1,14 @@
-﻿import CenterSection from "@/src/components/common/CenterSection";
+import CenterSection from "@/src/components/common/CenterSection";
 import Section from "@/src/components/common/Section";
 import Image from "next/image";
 
 const photos = [
-    { src: "/home/kanyakumari-statue.png", alt: "Hotel room", rotate: "-9deg", zIndex: 1 },
-    { src: "/home/hero-2.png", alt: "Hotel sign", rotate: "4deg", zIndex: 3 },
-    { src: "/home/kanyakumari-statue.png", alt: "Hotel", rotate: "-5deg", zIndex: 2 },
+    { src: "/home/kanyakumari-statue.webp", alt: "Hotel room", rotate: "-9deg", zIndex: 1 },
+    { src: "/home/hero-2.webp", alt: "Hotel sign", rotate: "4deg", zIndex: 3 },
+    { src: "/home/kanyakumari-statue.webp", alt: "Hotel", rotate: "-5deg", zIndex: 2 },
     { src: "/home/hero-1.webp", alt: "Hotel guest", rotate: "12deg", zIndex: 5 },
-    { src: "/home/kanyakumari-statue.png", alt: "Hotel view", rotate: "4deg", zIndex: 6 },
-    { src: "/home/kanyakumari-statue.png", alt: "Hotel view", rotate: "-20deg", zIndex: 0 },
+    { src: "/home/kanyakumari-statue.webp", alt: "Hotel view", rotate: "4deg", zIndex: 6 },
+    { src: "/home/kanyakumari-statue.webp", alt: "Hotel view", rotate: "-20deg", zIndex: 0 },
 ];
 
 function PhotoStrip() {
@@ -26,7 +26,6 @@ function PhotoStrip() {
                                 src={photo.src}
                                 alt={photo.alt}
                                 fill
-                                unoptimized
                                 className="object-cover "
                             />
                         </div>
@@ -51,7 +50,6 @@ function PhotoStrip() {
                                     src={photo.src}
                                     alt={photo.alt}
                                     fill
-                                    unoptimized
                                     className="object-cover  "
                                 />
                             </div>

@@ -20,8 +20,6 @@ import { useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export interface SlideUpOptions {
     targets: (HTMLElement | null) | (HTMLElement | null)[];
     trigger?: HTMLElement | null;

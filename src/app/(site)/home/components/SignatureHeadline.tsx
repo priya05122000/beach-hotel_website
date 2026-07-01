@@ -1,55 +1,62 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import CenterSection from "@/src/components/common/CenterSection";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import gsap from "gsap";
 
-const LINES: React.ReactNode[] = [
-    <>Kanniyakumari&apos;s most extraordinary</>,
-    <><span className="text-gray/90">luxury address</span> — where every</>,
-    <>horizon is yours alone, at the meeting</>,
-    <>point of <span className="text-gray/90">three oceans</span>.</>,
-];
+import CenterSection from "@/src/components/common/CenterSection";
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const SignatureHeadline = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const headingRef = useRef<HTMLHeadingElement>(null);
 
     useLayoutEffect(() => {
-        applySlideUp(lineRefs.current, {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            stagger: 0.12,
-            duration: 0.8,
-            delay:0.2,
-        });
+        const prefersReduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const ctx = gsap.context(() => {
+            if (prefersReduced) return;
+
+            const split = applySplitSlideUp({
+                target: headingRef.current,
+                trigger: sectionRef.current,
+                start: ANIM.start.default,
+                duration: ANIM.duration.base,
+                stagger: ANIM.stagger.base,
+                ease: ANIM.ease.default,
+            });
+
+            return () => split?.revert();
+        }, sectionRef);
+
+        return () => ctx.revert();
     }, []);
 
     return (
-        <CenterSection className="">
-            <div ref={sectionRef} className="pt-32 pb-16 lg:pt-40 lg:pb-20">
+        <CenterSection>
+            <section
+                ref={sectionRef}
+                className="pt-32 pb-16 lg:pt-40 lg:pb-20"
+            >
                 <div className="mx-auto text-center">
-                    <div
-                        className="
-              uppercase
-             type-display-sm
-              font-light
-              text-primary-dark
-            "
+                    <h2
+                        ref={headingRef}
+                        className="uppercase type-display-sm font-light text-primary-dark"
                     >
-                        {LINES.map((line, i) => (
-                            <span key={i} className="block overflow-hidden">
-                                <span
-                                    ref={(el) => { lineRefs.current[i] = el; }}
-                                    className="block"
-                                >
-                                    {line}
-                                </span>
-                            </span>
-                        ))}
-                    </div>
+                        Kanniyakumari&apos;s most extraordinary{" "}
+                        <span className="text-gray opacity-80">
+                            luxury address
+                        </span>{" "}
+                        — where every horizon is yours alone, at the meeting point of{" "}
+                        <span className="text-gray opacity-80">
+                            three oceans
+                        </span>
+                        .
+                    </h2>
                 </div>
-            </div>
+            </section>
         </CenterSection>
     );
 };

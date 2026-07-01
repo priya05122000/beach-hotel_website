@@ -30,7 +30,6 @@ function IconCard({ iconUrl, title }: { iconUrl: string; title: string }) {
               alt={title}
               width={50}
               height={50}
-              unoptimized
               className="object-contain "
             />
           </div>

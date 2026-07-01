@@ -1,9 +1,11 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 import type { Blog } from "@/src/types";
 import Section from "@/src/components/common/Section";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 interface Props {
   blog: Blog;
@@ -14,7 +16,24 @@ export default function BlogIntro({ blog }: Props) {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([titleRef.current], { trigger: wrapperRef.current, start: "top 85%", toggleActions: "play none none none" });
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ctx = gsap.context(() => {
+      if (prefersReduced) return;
+
+      const split = applySplitSlideUp({
+        target: titleRef.current,
+        trigger: wrapperRef.current,
+        start: "top 85%",
+        duration: ANIM.duration.base,
+        stagger: ANIM.stagger.base,
+        ease: ANIM.ease.default,
+      });
+
+      return () => split?.revert();
+    }, wrapperRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -27,14 +46,12 @@ export default function BlogIntro({ blog }: Props) {
         </div>
 
         <div ref={wrapperRef}>
-          <div className="overflow-hidden">
-            <h3
-              ref={titleRef}
-              className="type-h2 text-primary-dark leading-snug"
-            >
-              {blog.sub_title}
-            </h3>
-          </div>
+          <h3
+            ref={titleRef}
+            className="type-h2 text-primary-dark leading-snug"
+          >
+            {blog.sub_title}
+          </h3>
         </div>
       </div>
 

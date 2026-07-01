@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useCallback } from "react";
 import Section from "@/src/components/common/Section";
@@ -133,7 +133,7 @@ export default function ExclusiveOffersSection({
       </h2>
 
       <p className={`max-w-md  ml-auto my-10 type-body sm:text-right text-charcoal`}>
-        Hotel facilities are designated spaces and services designed to enhance the guest
+        Hotel facilities are designated spaces and services designed to enhance the guest
       </p>
 
       <div className="grid gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -160,7 +160,6 @@ export default function ExclusiveOffersSection({
                   src={imageUrl}
                   alt={offer.title}
                   fill
-                  unoptimized
                   className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
 
@@ -179,7 +178,7 @@ export default function ExclusiveOffersSection({
 
               <div className="absolute inset-0 z-20 flex flex-col p-5">
 
-                {/* Spacer — absorbs expansion so bottom row stays anchored */}
+                {/* Spacer   absorbs expansion so bottom row stays anchored */}
                 <div className="flex-1" />
 
                 {/* 1st: Content */}

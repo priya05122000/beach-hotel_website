@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
-
-gsap.registerPlugin(ScrollTrigger);
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 interface Props {
   section: GalleryCategory;
@@ -20,33 +18,43 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
   const wrapperRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
 
-    gsap.fromTo(
-      el,
-      { scale: 0.85, opacity: 0.5 },
-      {
-        scale: 1,
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-          end: "top 20%",
-          scrub: 0.5,
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { scale: 0.85, opacity: 0.5 },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            end: "top 20%",
+            scrub: 0.5,
+          },
         },
-      },
-    );
+      );
 
-    applySlideUp([titleRef.current], { trigger: el, start: "top 85%", toggleActions: "play none none none" });
+      if (!prefersReduced) {
+        const split = applySplitSlideUp({
+          target: titleRef.current,
+          trigger: el,
+          start: "top 85%",
+          duration: ANIM.duration.base,
+          stagger: ANIM.stagger.base,
+          ease: ANIM.ease.default,
+        });
+        return () => split?.revert();
+      }
+    }, wrapperRef);
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.vars.trigger === el) t.kill();
-      });
-    };
+    return () => ctx.revert();
   }, []);
 
   const isEven = index % 2 === 0;
@@ -84,13 +92,14 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
               flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
             `}
           >
-            <div className="overflow-hidden mb-4">
-              <h2 ref={titleRef} className="type-display-lg font-semibold text-primary-dark leading-tight">
-                {section.category_name}
-              </h2>
-            </div>
+            <h2
+              ref={titleRef}
+              className="type-display-lg font-semibold text-primary-dark leading-tight mb-4"
+            >
+              {section.category_name}
+            </h2>
 
-            <p className={`text-charcoal  type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
+            <p className={`text-charcoal type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
               {section.short_description}
             </p>
           </div>
@@ -116,7 +125,6 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
                   src={mainUrl}
                   alt={section.category_name}
                   fill
-                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 45vw"
                 />
@@ -146,7 +154,6 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
                     src={`${apiBase}/uploads/${topItem.media_url}`}
                     alt={`${section.category_name} top`}
                     fill
-                    unoptimized
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 25vw"
                   />
@@ -169,7 +176,6 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
                     src={`${apiBase}/uploads/${bottomItem.media_url}`}
                     alt={`${section.category_name} bottom`}
                     fill
-                    unoptimized
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 25vw"
                   />

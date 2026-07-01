@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const IMAGE_SRC = "/home/herobanner.jpg";
+const IMAGE_SRC = "/home/herobanner.webp";
 
 const clipStyle = {
     backgroundImage: `url('${IMAGE_SRC}')`,

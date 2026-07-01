@@ -31,7 +31,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
         <div className="flex flex-col justify-between gap-4 lg:gap-10">
           <div className="overflow-hidden">
             <Image
-              src="/home/faq.jpg"
+              src="/home/faq.webp"
               alt="Got Questions"
               width={700}
               height={600}

@@ -9,7 +9,7 @@ export default function HotelCTASection() {
             {/* Background Image */}
             <div className="relative h-80 sm:h-100 lg:h-135 w-full overflow-hidden">
                 <Image
-                    src="/home/cta.jpg"
+                    src="/home/cta.webp"
                     alt="Hotel Staff"
                     fill
                     className="object-cover"

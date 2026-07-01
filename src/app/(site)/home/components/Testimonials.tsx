@@ -167,7 +167,6 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                             alt={item.guest_name ?? "Guest"}
                                             width={80}
                                             height={80}
-                                            unoptimized
                                             className="w-full h-full object-cover"
                                         />
                                     </div>

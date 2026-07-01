@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -25,11 +25,11 @@ export default function HeroBanner() {
       <div className="relative h-full overflow-hidden">
         <Image
           src="/banner/home.webp"
-          // src="/home/herobanner.jpg"
+          // src="/home/herobanner.webp"
           alt="Hero Banner"
           fill
           priority
-          unoptimized
+          sizes="100vw"
           className="object-cover"
         />
 

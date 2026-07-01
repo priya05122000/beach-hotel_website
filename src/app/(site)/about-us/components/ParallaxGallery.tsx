@@ -1,98 +1,83 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import Section from '@/src/components/common/Section';
+import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
+import Section from "@/src/components/common/Section";
+import gsap from "gsap";
+import { ANIM } from "@/src/lib/gsap/config";
 
 const ParallaxGallery = () => {
-    const galleryRef = useRef<HTMLElement>(null);
-    const imgLeftRef = useRef<HTMLDivElement>(null);
-    const imgRightRef = useRef<HTMLDivElement>(null);
-    const imgSmallRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLElement>(null);
+  const imgLeftRef = useRef<HTMLDivElement>(null);
+  const imgRightRef = useRef<HTMLDivElement>(null);
+  const imgSmallRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!galleryRef.current) return;
-            // Disable parallax on small screens
-            if (window.innerWidth < 640) return;
-            const top = galleryRef.current.getBoundingClientRect().top;
-            const entered = Math.max(0, window.innerHeight - top);
-            if (imgLeftRef.current) imgLeftRef.current.style.transform = `translateY(${-entered * 0.15}px)`;
-            if (imgRightRef.current) imgRightRef.current.style.transform = `translateY(${-entered * 0.08}px)`;
-            if (imgSmallRef.current) imgSmallRef.current.style.transform = `translateY(${-entered * 0.22}px)`;
-        };
+  useLayoutEffect(() => {
+    const mm = gsap.matchMedia();
 
-        // Reset transforms when resizing below breakpoint
-        const handleResize = () => {
-            if (window.innerWidth < 640) {
-                [imgLeftRef, imgRightRef, imgSmallRef].forEach(ref => {
-                    if (ref.current) ref.current.style.transform = 'none';
-                });
-            }
-        };
+    mm.add("(min-width: 640px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: galleryRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', handleResize, { passive: true });
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+      tl.to(imgLeftRef.current, { yPercent: -ANIM.parallax.slow * 100 }, 0);
+      tl.to(imgRightRef.current, { yPercent: -ANIM.parallax.slow * 50 }, 0);
+      tl.to(imgSmallRef.current, { yPercent: -ANIM.parallax.base * 100 }, 0);
+    });
 
-    return (
-        <section ref={galleryRef} className=" py-16 px-8 lg:px-16 lg:py-0">
-            <Section>
-                {/* ── Mobile: two overlapping images, no animation ─────────── */}
-                <div className="sm:hidden relative pb-25" >
-                    {/* Large image */}
-                    <div className="relative aspect-3/2 w-[85%] overflow-hidden">
-                        <Image src="/facilities/2.jpg" alt="Hotel room" fill className="object-cover" />
-                    </div>
-                    {/* Small overlapping image — bottom-right */}
-                    <div className="absolute bottom-0 right-0 w-[48%]">
-                        <div className="relative aspect-4/5 overflow-hidden">
-                            <Image src="/facilities/3.jpg" alt="Hotel detail" fill className="object-cover" />
-                        </div>
-                    </div>
-                </div>
+    return () => mm.revert();
+  }, []);
 
-                {/* ── Desktop: parallax offset grid ─────────────────────────── */}
-                <div className="hidden sm:grid grid-cols-12 gap-10 items-start">
+  return (
+    <section ref={galleryRef} className="py-16 px-8 lg:px-16 lg:py-0">
+      <Section>
+        {/* ── Mobile: two overlapping images, no animation ─────────── */}
+        <div className="sm:hidden relative pb-25">
+          <div className="relative aspect-3/2 w-[85%] overflow-hidden">
+            <Image src="/facilities/2.webp" alt="Hotel room at The Beach Hotel" fill className="object-cover" sizes="85vw" />
+          </div>
+          <div className="absolute bottom-0 right-0 w-[48%]">
+            <div className="relative aspect-4/5 overflow-hidden">
+              <Image src="/facilities/3.webp" alt="Hotel interior detail" fill className="object-cover" sizes="48vw" />
+            </div>
+          </div>
+        </div>
 
-                    {/* Left — tall portrait */}
-                    <div ref={imgLeftRef} className="col-span-4 will-change-transform" >
-                        <div className="relative aspect-3/4 overflow-hidden">
-                            <Image src="/facilities/1.jpg" alt="Hotel facilities" fill className="object-cover" />
-                        </div>
-                    </div>
+        {/* ── Desktop: GSAP parallax offset grid ─────────────────────── */}
+        <div className="hidden sm:grid grid-cols-12 gap-10 items-start">
+          <div ref={imgLeftRef} className="col-span-4 will-change-transform">
+            <div className="relative aspect-3/4 overflow-hidden">
+              <Image src="/facilities/1.webp" alt="Hotel facilities at The Beach Hotel" fill className="object-cover" sizes="33vw" />
+            </div>
+          </div>
 
-                    <div className="col-span-1" />
+          <div className="col-span-1" />
 
-                    {/* Right — large + overlapping small */}
-                    <div className="relative col-span-5 mt-[30%] pb-35" >
+          <div className="relative col-span-5 mt-[30%] pb-35">
+            <div ref={imgRightRef} className="will-change-transform">
+              <div className="relative aspect-3/2 overflow-hidden">
+                <Image src="/facilities/2.webp" alt="Hotel room with sea view" fill className="object-cover" sizes="42vw" />
+              </div>
+            </div>
 
-                        {/* Large landscape */}
-                        <div ref={imgRightRef} className='will-change-transform' >
-                            <div className="relative aspect-3/2 overflow-hidden">
-                                <Image src="/facilities/2.jpg" alt="Hotel room" fill className="object-cover" />
-                            </div>
-                        </div>
-
-                        {/* Small overlapping — bottom-right, bleeds outside */}
-                        <div
-                            ref={imgSmallRef}
-                            className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-40 will-change-transform"
-                        >
-                            <div className="relative aspect-4/5 lg:aspect-2/3 overflow-hidden">
-                                <Image src="/facilities/3.jpg" alt="Hotel detail" fill className="object-cover" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </Section>
-        </section>
-    );
+            <div
+              ref={imgSmallRef}
+              className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-40 will-change-transform"
+            >
+              <div className="relative aspect-4/5 lg:aspect-2/3 overflow-hidden">
+                <Image src="/facilities/3.webp" alt="Hotel detail" fill className="object-cover" sizes="160px" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+    </section>
+  );
 };
 
 export default ParallaxGallery;

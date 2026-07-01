@@ -2,10 +2,11 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 import Marquee from "react-fast-marquee";
 import Section from "@/src/components/common/Section";
-import { typography } from "@/src/lib/typography";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const partners = [
   { name: "Seashore & Co", logo: "/contact-us/seashore.png" },
@@ -19,24 +20,38 @@ export default function TrustedBySection() {
   const headingRef = useRef<HTMLParagraphElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([headingRef.current], { trigger: sectionRef.current, start: "top 85%", toggleActions: "play none none none" });
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ctx = gsap.context(() => {
+      if (prefersReduced) return;
+
+      const split = applySplitSlideUp({
+        target: headingRef.current,
+        trigger: sectionRef.current,
+        start: "top 85%",
+        duration: ANIM.duration.base,
+        stagger: ANIM.stagger.base,
+        ease: ANIM.ease.default,
+      });
+
+      return () => split?.revert();
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <Section className=" py-12 md:py-20">
       <div ref={sectionRef} className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
-          {/* <p className={`${typography.textXl} font-semibold text-primary-dark  whitespace-nowrap`}> */}
-          <div className="overflow-hidden">
-            <p
-              ref={headingRef}
-              className={`type-h2 font-semibold leading-tight text-primary-dark  whitespace-nowrap`}
-            >
-              Trusted by 50+
-              <br />
-              top companies
-            </p>
-          </div>
+          <p
+            ref={headingRef}
+            className="type-h2 font-semibold leading-tight text-primary-dark whitespace-nowrap"
+          >
+            Trusted by 50+
+            <br />
+            top companies
+          </p>
         </div>
 
         <div className="w-full min-w-0">

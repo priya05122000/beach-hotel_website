@@ -1,8 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import gsap from "gsap";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Section from "@/src/components/common/Section";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
@@ -67,11 +69,24 @@ export default function ContactFormSection() {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    applySlideUp([headingRef.current], {
-      trigger: sectionRef.current,
-      start: "top 85%",
-      toggleActions: "play none none none",
-    });
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ctx = gsap.context(() => {
+      if (prefersReduced) return;
+
+      const split = applySplitSlideUp({
+        target: headingRef.current,
+        trigger: sectionRef.current,
+        start: "top 85%",
+        duration: ANIM.duration.base,
+        stagger: ANIM.stagger.base,
+        ease: ANIM.ease.default,
+      });
+
+      return () => split?.revert();
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const [form, setForm] = useState(initialForm);
@@ -143,14 +158,12 @@ export default function ContactFormSection() {
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         <div ref={sectionRef} className="w-full">
-          <div className="overflow-hidden">
-            <h2
-              ref={headingRef}
-              className="type-h2 font-semibold text-primary-dark"
-            >
-              Your Questions? <br /> Answered
-            </h2>
-          </div>
+          <h2
+            ref={headingRef}
+            className="type-h2 font-semibold text-primary-dark"
+          >
+            Your Questions? <br /> Answered
+          </h2>
 
           <p className="mt-4 type-body max-w-md">
             Tell us how we may help, and our team will respond with care.

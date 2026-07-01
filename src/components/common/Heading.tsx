@@ -8,8 +8,6 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
   className?: string;
   size?: "default" | "xl";
-  "data-aos"?: string;
-  "data-aos-duration"?: string | number;
 }
 
 const headingStyles: Record<HeadingLevel, string> = {
@@ -27,35 +25,19 @@ const headingSizeVariants: Record<"default" | "xl", string> = {
 };
 
 const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  (
-    {
-      level = 1,
-      children,
-      className = "",
-      size = "default",
-      "data-aos": aos,
-      "data-aos-duration": duration,
-      ...rest
-    },
-    ref
-  ) => {
+  ({ level = 1, children, className = "", size = "default", ...rest }, ref) => {
     const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
     let baseClass = headingStyles[level];
-    // Only override for level 1 and if size is not default
     if (level === 1 && size !== "default") {
       baseClass = headingSizeVariants[size];
     }
 
-    const props: React.HTMLAttributes<HTMLHeadingElement> = {
-      className: `${baseClass} font-bold ${className}`,
-      ...rest,
-    };
-    if (aos) {
-      (props as React.HTMLAttributes<HTMLHeadingElement> & { [key: string]: unknown })["data-aos"] = aos;
-      (props as React.HTMLAttributes<HTMLHeadingElement> & { [key: string]: unknown })["data-aos-duration"] = duration ?? 2000;
-    }
-    return React.createElement(Tag, { ...props, ref }, children);
+    return React.createElement(
+      Tag,
+      { className: `${baseClass} font-bold ${className}`, ...rest, ref },
+      children
+    );
   }
 );
 

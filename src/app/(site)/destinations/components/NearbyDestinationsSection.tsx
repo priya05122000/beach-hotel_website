@@ -1,17 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { MapPin, ArrowRight, Sparkle } from "lucide-react";
+import { useLayoutEffect, useRef } from "react";
+import { MapPin } from "lucide-react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 import type { NearbyDestination } from "@/src/types";
-import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
 import DestinationImageSlider from "./DestinationImageSlider";
 import { Button } from "@/src/components/common/button";
-
-gsap.registerPlugin(ScrollTrigger);
+import { ANIM } from "@/src/lib/gsap/config";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 interface Props {
   destinations: NearbyDestination[];
@@ -22,11 +19,12 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      if (!imageWrapRef.current) return;
+      if (!imageWrapRef.current || !sectionRef.current) return;
       gsap.fromTo(
         imageWrapRef.current,
         { yPercent: -8 },
@@ -44,15 +42,23 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
       );
     });
 
-    mm.add("all", () => {
-      applySlideUp([titleRef.current], {
+    let splitInstance: ReturnType<typeof applySplitSlideUp>;
+
+    if (!prefersReduced) {
+      splitInstance = applySplitSlideUp({
+        target: titleRef.current,
         trigger: sectionRef.current,
         start: "top 85%",
-        toggleActions: "play none none none",
+        duration: ANIM.duration.base,
+        stagger: ANIM.stagger.base,
+        ease: ANIM.ease.default,
       });
-    });
+    }
 
-    return () => mm.revert();
+    return () => {
+      mm.revert();
+      splitInstance?.revert();
+    };
   }, []);
 
   return (
@@ -78,11 +84,12 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             />
           </div>
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
-            <div className="overflow-hidden mb-4">
-              <h2 ref={titleRef} className="type-display-sm text-primary-dark leading-tight">
-                {destination.short_description}
-              </h2>
-            </div>
+            <h2
+              ref={titleRef}
+              className="type-display-sm text-primary-dark leading-tight mb-4"
+            >
+              {destination.short_description}
+            </h2>
 
             {destination.distance && (
               <div className="flex items-center gap-2 text-dusty mb-4">
@@ -123,11 +130,9 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   if (!destinations.length) return null;
 
   return (
-
     <Section className="py-16 lg:py-20">
       <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20 type-body">
-        {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
-        <p className="type-h6 tracking-[73%] text-center sm:text-left  lg:tracking-[83%] uppercase">Near By Destinations</p>
+        <p className="type-h6 tracking-[73%] text-center sm:text-left lg:tracking-[83%] uppercase">Near By Destinations</p>
         <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two
@@ -138,7 +143,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
           choose where to wander first.
         </div>
       </div>
-      <div className="">
+      <div>
         {destinations.map((destination) => (
           <DestinationItem key={destination.id} destination={destination} />
         ))}

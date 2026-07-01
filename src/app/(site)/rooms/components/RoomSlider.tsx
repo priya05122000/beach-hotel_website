@@ -12,7 +12,9 @@ const normalizeImages = (url?: string | string[] | null): string[] => {
   try {
     const parsed = JSON.parse(url);
     if (Array.isArray(parsed)) return parsed;
-  } catch { }
+  } catch {
+    // url is a plain string, not JSON — fall through
+  }
   return [url];
 };
 
@@ -52,7 +54,6 @@ export default function RoomSlider({
                 src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${src}`}
                 alt={`${name} — image ${i + 1}`}
                 fill
-                unoptimized
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority={i === 0}
@@ -65,14 +66,14 @@ export default function RoomSlider({
       <button
         onClick={prev}
         aria-label="Previous image"
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
       >
         <ChevronLeft size={16} strokeWidth={1.5} />
       </button>
       <button
         onClick={next}
         aria-label="Next image"
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 hover:bg-white cursor-pointer focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
       >
         <ChevronRight size={16} strokeWidth={1.5} />
       </button>

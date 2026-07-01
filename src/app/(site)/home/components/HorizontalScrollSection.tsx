@@ -125,7 +125,6 @@ export default function HorizontalScrollSection() {
                                     src={item.image}
                                     alt={item.title}
                                     fill
-                                    unoptimized
                                     className="object-cover"
                                 />
                                 {/* {overlaysImage && (

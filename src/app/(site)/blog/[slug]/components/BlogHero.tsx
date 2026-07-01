@@ -19,7 +19,7 @@ export default function BlogHero({ blog }: Props) {
           alt={blog.title}
           fill
           priority
-          unoptimized
+          sizes="100vw"
           className="object-cover"
         />
         {/* Bottom fade to black so text reads cleanly */}

@@ -20,8 +20,15 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                 setOpen(false);
             }
         }
+        function onKeyDown(e: KeyboardEvent) {
+            if (e.key === "Escape") setOpen(false);
+        }
         document.addEventListener("mousedown", onOutsideClick);
-        return () => document.removeEventListener("mousedown", onOutsideClick);
+        document.addEventListener("keydown", onKeyDown);
+        return () => {
+            document.removeEventListener("mousedown", onOutsideClick);
+            document.removeEventListener("keydown", onKeyDown);
+        };
     }, []);
 
     const updateAdults = (val: number) => {
@@ -50,6 +57,9 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
+                aria-expanded={open}
+                aria-haspopup="dialog"
+                aria-label={label}
                 className={`flex h-10 w-full items-center px-4 type-caption  cursor-pointer ${triggerClass}`}
             >
                 <Users size={16} className="mr-2 shrink-0 opacity-70" />
@@ -76,20 +86,22 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                                 type="button"
                                 onClick={() => updateAdults(adults - 1)}
                                 disabled={adults <= 1}
+                                aria-label="Remove adult"
                                 className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
-                                <Minus size={12} />
+                                <Minus size={12} aria-hidden="true" />
                             </button>
-                            <span className="w-4 text-center  font-semibold text-white">
+                            <span aria-live="polite" aria-atomic="true" className="w-4 text-center  font-semibold text-white">
                                 {adults}
                             </span>
                             <button
                                 type="button"
                                 onClick={() => updateAdults(adults + 1)}
                                 disabled={adults >= 10}
+                                aria-label="Add adult"
                                 className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
-                                <Plus size={12} />
+                                <Plus size={12} aria-hidden="true" />
                             </button>
                         </div>
                     </div>
@@ -105,20 +117,22 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                                 type="button"
                                 onClick={() => updateChildren(children - 1)}
                                 disabled={children <= 0}
+                                aria-label="Remove child"
                                 className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
-                                <Minus size={12} />
+                                <Minus size={12} aria-hidden="true" />
                             </button>
-                            <span className="w-4 text-center font-semibold text-white">
+                            <span aria-live="polite" aria-atomic="true" className="w-4 text-center font-semibold text-white">
                                 {children}
                             </span>
                             <button
                                 type="button"
                                 onClick={() => updateChildren(children + 1)}
                                 disabled={children >= 10}
+                                aria-label="Add child"
                                 className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
                             >
-                                <Plus size={12} />
+                                <Plus size={12} aria-hidden="true" />
                             </button>
                         </div>
                     </div>

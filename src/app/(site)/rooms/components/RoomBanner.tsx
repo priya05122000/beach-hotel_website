@@ -131,7 +131,6 @@ export default function RoomBanner() {
                         src={IMAGE_SRC}
                         alt="The Beach Hotel"
                         fill
-                        unoptimized
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
@@ -177,7 +176,6 @@ export default function RoomBanner() {
                         src={IMAGE_SRC}
                         alt="The Beach Hotel"
                         fill
-                        unoptimized
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />

@@ -34,7 +34,6 @@ const FeaturedHighlightSection = () => {
             src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
             alt="Luxury beach hotel view"
             fill
-            unoptimized
             className="object-cover"
             sizes="(max-width: 640px) 100vw, 66vw"
             priority

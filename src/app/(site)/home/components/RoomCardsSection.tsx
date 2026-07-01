@@ -80,7 +80,6 @@ function RoomCard({ room }: { room: Room }) {
                 src={src}
                 alt={room.name}
                 fill
-                unoptimized
                 className="object-cover"
               />
             </div>

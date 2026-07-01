@@ -10,9 +10,6 @@ interface FAQSectionProps {
     faqCategories: FaqCategory[];
     faqDatas: FAQ[];
 }
-interface FAQSectionProps {
-    faqCategories: FaqCategory[];
-}
 
 
 export default function FAQSection({
@@ -75,6 +72,7 @@ export default function FAQSection({
                         <div className="space-y-8">
                             {filteredFaqs.map((faq, index) => {
                                 const isOpen = openIndex === index;
+                                const panelId = `faq-panel-${faq.id}`;
 
                                 return (
                                     <div key={faq.id}>
@@ -84,18 +82,23 @@ export default function FAQSection({
                                                     isOpen ? -1 : index
                                                 )
                                             }
+                                            aria-expanded={isOpen}
+                                            aria-controls={panelId}
                                             className={`flex w-full items-start justify-between text-left ${typography.textTwoXl}`}
                                         >
                                             <p className="text-primary-dark  uppercase">
                                                 {faq.question}
                                             </p>
 
-                                            <p className="text-gray cursor-pointer">
+                                            <span aria-hidden="true" className="text-gray cursor-pointer">
                                                 {isOpen ? "-" : "+"}
-                                            </p>
+                                            </span>
                                         </button>
 
                                         <div
+                                            id={panelId}
+                                            role="region"
+                                            aria-label={faq.question}
                                             className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen
                                                 ? "mt-4 max-h-40 opacity-100"
                                                 : "max-h-0 opacity-0"
@@ -118,7 +121,7 @@ export default function FAQSection({
                         <div className="sticky top-24">
                             <div className="overflow-hidden ">
                                 <Image
-                                    src="/home/faq.jpg"
+                                    src="/home/faq.webp"
                                     alt="FAQ"
                                     width={700}
                                     height={800}

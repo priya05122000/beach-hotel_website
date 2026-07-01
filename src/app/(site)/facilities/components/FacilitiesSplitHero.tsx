@@ -3,10 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const TEXT_LINES = [
     "Curated",
@@ -96,7 +93,7 @@ export default function FacilitiesSplitHero() {
             {/* ── Mobile layout (< md) ─────────────────────────────────── */}
             <div className="flex flex-col md:hidden w-full">
                 <div className="relative w-full" style={{ height: "80vw", minHeight: 240 }}>
-                    <Image src="/facilities/1.jpg" alt="Hotel Facilities" fill priority className="object-cover" />
+                    <Image src="/facilities/1.webp" alt="Hotel Facilities" fill priority className="object-cover" />
                     <div className="absolute inset-0 bg-black/20" />
                 </div>
 
@@ -149,7 +146,7 @@ export default function FacilitiesSplitHero() {
                     style={{ width: "100%", height: "120vh", willChange: "left,width,height,top" }}
                 >
                     <div ref={imageInnerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-                        <Image src="/facilities/1.jpg" alt="Hotel Facilities" fill priority className="object-cover" />
+                        <Image src="/facilities/1.webp" alt="Hotel Facilities" fill priority className="object-cover" />
                         <div className="absolute inset-0 bg-black/20" />
                     </div>
                 </div>

@@ -52,7 +52,7 @@ export default function StoryPreviewSection() {
                     <div className="col-span-12 sm:col-span-6">
                         <div className="relative h-60 lg:h-80">
                             <Image
-                                src="/home/hero-2.png"
+                                src="/home/hero-2.webp"
                                 alt="Story 2"
                                 fill
                                 className="object-cover "
