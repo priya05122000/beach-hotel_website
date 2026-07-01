@@ -17,7 +17,7 @@ const partners = [
 
 export default function TrustedBySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLParagraphElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -44,14 +44,14 @@ export default function TrustedBySection() {
     <Section className=" py-12 md:py-20">
       <div ref={sectionRef} className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
-          <p
+          <h2
             ref={headingRef}
             className="type-h2 font-semibold leading-tight text-primary-dark whitespace-nowrap"
           >
             Trusted by 50+
             <br />
             top companies
-          </p>
+          </h2>
         </div>
 
         <div className="w-full min-w-0">

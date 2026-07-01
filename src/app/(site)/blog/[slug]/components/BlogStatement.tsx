@@ -40,12 +40,12 @@ export default function BlogStatement({ blog }: Props) {
     <Section className="py-16 md:py-20">
       <div ref={sectionRef} className="flex flex-col justify-between">
         <div className="w-full md:w-[70%] lg:w-[62%] mt-auto">
-          <h2
+          <h1
             ref={titleRef}
             className="type-display-xl leading-none tracking-tight"
           >
             {blog.title}
-          </h2>
+          </h1>
         </div>
         <div className="grid sm:grid-cols-2 sm:gap-10 mt-10 lg:mt-20 pt-5 md:pt-5 border-t border-silver">
           <div className="hidden sm:block" />

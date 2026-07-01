@@ -11,7 +11,7 @@ import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 export default function HeroLocationSection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const imageInnerRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLParagraphElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -71,9 +71,9 @@ export default function HeroLocationSection() {
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-4 py-16 lg:py-20">
         {/* Left Panel */}
         <div>
-          <p ref={headingRef} className="font-semibold text-primary-dark type-h2 leading-tight">
+          <h1 ref={headingRef} className="font-semibold text-primary-dark type-h2 leading-tight">
             A Conversation <br /> Begins Your Journey
-          </p>
+          </h1>
         </div>
         {/* Right Panel */}
         <div className="flex flex-col justify-center">

@@ -9,7 +9,7 @@ import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 const AboutUs = () => {
   const bgRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
@@ -81,9 +81,9 @@ const AboutUs = () => {
         className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20"
         style={{ height: "100vh" }}
       >
-        <div ref={titleRef} className="text-white type-display-2xl leading-none">
+        <h1 ref={titleRef} className="text-white type-display-2xl leading-none">
           Where Every<br />Wave Tells<br />Our Story
-        </div>
+        </h1>
         <p className="text-white/50 type-body uppercase mt-8 flex items-center gap-3">
           <span className="inline-block w-8 h-px bg-white/40" />
           Scroll to explore

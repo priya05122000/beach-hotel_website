@@ -20,7 +20,7 @@ export default function RoomBanner() {
     const desktopLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
     const desktopLineRightRef = useRef<HTMLSpanElement>(null);
     const mobileLineLeftRef = useRef<HTMLHeadingElement>(null);
-    const mobileLineRightRef = useRef<HTMLHeadingElement>(null);
+    const mobileLineRightRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
         const section = sectionRef.current;
@@ -138,27 +138,27 @@ export default function RoomBanner() {
                     <div className="absolute inset-0 grid grid-cols-2 py-16 px-6">
                         <div className="flex items-start">
                             <div className="overflow-hidden">
-                                <h2
+                                <h1
                                     ref={mobileLineLeftRef}
-                                    className="  type-display-md  leading-tight text-white "
+                                    className="type-display-md leading-tight text-white"
                                 >
                                     {TEXT_LINES.map((line, i) => (
                                         <span key={i} className="block">
                                             {line}
                                         </span>
                                     ))}
-                                </h2>
+                                </h1>
                             </div>
                         </div>
 
                         <div className="flex items-end justify-end">
                             <div className="overflow-hidden">
-                                <h2
+                                <div
                                     ref={mobileLineRightRef}
-                                    className="text-white  leading-tight type-display-md  text-right"
+                                    className="text-white leading-tight type-display-md text-right"
                                 >
                                     Experience
-                                </h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ export default function RoomBanner() {
 
                     <div className="flex items-start">
                         <div className="overflow-hidden">
-                            <h2
+                            <h1
                                 className="type-display-lg text-white leading-tight"
                             >
                                 {TEXT_LINES.map((line, i) => (
@@ -198,7 +198,7 @@ export default function RoomBanner() {
                                         </span>
                                     </span>
                                 ))}
-                            </h2>
+                            </h1>
                         </div>
                     </div>
 

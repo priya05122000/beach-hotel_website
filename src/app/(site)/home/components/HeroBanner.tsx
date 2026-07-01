@@ -33,6 +33,16 @@ export default function HeroBanner() {
           className="object-cover"
         />
 
+        {/* Hotel name — page h1 */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pb-32 sm:pb-20 pointer-events-none">
+          <h1 className="text-white text-center font-light tracking-[0.35em] uppercase type-display-md">
+            The Beach Hotel
+          </h1>
+          <p className="text-white/60 type-body tracking-[0.45em] uppercase mt-3">
+            Kanyakumari, India
+          </p>
+        </div>
+
         {/* Booking Form */}
         <div className="absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2">
           <CenterSection>

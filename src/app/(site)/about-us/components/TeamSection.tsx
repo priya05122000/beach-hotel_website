@@ -14,7 +14,7 @@ const TeamSection = () => {
   const galleryRef = useRef<HTMLElement>(null);
   const imgLeftRef = useRef<HTMLDivElement>(null);
   const imgRightRef = useRef<HTMLDivElement>(null);
-  const revealRef = useRef<HTMLDivElement>(null);
+  const revealRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,7 +61,7 @@ const TeamSection = () => {
 
           <div className="sm:col-span-8 flex flex-col gap-8 sm:gap-12">
             {/* Animated word reveal */}
-            <div
+            <h2
               ref={revealRef}
               className="text-primary-dark type-display-2xl flex flex-wrap gap-x-[0.25em]"
             >
@@ -72,7 +72,7 @@ const TeamSection = () => {
                   </span>
                 </span>
               ))}
-            </div>
+            </h2>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
               We are a team* of like-minded design enthusiasts and tech aficionados that

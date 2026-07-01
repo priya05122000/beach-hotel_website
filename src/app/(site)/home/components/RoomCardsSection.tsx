@@ -6,8 +6,6 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Maximize2, Users, BedDouble, Sofa } from "lucide-react";
-
-import { typography } from "@/src/lib/typography";
 import Section from "@/src/components/common/Section";
 
 gsap.registerPlugin(ScrollTrigger);

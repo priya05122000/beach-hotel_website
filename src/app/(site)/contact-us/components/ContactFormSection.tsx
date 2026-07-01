@@ -171,7 +171,7 @@ export default function ContactFormSection() {
             reservation, we are delighted to assist.
           </p>
           <div className="mt-4 space-y-4 border-t flex flex-col justify-end border-white/20 pt-4">
-            <h2 className="type-h5 font-semibold text-primary-dark">Find Us</h2>
+            <h3 className="type-h5 font-semibold text-primary-dark">Find Us</h3>
             <div className="uppercase">
               <div className="type-body font-arizona-flare-regular">
                 The Beach Hotel
@@ -210,9 +210,9 @@ export default function ContactFormSection() {
             </div>
           </div>
           <div className="pt-4 space-y-4">
-            <h2 className="type-h5 font-semibold text-primary-dark">
+            <h3 className="type-h5 font-semibold text-primary-dark">
               Follow Us
-            </h2>
+            </h3>
 
             <div className="flex items-center gap-3">
               {socialIcons.map((item) => (

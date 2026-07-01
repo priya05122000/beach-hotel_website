@@ -109,8 +109,8 @@ export default function FacilitiesSplitHero() {
                             </span>
                         </div>
 
-                        <h2
-                            className="type-display-sm uppercase text-primary-dark leading-tight "
+                        <h1
+                            className="type-display-sm uppercase text-primary-dark leading-tight"
                         >
                             {TEXT_LINES.map((line, i) => (
                                 <span key={i} className="block overflow-hidden">
@@ -119,7 +119,7 @@ export default function FacilitiesSplitHero() {
                                     </span>
                                 </span>
                             ))}
-                        </h2>
+                        </h1>
 
                         {/* <a
                             ref={mobileCtaRef}
@@ -169,8 +169,8 @@ export default function FacilitiesSplitHero() {
                                     </span>
                                 </div>
 
-                                <h2
-                                    className="type-display-sm uppercase text-primary-dark leading-tight "
+                                <h1
+                                    className="type-display-sm uppercase text-primary-dark leading-tight"
                                 >
                                     {TEXT_LINES.map((line, i) => (
                                         <span key={i} className="block overflow-hidden">
@@ -179,7 +179,7 @@ export default function FacilitiesSplitHero() {
                                             </span>
                                         </span>
                                     ))}
-                                </h2>
+                                </h1>
 
                                 {/* <a
                                     ref={desktopCtaRef}

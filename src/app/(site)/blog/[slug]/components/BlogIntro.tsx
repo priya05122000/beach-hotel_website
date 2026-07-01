@@ -46,12 +46,12 @@ export default function BlogIntro({ blog }: Props) {
         </div>
 
         <div ref={wrapperRef}>
-          <h3
+          <h2
             ref={titleRef}
             className="type-h2 text-primary-dark leading-snug"
           >
             {blog.sub_title}
-          </h3>
+          </h2>
         </div>
       </div>
 

@@ -66,17 +66,17 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
       <div className="grid md:grid-cols-[1fr_0.8fr] lg:grid-cols-[0.5fr_1fr_0.8fr] gap-6 lg:gap-10">
         {/* Destination name — desktop sidebar only */}
         <div className="hidden lg:flex items-center">
-          <p className="type-h6 text-left tracking-widest uppercase">
+          <h4 className="type-h6 text-left tracking-widest uppercase">
             {destination.destination_name}
-          </p>
+          </h4>
         </div>
 
         {/* Image + content */}
         <div className="flex flex-col w-full items-start justify-center gap-4 sm:gap-6 lg:gap-10">
           {/* Name visible on mobile & tablet */}
-          <p className="type-h6 tracking-widest uppercase lg:hidden">
+          <h4 className="type-h6 tracking-widest uppercase lg:hidden">
             {destination.destination_name}
-          </p>
+          </h4>
           <div ref={imageWrapRef} className="will-change-transform w-full sm:w-auto">
             <DestinationImageSlider
               images={destination.image_url}
@@ -84,12 +84,12 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             />
           </div>
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
-            <h2
+            <h3
               ref={titleRef}
               className="type-display-sm text-primary-dark leading-tight mb-4"
             >
               {destination.short_description}
-            </h2>
+            </h3>
 
             {destination.distance && (
               <div className="flex items-center gap-2 text-dusty mb-4">
@@ -132,7 +132,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   return (
     <Section className="py-16 lg:py-20">
       <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20 type-body">
-        <p className="type-h6 tracking-[73%] text-center sm:text-left lg:tracking-[83%] uppercase">Near By Destinations</p>
+        <h2 className="type-h6 tracking-[73%] text-center sm:text-left lg:tracking-[83%] uppercase">Near By Destinations</h2>
         <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two
