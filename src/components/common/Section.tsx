@@ -15,9 +15,16 @@ const Section = forwardRef<HTMLDivElement | null, SectionProps>(
                 id={id}
                 style={style}
             >
-                <div
+                {/* <div
                     ref={ref}
                     className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0"
+                >
+                    {children}
+                </div> */}
+
+                <div
+                    ref={ref}
+                    className="max-w-[95%] sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0"
                 >
                     {children}
                 </div>

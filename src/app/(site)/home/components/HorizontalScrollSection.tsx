@@ -98,7 +98,7 @@ export default function HorizontalScrollSection() {
     return (
         <div
             ref={sectionRef}
-            className="relative h-screen overflow-hidden px-6 sm:px-4 "
+            className="relative h-screen overflow-hidden "
         >
             {/* ── Horizontal image track ──────────────────────────────── */}
             {/* trackRef sits directly in the section so GSAP measures scrollWidth correctly */}
@@ -154,9 +154,8 @@ export default function HorizontalScrollSection() {
                 })}
             </div>
 
-
             {/* ── Bottom: filters · counter · "Projects" ─────────────── */}
-            <div className="absolute  max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0 pb-16 lg:pb-20 bottom-0 left-0 right-0 flex items-end justify-end ">
+            <div className="absolute  max-w-[95%] sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-6 sm:px-8 lg:px-16 xl:px-4 pb-16 lg:pb-20 bottom-0 left-0 right-0 flex items-end justify-end ">
                 {/* Large display heading */}
                 <h2 className={`mt-2 uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%] `}>
 

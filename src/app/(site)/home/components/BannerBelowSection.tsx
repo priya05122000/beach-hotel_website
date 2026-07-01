@@ -53,16 +53,16 @@ const BannerBelowSection = () => {
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative type-body z-10 text-center  h-[25vh] ">
-                    <p className="uppercase text-white">
+                <div className="relative   z-10 text-center  h-[25vh] ">
+                    <h1 className="uppercase type-body-xl font-semibold text-white">
                         The Beach Hotel
-                    </p>
+                    </h1>
 
-                    <p className="mt-6  max-w-80 text-white/40 font-extralight uppercase">
+                    <p className="mt-4 type-body  max-w-80 text-white/40 font-extralight uppercase">
                         Erumanayakkanpatti Beach Road, Kanyakumari 629702, India
                     </p>
 
-                    <p className="mt-2  max-w-80 text-white/40 font-extralight uppercase">
+                    <p className="mt-2 type-body max-w-80 text-white/40 font-extralight uppercase">
                         +91 23456 78654 | +91 43567 86547
                     </p>
                 </div>

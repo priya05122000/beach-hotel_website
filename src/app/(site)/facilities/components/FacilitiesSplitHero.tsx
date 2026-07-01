@@ -86,7 +86,7 @@ export default function FacilitiesSplitHero() {
         return () => mm.revert();
     }, []);
 
-    
+
 
     return (
         <>
@@ -156,7 +156,7 @@ export default function FacilitiesSplitHero() {
                     className="absolute py-16 lg:py-20 top-0 left-0 w-full h-[calc(100%-10vh)] z-10 pointer-events-none px-6 sm:px-4"
                     style={{ opacity: 0 }}
                 >
-                    <div className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
+                    <div className="max-w-[95%] sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
                         <div className="flex flex-col h-full justify-evenly w-1/2">
                             <div>
                                 <div className="overflow-hidden mb-4">

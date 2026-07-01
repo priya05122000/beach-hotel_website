@@ -174,7 +174,7 @@ export default function RoomShowcaseSection() {
           ))}
 
           {/* Left Blur Panel */}
-          <div className="absolute left-6 top-6 bottom-6 right-6   sm:w-1/2 xl:w-1/3 z-20 flex items-center">
+          <div className="absolute left-6 top-6 bottom-6 right-6 sm:right-auto sm:w-[65%] md:w-[55%] lg:w-[48%] xl:w-1/3 z-20 flex items-center">
 
             <div className="relative h-full w-full max-w-xl overflow-hidden">
 
@@ -182,10 +182,10 @@ export default function RoomShowcaseSection() {
               <div className="absolute inset-0 bg-white/10 backdrop-blur-xl" />
 
               {/* Content */}
-              <div className="relative z-10 flex h-full flex-col justify-center p-6 ">
+              <div className="relative z-10 flex h-full flex-col justify-center p-6 md:p-8">
 
                 {/* Text */}
-                <div className="relative h-62.5">
+                <div className="relative h-56 sm:h-64 md:h-72 lg:h-64 xl:h-62.5">
 
                   {items.map((item, i) => (
                     <div
@@ -199,11 +199,11 @@ export default function RoomShowcaseSection() {
                         opacity: i === 0 ? 1 : 0,
                       }}
                     >
-                      <h2 className="type-h1 tracking-wider text-white">
+                      <h2 className="type-h2 md:type-h1 tracking-wider text-white">
                         {item.title}
                       </h2>
 
-                      <p className="my-2 type-body  text-white ">
+                      <p className="my-2 type-body text-white line-clamp-4 md:line-clamp-none">
                         {item.description}
                       </p>
 
@@ -219,7 +219,7 @@ export default function RoomShowcaseSection() {
                 </div>
 
                 {/* Thumbnail */}
-                <div className="relative mt-12 w-full sm:w-56 h-36 overflow-hidden">
+                <div className="relative mt-6 md:mt-10 w-full sm:w-44 md:w-52 h-28 md:h-36 overflow-hidden">
 
                   {items.map((item, i) => (
                     <div

@@ -344,112 +344,120 @@ export default function Header({ announcementData }: AnnouncementProps) {
         {/* Main nav bar */}
         <div className="transition-colors duration-500 bg-transparent">
           <div className="px-6 xl:px-10">
-            <div className="relative h-16">
+            <div className="relative  h-16 flex items-center justify-between ">
 
-              {/* ================= DESKTOP NAV ================= */}
-              <div
-                className={`absolute inset-0 flex items-center transition-opacity duration-500 ${!scrolled && !open
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none"
-                  }`}
+              {/* Left nav links — desktop, not scrolled */}
+              <ul
+                className={`hidden  lg:pl-30 xl:pl-40 lg:flex items-center gap-6  transition-opacity duration-300 ${
+                  desktopLinksVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                }`}
               >
-                {/* Left */}
-                <div className="flex-1 flex justify-end pr-20">
-                  <ul className="hidden lg:flex items-center gap-6">
-                    {NAV_LEFT.map(({ href, label }) => (
-                      <li key={label}>
-                        <Link href={href} className={desktopLinkCls(href)}>
-                          {label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {NAV_LEFT.map(({ href, label }) => (
+                  <li key={label}>
+                    <Link href={href} className={desktopLinkCls(href)}>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-                {/* Logo */}
-                <div className="shrink-0 px-20">
-                  <Link href="/">
-                    <Image
-                      src={logoSrc}
-                      alt="The Beach Hotel"
-                      width={300}
-                      height={150}
-                      className="h-10 w-auto"
-                    />
-                  </Link>
-                </div>
-
-                {/* Right */}
-                <div className="flex-1 flex justify-start pl-20">
-                  <ul className="hidden lg:flex items-center gap-6">
-                    {NAV_RIGHT.map(({ href, label }) => (
-                      <li key={label}>
-                        <Link href={href} className={desktopLinkCls(href)}>
-                          {label}
-                        </Link>
-                      </li>
-                    ))}
-
-                    <li>
-                      <Link href="/contact-us">
-                        <span className={`text-[11px] uppercase ${iconColor}`}>
-                          Book My Stay
-                        </span>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+              {/* Logo — centered when not scrolled */}
+              <div
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{
+                  opacity: scrolled ? 0 : 1,
+                  transition: "opacity 0.5s ease",
+                  pointerEvents: scrolled ? "none" : "auto",
+                }}
+              >
+                <Link href="/" className="inline-flex items-center">
+                  <Image src={logoSrc} alt="The Beach Hotel" width={300} height={150} className="h-10 w-auto" />
+                </Link>
               </div>
 
-              {/* ================= SCROLLED NAV ================= */}
+              {/* Logo — left-aligned when scrolled */}
               <div
-                className={`absolute inset-0 flex items-center justify-between transition-opacity duration-500 ${scrolled || open
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none"
-                  }`}
+                className="absolute left-0"
+                style={{
+                  opacity: scrolled ? 1 : 0,
+                  transition: "opacity 0.5s ease",
+                  pointerEvents: scrolled ? "auto" : "none",
+                }}
               >
-                {/* Logo */}
-                <Link href="/">
-                  <Image
-                    src={logoSrc}
-                    alt="The Beach Hotel"
-                    width={300}
-                    height={150}
-                    className="h-10 w-auto"
-                  />
+                <Link href="/" className="inline-flex items-center">
+                  <Image src={logoSrc} alt="The Beach Hotel" width={300} height={150} className="h-10 w-auto" />
                 </Link>
+              </div>
 
-                {/* Menu */}
+              {/* Right nav links + hamburger */}
+              <div className="flex  items-center ">
+                {/* Right nav links — desktop, not scrolled */}
+                <ul
+                  className={`hidden lg:pr-30 xl:pr-40 lg:flex items-center gap-6  transition-opacity duration-300 ${
+                    desktopLinksVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  {NAV_RIGHT.map(({ href, label }) => (
+                    <li key={label}>
+                      <Link href={href} className={desktopLinkCls(href)}>
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link href="/contact-us" className="inline-flex items-center gap-3">
+                      <span className={`text-[11px]  tracking-[0.6px] uppercase text-shadow-lg ${iconColor}`}>
+                        Book My Stay
+                      </span>
+                    </Link>
+                  </li>
+                </ul>
+
+                {/* Hamburger / Close toggle */}
                 <button
                   onClick={toggle}
                   aria-label={open ? "Close menu" : "Open menu"}
                   aria-expanded={open}
-                  className="group relative text-[11px] uppercase h-10 w-12  cursor-pointer overflow-hidden"
+                  className={`group relative z-110 cursor-pointer bg-transparent border-0 h-10 overflow-hidden flex items-end transition-all duration-300 ${
+                    !isDesktop || scrolled || open
+                      ? "w-14 opacity-100 pointer-events-auto"
+                      : "w-0 opacity-0 pointer-events-none"
+                  }`}
+                  style={{
+                    opacity: !isDesktop ? 1 : open ? 1 : scrolled ? 1 : 0,
+                    transitionDelay: !isDesktop ? "0ms" : open ? "900ms" : scrolled ? "150ms" : "0ms",
+                  }}
                 >
-                  {/* Menu */}
+                  {/* Menu label */}
                   <span
                     className="absolute inset-0 flex items-center justify-between"
                     style={{
+                      transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                       transform: open ? "translateY(-100%)" : "translateY(0)",
-                      transition: "transform .4s cubic-bezier(.16,1,.3,1)",
                     }}
                   >
                     <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
-                      <Menu size={12} className={iconColor} />
+                      <Menu size={14} className={iconColor} />
                     </span>
-                    <span className={iconColor}>Menu</span>
+                    <span className={`type-overline font-medium transition-colors duration-300 ${iconColor}`}>
+                      Menu
+                    </span>
                   </span>
 
-                  {/* Close */}
+                  {/* Close label */}
                   <span
                     className="absolute inset-0 flex items-center justify-between"
                     style={{
+                      transition: "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
                       transform: open ? "translateY(0)" : "translateY(100%)",
-                      transition: "transform .4s cubic-bezier(.16,1,.3,1)",
                     }}
                   >
-                    <X size={14} className={iconColor} />
-                    <span className={iconColor}>Close</span>
+                    <span className="inline-flex transition-transform duration-300 group-hover:rotate-90">
+                      <X size={16} className={iconColor} />
+                    </span>
+                    <span className={`type-overline font-medium transition-colors duration-300 ${iconColor}`}>
+                      Close
+                    </span>
                   </span>
                 </button>
               </div>
