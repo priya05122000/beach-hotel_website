@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import Section from '@/src/components/common/Section';
+import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
+import Section from "@/src/components/common/Section";
+import gsap from "gsap";
+import { ANIM } from "@/src/lib/gsap/config";
 
 const ParallaxGallery = () => {
   const galleryRef = useRef<HTMLElement>(null);
@@ -10,33 +12,25 @@ const ParallaxGallery = () => {
   const imgRightRef = useRef<HTMLDivElement>(null);
   const imgSmallRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!galleryRef.current) return;
-      // Disable parallax on small screens
-      if (window.innerWidth < 640) return;
-      const top = galleryRef.current.getBoundingClientRect().top;
-      const entered = Math.max(0, window.innerHeight - top);
-      if (imgLeftRef.current) imgLeftRef.current.style.transform = `translateY(${-entered * 0.15}px)`;
-      if (imgRightRef.current) imgRightRef.current.style.transform = `translateY(${-entered * 0.08}px)`;
-      if (imgSmallRef.current) imgSmallRef.current.style.transform = `translateY(${-entered * 0.22}px)`;
-    };
+  useLayoutEffect(() => {
+    const mm = gsap.matchMedia();
 
-    // Reset transforms when resizing below breakpoint
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        [imgLeftRef, imgRightRef, imgSmallRef].forEach(ref => {
-          if (ref.current) ref.current.style.transform = 'none';
-        });
-      }
-    };
+    mm.add("(min-width: 640px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: galleryRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleResize, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
+      tl.to(imgLeftRef.current, { yPercent: -ANIM.parallax.slow * 100 }, 0);
+      tl.to(imgRightRef.current, { yPercent: -ANIM.parallax.slow * 50 }, 0);
+      tl.to(imgSmallRef.current, { yPercent: -ANIM.parallax.base * 100 }, 0);
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
