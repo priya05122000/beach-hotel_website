@@ -6,7 +6,6 @@ import gsap from "gsap";
 import CenterSection from "@/src/components/common/CenterSection";
 import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
-import Section from "@/src/components/common/Section";
 
 const SignatureHeadline = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -36,25 +35,15 @@ const SignatureHeadline = () => {
     }, []);
 
     return (
-        <Section>
-
+        <CenterSection>
             <section
                 ref={sectionRef}
                 className="pt-32 pb-16 lg:pt-40 lg:pb-20"
             >
-                <div className="mx-auto max-w-280 text-center">
-                    <h1
-                        className="
-          bg-[url('/afadb37e652d192140c58d9c1ffe5a3c.jpg')]
-          bg-contain
-          bg-clip-text
-          text-transparent
-          uppercase type-display-md
-          font-bold
-          text-center
-          drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]
-          animate-glass
-        "
+                <div className="mx-auto text-center">
+                    <h2
+                        // ref={headingRef}
+                        className="uppercase type-display-sm font-light text-primary-dark"
                     >
                         Kanniyakumari&apos;s most extraordinary{" "}
                         <span className="text-gray opacity-80">
@@ -65,10 +54,10 @@ const SignatureHeadline = () => {
                             three oceans
                         </span>
                         .
-                    </h1>
+                    </h2>
                 </div>
             </section>
-        </Section>
+        </CenterSection>
     );
 };
 

@@ -415,3 +415,22 @@ body::-webkit-scrollbar {
     background-position: 250% 50%;
   }
 }
+
+
+@keyframes glass {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: -200px 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.animate-glass {
+  animation: glass 10s linear infinite;
+}

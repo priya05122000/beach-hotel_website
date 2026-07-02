@@ -6,7 +6,6 @@ import { Button } from "@/src/components/common/button";
 import Section from "@/src/components/common/Section";
 import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
-import Image from "next/image";
 
 const ExploreDestinationSection = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
