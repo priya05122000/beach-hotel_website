@@ -324,7 +324,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const active = isActive(href);
     const base = "text-[11px] tracking-[3px] uppercase transition-colors";
     if (isOverDark) return `${base} text-white`;
-    return `${base} ${active ? "text-accent" : "text-primary-dark hover:text-white  text-shadow-lg"}`;
+    return `${base} ${active ? "text-silver" : "text-primary-dark hover:text-white  "}`;
   };
 
   // Counter assigned during render for child ref indices
