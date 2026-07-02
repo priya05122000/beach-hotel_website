@@ -199,11 +199,11 @@ export default function RoomShowcaseSection() {
                         opacity: i === 0 ? 1 : 0,
                       }}
                     >
-                      <h2 className="type-h2 md:type-h1 tracking-wider text-white">
+                      <h2 className="type-h1 tracking-wider text-white">
                         {item.title}
                       </h2>
 
-                      <p className="my-2 type-body text-white line-clamp-4 md:line-clamp-none">
+                      <p className="mt-2 mb-8 type-body text-white line-clamp-4 md:line-clamp-none">
                         {item.description}
                       </p>
 

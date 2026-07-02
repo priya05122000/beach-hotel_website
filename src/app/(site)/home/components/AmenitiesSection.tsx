@@ -119,7 +119,6 @@ export default async function AmenitiesSection() {
             <div className="hidden lg:flex justify-end">
               <Button
                 href="/facilities"
-                variant="solid"
                 className="text-gray w-40"
               >
                 View All

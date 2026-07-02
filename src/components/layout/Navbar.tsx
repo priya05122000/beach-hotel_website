@@ -320,15 +320,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
   const desktopLinksVisible = isDesktop && !scrolled && !open && !animating;
 
-  const desktopLinkCls = (href: string) =>
-    [
-      "relative text-[11px]  tracking-[0.6px] uppercase transition-colors pb-0.5",
-      "after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:origin-left after:transition-transform after:duration-300",
-      isActive(href) ? "after:scale-x-100" : "after:scale-x-0",
-      isOverDark
-        ? "text-white hover:text-accent after:bg-white"
-        : "text-primary-dark hover:text-white text-shadow-lg after:bg-primary-dark",
-    ].join(" ");
+  const desktopLinkCls = (href: string) => {
+    const active = isActive(href);
+    const base = "text-[11px] tracking-[3px] uppercase transition-colors";
+    if (isOverDark) return `${base} text-white`;
+    return `${base} ${active ? "text-accent" : "text-primary-dark hover:text-white  text-shadow-lg"}`;
+  };
 
   // Counter assigned during render for child ref indices
   let childIdx = 0;
@@ -338,7 +335,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-100 transition-transform duration-500"
+        className="fixed   inset-x-0 top-0 z-100 transition-transform duration-500"
         style={{ transform: hideNav ? "translateY(-100%)" : "translateY(0)" }}
       >
         {/* Main nav bar */}
@@ -392,7 +389,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                     <li>
                       <Link href="/contact-us">
-                        <span className={`text-[11px] uppercase ${iconColor}`}>
+                        <span className={`text-[11px] tracking-[3px] hover:text-white uppercase ${iconColor}`}>
                           Book My Stay
                         </span>
                       </Link>
@@ -461,7 +458,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
       {/* ── Fullscreen overlay ─────────────────────────────────────────────── */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-90 bg-white overflow-hidden flex flex-col justify-center"
+        className="fixed tracking-[3px]  inset-0 z-90 bg-white overflow-hidden flex flex-col justify-center"
         style={{ visibility: "hidden", clipPath: "inset(100% 0 0 0)" }}
       >
         <Section>
@@ -482,12 +479,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
               <div className="absolute inset-0 bg-linear-to-t from-primary/80 via-primary/10 to-transparent" />
               <div className="relative z-10 mt-auto p-8">
                 <p
-                  className="text-white font-extralight leading-[1.1] tracking-[-0.02em]"
-                  style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.8rem)" }}
+                  className="text-white type-display-sm font-extralight leading-[1.1] tracking-[3px]"
                 >
                   The Beach<br />Hotel
                 </p>
-                <p className="type-label-sm text-white/80 tracking-[0.22em] uppercase font-light mt-3">
+                <p className="type-label-sm text-white/80 uppercase font-light mt-3 tracking-[3px]">
                   Kanyakumari, India
                 </p>
               </div>
@@ -506,7 +502,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                             ref={(el) => { linksRef.current[i] = el as HTMLAnchorElement; }}
                             href={link.href}
                             onClick={handleLinkClick}
-                            className="group type-body-lg uppercase tracking-[0.2em] text-primary-dark transition-colors duration-300"
+                            className="group type-body-lg uppercase tracking-[3px] text-primary-dark transition-colors duration-300"
                             style={{ transform: "translateY(110%)", display: "block" }}
                           >
                             <span className="relative inline-block pb-1 transition-all duration-300">
@@ -517,7 +513,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                         ) : (
                           <span
                             ref={(el) => { linksRef.current[i] = el as unknown as HTMLAnchorElement; }}
-                            className="type-body-lg cursor-default select-none"
+                            className="type-[11px] font-arizona-sans-regular text-charcoal cursor-default select-none tracking-[3px]"
                             style={{ transform: "translateY(110%)", display: "block" }}
                           >
                             <span className="relative text-gray pb-1">{link.label}</span>
@@ -527,7 +523,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                       {/* Child links */}
                       {link.children && (
-                        <div className="mt-2 flex gap-6 flex-wrap">
+                        <div className="mt-2  flex gap-6 flex-wrap">
                           {link.children.map((child) => {
                             const refIdx = childIdx++;
                             return (
@@ -539,9 +535,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 <Link
                                   href={child.href}
                                   onClick={handleLinkClick}
-                                  className="group/child type-body-lg uppercase tracking-[0.2em] text-primary-dark font-arizona-flare-regular transition-colors duration-200"
+                                  className="group/child type-body-lg uppercase tracking-[3px] text-primary-dark  transition-colors duration-200"
                                 >
-                                  <span className="relative inline-block pb-0.5">
+                                  <span className="relative  inline-block pb-0.5">
                                     {child.label}
                                     <span className={`absolute left-0 bottom-0 h-px w-full bg-primary/70 origin-left transition-transform duration-500 ${isActive(child.href) ? "scale-x-100" : "scale-x-0 group-hover/child:scale-x-100"}`} />
                                   </span>
@@ -562,20 +558,20 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 className="flex flex-col sm:flex-row sm:items-end sm:justify-between pt-6 shrink-0 gap-6 sm:gap-0"
                 style={{ opacity: 0, transform: "translateY(20px)" }}
               >
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 ">
                   <a
                     href="tel:+915467898765"
-                    className="text-primary-dark type-body-lg tracking-wide uppercase no-underline font-arizona-flare-regular transition-colors duration-200"
+                    className="text-primary-dark type-body-lg uppercase no-underline font-arizona-flare-regular transition-colors duration-200 tracking-[3px]"
                   >
-                    <span className="type-overline text-gray">Enquiry:</span> +91 54678 98765
+                    <span className="type-overline text-gray tracking-[3px]">Enquiry:</span> +91 54678 98765
                   </a>
-                  <p className="text-primary-dark type-body-lg tracking-wider uppercase font-light">
-                    <span className="type-overline text-gray">Address:</span> Beach Rd, Kanniyakumari, TN 629702
+                  <p className="text-primary-dark type-body-lg tracking-[3px] uppercase font-light">
+                    <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
                   </p>
                 </div>
                 <Button
                   href="/contact-us"
-                  className="text-[11px] tracking-[0.2em] font-medium text-primary-dark w-45"
+                  className="font-medium text-primary-dark w-45 self-end"
                 >
                   Book My Stay
                 </Button>

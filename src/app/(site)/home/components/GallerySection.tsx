@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Section from "@/src/components/common/Section";
 import { Gallery } from "@/src/types";
+import { Button } from "@/src/components/common/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +28,7 @@ type MediaItem = {
 
 function ReadMoreButton() {
     return (
-        <Link href="/gallery" className="flex cursor-pointer items-center gap-1  text-gray-700 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
+        <Link href="/gallery" className="flex cursor-pointer items-center gap-1  text-gray tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
             Read more
         </Link>
     );
@@ -122,7 +123,7 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
                 <h3 className="font-bold text-gray  type-body  leading-snug">
                     {item.title || "Gallery"}
                 </h3>
-                <ReadMoreButton />
+                {/* <ReadMoreButton /> */}
             </div>
         </div>
     );
@@ -146,7 +147,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
             <section className="py-16 lg:py-20 ">
                 <div className="mx-auto">
                     {/* Heading */}
-                    <div className="mb-16">
+                    <div className="mb-32">
                         <h2 className={`mt-2 text-center uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%]`}>
                             Gallery
                         </h2>
@@ -156,45 +157,61 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                         [text col-3 rows 1-2] [item0 col-5 row-1 LARGE] [item1 col-4 row-1 SMALL]
                                              [item2 col-5 row-2 MEDIUM] [item3 col-4 row-2 LARGE]
                     */}
-                    <div className="grid grid-cols-12 gap-x-5 gap-y-8">
+                    <div className="grid sm:grid-cols-[1fr_2fr] gap-x-10 gap-y-8">
 
                         {/* Left text — spans both rows on desktop */}
-                        <div className="hidden md:flex md:col-span-3 md:row-span-2 flex-col ">
-                            <p className=" text-charcoal leading-relaxed">
+                        <div className="hidden md:flex  flex-col ">
+                            <p className=" text-primary-dark type-h2 leading-tight">
                                 Explore the moments and spaces that define your stay with us. Every image tells a story of comfort, elegance, and coastal beauty.
                             </p>
                         </div>
 
-                        {/* Item 0 — center top, LARGE */}
-                        {item0 && (
-                            <div className="col-span-12 md:col-span-5">
-                                <GalleryCard item={item0} imageClassName="h-64 md:h-72 lg:h-80" />
-                            </div>
-                        )}
 
-                        {/* Item 1 — right top, SMALL / SHORT */}
-                        {item1 && (
-                            <div className="col-span-12 md:col-span-4">
-                                <GalleryCard item={item1} imageClassName="h-44 md:h-48 lg:h-52" />
-                            </div>
-                        )}
+                        <div className="grid grid-cols-12 gap-x-5 gap-y-8">
 
-                        {/* Item 2 — center bottom, MEDIUM */}
-                        {item2 && (
-                            <div className="col-span-12 md:col-span-4">
-                                <GalleryCard item={item2} imageClassName="h-52 md:h-56 lg:h-60" />
-                            </div>
-                        )}
 
-                        {/* Item 3 — right bottom, LARGE / TALL */}
-                        {item3 && (
-                            <div className="col-span-12 md:col-span-5">
-                                <GalleryCard item={item3} imageClassName="h-60 md:h-68 lg:h-76" />
-                            </div>
-                        )}
+                            {/* Item 0 — center top, LARGE */}
+                            {item0 && (
+                                <div className="col-span-12 md:col-span-6">
+                                    <GalleryCard item={item0} imageClassName="h-64 md:h-72 lg:h-80" />
+                                </div>
+                            )}
+
+                            {/* Item 1 — right top, SMALL / SHORT */}
+                            {item1 && (
+                                <div className="col-span-12 md:col-span-6">
+                                    <GalleryCard item={item1} imageClassName="h-64 md:h-48 lg:h-52" />
+                                </div>
+                            )}
+
+                            {/* Item 2 — center bottom, MEDIUM */}
+                            {item2 && (
+                                <div className="col-span-12 md:col-span-6">
+                                    <GalleryCard item={item2} imageClassName="h-64 md:h-56 lg:h-60" />
+                                </div>
+                            )}
+
+                            {/* Item 3 — right bottom, LARGE / TALL */}
+                            {item3 && (
+                                <div className="col-span-12 md:col-span-6">
+                                    <GalleryCard item={item3} imageClassName="h-64 md:h-68 lg:h-76" />
+                                </div>
+                            )}
+
+                        </div>
 
                     </div>
 
+                </div>
+
+
+                <div className="flex justify-end  mt-16">
+                    <Button
+                        href="/gallery"
+                        className="cursor-pointer  text-end text-gray w-40   px-3 py-1 whitespace-nowrap"
+                    >
+                        Explore
+                    </Button>
                 </div>
             </section>
         </Section>

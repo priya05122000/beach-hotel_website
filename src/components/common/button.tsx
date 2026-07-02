@@ -18,7 +18,7 @@ export const Button = ({
   variant = "default",
   lineColor,
 }: ButtonProps) => {
-  const cls = `inline-flex items-center gap-3 uppercase${variant === "bold" ? " font-bold" : ""} group${className ? ` ${className}` : ""}`;
+  const cls = `inline-flex items-center type-label-sm tracking-[2px] gap-3 uppercase ${variant === "bold" ? " font-bold" : ""} group${className ? ` ${className}` : ""}`;
 
   const inner = (
     <>

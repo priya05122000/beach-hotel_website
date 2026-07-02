@@ -24,7 +24,7 @@ export default function HeroBanner() {
       {/* Background Image */}
       <div className="relative h-full overflow-hidden">
         <Image
-          src="/banner/home.webp"
+          src="/banner/home.jpg"
           // src="/home/herobanner.webp"
           alt="Hero Banner"
           fill

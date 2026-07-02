@@ -124,7 +124,7 @@ function RoomCard({ room }: { room: Room }) {
 
         <Link
           href="/rooms"
-          className="flex cursor-pointer items-center gap-1 type-body  text-gray-700 tracking-wider font-arizona-flare-regular mt-10  py-1 whitespace-nowrap underline underline-offset-2"
+          className="flex cursor-pointer items-center gap-1 type-label-sm tracking-[2px]  text-gray type-label-sm uppercase  mt-10  py-1 whitespace-nowrap underline underline-offset-2"
         >
           View Details
         </Link>
@@ -205,7 +205,7 @@ export default function RoomCardsSection() {
         <div className="flex justify-end">
           <Button
             href="/rooms"
-            className="cursor-pointer text-sm text-end text-gray-700 w-40 tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap"
+            className="cursor-pointer  text-end text-gray w-40   px-3 py-1 whitespace-nowrap"
           >
             View All
           </Button>
