@@ -132,8 +132,8 @@ export default function ExclusiveOffersSection({
         Exclusive Offers
       </h2>
 
-      <p className={`max-w-md  ml-auto my-10 type-body sm:text-right text-charcoal`}>
-        Hotel facilities are designated spaces and services designed to enhance the guest
+      <p className={`max-w-lg  ml-auto my-10 type-body sm:text-right text-charcoal`}>
+        Discover exclusive offers designed to make your stay at the edge of India even more rewarding. From seasonal indulgences to curated packages, there has never been a better time to stay with us.
       </p>
 
       <div className="grid gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">

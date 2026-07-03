@@ -52,7 +52,6 @@ const SignatureHeadline = () => {
           uppercase type-display-md
           font-bold
           text-center
-          drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]
           animate-glass
         "
                     >

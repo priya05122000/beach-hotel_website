@@ -163,33 +163,33 @@ body::-webkit-scrollbar {
 
   /* ── Headings ── */
   .type-h1 {
-    font-family: var(--font-arizona-sans-bold);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-h1);
   }
 
   .type-h2 {
-    font-family: var(--font-arizona-sans-bold);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-h2);
   }
 
   .type-h3 {
-    font-family: var(--font-arizona-sans-bold);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-h3);
   }
 
   .type-h4 {
-    font-family: var(--font-arizona-sans-bold);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-h4);
   }
 
   .type-h5 {
-    font-family: var(--font-arizona-sans-bold);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-h5);
 
   }
 
   .type-h6 {
-    font-family: var(--font-arizona-sans-bold);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-h6);
 
   }

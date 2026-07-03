@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import type React from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -43,7 +43,7 @@ export function useSplitText(
     once = true,
   } = options;
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 

@@ -16,7 +16,7 @@
  */
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -89,7 +89,7 @@ export function useSlideUp({
     position,
     scope,
 }: SlideUpOptions) {
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const els = (Array.isArray(targets) ? targets : [targets]).filter(
             Boolean
         ) as HTMLElement[];

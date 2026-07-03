@@ -324,7 +324,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
     const active = isActive(href);
     const base = "text-[11px] tracking-[3px] uppercase transition-colors";
     if (isOverDark) return `${base} text-white`;
-    return `${base} ${active ? "text-accent" : "text-primary-dark hover:text-accent  "}`;
+    return `${base} ${active ? "text-primary-dark font-semibold" : "text-primary-dark/70 hover:text-primary-dark"}`;
   };
 
   // Counter assigned during render for child ref indices
@@ -355,7 +355,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   <ul className="hidden lg:flex items-center gap-6">
                     {NAV_LEFT.map(({ href, label }) => (
                       <li key={label}>
-                        <Link href={href} className={desktopLinkCls(href)}>
+                        <Link href={href} data-text={label} className={`${desktopLinkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible after:block after:h-0 after:overflow-hidden`}>
                           {label}
                         </Link>
                       </li>
@@ -381,17 +381,15 @@ export default function Header({ announcementData }: AnnouncementProps) {
                   <ul className="hidden lg:flex items-center gap-6">
                     {NAV_RIGHT.map(({ href, label }) => (
                       <li key={label}>
-                        <Link href={href} className={desktopLinkCls(href)}>
+                        <Link href={href} data-text={label} className={`${desktopLinkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible after:block after:h-0 after:overflow-hidden`}>
                           {label}
                         </Link>
                       </li>
                     ))}
 
                     <li>
-                      <Link href="/contact-us">
-                        <span className={`text-[11px] tracking-[3px] hover:text-white uppercase ${iconColor}`}>
-                          Book My Stay
-                        </span>
+                      <Link href="https://bookingengine-beachhotel-o3py.vercel.app/booking"  target="_blank" data-text="Book My Stay" className={`${desktopLinkCls("/contact-us")} after:content-[attr(data-text)] after:font-semibold underline underline-offset-4 after:invisible after:block after:h-0 after:overflow-hidden`}>
+                        Book My Stay
                       </Link>
                     </li>
                   </ul>

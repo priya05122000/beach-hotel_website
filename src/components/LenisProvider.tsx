@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
@@ -21,9 +21,6 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
       touchMultiplier: 2,
     });
 
-    // Keep ScrollTrigger's cached scroll position in sync with Lenis's
-    // virtual scroll, otherwise enter/leave detection drifts after the
-    // first trigger and reverse/replay stops firing at the right spot.
     lenis.on("scroll", ScrollTrigger.update);
 
     const rafCallback = (time: number) => lenis.raf(time * 1000);
@@ -36,14 +33,21 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     };
   }, []);
 
-  // Kill all ScrollTriggers on route change before React unmounts the old page.
-  // Pinned ScrollTriggers move DOM nodes out of their original parent; if React
-  // tries to removeChild that node from the original parent after GSAP relocated
-  // it, a NotFoundError is thrown. Killing triggers restores pinned nodes first.
-  useEffect(() => {
+  // Kill stale ScrollTriggers in useLayoutEffect cleanup — this runs in React's
+  // commit phase BEFORE new page components' useLayoutEffect setups, so we clear
+  // old triggers before the new page creates its own. Also prevents the
+  // pinned-node NotFoundError when React removes DOM nodes GSAP has relocated.
+  useLayoutEffect(() => {
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
+  }, [pathname]);
+
+  // After new page components have mounted and their effects have created fresh
+  // ScrollTriggers, recalculate positions against the new page's DOM dimensions.
+  useEffect(() => {
+    const id = setTimeout(() => ScrollTrigger.refresh(), 100);
+    return () => clearTimeout(id);
   }, [pathname]);
 
   return <>{children}</>;
