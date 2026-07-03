@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getNearbyDestinationData } from "@/src/service/nearbyDestination";
 import NearbyHeroBanner from "./components/NearbyHeroBanner";
 import NearbyDestinationsSection from "./components/NearbyDestinationsSection";
+import { DestinationScroller } from "./components/DestinationScroller";
 
 export const metadata: Metadata = {
   title: "Nearby Destinations",
@@ -22,6 +24,9 @@ export default async function DestinationsPage() {
 
   return (
     <div>
+      <Suspense fallback={null}>
+        <DestinationScroller />
+      </Suspense>
       <NearbyHeroBanner destinations={activeDestinations.slice(0, 5)} />
       <NearbyDestinationsSection destinations={activeDestinations} />
     </div>

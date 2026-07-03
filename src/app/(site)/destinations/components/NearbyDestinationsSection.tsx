@@ -62,7 +62,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-16 lg:py-20">
+    <section ref={sectionRef} data-destination-id={destination.id} className="relative py-16 lg:py-20">
       <div className="grid md:grid-cols-[1fr_0.8fr] lg:grid-cols-[0.5fr_1fr_0.8fr] gap-6 lg:gap-10">
         {/* Destination name — desktop sidebar only */}
         <div className="hidden lg:flex items-center">

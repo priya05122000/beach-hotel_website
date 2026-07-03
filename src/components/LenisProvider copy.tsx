@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react"; // useLayoutEffect needed for ScrollTrigger kill ordering
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -22,8 +21,6 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
       touchMultiplier: 2,
     });
 
-    lenisRef.current = lenis;
-    (window as any).__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     const rafCallback = (time: number) => lenis.raf(time * 1000);
@@ -31,28 +28,25 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      lenisRef.current = null;
-      delete (window as any).__lenis;
       gsap.ticker.remove(rafCallback);
       lenis.destroy();
     };
   }, []);
 
+  // Kill stale ScrollTriggers in useLayoutEffect cleanup — this runs in React's
+  // commit phase BEFORE new page components' useLayoutEffect setups, so we clear
+  // old triggers before the new page creates its own. Also prevents the
+  // pinned-node NotFoundError when React removes DOM nodes GSAP has relocated.
   useLayoutEffect(() => {
-    // Runs synchronously before the browser paints the new page.
-    // window.scrollTo resets the native scroll position immediately so no
-    // mid-page content is ever rendered; Lenis is synced to match.
-    window.scrollTo(0, 0);
-    lenisRef.current?.scrollTo(0, { immediate: true });
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, [pathname]);
 
+  // After new page components have mounted and their effects have created fresh
+  // ScrollTriggers, recalculate positions against the new page's DOM dimensions.
   useEffect(() => {
-    const id = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 300);
+    const id = setTimeout(() => ScrollTrigger.refresh(), 100);
     return () => clearTimeout(id);
   }, [pathname]);
 

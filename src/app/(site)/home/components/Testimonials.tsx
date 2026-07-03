@@ -116,7 +116,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
     const total = reviews.length;
 
     return (
-        <CenterSection className="py-16 lg:py-20">
+        <CenterSection className="py-16 lg:py-20 bg-ivory">
 
             {/* Heading */}
             <div className="mb-10">

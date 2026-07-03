@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import FacilitiesSplitHero from "./components/FacilitiesSplitHero";
 import FacilitiesSection from "./components/FacilitiesSection";
+import { FacilityScroller } from "./components/FacilityScroller";
 import { getFacilitiesData } from "@/src/service/facilities";
 
 export const metadata: Metadata = {
@@ -22,6 +24,9 @@ export default async function FacilitiesPage() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <FacilityScroller />
+      </Suspense>
       <FacilitiesSplitHero />
       <div id="facilities">
         <FacilitiesSection facilities={facilities} />

@@ -95,7 +95,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                 {/* ── Mobile (<768px): single column, image → content, no animation ── */}
                 <div className="md:hidden w-full space-y-10">
                     {facilities.map((facility, i) => (
-                        <div key={i} className="flex flex-col gap-4">
+                        <div key={i} data-facility-id={facility.id} className="flex flex-col gap-4">
                             <div className="relative overflow-hidden h-60 w-full">
                                 <Image
                                     src={resolveImage(facility)}
@@ -125,7 +125,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                         const isOdd = i % 2 === 1;
 
                         const imageCell = (
-                            <div className="relative overflow-hidden h-80 w-full">
+                            <div data-facility-id={facility.id} className="relative overflow-hidden h-80 w-full">
                                 <Image
                                     src={img}
                                     alt={facility.facility_name}
@@ -165,6 +165,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                         <div
                             key={index}
                             ref={(el) => { desktopCardsRef.current[index] = el; }}
+                            data-facility-id={item.type === "image" ? item.facility.id : undefined}
                             className={`${mtClasses[index % 4]} ${alignClasses[index % 4]} flex`}
                         >
                             {item.type === "image" ? (

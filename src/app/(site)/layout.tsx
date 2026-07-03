@@ -13,11 +13,14 @@ export default async function SiteLayout({
   const announcementData = await getAnnouncementsData();
 
   return (
-    <LenisProvider>
-      <HotelJsonLd />
-      <Navbar announcementData={announcementData.data} />
-      <main id="main-content">{children}</main>
-      <Footer />
-    </LenisProvider>
+    <>
+      <LenisProvider>
+        <HotelJsonLd />
+        <Navbar announcementData={announcementData.data} />
+        <main id="main-content">{children}</main>
+        <Footer />
+      </LenisProvider>
+
+    </>
   );
 }

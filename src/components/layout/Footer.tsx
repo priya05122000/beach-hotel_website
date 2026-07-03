@@ -8,7 +8,7 @@ const navLinks = [
   { label: "ABOUT US", href: "/about-us" },
   { label: "HOTEL FACILITIES", href: "/facilities" },
   { label: "GALLERY", href: "/gallery" },
-  { label: "NEARBY DESTINATION", href: "/nearby" },
+  { label: "NEARBY DESTINATION", href: "/destinations" },
   { label: "Rooms & Suites", href: "/rooms" },
   { label: "CONTACT US", href: "/contact-us" },
 ];
@@ -86,8 +86,8 @@ export default function Footer() {
 
             <div className="flex flex-col gap-5">
               <div>
-                <p className="type-label font-arizona-flare-regular tracking-widest uppercase text-accent mb-3">
-                  Working Hours
+                <p className="type-label-md font-arizona-flare-regular tracking-widest uppercase text-white mb-3">
+                  Working Hours :
                 </p>
                 <ul className="flex flex-col gap-1.5">
                   <li className="type-label font-arizona-flare-regular tracking-widest uppercase">
@@ -109,7 +109,7 @@ export default function Footer() {
             <div className=" flex flex-col justify-between gap-5">
               <div>
                 <div className="mt-6 lg:mt-4 xl:mt-2">
-                  <p className="type-label uppercase mb-3">Follow Us</p>
+                  <p className="type-label uppercase mb-3">Follow Us :</p>
                   <div className="flex items-center gap-3">
                     {socialIcons.map((item) => (
                       <Link

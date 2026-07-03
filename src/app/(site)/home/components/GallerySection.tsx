@@ -143,7 +143,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
     const [item0, item1, item2, item3] = galleryMedia;
 
     return (
-        <Section className="bg-ivory">
+        <Section >
             <section className="py-16 lg:py-20 ">
                 <div className="mx-auto">
                     {/* Heading */}

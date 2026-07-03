@@ -7,6 +7,7 @@ import RoomCardsSection from "./home/components/RoomCardsSection";
 import HorizontalScrollSection from "./home/components/HorizontalScrollSection";
 import GallerySection from "./home/components/GallerySection";
 import Testimonials from "./home/components/Testimonials";
+import MomentsSection from "./home/components/MomentsSection";
 import ExclusiveOffersSection from "./home/components/ExclusiveOffersSection";
 import BannerBelowSection from "./home/components/BannerBelowSection";
 import SignatureHeadline from "./home/components/SignatureHeadline";
@@ -64,6 +65,7 @@ export default async function HomePage() {
       <FeaturedHighlightSection />
       <GallerySection galleries={randomGalleryItems} />
       <Testimonials reviews={guestReviewData.data} />
+      <MomentsSection galleries={randomGalleryItems.slice(4, 7)} />
     </>
   );
 }
