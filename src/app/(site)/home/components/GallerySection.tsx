@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { Play } from "lucide-react";
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef } from "react";
+import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
@@ -86,30 +87,29 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
     const containerRef = useRef<HTMLDivElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const container = containerRef.current;
         const inner = innerRef.current;
         if (!container || !inner) return;
 
-        const tween = gsap.fromTo(
-            inner,
-            { y: -32 },
-            {
-                y: 32,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: container,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true,
-                },
-            }
-        );
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                inner,
+                { y: -32 },
+                {
+                    y: 32,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: container,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true,
+                    },
+                }
+            );
+        }, container);
 
-        return () => {
-            tween.scrollTrigger?.kill();
-            tween.kill();
-        };
+        return () => ctx.revert();
     }, []);
 
     return (

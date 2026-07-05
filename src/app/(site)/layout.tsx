@@ -20,7 +20,6 @@ export default async function SiteLayout({
         <main id="main-content">{children}</main>
         <Footer />
       </LenisProvider>
-
     </>
   );
 }

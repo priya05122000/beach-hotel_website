@@ -1,5 +1,5 @@
 import { getNearbyDestinationData } from "@/src/service/nearbyDestination";
-import HorizontalScrollSectionClient from "./HorizontalScrollSectionClient";
+import HorizontalScrollSectionClient from "./Client";
 
 export default async function HorizontalScrollSection() {
   const { data: destinations } = await getNearbyDestinationData();

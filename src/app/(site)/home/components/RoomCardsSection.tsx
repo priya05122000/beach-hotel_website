@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -96,9 +96,8 @@ function RoomCard({ room }: { room: Room }) {
           {room.views.map((view, index) => (
             <p
               key={view}
-              className={` px-3 py-1 text-xs ${
-                index === 1 ? "bg-primary/15 text-gray" : ""
-              }`}
+              className={` px-3 py-1 text-xs ${index === 1 ? "bg-primary/15 text-gray" : ""
+                }`}
             >
               {view}
             </p>
@@ -137,7 +136,7 @@ export default function RoomCardsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       cardsRef.current.forEach((card, index) => {
         if (!card) return;

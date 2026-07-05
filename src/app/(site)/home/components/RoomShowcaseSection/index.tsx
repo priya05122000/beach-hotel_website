@@ -1,5 +1,5 @@
 import { getFacilitiesData } from "@/src/service/facilities";
-import RoomShowcaseSectionClient, { type ShowcaseItem } from "./RoomShowcaseSectionClient";
+import RoomShowcaseSectionClient, { type ShowcaseItem } from "./Client";
 import type { Facility } from "@/src/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";

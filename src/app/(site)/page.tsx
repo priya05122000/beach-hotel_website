@@ -19,6 +19,7 @@ import { getFaqCategoryData } from "@/src/service/faq-categories";
 import { getFaqData } from "@/src/service/faqs";
 import { getOfferData } from "@/src/service/offers";
 
+
 export const metadata: Metadata = {
   title: "The Beach Hotel — Kanyakumari's Premier Luxury Address",
   description:
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     images: [{ url: "/home/hero-1.webp", width: 1600, height: 900, alt: "The Beach Hotel, Kanyakumari" }],
   },
 };
+
 
 export default async function HomePage() {
   const [guestReviewData, galleryData, faqCategories, faqDatas, offerDatas] =
@@ -50,6 +52,8 @@ export default async function HomePage() {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   const randomGalleryItems = shuffled.slice(0, 8);
+
+
 
   return (
     <>

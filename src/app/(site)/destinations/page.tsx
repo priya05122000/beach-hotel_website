@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getNearbyDestinationData } from "@/src/service/nearbyDestination";
 import NearbyHeroBanner from "./components/NearbyHeroBanner";
 import NearbyDestinationsSection from "./components/NearbyDestinationsSection";
-import { DestinationScroller } from "./components/DestinationScroller";
+import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
   title: "Nearby Destinations",
@@ -25,7 +25,7 @@ export default async function DestinationsPage() {
   return (
     <div>
       <Suspense fallback={null}>
-        <DestinationScroller />
+        <SectionScroller dataAttr="data-destination-id" />
       </Suspense>
       <NearbyHeroBanner destinations={activeDestinations.slice(0, 5)} />
       <NearbyDestinationsSection destinations={activeDestinations} />

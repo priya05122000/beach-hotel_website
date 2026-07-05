@@ -3,7 +3,11 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
-export function DestinationScroller() {
+interface Props {
+  dataAttr: string;
+}
+
+export function SectionScroller({ dataAttr }: Props) {
   const params = useSearchParams();
   const to = params.get("to");
 
@@ -11,7 +15,7 @@ export function DestinationScroller() {
     if (!to) return;
     const id = setTimeout(() => {
       const targets = Array.from(
-        document.querySelectorAll(`[data-destination-id="${to}"]`)
+        document.querySelectorAll(`[${dataAttr}="${to}"]`)
       );
       const target = targets.find(
         (el) => (el as HTMLElement).getBoundingClientRect().height > 0
@@ -26,7 +30,7 @@ export function DestinationScroller() {
       }
     }, 350);
     return () => clearTimeout(id);
-  }, [to]);
+  }, [to, dataAttr]);
 
   return null;
 }
