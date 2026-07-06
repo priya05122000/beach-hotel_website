@@ -32,7 +32,6 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
   const thumbWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rightImgRefs = useRef<(HTMLImageElement | null)[]>([]);
   const rightWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const bgWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useIsomorphicLayoutEffect(() => {
     const section = sectionRef.current;
@@ -40,6 +39,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
 
 
     const ctx = gsap.context(() => {
+
       rightWrapRefs.current.forEach((el, i) => {
         if (el) el.style.zIndex = String(N - i);
       });
@@ -48,9 +48,6 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
         if (el) el.style.zIndex = String(N - i);
       });
 
-      bgWrapRefs.current.forEach((el, i) => {
-        if (el) el.style.zIndex = String(N - i);
-      });
 
       const texts = textRefs.current.filter(Boolean) as HTMLDivElement[];
       const thumbImgs = thumbRefs.current.filter(Boolean) as HTMLImageElement[];
@@ -168,17 +165,6 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
           `${label}+=${td * 0.5}`
         );
 
-        const bgWraps = bgWrapRefs.current.filter(Boolean) as HTMLDivElement[];
-
-        tl.to(
-          bgWraps[i],
-          {
-            autoAlpha: 0,
-            duration: td,
-            ease: "power2.inOut",
-          },
-          label
-        );
       }
 
       tl.to({}, { duration: holdDur });

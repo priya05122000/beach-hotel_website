@@ -11,13 +11,12 @@ gsap.registerPlugin(ScrollTrigger);
 const IMAGE_SRC =
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&q=80";
 
-const TEXT_LINES = ["Orna Villas", "Living"];
 
 export default function RoomBanner() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const imageWrapperRef = useRef<HTMLDivElement>(null);
     const mobileImageRef = useRef<HTMLDivElement>(null);
-    const desktopLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const desktopLineLeftRef = useRef<HTMLSpanElement>(null);
     const desktopLineRightRef = useRef<HTMLSpanElement>(null);
     const mobileLineLeftRef = useRef<HTMLHeadingElement>(null);
     const mobileLineRightRef = useRef<HTMLDivElement>(null);
@@ -32,10 +31,11 @@ export default function RoomBanner() {
         // ── Desktop ───────────────────────────────────────────────────────
         mm.add("(min-width: 768px)", () => {
             const ctx = gsap.context(() => {
-                const leftLines = desktopLineRefs.current.filter(Boolean) as HTMLSpanElement[];
+                // const leftLines = desktopLineRefs.current.filter(Boolean) as HTMLSpanElement[];
+                const leftLine = desktopLineLeftRef.current;
                 const rightLine = desktopLineRightRef.current;
 
-                if (!rightLine || leftLines.length === 0) return;
+                if (!rightLine || !leftLine) return;
 
                 gsap.set(imageWrapper, {
                     left: "50%",
@@ -68,7 +68,7 @@ export default function RoomBanner() {
                 });
 
                 // ② Left lines — overlap zoom at 0
-                applySlideUp(leftLines, { timeline: tl, position: 0, stagger: 0.1, duration: 2 });
+                applySlideUp([leftLine], { timeline: tl, position: 0, duration: 2 });
 
                 // ③ Right line — 0.3 after left lines start
                 applySlideUp([rightLine], { timeline: tl, position: 0.3, duration: 2 });
@@ -142,11 +142,11 @@ export default function RoomBanner() {
                                     ref={mobileLineLeftRef}
                                     className="type-display-md leading-tight text-white"
                                 >
-                                    {TEXT_LINES.map((line, i) => (
-                                        <span key={i} className="block">
-                                            {line}
-                                        </span>
-                                    ))}
+                                    <span
+                                        className="type-display-lg  leading-tight text-white  block"
+                                    >
+                                        Orna Villas
+                                    </span>
                                 </h1>
                             </div>
                         </div>
@@ -188,16 +188,12 @@ export default function RoomBanner() {
                             <h1
                                 className="type-display-lg text-white leading-tight"
                             >
-                                {TEXT_LINES.map((line, i) => (
-                                    <span key={i} className="block overflow-hidden">
-                                        <span
-                                            ref={(el) => { desktopLineRefs.current[i] = el; }}
-                                            className="block"
-                                        >
-                                            {line}
-                                        </span>
-                                    </span>
-                                ))}
+                                <span
+                                    ref={desktopLineLeftRef}
+                                    className="type-display-lg  leading-tight text-white  block"
+                                >
+                                    Orna Villas
+                                </span>
                             </h1>
                         </div>
                     </div>

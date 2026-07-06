@@ -196,16 +196,16 @@ body::-webkit-scrollbar {
 
   /* ── Body / Paragraph ── */
   .type-body-xl {
-    font-family: var(--font-arizona-sans-regular);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-body-xl);
-    letter-spacing: .6px;
+    /* letter-spacing: .6px; */
   }
 
   .type-body-lg {
-    font-family: var(--font-arizona-sans-regular);
+    font-family: var(--font-arizona-flare-regular);
     font-size: var(--text-body-lg);
     color: var(--text-primary-dark);
-    letter-spacing: .6px;
+    /* letter-spacing: .6px; */
   }
 
   .type-body {

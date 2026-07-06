@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ArrowLeft, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 import Section from "../common/Section";
@@ -81,7 +81,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
   // ── Effects ───────────────────────────────────────────────────────────────
 
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    const check = () => setIsDesktop(window.innerWidth >= 1280);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -345,14 +345,14 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
               {/* ================= DESKTOP NAV ================= */}
               <div
-                className={`absolute inset-0 flex items-center transition-opacity duration-500 ${!scrolled && !open
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none"
+                className={`absolute inset-0 items-center transition-opacity duration-500 ${desktopLinksVisible
+                  ? "flex opacity-100 pointer-events-auto"
+                  : "hidden opacity-0 pointer-events-none"
                   }`}
               >
                 {/* Left */}
                 <div className="flex-1 flex justify-end pr-6 xl:pr-10 2xl:pr-16 h-10 min-w-0">
-                  <ul className="hidden lg:flex items-center gap-6">
+                  <ul className="flex items-center gap-4 xl:gap-6 whitespace-nowrap">
                     {NAV_LEFT.map(({ href, label }) => (
                       <li key={label}>
                         <Link href={href} data-text={label} className={`${desktopLinkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible after:block after:h-0 after:overflow-hidden`}>
@@ -378,7 +378,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
                 {/* Right */}
                 <div className="flex-1 flex justify-start pl-6 xl:pl-10 2xl:pl-16 h-10 min-w-0">
-                  <ul className="hidden lg:flex items-center gap-4 xl:gap-6 whitespace-nowrap">
+                  <ul className="flex items-center gap-4 xl:gap-6 whitespace-nowrap">
                     {NAV_RIGHT.map(({ href, label }) => (
                       <li key={label} className="  ">
                         <Link href={href} data-text={label} className={`${desktopLinkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible  after:block after:h-0 after:overflow-hidden`}>
@@ -420,9 +420,9 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </div>
               </div>
 
-              {/* ================= SCROLLED NAV ================= */}
+              {/* ================= SCROLLED / MOBILE NAV ================= */}
               <div
-                className={`absolute inset-0 flex items-center justify-between transition-opacity duration-500 ${scrolled || open
+                className={`absolute inset-0 flex items-center justify-between transition-opacity duration-500 ${!isDesktop || scrolled || open
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
                   }`}
@@ -593,7 +593,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                 </div>
                 <Button
                   href="/contact-us"
-                  className="font-medium text-primary-dark w-45 self-end"
+                  className="font-medium w-45 self-end"
                 >
                   Book My Stay
                 </Button>

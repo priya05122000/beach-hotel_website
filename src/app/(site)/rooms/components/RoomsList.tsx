@@ -178,9 +178,11 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
             {room.type}
           </p>
 
-          <h2 className="type-body-lg  font-semibold text-primary-dark leading-tight">
+          <h2 className="type-body-lg uppercase  font-medium text-primary-dark tracking-wider leading-tight">
             {room.name}
           </h2>
+
+          {/* <div className="w-2px bg-amber-300" /> */}
 
           <p className="text-charcoal leading-relaxed type-body max-w-md">
             {room.description}
@@ -198,7 +200,7 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
       <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]border-b border-silver pb-10 pt-16 lg:py-20 type-body">
         {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
         <p className="type-h6 tracking-[73%] text-center sm:text-left  lg:tracking-[83%] uppercase">Rooms & Suites</p>
-        <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
+        <div className=" text-charcoal uppercase type-body-lg lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.1rem] leading-relaxed">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
           Our accommodations are appointed with bespoke furnishings, the finest
           linens and thoughtful touches at every turn — from serene inland
