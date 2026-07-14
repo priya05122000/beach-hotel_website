@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
@@ -241,7 +240,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
 
                       <Button
                         href={item.href ?? "/facilities"}
-                        className="cursor-pointer text-white w-40    whitespace-nowrap"
+                        className="cursor-pointer text-white w-40 whitespace-nowrap"
                       >
                         explore
                       </Button>

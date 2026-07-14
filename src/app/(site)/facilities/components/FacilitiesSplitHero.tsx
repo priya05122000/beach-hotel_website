@@ -139,7 +139,7 @@ export default function FacilitiesSplitHero() {
             </div>
 
             {/* ── Desktop layout (≥ md) — scroll-animated split ────────── */}
-            <div ref={containerRef} className="relative h-[120vh] w-full overflow-hidden hidden md:block">
+            <div ref={containerRef} className="relative  h-[120vh] w-full overflow-hidden hidden md:block">
                 <div
                     ref={imageWrapRef}
                     className="absolute top-0 left-0 overflow-hidden"
@@ -153,11 +153,11 @@ export default function FacilitiesSplitHero() {
 
                 <div
                     ref={desktopPanelRef}
-                    className="absolute py-16 lg:py-20 top-0 left-0 w-full h-[calc(100%-10vh)] z-10 pointer-events-none px-6 sm:px-4"
+                    className="absolute  py-16 lg:py-20 top-0 left-0 w-full h-[calc(100%-10vh)] z-10 pointer-events-none px-6 sm:px-4"
                     style={{ opacity: 0 }}
                 >
-                    <div className="max-w-[95%] sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
-                        <div className="flex flex-col h-full justify-evenly w-1/2">
+                    <div className="max-w-[95%]  sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
+                        <div className="flex flex-col  h-full justify-evenly w-1/2 pr-6 md:pr-10 lg:pr-0 xl:pr-0">
                             <div>
                                 <div className="overflow-hidden mb-4">
                                     <span

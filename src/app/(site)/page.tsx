@@ -15,9 +15,9 @@ import FeaturedHighlightSection from "./home/components/FeaturedHighlightSection
 
 import { getGuestReviewsData } from "@/src/service/guest-reviews";
 import { getGalleryData } from "@/src/service/galleries";
-import { getFaqCategoryData } from "@/src/service/faq-categories";
-import { getFaqData } from "@/src/service/faqs";
+
 import { getOfferData } from "@/src/service/offers";
+import { getRoomsData } from "@/src/service/rooms";
 
 
 export const metadata: Metadata = {
@@ -37,13 +37,12 @@ export const metadata: Metadata = {
 
 
 export default async function HomePage() {
-  const [guestReviewData, galleryData, faqCategories, faqDatas, offerDatas] =
+  const [guestReviewData, galleryData, offerDatas, roomDatas] =
     await Promise.all([
       getGuestReviewsData(),
       getGalleryData(),
-      getFaqCategoryData(),
-      getFaqData(),
       getOfferData(),
+      getRoomsData(),
     ]);
 
   const shuffled = [...galleryData.data];
@@ -64,12 +63,12 @@ export default async function HomePage() {
       <ExploreDestinationSection />
       <AmenitiesSection />
       <RoomShowcaseSection />
-      <RoomCardsSection />
+      <RoomCardsSection rooms={roomDatas.data} />
       <HorizontalScrollSection />
       <FeaturedHighlightSection />
       <GallerySection galleries={randomGalleryItems} />
       <Testimonials reviews={guestReviewData.data} />
-      <MomentsSection galleries={randomGalleryItems.slice(4, 7)} />
+      <MomentsSection />
     </>
   );
 }

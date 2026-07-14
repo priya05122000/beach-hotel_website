@@ -59,8 +59,8 @@ const ExploreDestinationSection = () => {
                                 Explore
                                 <span>&#8594;</span>
                             </button> */}
-                            <Button href="/destinations" className="mt-6 sm:w-40 font-normal text-primary-dark cursor-pointer">
-                                Explore
+                            <Button href="/destinations" className="mt-6 sm:w-50 font-normal text-primary-dark cursor-pointer">
+                                Get to know us
                             </Button>
                         </div>
                     </div>

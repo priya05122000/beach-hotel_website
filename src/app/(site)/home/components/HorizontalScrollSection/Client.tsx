@@ -103,13 +103,13 @@ export default function HorizontalScrollSectionClient({
                 />
 
                 <div className="absolute -bottom-16 w-full">
-                  <div className="flex items-center gap-3 px-4">
-                    <span className="type-h1 font-extralight leading-none text-gray">
+                  <div className="flex items-end gap-3 px-4">
+                    <span className="type-h1 font-extralight leading-none text-primary-dark">
                       {String(i + 1).padStart(2, "0")}
                     </span>
 
                     <div className="flex flex-col gap-0.5 type-body">
-                      <p className="line-clamp-2 font-medium leading-tight text-primary-dark">
+                      <p className="line-clamp-2 font-medium leading-tight text-charcoal">
                         {item.destination_name}
                       </p>
                     </div>

@@ -3,16 +3,15 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import {
   Users,
   BedDouble,
-  Maximize2,
   Wifi,
   Wind,
   Wine,
   Bath,
   Waves,
-  MapPin,
   Tv,
   UtensilsCrossed,
   Sofa,
@@ -22,8 +21,10 @@ import {
   Accessibility,
   PawPrint,
   Sparkles,
-  Sparkle,
+  Ruler,
+  Eye,
 } from "lucide-react";
+
 import type { Room } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import RoomSlider from "./RoomSlider";
@@ -97,7 +98,11 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
     .filter(Boolean) as { icon: React.ElementType; label: string }[];
 
   return (
-    <div ref={sectionRef} className="py-16 md:py-20">
+    <div
+      data-room-id={room.id}
+      ref={sectionRef}
+      className="py-16 md:py-20"
+    >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
         <div
           ref={(el) => {
@@ -110,7 +115,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
             <div className="flex flex-wrap type-body-sm gap-x-6 gap-y-3">
               <div className="flex items-center gap-2 text-gray">
-                <Maximize2 size={13} strokeWidth={1.5} />
+                <Ruler size={13} strokeWidth={1.5} />
                 <span className=" tracking-widest uppercase">
                   {room.size} sq. ft.
                 </span>
@@ -128,7 +133,7 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray">
-                <MapPin size={13} strokeWidth={1.5} />
+                <Eye size={13} strokeWidth={1.5} />
                 <span className=" tracking-widest uppercase">
                   {room.view}
                 </span>
@@ -174,11 +179,11 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
           ${isEven ? "lg:order-2" : "lg:order-1"}
         `}
         >
-          <p className=" type-body-sm uppercase  text-gray">
+          <p className="uppercase text-gray tracking-widest text-[11px]">
             {room.type}
           </p>
 
-          <h2 className="type-body-lg uppercase  font-medium text-primary-dark tracking-wider leading-tight">
+          <h2 className="tracking-wider type-body-xl text-primary-dark   font-semibold  leading-tight">
             {room.name}
           </h2>
 

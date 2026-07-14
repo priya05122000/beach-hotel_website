@@ -15,10 +15,11 @@ function IconCard({
   title: string;
   href: string;
 }) {
+
   return (
     <Link href={href} className="flex flex-col items-center gap-5 sm:gap-3">
       <div
-        className="w-full sm:w-20 xl:w-24 h-24 sm:h-28 xl:h-34 aspect-1/2 rounded-full bg-linear-to-b from-primary via-accent/76 to-primary shadow-[0px_4px_4px_0px_#00000040]
+        className="w-full sm:w-20 xl:w-24 h-18 sm:h-28 xl:h-34 aspect-1/2 rounded-full bg-linear-to-b from-primary via-accent/76 to-primary shadow-[0px_4px_4px_0px_#00000040]
         group
         relative
         overflow-hidden
@@ -56,11 +57,11 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
       className={`flex pb-4 lg:pb-20 sm:w-1/2 lg:w-full flex-col ${isRight ? "items-end text-right" : "items-start text-left"
         }`}
     >
-      <p className="text-primary-dark font-bold mb-4 uppercase">
+      <p className="text-primary-dark font-bold mb-4 uppercase tracking-wider">
         Thoughtful Indulgences For Every Moment Of Your Stay
       </p>
 
-      <p className="text-charcoal">
+      <p className="text-charcoal ">
         Hotel Facilities Are Designated Spaces And Services Designed To Enhance
         The Guest Experience, Distinct From Individual Room Amenities. Key
         Offerings Include 24-Hour Reception,
@@ -152,9 +153,9 @@ export default async function AmenitiesSection() {
               })}
             </div>
 
-            <div className="hidden lg:flex justify-end">
-              <Button href="/facilities" className="text-gray w-40">
-                View All
+            <div className="hidden lg:flex justify-end ">
+              <Button href="/facilities" className="text-primary-dark w-50 ">
+                Find Out More
               </Button>
             </div>
           </div>

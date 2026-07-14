@@ -3,9 +3,8 @@
 import { useState, useCallback } from "react";
 import Section from "@/src/components/common/Section";
 import Image from "next/image";
-import { ArrowUpRight, Copy } from "lucide-react";
-import { typography } from "@/src/lib/typography";
 import { Offer } from "@/src/types";
+import { Copy } from "lucide-react";
 
 interface ExclusiveOffersSectionProps {
   offerDatas: Offer[];
@@ -114,12 +113,25 @@ export default function ExclusiveOffersSection({
   offerDatas,
 }: ExclusiveOffersSectionProps) {
   const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
 
   const handleCardClick = useCallback(
     (offerId: string, isActive: boolean) => {
       if (window.innerWidth < 1024) {
         setActiveCard(isActive ? null : offerId);
       }
+    },
+    []
+  );
+
+
+  const handleCopy = useCallback(
+    (e: React.MouseEvent, offerId: string, code: string) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(code);
+      setCopiedId(offerId);
+      setTimeout(() => setCopiedId((prev) => (prev === offerId ? null : prev)), 2000);
     },
     []
   );
@@ -205,9 +217,14 @@ export default function ExclusiveOffersSection({
                       Weekday 50% off
                     </p>
                   </div>
-                  <p className={`text-white flex items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}>
-                    6787Hkjh68 <Copy className="w-4 h-4 cursor-pointer" />
-                  </p>
+                  <button
+                    type="button"
+                    onClick={(e) => handleCopy(e, offer.id, "6787Hkjh68")}
+                    className={`text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
+                  >
+                    {copiedId === offer.id ? "Copied!" : "6787Hkjh68"}{" "}
+                    <Copy className="w-4 h-4 " />
+                  </button>
                 </div>
               </div>
             </div>

@@ -570,6 +570,28 @@ export interface ActivityLog {
   created_at?: string;
 }
 
+export interface Reel {
+  id: number;
+  title: string;
+  description?: string;
+  reel_url?: string;
+  video?: string;
+  thumbnail?: string;
+
+  is_featured?: boolean;
+  is_active?: boolean;
+
+  sort_order?: number;
+
+  created_by?: number;
+  updated_by?: number;
+  deleted_by?: number;
+
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
+}
+
 export interface AppointmentRequest {
   id: string;
 

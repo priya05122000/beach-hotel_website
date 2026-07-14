@@ -23,7 +23,7 @@ export const Button = ({
   const inner = (
     <>
       <span
-        className={`inline-block min-w-8 w-8 ${lineHeight[variant]} ${variant === "bold" ? (lineColor ?? "bg-current") : "bg-current"} transition-all duration-300 group-hover:w-14`}
+        className={`inline-block min-w-8 w-8 ${lineHeight[variant]} ${variant === "bold" ? (lineColor ?? "bg-primary-dark") : "bg-current"} transition-all duration-300 group-hover:w-14`}
       />
       {children}
     </>

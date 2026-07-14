@@ -553,11 +553,12 @@ export default function Header({ announcementData }: AnnouncementProps) {
                                 key={child.href}
                                 ref={(el) => { childLinksRef.current[refIdx] = el; }}
                                 style={{ opacity: 0, transform: "translateY(10px)", display: "inline-block" }}
+                                className=""
                               >
                                 <Link
                                   href={child.href}
                                   onClick={handleLinkClick}
-                                  className="group/child type-body-lg uppercase tracking-[3px] text-primary-dark  transition-colors duration-200"
+                                  className="group/child  type-body-lg uppercase tracking-[3px] text-primary-dark  transition-colors duration-200"
                                 >
                                   <span className="relative  inline-block pb-0.5">
                                     {child.label}
@@ -577,10 +578,10 @@ export default function Header({ announcementData }: AnnouncementProps) {
               {/* Bottom meta */}
               <div
                 ref={metaRef}
-                className="flex flex-col sm:flex-row sm:items-end sm:justify-between pt-6 shrink-0 gap-6 sm:gap-0"
+                className="flex flex-col  sm:flex-row sm:items-end sm:justify-between pt-6 shrink-0 gap-6"
                 style={{ opacity: 0, transform: "translateY(20px)" }}
               >
-                <div className="flex flex-col gap-1 ">
+                <div className="flex flex-col  gap-1 ">
                   <a
                     href="tel:+915467898765"
                     className="text-primary-dark type-body-lg uppercase no-underline font-arizona-flare-regular transition-colors duration-200 tracking-[3px]"
@@ -591,12 +592,28 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
                   </p>
                 </div>
-                <Button
+                {/* <Button
                   href="/contact-us"
                   className="font-medium text-primary-dark w-45 self-end"
                 >
                   Book My Stay
-                </Button>
+                </Button> */}
+
+                <div className="self-end shrink-0">
+                  <Link
+                    href="https://bookingengine-beachhotel-o3py.vercel.app/booking"
+                    data-text="Book My Stay"
+                    className="group relative inline-flex items-center whitespace-nowrap overflow-hidden border border-primary-dark/20 px-2 py-2 text-[11px] font-arizona-flare-regular uppercase tracking-[3px] text-primary-dark/70 transition-all duration-300 hover:border-primary-dark hover:text-primary-dark"
+                  >
+                    {/* Hover Background */}
+                    <span className="absolute inset-0 -z-10 w-0 bg-transparent text-white transition-all duration-300 group-hover:w-full" />
+
+                    <span className="relative transition-colors duration-300 group-hover:text-primary-dark">
+                      Book My Stay
+                    </span>
+                  </Link>
+
+                </div>
               </div>
             </div>
 

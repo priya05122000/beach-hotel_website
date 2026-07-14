@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import RoomsList from "./components/RoomsList";
 import { getRoomsData } from "@/src/service/rooms";
 import RoomBanner from "./components/RoomBanner";
+import { Suspense } from "react";
+import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
   title: "Rooms & Suites",
@@ -21,9 +23,12 @@ export default async function RoomsPage() {
   const activeRooms = rooms.filter((room) => room.is_active);
 
   return (
-    <div>
+    <>
+      <Suspense fallback={null}>
+        <SectionScroller dataAttr="data-room-id" />
+      </Suspense>
       <RoomBanner />
       <RoomsList rooms={activeRooms} />
-    </div>
+    </>
   );
 }
