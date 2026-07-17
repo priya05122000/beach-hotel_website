@@ -6,6 +6,8 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { GuestReview } from "@/src/types";
 import CenterSection from "@/src/components/common/CenterSection";
+import Eyebrow from "@/src/components/common/Eyebrow";
+import SubHeading from "@/src/components/common/SubHeading";
 
 interface TestimonialProps {
     reviews: GuestReview[];
@@ -120,9 +122,9 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
             {/* Heading */}
             <div className="mb-10">
-                <h2 className={`mt-2  uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%] text-center `}>
+                <Eyebrow align="center" className="mt-2 text-gray">
                     Reviews
-                </h2>
+                </Eyebrow>
             </div>
 
             {/* Single carousel wrapper — desktop: 80% wide, mobile: full width */}
@@ -171,9 +173,9 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                                         />
                                     </div>
                                     <div>
-                                        <p className="font-bold uppercase text-primary-dark ">
+                                        <SubHeading as="p" className="text-primary-dark">
                                             {item.guest_name ?? "Anonymous"}
-                                        </p>
+                                        </SubHeading>
                                         <p className=" text-gray mt-0.5">
                                             {item.review_title ?? "Verified Guest"}
                                         </p>

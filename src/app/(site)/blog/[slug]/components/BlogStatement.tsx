@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import type { Blog } from "@/src/types";
 import Section from "@/src/components/common/Section";
-import { ANIM } from "@/src/lib/gsap/config";
+import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 interface Props {
@@ -16,7 +16,7 @@ export default function BlogStatement({ blog }: Props) {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
       if (prefersReduced) return;

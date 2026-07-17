@@ -5,10 +5,12 @@ import { MapPin } from "lucide-react";
 import gsap from "gsap";
 import type { NearbyDestination } from "@/src/types";
 import Section from "@/src/components/common/Section";
+import Eyebrow from "@/src/components/common/Eyebrow";
 import DestinationImageSlider from "./DestinationImageSlider";
 import { Button } from "@/src/components/common/button";
-import { ANIM } from "@/src/lib/gsap/config";
+import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
+import { applyParallax } from "@/src/lib/gsap/useParallax";
 
 interface Props {
   destinations: NearbyDestination[];
@@ -24,22 +26,7 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      if (!imageWrapRef.current || !sectionRef.current) return;
-      gsap.fromTo(
-        imageWrapRef.current,
-        { yPercent: -8 },
-        {
-          yPercent: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.5,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
+      applyParallax(imageWrapRef.current, { trigger: sectionRef.current, from: -8, to: 8 });
     });
 
     let splitInstance: ReturnType<typeof applySplitSlideUp>;
@@ -100,10 +87,14 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
               </div>
             )}
 
-            <Button
+            {/* <Button
               href="#"
               className="text-[13px] text-primary font-semibold hover:text-primary/80"
             >
+              Explore Destination
+            </Button> */}
+
+            <Button href="#" className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
               Explore Destination
             </Button>
           </div>
@@ -131,8 +122,8 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
 
   return (
     <Section className="py-16 lg:py-20">
-      <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20 type-body">
-        <h2 className="type-h6 tracking-[73%] text-center sm:text-left lg:tracking-[83%] uppercase">Near By Destinations</h2>
+      <div className="grid sm:grid-cols-2  border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+        <Eyebrow align="responsive">Near By Destinations</Eyebrow>
         <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two

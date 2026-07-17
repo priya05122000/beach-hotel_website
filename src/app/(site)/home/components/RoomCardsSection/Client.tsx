@@ -6,13 +6,16 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
 import type { Room } from "@/src/types";
+import { applyParallax } from "@/src/lib/gsap/useParallax";
 
 gsap.registerPlugin(ScrollTrigger);
 
 import CenterSection from "@/src/components/common/CenterSection";
+import Eyebrow from "@/src/components/common/Eyebrow";
 import Link from "next/link";
 import { Button } from "@/src/components/common/button";
 import { BedDouble, Eye, Ruler, Users } from "lucide-react";
+import SubHeading from "@/src/components/common/SubHeading";
 
 interface RoomCardsSectionProps {
   rooms: Room[];
@@ -61,9 +64,9 @@ function RoomCard({ room }: { room: Room }) {
 
         </div>
 
-        <h3 className="font-semibold tracking-wider type-body-xl text-primary-dark mb-4">
+        <SubHeading as="h3" className="text-primary-dark mb-4">
           {room.name}
-        </h3>
+        </SubHeading>
 
         <p className="mb-4 type-body text-charcoal">
           {room.description}
@@ -121,26 +124,12 @@ export default function RoomCardsSectionClient({
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-
-        gsap.fromTo(
-          card,
-          {
-            yPercent: index === 0 ? 10 : 20,
-          },
-          {
-            yPercent: index === 0 ? -10 : -20,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-              invalidateOnRefresh: true,
-              markers: false, // change to true for debugging
-            },
-          },
-        );
+        applyParallax(card, {
+          trigger: sectionRef.current,
+          from: index === 0 ? 10 : 20,
+          to: index === 0 ? -10 : -20,
+          scrub: 1,
+        });
       });
 
       ScrollTrigger.refresh();
@@ -154,11 +143,9 @@ export default function RoomCardsSectionClient({
       <CenterSection>
         {/* Heading */}
         <div className="mb-8 lg:mb-12 text-center">
-          <h2
-            className={`mt-2 uppercase  text-gray type-h6 tracking-[73%]  lg:tracking-[83%]  `}
-          >
+          <Eyebrow align="center" className="mt-2 text-gray">
             Room Types
-          </h2>
+          </Eyebrow>
           <p className="max-w-xl mx-auto my-10 text-charcoal type-body">
             Every room at The Beach Hotel is appointed with bespoke comfort and
             quiet grandeur. Choose your perfect haven and wake to the most
@@ -184,10 +171,14 @@ export default function RoomCardsSectionClient({
 
       <Section>
         <div className="flex justify-end">
-          <Button
+          {/* <Button
             href="/rooms"
             className="cursor-pointer  text-end  w-40   px-3 py-1 whitespace-nowrap"
           >
+            View All
+          </Button> */}
+
+          <Button href="/rooms" className="sm:w-50  whitespace-nowrap font-normal text-primary-dark cursor-pointer">
             View All
           </Button>
         </div>

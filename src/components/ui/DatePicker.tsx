@@ -39,7 +39,7 @@ export default function DatePicker({
 
   const triggerClass =
     variant === "light"
-      ? "border border-white/40 text-white "
+      ? "border border-white/40 text-white  tracking-widest"
       : "border border-silver text-foreground";
 
   return (
@@ -48,7 +48,7 @@ export default function DatePicker({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className={`flex h-10 w-full items-center px-4  type-caption cursor-pointer ${triggerClass}`}
+        className={`flex  py-2 w-full items-center px-4  type-caption cursor-pointer ${triggerClass}`}
       >
         <CalendarDays size={16} className="mr-2 shrink-0 opacity-70" />
         <span className={value ? "" : "opacity-60 type-caption uppercase"}>

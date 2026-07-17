@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import type { NearbyDestination } from "@/src/types";
+import Section from "@/src/components/common/Section";
 
 interface Props {
   destinations: NearbyDestination[];
@@ -109,6 +110,7 @@ export default function NearbyHeroBanner({ destinations }: Props) {
         className="absolute inset-0 bg-linear-to-b from-black/20 via-black/0 to-black/60 pointer-events-none"
         style={{ zIndex: 5 }}
       />
+
 
       {/* Text content */}
       <div

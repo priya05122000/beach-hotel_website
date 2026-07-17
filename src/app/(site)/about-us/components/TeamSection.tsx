@@ -6,9 +6,7 @@ import Section from "@/src/components/common/Section";
 import CenterSection from "@/src/components/common/CenterSection";
 import gsap from "gsap";
 import { ANIM } from "@/src/lib/gsap/config";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
-
-const REVEAL_WORDS = ["Design &", "Technology", "Enthusiasts"];
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const TeamSection = () => {
   const galleryRef = useRef<HTMLElement>(null);
@@ -18,16 +16,16 @@ const TeamSection = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Word-by-word reveal using applySlideUp (replaces IntersectionObserver + setTimeout)
-      if (revealRef.current) {
-        const words = Array.from(revealRef.current.querySelectorAll<HTMLElement>("[data-word]"));
-        applySlideUp(words, {
-          trigger: revealRef.current,
-          start: "top 80%",
-          stagger: ANIM.stagger.base,
-          toggleActions: "play none none none",
-        });
-      }
+      // Line-by-line reveal using applySplitSlideUp
+      const splitReveal = applySplitSlideUp({
+        target: revealRef.current,
+        trigger: revealRef.current,
+        start: "top 80%",
+        duration: ANIM.duration.base,
+        stagger: ANIM.stagger.base,
+        ease: ANIM.ease.default,
+        toggleActions: "play none none none",
+      });
 
       // GSAP parallax (replaces manual scroll handler)
       const mm = gsap.matchMedia();
@@ -43,6 +41,7 @@ const TeamSection = () => {
         tl.to(imgRightRef.current, { yPercent: ANIM.parallax.slow * 60 }, 0);
         tl.to(imgLeftRef.current, { yPercent: -ANIM.parallax.slow * 80 }, 0);
       });
+      return () => splitReveal?.revert();
     });
 
     return () => ctx.revert();
@@ -60,22 +59,16 @@ const TeamSection = () => {
           <div className="hidden sm:block sm:col-span-1" />
 
           <div className="sm:col-span-8 flex flex-col gap-8 sm:gap-12">
-            {/* Animated word reveal */}
+            {/* Animated line reveal */}
             <h2
               ref={revealRef}
-              className="text-primary-dark type-display-2xl flex flex-wrap gap-x-[0.25em]"
+              className="text-primary-dark type-display-2xl leading-tight"
             >
-              {REVEAL_WORDS.map((word, i) => (
-                <span key={i} className="overflow-hidden inline-block leading-tight">
-                  <span data-word className="inline-block">
-                    {word}
-                  </span>
-                </span>
-              ))}
+              Design &<br />Technology<br />Enthusiasts
             </h2>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
-              We are a team* of like-minded design enthusiasts and tech aficionados that
+              We are a team of like-minded design enthusiasts and tech aficionados that
               explore the digital frontier with grit and dedication. Intrigued by beauty,
               fascinated by technology and fuelled with an everlasting devotion to digital
               craftsmanship and meaningful aesthetics.
@@ -96,7 +89,7 @@ const TeamSection = () => {
             </div>
             <hr className="mt-6 mb-4 w-1/2" />
             <p className="type-body-sm w-2/3 text-gray leading-relaxed">
-              *We believe in a fluid team approach that allows us to bring together the
+              We believe in a fluid team approach that allows us to bring together the
               best designers, developers and agencies in the world in order to serve the
               needs of today&apos;s clients.
             </p>
@@ -120,7 +113,7 @@ const TeamSection = () => {
               </div>
               <hr className="mt-8 mb-6" />
               <p className="type-body text-charcoal">
-                *We believe in a fluid team approach that allows us to bring together the
+                We believe in a fluid team approach that allows us to bring together the
                 best designers, developers and agencies in the world in order to serve the
                 needs of today&apos;s clients.
               </p>

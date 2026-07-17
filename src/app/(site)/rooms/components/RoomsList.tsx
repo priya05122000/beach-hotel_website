@@ -27,6 +27,9 @@ import {
 
 import type { Room } from "@/src/types";
 import Section from "@/src/components/common/Section";
+import Eyebrow from "@/src/components/common/Eyebrow";
+import SubHeading from "@/src/components/common/SubHeading";
+import { applyParallax } from "@/src/lib/gsap/useParallax";
 import RoomSlider from "./RoomSlider";
 import Pill from "./Pill";
 
@@ -43,24 +46,12 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
 
       mm.add("(min-width: 640px)", () => {
         cardsRef.current.forEach((card, i) => {
-          if (!card) return;
-
-          gsap.fromTo(
-            card,
-            { yPercent: i === 0 ? 30 : 15 },
-            {
-              yPercent: i === 0 ? -30 : -15,
-              ease: "none",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
-                invalidateOnRefresh: true,
-                markers: false,
-              },
-            },
-          );
+          applyParallax(card, {
+            trigger: sectionRef.current,
+            from: i === 0 ? 30 : 15,
+            to: i === 0 ? -30 : -15,
+            scrub: 1,
+          });
         });
 
         ScrollTrigger.refresh();
@@ -183,9 +174,9 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
             {room.type}
           </p>
 
-          <h2 className="tracking-wider type-body-xl text-primary-dark   font-semibold  leading-tight">
+          <SubHeading as="h2" className="text-primary-dark">
             {room.name}
-          </h2>
+          </SubHeading>
 
           {/* <div className="w-2px bg-amber-300" /> */}
 
@@ -204,7 +195,7 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
     <Section className="">
       <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]border-b border-silver pb-10 pt-16 lg:py-20 type-body">
         {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
-        <p className="type-h6 tracking-[73%] text-center sm:text-left  lg:tracking-[83%] uppercase">Rooms & Suites</p>
+        <Eyebrow as="p" align="responsive">Rooms & Suites</Eyebrow>
         <div className=" text-charcoal uppercase type-body-lg lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.1rem] leading-relaxed">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
           Our accommodations are appointed with bespoke furnishings, the finest

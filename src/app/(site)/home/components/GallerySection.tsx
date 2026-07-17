@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Section from "@/src/components/common/Section";
+import Eyebrow from "@/src/components/common/Eyebrow";
 import { Gallery } from "@/src/types";
 import { Button } from "@/src/components/common/button";
 
@@ -148,9 +149,9 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                 <div className="mx-auto">
                     {/* Heading */}
                     <div className="mb-32">
-                        <h2 className={`mt-2 text-center uppercase text-gray type-h6 tracking-[73%]  lg:tracking-[83%]`}>
+                        <Eyebrow align="center" className="mt-2 text-gray">
                             Gallery
-                        </h2>
+                        </Eyebrow>
                     </div>
                     {/*
                         Layout (desktop):
@@ -162,7 +163,8 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                         {/* Left text — spans both rows on desktop */}
                         <div className="hidden md:flex  flex-col ">
                             <p className=" text-primary-dark type-h2 leading-tight">
-                                Explore the moments and spaces that define your stay with us. Every image tells a story of comfort, elegance, and coastal beauty.
+                                Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
+
                             </p>
                         </div>
 
@@ -206,11 +208,15 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
 
 
                 <div className="flex justify-end  mt-16">
-                    <Button
+                    {/* <Button
                         href="/gallery"
                         className="cursor-pointer  text-end text-gray w-40   px-3 py-1 whitespace-nowrap"
                     >
                         Explore
+                    </Button> */}
+
+                    <Button href="/gallery" className="sm:w-50  whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+                        explore
                     </Button>
                 </div>
             </section>

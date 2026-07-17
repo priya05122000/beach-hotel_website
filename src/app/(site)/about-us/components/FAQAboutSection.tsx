@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import SubHeading from "@/src/components/common/SubHeading";
 import type { FAQ } from "@/src/types";
 
 interface FAQAboutSectionProps {
@@ -58,9 +59,9 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 text-left"
                 >
-                  <p className="type-body-lg font-semibold text-primary-dark ">
+                  <SubHeading as="p" className="text-primary-dark">
                     {faq.question}
-                  </p>
+                  </SubHeading>
 
                   <span className="shrink-0 flex h-7 w-7 items-center justify-center text-gray type-label transition-transform duration-300">
                     {isOpen ? "↑" : "↓"}

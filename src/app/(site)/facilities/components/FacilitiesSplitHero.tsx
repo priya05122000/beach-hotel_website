@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const TEXT_LINES = [
     "Curated",
@@ -20,14 +20,14 @@ export default function FacilitiesSplitHero() {
     const imageInnerRef = useRef<HTMLDivElement>(null);
     const desktopPanelRef = useRef<HTMLDivElement>(null);
     const desktopTaglineRef = useRef<HTMLSpanElement>(null);
-    const desktopLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const desktopHeadlineRef = useRef<HTMLHeadingElement>(null);
     const desktopCtaRef = useRef<HTMLAnchorElement>(null);
     const desktopParaRef = useRef<HTMLParagraphElement>(null);
 
     // ── Mobile refs ───────────────────────────────────────────────
     const mobilePanelRef = useRef<HTMLDivElement>(null);
     const mobileTaglineRef = useRef<HTMLSpanElement>(null);
-    const mobileLineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const mobileHeadlineRef = useRef<HTMLHeadingElement>(null);
     const mobileCtaRef = useRef<HTMLAnchorElement>(null);
     const mobileParaRef = useRef<HTMLParagraphElement>(null);
 
@@ -38,8 +38,8 @@ export default function FacilitiesSplitHero() {
         mm.add("(max-width: 767px)", () => {
             gsap.set(mobilePanelRef.current, { opacity: 1 });
             const tl = gsap.timeline({ delay: 0.2 });
-            applySlideUp([mobileTaglineRef.current], { timeline: tl, duration: 0.5 });
-            applySlideUp(mobileLineRefs.current, { timeline: tl, position: ">-0.1", stagger: 0.1, duration: 0.55 });
+            applySplitSlideUp({ target: mobileTaglineRef.current, timeline: tl, duration: 0.5 });
+            applySplitSlideUp({ target: mobileHeadlineRef.current, timeline: tl, position: ">-0.1", stagger: 0.1, duration: 0.55 });
             tl.fromTo(mobileCtaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, ">-0.1");
             tl.fromTo(mobileParaRef.current, { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, ">-0.1");
         });
@@ -76,8 +76,8 @@ export default function FacilitiesSplitHero() {
 
             tl.to(desktopPanelRef.current, { opacity: 1, duration: 0.2 }, ">");
 
-            applySlideUp([desktopTaglineRef.current], { timeline: tl, position: ">", duration: 0.35 });
-            applySlideUp(desktopLineRefs.current, { timeline: tl, position: ">-0.15", stagger: 0.1, duration: 0.45 });
+            applySplitSlideUp({ target: desktopTaglineRef.current, timeline: tl, position: ">", duration: 0.35 });
+            applySplitSlideUp({ target: desktopHeadlineRef.current, timeline: tl, position: ">-0.15", stagger: 0.1, duration: 0.45 });
             tl.fromTo(desktopCtaRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, ">-0.1");
             gsap.set(desktopParaRef.current, { yPercent: 110, opacity: 0 });
             tl.to(desktopParaRef.current, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power4.out" }, ">-0.15");
@@ -99,24 +99,22 @@ export default function FacilitiesSplitHero() {
 
                 <div ref={mobilePanelRef} className="px-6 py-10 flex flex-col gap-6" style={{ opacity: 0 }}>
                     <div>
-                        <div className="overflow-hidden mb-4">
-                            <span
-                                ref={mobileTaglineRef}
-                                className="block type-body uppercase text-gray"
-                                style={{ display: "inline-block" }}
-                            >
-                                Our Facilities
-                            </span>
-                        </div>
+                        <span
+                            ref={mobileTaglineRef}
+                            className="block type-body uppercase text-gray mb-4"
+                            style={{ display: "inline-block" }}
+                        >
+                            Our Facilities
+                        </span>
 
                         <h1
+                            ref={mobileHeadlineRef}
                             className="type-display-sm uppercase text-primary-dark leading-tight"
                         >
                             {TEXT_LINES.map((line, i) => (
-                                <span key={i} className="block overflow-hidden">
-                                    <span ref={(el) => { mobileLineRefs.current[i] = el; }} className="block" style={{ display: "block" }}>
-                                        {line}
-                                    </span>
+                                <span key={i}>
+                                    {line}
+                                    {i < TEXT_LINES.length - 1 && <br />}
                                 </span>
                             ))}
                         </h1>
@@ -159,24 +157,22 @@ export default function FacilitiesSplitHero() {
                     <div className="max-w-[95%]  sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
                         <div className="flex flex-col  h-full justify-evenly w-1/2 pr-6 md:pr-10 lg:pr-0 xl:pr-0">
                             <div>
-                                <div className="overflow-hidden mb-4">
-                                    <span
-                                        ref={desktopTaglineRef}
-                                        className="block type-body text-gray uppercase "
-                                        style={{ display: "inline-block" }}
-                                    >
-                                        Our Facilities
-                                    </span>
-                                </div>
+                                <span
+                                    ref={desktopTaglineRef}
+                                    className="block type-body text-gray uppercase mb-4"
+                                    style={{ display: "inline-block" }}
+                                >
+                                    Our Facilities
+                                </span>
 
                                 <h1
+                                    ref={desktopHeadlineRef}
                                     className="type-display-sm uppercase text-primary-dark leading-tight"
                                 >
                                     {TEXT_LINES.map((line, i) => (
-                                        <span key={i} className="block overflow-hidden">
-                                            <span ref={(el) => { desktopLineRefs.current[i] = el; }} className="block" style={{ display: "block" }}>
-                                                {line}
-                                            </span>
+                                        <span key={i}>
+                                            {line}
+                                            {i < TEXT_LINES.length - 1 && <br />}
                                         </span>
                                     ))}
                                 </h1>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
-import Link from "next/link";
+import PillLinkButton from "@/src/components/common/PillLinkButton";
 
 const FeaturedHighlightSection = () => {
   return (
@@ -13,7 +13,8 @@ const FeaturedHighlightSection = () => {
         <div className="hidden sm:block" />
         <div className="col-span-2 flex flex-col text-left sm:text-right">
           <h2 className="mt-2 text-primary-dark type-h2">
-            A Setting like no other
+            The Soul of Southern India
+
           </h2>
           <p className="max-w-lg sm:ml-auto mt-4 mb-10 type-body text-charcoal">
             Kanyakumari is a destination of many wonders — a sacred shore where
@@ -49,13 +50,10 @@ const FeaturedHighlightSection = () => {
                 bookings, view offers and enjoy a smoother stay experience at
                 The Beach Hotel, Kanniyakumari.
               </p>
-              <div className="mt-auto border border-white/20 py-1 px-2 w-fit self-end">
-                <Link
-                  href="/"
-                  className="text-white type-label-sm tracking-[2px]"
-                >
+              <div className="mt-auto w-fit self-end">
+                <PillLinkButton href="/" variant="light">
                   Sign In
-                </Link>
+                </PillLinkButton>
               </div>
             </div>
           </div>

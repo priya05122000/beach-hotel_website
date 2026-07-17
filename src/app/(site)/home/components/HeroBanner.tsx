@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import CenterSection from "@/src/components/common/CenterSection";
+import GradientBorderButton from "@/src/components/common/GradientBorderButton";
 import DatePicker from "@/src/components/ui/DatePicker";
 import GuestPicker from "@/src/components/ui/GuestPicker";
 
@@ -73,11 +74,11 @@ export default function HeroBanner() {
               <GuestPicker variant="light" />
 
               {/* Promo Code */}
-              <div className="flex h-10 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
+              <div className="flex py-2 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">
                 <input
                   type="text"
                   placeholder="Promo Code"
-                  className="w-full bg-transparent type-caption uppercase outline-none placeholder:text-white/60"
+                  className="w-full bg-transparent type-caption tracking-widest uppercase outline-none placeholder:text-white/60"
                 />
               </div>
 
@@ -99,12 +100,13 @@ export default function HeroBanner() {
                   transition-all
                   duration-1000
                   hover:bg-right
+
                 "
               >
                 <div className="flex h-full items-center justify-center bg-ivory">
                   <button
                     type="submit"
-                    className="h-10 cursor-pointer type-caption px-8 font-normal uppercase text-primary-dark transition-opacity hover:opacity-90"
+                    className="cursor-pointer type-caption px-4 font-normal  text-primary-dark transition-opacity hover:opacity-90  py-2 text-[11px] font-arizona-flare-regular uppercase tracking-[3px] "
                   >
                     Book Now
                   </button>

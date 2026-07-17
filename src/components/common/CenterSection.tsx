@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import Section from "./Section";
 
 interface CenterSectionProps {
     children: React.ReactNode;
@@ -7,30 +8,9 @@ interface CenterSectionProps {
     style?: React.CSSProperties;
 }
 
+/** Narrow variant of Section — kept as a named wrapper for readability at call sites. */
 const CenterSection = forwardRef<HTMLDivElement | null, CenterSectionProps>(
-    ({ children, className = '', id, style }, ref) => {
-        return (
-            <section
-                className={`relative px-6 sm:px-4 ${className}`}
-                id={id}
-                style={style}
-            >
-                {/* <div
-                    ref={ref}
-                    className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl  mx-auto px-0 md:px-4 lg:px-12 xl:px-0"
-                >
-                    {children}
-                </div> */}
-
-                <div
-                    ref={ref}
-                    className="max-w-[95%] sm:max-w-156 lg:max-w-200 xl:max-w-232  mx-auto px-0 md:px-4 lg:px-12 xl:px-0"
-                >
-                    {children}
-                </div>
-            </section>
-        );
-    }
+    (props, ref) => <Section ref={ref} width="narrow" {...props} />
 );
 
 CenterSection.displayName = "CenterSection";

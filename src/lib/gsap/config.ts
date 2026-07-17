@@ -1,3 +1,9 @@
+/** True if the user has requested reduced motion — check before running any non-essential animation. */
+export function prefersReducedMotion(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 /** Central animation constants — import from here instead of hardcoding values. */
 export const ANIM = {
   duration: {

@@ -15,6 +15,9 @@ interface SplitSlideUpOptions {
     duration?: number;
     ease?: string;
     delay?: number;
+    /** Inject into an existing timeline instead of creating a standalone ScrollTrigger tween. */
+    timeline?: gsap.core.Timeline;
+    position?: gsap.Position;
 }
 
 export function applySplitSlideUp({
@@ -26,6 +29,8 @@ export function applySplitSlideUp({
     duration = 0.8,
     ease = "power3.out",
     delay = 0,
+    timeline,
+    position,
 }: SplitSlideUpOptions) {
     if (!target) return;
 
@@ -49,20 +54,24 @@ export function applySplitSlideUp({
         yPercent: 110,
     });
 
-    gsap.to(lines, {
-        yPercent: 0,
-        duration,
-        ease,
-        stagger,
-        delay,
-        scrollTrigger: trigger
-            ? {
-                trigger,
-                start,
-                toggleActions,
-            }
-            : undefined,
-    });
+    if (timeline) {
+        timeline.to(lines, { yPercent: 0, duration, ease, stagger, delay }, position);
+    } else {
+        gsap.to(lines, {
+            yPercent: 0,
+            duration,
+            ease,
+            stagger,
+            delay,
+            scrollTrigger: trigger
+                ? {
+                    trigger,
+                    start,
+                    toggleActions,
+                }
+                : undefined,
+        });
+    }
 
     return split;
 }

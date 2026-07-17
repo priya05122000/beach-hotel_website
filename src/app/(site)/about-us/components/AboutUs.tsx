@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { Button } from "@/src/components/common/button";
-import { ANIM } from "@/src/lib/gsap/config";
+import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const AboutUs = () => {
@@ -13,7 +13,7 @@ const AboutUs = () => {
   const subtitleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
       gsap.to(bgRef.current, {
@@ -84,10 +84,14 @@ const AboutUs = () => {
         <h1 ref={titleRef} className="text-white type-display-2xl leading-none">
           Where Every<br />Wave Tells<br />Our Story
         </h1>
-        <p className="text-white/50 type-body uppercase mt-8 flex items-center gap-3">
+        {/* <p className="text-white/50 type-body uppercase mt-8 flex items-center gap-3">
           <span className="inline-block w-8 h-px bg-white/40" />
           Scroll to explore
-        </p>
+        </p> */}
+
+        <Button href="/gallery" className="sm:w-60 mt-8 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
+          Scroll to explore
+        </Button>
       </div>
 
       {/* Second 100vh — right content */}
@@ -105,7 +109,11 @@ const AboutUs = () => {
             from a simple dream: to let every guest wake up to the sound of waves and fall
             asleep under a sky full of stars.
           </p>
-          <Button href="/contact-us" className="text-accent text-[12px] tracking-[0.22em] font-semibold">
+          {/* <Button href="/contact-us" className="text-accent text-[12px] tracking-[0.22em] font-semibold">
+            Our Story
+          </Button> */}
+
+          <Button href="/contact-us" className="sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
             Our Story
           </Button>
         </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Blog } from "@/src/types";
 import { Button } from "@/src/components/common/button";
+import SubHeading from "@/src/components/common/SubHeading";
 
 interface Props {
   blog: Blog;
@@ -39,9 +40,9 @@ export default function BlogCard({ blog }: Props) {
         )}
 
         <Link href={`/blog/${blog.slug}`}>
-          <h3 className="text-primary-dark type-body-lg font-medium leading-snug mb-2 hover:text-primary-dark hover:underline underline-offset-2 transition-colors">
+          <SubHeading className="text-primary-dark mb-4 leading-relaxed hover:underline underline-offset-2 transition-colors">
             {blog.title}
-          </h3>
+          </SubHeading>
         </Link>
 
         <div
@@ -60,7 +61,11 @@ export default function BlogCard({ blog }: Props) {
             className="transition-transform duration-300 group-hover/link:translate-x-1"
           />
         </Link> */}
-        <Button href={`/blog/${blog.slug}`} className="mt-auto type-body-sm text-primary-dark font-semibold hover:text-primary/80">
+        {/* <Button href={`/blog/${blog.slug}`} className="mt-auto type-body-sm text-primary-dark font-semibold hover:text-primary/80">
+          More Details
+        </Button> */}
+
+        <Button href={`/blog/${blog.slug}`} className="sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
           More Details
         </Button>
       </div>

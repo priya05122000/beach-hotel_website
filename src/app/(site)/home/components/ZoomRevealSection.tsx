@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Section from "@/src/components/common/Section";
 import CenterSection from "@/src/components/common/CenterSection";
 
@@ -21,7 +21,7 @@ export default function ZoomRevealSection() {
     const imageWrapperRef = useRef<HTMLDivElement>(null);
     const mobileImageRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
-    const linesRef = useRef<(HTMLSpanElement | null)[]>([]);
+    const headlineRef = useRef<HTMLDivElement>(null);
     const paraRef = useRef<HTMLParagraphElement>(null);
     const btnRef = useRef<HTMLDivElement>(null);
 
@@ -36,8 +36,6 @@ export default function ZoomRevealSection() {
         // ── Desktop: pinned zoom + reveal ────────────────────────────
         mm.add("(min-width: 1024px)", () => {
             const ctx = gsap.context(() => {
-                const lines = linesRef.current.filter(Boolean);
-
                 gsap.set(imageWrapper, {
                     left: "50%",
                     top: "50%",
@@ -67,7 +65,7 @@ export default function ZoomRevealSection() {
 
                 // Phase 2 — right content reveals
                 tl.to(content, { opacity: 1, x: 0, duration: 0.4 });
-                applySlideUp(lines, { timeline: tl, position: "<", stagger: 0.14, duration: 0.55 });
+                applySplitSlideUp({ target: headlineRef.current, timeline: tl, position: "<", stagger: 0.14, duration: 0.55 });
                 tl.to(paraRef.current, { opacity: 1, y: 0, duration: 0.4 }, "-=0.25");
                 tl.to(btnRef.current, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2");
             }, section);
@@ -164,16 +162,15 @@ export default function ZoomRevealSection() {
                         ref={contentRef}
                         className="absolute right-0 top-0 h-full w-[35%] flex flex-col justify-center pl-10 pr-16"
                     >
-                        <div className="mb-6">
+                        <div
+                            ref={headlineRef}
+                            className="mb-6 text-[2.6rem] font-normal text-primary-dark leading-tight"
+                        >
                             {HEADLINE_LINES.map((line, i) => (
-                                <div key={i} className="overflow-hidden leading-tight">
-                                    <span
-                                        ref={(el) => { linesRef.current[i] = el; }}
-                                        className="block text-[2.6rem] font-normal text-primary-dark"
-                                    >
-                                        {line}
-                                    </span>
-                                </div>
+                                <span key={i}>
+                                    {line}
+                                    {i < HEADLINE_LINES.length - 1 && <br />}
+                                </span>
                             ))}
                         </div>
                         <p

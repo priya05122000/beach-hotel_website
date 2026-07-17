@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import type { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";
-import { ANIM } from "@/src/lib/gsap/config";
+import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 interface Props {
@@ -22,7 +22,7 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
     const el = wrapperRef.current;
     if (!el) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
       gsap.fromTo(

@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { Button } from "@/src/components/common/button";
 
 const IMAGE_SRC = "/banner/gallery.webp";
 
@@ -115,9 +116,13 @@ export default function GalleryBanner() {
                     </div>
 
                     <div className="overflow-hidden w-full mt-10  text-end">
-                        <p className="readReveal  type-body">
+                        {/* <p className="readReveal  type-body">
                             Read More
-                        </p>
+                        </p> */}
+
+                        <Button href="/gallery" className="sm:w-50 readReveal pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+                            Read More
+                        </Button>
                         {/* <hr className="w-1/2 ml-auto mt-4" /> */}
                     </div>
 

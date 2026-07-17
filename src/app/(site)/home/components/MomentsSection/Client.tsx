@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import Image from "next/image";
-import { Play } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
+import Eyebrow from "@/src/components/common/Eyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,31 +25,58 @@ interface Props {
 }
 
 function UploadedVideo({ item }: { item: MomentItem }) {
-  const [playVideo, setPlayVideo] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (playVideo) {
+    if (started) {
       videoRef.current?.play().catch(() => { });
     }
-  }, [playVideo]);
+  }, [started]);
 
-  if (playVideo) {
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play().catch(() => { });
+    } else {
+      video.pause();
+    }
+  };
+
+  if (started) {
     return (
-      <video
-        ref={videoRef}
-        src={item.videoUrl}
-        controls
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      <button
+        type="button"
+        onClick={togglePlayback}
+        className="absolute inset-0 h-full w-full cursor-pointer"
+      >
+        <video
+          ref={videoRef}
+          src={item.videoUrl}
+          poster={item.thumbnailUrl || "/placeholder-video.jpg"}
+          preload="auto"
+          playsInline
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          {isPlaying ? (
+            <Pause size={50} className="text-cream opacity-0 transition-opacity duration-200 hover:opacity-100" fill="currentColor" />
+          ) : (
+            <Play size={50} className="ml-1 text-cream" fill="currentColor" />
+          )}
+        </div>
+      </button>
     );
   }
 
   return (
     <button
       type="button"
-      onClick={() => setPlayVideo(true)}
+      onClick={() => setStarted(true)}
       className="absolute inset-0 h-full w-full cursor-pointer"
     >
       <Image
@@ -59,9 +87,7 @@ function UploadedVideo({ item }: { item: MomentItem }) {
         sizes="(max-width:640px) 100vw, 33vw"
       />
       <div className="absolute inset-0 flex items-center justify-center ">
-        {/* <div className="flex h-8 w-8 items-center justify-center backdrop-blur-md bg-white/10"> */}
-        <Play size={50} className="ml-1 text-white" fill="currentColor" />
-        {/* </div> */}
+        <Play size={50} className="ml-1 text-cream" fill="currentColor" />
       </div>
     </button>
   );
@@ -101,11 +127,11 @@ export default function MomentsSectionClient({ items }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <Section className="bg-white py-16 lg:py-20">
+    <Section className=" py-16 lg:py-20">
       <div className="mb-32">
-        <h2 className="mt-2 uppercase text-gray type-h6 tracking-[73%] lg:tracking-[83%] text-center">
+        <Eyebrow align="center" className="mt-2 text-gray">
           Influencer Spotlight
-        </h2>
+        </Eyebrow>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-5 items-end">
@@ -131,7 +157,7 @@ export default function MomentsSectionClient({ items }: Props) {
                   href={item.reelUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute left-4 top-4 z-20 flex h-8 max-w-8 items-center overflow-hidden  backdrop-blur-xl bg-white/10  text-white no-underline transition-[max-width] duration-500 hover:max-w-50"
+                  className="absolute left-4 top-4 z-20 flex h-8 max-w-8 items-center overflow-hidden  backdrop-blur-xl bg-primary-dark/10  text-white no-underline transition-[max-width] duration-500 hover:max-w-50"
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center">
                     <Image src="/icons/instagram.svg" alt="View on Instagram" width={15} height={15} />

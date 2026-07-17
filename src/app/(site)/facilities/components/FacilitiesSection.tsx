@@ -9,6 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 import type { Facility } from "@/src/types";
 import Section from "@/src/components/common/Section";
+import SubHeading from "@/src/components/common/SubHeading";
+import { applyParallax } from "@/src/lib/gsap/useParallax";
 
 interface Props {
     facilities: Facility[];
@@ -53,20 +55,8 @@ export default function FacilitiesSection({ facilities }: Props) {
         // Desktop only: 4-col layout
         mm.add("(min-width: 1024px)", () => {
             desktopCardsRef.current.forEach((card, index) => {
-                if (!card) return;
                 const { from, to } = DESKTOP_PARALLAX[index % 3];
-                gsap.fromTo(card, { yPercent: from }, {
-                    yPercent: to,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1.5,
-                        invalidateOnRefresh: true,
-                        markers: false,
-                    },
-                });
+                applyParallax(card, { trigger: sectionRef.current, from, to });
             });
             ScrollTrigger.refresh();
         });
@@ -188,9 +178,9 @@ export default function FacilitiesSection({ facilities }: Props) {
                                             className={`w-[55%] ${facilityIndex === 1 ? "self-end" : "self-start"}`}
                                         >
                                             <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
-                                            <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">
+                                            <SubHeading className="mb-4 text-primary-dark border-primary/10 border-b py-2">
                                                 {facility.facility_name}
-                                            </h3>
+                                            </SubHeading>
                                             <div
                                                 suppressHydrationWarning className="text-charcoal"
                                                 dangerouslySetInnerHTML={{ __html: facility.description ?? "" }}

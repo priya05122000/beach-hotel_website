@@ -3,12 +3,14 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { ANIM } from "@/src/lib/gsap/config";
+import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Section from "@/src/components/common/Section";
+import SubHeading from "@/src/components/common/SubHeading";
+import SocialIconLinks from "@/src/components/common/SocialIconLinks";
+import FormField from "@/src/components/ui/FormField";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
-import Image from "next/image";
 import toast from "react-hot-toast";
 
 const initialForm = {
@@ -41,35 +43,12 @@ const contactDetails = [
   },
 ];
 
-const socialIcons: { href: string; label: string; path: string }[] = [
-  {
-    href: "https://www.instagram.com/thebeachhotel_/",
-    label: "Instagram",
-    path: "/icons/instagramblue.svg",
-  },
-  {
-    href: "https://www.facebook.com/profile.php?id=61590909593058",
-    label: "Facebook",
-    path: "/icons/facebookblue.svg",
-  },
-  {
-    href: "https://www.youtube.com/@The_Beach_Hotel",
-    label: "YouTube",
-    path: "/icons/youtubeblue.svg",
-  },
-  {
-    href: "https://x.com/TheBeachHotel_",
-    label: "X (Twitter)",
-    path: "/icons/xblue.svg",
-  },
-];
-
 export default function ContactFormSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
       if (prefersReduced) return;
@@ -171,7 +150,7 @@ export default function ContactFormSection() {
             reservation, we are delighted to assist.
           </p>
           <div className="mt-4 space-y-4 border-t flex flex-col justify-end border-white/20 pt-4">
-            <h3 className="type-h5 font-semibold text-primary-dark">Find Us</h3>
+            <SubHeading className="text-primary-dark mb-4">Find Us</SubHeading>
             <div className="uppercase">
               <div className="type-body font-arizona-flare-regular">
                 The Beach Hotel
@@ -210,28 +189,11 @@ export default function ContactFormSection() {
             </div>
           </div>
           <div className="pt-4 space-y-4">
-            <h3 className="type-h5 font-semibold text-primary-dark">
+            <SubHeading className="text-primary-dark mb-4">
               Follow Us
-            </h3>
+            </SubHeading>
 
-            <div className="flex items-center gap-3">
-              {socialIcons.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  aria-label={item.label}
-                  className="border    border-gray-700 p-1.5  hover:border-gray-500 transition-colors"
-                >
-                  <Image
-                    src={item.path}
-                    alt={item.label}
-                    width={28}
-                    height={28}
-                    className="w-4 h-4"
-                  />
-                </Link>
-              ))}
-            </div>
+            <SocialIconLinks variant="light" />
           </div>
         </div>
         <div className="flex flex-col gap-6">
@@ -252,99 +214,60 @@ export default function ContactFormSection() {
           >
             {/* Row 1 — First / Last name */}
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-1">
-                <label className="type-label-sm uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
-                  First Name*
-                </label>
-                <input
-                  type="text"
-                  name="first_name"
-                  value={form.first_name}
-                  onChange={handleChange}
-                  className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-                />
-                {errors.first_name && (
-                  <p className="type-label-sm text-red-400 mt-0.5">
-                    {errors.first_name}
-                  </p>
-                )}
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="type-label-sm uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
-                  Last Name*
-                </label>
-                <input
-                  type="text"
-                  name="last_name"
-                  value={form.last_name}
-                  onChange={handleChange}
-                  className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-                />
-                {errors.last_name && (
-                  <p className="type-label-sm text-red-400 mt-0.5">
-                    {errors.last_name}
-                  </p>
-                )}
-              </div>
+              <FormField
+                variant="underline"
+                label="First Name*"
+                type="text"
+                name="first_name"
+                value={form.first_name}
+                onChange={handleChange}
+                error={errors.first_name}
+              />
+              <FormField
+                variant="underline"
+                label="Last Name*"
+                type="text"
+                name="last_name"
+                value={form.last_name}
+                onChange={handleChange}
+                error={errors.last_name}
+              />
             </div>
 
             {/* Row 2 — Email */}
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
-                Email*
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-              />
-              {errors.email && (
-                <p className="text-[11px] text-red-400 mt-0.5">
-                  {errors.email}
-                </p>
-              )}
-            </div>
+            <FormField
+              variant="underline"
+              label="Email*"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              error={errors.email}
+            />
 
             {/* Row 3 — Phone */}
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
-                Phone*
-              </label>
-              <input
-                type="tel"
-                name="phone_number"
-                value={form.phone_number}
-                onChange={handleChange}
-                maxLength={10}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200"
-              />
-              {errors.phone_number && (
-                <p className="text-[11px] text-red-400 mt-0.5">
-                  {errors.phone_number}
-                </p>
-              )}
-            </div>
+            <FormField
+              variant="underline"
+              label="Phone*"
+              type="tel"
+              name="phone_number"
+              value={form.phone_number}
+              onChange={handleChange}
+              maxLength={10}
+              error={errors.phone_number}
+            />
 
             {/* Row 4 — Message */}
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] uppercase tracking-[0.12em] text-primary-dark/50 font-medium">
-                Message*
-              </label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                rows={2}
-                className="bg-transparent border-0 border-b border-primary/25 py-2 type-body-sm text-primary-dark placeholder:text-primary-dark/30 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"
-              />
-              {errors.message && (
-                <p className="text-[11px] text-red-400 mt-0.5">
-                  {errors.message}
-                </p>
-              )}
-            </div>
+            <FormField
+              variant="underline"
+              as="textarea"
+              label="Message*"
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              rows={2}
+              error={errors.message}
+            />
 
             {/* Consent */}
             <label className="flex items-start gap-3 type-label text-primary-dark/40 cursor-pointer">

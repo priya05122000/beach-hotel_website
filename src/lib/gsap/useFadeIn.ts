@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion } from "./config";
 
 export interface FadeInOptions {
   /** y offset to animate from (px). Default: 30 */
@@ -50,8 +51,7 @@ export function useFadeIn<T extends HTMLElement>(
     const targets = children ? Array.from(el.children) as HTMLElement[] : [el];
     if (targets.length === 0) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -101,10 +101,7 @@ export function applyFadeIn(
     once = true,
   } = options;
 
-  if (typeof window !== "undefined") {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-  }
+  if (prefersReducedMotion()) return;
 
   gsap.fromTo(
     els,

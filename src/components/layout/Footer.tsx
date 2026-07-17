@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
+import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const navLinks = [
@@ -11,29 +12,6 @@ const navLinks = [
   { label: "NEARBY DESTINATION", href: "/destinations" },
   { label: "Rooms & Suites", href: "/rooms" },
   { label: "CONTACT US", href: "/contact-us" },
-];
-
-const socialIcons: { href: string; label: string; path: string }[] = [
-  {
-    href: "https://www.instagram.com/thebeachhotel_/",
-    label: "Instagram",
-    path: "/icons/instagram.svg",
-  },
-  {
-    href: "https://www.facebook.com/profile.php?id=61590909593058",
-    label: "Facebook",
-    path: "/icons/facebook.svg",
-  },
-  {
-    href: "https://www.youtube.com/@The_Beach_Hotel",
-    label: "YouTube",
-    path: "/icons/youtube.svg",
-  },
-  {
-    href: "https://x.com/TheBeachHotel_",
-    label: "X (Twitter)",
-    path: "/icons/x.svg",
-  },
 ];
 
 export default function Footer() {
@@ -110,26 +88,7 @@ export default function Footer() {
               <div>
                 <div className="mt-6 lg:mt-4 xl:mt-2">
                   <p className="type-label uppercase mb-3">Follow Us :</p>
-                  <div className="flex items-center gap-3">
-                    {socialIcons.map((item) => (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        aria-label={item.label}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border border-gray-700 p-1.5  hover:border-gray-500 transition-colors"
-                      >
-                        <Image
-                          src={item.path}
-                          alt={item.label}
-                          width={28}
-                          height={28}
-                          className="w-4 h-4"
-                        />
-                      </Link>
-                    ))}
-                  </div>
+                  <SocialIconLinks variant="dark" />
                 </div>
                 <div className="flex flex-col space-y-2 mt-8">
                   <a

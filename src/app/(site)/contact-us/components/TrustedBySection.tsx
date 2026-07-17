@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import Marquee from "react-fast-marquee";
 import Section from "@/src/components/common/Section";
-import { ANIM } from "@/src/lib/gsap/config";
+import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const partners = [
@@ -20,7 +20,7 @@ export default function TrustedBySection() {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
       if (prefersReduced) return;

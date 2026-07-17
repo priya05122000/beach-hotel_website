@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Section from "@/src/components/common/Section";
+import Eyebrow from "@/src/components/common/Eyebrow";
 import Image from "next/image";
 import { Offer } from "@/src/types";
 import { Copy } from "lucide-react";
@@ -138,14 +139,13 @@ export default function ExclusiveOffersSection({
 
   return (
     <Section className="pt-16 pb-16  lg:pt-20 lg:pb-20">
-      <h2
-        className={` text-gray text-center uppercase font-normal type-h6 tracking-[73%]  lg:tracking-[83%] `}
-      >
+      <Eyebrow align="center" className="text-gray font-normal">
         Exclusive Offers
-      </h2>
+      </Eyebrow>
 
       <p className={`max-w-lg  ml-auto my-10 type-body sm:text-right text-charcoal`}>
-        Discover exclusive offers designed to make your stay at the edge of India even more rewarding. From seasonal indulgences to curated packages, there has never been a better time to stay with us.
+        Exceptional stays begin with exceptional value. Browse our exclusive offers and enjoy special privileges, seasonal savings, and thoughtfully selected packages designed to make your time at The Beach Hotel, Kanniyakumari even more memorable.
+
       </p>
 
       <div className="grid gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">

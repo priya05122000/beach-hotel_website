@@ -7,6 +7,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { NearbyDestination } from "@/src/types";
+import Eyebrow from "@/src/components/common/Eyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,9 +123,9 @@ export default function HorizontalScrollSectionClient({
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 mx-auto flex max-w-[95%] items-end justify-end px-6 pb-16 sm:max-w-156 sm:px-8 lg:max-w-232 lg:px-16 lg:pb-20 xl:max-w-300 xl:px-4">
-        <h2 className="mt-2 uppercase text-gray type-h6 tracking-[73%] lg:tracking-[83%]">
+        <Eyebrow className="mt-2 text-gray">
           Destination
-        </h2>
+        </Eyebrow>
       </div>
     </div>
   );

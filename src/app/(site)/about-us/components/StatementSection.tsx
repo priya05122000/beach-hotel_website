@@ -3,7 +3,8 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Section from '@/src/components/common/Section';
-import { ANIM } from '@/src/lib/gsap/config';
+import Eyebrow from '@/src/components/common/Eyebrow';
+import { ANIM, prefersReducedMotion } from '@/src/lib/gsap/config';
 import { applySplitSlideUp } from '@/src/lib/gsap/useSplitSlideUp';
 
 const SERVICES = [
@@ -17,7 +18,7 @@ const StatementSection = () => {
     const textRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const prefersReduced = prefersReducedMotion();
 
         const ctx = gsap.context(() => {
             if (prefersReduced) return;
@@ -42,9 +43,7 @@ const StatementSection = () => {
             <Section>
                 <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
                     <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
-                        <p className="type-h6 tracking-[73%] text-left lg:tracking-[83%] uppercase text-gray pb-10">
-
-                            Discover</p>
+                        <Eyebrow as="p" align="left" className="text-gray pb-10">Discover</Eyebrow>
                     </div>
 
                     <div className="hidden sm:block sm:col-span-1" />

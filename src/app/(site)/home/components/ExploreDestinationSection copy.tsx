@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { Button } from "@/src/components/common/button";
 import Section from "@/src/components/common/Section";
-import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
+import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const ExploreDestinationSection = () => {
@@ -12,7 +12,7 @@ const ExploreDestinationSection = () => {
     const headingRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        const prefersReduced = prefersReducedMotion();
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const ctx = gsap.context(() => {
             if (prefersReduced) return;
@@ -38,16 +38,16 @@ const ExploreDestinationSection = () => {
 
                 {/* Top Content */}
                 <Section>
-                    <div ref={sectionRef} className="grid  ">
+                    <div ref={sectionRef} className="grid gap-8 sm:grid-cols-2 min-h-80 sm:min-h-140 lg:min-h-180 xl:min-h-120">
 
                         {/* Left */}
-                        <div ref={headingRef} className={`w-1/2 type-display-sm text-primary-dark uppercase self-start `}>
+                        <div ref={headingRef} className={`max-w-xl type-display-sm text-primary-dark uppercase self-start`}>
                             A setting reserved for the remarkable, where nature takes centre stage.
 
                         </div>
 
                         {/* Right */}
-                        <div className="relative -mt-20 flex flex-col items-start sm:items-end justify-end self-end ">
+                        <div className="relative flex flex-col items-start sm:items-end justify-end self-end">
 
                             <div className=" relative">
                                 <span aria-hidden="true" className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 w-[0.5px] bg-gray h-[calc(100%-25px)]" />

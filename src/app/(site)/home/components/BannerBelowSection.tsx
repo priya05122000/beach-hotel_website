@@ -5,6 +5,7 @@ import { typography } from "@/src/lib/typography";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SubHeading from "@/src/components/common/SubHeading";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,16 +54,16 @@ const BannerBelowSection = () => {
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative   z-10 text-center  h-[25vh] ">
-                    <h1 className="uppercase type-body-xl font-semibold text-white">
+                <div className="relative type-body  z-10 text-center  h-[25vh] ">
+                    <SubHeading as="h1" className="mb-4">
                         The Beach Hotel
-                    </h1>
+                    </SubHeading>
 
-                    <p className="mt-4 type-body  max-w-80 text-white/40 font-extralight uppercase">
+                    <p className="mt-4 max-w-80 text-white/40  font-extralight uppercase">
                         Erumanayakkanpatti Beach Road, Kanyakumari 629702, India
                     </p>
 
-                    <p className="mt-2 type-body max-w-80 text-white/40 font-extralight uppercase">
+                    <p className="mt-2  max-w-80 text-white/40 font-extralight uppercase">
                         +91 23456 78654 | +91 43567 86547
                     </p>
                 </div>

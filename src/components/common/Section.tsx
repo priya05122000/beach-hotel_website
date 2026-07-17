@@ -5,26 +5,26 @@ interface SectionProps {
     className?: string;
     id?: string;
     style?: React.CSSProperties;
+    /** "wide" (default) matches Section's original max-widths; "narrow" matches CenterSection's. */
+    width?: "wide" | "narrow";
 }
 
+const widthClasses: Record<"wide" | "narrow", string> = {
+    wide: "max-w-[95%] sm:max-w-156 lg:max-w-232 xl:max-w-300",
+    narrow: "max-w-[95%] sm:max-w-156 lg:max-w-200 xl:max-w-232",
+};
+
 const Section = forwardRef<HTMLDivElement | null, SectionProps>(
-    ({ children, className = '', id, style }, ref) => {
+    ({ children, className = '', id, style, width = "wide" }, ref) => {
         return (
             <section
                 className={`relative px-6 sm:px-4 ${className}`}
                 id={id}
                 style={style}
             >
-                {/* <div
-                    ref={ref}
-                    className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-12 xl:px-0"
-                >
-                    {children}
-                </div> */}
-
                 <div
                     ref={ref}
-                    className="max-w-[95%] sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0"
+                    className={`${widthClasses[width]} mx-auto px-0 md:px-4 lg:px-12 xl:px-0`}
                 >
                     {children}
                 </div>

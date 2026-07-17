@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +16,7 @@ export default function RoomBanner() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const imageWrapperRef = useRef<HTMLDivElement>(null);
     const mobileImageRef = useRef<HTMLDivElement>(null);
-    const desktopLineLeftRef = useRef<HTMLSpanElement>(null);
+    const desktopLineLeftRef = useRef<HTMLHeadingElement>(null);
     const desktopLineRightRef = useRef<HTMLSpanElement>(null);
     const mobileLineLeftRef = useRef<HTMLHeadingElement>(null);
     const mobileLineRightRef = useRef<HTMLDivElement>(null);
@@ -67,11 +67,11 @@ export default function RoomBanner() {
                     ease: "none",
                 });
 
-                // ② Left lines — overlap zoom at 0
-                applySlideUp([leftLine], { timeline: tl, position: 0, duration: 2 });
+                // ② Left line — overlap zoom at 0
+                applySplitSlideUp({ target: leftLine, timeline: tl, position: 0, duration: 2 });
 
-                // ③ Right line — 0.3 after left lines start
-                applySlideUp([rightLine], { timeline: tl, position: 0.3, duration: 2 });
+                // ③ Right line — 0.3 after left line starts
+                applySplitSlideUp({ target: rightLine, timeline: tl, position: 0.3, duration: 2 });
             }, section);
 
             return () => ctx.revert();
@@ -99,13 +99,15 @@ export default function RoomBanner() {
                     }
                 );
 
-                applySlideUp([mobileLineLeftRef.current], {
+                applySplitSlideUp({
+                    target: mobileLineLeftRef.current,
                     trigger: mobileImage,
                     start: "top 65%",
                     duration: 0.7,
                 });
 
-                applySlideUp([mobileLineRightRef.current], {
+                applySplitSlideUp({
+                    target: mobileLineRightRef.current,
                     trigger: mobileImage,
                     start: "top 65%",
                     duration: 0.7,
@@ -137,28 +139,20 @@ export default function RoomBanner() {
 
                     <div className="absolute inset-0 grid grid-cols-2 py-16 px-6">
                         <div className="flex items-start">
-                            <div className="overflow-hidden">
-                                <h1
-                                    ref={mobileLineLeftRef}
-                                    className="type-display-md leading-tight text-white"
-                                >
-                                    <span
-                                        className="type-display-lg  leading-tight text-white  block"
-                                    >
-                                        Orna Villas
-                                    </span>
-                                </h1>
-                            </div>
+                            <h1
+                                ref={mobileLineLeftRef}
+                                className="type-display-lg leading-tight text-white"
+                            >
+                                Orna Villas
+                            </h1>
                         </div>
 
                         <div className="flex items-end justify-end">
-                            <div className="overflow-hidden">
-                                <div
-                                    ref={mobileLineRightRef}
-                                    className="text-white leading-tight type-display-md text-right"
-                                >
-                                    Experience
-                                </div>
+                            <div
+                                ref={mobileLineRightRef}
+                                className="text-white leading-tight type-display-md text-right"
+                            >
+                                Experience
                             </div>
                         </div>
                     </div>
@@ -184,30 +178,21 @@ export default function RoomBanner() {
                 <div className="absolute inset-0 grid grid-cols-2 pointer-events-none px-8 md:px-12 lg:px-20 my-auto h-[60vh]">
 
                     <div className="flex items-start">
-                        <div className="overflow-hidden">
-                            <h1
-                                className="type-display-lg text-white leading-tight"
-                            >
-                                <span
-                                    ref={desktopLineLeftRef}
-                                    className="type-display-lg  leading-tight text-white  block"
-                                >
-                                    Orna Villas
-                                </span>
-                            </h1>
-                        </div>
+                        <h1
+                            ref={desktopLineLeftRef}
+                            className="type-display-lg text-white leading-tight"
+                        >
+                            Orna Villas
+                        </h1>
                     </div>
 
                     <div className="flex items-end justify-end">
-                        <div className="overflow-hidden">
-                            <span
-                                ref={desktopLineRightRef}
-                                className="type-display-lg  leading-tight text-white  block"
-
-                            >
-                                Experience
-                            </span>
-                        </div>
+                        <span
+                            ref={desktopLineRightRef}
+                            className="type-display-lg leading-tight text-white block"
+                        >
+                            Experience
+                        </span>
                     </div>
                 </div>
             </div>

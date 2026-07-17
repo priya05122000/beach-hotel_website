@@ -7,10 +7,20 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 import Section from "../common/Section";
+import PillLinkButton from "../common/PillLinkButton";
 import { Announcement } from "@/src/types";
-import { Button } from "../common/button";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
+
+const BOOKING_URL = "https://bookingengine-beachhotel-o3py.vercel.app/booking";
+
+function BookStayButton({ className = "" }: { className?: string }) {
+  return (
+    <PillLinkButton href={BOOKING_URL} className={className}>
+      Book My Stay
+    </PillLinkButton>
+  );
+}
 
 const NAV_LINKS = [
   {
@@ -388,33 +398,7 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     ))}
 
                     <li>
-                      {/* <Link href="https://bookingengine-beachhotel-o3py.vercel.app/booking"  target="_blank" data-text="Book My Stay" className={`${desktopLinkCls("/contact-us")} after:content-[attr(data-text)] after:font-semibold underline underline-offset-4 after:invisible after:block after:h-0 after:overflow-hidden`}>
-                        Book My Stay
-                      </Link> */}
-
-                      <Link
-                        href="https://bookingengine-beachhotel-o3py.vercel.app/booking"
-                        data-text="Book My Stay"
-                        className="group relative overflow-hidden border border-primary-dark/20 px-2 py-2 text-[11px] font-arizona-flare-regular uppercase tracking-[3px] text-primary-dark/70 transition-all duration-300 hover:border-primary-dark hover:text-primary-dark"
-                      >
-                        {/* Hover Background */}
-                        <span className="absolute inset-0 -z-10 w-0 bg-transparent text-white transition-all duration-300 group-hover:w-full" />
-
-                        <span className="relative transition-colors duration-300 group-hover:text-primary-dark">
-                          Book My Stay
-                        </span>
-                      </Link>
-
-                      {/* <Link  href="https://bookingengine-beachhotel-o3py.vercel.app/booking"
-                        className="group relative mx-auto flex cursor-pointer items-center border-0 bg-transparent  transition-all duration-200 active:scale-95  h-10"
-                      >
-                        <span className="absolute left-0 top-0 h-full w-11  border-y  transition-all duration-300 group-hover:w-full" />
-
-                        <span className="relative text-[11px] flex font-arizona-flare-regular uppercase tracking-[3px] text-primary-dark transition-colors duration-300">
-                          Book My Stay
-                        </span>
-
-                      </Link> */}
+                      <BookStayButton />
                     </li>
                   </ul>
                 </div>
@@ -592,27 +576,8 @@ export default function Header({ announcementData }: AnnouncementProps) {
                     <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
                   </p>
                 </div>
-                {/* <Button
-                  href="/contact-us"
-                  className="font-medium text-primary-dark w-45 self-end"
-                >
-                  Book My Stay
-                </Button> */}
-
                 <div className="self-end shrink-0">
-                  <Link
-                    href="https://bookingengine-beachhotel-o3py.vercel.app/booking"
-                    data-text="Book My Stay"
-                    className="group relative inline-flex items-center whitespace-nowrap overflow-hidden border border-primary-dark/20 px-2 py-2 text-[11px] font-arizona-flare-regular uppercase tracking-[3px] text-primary-dark/70 transition-all duration-300 hover:border-primary-dark hover:text-primary-dark"
-                  >
-                    {/* Hover Background */}
-                    <span className="absolute inset-0 -z-10 w-0 bg-transparent text-white transition-all duration-300 group-hover:w-full" />
-
-                    <span className="relative transition-colors duration-300 group-hover:text-primary-dark">
-                      Book My Stay
-                    </span>
-                  </Link>
-
+                  <BookStayButton className="inline-flex items-center whitespace-nowrap" />
                 </div>
               </div>
             </div>

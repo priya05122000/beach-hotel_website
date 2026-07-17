@@ -1,4 +1,6 @@
 import CenterSection from "@/src/components/common/CenterSection";
+import Eyebrow from "@/src/components/common/Eyebrow";
+import SubHeading from "@/src/components/common/SubHeading";
 import Image from "next/image";
 import Link from "next/link";
 import { getFacilitiesData } from "@/src/service/facilities";
@@ -57,14 +59,12 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
       className={`flex pb-4 lg:pb-20 sm:w-1/2 lg:w-full flex-col ${isRight ? "items-end text-right" : "items-start text-left"
         }`}
     >
-      <p className="text-primary-dark font-bold mb-4 uppercase tracking-wider">
+      <SubHeading as="p" className="text-primary-dark mb-4">
         Thoughtful Indulgences For Every Moment Of Your Stay
-      </p>
+      </SubHeading>
 
-      <p className="text-charcoal ">
-        Hotel Facilities Are Designated Spaces And Services Designed To Enhance
-        The Guest Experience, Distinct From Individual Room Amenities. Key
-        Offerings Include 24-Hour Reception,
+      <p className="text-charcoal">
+        Experience a collection of amenities thoughtfully designed to complement every stay at The Beach Hotel. From wellness and recreation to dining and personalized services, our hotel in Kanniyakumari offers facilities designed to provide comfort and convenience for business and leisure travellers alike.
       </p>
 
       <hr className="mt-6 w-[calc(100%-30px)] hidden sm:block border border-gray" />
@@ -89,9 +89,9 @@ export default async function AmenitiesSection() {
 
   return (
     <CenterSection className="bg-ivory py-16 lg:py-20 relative overflow-hidden">
-      <h2 className="type-h6 tracking-[73%] lg:tracking-[83%] text-gray text-center pb-10 uppercase font-normal">
+      <Eyebrow align="center" className="text-gray pb-10 font-normal">
         AMENITIES
-      </h2>
+      </Eyebrow>
 
       <section className="relative px-4 sm:px-0 space-y-10 type-body">
         {/* Mobile */}
@@ -154,7 +154,11 @@ export default async function AmenitiesSection() {
             </div>
 
             <div className="hidden lg:flex justify-end ">
-              <Button href="/facilities" className="text-primary-dark w-50 ">
+              {/* <Button href="/facilities" className="text-primary-dark w-50 ">
+                Find Out More
+              </Button> */}
+
+              <Button href="/facilities" className="mt-6 sm:w-50 font-normal text-primary-dark cursor-pointer">
                 Find Out More
               </Button>
             </div>

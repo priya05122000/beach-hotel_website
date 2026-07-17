@@ -50,10 +50,24 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   }, [pathname]);
 
   useEffect(() => {
+    // Fixed-delay refresh as an immediate fallback (covers cached-font visits).
     const id = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 300);
-    return () => clearTimeout(id);
+
+    // Web fonts (Arizona flare/sans) can still be loading when ScrollTrigger first
+    // measures trigger positions — once they swap in, text reflows and invalidates
+    // any trigger below the fold. document.fonts.ready fires exactly when that
+    // reflow has happened, so refresh again then to pick up the corrected layout.
+    let cancelled = false;
+    document.fonts.ready.then(() => {
+      if (!cancelled) ScrollTrigger.refresh();
+    });
+
+    return () => {
+      cancelled = true;
+      clearTimeout(id);
+    };
   }, [pathname]);
 
   return <>{children}</>;
