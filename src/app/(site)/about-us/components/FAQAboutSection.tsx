@@ -20,7 +20,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
           YOUR QUESTIONS,
           <br />
           <div className="type-body font-light mt-2 text-charcoal leading-snug max-w-xs md:max-w-sm">
-            thoughtfully answered — so all that's left is to arrive
+            thoughtfully answered — so all that&apos;s left is to arrive
           </div>
         </h2>
 
@@ -57,6 +57,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
               <div key={faq.id} className="py-5">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
+                  aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 text-left"
                 >
                   <SubHeading as="p" className="text-primary-dark">

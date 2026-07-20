@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 
 import CenterSection from "@/src/components/common/CenterSection";
-import GradientBorderButton from "@/src/components/common/GradientBorderButton";
 import DatePicker from "@/src/components/ui/DatePicker";
 import GuestPicker from "@/src/components/ui/GuestPicker";
 

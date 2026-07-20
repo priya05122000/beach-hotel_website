@@ -2,7 +2,6 @@ import type { Blog } from "@/src/types";
 import BlogCard from "./BlogCard";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
-import { Sparkle } from "lucide-react";
 
 interface Props {
   blogs: Blog[];
@@ -18,7 +17,7 @@ export default function BlogGrid({ blogs }: Props) {
         <div className="type-body-xl text-charcoal lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           There is a story in every corner of this remarkable land, and our
           journal is where we tell them. Wander through insider guides to
-          Kanyakumari's coast and countryside, seasonal highlights, and tales
+          Kanyakumari&apos;s coast and countryside, seasonal highlights, and tales
           from within the walls of The Beach Hotel. We hope these pages inspire
           you — to explore further, to savour deeper, and to dream of the sea.
         </div>

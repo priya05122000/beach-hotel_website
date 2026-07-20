@@ -1,4 +1,3 @@
-import { Sparkle } from "lucide-react";
 import GallerySectionBlock from "./GallerySectionBlock";
 import { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";

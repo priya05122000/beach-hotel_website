@@ -18,7 +18,6 @@
 
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export interface SlideUpOptions {
     targets: (HTMLElement | null) | (HTMLElement | null)[];
@@ -119,5 +118,5 @@ export function useSlideUp({
         }, scope ?? document.body);
 
         return () => ctx.revert();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 }

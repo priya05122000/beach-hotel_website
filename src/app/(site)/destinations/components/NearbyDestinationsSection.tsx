@@ -8,7 +8,7 @@ import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import DestinationImageSlider from "./DestinationImageSlider";
 import { Button } from "@/src/components/common/button";
-import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
+import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { Blog } from "@/src/types";
 import { Button } from "@/src/components/common/button";
 import SubHeading from "@/src/components/common/SubHeading";

@@ -1,7 +1,4 @@
-﻿import Section from "@/src/components/common/Section";
-import { typography } from "@/src/lib/typography";
-
-export default function LocationSection() {
+﻿export default function LocationSection() {
   return (
     <div className="shadow-xl">
       <iframe

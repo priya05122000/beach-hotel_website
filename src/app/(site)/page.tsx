@@ -36,6 +36,15 @@ export const metadata: Metadata = {
 };
 
 
+function shuffleArray<T>(items: T[]): T[] {
+  const shuffled = [...items];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export default async function HomePage() {
   const [guestReviewData, galleryData, offerDatas, roomDatas] =
     await Promise.all([
@@ -45,12 +54,7 @@ export default async function HomePage() {
       getRoomsData(),
     ]);
 
-  const shuffled = [...galleryData.data];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  const randomGalleryItems = shuffled.slice(0, 8);
+  const randomGalleryItems = shuffleArray(galleryData.data).slice(0, 8);
 
 
 

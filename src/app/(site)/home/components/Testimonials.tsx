@@ -135,6 +135,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
                     <div className="flex items-center w-52">
                         <button
                             onClick={scrollPrev}
+                            aria-label="Previous testimonial"
                             className="text-xl cursor-pointer font-semibold"
                         >
                             {pad(activeIndex + 1)}
@@ -144,6 +145,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
                         <button
                             onClick={scrollNext}
+                            aria-label="Next testimonial"
                             className="text-xl cursor-pointer font-semibold"
                         >
                             {pad(
@@ -202,11 +204,11 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
             <div className="sm:hidden mt-10">
                 <div className="flex items-center w-52">
-                    <button onClick={scrollPrev} className="text-xl cursor-pointer font-semibold">
+                    <button onClick={scrollPrev} aria-label="Previous testimonial" className="text-xl cursor-pointer font-semibold">
                         {pad(activeIndex + 1)}
                     </button>
                     <div className="w-1/3 h-px bg-gray-300 mx-4" />
-                    <button onClick={scrollNext} className="text-xl cursor-pointer font-semibold">
+                    <button onClick={scrollNext} aria-label="Next testimonial" className="text-xl cursor-pointer font-semibold">
                         {pad(activeIndex === total - 1 ? 1 : activeIndex + 2)}
                     </button>
                 </div>

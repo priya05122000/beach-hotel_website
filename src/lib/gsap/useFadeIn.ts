@@ -75,7 +75,7 @@ export function useFadeIn<T extends HTMLElement>(
     });
 
     return () => ctx.revert();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return ref;
 }

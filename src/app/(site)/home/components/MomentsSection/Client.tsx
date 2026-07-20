@@ -50,6 +50,7 @@ function UploadedVideo({ item }: { item: MomentItem }) {
       <button
         type="button"
         onClick={togglePlayback}
+        aria-label={isPlaying ? "Pause video" : "Play video"}
         className="absolute inset-0 h-full w-full cursor-pointer"
       >
         <video
@@ -77,6 +78,7 @@ function UploadedVideo({ item }: { item: MomentItem }) {
     <button
       type="button"
       onClick={() => setStarted(true)}
+      aria-label="Play video"
       className="absolute inset-0 h-full w-full cursor-pointer"
     >
       <Image

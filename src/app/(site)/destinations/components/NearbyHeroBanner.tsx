@@ -5,7 +5,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import type { NearbyDestination } from "@/src/types";
-import Section from "@/src/components/common/Section";
 
 interface Props {
   destinations: NearbyDestination[];

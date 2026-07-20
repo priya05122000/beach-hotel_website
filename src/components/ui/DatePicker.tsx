@@ -48,6 +48,9 @@ export default function DatePicker({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        aria-label={value ? `${placeholder}: ${format(value, "dd MMM yyyy")}` : placeholder}
         className={`flex  py-2 w-full items-center px-4  type-caption cursor-pointer ${triggerClass}`}
       >
         <CalendarDays size={16} className="mr-2 shrink-0 opacity-70" />

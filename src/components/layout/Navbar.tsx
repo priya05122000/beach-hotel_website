@@ -71,13 +71,12 @@ interface AnnouncementProps {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function Header({ announcementData }: AnnouncementProps) {
+export default function Header({}: AnnouncementProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [animating, setAnimating] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
   const [hideNav, setHideNav] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   const pathname = usePathname();
 
@@ -89,13 +88,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
   const animTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   // ── Effects ───────────────────────────────────────────────────────────────
-
-  useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1024);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -124,8 +116,11 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
   useEffect(() => {
     window.addEventListener("scroll", checkDarkSection, { passive: true });
-    checkDarkSection();
-    return () => window.removeEventListener("scroll", checkDarkSection);
+    const id = requestAnimationFrame(() => checkDarkSection());
+    return () => {
+      window.removeEventListener("scroll", checkDarkSection);
+      cancelAnimationFrame(id);
+    };
   }, []);
 
   useEffect(() => {
@@ -327,8 +322,6 @@ export default function Header({ announcementData }: AnnouncementProps) {
 
   const logoSrc = isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg";
   const iconColor = isOverDark && !open ? "text-white" : "text-primary-dark";
-
-  const desktopLinksVisible = isDesktop && !scrolled && !open && !animating;
 
   const desktopLinkCls = (href: string) => {
     const active = isActive(href);

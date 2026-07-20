@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react"; // useLayoutEffect needed for ScrollTrigger kill ordering
+import { useEffect, useLayoutEffect, useRef } from "react"; // 
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
 
-// gsap/ScrollTrigger is loaded lazily here so it isn't forced into every
-// route's initial bundle — each section that actually uses ScrollTrigger
-// registers it locally on mount.
+
 let ScrollTriggerRef: typeof import("gsap/ScrollTrigger").ScrollTrigger | null = null;
 
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
@@ -24,7 +22,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     });
 
     lenisRef.current = lenis;
-    (window as any).__lenis = lenis;
+    window.__lenis = lenis;
 
     let cancelled = false;
     import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
@@ -40,16 +38,14 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     return () => {
       cancelled = true;
       lenisRef.current = null;
-      delete (window as any).__lenis;
+      delete window.__lenis;
       gsap.ticker.remove(rafCallback);
       lenis.destroy();
     };
   }, []);
 
   useLayoutEffect(() => {
-    // Runs synchronously before the browser paints the new page.
-    // window.scrollTo resets the native scroll position immediately so no
-    // mid-page content is ever rendered; Lenis is synced to match.
+
     window.scrollTo(0, 0);
     lenisRef.current?.scrollTo(0, { immediate: true });
     return () => {
@@ -58,15 +54,11 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   }, [pathname]);
 
   useEffect(() => {
-    // Fixed-delay refresh as an immediate fallback (covers cached-font visits).
+
     const id = setTimeout(() => {
       ScrollTriggerRef?.refresh();
     }, 300);
 
-    // Web fonts (Arizona flare/sans) can still be loading when ScrollTrigger first
-    // measures trigger positions — once they swap in, text reflows and invalidates
-    // any trigger below the fold. document.fonts.ready fires exactly when that
-    // reflow has happened, so refresh again then to pick up the corrected layout.
     let cancelled = false;
     document.fonts.ready.then(() => {
       if (!cancelled) ScrollTriggerRef?.refresh();

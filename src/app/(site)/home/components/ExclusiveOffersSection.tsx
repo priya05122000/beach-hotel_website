@@ -221,6 +221,7 @@ export default function ExclusiveOffersSection({
                   <button
                     type="button"
                     onClick={(e) => handleCopy(e, offer.id, "6787Hkjh68")}
+                    aria-label="Copy promo code"
                     className={`text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
                   >
                     {copiedId === offer.id ? "Copied!" : "6787Hkjh68"}{" "}

@@ -6,7 +6,6 @@ import { useState, useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import { Gallery } from "@/src/types";
@@ -28,14 +27,6 @@ type MediaItem = {
     title: string;
 };
 
-function ReadMoreButton() {
-    return (
-        <Link href="/gallery" className="flex cursor-pointer items-center gap-1  text-gray tracking-wider font-arizona-flare-regular  px-3 py-1 whitespace-nowrap underline underline-offset-2">
-            Read more
-        </Link>
-    );
-}
-
 function MediaImage({ item }: { item: MediaItem }) {
     const [playVideo, setPlayVideo] = useState(false);
     const isVideo = isVideoFile(item.mediaUrl);
@@ -56,6 +47,7 @@ function MediaImage({ item }: { item: MediaItem }) {
             <button
                 type="button"
                 onClick={() => setPlayVideo(true)}
+                aria-label="Play video"
                 className="relative w-full h-full cursor-pointer"
             >
                 <Image

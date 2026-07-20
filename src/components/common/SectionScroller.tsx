@@ -22,7 +22,7 @@ export function SectionScroller({ dataAttr }: Props) {
       ) as HTMLElement | null;
       if (!target) return;
       const top = target.getBoundingClientRect().top + window.scrollY - 80;
-      const lenis = (window as any).__lenis;
+      const lenis = window.__lenis;
       if (lenis) {
         lenis.scrollTo(top, { duration: 1.8 });
       } else {

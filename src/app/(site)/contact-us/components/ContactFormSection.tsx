@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Phone, Mail, MapPin } from "lucide-react";
 import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Section from "@/src/components/common/Section";
@@ -21,27 +20,6 @@ const initialForm = {
   message: "",
   consent: false,
 };
-
-const contactDetails = [
-  {
-    icon: Phone,
-    label: "Phone Number",
-    value: "04652 237 491",
-    href: "tel:04652237491",
-  },
-  {
-    icon: Mail,
-    label: "Email Address",
-    value: "thebeachhotel@gmail.com",
-    href: "mailto:thebeachhotel@gmail.com",
-  },
-  {
-    icon: MapPin,
-    label: "Office Location",
-    value: "Erumanayakkanpatti Beach Road,\nKanyakumari 629702, India",
-    href: "https://maps.google.com/?q=Erumanayakkanpatti+Beach+Road,+Kanyakumari",
-  },
-];
 
 export default function ContactFormSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
