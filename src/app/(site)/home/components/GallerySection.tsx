@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Play } from "lucide-react";
-import { useState, useRef } from "react";
+import { Play, Pause } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -27,42 +27,66 @@ type MediaItem = {
     title: string;
 };
 
-function MediaImage({ item }: { item: MediaItem }) {
-    const [playVideo, setPlayVideo] = useState(false);
-    const isVideo = isVideoFile(item.mediaUrl);
+function useVideoPlayback() {
+    const [started, setStarted] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
+    useEffect(() => {
+        if (started) {
+            videoRef.current?.play().catch(() => { });
+        }
+    }, [started]);
+
+    const togglePlayback = () => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (video.paused) {
+            video.play().catch(() => { });
+        } else {
+            video.pause();
+        }
+    };
+
+    return { started, setStarted, isPlaying, setIsPlaying, videoRef, togglePlayback };
+}
+
+function MediaImage({
+    item,
+    isVideo,
+    started,
+    videoRef,
+    setIsPlaying,
+}: {
+    item: MediaItem;
+    isVideo: boolean;
+    started: boolean;
+    videoRef: React.RefObject<HTMLVideoElement | null>;
+    setIsPlaying: (playing: boolean) => void;
+}) {
     if (isVideo) {
-        if (playVideo) {
+        if (started) {
             return (
                 <video
+                    ref={videoRef}
                     src={item.mediaUrl}
-                    controls
-                    autoPlay
+                    poster={item.thumbnailUrl || "/placeholder-video.jpg"}
+                    preload="auto"
                     playsInline
-                    className="w-full h-full object-cover"
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    className="absolute inset-0 h-full w-full object-cover"
                 />
             );
         }
         return (
-            <button
-                type="button"
-                onClick={() => setPlayVideo(true)}
-                aria-label="Play video"
-                className="relative w-full h-full cursor-pointer"
-            >
-                <Image
-                    src={item.thumbnailUrl || "/placeholder-video.jpg"}
-                    alt={item.title || "Video thumbnail"}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                    <div className="flex h-12 w-12 items-center justify-center bg-white/90">
-                        <Play size={20} className="ml-1 text-primary-dark" fill="currentColor" />
-                    </div>
-                </div>
-            </button>
+            <Image
+                src={item.thumbnailUrl || "/placeholder-video.jpg"}
+                alt={item.title || "Video thumbnail"}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+            />
         );
     }
 
@@ -80,6 +104,8 @@ function MediaImage({ item }: { item: MediaItem }) {
 function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
+    const isVideo = isVideoFile(item.mediaUrl);
+    const { started, setStarted, isPlaying, setIsPlaying, videoRef, togglePlayback } = useVideoPlayback();
 
     useIsomorphicLayoutEffect(() => {
         const container = containerRef.current;
@@ -110,8 +136,29 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
         <div>
             <div ref={containerRef} className={`relative w-full overflow-hidden ${imageClassName}`}>
                 <div ref={innerRef} className="absolute -top-8 -bottom-8 inset-x-0">
-                    <MediaImage item={item} />
+                    <MediaImage
+                        item={item}
+                        isVideo={isVideo}
+                        started={started}
+                        videoRef={videoRef}
+                        setIsPlaying={setIsPlaying}
+                    />
                 </div>
+
+                {isVideo && (
+                    <button
+                        type="button"
+                        onClick={started ? togglePlayback : () => setStarted(true)}
+                        aria-label={started && isPlaying ? "Pause video" : "Play video"}
+                        className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                    >
+                        {started && isPlaying ? (
+                            <Pause size={50} className="text-cream opacity-0 transition-opacity duration-200 hover:opacity-100" fill="currentColor" />
+                        ) : (
+                            <Play size={50} className="ml-1 text-cream" fill="currentColor" />
+                        )}
+                    </button>
+                )}
             </div>
             <div className="flex items-center  justify-between mt-3">
                 <h3 className="font-bold text-gray  type-body  leading-snug">
@@ -157,7 +204,6 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                         <div className="hidden md:flex  flex-col ">
                             <p className=" text-primary-dark type-h2 leading-tight">
                                 Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
-
                             </p>
                         </div>
 

@@ -56,8 +56,6 @@ export default async function HomePage() {
 
   const randomGalleryItems = shuffleArray(galleryData.data).slice(0, 8);
 
-
-
   return (
     <>
       <HeroBanner />
