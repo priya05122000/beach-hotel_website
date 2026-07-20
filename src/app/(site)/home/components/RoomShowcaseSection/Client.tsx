@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -192,13 +193,17 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
               }}
               className="absolute inset-0"
             >
-              <img
+              <Image
                 ref={(el) => {
                   rightImgRefs.current[i] = el;
                 }}
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover"
+                fill
+                priority={i === 0}
+                loading={i === 0 ? undefined : "lazy"}
+                sizes="100vw"
+                className="object-cover"
               />
             </div>
           ))}
@@ -257,13 +262,17 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
                       }}
                       className="absolute inset-0"
                     >
-                      <img
+                      <Image
                         ref={(el) => {
                           thumbRefs.current[i] = el;
                         }}
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        priority={i === 0}
+                        loading={i === 0 ? undefined : "lazy"}
+                        sizes="(min-width: 768px) 208px, (min-width: 640px) 176px, 60vw"
+                        className="object-cover"
                       />
                     </div>
                   ))}

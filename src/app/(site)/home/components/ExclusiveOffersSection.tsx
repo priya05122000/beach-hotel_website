@@ -172,6 +172,7 @@ export default function ExclusiveOffersSection({
                   src={imageUrl}
                   alt={offer.title}
                   fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
 

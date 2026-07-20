@@ -50,6 +50,7 @@ function RoomCard({ room }: { room: Room }) {
           src={resolveImage(room.image_url)}
           alt={room.name}
           fill
+          sizes="(min-width: 640px) 50vw, 100vw"
           className="object-cover"
         />
       </div>

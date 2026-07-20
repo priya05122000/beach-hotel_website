@@ -100,6 +100,7 @@ export default function HorizontalScrollSectionClient({
                   src={resolveImage(item)}
                   alt={item.destination_name}
                   fill
+                  sizes="(min-width: 640px) 320px, 240px"
                   className="object-cover object-top"
                 />
 

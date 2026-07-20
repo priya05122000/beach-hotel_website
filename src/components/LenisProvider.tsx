@@ -4,10 +4,11 @@ import { useEffect, useLayoutEffect, useRef } from "react"; // useLayoutEffect n
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+// gsap/ScrollTrigger is loaded lazily here so it isn't forced into every
+// route's initial bundle — each section that actually uses ScrollTrigger
+// registers it locally on mount.
+let ScrollTriggerRef: typeof import("gsap/ScrollTrigger").ScrollTrigger | null = null;
 
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -24,13 +25,20 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
 
     lenisRef.current = lenis;
     (window as any).__lenis = lenis;
-    lenis.on("scroll", ScrollTrigger.update);
+
+    let cancelled = false;
+    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+      if (cancelled) return;
+      ScrollTriggerRef = ScrollTrigger;
+      lenis.on("scroll", ScrollTrigger.update);
+    });
 
     const rafCallback = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      cancelled = true;
       lenisRef.current = null;
       delete (window as any).__lenis;
       gsap.ticker.remove(rafCallback);
@@ -45,14 +53,14 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     window.scrollTo(0, 0);
     lenisRef.current?.scrollTo(0, { immediate: true });
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      ScrollTriggerRef?.getAll().forEach((t) => t.kill());
     };
   }, [pathname]);
 
   useEffect(() => {
     // Fixed-delay refresh as an immediate fallback (covers cached-font visits).
     const id = setTimeout(() => {
-      ScrollTrigger.refresh();
+      ScrollTriggerRef?.refresh();
     }, 300);
 
     // Web fonts (Arizona flare/sans) can still be loading when ScrollTrigger first
@@ -61,7 +69,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     // reflow has happened, so refresh again then to pick up the corrected layout.
     let cancelled = false;
     document.fonts.ready.then(() => {
-      if (!cancelled) ScrollTrigger.refresh();
+      if (!cancelled) ScrollTriggerRef?.refresh();
     });
 
     return () => {
