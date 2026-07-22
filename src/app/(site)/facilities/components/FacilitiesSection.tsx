@@ -94,6 +94,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                     src={resolveImage(facility)}
                                     alt={facility.facility_name}
                                     fill
+                                    sizes="100vw"
                                     className="object-cover"
                                 />
                             </div>
@@ -123,6 +124,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                     src={img}
                                     alt={facility.facility_name}
                                     fill
+                                    sizes="50vw"
                                     className="object-cover"
                                 />
                             </div>
@@ -167,6 +169,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                         src={item.image}
                                         alt={item.facility.facility_name}
                                         fill
+                                        sizes="25vw"
                                         className="object-cover"
                                     />
                                 </div>

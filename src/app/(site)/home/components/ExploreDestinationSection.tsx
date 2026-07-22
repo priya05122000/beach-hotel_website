@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Button } from "@/src/components/common/button";
 import Section from "@/src/components/common/Section";
@@ -10,6 +10,8 @@ import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 const ExploreDestinationSection = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const headingRef = useRef<HTMLDivElement>(null);
+    const videoContainerRef = useRef<HTMLDivElement>(null);
+    const [videoInView, setVideoInView] = useState(false);
 
     useLayoutEffect(() => {
         const prefersReduced = prefersReducedMotion();
@@ -30,6 +32,27 @@ const ExploreDestinationSection = () => {
         }, sectionRef);
 
         return () => ctx.revert();
+    }, []);
+
+    useEffect(() => {
+        const el = videoContainerRef.current;
+        if (!el) return;
+
+        // The background video is a multi-MB file — don't fetch it until
+        // this section is about to scroll into view, so it doesn't add to
+        // the initial page's network payload for visitors who never reach it.
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setVideoInView(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "200px 0px" }
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -69,22 +92,25 @@ const ExploreDestinationSection = () => {
                 </Section>
 
                 {/* Image */}
-                <div className="relative overflow-hidden h-65  sm:h-screen ">
+                <div ref={videoContainerRef} className="relative overflow-hidden h-65  sm:h-screen ">
                     {/* <Image
                         src="/home/kanyakumari-statue.webp"
                         alt="Kanyakumari"
                         fill
                         className="h-full w-full object-cover object-top-right"
                         /> */}
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 h-full w-full object-cover "
-                    >
-                        <source src="/home/seaview.mp4" type="video/mp4" />
-                    </video>
+                    {videoInView && (
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="none"
+                            className="absolute inset-0 h-full w-full object-cover "
+                        >
+                            <source src="/home/seaview.mp4" type="video/mp4" />
+                        </video>
+                    )}
 
                     <div className="absolute top-0 left-0 right-0 h-10 sm:h-40 bg-linear-to-b from-white to-transparent" />
 

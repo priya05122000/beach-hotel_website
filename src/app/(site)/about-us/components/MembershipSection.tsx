@@ -1,4 +1,5 @@
-﻿import Section from "@/src/components/common/Section";
+﻿import Image from "next/image";
+import Section from "@/src/components/common/Section";
 import { typography } from "@/src/lib/typography";
 import {
     Gift,
@@ -40,13 +41,15 @@ export default function MembershipSection() {
             <div className=" overflow-hidden py-20">
 
                 {/* Background Image */}
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                        backgroundImage:
-                            "url('/home/hero-1.webp')",
-                    }}
-                />
+                <div className="absolute inset-0">
+                    <Image
+                        src="/home/hero-1.webp"
+                        alt=""
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
+                    />
+                </div>
 
                 {/* Blur Overlay */}
                 <div className="absolute inset-0 bg-primary/28 backdrop-blur-md" />

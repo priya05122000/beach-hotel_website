@@ -11,7 +11,7 @@ const ParallaxGallery = () => {
   const imgSmallRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const applyParallax = () => {
       if (!galleryRef.current) return;
       // Disable parallax on small screens
       if (window.innerWidth < 640) return;
@@ -23,13 +23,28 @@ const ParallaxGallery = () => {
     };
 
     // Reset transforms when resizing below breakpoint
-    const handleResize = () => {
+    const resetTransforms = () => {
       if (window.innerWidth < 640) {
         [imgLeftRef, imgRightRef, imgSmallRef].forEach(ref => {
           if (ref.current) ref.current.style.transform = 'none';
         });
       }
     };
+
+    // Batch the geometry read + style write into a single rAF per event
+    // instead of forcing a synchronous reflow on every scroll/resize tick.
+    let ticking = false;
+    const scheduleUpdate = (fn: () => void) => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        fn();
+        ticking = false;
+      });
+    };
+
+    const handleScroll = () => scheduleUpdate(applyParallax);
+    const handleResize = () => scheduleUpdate(resetTransforms);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });

@@ -43,6 +43,7 @@ export default function StoryPreviewSection() {
                                 src="/home/hero-1.webp"
                                 alt="Story 1"
                                 fill
+                                sizes="(min-width: 640px) 25vw, 100vw"
                                 className="object-cover "
                             />
                         </div>
@@ -55,6 +56,7 @@ export default function StoryPreviewSection() {
                                 src="/home/hero-2.webp"
                                 alt="Story 2"
                                 fill
+                                sizes="(min-width: 640px) 50vw, 100vw"
                                 className="object-cover "
                             />
                         </div>
@@ -67,6 +69,7 @@ export default function StoryPreviewSection() {
                                 src="/home/hero-1.webp"
                                 alt="Story 3"
                                 fill
+                                sizes="(min-width: 640px) 25vw, 100vw"
                                 className="object-cover "
                             />
                         </div>

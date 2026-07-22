@@ -119,6 +119,7 @@ export default function HeroLocationSection() {
                 src="/contact-us/contact.jpg"
                 alt="The Beach Hotel exterior"
                 fill
+                sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
                 className="object-cover"
                 priority
               />

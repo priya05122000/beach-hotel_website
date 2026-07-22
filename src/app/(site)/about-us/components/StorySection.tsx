@@ -26,6 +26,7 @@ function PhotoStrip() {
                                 src={photo.src}
                                 alt={photo.alt}
                                 fill
+                                sizes="100vw"
                                 className="object-cover "
                             />
                         </div>
@@ -50,6 +51,7 @@ function PhotoStrip() {
                                     src={photo.src}
                                     alt={photo.alt}
                                     fill
+                                    sizes="(min-width: 1280px) 192px, (min-width: 1024px) 144px, 112px"
                                     className="object-cover  "
                                 />
                             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import type { GalleryCategory, Gallery } from "@/src/types";
@@ -55,6 +55,29 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
     }, wrapperRef);
 
     return () => ctx.revert();
+  }, []);
+
+  const [mediaInView, setMediaInView] = useState(false);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    // Each block can render up to 3 autoplaying videos — don't fetch any of
+    // them until this block is about to scroll into view, so a gallery page
+    // with many categories doesn't eagerly download several videos at once.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMediaInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const isEven = index % 2 === 0;
@@ -112,14 +135,17 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
           >
             {mainUrl && (
               mainIsVideo ? (
-                <video
-                  src={mainUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                mediaInView && (
+                  <video
+                    src={mainUrl}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )
               ) : (
                 <Image
                   src={mainUrl}
@@ -141,14 +167,17 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
             <div className="relative flex-1 min-h-45">
               {topItem && (
                 topItem.media_type === "video" ? (
-                  <video
-                    src={`${apiBase}/uploads/${topItem.media_url}`}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  mediaInView && (
+                    <video
+                      src={`${apiBase}/uploads/${topItem.media_url}`}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )
                 ) : (
                   <Image
                     src={`${apiBase}/uploads/${topItem.media_url}`}
@@ -163,14 +192,17 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
             <div className="relative flex-1 min-h-45">
               {bottomItem && (
                 bottomItem.media_type === "video" ? (
-                  <video
-                    src={`${apiBase}/uploads/${bottomItem.media_url}`}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  mediaInView && (
+                    <video
+                      src={`${apiBase}/uploads/${bottomItem.media_url}`}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )
                 ) : (
                   <Image
                     src={`${apiBase}/uploads/${bottomItem.media_url}`}
