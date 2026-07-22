@@ -14,10 +14,18 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    formats: ["image/avif", "image/webp"],
+    // AVIF encoding is far more CPU-expensive than WebP for a marginal size
+    // win; on a self-hosted image optimizer (no CDN in front) that cost
+    // lands directly in the request path and was the dominant contributor
+    // to LCP "resource load duration". WebP alone is fast to encode and
+    // still gives strong compression.
+    formats: ["image/webp"],
     deviceSizes: [360, 640, 768, 1024, 1280, 1440, 1600],
     imageSizes: [64, 96, 128, 256, 384],
     qualities: [60, 70, 75, 80, 90],
+    // Keep optimized variants cached long-term so repeat requests for the
+    // same size/format are served instantly instead of re-encoded.
+    minimumCacheTTL: 31536000,
     unoptimized: process.env.NODE_ENV === "development" ? true : false,
 
     remotePatterns: [
