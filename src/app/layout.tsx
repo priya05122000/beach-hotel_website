@@ -5,7 +5,6 @@ import {
   arizonaFlareRegular,
   arizonaSansRegular,
 } from "../lib/font";
-import { Toaster } from "react-hot-toast";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.thebeachhotel.in";
 
@@ -62,7 +61,6 @@ export default async function RootLayout({
     >
       <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
         {children}
-        <Toaster position="top-right" />
       </body>
     </html>
   );

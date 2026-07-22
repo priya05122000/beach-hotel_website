@@ -10,7 +10,7 @@ import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import FormField from "@/src/components/ui/FormField";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const initialForm = {
   first_name: "",
@@ -113,6 +113,7 @@ export default function ContactFormSection() {
 
   return (
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
+      <Toaster position="top-right" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         <div ref={sectionRef} className="w-full">
           <h2
