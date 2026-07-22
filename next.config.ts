@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: false,
 
+  experimental: {
+    // Inlines generated CSS into <style> tags instead of render-blocking
+    // <link> tags. Recommended for atomic CSS (Tailwind) — production only.
+    inlineCss: true,
+  },
+
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 640, 768, 1024, 1280, 1440, 1600],

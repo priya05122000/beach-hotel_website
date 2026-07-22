@@ -8,7 +8,6 @@ import Image from "next/image";
 
 import Section from "../common/Section";
 import PillLinkButton from "../common/PillLinkButton";
-import { Announcement } from "@/src/types";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -63,15 +62,9 @@ const NAV_RIGHT = [
 const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
 const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-interface AnnouncementProps {
-  announcementData: Announcement[];
-}
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export default function Header({}: AnnouncementProps) {
+export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [animating, setAnimating] = useState(false);
@@ -89,24 +82,16 @@ export default function Header({}: AnnouncementProps) {
 
   // ── Effects ───────────────────────────────────────────────────────────────
 
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
+  const updateScrollState = () => {
+    setScrolled(window.scrollY > 50);
 
-      const footer = document.getElementById("footer");
-      const header = document.querySelector("header");
-      if (!footer || !header) return;
-
+    const footer = document.getElementById("footer");
+    const header = document.querySelector("header");
+    if (footer && header) {
       const navBottom = window.scrollY + header.getBoundingClientRect().height;
       setHideNav(navBottom >= footer.offsetTop - 50);
-    };
+    }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const checkDarkSection = () => {
     const elements = document.elementsFromPoint(window.innerWidth / 2, 48);
     const overDark = elements.some(
       (el) => !el.closest("header") && el.classList.contains("bg-primary"),
@@ -115,16 +100,26 @@ export default function Header({}: AnnouncementProps) {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", checkDarkSection, { passive: true });
-    const id = requestAnimationFrame(() => checkDarkSection());
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateScrollState();
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const id = requestAnimationFrame(updateScrollState);
     return () => {
-      window.removeEventListener("scroll", checkDarkSection);
+      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(id);
     };
   }, []);
 
   useEffect(() => {
-    const t = setTimeout(checkDarkSection, 50);
+    const t = setTimeout(updateScrollState, 50);
     return () => clearTimeout(t);
   }, [pathname]);
 

@@ -1,46 +1,10 @@
-"use client";
-
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-
-import { ANIM } from "@/src/lib/gsap/config";
-import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Section from "@/src/components/common/Section";
 
 const SignatureHeadline = () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const headingRef = useRef<HTMLHeadingElement>(null);
-
-    useLayoutEffect(() => {
-        const prefersReduced = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        const ctx = gsap.context(() => {
-            if (prefersReduced) return;
-
-            const split = applySplitSlideUp({
-                target: headingRef.current,
-                trigger: sectionRef.current,
-                start: ANIM.start.default,
-                duration: ANIM.duration.base,
-                stagger: ANIM.stagger.base,
-                ease: ANIM.ease.default,
-            });
-
-            return () => split?.revert();
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
         <Section>
 
-            <section
-                ref={sectionRef}
-                className="pt-32 pb-16 lg:pt-40 lg:pb-20"
-            >
+            <section className="pt-32 pb-16 lg:pt-40 lg:pb-20">
                 <div className="mx-auto max-w-280 text-center">
                     <h1
                         className="

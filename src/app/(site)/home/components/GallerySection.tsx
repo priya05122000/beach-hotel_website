@@ -113,20 +113,25 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
         if (!container || !inner) return;
 
         const ctx = gsap.context(() => {
-            gsap.fromTo(
-                inner,
-                { y: -32 },
-                {
-                    y: 32,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: container,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true,
-                    },
-                }
-            );
+            // Skip the decorative parallax on small screens — it's extra
+            // scroll-driven work that competes with everything else animating
+            // at once, and isn't worth the main-thread cost at mobile sizes.
+            gsap.matchMedia().add("(min-width: 768px)", () => {
+                gsap.fromTo(
+                    inner,
+                    { y: -32 },
+                    {
+                        y: 32,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: container,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true,
+                        },
+                    }
+                );
+            });
         }, container);
 
         return () => ctx.revert();

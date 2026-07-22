@@ -48,21 +48,23 @@ export default function HorizontalScrollSectionClient({
     if (!section || !track) return;
 
     const ctx = gsap.context(() => {
-      const getDistance = () =>
-        Math.max(0, track.scrollWidth - window.innerWidth);
+      let distance = Math.max(0, track.scrollWidth - window.innerWidth);
 
       gsap.to(track, {
-        x: () => -getDistance(),
+        x: () => -distance,
         ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${Math.max(1, getDistance())}`,
+          end: () => `+=${Math.max(1, distance)}`,
           pin: true,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           markers: false,
+          onRefreshInit: () => {
+            distance = Math.max(0, track.scrollWidth - window.innerWidth);
+          },
         },
       });
     }, section);

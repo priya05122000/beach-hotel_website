@@ -17,8 +17,10 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      syncTouch: true,
-      touchMultiplier: 2,
+      // syncTouch simulates momentum scrolling over touch input, which fights
+      // the browser's native touch-fling physics and reads as laggy/stuck on
+      // mobile. Let touch scrolling stay native; only wheel input is smoothed.
+      syncTouch: false,
     });
 
     lenisRef.current = lenis;
@@ -54,14 +56,18 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   }, [pathname]);
 
   useEffect(() => {
-
-    const id = setTimeout(() => {
+    let refreshed = false;
+    const refreshOnce = () => {
+      if (refreshed) return;
+      refreshed = true;
       ScrollTriggerRef?.refresh();
-    }, 300);
+    };
+
+    const id = setTimeout(refreshOnce, 300);
 
     let cancelled = false;
     document.fonts.ready.then(() => {
-      if (!cancelled) ScrollTriggerRef?.refresh();
+      if (!cancelled) refreshOnce();
     });
 
     return () => {

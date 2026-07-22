@@ -101,25 +101,30 @@ export default function MomentsSectionClient({ items }: Props) {
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      containerRefs.current.forEach((container, i) => {
-        const inner = innerRefs.current[i];
+      // Skip the decorative parallax on small screens — it's extra
+      // scroll-driven work that competes with everything else animating
+      // at once, and isn't worth the main-thread cost at mobile sizes.
+      gsap.matchMedia().add("(min-width: 768px)", () => {
+        containerRefs.current.forEach((container, i) => {
+          const inner = innerRefs.current[i];
 
-        if (!container || !inner) return;
+          if (!container || !inner) return;
 
-        gsap.fromTo(
-          inner,
-          { y: -32 },
-          {
-            y: 32,
-            ease: "none",
-            scrollTrigger: {
-              trigger: container,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          }
-        );
+          gsap.fromTo(
+            inner,
+            { y: -32 },
+            {
+              y: 32,
+              ease: "none",
+              scrollTrigger: {
+                trigger: container,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        });
       });
     });
 

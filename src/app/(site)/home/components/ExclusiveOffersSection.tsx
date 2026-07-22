@@ -1,11 +1,16 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import { Offer } from "@/src/types";
 import { Copy } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ExclusiveOffersSectionProps {
   offerDatas: Offer[];
@@ -110,6 +115,131 @@ const BlobOverlay = ({
   </svg>
 );
 
+function OfferCard({
+  offer,
+  index,
+  isActive,
+  copiedId,
+  onCardClick,
+  onCopy,
+}: {
+  offer: Offer;
+  index: number;
+  isActive: boolean;
+  copiedId: string | null;
+  onCardClick: () => void;
+  onCopy: (e: React.MouseEvent, offerId: string, code: string) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  const imageUrl = offer.image_url
+    ? `${process.env.NEXT_PUBLIC_API_URL}/uploads/${offer.image_url}`
+    : "/placeholder.jpg";
+
+  useIsomorphicLayoutEffect(() => {
+    const container = containerRef.current;
+    const inner = innerRef.current;
+    if (!container || !inner) return;
+
+    const ctx = gsap.context(() => {
+      // Skip the decorative parallax on small screens — it's extra
+      // scroll-driven work that competes with everything else animating
+      // at once, and isn't worth the main-thread cost at mobile sizes.
+      gsap.matchMedia().add("(min-width: 768px)", () => {
+        gsap.fromTo(
+          inner,
+          { y: -32 },
+          {
+            y: 32,
+            ease: "none",
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div
+      onClick={onCardClick}
+      className="group relative h-100 xl:h-110 overflow-hidden "
+    >
+      <div ref={containerRef} className="relative h-full w-full overflow-hidden ">
+        <div ref={innerRef} className="absolute -top-8 -bottom-8 inset-x-0">
+          <Image
+            src={imageUrl}
+            alt={offer.title}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+          />
+        </div>
+
+        <div
+          className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-700 opacity-0 lg:group-hover:opacity-100 ${isActive
+            ? "opacity-100 lg:opacity-0"
+            : ""
+            }`}
+        >
+          <BlobOverlay
+            id={index}
+            imageSrc={imageUrl}
+          />
+        </div>
+      </div>
+
+      <div className="absolute inset-0 z-20 flex flex-col p-5">
+
+        {/* Spacer   absorbs expansion so bottom row stays anchored */}
+        <div className="flex-1" />
+
+        {/* 1st: Content */}
+        <div
+          className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] max-h-0 opacity-0 translate-y-4 lg:group-hover:max-h-32 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 ${isActive
+            ? "max-h-32 opacity-100 translate-y-0 lg:max-h-0 lg:opacity-0 lg:translate-y-4"
+            : ""
+            }`}
+        >
+          <p className="text-white px-2 pb-3">
+            {offer.short_description}
+          </p>
+        </div>
+
+        {/* 2nd: Weekday badge + Number side by side */}
+        <div className="flex items-center justify-between">
+          <div className="inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent">
+            <p
+              className={`flex items-center px-2 transition-all duration-700 uppercase text-white ${isActive
+                ? "bg-white text-primary-dark lg:bg-transparent lg:text-white"
+                : ""
+                }`}
+            >
+              Weekday 50% off
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={(e) => onCopy(e, offer.id, "6787Hkjh68")}
+            aria-label="Copy promo code"
+            className={`text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
+          >
+            {copiedId === offer.id ? "Copied!" : "6787Hkjh68"}{" "}
+            <Copy className="w-4 h-4 " />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ExclusiveOffersSection({
   offerDatas,
 }: ExclusiveOffersSectionProps) {
@@ -152,84 +282,16 @@ export default function ExclusiveOffersSection({
         {offerDatas.map((offer, index) => {
           const isActive = activeCard === offer.id;
 
-          const imageUrl = offer.image_url
-            ? `${process.env.NEXT_PUBLIC_API_URL}/uploads/${offer.image_url}`
-            : "/placeholder.jpg";
-
           return (
-            <div
+            <OfferCard
               key={offer.id}
-              onClick={() =>
-                handleCardClick(
-                  offer.id,
-                  isActive
-                )
-              }
-              className="group relative h-100 xl:h-110 overflow-hidden "
-            >
-              <div className="relative h-full w-full overflow-hidden ">
-                <Image
-                  src={imageUrl}
-                  alt={offer.title}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-                />
-
-                <div
-                  className={`absolute inset-0 z-10 pointer-events-none transition-opacity duration-700 opacity-0 lg:group-hover:opacity-100 ${isActive
-                    ? "opacity-100 lg:opacity-0"
-                    : ""
-                    }`}
-                >
-                  <BlobOverlay
-                    id={index}
-                    imageSrc={imageUrl}
-                  />
-                </div>
-              </div>
-
-              <div className="absolute inset-0 z-20 flex flex-col p-5">
-
-                {/* Spacer   absorbs expansion so bottom row stays anchored */}
-                <div className="flex-1" />
-
-                {/* 1st: Content */}
-                <div
-                  className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] max-h-0 opacity-0 translate-y-4 lg:group-hover:max-h-32 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 ${isActive
-                    ? "max-h-32 opacity-100 translate-y-0 lg:max-h-0 lg:opacity-0 lg:translate-y-4"
-                    : ""
-                    }`}
-                >
-                  <p className="text-white px-2 pb-3">
-                    {offer.short_description}
-                  </p>
-                </div>
-
-                {/* 2nd: Weekday badge + Number side by side */}
-                <div className="flex items-center justify-between">
-                  <div className="inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent">
-                    <p
-                      className={`flex items-center px-2 transition-all duration-700 uppercase text-white ${isActive
-                        ? "bg-white text-primary-dark lg:bg-transparent lg:text-white"
-                        : ""
-                        }`}
-                    >
-                      Weekday 50% off
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={(e) => handleCopy(e, offer.id, "6787Hkjh68")}
-                    aria-label="Copy promo code"
-                    className={`text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
-                  >
-                    {copiedId === offer.id ? "Copied!" : "6787Hkjh68"}{" "}
-                    <Copy className="w-4 h-4 " />
-                  </button>
-                </div>
-              </div>
-            </div>
+              offer={offer}
+              index={index}
+              isActive={isActive}
+              copiedId={copiedId}
+              onCardClick={() => handleCardClick(offer.id, isActive)}
+              onCopy={handleCopy}
+            />
           );
         })}
       </div>
