@@ -28,7 +28,8 @@ export default function HeroBanner() {
           // src="/home/herobanner.webp"
           alt="Hero Banner"
           fill
-          priority
+          preload
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover"
         />
