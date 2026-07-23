@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react"; // 
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import Lenis from "lenis";
+import type Lenis from "lenis";
 import gsap from "gsap";
 
 
@@ -13,36 +13,41 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      // syncTouch simulates momentum scrolling over touch input, which fights
-      // the browser's native touch-fling physics and reads as laggy/stuck on
-      // mobile. Let touch scrolling stay native; only wheel input is smoothed.
-      syncTouch: false,
-    });
-
-    lenisRef.current = lenis;
-    window.__lenis = lenis;
-
     let cancelled = false;
-    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-      if (cancelled) return;
-      ScrollTriggerRef = ScrollTrigger;
-      lenis.on("scroll", ScrollTrigger.update);
-    });
+    let rafCallback: ((time: number) => void) | null = null;
 
-    const rafCallback = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(rafCallback);
-    gsap.ticker.lagSmoothing(0);
+   
+    import("lenis").then(({ default: LenisCtor }) => {
+      if (cancelled) return;
+
+      const lenis = new LenisCtor({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+
+        syncTouch: false,
+      });
+
+      lenisRef.current = lenis;
+      window.__lenis = lenis;
+
+      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        if (cancelled) return;
+        ScrollTriggerRef = ScrollTrigger;
+        lenis.on("scroll", ScrollTrigger.update);
+      });
+
+      rafCallback = (time: number) => lenis.raf(time * 1000);
+      gsap.ticker.add(rafCallback);
+      gsap.ticker.lagSmoothing(0);
+    });
 
     return () => {
       cancelled = true;
+      if (rafCallback) gsap.ticker.remove(rafCallback);
+      lenisRef.current?.destroy();
       lenisRef.current = null;
       delete window.__lenis;
-      gsap.ticker.remove(rafCallback);
-      lenis.destroy();
     };
   }, []);
 

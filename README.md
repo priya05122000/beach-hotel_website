@@ -22,6 +22,10 @@ npm run build
 npm start
 ```
 
+Production builds use **webpack**, not Turbopack (`next build --webpack`) —
+`npm run dev` still uses Turbopack for fast local iteration. See "Duplicate
+packages across route chunks" below for why.
+
 ## Performance Optimization Checklist
 
 A running log of the Lighthouse/Core Web Vitals issues found and fixed on
@@ -88,7 +92,50 @@ means something exotic is wrong — most of the time it's one of these.
   the relevant `open`/interaction state is true. One date-picker library in
   this project was a ~50KB chunk that had been loading unconditionally on
   every visit to a page that has it — splitting it removed that entirely
-  from the initial load.
+  from the initial load (confirmed: the chunk was completely absent from
+  the initial page's script list after the change).
+- **`next/dynamic()` and a bare `import()` are not equivalent for this
+  purpose — verify which one you actually need.** `next/dynamic()` wraps a
+  *component* and Next excludes its chunk from the route's initial script
+  manifest until it's actually rendered — this is what makes the date-picker
+  split above work. A bare `import("some-library").then(...)` inside a
+  `useEffect` (used for a library instance/side-effect, not a component —
+  e.g. initializing a smooth-scroll library) still gets code-split into its
+  own chunk, but this project's Turbopack build still listed that chunk in
+  the route's initial `<script async>` tags regardless of when the promise
+  resolved. It's not wasted effort (keeps the module out of a larger shared
+  chunk, and defers *evaluation* to after mount) but don't claim it removes
+  the request from the initial load without checking the actual served
+  HTML — it may not, unlike a true `next/dynamic()` component split.
+  Only trust "this reduced the initial bundle" once you've confirmed it by
+  inspecting the built HTML's script tags / chunk contents directly, not by
+  assuming the technique worked.
+- **Check for the same shared library duplicated across multiple route
+  chunks, not just within one route.** A library imported independently by
+  components on several different pages (e.g. GSAP core, imported by nearly
+  every route's own client components rather than through a shared layout)
+  *should* collapse into one chunk that every route references — but don't
+  assume the bundler always does this correctly. Verify empirically: build,
+  then for each route grep its referenced chunk files for a signature string
+  unique to the library (a class name, a distinctive string literal) and
+  compare which physical chunk file(s) each route points to. If two routes
+  reference *different* chunk files both containing the same library, it's
+  being duplicated, not shared — check file sizes too (near-identical sizes
+  across "different" chunks is a strong signal). On this project, Turbopack
+  (the current default bundler, a newer Rust-based tool with automatic
+  per-route chunking and — confirmed via this Next version's own docs — no
+  exposed manual chunk-splitting config comparable to webpack's
+  `splitChunks`/`cacheGroups`) was silently shipping GSAP core as 3 separate
+  copies across 7 routes instead of 1 shared copy, costing ~70KB of
+  unnecessary duplicate downloads on 2 of them. The fix was switching the
+  **production build** to webpack (`next build --webpack` — keep `next dev`
+  on Turbopack for fast local iteration; webpack production builds are
+  slower, ~27s vs Turbopack's ~5-14s here, but only run at deploy time) —
+  webpack's mature chunk-splitting correctly collapsed it back to one shared
+  chunk referenced by all 7 routes, verified the same way (content grep +
+  route-by-route chunk comparison). If a newer Turbopack release gains
+  equivalent cross-route deduplication, re-test before assuming webpack is
+  still necessary.
 - **Delete unused exports from expensive libraries eagerly.** A `next/font`
   export that's never applied anywhere still executes and preloads at
   module-eval time just by being defined/imported — same idea applies to
@@ -192,12 +239,25 @@ means something exotic is wrong — most of the time it's one of these.
   videos simultaneously on load — same fix (IntersectionObserver gating +
   `preload="none"`) but worth checking specifically wherever a component is
   rendered in a `.map()`, since the cost scales with content, not code.
-- **A `"use client"` directive earns its keep or it should go.** Check any
-  client component for actual hook/state/browser-API usage before assuming
-  it needs the directive — a component that's just a static `<Image>`/JSX
-  render with no interactivity should be a plain server component instead,
-  even if a sibling component in the same feature legitimately needs
-  `"use client"`.
+- **A `"use client"` directive earns its keep or it should go.** For every
+  file marked `"use client"`, check it (and any shared hook/util it calls)
+  for at least one of: a React hook (`useState`, `useEffect`,
+  `useLayoutEffect`, `useRef`, `useContext`, `useSearchParams`, or a custom
+  hook built on these), an event handler (`onClick`, `onChange`, `onSubmit`,
+  etc.), a browser-only API (`window`, `document`, `navigator`,
+  `IntersectionObserver`, `localStorage`), or a client-only library
+  (carousel/date-picker/etc. that requires a browser runtime, or
+  `next/dynamic(ssr:false)`). If none apply, drop the directive — it should
+  be a plain server component. Don't stop at the file itself: a component
+  can look inert but call a shared helper (e.g. a GSAP animation utility)
+  that does the actual hook/DOM work — check what the helper does before
+  concluding either way. This is worth re-running as a periodic audit, not
+  a one-time pass — new components get added and can pick up an unnecessary
+  directive by copy-paste from a sibling that genuinely needs it. (On this
+  project: an audit of all 41 `"use client"` files found exactly one
+  unnecessary case — a blog-post hero component that was a pure `next/image`
+  render with zero interactivity — everything else already had a genuine
+  hook/handler/browser-API/library reason.)
 
 ### General workflow notes
 
