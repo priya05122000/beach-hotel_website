@@ -27,7 +27,7 @@ export function useInView<T extends HTMLElement>(rootMargin = "300px 0px") {
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [rootMargin]);
 
   return { ref, inView };
 }

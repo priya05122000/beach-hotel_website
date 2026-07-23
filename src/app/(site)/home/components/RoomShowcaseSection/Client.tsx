@@ -200,8 +200,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
                 src={item.image}
                 alt={item.title}
                 fill
-                priority={i === 0}
-                loading={i === 0 ? undefined : "lazy"}
+                loading="lazy"
                 sizes="100vw"
                 className="object-cover"
               />
@@ -269,8 +268,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
                         src={item.image}
                         alt={item.title}
                         fill
-                        priority={i === 0}
-                        loading={i === 0 ? undefined : "lazy"}
+                        loading="lazy"
                         sizes="(min-width: 768px) 208px, (min-width: 640px) 176px, 60vw"
                         className="object-cover"
                       />

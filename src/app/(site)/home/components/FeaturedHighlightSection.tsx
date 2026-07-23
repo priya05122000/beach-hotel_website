@@ -78,7 +78,6 @@ const FeaturedHighlightSection = () => {
               fill
               className="object-cover"
               sizes="(max-width: 640px) 100vw, 66vw"
-              priority
             />
           </div>
 
