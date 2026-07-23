@@ -6,7 +6,7 @@ import Image from "next/image";
 import Section from "@/src/components/common/Section";
 import { Button } from "@/src/components/common/button";
 import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
-import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
+import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 import SubHeading from "@/src/components/common/SubHeading";
 
@@ -14,6 +14,7 @@ export default function HeroLocationSection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const imageInnerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const headingLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
   const subRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -24,12 +25,11 @@ export default function HeroLocationSection() {
       applyParallax(imageInnerRef.current, { trigger: gridRef.current, from: -10, to: 10 });
     });
 
-    let splitHeading: ReturnType<typeof applySplitSlideUp>;
     let splitSub: ReturnType<typeof applySplitSlideUp>;
 
     if (!prefersReduced) {
-      splitHeading = applySplitSlideUp({
-        target: headingRef.current,
+      applyLinesSlideUp({
+        lines: headingLinesRef.current,
         trigger: headingRef.current,
         start: "top 85%",
         duration: ANIM.duration.base,
@@ -48,7 +48,6 @@ export default function HeroLocationSection() {
 
     return () => {
       mm.revert();
-      splitHeading?.revert();
       splitSub?.revert();
     };
   }, []);
@@ -59,7 +58,12 @@ export default function HeroLocationSection() {
         {/* Left Panel */}
         <div>
           <h1 ref={headingRef} className="font-semibold text-primary-dark type-h2 leading-tight">
-            A Conversation <br /> Begins Your Journey
+            <div className="overflow-hidden">
+              <span ref={(el) => { headingLinesRef.current[0] = el; }} className="block">A Conversation</span>
+            </div>
+            <div className="overflow-hidden">
+              <span ref={(el) => { headingLinesRef.current[1] = el; }} className="block">Begins Your Journey</span>
+            </div>
           </h1>
         </div>
         {/* Right Panel */}

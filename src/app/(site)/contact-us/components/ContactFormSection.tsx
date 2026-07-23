@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import Section from "@/src/components/common/Section";
@@ -10,7 +11,7 @@ import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import FormField from "@/src/components/ui/FormField";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const initialForm = {
   first_name: "",
@@ -20,6 +21,27 @@ const initialForm = {
   message: "",
   consent: false,
 };
+
+const contactDetails = [
+  {
+    icon: Phone,
+    label: "Phone Number",
+    value: "04652 237 491",
+    href: "tel:04652237491",
+  },
+  {
+    icon: Mail,
+    label: "Email Address",
+    value: "thebeachhotel@gmail.com",
+    href: "mailto:thebeachhotel@gmail.com",
+  },
+  {
+    icon: MapPin,
+    label: "Office Location",
+    value: "Erumanayakkanpatti Beach Road,\nKanyakumari 629702, India",
+    href: "https://maps.google.com/?q=Erumanayakkanpatti+Beach+Road,+Kanyakumari",
+  },
+];
 
 export default function ContactFormSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -113,7 +135,6 @@ export default function ContactFormSection() {
 
   return (
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
-      <Toaster position="top-right" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         <div ref={sectionRef} className="w-full">
           <h2

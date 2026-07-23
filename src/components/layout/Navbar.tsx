@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -61,6 +61,45 @@ const NAV_RIGHT = [
 
 const EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
 const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+// Only depends on `items` (stable module-level constants), `pathname`, and
+// `isOverDark` — memoized so it doesn't re-render on every scroll-driven
+// `scrolled`/`hideNav` update, which don't affect its output.
+const DesktopNavLinks = memo(function DesktopNavLinks({
+  items,
+  pathname,
+  isOverDark,
+}: {
+  items: { href: string; label: string }[];
+  pathname: string;
+  isOverDark: boolean;
+}) {
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/");
+
+  const linkCls = (href: string) => {
+    const active = isActive(href);
+    const base = "text-[11px] tracking-[3px] uppercase transition-colors";
+    if (isOverDark) return `${base} text-white`;
+    return `${base} ${active ? "text-primary-dark font-semibold" : "text-primary-dark/70 hover:text-primary-dark"}`;
+  };
+
+  return (
+    <>
+      {items.map(({ href, label }) => (
+        <li key={label}>
+          <Link
+            href={href}
+            data-text={label}
+            className={`${linkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible after:block after:h-0 after:overflow-hidden`}
+          >
+            {label}
+          </Link>
+        </li>
+      ))}
+    </>
+  );
+});
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -318,13 +357,6 @@ export default function Header() {
   const logoSrc = isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg";
   const iconColor = isOverDark && !open ? "text-white" : "text-primary-dark";
 
-  const desktopLinkCls = (href: string) => {
-    const active = isActive(href);
-    const base = "text-[11px] tracking-[3px] uppercase transition-colors";
-    if (isOverDark) return `${base} text-white`;
-    return `${base} ${active ? "text-primary-dark font-semibold" : "text-primary-dark/70 hover:text-primary-dark"}`;
-  };
-
   // Counter assigned during render for child ref indices
   let childIdx = 0;
 
@@ -351,13 +383,7 @@ export default function Header() {
                 {/* Left */}
                 <div className="flex-1 flex justify-end pr-6 xl:pr-10 2xl:pr-16 h-10 min-w-0">
                   <ul className="hidden lg:flex items-center gap-6">
-                    {NAV_LEFT.map(({ href, label }) => (
-                      <li key={label}>
-                        <Link href={href} data-text={label} className={`${desktopLinkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible after:block after:h-0 after:overflow-hidden`}>
-                          {label}
-                        </Link>
-                      </li>
-                    ))}
+                    <DesktopNavLinks items={NAV_LEFT} pathname={pathname} isOverDark={isOverDark} />
                   </ul>
                 </div>
 
@@ -377,13 +403,7 @@ export default function Header() {
                 {/* Right */}
                 <div className="flex-1 flex justify-start pl-6 xl:pl-10 2xl:pl-16 h-10 min-w-0">
                   <ul className="hidden lg:flex items-center gap-4 xl:gap-6 whitespace-nowrap">
-                    {NAV_RIGHT.map(({ href, label }) => (
-                      <li key={label} className="  ">
-                        <Link href={href} data-text={label} className={`${desktopLinkCls(href)} after:content-[attr(data-text)] after:font-semibold after:invisible  after:block after:h-0 after:overflow-hidden`}>
-                          {label}
-                        </Link>
-                      </li>
-                    ))}
+                    <DesktopNavLinks items={NAV_RIGHT} pathname={pathname} isOverDark={isOverDark} />
 
                     <li>
                       <BookStayButton />

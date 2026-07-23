@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
+import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const TEXT_LINES = [
     "Curated",
@@ -21,6 +21,7 @@ export default function FacilitiesSplitHero() {
     const desktopPanelRef = useRef<HTMLDivElement>(null);
     const desktopTaglineRef = useRef<HTMLSpanElement>(null);
     const desktopHeadlineRef = useRef<HTMLHeadingElement>(null);
+    const desktopHeadlineLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
     const desktopCtaRef = useRef<HTMLAnchorElement>(null);
     const desktopParaRef = useRef<HTMLParagraphElement>(null);
 
@@ -28,6 +29,7 @@ export default function FacilitiesSplitHero() {
     const mobilePanelRef = useRef<HTMLDivElement>(null);
     const mobileTaglineRef = useRef<HTMLSpanElement>(null);
     const mobileHeadlineRef = useRef<HTMLHeadingElement>(null);
+    const mobileHeadlineLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
     const mobileCtaRef = useRef<HTMLAnchorElement>(null);
     const mobileParaRef = useRef<HTMLParagraphElement>(null);
 
@@ -39,7 +41,7 @@ export default function FacilitiesSplitHero() {
             gsap.set(mobilePanelRef.current, { opacity: 1 });
             const tl = gsap.timeline({ delay: 0.2 });
             applySplitSlideUp({ target: mobileTaglineRef.current, timeline: tl, duration: 0.5 });
-            applySplitSlideUp({ target: mobileHeadlineRef.current, timeline: tl, position: ">-0.1", stagger: 0.1, duration: 0.55 });
+            applyLinesSlideUp({ lines: mobileHeadlineLinesRef.current, timeline: tl, position: ">-0.1", stagger: 0.1, duration: 0.55 });
             tl.fromTo(mobileCtaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, ">-0.1");
             tl.fromTo(mobileParaRef.current, { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, ">-0.1");
         });
@@ -95,7 +97,7 @@ export default function FacilitiesSplitHero() {
             tl.to(desktopPanelRef.current, { opacity: 1, duration: 0.2 }, ">");
 
             applySplitSlideUp({ target: desktopTaglineRef.current, timeline: tl, position: ">", duration: 0.35 });
-            applySplitSlideUp({ target: desktopHeadlineRef.current, timeline: tl, position: ">-0.15", stagger: 0.1, duration: 0.45 });
+            applyLinesSlideUp({ lines: desktopHeadlineLinesRef.current, timeline: tl, position: ">-0.15", stagger: 0.1, duration: 0.45 });
             tl.fromTo(desktopCtaRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, ">-0.1");
             gsap.set(desktopParaRef.current, { yPercent: 110, opacity: 0 });
             tl.to(desktopParaRef.current, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power4.out" }, ">-0.15");
@@ -130,10 +132,14 @@ export default function FacilitiesSplitHero() {
                             className="type-display-sm uppercase text-primary-dark leading-tight"
                         >
                             {TEXT_LINES.map((line, i) => (
-                                <span key={i}>
-                                    {line}
-                                    {i < TEXT_LINES.length - 1 && <br />}
-                                </span>
+                                <div key={i} className="overflow-hidden">
+                                    <span
+                                        ref={(el) => { mobileHeadlineLinesRef.current[i] = el; }}
+                                        className="block"
+                                    >
+                                        {line}
+                                    </span>
+                                </div>
                             ))}
                         </h1>
 
@@ -188,10 +194,14 @@ export default function FacilitiesSplitHero() {
                                     className="type-display-sm uppercase text-primary-dark leading-tight"
                                 >
                                     {TEXT_LINES.map((line, i) => (
-                                        <span key={i}>
-                                            {line}
-                                            {i < TEXT_LINES.length - 1 && <br />}
-                                        </span>
+                                        <div key={i} className="overflow-hidden">
+                                            <span
+                                                ref={(el) => { desktopHeadlineLinesRef.current[i] = el; }}
+                                                className="block"
+                                            >
+                                                {line}
+                                            </span>
+                                        </div>
                                     ))}
                                 </h1>
 

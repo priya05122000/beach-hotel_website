@@ -1,11 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import Image from "next/image";
 
 import CenterSection from "@/src/components/common/CenterSection";
 import DatePicker from "@/src/components/ui/DatePicker";
 import GuestPicker from "@/src/components/ui/GuestPicker";
+
+// Static — never depends on the booking form's date/guest state, so it's
+// split into its own memoized component to avoid re-rendering (and
+// recreating the fill Image element) on every date selection.
+const HeroBackgroundImage = memo(function HeroBackgroundImage() {
+  return (
+    <Image
+      src="/banner/home.jpg"
+      alt="Hero Banner"
+      fill
+      preload
+      fetchPriority="high"
+      sizes="100vw"
+      className="object-cover"
+    />
+  );
+});
 
 export default function HeroBanner() {
   const [checkIn, setCheckIn] = useState<Date>();
@@ -23,16 +40,7 @@ export default function HeroBanner() {
     <section className="relative h-[90vh] sm:h-screen">
       {/* Background Image */}
       <div className="relative h-full overflow-hidden">
-        <Image
-          src="/banner/home.jpg"
-          // src="/home/herobanner.webp"
-          alt="Hero Banner"
-          fill
-          preload
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover"
-        />
+        <HeroBackgroundImage />
 
         {/* Hotel name — page h1 */}
         {/* <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pb-32 sm:pb-20 pointer-events-none">

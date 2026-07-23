@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, memo } from "react";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import Image from "next/image";
@@ -115,19 +115,19 @@ const BlobOverlay = ({
   </svg>
 );
 
-function OfferCard({
+const OfferCard = memo(function OfferCard({
   offer,
   index,
   isActive,
-  copiedId,
+  isCopied,
   onCardClick,
   onCopy,
 }: {
   offer: Offer;
   index: number;
   isActive: boolean;
-  copiedId: string | null;
-  onCardClick: () => void;
+  isCopied: boolean;
+  onCardClick: (offerId: string, isActive: boolean) => void;
   onCopy: (e: React.MouseEvent, offerId: string, code: string) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -169,7 +169,7 @@ function OfferCard({
 
   return (
     <div
-      onClick={onCardClick}
+      onClick={() => onCardClick(offer.id, isActive)}
       className="group relative h-100 xl:h-110 overflow-hidden "
     >
       <div ref={containerRef} className="relative h-full w-full overflow-hidden ">
@@ -231,14 +231,14 @@ function OfferCard({
             aria-label="Copy promo code"
             className={`text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
           >
-            {copiedId === offer.id ? "Copied!" : "6787Hkjh68"}{" "}
+            {isCopied ? "Copied!" : "6787Hkjh68"}{" "}
             <Copy className="w-4 h-4 " />
           </button>
         </div>
       </div>
     </div>
   );
-}
+});
 
 export default function ExclusiveOffersSection({
   offerDatas,
@@ -279,21 +279,17 @@ export default function ExclusiveOffersSection({
       </p>
 
       <div className="grid gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
-        {offerDatas.map((offer, index) => {
-          const isActive = activeCard === offer.id;
-
-          return (
-            <OfferCard
-              key={offer.id}
-              offer={offer}
-              index={index}
-              isActive={isActive}
-              copiedId={copiedId}
-              onCardClick={() => handleCardClick(offer.id, isActive)}
-              onCopy={handleCopy}
-            />
-          );
-        })}
+        {offerDatas.map((offer, index) => (
+          <OfferCard
+            key={offer.id}
+            offer={offer}
+            index={index}
+            isActive={activeCard === offer.id}
+            isCopied={copiedId === offer.id}
+            onCardClick={handleCardClick}
+            onCopy={handleCopy}
+          />
+        ))}
       </div>
     </Section>
   );
