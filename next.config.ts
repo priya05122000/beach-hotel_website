@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: false,
 
+  // `dev` uses Turbopack by default; the `webpack()` override below only
+  // applies to the production build (`next build --webpack`). This empty
+  // block tells Turbopack that's intentional so it doesn't warn/error.
+  turbopack: {},
+
   experimental: {
     // Inlines generated CSS into <style> tags instead of render-blocking
     // <link> tags. Recommended for atomic CSS (Tailwind) — production only.
@@ -51,6 +56,25 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+  },
+
+  webpack(config, { isServer }) {
+    // Webpack's built-in `default`/`defaultVendors` cache groups hoist any
+    // module used by 2+ chunks into a shared chunk regardless of whether
+    // those chunks are async (next/dynamic) or part of the initial request.
+    // That silently promoted embla-carousel (used by 3 separate lazy-loaded
+    // components) into a chunk referenced on every route's initial script
+    // list, even routes with no carousel at all. Disabling these two lets
+    // Next's own `framework`/`lib` cache groups govern splitting instead,
+    // so shared code used only across async boundaries stays async.
+    if (!isServer && config.optimization?.splitChunks) {
+      config.optimization.splitChunks.cacheGroups = {
+        ...config.optimization.splitChunks.cacheGroups,
+        default: false,
+        defaultVendors: false,
+      };
+    }
+    return config;
   },
 
   async headers() {

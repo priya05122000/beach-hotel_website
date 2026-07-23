@@ -6,8 +6,8 @@ import RoomShowcaseSection from "./home/components/RoomShowcaseSection";
 import RoomCardsSection from "./home/components/RoomCardsSection";
 import HorizontalScrollSection from "./home/components/HorizontalScrollSection";
 import GallerySection from "./home/components/GallerySection";
-import Testimonials from "./home/components/Testimonials";
 import MomentsSection from "./home/components/MomentsSection";
+import LazyTestimonials from "./home/components/LazyTestimonials";
 import ExclusiveOffersSection from "./home/components/ExclusiveOffersSection";
 import BannerBelowSection from "./home/components/BannerBelowSection";
 import SignatureHeadline from "./home/components/SignatureHeadline";
@@ -18,7 +18,6 @@ import { getGalleryData } from "@/src/service/galleries";
 
 import { getOfferData } from "@/src/service/offers";
 import { getRoomsData } from "@/src/service/rooms";
-
 
 export const metadata: Metadata = {
   title: "The Beach Hotel — Kanyakumari's Premier Luxury Address",
@@ -69,7 +68,7 @@ export default async function HomePage() {
       <HorizontalScrollSection />
       <FeaturedHighlightSection />
       <GallerySection galleries={randomGalleryItems} />
-      <Testimonials reviews={guestReviewData.data} />
+      <LazyTestimonials reviews={guestReviewData.data} />
       <MomentsSection />
     </>
   );

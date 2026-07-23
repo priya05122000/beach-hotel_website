@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LazySection from "@/src/components/common/LazySection";
 
 import {
   Users,
@@ -30,10 +32,15 @@ import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import SubHeading from "@/src/components/common/SubHeading";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
-import RoomSlider from "./RoomSlider";
 import Pill from "./Pill";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Each row renders its own carousel — don't fetch embla-carousel until the
+// first row is about to scroll into view.
+const DynamicRoomSlider = dynamic(() => import("./RoomSlider"), {
+  ssr: false,
+});
 
 function RoomRow({ room, index }: { room: Room; index: number }) {
   const isEven = index % 2 === 0;
@@ -101,7 +108,12 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
           }}
           className={`${isEven ? "lg:order-1" : "lg:order-2"}`}
         >
-          <RoomSlider images={room.image_url ?? []} name={room.name} />
+          <LazySection
+            className="aspect-4/3 w-full"
+            placeholder={<div className="aspect-4/3 w-full bg-silver/20" />}
+          >
+            <DynamicRoomSlider images={room.image_url ?? []} name={room.name} />
+          </LazySection>
 
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
             <div className="flex flex-wrap type-body-sm gap-x-6 gap-y-3">

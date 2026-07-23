@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import HeroLocationSection from "./components/HeroLocationSection";
 import LocationSection from "./components/LocationSection";
 import NearbyLocationsSection from "./components/NearbyLocationsSection";
-import TrustedBySection from "./components/TrustedBySection";
 import ContactFormSection from "./components/ContactFormSection";
+import LazyTrustedBySection from "./components/LazyTrustedBySection";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -25,7 +25,7 @@ export default function ContactPage() {
       <HeroLocationSection />
       <NearbyLocationsSection />
       <ContactFormSection />
-      <TrustedBySection />
+      <LazyTrustedBySection />
       <LocationSection />
     </div>
   );

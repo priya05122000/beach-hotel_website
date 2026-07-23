@@ -248,6 +248,68 @@ means something exotic is wrong — most of the time it's one of these.
   several routes flip from server-rendered-on-demand to statically
   prerendered, which is a much bigger win than the fetch removal alone.
 
+### Lazy-load third-party libraries behind visibility
+
+- **A library only used by a below-the-fold section (a carousel, a marquee,
+  etc.) shouldn't be fetched until that section is about to scroll into
+  view** — not merely "on mount" or "on interaction" if the component
+  auto-renders on mount anyway. Pattern used here: a reusable `useInView`
+  hook (`IntersectionObserver`, fires once, `rootMargin` gives it a head
+  start before the element is actually on-screen) feeding a `LazySection`
+  wrapper that renders a lightweight placeholder (sized to roughly match the
+  real content, to avoid layout shift) until then, and only mounts the real
+  (dynamically-imported) component once visible.
+- **`next/dynamic()` must be called at module top level, not inside a
+  component body/render/useMemo** — this Next version's own docs are
+  explicit: "`dynamic()` can't be used inside of React rendering as it needs
+  to be marked in the top level of the module for preloading to work,
+  similar to `React.lazy`." Declare the `dynamic(() => import(...))` call
+  once outside any component, and reference the resulting component inside
+  JSX/`LazySection`.
+- **`ssr: false` is not allowed on a `next/dynamic()` call inside a Server
+  Component — only inside a Client Component.** If the page/section that
+  needs the lazy-loaded library is itself a Server Component (e.g. an async
+  page with data fetching), don't just drop `ssr: false` and assume it's
+  fine: this project's own docs also note that dynamically importing from a
+  Server Component *actively preloads* the chunk's assets — confirmed
+  empirically here, a page-level `dynamic()` (no `ssr: false`, since the
+  page was a Server Component) still emitted an eager `<script async>` tag
+  for the lazy chunk on every load of that route, completely defeating the
+  visibility gate. Fix: move the `dynamic()` call into its own small
+  `"use client"` wrapper file that internally renders `LazySection` +
+  the dynamically-imported component, and have the Server Component page
+  import *that* wrapper as a normal (non-dynamic) Client Component import.
+  That satisfies the `ssr: false` requirement and avoids the Server-Component
+  preload behavior entirely.
+- **Always verify the fix empirically by inspecting the built HTML's
+  `<script>` tags per route, not by assuming the gate worked.** `curl` each
+  route's HTML in a production build (`next build && next start`), extract
+  every `/_next/static/chunks/*.js` reference, and confirm the
+  library-specific chunk is absent from routes where it should be deferred.
+  Don't rely on "the code looks right" — this project's own contact-us page
+  passed a visual/code read but still eagerly loaded `react-fast-marquee`
+  until this exact check caught it (see previous bullet).
+- **A library used by 2+ separate `next/dynamic()`/`React.lazy()` boundaries
+  can get silently hoisted by webpack's built-in `default`/`defaultVendors`
+  chunk-splitting cache groups into a shared chunk that's referenced on
+  *every* route's initial script list — including routes that never render
+  any of those boundaries.** This is easy to miss because each individual
+  `dynamic()` call site looks correctly deferred in isolation; the bug only
+  shows up when comparing the actual served chunk list across *unrelated*
+  routes (e.g. a route with zero carousels still downloading the carousel
+  library). Confirmed here: an embla-carousel library used by three
+  different lazy-loaded components (each on a different page) got merged
+  into one ~20KB chunk that was script-tagged on literally every page,
+  including ones with no carousel at all. Fix: in `next.config.ts`, add a
+  `webpack(config, { isServer })` override that disables the built-in
+  `default`/`defaultVendors` cache groups for the client build
+  (`config.optimization.splitChunks.cacheGroups.default = false` /
+  `...defaultVendors = false`), leaving only Next's own purpose-built
+  `framework`/`lib` cache groups in control of splitting. Re-verify with the
+  same per-route `<script>`-tag grep afterward — this is a build-wide
+  config change, so check *all* routes, not just the ones you were trying
+  to fix.
+
 ### Don't stop at the home page
 
 - **A perf pass on one page doesn't cover the site.** This project's images/
@@ -295,6 +357,51 @@ means something exotic is wrong — most of the time it's one of these.
   unnecessary case — a blog-post hero component that was a pure `next/image`
   render with zero interactivity — everything else already had a genuine
   hook/handler/browser-API/library reason.)
+
+### Reduce React re-renders
+
+- **`React.memo` alone doesn't help if the parent passes a new inline
+  function/object to the child every render.** `React.memo` does a shallow
+  prop comparison — an inline arrow function created fresh in a `.map()`
+  (e.g. `onClick={() => handler(item.id)}`) is a *different* function
+  reference every render, so the memoized child always sees "changed" props
+  and re-renders anyway. Fix: give the child a stable callback (the same
+  `useCallback`-wrapped function reference passed directly, not wrapped
+  again) and have the child itself call `onAction(item.id)` — the callback
+  identity now stays constant across renders, so `React.memo` can actually
+  skip re-rendering children whose own data didn't change.
+- **Don't pass a shared/parent-level piece of state down to every item in a
+  list** when only one item's rendering actually depends on it. A "which
+  item is selected/copied/active" string id in the parent, passed as-is to
+  every list item, makes every item's props appear to change whenever *any*
+  item's selection changes — even ones that aren't selected before or after.
+  Derive a per-item boolean (`isActive={selectedId === item.id}`) instead,
+  so only the item whose boolean actually flips sees a prop change.
+- **A component that owns both frequently-changing state (scroll position,
+  form input, animation flags) and a large mostly-static render tree
+  re-renders that whole tree on every state tick**, even parts whose output
+  doesn't depend on that state at all (e.g. a data-driven nav link list
+  that only cares about the current route and a color mode, not a
+  scroll-position/menu-open flag also owned by the same component). Extract
+  the static-but-data-driven part into its own `React.memo`'d component
+  taking only the props it actually needs — it then skips re-rendering
+  whenever the parent's *other* state changes, since none of what causes
+  the parent to re-render is present in its own prop set.
+- **A static background/decorative element (an image, a gradient overlay)
+  sitting in the same component as interactive form state** (e.g. a hero
+  banner section with a date-picker) gets torn down and rebuilt by React on
+  every keystroke/selection even though it never depends on that state.
+  Extracting it into its own component (memoized or not — even an
+  unmemoized sibling component with zero props skips re-executing when its
+  own parent-of-parent doesn't force it) separates "this changes often" from
+  "this never changes" so React doesn't have to reconcile the static part
+  every time.
+- **There is no context provider in this codebase (by design)** — if one is
+  added later, remember a `<Context.Provider value={{...}}>` with an inline
+  object literal re-creates that value every render, which re-renders every
+  consumer regardless of whether the specific piece of data they use
+  actually changed. Memoize the value (`useMemo`) or split into multiple
+  narrower contexts.
 
 ### General workflow notes
 

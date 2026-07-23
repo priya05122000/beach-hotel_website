@@ -1,16 +1,24 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { MapPin } from "lucide-react";
 import gsap from "gsap";
 import type { NearbyDestination } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
-import DestinationImageSlider from "./DestinationImageSlider";
+import LazySection from "@/src/components/common/LazySection";
 import { Button } from "@/src/components/common/button";
 import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
+
+// Each destination renders its own carousel — don't fetch embla-carousel
+// until the first one is about to scroll into view.
+const DynamicDestinationImageSlider = dynamic(
+  () => import("./DestinationImageSlider"),
+  { ssr: false }
+);
 
 interface Props {
   destinations: NearbyDestination[];
@@ -65,10 +73,17 @@ function DestinationItem({ destination }: { destination: NearbyDestination }) {
             {destination.destination_name}
           </h4>
           <div ref={imageWrapRef} className="will-change-transform w-full sm:w-auto">
-            <DestinationImageSlider
-              images={destination.image_url}
-              name={destination.destination_name}
-            />
+            <LazySection
+              className="w-full sm:w-80 lg:w-90 xl:w-118 aspect-4/3"
+              placeholder={
+                <div className="w-full sm:w-80 lg:w-90 xl:w-118 aspect-4/3 bg-silver/20" />
+              }
+            >
+              <DynamicDestinationImageSlider
+                images={destination.image_url}
+                name={destination.destination_name}
+              />
+            </LazySection>
           </div>
           <div className="w-full sm:max-w-sm lg:max-w-md xl:max-w-lg">
             <h3
