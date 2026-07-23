@@ -176,6 +176,43 @@ means something exotic is wrong — most of the time it's one of these.
   native touch-fling physics and is a common cause of scrolling feeling
   inconsistent (fast, then stuck) specifically on mobile — desktop wheel
   scrolling is a separate code path and isn't affected the same way.
+- **Never animate `left`/`top`/`width`/`height`/`margin`/`padding` with
+  GSAP (or any animation library) — only `x`/`y`/`xPercent`/`yPercent`/
+  `scale`/`scaleX`/`scaleY`/`rotate`/`opacity`.** The former forces a
+  synchronous layout recalculation on *every single animation frame*; the
+  latter are compositor-only and effectively free. This matters most for
+  `scrub`-driven ScrollTrigger tweens, since they re-run on every scroll
+  tick, not just once. Audit every `gsap.to`/`gsap.fromTo`/`.set()` call
+  (including inside shared animation helpers — check what they actually
+  animate, a hook can look innocuous but still be the culprit for every
+  caller) for these properties.
+  - **The common offender is a "zoom hero" pattern**: a box that starts
+    small/positioned and grows to fill the viewport by animating its actual
+    `width`/`height`/`left`/`top`. Fix: keep the box's real DOM layout size
+    constant (matching its *final* visual size) from the start, and use
+    `scale`/`x`/`y` to make it merely *look* smaller initially — an
+    `overflow-hidden` ancestor clips the rest.
+  - **Non-uniform scale (different X/Y factors) will visually stretch/
+    squish any image content inside the animated box** (e.g. a `next/image
+    fill` + `object-cover` child), since the transform applies to
+    everything inside it. Fix: give the image its own inner wrapper that
+    carries the exact inverse scale, computed **every frame** from the
+    outer element's live value via `onUpdate` + `gsap.getProperty(el,
+    "scaleX"/"scaleY")` — not two independently-eased tweens set once at
+    the start/end. Two separately-interpolated values (even if their
+    endpoints are exact reciprocals) do **not** cancel exactly in between:
+    the product of two linear interpolations is quadratic, not constant, so
+    pairing e.g. a `0.5→1` tween with a `2→1` tween produces a real,
+    visible mismatch mid-animation, not just a theoretical one. Deriving
+    the counter-scale from the driving tween's actual current value each
+    frame is the only way to get an exact cancellation at every instant.
+  - If a second, independent effect (e.g. a subtle background zoom) is
+    already animating the *same* element/property the counter-scale needs
+    to write to, don't run them as two separate competing tweens (last one
+    each frame wins, breaking one or both) — reproduce the second effect's
+    curve manually inside the single `onUpdate` via
+    `gsap.parseEase("...")` + `gsap.utils.interpolate(from, to, easedT)`,
+    and multiply it with the counter-scale so both apply together.
 
 ### Network payload (LCP, "Avoid enormous network payloads")
 

@@ -15,6 +15,7 @@ const IMAGE_SRC =
 export default function RoomBanner() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const imageWrapperRef = useRef<HTMLDivElement>(null);
+    const imageInnerRef = useRef<HTMLDivElement>(null);
     const mobileImageRef = useRef<HTMLDivElement>(null);
     const desktopLineLeftRef = useRef<HTMLHeadingElement>(null);
     const desktopLineRightRef = useRef<HTMLSpanElement>(null);
@@ -24,7 +25,8 @@ export default function RoomBanner() {
     useLayoutEffect(() => {
         const section = sectionRef.current;
         const imageWrapper = imageWrapperRef.current;
-        if (!section || !imageWrapper) return;
+        const imageInner = imageInnerRef.current;
+        if (!section || !imageWrapper || !imageInner) return;
 
         const mm = gsap.matchMedia();
 
@@ -37,12 +39,26 @@ export default function RoomBanner() {
 
                 if (!rightLine || !leftLine) return;
 
+                // Wrapper is full-bleed in the DOM (matches the animation's
+                // end state); the initial "small" look is purely a visual
+                // scale-down, never an actual layout size, so it never
+                // forces reflow. The inner element carries the exact
+                // reciprocal scale so the photo itself renders undistorted
+                // (just clipped smaller by the wrapper's overflow-hidden).
+                // Original visual size was a 50vw×75vh box with an
+                // additional 0.55 scale on top of it, i.e. 27.5vw×41.25vh —
+                // expressed here as a fraction of the new 100vw×100vh box.
+                const initialScaleX = 0.5 * 0.55;
+                const initialScaleY = 0.75 * 0.55;
+
                 gsap.set(imageWrapper, {
-                    left: "50%",
-                    top: "50%",
-                    xPercent: -50,
-                    yPercent: -50,
-                    scale: 0.55,
+                    scaleX: initialScaleX,
+                    scaleY: initialScaleY,
+                    transformOrigin: "center center",
+                });
+                gsap.set(imageInner, {
+                    scaleX: 1 / initialScaleX,
+                    scaleY: 1 / initialScaleY,
                     transformOrigin: "center center",
                 });
 
@@ -60,11 +76,19 @@ export default function RoomBanner() {
 
                 // ① Zoom — 0 to 1
                 tl.to(imageWrapper, {
-                    height: "100vh",
-                    width: "100vw",
-                    scale: 1,
+                    scaleX: 1,
+                    scaleY: 1,
                     duration: 1,
                     ease: "none",
+                    onUpdate: function () {
+                        // Derive the inner element's counter-scale from the
+                        // wrapper's *current* value every frame, so the
+                        // photo stays undistorted at every instant of the
+                        // scrub, not just at the start/end.
+                        const sx = gsap.getProperty(imageWrapper, "scaleX") as number;
+                        const sy = gsap.getProperty(imageWrapper, "scaleY") as number;
+                        gsap.set(imageInner, { scaleX: 1 / sx, scaleY: 1 / sy });
+                    },
                 });
 
                 // ② Left line — overlap zoom at 0
@@ -164,17 +188,18 @@ export default function RoomBanner() {
             <div className="hidden md:block relative overflow-hidden bg-ivory h-screen">
                 <div
                     ref={imageWrapperRef}
-                    className="absolute overflow-hidden"
-                    style={{ width: "50vw", height: "75vh" }}
+                    className="absolute inset-0 overflow-hidden"
                 >
-                    <Image
-                        src={IMAGE_SRC}
-                        alt="The Beach Hotel"
-                        fill
-                        sizes="50vw"
-                        className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+                    <div ref={imageInnerRef} className="absolute inset-0">
+                        <Image
+                            src={IMAGE_SRC}
+                            alt="The Beach Hotel"
+                            fill
+                            sizes="100vw"
+                            className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+                    </div>
                 </div>
 
                 <div className="absolute inset-0 grid grid-cols-2 pointer-events-none px-8 md:px-12 lg:px-20 my-auto h-[60vh]">

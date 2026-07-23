@@ -47,6 +47,9 @@ export default function FacilitiesSplitHero() {
         // ── Desktop animation (≥ 768 px) ──────────────────────────
         mm.add("(min-width: 768px)", () => {
             gsap.set(desktopPanelRef.current, { opacity: 0 });
+            // Top-left transform origin so scale+translate can place the
+            // box's corner directly, without center-origin shrinkage math.
+            gsap.set(imageWrapRef.current, { transformOrigin: "0% 0%" });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -59,19 +62,34 @@ export default function FacilitiesSplitHero() {
                 },
             });
 
+            // Visual end state: 50% width, 100vh height of the 100%×120vh
+            // layout box, shifted to x:50% (resolves against the element's
+            // own layout width, i.e. exactly 50vw) and y:20vh (an absolute
+            // length, unaffected by the element's own size). The box's real
+            // DOM size never changes — only its transform — so this no
+            // longer forces layout on every scrub tick.
             tl.to(imageWrapRef.current, {
-                left: "50%",
-                width: "50%",
-                height: "100vh",
-                top: "20vh",
+                scaleX: 0.5,
+                scaleY: 100 / 120,
+                x: "50%",
+                y: "20vh",
                 ease: "none",
                 duration: 1,
-            }, 0);
-
-            tl.to(imageInnerRef.current, {
-                scale: 1.08,
-                ease: "power2.inOut",
-                duration: 1,
+                onUpdate: function () {
+                    // Reproduce the original independent 1.08 zoom (same
+                    // easing curve, evaluated manually) combined with the
+                    // exact reciprocal of the wrapper's current scale, so
+                    // the photo keeps both effects without the two tweens
+                    // fighting over the same target's scale property.
+                    const sx = gsap.getProperty(imageWrapRef.current, "scaleX") as number;
+                    const sy = gsap.getProperty(imageWrapRef.current, "scaleY") as number;
+                    const zoomEase = gsap.parseEase("power2.inOut");
+                    const zoomScale = gsap.utils.interpolate(1, 1.08, zoomEase(this.ratio));
+                    gsap.set(imageInnerRef.current, {
+                        scaleX: zoomScale / sx,
+                        scaleY: zoomScale / sy,
+                    });
+                },
             }, 0);
 
             tl.to(desktopPanelRef.current, { opacity: 1, duration: 0.2 }, ">");
@@ -141,7 +159,7 @@ export default function FacilitiesSplitHero() {
                 <div
                     ref={imageWrapRef}
                     className="absolute top-0 left-0 overflow-hidden"
-                    style={{ width: "100%", height: "120vh", willChange: "left,width,height,top" }}
+                    style={{ width: "100%", height: "120vh", willChange: "transform" }}
                 >
                     <div ref={imageInnerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
                         <Image src="/facilities/1.webp" alt="Hotel Facilities" fill priority className="object-cover" />
