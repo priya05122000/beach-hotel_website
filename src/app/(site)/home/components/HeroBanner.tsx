@@ -13,7 +13,7 @@ import GuestPicker from "@/src/components/ui/GuestPicker";
 const HeroBackgroundImage = memo(function HeroBackgroundImage() {
   return (
     <Image
-      src="/banner/home.jpg"
+      src="/banner/home.webp"
       alt="Hero Banner"
       fill
       preload
