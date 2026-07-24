@@ -28,30 +28,36 @@ const inputBase: Record<FormFieldVariant, string> = {
 };
 
 const labelBase: Record<FormFieldVariant, string> = {
-  surface: "text-xs font-semibold uppercase tracking-[0.12em] text-primary-dark/60",
-  underline: "type-label-sm uppercase tracking-[0.12em] text-primary-dark/50 font-medium",
+  // /60 and /50 measured under 4.5:1 contrast against the near-white
+  // surface/ivory backgrounds these labels sit on — bumped to /80 to pass.
+  surface: "text-xs font-semibold uppercase tracking-[0.12em] text-primary-dark/80",
+  underline: "type-label-sm uppercase tracking-[0.12em] text-primary-dark/80 font-medium",
 };
 
 export default function FormField(props: FormFieldProps) {
   const { label, error, className = "", as = "input", variant = "surface", ...rest } = props;
+  const generatedId = React.useId();
+  const fieldId = rest.id ?? (rest.name ? `${rest.name}-${generatedId}` : generatedId);
 
   const base = inputBase[variant];
 
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label className={labelBase[variant]}>
+        <label htmlFor={fieldId} className={labelBase[variant]}>
           {label}
         </label>
       )}
       {as === "textarea" ? (
         <textarea
           {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+          id={fieldId}
           className={`${base} resize-none ${className}`}
         />
       ) : (
         <input
           {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
+          id={fieldId}
           className={`${base} ${className}`}
         />
       )}

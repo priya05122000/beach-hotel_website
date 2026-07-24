@@ -7,6 +7,7 @@
         height="500"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
+        title="The Beach Hotel location on Google Maps"
         className="border-0"
       />
     </div>
