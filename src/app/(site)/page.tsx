@@ -54,6 +54,9 @@ export default async function HomePage() {
     ]);
 
   const randomGalleryItems = shuffleArray(galleryData.data).slice(0, 8);
+  // Embla mounts every slide's DOM upfront (no virtualization), so an
+  // unbounded review count directly inflates page DOM size.
+  const featuredReviews = guestReviewData.data.slice(0, 10);
 
   return (
     <>
@@ -68,7 +71,7 @@ export default async function HomePage() {
       <HorizontalScrollSection />
       <FeaturedHighlightSection />
       <GallerySection galleries={randomGalleryItems} />
-      <LazyTestimonials reviews={guestReviewData.data} />
+      <LazyTestimonials reviews={featuredReviews} />
       <MomentsSection />
     </>
   );

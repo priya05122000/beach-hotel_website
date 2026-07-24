@@ -130,12 +130,6 @@ export default function Header() {
       const navBottom = window.scrollY + header.getBoundingClientRect().height;
       setHideNav(navBottom >= footer.offsetTop - 50);
     }
-
-    const elements = document.elementsFromPoint(window.innerWidth / 2, 48);
-    const overDark = elements.some(
-      (el) => !el.closest("header") && el.classList.contains("bg-primary"),
-    );
-    setIsOverDark(overDark);
   };
 
   useEffect(() => {
@@ -160,6 +154,52 @@ export default function Header() {
   useEffect(() => {
     const t = setTimeout(updateScrollState, 50);
     return () => clearTimeout(t);
+  }, [pathname]);
+
+  // Tracks whether the nav strip (a thin band just below the fixed header)
+  // currently overlaps a dark (`bg-primary`) section, so it can switch to
+  // light text/logo. Previously this ran `elementsFromPoint` + a geometry
+  // read on every scroll frame, which forces a synchronous layout each time
+  // (a measured "Forced reflow" hotspot). IntersectionObserver reports the
+  // same overlap without ever forcing layout.
+  useEffect(() => {
+    const overlapping = new Set<Element>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) overlapping.add(entry.target);
+          else overlapping.delete(entry.target);
+        }
+        setIsOverDark(overlapping.size > 0);
+      },
+      {
+        // Collapse the viewport to a 1px band at y=48 (where the nav's
+        // dark/light hit-test used to sample), so "intersecting" means
+        // "covers that band".
+        rootMargin: `-48px 0px -${Math.max(0, window.innerHeight - 49)}px 0px`,
+        threshold: 0,
+      }
+    );
+
+    const observe = () => {
+      const targets = document.querySelectorAll(".bg-primary");
+      overlapping.clear();
+      targets.forEach((el) => {
+        if (!el.closest("header")) observer.observe(el);
+      });
+      setIsOverDark(false);
+    };
+
+    observe();
+    // Re-scan targets on route change, since each page mounts/unmounts its
+    // own `bg-primary` sections.
+    const t = setTimeout(observe, 50);
+
+    return () => {
+      clearTimeout(t);
+      observer.disconnect();
+    };
   }, [pathname]);
 
   useEffect(() => {

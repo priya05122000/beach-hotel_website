@@ -165,6 +165,23 @@ any new project before assuming a low score means something exotic is wrong.
   (`useMemo`) — an inline object literal re-renders every consumer on every
   render regardless of relevance.
 
+### Dependency vulnerabilities (`npm audit`)
+
+- `npm audit fix` only bumps packages *your own* `package.json` depends on
+  directly — it can't touch a vulnerable package nested inside another
+  dependency's own `package.json` (e.g. `sharp` bundled inside `next`).
+  `--force` in that case just downgrades the outer package to an old version
+  that happens to want a newer nested one — not a real fix, a regression.
+- To force a patched version of a nested dependency without downgrading
+  anything, add it to the top-level `overrides` field in `package.json`
+  (e.g. `"sharp": "^0.35.3"`) and run `npm install` — this pins every copy
+  in the tree, at any depth, to that version. Confirm with `npm ls <pkg>`
+  (should show one deduped version) and `npm audit` (0 vulnerabilities).
+- Re-verify after any override: `tsc`/`lint`/`build`, plus a runtime check
+  of whatever the overridden package actually does (e.g. hit
+  `/_next/image?...` and confirm it still returns a valid resized image
+  when overriding `sharp`, since that's Next's image-optimization engine).
+
 ### General workflow notes
 
 - Confirm a Lighthouse report was run against a production build
