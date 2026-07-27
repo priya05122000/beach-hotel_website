@@ -6,7 +6,7 @@ import {
   arizonaSansRegular,
 } from "../lib/font";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.thebeachhotel.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachhotel.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

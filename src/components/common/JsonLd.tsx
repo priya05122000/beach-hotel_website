@@ -4,7 +4,7 @@ const HOTEL_SCHEMA = {
   name: "The Beach Hotel",
   description:
     "A luxury hotel in Kanyakumari at the confluence of the Arabian Sea, Bay of Bengal, and Indian Ocean.",
-  url: "https://www.thebeachhotel.in",
+  url: "https://thebeachhotel.in",
   telephone: "+91-5467-898765",
   address: {
     "@type": "PostalAddress",

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getBlogList } from "@/src/service/blogs";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.thebeachhotel.in";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachhotel.in";
 
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/`, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
