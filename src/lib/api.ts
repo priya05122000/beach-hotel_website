@@ -1,5 +1,15 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
 
+export class ApiError extends Error {
+  status: number;
+
+  constructor(status: number, path: string) {
+    super(`API error: ${status} ${path}`);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
 export async function apiFetch<T>(
   path: string,
   options?: { revalidate?: number | false }
@@ -10,7 +20,7 @@ export async function apiFetch<T>(
       : { cache: "no-store" };
 
   const res = await fetch(`${BASE_URL}${path}`, fetchOptions);
-  if (!res.ok) throw new Error(`API error: ${res.status} ${path}`);
+  if (!res.ok) throw new ApiError(res.status, path);
   return res.json() as Promise<T>;
 }
 

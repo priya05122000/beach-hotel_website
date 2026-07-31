@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getBlogBySlug } from "@/src/service/blogs";
+import { ApiError } from "@/src/lib/api";
 import { notFound } from "next/navigation";
 import BlogHero from "./components/BlogHero";
 import BlogStatement from "./components/BlogStatement";
@@ -41,7 +42,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params;
-  const res = await getBlogBySlug(slug);
+
+  let res;
+  try {
+    res = await getBlogBySlug(slug);
+  } catch (err) {
+    // Random/scanner-bot slugs (e.g. `*.php`) hit this route constantly and
+    // 404 at the backend — treat that as a normal not-found instead of an
+    // unhandled server exception. Any other failure (backend down, 500s)
+    // still surfaces as a real error.
+    if (err instanceof ApiError && err.status === 404) notFound();
+    throw err;
+  }
+
   const blog = res.data;
 
   if (!blog) notFound();
