@@ -78,7 +78,7 @@ export default function Footer() {
                     Room Service — 24 / 7
                   </li>
                 </ul>
-                <p className="type-label font-arizona-flare-regular tracking-widest mt-4 max-w-xs">Warm, intuitive service ensuring your stay is perfectly seamless throughout.</p>
+                {/* <p className="type-label font-arizona-flare-regular tracking-widest mt-4 max-w-xs">Warm, intuitive service ensuring your stay is perfectly seamless throughout.</p> */}
               </div>
             </div>
           </div>

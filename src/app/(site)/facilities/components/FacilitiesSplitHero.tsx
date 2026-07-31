@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const TEXT_LINES = [
-    "Curated",
+    "Signature",
     "Comforts At ",
     "The Land's End.",
 ];

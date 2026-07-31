@@ -214,7 +214,7 @@ const OfferCard = memo(function OfferCard({
         </div>
 
         {/* 2nd: Weekday badge + Number side by side */}
-        <div className="flex items-center  justify-between gap-4">
+        <div className="flex items-center bg-amber-600  justify-between gap-4">
           <div className={`inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent ${isActive ? "bg-transparent" : ""}`}>
             <p className="type-body-sm flex  items-center px-2 transition-all duration-700 uppercase text-white">
               Weekday 50% off

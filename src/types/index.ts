@@ -511,6 +511,8 @@ export interface NearbyDestination {
   distance?: string;
 
   image_url?: string | string[];
+  destination_link?: string;
+  ticket_booking_link?: string;
 
   short_description?: string;
   description?: string;

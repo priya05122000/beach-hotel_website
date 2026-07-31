@@ -27,6 +27,29 @@ Production builds use **webpack**, not Turbopack (`next build --webpack`) —
 `splitChunks`-equivalent config, so it can duplicate/hoist shared libraries
 across route chunks in ways webpack won't.
 
+### Deploying (`output: "standalone"`)
+
+`next.config.ts` sets `output: "standalone"`, so `npm run build` traces only
+the server into `.next/standalone/` (`server.js`, minimal `node_modules`,
+`.next/server`) — it does **not** include `.next/static` (the client JS/CSS
+bundle) or `public/`. A `postbuild` script now copies both into
+`.next/standalone/.next/static` and `.next/standalone/public` automatically
+after every build, so `.next/standalone` is always a complete, self-contained
+deploy unit.
+
+**Deploy the entire `.next/standalone` folder, not just `server.js`.** Copying
+only `server.js` (or an old `.next/standalone` snapshot) leaves the server
+rendering fresh HTML against a stale or missing client bundle — every asset
+under `/_next/static/...` stays frozen at whatever was last placed there, no
+matter how many times the app is subsequently rebuilt and redeployed. This
+previously caused a real production bug (a code fix that was verified working
+locally had zero effect on the live site, because the browser was still
+running a JS bundle from a much earlier deploy).
+
+After copying, run it with `node server.js` from inside the deployed
+`.next/standalone` folder (that's what `pm2`/whatever process manager should
+point at).
+
 ## Performance Optimization Checklist
 
 Lighthouse/Core Web Vitals issues found on this project. Re-check these on
@@ -191,3 +214,6 @@ any new project before assuming a low score means something exotic is wrong.
   work".
 - "Unscored" Lighthouse panels are informational, not failing checks — only
   act on ones with a red/orange severity indicator.
+
+
+    <!-- "postbuild": "node scripts/copy-standalone-assets.mjs", -->

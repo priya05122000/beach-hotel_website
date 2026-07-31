@@ -54,7 +54,7 @@ export default function HeroLocationSection() {
 
   return (
     <Section className="bg-white">
-      <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-4 py-16 lg:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-4 pt-16 lg:py-20">
         {/* Left Panel */}
         <div>
           <h1 ref={headingRef} className="font-semibold text-primary-dark type-h2 leading-tight">

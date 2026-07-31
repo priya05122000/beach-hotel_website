@@ -43,7 +43,7 @@ export default function DestinationImageSlider({
   const normalizedImages = normalizeImages(images);
 
   return (
-    <div className="relative w-full sm:w-80 lg:w-90 xl:w-118 aspect-4/3 overflow-hidden group">
+    <div className="relative w-full lg:w-90 xl:w-118 aspect-4/3 overflow-hidden group">
       <div ref={emblaRef} className="h-full overflow-hidden">
         <div className="flex h-full">
           {normalizedImages.map((src, i) => (
@@ -66,14 +66,14 @@ export default function DestinationImageSlider({
           <button
             onClick={prev}
             aria-label="Previous image"
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
           >
             <ChevronLeft size={16} strokeWidth={1.5} />
           </button>
           <button
             onClick={next}
             aria-label="Next image"
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white/80 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 hover:bg-white"
           >
             <ChevronRight size={16} strokeWidth={1.5} />
           </button>

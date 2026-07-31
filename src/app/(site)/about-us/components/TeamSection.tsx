@@ -52,7 +52,7 @@ const TeamSection = () => {
         {/* Content grid */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
           <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
-            <p className="type-h6 tracking-[73%] text-left lg:tracking-[83%] uppercase">Discover</p>
+            <p className="type-h6 tracking-[73%] text-left lg:tracking-[83%] uppercase">Identity</p>
           </div>
 
           <div className="hidden sm:block sm:col-span-1" />

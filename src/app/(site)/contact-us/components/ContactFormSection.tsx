@@ -113,13 +113,13 @@ export default function ContactFormSection() {
 
   return (
     <Section id="contact-form" className="px-6 py-16 lg:py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-        <div ref={sectionRef} className="w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 ">
+        <div ref={sectionRef} className="w-full ">
           <h2
             ref={headingRef}
             className="type-h2 font-semibold text-primary-dark"
           >
-            Your Questions? <br /> Answered
+            We&rsquo;re Here To Assist
           </h2>
 
           <p className="mt-4 type-body max-w-md">
@@ -127,7 +127,7 @@ export default function ContactFormSection() {
             Whether it is a question, a special request or the beginning of a
             reservation, we are delighted to assist.
           </p>
-          <div className="mt-4 space-y-4 border-t flex flex-col justify-end border-white/20 pt-4">
+          <div className="mt-4 space-y-4  border-t flex flex-col justify-end border-white/20 pt-4">
             <SubHeading className="text-primary-dark mb-4">Find Us</SubHeading>
             <div className="uppercase">
               <div className="type-body font-arizona-flare-regular">
@@ -140,7 +140,7 @@ export default function ContactFormSection() {
               </div>
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1 ">
               <div>
                 <span className="type-label-sm font-medium uppercase">
                   General Enquiries :
@@ -166,7 +166,7 @@ export default function ContactFormSection() {
               </div>
             </div>
           </div>
-          <div className="pt-4 space-y-4">
+          <div className="pt-8 space-y-4 ">
             <SubHeading className="text-primary-dark mb-4">
               Follow Us
             </SubHeading>

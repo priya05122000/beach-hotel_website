@@ -115,16 +115,16 @@ export default function GalleryBanner() {
                         </span>
                     </div>
 
-                    <div className="overflow-hidden w-full mt-10  text-end">
-                        {/* <p className="readReveal  type-body">
+                    {/* <div className="overflow-hidden w-full mt-10  text-end"> */}
+                    {/* <p className="readReveal  type-body">
                             Read More
                         </p> */}
 
-                        <Button href="/gallery" className="sm:w-50 readReveal pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+                    {/* <Button href="/gallery" className="sm:w-50 readReveal pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
                             Read More
-                        </Button>
-                        {/* <hr className="w-1/2 ml-auto mt-4" /> */}
-                    </div>
+                        </Button> */}
+                    {/* <hr className="w-1/2 ml-auto mt-4" /> */}
+                    {/* </div> */}
 
 
                 </div>

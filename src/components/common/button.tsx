@@ -6,7 +6,10 @@ type ButtonProps = {
   className?: string;
   variant?: "default" | "solid" | "bold";
   lineColor?: string;
-} & ({ href: string; action?: never } | { action: () => void; href?: never });
+} & (
+  | { href: string; action?: never; target?: string; rel?: string }
+  | { action: () => void; href?: never; target?: never; rel?: never }
+);
 
 const lineHeight = { default: "h-px", solid: "h-[2px]", bold: "h-[3px]" };
 
@@ -17,6 +20,8 @@ export const Button = ({
   className,
   variant = "default",
   lineColor,
+  target,
+  rel,
 }: ButtonProps) => {
   const cls = `inline-flex items-center type-label-sm tracking-[2px] gap-3 uppercase ${variant === "bold" ? " font-bold" : ""} group${className ? ` ${className}` : ""}`;
 
@@ -30,7 +35,7 @@ export const Button = ({
   );
 
   return href ? (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} target={target} rel={rel}>
       {inner}
     </Link>
   ) : (

@@ -250,12 +250,22 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Cleanup only on true unmount, not on every pathname change. This used to
+  // be keyed on `[pathname]`, which meant its cleanup ran the instant a nav
+  // link's click finished navigating — i.e. exactly while runClose()'s own
+  // timers (started by that same click) were still in flight, wiping the
+  // 800ms "hide overlay" callback before it ever fired. That left the
+  // overlay permanently stuck visible with some links already mid-transition
+  // (the reported "click a link, URL changes but menu stays open, Room
+  // missing" bug). Both runOpen() and runClose() already call
+  // clearAnimTimers() defensively at the top, so a route-change-triggered
+  // clear here was never actually needed.
   useEffect(() => {
     return () => {
       animTimersRef.current.forEach(clearTimeout);
       animTimersRef.current = [];
     };
-  }, [pathname]);
+  }, []);
 
   // ── Helpers ───────────────────────────────────────────────────────────────
 

@@ -43,7 +43,7 @@ const StatementSection = () => {
             <Section>
                 <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
                     <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
-                        <Eyebrow as="p" align="left" className="text-gray pb-10">Discover</Eyebrow>
+                        <Eyebrow as="p" align="left" className="text-gray pb-10">Welcome</Eyebrow>
                     </div>
 
                     <div className="hidden sm:block sm:col-span-1" />
@@ -53,13 +53,13 @@ const StatementSection = () => {
                             We welcome guests who seek the extraordinary — where three oceans meet the horizon.
                         </div>
 
-                        <ul className="flex flex-col gap-3">
+                        {/* <ul className="flex flex-col gap-3">
                             {SERVICES.map((item) => (
                                 <li key={item} className="type-body text-gray font-arizona-flare-regular">
                                     {item}
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
             </Section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import Marquee from "react-fast-marquee";
@@ -15,9 +15,42 @@ const partners = [
   { name: "Follicle", logo: "/contact-us/follicle.png" },
 ];
 
+// `hover:grayscale-0` alone never fires on touch devices (no hover), so
+// mobile users had no way to see a logo in color. Tapping now drives the
+// same visual state that hover drives on desktop — and only one logo (by
+// name, shared across every `autoFill`-cloned copy in the marquee) is
+// colored at a time; selecting a new one restores the previous one to
+// grayscale.
+function PartnerLogo({
+  partner,
+  active,
+  onSelect,
+}: {
+  partner: { name: string; logo: string };
+  active: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <div
+      onClick={onSelect}
+      className={`mx-10 relative h-16 w-16 lg:h-22 lg:w-36 shrink-0 cursor-pointer lg:cursor-default transition-all duration-300 hover:opacity-70 hover:grayscale-0 ${active ? "opacity-70 grayscale-0" : "opacity-40 grayscale"
+        }`}
+    >
+      <Image
+        src={partner.logo}
+        alt={partner.name}
+        fill
+        sizes="(max-width: 1024px) 64px, 144px"
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
 export default function TrustedBySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const [activeName, setActiveName] = useState<string | null>(null);
 
   useLayoutEffect(() => {
     const prefersReduced = prefersReducedMotion();
@@ -48,9 +81,9 @@ export default function TrustedBySection() {
             ref={headingRef}
             className="type-h2 font-semibold leading-tight text-primary-dark whitespace-nowrap"
           >
-            Trusted by 50+
+            Our Group
             <br />
-            top companies
+            of Companies
           </h2>
         </div>
 
@@ -58,23 +91,21 @@ export default function TrustedBySection() {
           <Marquee
             speed={40}
             gradient={false}
-            pauseOnHover
             autoFill
             className="flex items-center"
           >
             {partners.map((partner) => (
-              <div
+              <PartnerLogo
                 key={partner.name}
-                className="mx-10 relative h-16 w-16 lg:h-22 lg:w-36 shrink-0 opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  fill
-                  sizes="(max-width: 1024px) 64px, 144px"
-                  className="object-contain"
-                />
-              </div>
+                partner={partner}
+                active={activeName === partner.name}
+                onSelect={() => {
+                  // Desktop already reveals color on hover — tap-to-select
+                  // is a mobile-only affordance for devices with no hover.
+                  if (window.innerWidth >= 1024) return;
+                  setActiveName((prev) => (prev === partner.name ? null : partner.name));
+                }}
+              />
             ))}
           </Marquee>
         </div>
