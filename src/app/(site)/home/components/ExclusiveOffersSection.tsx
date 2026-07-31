@@ -214,9 +214,9 @@ const OfferCard = memo(function OfferCard({
         </div>
 
         {/* 2nd: Weekday badge + Number side by side */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  justify-between gap-4">
           <div className={`inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent ${isActive ? "bg-transparent" : ""}`}>
-            <p className="type-body-sm flex items-center px-2 transition-all duration-700 uppercase text-white">
+            <p className="type-body-sm flex  items-center px-2 transition-all duration-700 uppercase text-white">
               Weekday 50% off
             </p>
           </div>
@@ -224,10 +224,10 @@ const OfferCard = memo(function OfferCard({
             type="button"
             onClick={(e) => onCopy(e, offer.id, "6787Hkjh68")}
             aria-label="Copy promo code"
-            className={`type-body-sm text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0 translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
+            className={`type-body-sm text-white flex cursor-pointer items-center gap-2  transition-all duration-700 opacity-0  lg:group-hover:opacity-100 lg:group-hover:translate-x-0 ${isActive ? "opacity-100 translate-x-0 lg:opacity-0 lg:translate-x-2" : ""}`}
           >
             {isCopied ? "Copied!" : "6787Hkjh68"}{" "}
-            <Copy className="w-4 h-4 " />
+            <Copy className="w-3 h-3 " />
           </button>
         </div>
       </div>

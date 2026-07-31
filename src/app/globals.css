@@ -73,7 +73,8 @@
   /* Lead text */
   --text-body-lg: clamp(16px, 1.5vw, 18px);
   --text-body: clamp(15px, 1.2vw, 16px);
-  --text-body-sm: 14px;
+  --text-body: clamp(13px, 1.2vw, 14px);
+  /* --text-body-sm: 14px; */
 
   /* Type scale — interactive */
   --text-button-lg: 16px;

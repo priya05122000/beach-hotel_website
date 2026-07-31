@@ -46,6 +46,20 @@ const NAV_LINKS = [
   { href: "/contact-us", label: "Contact Us" },
 ];
 
+// Flattened, single source of truth for child-link indices — both the render
+// (ref assignment) and the open/close animations (stagger scheduling) index
+// off this instead of maintaining two independent mutable counters that can
+// silently drift out of sync.
+const CHILD_LINKS = NAV_LINKS.flatMap((link, parentIndex) =>
+  (link.children ?? []).map((child, siblingIndex) => ({
+    ...child,
+    parentIndex,
+    siblingIndex,
+  }))
+);
+
+const CHILD_LINK_INDEX = new Map(CHILD_LINKS.map((child, i) => [child.href, i]));
+
 const NAV_LEFT = [
   { href: "/rooms", label: "Room" },
   { href: "/facilities", label: "Facility" },
@@ -118,6 +132,35 @@ export default function Header() {
   const childLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
   const metaRef = useRef<HTMLDivElement>(null);
   const animTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  // Stable, memoized-per-index ref callbacks. Header re-renders on nearly
+  // every scroll tick (see updateScrollState below); a plain inline arrow
+  // function ref prop gets a new identity every render, which makes React
+  // detach (null) and reattach every one of these refs on every re-render.
+  // If the menu is opened in that split-second detach window, runOpen()
+  // reads a null ref and silently skips that link's entrance animation —
+  // it stays invisible while still occupying layout space, shoving its
+  // sibling over. Caching one stable callback per index eliminates the
+  // churn entirely.
+  const linkRefCallbacks = useRef<Array<(el: HTMLAnchorElement | HTMLSpanElement | null) => void>>([]);
+  const getLinkRefCallback = (i: number) => {
+    let cb = linkRefCallbacks.current[i];
+    if (!cb) {
+      cb = (el) => { linksRef.current[i] = el as HTMLAnchorElement | null; };
+      linkRefCallbacks.current[i] = cb;
+    }
+    return cb;
+  };
+
+  const childLinkRefCallbacks = useRef<Array<(el: HTMLSpanElement | null) => void>>([]);
+  const getChildLinkRefCallback = (i: number) => {
+    let cb = childLinkRefCallbacks.current[i];
+    if (!cb) {
+      cb = (el) => { childLinksRef.current[i] = el; };
+      childLinkRefCallbacks.current[i] = cb;
+    }
+    return cb;
+  };
 
   // ── Effects ───────────────────────────────────────────────────────────────
 
@@ -302,20 +345,23 @@ export default function Header() {
       }, 880 + i * 75);
     });
 
-    let childIdx = 0;
-    NAV_LINKS.forEach((link, i) => {
-      if (!link.children) return;
-      const parentDelay = 880 + i * 75 + 120;
-      link.children.forEach((_, j) => {
-        const el = childLinksRef.current[childIdx++];
+    CHILD_LINKS.forEach((child, idx) => {
+      const el = childLinksRef.current[idx];
+      if (!el) {
+        if (process.env.NODE_ENV !== "production") {
+          console.warn(
+            `Navbar: ref for child link "${child.label}" was null when opening — its entrance animation was skipped.`
+          );
+        }
+        return;
+      }
+      const parentDelay = 880 + child.parentIndex * 75 + 120;
+      scheduleAnim(() => {
         if (!el) return;
-        scheduleAnim(() => {
-          if (!el) return;
-          el.style.transition = `opacity 0.5s ease, transform 0.5s ${EASE_OUT}`;
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
-        }, parentDelay + j * 50);
-      });
+        el.style.transition = `opacity 0.5s ease, transform 0.5s ${EASE_OUT}`;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      }, parentDelay + child.siblingIndex * 50);
     });
 
     scheduleAnim(() => {
@@ -401,9 +447,6 @@ export default function Header() {
 
   const logoSrc = isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg";
   const iconColor = isOverDark && !open ? "text-white" : "text-primary-dark";
-
-  // Counter assigned during render for child ref indices
-  let childIdx = 0;
 
   // ── Render ────────────────────────────────────────────────────────────────
 
@@ -564,7 +607,7 @@ export default function Header() {
                       <div className="overflow-hidden">
                         {link.href ? (
                           <Link
-                            ref={(el) => { linksRef.current[i] = el as HTMLAnchorElement; }}
+                            ref={getLinkRefCallback(i)}
                             href={link.href}
                             onClick={handleLinkClick}
                             className="group type-body-lg uppercase tracking-[3px] text-primary-dark transition-colors duration-300"
@@ -577,7 +620,7 @@ export default function Header() {
                           </Link>
                         ) : (
                           <span
-                            ref={(el) => { linksRef.current[i] = el as unknown as HTMLAnchorElement; }}
+                            ref={getLinkRefCallback(i)}
                             className="type-[11px] font-arizona-sans-regular text-charcoal cursor-default select-none tracking-[3px]"
                             style={{ transform: "translateY(110%)", display: "block" }}
                           >
@@ -590,11 +633,16 @@ export default function Header() {
                       {link.children && (
                         <div className="mt-2  flex gap-6 flex-wrap">
                           {link.children.map((child) => {
-                            const refIdx = childIdx++;
+                            // Look up this child's flat index from the same
+                            // CHILD_LINKS list runOpen()/runClose() use, so
+                            // there is exactly one source of truth for the
+                            // index instead of a second, separately
+                            // maintained counter.
+                            const refIdx = CHILD_LINK_INDEX.get(child.href)!;
                             return (
                               <span
                                 key={child.href}
-                                ref={(el) => { childLinksRef.current[refIdx] = el; }}
+                                ref={getChildLinkRefCallback(refIdx)}
                                 style={{ opacity: 0, transform: "translateY(10px)", display: "inline-block" }}
                                 className=""
                               >
