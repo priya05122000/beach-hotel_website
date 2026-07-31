@@ -193,7 +193,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
             <section className="py-16 lg:py-20 ">
                 <div className="mx-auto">
                     {/* Heading */}
-                    <div className="mb-32">
+                    <div className="mb-16 sm:mb-32">
                         <Eyebrow align="center" className="mt-2 text-gray">
                             Gallery
                         </Eyebrow>

@@ -35,8 +35,8 @@ const BannerBelowSection = () => {
     }, []);
 
     return (
-        <div ref={wrapperRef} className="relative h-[50vh]">
-            <div className="sticky top-[25vh] flex h-[50vh] items-center justify-center bg-primary px-4 py-10 text-white overflow-hidden">
+        <div ref={wrapperRef} className="relative h-[40vh] sm:h-[50vh]">
+            <div className="sticky top-[20vh] sm:top-[25vh] flex h-[40vh] sm:h-[50vh] items-center justify-center bg-primary px-4 py-10 text-white overflow-hidden">
                 {/* Image — hidden initially, animated in by GSAP */}
                 <div
                     ref={imageRef}
@@ -53,7 +53,7 @@ const BannerBelowSection = () => {
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative type-body  z-10 text-center  h-[25vh] ">
+                <div className="relative type-body  z-10 text-center  h-[20vh] sm:h-[25vh] ">
                     <SubHeading as="h1" className="mb-4">
                         The Beach Hotel
                     </SubHeading>

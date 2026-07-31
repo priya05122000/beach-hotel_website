@@ -15,23 +15,43 @@ const ExploreDestinationSection = () => {
 
     useLayoutEffect(() => {
         const prefersReduced = prefersReducedMotion();
+        let split: ReturnType<typeof applySplitSlideUp>;
+        let cancelled = false;
 
         const ctx = gsap.context(() => {
             if (prefersReduced) return;
 
-            const split = applySplitSlideUp({
-                target: headingRef.current,
-                trigger: sectionRef.current,
-                start: ANIM.start.default,
-                duration: ANIM.duration.base,
-                stagger: ANIM.stagger.base,
-                ease: ANIM.ease.default,
-            });
+            // SplitType measures line breaks synchronously against whatever
+            // font is painted at that instant. If the Arizona custom font
+            // hasn't swapped in yet, it locks in line breaks sized for the
+            // fallback font, which then look ragged once the real font
+            // renders into those same frozen line boxes. This heading is
+            // below the fold (revealed on scroll), so waiting for fonts to
+            // finish loading before splitting costs nothing visible.
+            const runSplit = () => {
+                if (cancelled) return;
+                split = applySplitSlideUp({
+                    target: headingRef.current,
+                    trigger: sectionRef.current,
+                    start: ANIM.start.default,
+                    duration: ANIM.duration.base,
+                    stagger: ANIM.stagger.base,
+                    ease: ANIM.ease.default,
+                });
+            };
 
-            return () => split?.revert();
+            if (typeof document !== "undefined" && document.fonts && document.fonts.status !== "loaded") {
+                document.fonts.ready.then(runSplit);
+            } else {
+                runSplit();
+            }
         }, sectionRef);
 
-        return () => ctx.revert();
+        return () => {
+            cancelled = true;
+            split?.revert();
+            ctx.revert();
+        };
     }, []);
 
     useEffect(() => {
@@ -61,16 +81,16 @@ const ExploreDestinationSection = () => {
 
                 {/* Top Content */}
                 <Section>
-                    <div ref={sectionRef} className="grid  ">
+                    <div ref={sectionRef} className="grid">
 
                         {/* Left */}
-                        <div ref={headingRef} className={`w-1/2 type-display-sm text-primary-dark uppercase self-start `}>
+                        <div ref={headingRef} className={` sm:w-1/2 type-display-sm text-primary-dark uppercase self-start `}>
                             A setting reserved for the remarkable, where nature takes centre stage.
 
                         </div>
 
                         {/* Right */}
-                        <div className="relative -mt-20 flex flex-col items-start sm:items-end justify-end self-end ">
+                        <div className="relative mt-6 sm:-mt-20 flex flex-col items-start sm:items-end justify-end self-end ">
 
                             <div className=" relative">
                                 <span aria-hidden="true" className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 w-[0.5px] bg-gray h-[calc(100%-25px)]" />

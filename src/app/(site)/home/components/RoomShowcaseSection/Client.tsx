@@ -49,17 +49,24 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
       });
 
 
-      const texts = textRefs.current.filter(Boolean) as HTMLDivElement[];
-      const thumbImgs = thumbRefs.current.filter(Boolean) as HTMLImageElement[];
-      const rightImgs = rightImgRefs.current.filter(Boolean) as HTMLImageElement[];
+      // Index directly into the ref arrays (not a `.filter(Boolean)`
+      // result) so `texts[i]`/`rightImgs[i]`/`thumbImgs[i]` always line up
+      // with `items[i]` — filtering first shifts every later index out of
+      // alignment the moment any single ref is missing, which is what was
+      // producing the flood of "GSAP target null not found" warnings.
+      const firstText = textRefs.current[0];
+      if (firstText) gsap.set(firstText, { autoAlpha: 1, y: 0 });
 
-      gsap.set(texts[0], { autoAlpha: 1, y: 0 });
-      gsap.set(texts.slice(1), { autoAlpha: 0, y: 40 });
+      const restTexts = textRefs.current.slice(1).filter(Boolean) as HTMLDivElement[];
+      if (restTexts.length) gsap.set(restTexts, { autoAlpha: 0, y: 40 });
 
-      gsap.set([...rightImgs, ...thumbImgs], {
-        clipPath: "inset(0% 0% 0% 0%)",
-        objectPosition: "0px 0%",
-      });
+      const allImgs = [...rightImgRefs.current, ...thumbRefs.current].filter(Boolean) as HTMLImageElement[];
+      if (allImgs.length) {
+        gsap.set(allImgs, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          objectPosition: "0px 0%",
+        });
+      }
 
       const holdDur = 1.4;
       const td = 0.6;
@@ -97,74 +104,92 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
         const label = `t${i}`;
         tl.addLabel(label, ">");
 
-        tl.to(
-          rightImgs[i],
-          {
-            clipPath: "inset(0% 0% 100% 0%)",
-            objectPosition: "0px 60%",
-            duration: td,
-            ease: "none",
-          },
-          label
-        );
+        const rightCurrent = rightImgRefs.current[i];
+        const rightNext = rightImgRefs.current[i + 1];
+        const thumbCurrent = thumbRefs.current[i];
+        const thumbNext = thumbRefs.current[i + 1];
+        const textCurrent = textRefs.current[i];
+        const textNext = textRefs.current[i + 1];
 
-        tl.to(
-          rightImgs[i + 1],
-          {
-            objectPosition: "0px 40%",
-            duration: td,
-            ease: "none",
-          },
-          label
-        );
+        if (rightCurrent) {
+          tl.to(
+            rightCurrent,
+            {
+              clipPath: "inset(0% 0% 100% 0%)",
+              objectPosition: "0px 60%",
+              duration: td,
+              ease: "none",
+            },
+            label
+          );
+        }
 
-        tl.to(
-          thumbImgs[i],
-          {
-            clipPath: "inset(0% 0% 100% 0%)",
-            objectPosition: "0px 60%",
-            duration: td,
-            ease: "none",
-          },
-          label
-        );
+        if (rightNext) {
+          tl.to(
+            rightNext,
+            {
+              objectPosition: "0px 40%",
+              duration: td,
+              ease: "none",
+            },
+            label
+          );
+        }
 
-        tl.to(
-          thumbImgs[i + 1],
-          {
-            objectPosition: "0px 40%",
-            duration: td,
-            ease: "none",
-          },
-          label
-        );
+        if (thumbCurrent) {
+          tl.to(
+            thumbCurrent,
+            {
+              clipPath: "inset(0% 0% 100% 0%)",
+              objectPosition: "0px 60%",
+              duration: td,
+              ease: "none",
+            },
+            label
+          );
+        }
 
-        tl.to(
-          texts[i],
-          {
-            autoAlpha: 0,
-            y: -30,
-            duration: td * 0.5,
-            ease: "power2.inOut",
-          },
-          label
-        );
+        if (thumbNext) {
+          tl.to(
+            thumbNext,
+            {
+              objectPosition: "0px 40%",
+              duration: td,
+              ease: "none",
+            },
+            label
+          );
+        }
 
-        tl.fromTo(
-          texts[i + 1],
-          {
-            autoAlpha: 0,
-            y: 40,
-          },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: td * 0.6,
-            ease: "power3.out",
-          },
-          `${label}+=${td * 0.5}`
-        );
+        if (textCurrent) {
+          tl.to(
+            textCurrent,
+            {
+              autoAlpha: 0,
+              y: -30,
+              duration: td * 0.5,
+              ease: "power2.inOut",
+            },
+            label
+          );
+        }
 
+        if (textNext) {
+          tl.fromTo(
+            textNext,
+            {
+              autoAlpha: 0,
+              y: 40,
+            },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: td * 0.6,
+              ease: "power3.out",
+            },
+            `${label}+=${td * 0.5}`
+          );
+        }
       }
 
       tl.to({}, { duration: holdDur });
@@ -182,8 +207,8 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
 
   return (
     <Section className="relative">
-      <div ref={sectionRef} className="relative h-screen overflow-hidden">
-        <div className="absolute inset-x-0 top-16 lg:top-20 bottom-16 lg:bottom-20 overflow-hidden">
+      <div ref={sectionRef} className="relative  h-screen overflow-hidden">
+        <div className="absolute inset-x-0 top-16  lg:top-20 bottom-16 lg:bottom-20 overflow-hidden">
           {/* Right Image Stack */}
           {items.map((item, i) => (
             <div
@@ -209,13 +234,13 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
           ))}
 
           {/* Left Blur Panel */}
-          <div className="absolute left-6 top-6 bottom-6 right-6 sm:right-auto sm:w-[65%] md:w-[55%] lg:w-[48%] xl:w-1/3 z-20 flex items-center">
-            <div className="relative h-full w-full max-w-xl overflow-hidden">
+          <div className="absolute  left-6 top-6 bottom-6 right-6 sm:right-auto sm:w-[65%] md:w-[55%] lg:w-[48%] xl:w-1/3 z-20 flex items-center">
+            <div className="relative  h-full w-full max-w-xl overflow-hidden">
               <div className="absolute inset-0 bg-primary/10 backdrop-blur-xl" />
 
-              <div className="relative z-10 flex h-full flex-col justify-center p-6 md:p-8">
+              <div className="relative  z-10 flex h-full flex-col justify-center p-6 md:p-8 ">
                 {/* Text */}
-                <div className="relative h-56 sm:h-64 md:h-72 lg:h-64 xl:h-62.5">
+                <div className="relative  h-64 md:h-72 lg:h-64 xl:h-62.5">
                   {items.map((item, i) => (
                     <div
                       key={item.id}

@@ -135,7 +135,7 @@ export default function MomentsSectionClient({ items }: Props) {
 
   return (
     <Section className=" py-16 lg:py-20">
-      <div className="mb-32">
+      <div className="mb-16 sm:mb-32">
         <Eyebrow align="center" className="mt-2 text-gray">
           Influencer Spotlight
         </Eyebrow>

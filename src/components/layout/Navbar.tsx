@@ -106,7 +106,7 @@ const DesktopNavLinks = memo(function DesktopNavLinks({
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [animating, setAnimating] = useState(false);
+  const [, setAnimating] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
   const [hideNav, setHideNav] = useState(false);
 
@@ -382,7 +382,12 @@ export default function Header() {
   // ── Toggle ────────────────────────────────────────────────────────────────
 
   const toggle = () => {
-    if (animating) return;
+    // No `animating` guard here — runOpen()/runClose() already call
+    // clearAnimTimers() as their first step, so re-entering mid-animation
+    // just cancels the in-flight one and starts the new direction cleanly.
+    // Gating on `animating` (reset only by a setTimeout deep inside those
+    // functions) meant any interrupted timer left the button permanently
+    // stuck unresponsive.
     if (open) {
       setOpen(false);
       runClose();
@@ -414,10 +419,13 @@ export default function Header() {
             <div className="relative h-16">
 
               {/* ================= DESKTOP NAV ================= */}
+              {/* Hidden below lg — mobile always uses the compact "scrolled"
+                  layout (logo + menu button) below, since the inline nav
+                  links here are lg-only anyway. */}
               <div
-                className={`absolute inset-0 flex items-center transition-opacity duration-500 ${!scrolled && !open
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none"
+                className={`hidden lg:flex absolute inset-0 items-center transition-opacity duration-500 ${!scrolled && !open
+                  ? "lg:opacity-100 lg:pointer-events-auto"
+                  : "lg:opacity-0 lg:pointer-events-none"
                   }`}
               >
                 {/* Left */}
@@ -453,14 +461,17 @@ export default function Header() {
               </div>
 
               {/* ================= SCROLLED NAV ================= */}
+              {/* Always visible on mobile (that's the only mobile nav —
+                  logo + menu button); on lg+ it only shows once scrolled
+                  or the menu is open, matching the desktop toggle above. */}
               <div
-                className={`absolute inset-0 flex items-center justify-between transition-opacity duration-500 ${scrolled || open
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none"
+                className={`absolute inset-0 flex items-center justify-between transition-opacity duration-500 opacity-100 pointer-events-auto ${scrolled || open
+                  ? "lg:opacity-100 lg:pointer-events-auto"
+                  : "lg:opacity-0 lg:pointer-events-none"
                   }`}
               >
                 {/* Logo */}
-                <Link href="/">
+                <Link href="/" onClick={open ? handleLinkClick : undefined}>
                   <Image
                     src={logoSrc}
                     alt="The Beach Hotel"
