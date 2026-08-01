@@ -8,7 +8,7 @@ interface Props {
 export default function BlogHero({ blog }: Props) {
 
   return (
-    <section className="relative w-full h-120 lg:h-140 bg-black overflow-hidden flex flex-col justify-end">
+    <section className="relative w-full h-[50vh] bg-black overflow-hidden flex flex-col justify-end">
 
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">

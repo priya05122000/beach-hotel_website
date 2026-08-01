@@ -39,7 +39,7 @@ export default function BlogIntro({ blog }: Props) {
   return (
     <Section className="pt-16 lg:pt-20">
       <div className="border-b border-silver pb-10">
-        <div className="pt-1 pr-20 sm:float-left">
+        <div className="pt-1 sm:pr-20 sm:float-left">
           <p className="text-gray type-overline font-arizona-sans-regular tracking-[0.25em] mb-3 sm:mb-0">
             {blog.tag_1 ?? "Article"}
           </p>

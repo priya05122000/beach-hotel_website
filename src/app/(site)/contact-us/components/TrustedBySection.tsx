@@ -74,7 +74,7 @@ export default function TrustedBySection() {
   }, []);
 
   return (
-    <Section className=" py-12 md:py-20">
+    <Section className=" py-16 md:py-20">
       <div ref={sectionRef} className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
         <div className="sm:pr-10 sm:border-r sm:border-silver/60 text-center sm:text-left">
           <h2

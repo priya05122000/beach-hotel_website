@@ -14,7 +14,7 @@ interface EyebrowProps extends React.HTMLAttributes<HTMLElement> {
 const alignClasses: Record<EyebrowAlign, string> = {
   left: "text-left",
   center: "text-center",
-  responsive: "text-center sm:text-left",
+  responsive: "text-left",
 };
 
 /**

@@ -9,6 +9,7 @@ import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import LazySection from "@/src/components/common/LazySection";
 import { Button } from "@/src/components/common/button";
+import PillLinkButton from "@/src/components/common/PillLinkButton";
 import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
@@ -111,29 +112,31 @@ function DestinationItem({ destination, isLast }: { destination: NearbyDestinati
               >
                 Explore Destination<span className="sr-only"> — {destination.destination_name}</span>
               </Button>
-
-              {destination.ticket_booking_link && (
-                <Button
-                  href={destination.ticket_booking_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer"
-                >
-                  Book Tickets
-                </Button>
-              )}
             </div>
           </div>
         </div>
 
         {/* Description */}
-        <div className="flex items-start md:items-end ">
-          {destination.description && (
-            <div
-              className="text-charcoal type-body"
-              dangerouslySetInnerHTML={{ __html: destination.description }}
-            />
-          )}
+        <div className="flex items-start md:items-end">
+          <div className="flex flex-col gap-4">
+            {destination.description && (
+              <div
+                className="text-charcoal type-body"
+                dangerouslySetInnerHTML={{ __html: destination.description }}
+              />
+            )}
+
+            {destination.ticket_booking_link && (
+              <PillLinkButton
+                href={destination.ticket_booking_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pointer-events-auto mt-4 w-fit"
+              >
+                Book Tickets
+              </PillLinkButton>
+            )}
+          </div>
         </div>
       </div>
 

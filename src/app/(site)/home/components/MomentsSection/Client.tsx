@@ -24,7 +24,15 @@ interface Props {
   items: MomentItem[];
 }
 
-function UploadedVideo({ item }: { item: MomentItem }) {
+function UploadedVideo({
+  item,
+  videoRefs,
+  index,
+}: {
+  item: MomentItem;
+  videoRefs: React.RefObject<(HTMLVideoElement | null)[]>;
+  index: number;
+}) {
   const [started, setStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -51,6 +59,15 @@ function UploadedVideo({ item }: { item: MomentItem }) {
     }
   };
 
+  // Only one moment video should ever play at once — starting this one
+  // pauses every other video currently playing in the grid.
+  const handlePlay = () => {
+    setIsPlaying(true);
+    videoRefs.current.forEach((v, i) => {
+      if (v && i !== index && !v.paused) v.pause();
+    });
+  };
+
   return (
     <button
       type="button"
@@ -60,12 +77,15 @@ function UploadedVideo({ item }: { item: MomentItem }) {
     >
       {/* Always mounted so the ref exists at the moment of the click. */}
       <video
-        ref={videoRef}
+        ref={(el) => {
+          videoRef.current = el;
+          videoRefs.current[index] = el;
+        }}
         src={item.videoUrl}
         poster={item.thumbnailUrl || "/placeholder-video.jpg"}
         preload="auto"
         playsInline
-        onPlay={() => setIsPlaying(true)}
+        onPlay={handlePlay}
         onPause={() => setIsPlaying(false)}
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -94,6 +114,7 @@ function UploadedVideo({ item }: { item: MomentItem }) {
 export default function MomentsSectionClient({ items }: Props) {
   const containerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const innerRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -152,7 +173,7 @@ export default function MomentsSectionClient({ items }: Props) {
                 }}
                 className="absolute inset-0"
               >
-                <UploadedVideo item={item} />
+                <UploadedVideo item={item} videoRefs={videoRefs} index={i} />
               </div>
 
               {item.reelUrl && (

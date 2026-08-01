@@ -77,7 +77,7 @@ export default function NearbyHeroBanner({ destinations }: Props) {
   const current = slides[selectedIndex];
 
   return (
-    <div className="relative w-full h-[90vh] sm:h-screen overflow-hidden">
+    <div className="relative w-full h-[50vh] sm:h-screen overflow-hidden">
       {/* Slides */}
       <div ref={emblaRef} className="absolute inset-0 overflow-hidden">
         <div className="flex h-full">

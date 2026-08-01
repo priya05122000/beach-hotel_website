@@ -151,7 +151,7 @@ export default function RoomBanner() {
             <div className="md:hidden relative">
                 <div
                     ref={mobileImageRef}
-                    className="relative w-full h-[70vw] max-h-120 overflow-hidden"
+                    className="relative w-full h-[50vh] max-h-120 overflow-hidden"
                 >
                     <Image
                         src={IMAGE_SRC}
@@ -168,16 +168,16 @@ export default function RoomBanner() {
                                 ref={mobileLineLeftRef}
                                 className="type-display-lg leading-tight text-white"
                             >
-                                Orna Villas
+                                Luxury
                             </div>
                         </div>
 
                         <div className="flex items-end justify-end">
                             <div
                                 ref={mobileLineRightRef}
-                                className="text-white leading-tight type-display-md text-right"
+                                className="text-white leading-tight type-display-lg text-right"
                             >
-                                Experience
+                                Stay
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@ export default function RoomBanner() {
                             ref={desktopLineLeftRef}
                             className="type-display-lg text-white leading-tight"
                         >
-                            Orna Villas
+                            Luxury
                         </h1>
                     </div>
 
@@ -218,7 +218,7 @@ export default function RoomBanner() {
                             ref={desktopLineRightRef}
                             className="type-display-lg leading-tight text-white block"
                         >
-                            Experience
+                            Stay
                         </span>
                     </div>
                 </div>

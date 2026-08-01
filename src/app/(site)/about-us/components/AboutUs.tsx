@@ -57,7 +57,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden" style={{ height: "200vh" }}>
+    <section ref={sectionRef} className="relative overflow-hidden h-[160vh] sm:h-[200vh]">
       {/* Parallax video */}
       <div
         ref={bgRef}
@@ -76,10 +76,9 @@ const AboutUs = () => {
         <div className="absolute inset-0 bg-black/35" />
       </div>
 
-      {/* First 100vh — left content */}
+      {/* First panel — left content */}
       <div
-        className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20"
-        style={{ height: "100vh" }}
+        className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20 h-[75vh] sm:h-screen"
       >
         <h1 ref={titleRef} className="text-white type-display-2xl leading-none">
           Where Every<br />Wave Tells<br />Our Story
@@ -94,10 +93,9 @@ const AboutUs = () => {
         </Button>
       </div>
 
-      {/* Second 100vh — right content */}
+      {/* Second panel — right content */}
       <div
-        className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-end px-8 lg:px-16"
-        style={{ height: "100vh" }}
+        className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-end px-8 lg:px-16 h-[75vh] sm:h-screen"
       >
         <div className="max-w-lg flex flex-col gap-6">
           <h2 ref={subtitleRef} className="text-white type-display-sm leading-tight">

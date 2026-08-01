@@ -682,7 +682,7 @@ export default function Header() {
                 className="flex flex-col  sm:flex-row sm:items-end sm:justify-between pt-6 shrink-0 gap-6"
                 style={{ opacity: 0, transform: "translateY(20px)" }}
               >
-                <div className="flex flex-col  gap-1 ">
+                <div className="flex flex-col  gap-3 ">
                   <a
                     href="tel:+915467898765"
                     className="text-primary-dark type-body-lg uppercase no-underline font-arizona-flare-regular transition-colors duration-200 tracking-[3px]"

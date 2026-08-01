@@ -112,7 +112,7 @@ export default function FacilitiesSplitHero() {
         <>
             {/* ── Mobile layout (< md) ─────────────────────────────────── */}
             <div className="flex flex-col md:hidden w-full">
-                <div className="relative w-full" style={{ height: "80vw", minHeight: 240 }}>
+                <div className="relative w-full" style={{ height: "50vh", minHeight: 240 }}>
                     <Image src="/facilities/1.webp" alt="Hotel Facilities" fill priority className="object-cover" />
                     <div className="absolute inset-0 bg-black/20" />
                 </div>
