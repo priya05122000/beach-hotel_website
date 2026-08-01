@@ -83,6 +83,11 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     return (
         <Section className="pb-16 pt-16 sm:pt-40 lg:pb-20 mb-20 type-body">
+            {/* Visually hidden — the per-facility titles below are h3, but
+                this section has no visible heading of its own in the design.
+                Without this, the outline jumps straight from h1 to h3
+                ("H2: Missing"). */}
+            <h2 className="sr-only">Our Facilities</h2>
             <div ref={sectionRef} className="min-h-screen flex items-center">
 
                 {/* ── Mobile (<768px): single column, image → content, no animation ── */}

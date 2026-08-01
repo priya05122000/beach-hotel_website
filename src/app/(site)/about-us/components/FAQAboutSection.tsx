@@ -16,13 +16,13 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
   return (
     <Section className=" py-16 lg:py-20">
       <div className="mb-6 lg:mb-10 flex items-start justify-between gap-4">
-        <h2 className="type-h4  font-normal text-primary-dark leading-tight">
+        <h3 className="type-h4  font-normal text-primary-dark leading-tight">
           YOUR QUESTIONS,
           <br />
           <span className="block type-body font-light mt-2 text-charcoal leading-snug max-w-xs md:max-w-sm">
             thoughtfully answered — so all that&apos;s left is to arrive
           </span>
-        </h2>
+        </h3>
 
         <p className="hidden sm:block type-body text-right text-primary-dark max-w-60 leading-snug">
           We&apos;ve gathered answers to everything you might be wondering about

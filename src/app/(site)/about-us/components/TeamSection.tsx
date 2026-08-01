@@ -59,12 +59,12 @@ const TeamSection = () => {
 
           <div className="sm:col-span-8 flex flex-col gap-8 sm:gap-12">
             {/* Animated line reveal */}
-            <h2
+            <h3
               ref={revealRef}
               className="text-primary-dark type-display-2xl leading-tight"
             >
               Design &<br />Technology<br />Enthusiasts
-            </h2>
+            </h3>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
               We are a team of like-minded design enthusiasts and tech aficionados that

@@ -152,7 +152,10 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   return (
     <Section className="py-16 lg:py-20">
       <div className="grid sm:grid-cols-2  border-b border-silver pb-10 pt-16 lg:py-20 type-body">
-        <Eyebrow align="responsive">Near By Destinations</Eyebrow>
+        {/* h2 — the per-destination titles below are h3, so this needs to
+            be a real heading or the outline jumps straight from h1 to h3
+            ("H2: Missing"). */}
+        <Eyebrow as="h2" align="responsive">Near By Destinations</Eyebrow>
         <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two

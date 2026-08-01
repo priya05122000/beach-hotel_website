@@ -115,12 +115,23 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
               flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
             `}
           >
-            <h2
-              ref={titleRef}
-              className="type-display-lg font-semibold text-primary-dark leading-tight mb-4"
-            >
-              {section.category_name}
-            </h2>
+            {/* Only the first category section keeps an h2 — the rest are
+                demoted to h3 so the page has exactly one h2. */}
+            {index === 0 ? (
+              <h2
+                ref={titleRef}
+                className="type-display-lg font-semibold text-primary-dark leading-tight mb-4"
+              >
+                {section.category_name}
+              </h2>
+            ) : (
+              <h3
+                ref={titleRef}
+                className="type-display-lg font-semibold text-primary-dark leading-tight mb-4"
+              >
+                {section.category_name}
+              </h3>
+            )}
 
             <p className={`text-charcoal type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
               {section.short_description}
