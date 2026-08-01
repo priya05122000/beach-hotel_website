@@ -28,7 +28,7 @@ export default function FacilitiesSplitHero() {
     // ── Mobile refs ───────────────────────────────────────────────
     const mobilePanelRef = useRef<HTMLDivElement>(null);
     const mobileTaglineRef = useRef<HTMLSpanElement>(null);
-    const mobileHeadlineRef = useRef<HTMLHeadingElement>(null);
+    const mobileHeadlineRef = useRef<HTMLDivElement>(null);
     const mobileHeadlineLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
     const mobileCtaRef = useRef<HTMLAnchorElement>(null);
     const mobileParaRef = useRef<HTMLParagraphElement>(null);
@@ -127,7 +127,7 @@ export default function FacilitiesSplitHero() {
                             Our Facilities
                         </span>
 
-                        <h1
+                        <div
                             ref={mobileHeadlineRef}
                             className="type-display-sm uppercase text-primary-dark leading-tight"
                         >
@@ -141,7 +141,7 @@ export default function FacilitiesSplitHero() {
                                     </span>
                                 </div>
                             ))}
-                        </h1>
+                        </div>
 
                         {/* <a
                             ref={mobileCtaRef}

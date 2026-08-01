@@ -19,7 +19,7 @@ export default function RoomBanner() {
     const mobileImageRef = useRef<HTMLDivElement>(null);
     const desktopLineLeftRef = useRef<HTMLHeadingElement>(null);
     const desktopLineRightRef = useRef<HTMLSpanElement>(null);
-    const mobileLineLeftRef = useRef<HTMLHeadingElement>(null);
+    const mobileLineLeftRef = useRef<HTMLDivElement>(null);
     const mobileLineRightRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
@@ -164,12 +164,12 @@ export default function RoomBanner() {
 
                     <div className="absolute inset-0 grid grid-cols-2 py-16 px-6">
                         <div className="flex items-start">
-                            <h1
+                            <div
                                 ref={mobileLineLeftRef}
                                 className="type-display-lg leading-tight text-white"
                             >
                                 Orna Villas
-                            </h1>
+                            </div>
                         </div>
 
                         <div className="flex items-end justify-end">

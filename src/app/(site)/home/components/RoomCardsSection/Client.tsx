@@ -107,7 +107,7 @@ function RoomCard({ room }: { room: Room }) {
           href={`/rooms?to=${room.id}`}
           className="flex items-center gap-1 type-label-sm tracking-[2px] text-gray uppercase mt-10 underline underline-offset-2"
         >
-          View Details
+          View Details<span className="sr-only"> about {room.name}</span>
         </Link>
       </div>
     </div>
@@ -180,7 +180,7 @@ export default function RoomCardsSectionClient({
           </Button> */}
 
           <Button href="/rooms" className="sm:w-50  whitespace-nowrap font-normal text-primary-dark cursor-pointer">
-            View All
+            View All Rooms
           </Button>
         </div>
       </Section>

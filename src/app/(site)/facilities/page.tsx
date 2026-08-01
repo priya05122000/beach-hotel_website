@@ -6,7 +6,7 @@ import { getFacilitiesData } from "@/src/service/facilities";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Facilities",
+  title: "Facilities & Amenities",
   description:
     "Discover world-class facilities at The Beach Hotel, Kanyakumari — from infinity pools and fine dining to a fully equipped spa and conference centre.",
   alternates: { canonical: "/facilities" },

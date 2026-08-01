@@ -17,9 +17,14 @@ const alignClasses: Record<EyebrowAlign, string> = {
   responsive: "text-center sm:text-left",
 };
 
-/** Shared "kicker" label used above section headings: type-h6, wide tracking, uppercase. */
+/**
+ * Shared "kicker" label used above section headings: type-h6, wide tracking,
+ * uppercase. Defaults to `<p>` — it's a visual label, not a real heading;
+ * pass `as="h1"`/`as="h2"` explicitly on the rare page where it doubles as
+ * the actual section heading (e.g. `GalleryList`'s `as="h1"`).
+ */
 const Eyebrow = React.forwardRef<HTMLElement, EyebrowProps>(
-  ({ as = "h2", align = "left", children, className = "", ...rest }, ref) => {
+  ({ as = "p", align = "left", children, className = "", ...rest }, ref) => {
     const Tag = as as keyof JSX.IntrinsicElements;
     return React.createElement(
       Tag,

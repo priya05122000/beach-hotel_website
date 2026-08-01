@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await getBlogBySlug(slug);
     const blog = res.data;
     const description = blog.description_1
-      ? blog.description_1.replace(/<[^>]+>/g, "").slice(0, 160)
+      ? blog.description_1.replace(/<[^>]+>/g, "").slice(0, 155)
       : blog.sub_title;
 
     return {

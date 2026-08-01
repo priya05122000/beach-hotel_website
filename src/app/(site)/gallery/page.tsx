@@ -5,7 +5,7 @@ import { getGalleryCategoriesData } from "@/src/service/gallery-categories";
 import GalleryBanner from "./components/GalleryBanner";
 
 export const metadata: Metadata = {
-  title: "Gallery",
+  title: "Gallery — Photos & Videos",
   description:
     "Browse photos and videos of The Beach Hotel, Kanyakumari — our rooms, sea views, dining, and the stunning coastline where three oceans converge.",
   alternates: { canonical: "/gallery" },

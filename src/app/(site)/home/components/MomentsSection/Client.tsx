@@ -29,11 +29,17 @@ function UploadedVideo({ item }: { item: MomentItem }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    if (started) {
-      videoRef.current?.play().catch(() => { });
-    }
-  }, [started]);
+  // Real mobile browsers (iOS Safari especially) only allow `.play()` to
+  // succeed when it's called synchronously inside the same user-gesture
+  // handler that triggered it — deferring it to a `useEffect` (which runs on
+  // a later React commit, detached from the original tap's call stack) gets
+  // silently rejected. Desktop devtools mobile emulation doesn't enforce
+  // this, which is why it worked there but not on a real phone. Calling
+  // `.play()` directly in the click handler keeps it tied to the gesture.
+  const handleStart = () => {
+    setStarted(true);
+    videoRef.current?.play().catch(() => { });
+  };
 
   const togglePlayback = () => {
     const video = videoRef.current;
@@ -45,51 +51,41 @@ function UploadedVideo({ item }: { item: MomentItem }) {
     }
   };
 
-  if (started) {
-    return (
-      <button
-        type="button"
-        onClick={togglePlayback}
-        aria-label={isPlaying ? "Pause video" : "Play video"}
-        className="absolute inset-0 h-full w-full cursor-pointer"
-      >
-        <video
-          ref={videoRef}
-          src={item.videoUrl}
-          poster={item.thumbnailUrl || "/placeholder-video.jpg"}
-          preload="auto"
-          playsInline
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          {isPlaying ? (
-            <Pause size={50} className="text-cream opacity-0 transition-opacity duration-200 hover:opacity-100" fill="currentColor" />
-          ) : (
-            <Play size={50} className="ml-1 text-cream" fill="currentColor" />
-          )}
-        </div>
-      </button>
-    );
-  }
-
   return (
     <button
       type="button"
-      onClick={() => setStarted(true)}
-      aria-label="Play video"
+      onClick={started ? togglePlayback : handleStart}
+      aria-label={started ? (isPlaying ? "Pause video" : "Play video") : "Play video"}
       className="absolute inset-0 h-full w-full cursor-pointer"
     >
-      <Image
-        src={item.thumbnailUrl || "/placeholder-video.jpg"}
-        alt={item.title || "Video thumbnail"}
-        fill
-        className="object-cover object-center"
-        sizes="(max-width:640px) 100vw, 33vw"
+      {/* Always mounted so the ref exists at the moment of the click. */}
+      <video
+        ref={videoRef}
+        src={item.videoUrl}
+        poster={item.thumbnailUrl || "/placeholder-video.jpg"}
+        preload="auto"
+        playsInline
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 flex items-center justify-center ">
-        <Play size={50} className="ml-1 text-cream" fill="currentColor" />
+
+      {!started && (
+        <Image
+          src={item.thumbnailUrl || "/placeholder-video.jpg"}
+          alt={item.title || "Video thumbnail"}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width:640px) 100vw, 33vw"
+        />
+      )}
+
+      <div className="absolute inset-0 flex items-center justify-center">
+        {started && isPlaying ? (
+          <Pause size={50} className="text-cream opacity-0 transition-opacity duration-200 hover:opacity-100" fill="currentColor" />
+        ) : (
+          <Play size={50} className="ml-1 text-cream" fill="currentColor" />
+        )}
       </div>
     </button>
   );

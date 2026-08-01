@@ -19,9 +19,9 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
         <h2 className="type-h4  font-normal text-primary-dark leading-tight">
           YOUR QUESTIONS,
           <br />
-          <div className="type-body font-light mt-2 text-charcoal leading-snug max-w-xs md:max-w-sm">
+          <span className="block type-body font-light mt-2 text-charcoal leading-snug max-w-xs md:max-w-sm">
             thoughtfully answered — so all that&apos;s left is to arrive
-          </div>
+          </span>
         </h2>
 
         <p className="hidden sm:block type-body text-right text-primary-dark max-w-60 leading-snug">

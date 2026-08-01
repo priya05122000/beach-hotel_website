@@ -109,7 +109,7 @@ function DestinationItem({ destination, isLast }: { destination: NearbyDestinati
                 rel={destination.destination_link ? "noopener noreferrer" : undefined}
                 className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer"
               >
-                Explore Destination
+                Explore Destination<span className="sr-only"> — {destination.destination_name}</span>
               </Button>
 
               {destination.ticket_booking_link && (

@@ -40,7 +40,7 @@ export default function GalleryBanner() {
                 ease: "power4.inOut",
             });
 
-            // NOR + MOUNTAINS
+            // THE BEACH + HOTEL
             applySlideUp(leftLines, { timeline: tl, position: ">0.1", stagger: 0.13, duration: 0.8 });
 
             // WAY
@@ -76,7 +76,7 @@ export default function GalleryBanner() {
                         src={IMAGE_SRC}
                         fill
                         priority
-                        alt=""
+                        alt="The Beach Hotel"
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/35" />
@@ -96,7 +96,7 @@ export default function GalleryBanner() {
                                 ...clipStyle,
                             }}
                         >
-                            NORWAY
+                            THE BEACH
                         </span>
                     </div>
 
@@ -105,13 +105,18 @@ export default function GalleryBanner() {
                             ref={(el) => {
                                 leftRefs.current[1] = el;
                             }}
-                            className="block  font-arizona-flare-regular tracking-wider  font-bold  leading-none bg-clip-text text-transparent"
+                            // className="block  font-arizona-flare-regular tracking-wider  font-bold  leading-none bg-clip-text text-transparent"
+                            // style={{
+                            //     fontSize: subSize,
+                            //     ...clipStyle,
+                            // }}
+                            className="block type-display-lg tracking-wider font-bold bg-clip-text text-transparent  leading-none"
                             style={{
-                                fontSize: subSize,
+                                fontSize: displaySize,
                                 ...clipStyle,
                             }}
                         >
-                            MOUNTAINS
+                            HOTEL
                         </span>
                     </div>
 

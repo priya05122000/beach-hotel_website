@@ -6,7 +6,7 @@ import ContactFormSection from "./components/ContactFormSection";
 import LazyTrustedBySection from "./components/LazyTrustedBySection";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Us — Get in Touch",
   description:
     "Get in touch with The Beach Hotel, Kanyakumari. Plan your visit, make a reservation, or enquire about special packages. We'd love to hear from you.",
   alternates: { canonical: "/contact-us" },

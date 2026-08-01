@@ -7,7 +7,7 @@ import TeamSection from "./components/TeamSection";
 import { getFaqData } from "@/src/service/faqs";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us — Our Story & Team",
   description:
     "Learn the story behind The Beach Hotel — our heritage, our team, and our commitment to delivering an extraordinary luxury experience in Kanyakumari.",
   alternates: { canonical: "/about-us" },

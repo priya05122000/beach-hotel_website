@@ -60,7 +60,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
                 aria-expanded={open}
                 aria-haspopup="dialog"
                 aria-label={label}
-                className={`flex py-2 tracking-widest w-full items-center px-4 type-caption  cursor-pointer ${triggerClass}`}
+                className={`flex py-2 tracking-widest w-full items-center px-4 type-overline  cursor-pointer ${triggerClass}`}
             >
                 <Users size={16} className="mr-2 shrink-0 opacity-70" />
                 <span className="">{label}</span>
@@ -68,7 +68,7 @@ export default function GuestPicker({ variant = "light", onChange }: GuestPicker
 
             {/* Dropdown — matches DatePicker popup style */}
             {open && (
-                <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-64 rounded-none bg-primary shadow-2xl border border-silver/60 type-caption p-4">
+                <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-64 rounded-none bg-primary shadow-2xl border border-silver/60 type-overline p-4">
 
                     {/* Month-caption style header */}
                     <p className="flex items-center justify-center h-8 mb-3 font-bold text-accent  uppercase tracking-widest">

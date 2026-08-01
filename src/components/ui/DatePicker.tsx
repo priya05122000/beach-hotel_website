@@ -57,17 +57,17 @@ export default function DatePicker({
         aria-expanded={open}
         aria-haspopup="dialog"
         aria-label={value ? `${placeholder}: ${format(value, "dd MMM yyyy")}` : placeholder}
-        className={`flex  py-2 w-full items-center px-4  type-caption cursor-pointer ${triggerClass}`}
+        className={`flex  py-2 w-full items-center px-4  type-overline cursor-pointer ${triggerClass}`}
       >
         <CalendarDays size={16} className="mr-2 shrink-0 opacity-70" />
-        <span className={value ? "" : "opacity-60 type-caption uppercase"}>
+        <span className={value ? "" : "opacity-60 type-overline uppercase"}>
           {value ? format(value, "dd MMM yyyy") : placeholder}
         </span>
       </button>
 
       {/* Calendar popup — opens above the trigger */}
       {open && (
-        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-72 rounded-none bg-primary shadow-2xl border border-silver/60">
+        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-62 sm:w-72 rounded-none bg-primary shadow-2xl border border-silver/60">
           <DatePickerCalendar
             value={value}
             onSelect={(date) => {

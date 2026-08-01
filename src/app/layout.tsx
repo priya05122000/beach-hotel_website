@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | The Beach Hotel",
   },
   description:
-    "The Beach Hotel, Kanyakumari — a luxury hotel at the confluence of three oceans. Discover world-class rooms, amenities, dining, and unforgettable sea views.",
+    "The Beach Hotel, Kanyakumari — a luxury hotel at the confluence of three oceans. Discover world-class rooms, amenities, dining, and sea views.",
   keywords: [
     "Beach Hotel Kanyakumari",
     "luxury hotel Kanyakumari",

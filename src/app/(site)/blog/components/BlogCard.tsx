@@ -65,7 +65,7 @@ export default function BlogCard({ blog }: Props) {
         </Button> */}
 
         <Button href={`/blog/${blog.slug}`} className="sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
-          More Details
+          More Details<span className="sr-only"> about {blog.title}</span>
         </Button>
       </div>
     </article>

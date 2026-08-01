@@ -13,7 +13,7 @@ interface Props {
 
 export default function BlogIntro({ blog }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLParagraphElement>(null);
 
   useLayoutEffect(() => {
     const prefersReduced = prefersReducedMotion();
@@ -46,12 +46,16 @@ export default function BlogIntro({ blog }: Props) {
         </div>
 
         <div ref={wrapperRef}>
-          <h2
+          {/* Lede/tagline, not a real section heading — the page's actual
+              <h1> (blog.title) renders later in BlogStatement, so this must
+              not be a heading tag or it would appear before the h1 in DOM
+              order ("H1: Non-Sequential" in SEO audits). */}
+          <p
             ref={titleRef}
             className="type-h2 text-primary-dark leading-snug"
           >
             {blog.sub_title}
-          </h2>
+          </p>
         </div>
       </div>
 

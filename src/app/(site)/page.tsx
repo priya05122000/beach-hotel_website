@@ -20,9 +20,13 @@ import { getOfferData } from "@/src/service/offers";
 import { getRoomsData } from "@/src/service/rooms";
 
 export const metadata: Metadata = {
-  title: "The Beach Hotel — Kanyakumari's Premier Luxury Address",
+  // `absolute` bypasses the root layout's "%s | The Beach Hotel" template —
+  // this title already contains the brand name, so templating it would
+  // double up ("...Address | The Beach Hotel") and push it well past 60
+  // characters.
+  title: { absolute: "The Beach Hotel — Kanyakumari's Premier Luxury Address" },
   description:
-    "Experience unmatched luxury at The Beach Hotel, Kanyakumari — where three oceans meet. Book your stay and discover world-class rooms, amenities, and sea views.",
+    "Experience unmatched luxury at The Beach Hotel, Kanyakumari — where three oceans meet. Discover world-class rooms, amenities, and sea views.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "The Beach Hotel — Kanyakumari's Premier Luxury Address",

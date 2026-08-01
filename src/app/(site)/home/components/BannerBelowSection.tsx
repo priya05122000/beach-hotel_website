@@ -54,7 +54,12 @@ const BannerBelowSection = () => {
 
                 {/* Content — always visible */}
                 <div className="relative type-body  z-10 text-center  h-[20vh] sm:h-[25vh] ">
-                    <SubHeading as="h1" className="mb-4">
+                    {/* Not a heading — it renders before the page's actual
+                        <h1> (SignatureHeadline, later in DOM order), so
+                        making it an h2 here would put a heading ahead of
+                        the h1 ("H1: Non-Sequential" in SEO audits). This is
+                        brand/decorative text, not a real section heading. */}
+                    <SubHeading as="p" className="mb-4">
                         The Beach Hotel
                     </SubHeading>
 

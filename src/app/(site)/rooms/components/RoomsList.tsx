@@ -186,11 +186,11 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
             {room.type}
           </p>
 
-          <SubHeading as="h2" className="text-primary-dark">
+          <SubHeading as="h3" className="text-primary-dark">
             {room.name}
           </SubHeading>
 
-          {/* <div className="w-2px bg-amber-300" /> */}
+          {/* <div className="w-2px 300" /> */}
 
           <p className="text-charcoal leading-relaxed type-body max-w-md">
             {room.description}

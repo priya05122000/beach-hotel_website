@@ -253,9 +253,9 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
                         opacity: i === 0 ? 1 : 0,
                       }}
                     >
-                      <h2 className="type-h1 tracking-wider leading-tight text-white">
+                      <h3 className="type-h1 tracking-wider leading-tight text-white">
                         {item.title}
-                      </h2>
+                      </h3>
 
                       <p className="mt-2 mb-8 type-body text-white line-clamp-4 md:line-clamp-none">
                         {item.description}
@@ -271,7 +271,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
 
 
                       <Button href={item.href ?? "/facilities"} className="sm:w-50  whitespace-nowrap font-normal text-white cursor-pointer">
-                        explore
+                        explore<span className="sr-only"> {item.title}</span>
                       </Button>
                     </div>
                   ))}

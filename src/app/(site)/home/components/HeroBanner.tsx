@@ -37,7 +37,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative h-[60vh] sm:h-screen">
+    <section className="relative h-[90vh] sm:h-screen">
       {/* Background Image */}
       <div className="relative h-full overflow-hidden">
         <HeroBackgroundImage />
@@ -86,7 +86,7 @@ export default function HeroBanner() {
                 <input
                   type="text"
                   placeholder="Promo Code"
-                  className="w-full bg-transparent type-caption tracking-widest uppercase outline-none placeholder:text-white/60"
+                  className="w-full bg-transparent type-overline tracking-widest uppercase outline-none placeholder:text-white/60"
                 />
               </div>
 
@@ -114,7 +114,7 @@ export default function HeroBanner() {
                 <div className="flex h-full items-center justify-center bg-ivory">
                   <button
                     type="submit"
-                    className="cursor-pointer type-caption px-4 font-normal  text-primary-dark transition-opacity hover:opacity-90  py-2 text-[11px] font-arizona-flare-regular uppercase tracking-[3px] "
+                    className="cursor-pointer type-overline px-4 font-normal  text-primary-dark transition-opacity hover:opacity-90  py-2 text-[11px] font-arizona-flare-regular uppercase tracking-[3px] "
                   >
                     Book Now
                   </button>
