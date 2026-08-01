@@ -17,6 +17,12 @@ export default function BlogCard({ blog }: Props) {
     })
     : null;
 
+  // Card excerpt is plain text, not rendered HTML — description_1 is a
+  // CMS rich-text field that can contain arbitrary tags (including
+  // <h2>/<h3>), and rendering those raw here injected uncontrolled extra
+  // headings into the /blog listing page once per card ("H2: Multiple").
+  const excerpt = blog.description_1.replace(/<[^>]+>/g, "");
+
   return (
     <article className="group flex flex-col">
       <Link href={`/blog/${blog.slug}`} className="block overflow-hidden">
@@ -44,10 +50,9 @@ export default function BlogCard({ blog }: Props) {
           </SubHeading>
         </Link>
 
-        <div
-          className="blog-content text-charcoal leading-relaxed mb-4 line-clamp-3"
-          dangerouslySetInnerHTML={{ __html: blog.description_1 }}
-        />
+        <p className="text-charcoal leading-relaxed mb-4 line-clamp-3">
+          {excerpt}
+        </p>
 
         {/* <Link
           href={`/blog/${blog.slug}`}

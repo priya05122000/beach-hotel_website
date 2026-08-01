@@ -89,11 +89,7 @@ export default async function AmenitiesSection() {
 
   return (
     <CenterSection className="bg-ivory py-16 lg:py-20 relative overflow-hidden">
-      {/* h2 (not the default p) — RoomShowcaseSection's per-facility titles
-          right after this in page order are h3, so this needs to be a real
-          heading or the outline jumps straight from h1 to h3
-          ("H2: Non-Sequential"). */}
-      <Eyebrow as="h2" align="center" className="text-gray pb-10 font-normal">
+      <Eyebrow align="center" className="text-gray pb-10 font-normal">
         AMENITIES
       </Eyebrow>
 
