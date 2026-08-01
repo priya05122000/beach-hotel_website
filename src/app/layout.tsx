@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 import {
   arizonaSansBold,
   arizonaFlareRegular,
@@ -61,6 +62,17 @@ export default async function RootLayout({
     >
       <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
         {children}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: "var(--primary-dark)",
+              color: "#fff",
+              fontSize: "14px",
+            },
+          }}
+        />
       </body>
     </html>
   );
