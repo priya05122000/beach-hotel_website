@@ -93,7 +93,7 @@ export default async function AmenitiesSection() {
         AMENITIES
       </Eyebrow>
 
-      <section className="relative px-4 sm:px-0 space-y-10 type-body">
+      <section className="relative px-4 sm:px-0  type-body">
         {/* Mobile */}
         <div className="sm:hidden space-y-8">
           <Editorial align="left" />

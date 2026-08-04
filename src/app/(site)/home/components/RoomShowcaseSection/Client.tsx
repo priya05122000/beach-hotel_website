@@ -271,7 +271,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
 
 
                       <Button href={item.href ?? "/facilities"} className="sm:w-50  whitespace-nowrap font-normal text-white cursor-pointer">
-                        explore<span className="sr-only"> {item.title}</span>
+                        view more<span className="sr-only"> {item.title}</span>
                       </Button>
                     </div>
                   ))}

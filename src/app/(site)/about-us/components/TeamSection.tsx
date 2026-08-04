@@ -67,8 +67,8 @@ const TeamSection = () => {
             </h3>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
-              We are a team of like-minded design enthusiasts and tech aficionados that
-              explore the digital frontier with grit and dedication. Intrigued by beauty,
+              We are a team of like-minded design enthusiasts and tech aficionados who
+              push the digital frontier with grit and dedication. Intrigued by beauty,
               fascinated by technology and fuelled with an everlasting devotion to digital
               craftsmanship and meaningful aesthetics.
             </div>

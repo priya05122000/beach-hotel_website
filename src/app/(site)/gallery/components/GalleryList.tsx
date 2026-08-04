@@ -15,17 +15,15 @@ export default function GalleryList({ sections, galleries }: Props) {
   return (
     <div className="flex flex-col">
       <Section className="">
-        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 sm:pt-16 lg:py-20 type-body">
           {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
           <Eyebrow as="h1" align="responsive">Gallery</Eyebrow>
           <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
-            Kanyakumari is a destination of many wonders — a sacred shore where
-            three oceans meet, revered temples that have drawn pilgrims for two
-            thousand years, and a hidden hinterland of misted mountains, secret
-            waterfalls and timeless heritage that few ever discover. From the
-            comfort of The Beach Hotel, every one of these treasures lies within
-            easy reach. Let our concierge curate the journey; you need only
-            choose where to wander first.
+            These photos capture what it&apos;s actually like to stay at The
+            Beach Hotel — sunrise over the meeting point of three oceans,
+            quiet mornings by the pool, rooms with a view, and the coast of
+            Kanyakumari beyond our walls. Browse the collection below and
+            picture your own stay here.
           </div>
         </div>
 

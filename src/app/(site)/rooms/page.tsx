@@ -6,14 +6,14 @@ import { Suspense } from "react";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Rooms & Suites",
+  title: "Affordable Rooms in Kanyakumari",
   description:
-    "Explore our curated collection of luxurious rooms and suites at The Beach Hotel, Kanyakumari — each designed for comfort with breathtaking ocean views.",
+    "Affordable luxury meets stunning sea views at The Beach Hotel Kanyakumari. Book direct today for the best rates and exclusive offers!",
   alternates: { canonical: "/rooms" },
   openGraph: {
     title: "Rooms & Suites — The Beach Hotel",
     description:
-      "Luxurious rooms and suites designed for comfort with breathtaking ocean views in Kanyakumari.",
+      "Rooms and suites designed for comfort with wide ocean views in Kanyakumari.",
     url: "/rooms",
   },
 };

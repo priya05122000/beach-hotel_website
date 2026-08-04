@@ -213,9 +213,9 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
         <Eyebrow as="h2" align="responsive">Rooms & Suites</Eyebrow>
         <div className=" text-charcoal uppercase type-body-lg lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.1rem] leading-relaxed">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
-          Our accommodations are appointed with bespoke furnishings, the finest
+          Our accommodations are appointed with custom furnishings, the finest
           linens and thoughtful touches at every turn — from serene inland
-          retreats to coveted sea-view sanctuaries, where floor-to-ceiling glass
+          retreats to coveted sea-view rooms, where floor-to-ceiling glass
           dissolves the line between suite and ocean and the rhythm of the waves
           becomes your constant companion. Whichever you choose, you are wrapped
           in quiet grandeur and impeccable comfort — and wake to the most

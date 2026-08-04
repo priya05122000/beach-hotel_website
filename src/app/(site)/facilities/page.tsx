@@ -6,9 +6,9 @@ import { getFacilitiesData } from "@/src/service/facilities";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Facilities & Amenities",
+  title: "Luxury Hotel Facilities in Kanyakumari",
   description:
-    "Discover world-class facilities at The Beach Hotel, Kanyakumari — from infinity pools and fine dining to a fully equipped spa and conference centre.",
+    "World-class facilities at The Beach Hotel, Kanyakumari — from infinity pools and fine dining to a fully equipped spa and conference centre.",
   alternates: { canonical: "/facilities" },
   openGraph: {
     title: "Facilities — The Beach Hotel",

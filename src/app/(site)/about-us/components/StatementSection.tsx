@@ -41,7 +41,7 @@ const StatementSection = () => {
     return (
         <section ref={sectionRef} className="relative overflow-hidden pb-16 lg:pb-20">
             <Section>
-                <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-12 sm:gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
                     <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
                         <Eyebrow as="p" align="left" className="text-gray pb-10">Welcome</Eyebrow>
                     </div>

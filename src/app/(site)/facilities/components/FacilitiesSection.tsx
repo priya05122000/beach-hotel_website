@@ -82,7 +82,7 @@ export default function FacilitiesSection({ facilities }: Props) {
     }
 
     return (
-        <Section className="pb-16 pt-16 sm:pt-40 lg:pb-20 mb-20 type-body">
+        <Section className="pb-16 pt-16 sm:pt-40 lg:pb-20 lg:mb-20 type-body">
             {/* Visually hidden — the per-facility titles below are h3, but
                 this section has no visible heading of its own in the design.
                 Without this, the outline jumps straight from h1 to h3

@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   // this title already contains the brand name, so templating it would
   // double up ("...Address | The Beach Hotel") and push it well past 60
   // characters.
-  title: { absolute: "The Beach Hotel — Kanyakumari's Premier Luxury Address" },
+  title: { absolute: "The Beach Hotel Kanyakumari — Luxury Address" },
   description:
-    "Experience unmatched luxury at The Beach Hotel, Kanyakumari — where three oceans meet. Discover world-class rooms, amenities, and sea views.",
+    "Book your stay at The Beach Hotel Kanyakumari. Enjoy luxury sea view rooms, infinity pool, beachfront location and the best direct rates today.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "The Beach Hotel — Kanyakumari's Premier Luxury Address",
+    title: "Best Beach Hotel in Kanniyakumari for Sea View Stay",
     description:
       "Experience unmatched luxury at The Beach Hotel, Kanyakumari — where three oceans meet.",
     url: "/",

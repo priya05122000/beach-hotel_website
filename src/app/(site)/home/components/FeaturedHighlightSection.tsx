@@ -60,8 +60,8 @@ const FeaturedHighlightSection = () => {
             sunrise, sunset and moonrise can all be witnessed over the sea,
             where the sands shift through hues of gold and crimson, and where
             ancient temples have drawn pilgrims for two thousand years. Beyond
-            the coast lies a hidden hinterland of misted mountains, secret
-            waterfalls and timeless heritage that few ever discover. To stay
+            the coast lies a quiet hinterland of misted mountains and secret
+            waterfalls that most visitors never see. To stay
             with us is to stand at this meeting of nature, culture and spirit —
             and to let it become part of your own story.
           </p>

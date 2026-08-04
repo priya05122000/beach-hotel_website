@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | The Beach Hotel",
   },
   description:
-    "The Beach Hotel, Kanyakumari — a luxury hotel at the confluence of three oceans. Discover world-class rooms, amenities, dining, and sea views.",
+    "The Beach Hotel, Kanyakumari — a luxury hotel at the confluence of three oceans, with fine rooms, amenities, dining, and sea views.",
   keywords: [
     "Beach Hotel Kanyakumari",
     "luxury hotel Kanyakumari",
@@ -25,6 +25,11 @@ export const metadata: Metadata = {
     "resort Kanyakumari",
   ],
   authors: [{ name: "The Beach Hotel", url: SITE_URL }],
+  // No dedicated `publisher` field in Next's Metadata type — `other` emits
+  // arbitrary <meta name="..."> tags for cases like this.
+  other: {
+    publisher: "The Beach Hotel",
+  },
   robots: {
     index: true,
     follow: true,

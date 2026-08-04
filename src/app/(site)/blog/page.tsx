@@ -4,9 +4,12 @@ import BlogGrid from "./components/BlogGrid";
 import { getBlogList } from "@/src/service/blogs";
 
 export const metadata: Metadata = {
-  title: "Blog — Notes from the Beach Hotel",
+  // `absolute` bypasses the root layout's "%s | The Beach Hotel" template —
+  // this title already contains the brand name, so templating it would
+  // double it up ("...Tips | The Beach Hotel").
+  title: { absolute: "The Beach Hotel Blog — Travel Notes & Tips" },
   description:
-    "Stories, travel tips, and insider insights from The Beach Hotel, Kanyakumari. Explore our journal and get inspired for your next coastal escape.",
+    "Stories, travel tips, and insider insights from The Beach Hotel, Kanyakumari. Read our journal and get inspired for your next coastal escape.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog — Notes from the Beach Hotel",

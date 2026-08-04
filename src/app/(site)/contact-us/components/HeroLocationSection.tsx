@@ -62,7 +62,7 @@ export default function HeroLocationSection() {
               <span ref={(el) => { headingLinesRef.current[0] = el; }} className="block">A Conversation</span>
             </div>
             <div className="overflow-hidden">
-              <span ref={(el) => { headingLinesRef.current[1] = el; }} className="block">Begins Your Journey</span>
+              <span ref={(el) => { headingLinesRef.current[1] = el; }} className="block">Starts Right Here</span>
             </div>
           </h1>
         </div>
@@ -107,7 +107,7 @@ export default function HeroLocationSection() {
             <b className="text-primary-dark font-bold mb-4  tracking-widest font-arizona-flare-regular">By Rail</b> - Kanyakumari Railway Station, the final stop on India&apos;s longest rail route, lies just 1KM from the hotel and connects to major cities across. Nagercoil Junction offers further connections nearby.
           </p>
           <p className="type-body">
-            <b className="text-primary-dark font-bold mb-4  tracking-widest font-arizona-flare-regular">By Road</b> - Reach us via NH44, the legendary Kashmir-to-Kanyakumari highway that ends where the land meets the sea. The town of Nagercoil is approximately [20 km] away. Chauffeur-driven transfers can be arranged for a seamless arrival.
+            <b className="text-primary-dark font-bold mb-4  tracking-widest font-arizona-flare-regular">By Road</b> - Reach us via NH44, the legendary Kashmir-to-Kanyakumari highway that ends where the land meets the sea. The town of Nagercoil is approximately [20 km] away. Chauffeur-driven transfers can be arranged for an easy arrival.
           </p>
         </div>
 

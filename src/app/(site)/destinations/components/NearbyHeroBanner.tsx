@@ -21,20 +21,20 @@ interface Slide {
 const FALLBACK_SLIDES: Slide[] = [
   {
     id: 1,
-    destination_name: "Discover Paradise",
+    destination_name: "Paradise Nearby",
     short_description: "Experience the beauty of pristine beaches and crystal clear waters.",
     image_url: "/home/hero-1.webp",
   },
   {
     id: 2,
     destination_name: "Coastal Escapes",
-    short_description: "Unwind in nature's most breathtaking coastal destinations.",
+    short_description: "Relax in nature's most striking coastal destinations.",
     image_url: "/home/herobanner.webp",
   },
   {
     id: 3,
-    destination_name: "Hidden Gems",
-    short_description: "Explore secluded spots just moments from your doorstep.",
+    destination_name: "Local Favourites",
+    short_description: "Secluded spots just moments from your doorstep.",
     image_url: "/home/hero-1.webp",
   },
 ];

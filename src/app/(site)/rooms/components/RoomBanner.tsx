@@ -146,7 +146,7 @@ export default function RoomBanner() {
     }, []);
 
     return (
-        <div ref={sectionRef}>
+        <div ref={sectionRef} className="sm:mb-16 lg:mb-20">
             {/* ── Mobile ─────────────────────────────────────────────────── */}
             <div className="md:hidden relative">
                 <div

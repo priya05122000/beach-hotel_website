@@ -31,7 +31,7 @@ export default function BlogCard({ blog }: Props) {
             src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${blog.image_url}`}
             alt={blog.title}
             fill
-            className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+            className="object-cover lg:grayscale transition-all duration-500 lg:group-hover:grayscale-0 group-hover:scale-[1.03]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>

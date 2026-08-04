@@ -110,7 +110,7 @@ function DestinationItem({ destination, isLast }: { destination: NearbyDestinati
                 rel={destination.destination_link ? "noopener noreferrer" : undefined}
                 className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer"
               >
-                Explore Destination<span className="sr-only"> — {destination.destination_name}</span>
+                View Destination<span className="sr-only"> — {destination.destination_name}</span>
               </Button>
             </div>
           </div>
@@ -150,8 +150,8 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   if (!destinations.length) return null;
 
   return (
-    <Section className="py-16 lg:py-20">
-      <div className="grid sm:grid-cols-2  border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+    <Section className="pt-16 sm:py-16 lg:py-20">
+      <div className="grid sm:grid-cols-2  border-b border-silver pb-10 sm:pt-16 lg:py-20 type-body">
         {/* h2 — the per-destination titles below are h3, so this needs to
             be a real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}
@@ -159,11 +159,10 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
         <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two
-          thousand years, and a hidden hinterland of misted mountains, secret
-          waterfalls and timeless heritage that few ever discover. From the
-          comfort of The Beach Hotel, every one of these treasures lies within
-          easy reach. Let our concierge curate the journey; you need only
-          choose where to wander first.
+          thousand years, and a quiet hinterland of misted mountains and
+          secret waterfalls that most visitors never get to see. From the
+          comfort of The Beach Hotel, all of it lies within easy reach. Let
+          our concierge plan the route; you need only choose where to start.
         </div>
       </div>
       <div>

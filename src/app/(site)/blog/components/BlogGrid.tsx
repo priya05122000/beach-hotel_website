@@ -10,7 +10,7 @@ interface Props {
 export default function BlogGrid({ blogs }: Props) {
   return (
 
-    <Section className="py-16 lg:py-20">
+    <Section className="pb-16 sm:py-16 lg:py-20">
       <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 pt-16 lg:py-20">
         {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
         {/* h2 (not the default p) — BlogCard's per-post titles below are
@@ -22,7 +22,7 @@ export default function BlogGrid({ blogs }: Props) {
           journal is where we tell them. Wander through insider guides to
           Kanyakumari&apos;s coast and countryside, seasonal highlights, and tales
           from within the walls of The Beach Hotel. We hope these pages inspire
-          you — to explore further, to savour deeper, and to dream of the sea.
+          you to look further, savour deeper, and dream of the sea.
         </div>
       </div>
 

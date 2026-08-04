@@ -80,16 +80,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/images/pdf/:path*",
-
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex",
-          },
-        ],
-      },
-      {
         source: "/llms.txt",
         headers: [
           {
@@ -100,8 +90,17 @@ const nextConfig: NextConfig = {
       },
 
       {
+        // Must come before the /images/pdf/ override below — Next.js
+        // applies same-key headers from later-matching rules last, so a
+        // narrower noindex override has to be defined after this general
+        // index/follow default or it gets clobbered for PDF paths.
         source: "/(.*)",
         headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "index, follow",
+          },
+
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
@@ -138,6 +137,20 @@ const nextConfig: NextConfig = {
               connect-src * data: blob: ws: wss:;
               frame-ancestors *;
             `.replace(/\n/g, ""),
+          },
+        ],
+      },
+
+      {
+        // Defined after the general "/(.*)" block above so this narrower
+        // noindex wins for PDF paths (Next.js applies same-key headers from
+        // later-matching rules last).
+        source: "/images/pdf/:path*",
+
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
           },
         ],
       },

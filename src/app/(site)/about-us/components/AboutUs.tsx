@@ -89,7 +89,7 @@ const AboutUs = () => {
         </p> */}
 
         <Button href="/gallery" className="sm:w-60 mt-8 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
-          Scroll to explore
+          Scroll to view more
         </Button>
       </div>
 
@@ -103,7 +103,7 @@ const AboutUs = () => {
             sure you hear it.
           </h2>
           <p className="text-white/55 type-body leading-relaxed">
-            Nestled at the tip of India where three oceans meet, The Beach Hotel was born
+            Set at the tip of India where three oceans meet, The Beach Hotel was born
             from a simple dream: to let every guest wake up to the sound of waves and fall
             asleep under a sky full of stars.
           </p>

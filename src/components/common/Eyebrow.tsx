@@ -30,7 +30,7 @@ const Eyebrow = React.forwardRef<HTMLElement, EyebrowProps>(
       Tag,
       {
         ref,
-        className: `type-h6 tracking-[73%] lg:tracking-[83%] uppercase ${alignClasses[align]} ${className}`,
+        className: `type-h6 leading-relaxed tracking-[60%] lg:tracking-[83%] uppercase ${alignClasses[align]} ${className}`,
         ...rest,
       },
       children

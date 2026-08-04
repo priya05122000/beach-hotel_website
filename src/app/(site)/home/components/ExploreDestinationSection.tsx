@@ -84,17 +84,17 @@ const ExploreDestinationSection = () => {
                     <div ref={sectionRef} className="grid">
 
                         {/* Left */}
-                        <div ref={headingRef} className={` sm:w-1/2 type-display-sm text-primary-dark uppercase self-start `}>
+                        <div ref={headingRef} className={` sm:w-1/2 type-display-sm   text-primary-dark uppercase self-start `}>
                             A setting reserved for the remarkable, where nature takes centre stage.
 
                         </div>
 
                         {/* Right */}
-                        <div className="relative mt-6 sm:-mt-20 flex flex-col items-start sm:items-end justify-end self-end ">
+                        <div className="relative  mt-6 sm:-mt-20 flex flex-col items-start sm:items-end justify-end self-end ">
 
                             <div className=" relative">
                                 <span aria-hidden="true" className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 w-[0.5px] bg-gray h-[calc(100%-25px)]" />
-                                <p className={`max-w-xl type-body-xl sm:text-right text-charcoal sm:pr-10`}>
+                                <p className={ `max-w-xs lg:max-w-md xl:max-w-xl type-body-xl sm:text-right text-charcoal sm:pr-10`}>
                                     Rising at the iconic edge of India, where oceans meet in a rare natural confluence, our hotel stands in a setting of quiet distinction. The meeting of converging tides and endless blue waters creates a calm sense of place, where sea, sky and light move in harmony. Here, luxury is defined not by excess, but by stillness, space and the natural rhythm of the coastline.
                                 </p>
                             </div>

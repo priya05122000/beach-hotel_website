@@ -30,7 +30,7 @@ const NAV_LINKS = [
     ],
   },
   {
-    label: "Explore",
+    label: "Around",
     children: [
       { href: "/gallery", label: "Gallery" },
       { href: "/destinations", label: "Destination" },

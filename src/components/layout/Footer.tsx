@@ -24,7 +24,7 @@ export default function Footer() {
             <div className="flex flex-col gap-5">
               <h3 className="type-body-lg uppercase sm:max-w-sm xl:max-w-lg">
                 Let the charm of the coastline and luxurious comforts set the
-                stage for an unforgettable stay amidst breathtaking views and
+                stage for an unforgettable stay amidst stunning views and
                 refined comfort.
               </h3>
 

@@ -6,14 +6,14 @@ import NearbyDestinationsSection from "./components/NearbyDestinationsSection";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Nearby Destinations",
+  title: "Nearby Places to Visit",
   description:
-    "Explore the must-see destinations near The Beach Hotel, Kanyakumari — from ancient temples to iconic landmarks, all within easy reach.",
+    "See the must-visit spots near The Beach Hotel, Kanyakumari — from ancient temples to iconic landmarks, all within easy reach.",
   alternates: { canonical: "/destinations" },
   openGraph: {
     title: "Nearby Destinations — The Beach Hotel",
     description:
-      "Explore must-see destinations near The Beach Hotel, Kanyakumari — ancient temples, iconic landmarks, and stunning coastlines.",
+      "See must-visit destinations near The Beach Hotel, Kanyakumari — ancient temples, iconic landmarks, and stunning coastlines.",
     url: "/destinations",
   },
 };

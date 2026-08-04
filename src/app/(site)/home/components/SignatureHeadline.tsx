@@ -4,7 +4,7 @@ const SignatureHeadline = () => {
     return (
         <Section>
 
-            <section className="pt-32 pb-16 lg:pt-40 lg:pb-20">
+            <section className="pt-16 pb-0 lg:pt-40 lg:pb-20">
                 <div className="mx-auto max-w-280 text-center">
                     <h1
                         className="
