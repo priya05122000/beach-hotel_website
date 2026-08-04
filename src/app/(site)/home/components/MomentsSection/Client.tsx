@@ -153,10 +153,19 @@ export default function MomentsSectionClient({ items }: Props) {
 
   return (
     <Section className=" py-16 lg:py-20">
-      <div className="mb-16 sm:mb-32">
+      {/* <div className="mb-16 sm:mb-32">
         <Eyebrow align="center" className="mt-2 text-gray">
           Influencer Spotlight
         </Eyebrow>
+      </div> */}
+
+      <div className="mb-16 text-center">
+        <Eyebrow align="center" className="mt-2 text-gray">
+          Influencer Spotlight
+        </Eyebrow>
+        <p className="max-w-xl mx-auto my-10 text-charcoal type-body">
+          See how people experienced and shared unforgettable moments at The Beach Hotel Kanyakumari.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-5 items-end">
@@ -196,7 +205,7 @@ export default function MomentsSectionClient({ items }: Props) {
         ))}
       </div>
 
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-end mt-16">
         <Button href="/influencer" className="sm:w-50 whitespace-nowrap font-normal text-primary-dark cursor-pointer">
           View All
         </Button>

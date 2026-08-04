@@ -9,6 +9,7 @@ import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 import SubHeading from "@/src/components/common/SubHeading";
+import Eyebrow from "@/src/components/common/Eyebrow";
 
 export default function HeroLocationSection() {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -54,17 +55,20 @@ export default function HeroLocationSection() {
 
   return (
     <Section className="bg-white">
-      <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 gap-4 pt-16 lg:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 sm:gap-8 pt-16 lg:py-20">
         {/* Left Panel */}
         <div>
-          <h1 ref={headingRef} className="font-semibold text-primary-dark type-h2 leading-tight">
+          {/* <h1 ref={headingRef} className="font-semibold text-primary-dark type-h2 leading-tight">
             <div className="overflow-hidden">
               <span ref={(el) => { headingLinesRef.current[0] = el; }} className="block">A Conversation</span>
             </div>
             <div className="overflow-hidden">
               <span ref={(el) => { headingLinesRef.current[1] = el; }} className="block">Starts Right Here</span>
             </div>
-          </h1>
+          </h1> */}
+          <Eyebrow as="h1" align="left" className="text-gray pb-10">
+            A Conversation<br />Starts Right Here
+          </Eyebrow>
         </div>
         {/* Right Panel */}
         <div className="flex flex-col justify-center">

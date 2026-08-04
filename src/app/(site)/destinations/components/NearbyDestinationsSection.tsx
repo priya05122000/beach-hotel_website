@@ -156,7 +156,9 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
             be a real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}
         <Eyebrow as="h2" align="responsive">Near By Destinations</Eyebrow>
-        <div className="text-xl text-charcoal type-body-xl lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 leading-relaxed">
+
+        {/* Desktop — uppercase, wide-tracking heading style */}
+        <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
           Kanyakumari is a destination of many wonders — a sacred shore where
           three oceans meet, revered temples that have drawn pilgrims for two
           thousand years, and a quiet hinterland of misted mountains and
@@ -164,6 +166,16 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
           comfort of The Beach Hotel, all of it lies within easy reach. Let
           our concierge plan the route; you need only choose where to start.
         </div>
+
+        {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
+        <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
+          Kanyakumari is a destination of many wonders — a sacred shore where
+          three oceans meet, revered temples that have drawn pilgrims for two
+          thousand years, and a quiet hinterland of misted mountains and
+          secret waterfalls that most visitors never get to see. From the
+          comfort of The Beach Hotel, all of it lies within easy reach. Let
+          our concierge plan the route; you need only choose where to start.
+        </p>
       </div>
       <div>
         {destinations.map((destination, i) => (

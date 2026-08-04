@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,30 +10,18 @@ gsap.registerPlugin(ScrollTrigger);
 import type { Facility } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import SubHeading from "@/src/components/common/SubHeading";
+import LazySection from "@/src/components/common/LazySection";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 
 interface Props {
     facilities: Facility[];
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
-
-const getImages = (image_url?: string | string[]) => {
-    if (!image_url) return [];
-    if (Array.isArray(image_url)) return image_url.filter(Boolean);
-    try {
-        const parsed = JSON.parse(image_url);
-        if (Array.isArray(parsed)) return parsed.filter(Boolean);
-        return [];
-    } catch {
-        return image_url ? [image_url] : [];
-    }
-};
-
-const resolveImage = (facility: Facility): string => {
-    const images = getImages(facility.image_url);
-    return images.length > 0 ? `${API_URL}/uploads/${images[0]}` : "/placeholder.jpg";
-};
+// Each facility renders its own carousel — don't fetch embla-carousel until
+// the first one is about to scroll into view.
+const DynamicFacilitySlider = dynamic(() => import("./FacilitySlider"), {
+    ssr: false,
+});
 
 const DESKTOP_PARALLAX = [
     { from: 5, to: -20 },
@@ -66,7 +54,7 @@ export default function FacilitiesSection({ facilities }: Props) {
 
     // Desktop paired rows: image(A), content(A + B stacked), image(B)
     const gridItems: (
-        | { type: "image"; facility: Facility; image: string }
+        | { type: "image"; facility: Facility }
         | { type: "content-group"; facilities: Facility[] }
     )[] = [];
 
@@ -74,10 +62,10 @@ export default function FacilitiesSection({ facilities }: Props) {
         const a = facilities[i];
         const b = facilities[i + 1];
 
-        gridItems.push({ type: "image", facility: a, image: resolveImage(a) });
+        gridItems.push({ type: "image", facility: a });
         gridItems.push({ type: "content-group", facilities: b ? [a, b] : [a] });
         if (b) {
-            gridItems.push({ type: "image", facility: b, image: resolveImage(b) });
+            gridItems.push({ type: "image", facility: b });
         }
     }
 
@@ -94,19 +82,19 @@ export default function FacilitiesSection({ facilities }: Props) {
                 <div className="md:hidden w-full space-y-10">
                     {facilities.map((facility, i) => (
                         <div key={i} data-facility-id={facility.id} className="flex flex-col gap-4">
-                            <div className="relative overflow-hidden h-60 w-full">
-                                <Image
-                                    src={resolveImage(facility)}
-                                    alt={facility.facility_name}
-                                    fill
+                            <LazySection
+                                className="relative overflow-hidden h-60 w-full"
+                                placeholder={<div className="relative overflow-hidden h-60 w-full bg-silver/20" />}
+                            >
+                                <DynamicFacilitySlider
+                                    images={facility.image_url}
+                                    name={facility.facility_name}
                                     sizes="100vw"
-                                    className="object-cover"
                                 />
-                            </div>
+                            </LazySection>
                             <div>
                                 <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
-                                <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">
-                                    {facility.facility_name}
+                                <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">                                   {facility.facility_name}
                                 </h3>
                                 <div
                                     suppressHydrationWarning className="text-charcoal"
@@ -120,18 +108,20 @@ export default function FacilitiesSection({ facilities }: Props) {
                 {/* ── Tablet (768px–1023px): 2-col alternating, no animation ── */}
                 <div className="hidden md:grid lg:hidden grid-cols-2 gap-10 w-full">
                     {facilities.map((facility, i) => {
-                        const img = resolveImage(facility);
                         const isOdd = i % 2 === 1;
 
                         const imageCell = (
                             <div data-facility-id={facility.id} className="relative overflow-hidden h-80 w-full">
-                                <Image
-                                    src={img}
-                                    alt={facility.facility_name}
-                                    fill
-                                    sizes="50vw"
-                                    className="object-cover"
-                                />
+                                <LazySection
+                                    className="h-full w-full"
+                                    placeholder={<div className="h-full w-full bg-silver/20" />}
+                                >
+                                    <DynamicFacilitySlider
+                                        images={facility.image_url}
+                                        name={facility.facility_name}
+                                        sizes="50vw"
+                                    />
+                                </LazySection>
                             </div>
                         );
 
@@ -170,13 +160,16 @@ export default function FacilitiesSection({ facilities }: Props) {
                         >
                             {item.type === "image" ? (
                                 <div className="relative overflow-hidden h-80 w-full">
-                                    <Image
-                                        src={item.image}
-                                        alt={item.facility.facility_name}
-                                        fill
-                                        sizes="25vw"
-                                        className="object-cover"
-                                    />
+                                    <LazySection
+                                        className="h-full w-full"
+                                        placeholder={<div className="h-full w-full bg-silver/20" />}
+                                    >
+                                        <DynamicFacilitySlider
+                                            images={item.facility.image_url}
+                                            name={item.facility.facility_name}
+                                            sizes="25vw"
+                                        />
+                                    </LazySection>
                                 </div>
                             ) : (
                                 <div className="flex flex-col gap-30 w-full ">

@@ -259,7 +259,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                         Explore
                     </Button> */}
 
-                    <Button href="/gallery" className="sm:w-50  whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+                    <Button href="/gallery" className="sm:w-50 whitespace-nowrap font-normal text-primary-dark cursor-pointer">
                         View Gallery
                     </Button>
                 </div>

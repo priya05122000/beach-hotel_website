@@ -25,7 +25,7 @@ export default async function InfluencerPage() {
   return (
     <div>
       <CommonBanner
-        title="INFLUENCER SPOTLIGHT"
+        title="THROUGH CREATORS' LENSE"
         src="/home/hero-1.webp"
         alt="Influencer Spotlight — The Beach Hotel, Kanyakumari"
       />

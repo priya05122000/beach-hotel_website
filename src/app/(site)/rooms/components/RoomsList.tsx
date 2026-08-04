@@ -211,7 +211,9 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
             real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}
         <Eyebrow as="h2" align="responsive">Rooms & Suites</Eyebrow>
-        <div className=" text-charcoal uppercase type-body-lg lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.1rem] leading-relaxed">
+
+        {/* Desktop — uppercase, wide-tracking heading style */}
+        <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
           At The Beach Hotel, every stay is an invitation to refined indulgence.
           Our accommodations are appointed with custom furnishings, the finest
           linens and thoughtful touches at every turn — from serene inland
@@ -221,6 +223,18 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
           in quiet grandeur and impeccable comfort — and wake to the most
           extraordinary edge of India.
         </div>
+
+        {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
+        <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
+          At The Beach Hotel, every stay is an invitation to refined indulgence.
+          Our accommodations are appointed with custom furnishings, the finest
+          linens and thoughtful touches at every turn — from serene inland
+          retreats to coveted sea-view rooms, where floor-to-ceiling glass
+          dissolves the line between suite and ocean and the rhythm of the waves
+          becomes your constant companion. Whichever you choose, you are wrapped
+          in quiet grandeur and impeccable comfort — and wake to the most
+          extraordinary edge of India.
+        </p>
       </div>
       <div className="divide-y divide-silver">
         {rooms.map((room, index) => (
