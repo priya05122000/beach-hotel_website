@@ -53,11 +53,12 @@ export default function HeroBanner() {
         </div> */}
 
         {/* Booking Form */}
-        <div className="absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2">
+        <div className="absolute inset-x-0 bottom-10 z-20 w-full">
           <CenterSection>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl"
+              className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl transform-gpu"
+              style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
             >
               {/* Check In */}
               <DatePicker

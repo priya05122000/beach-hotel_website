@@ -236,7 +236,10 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
           {/* Left Blur Panel */}
           <div className="absolute  left-6 top-6 bottom-6 right-6 sm:right-auto sm:w-[65%] md:w-[55%] lg:w-[48%] xl:w-1/3 z-20 flex items-center">
             <div className="relative  h-full w-full max-w-xl overflow-hidden">
-              <div className="absolute inset-0 bg-primary/10 backdrop-blur-xl" />
+              <div
+                className="absolute inset-0 bg-primary/10 backdrop-blur-xl transform-gpu"
+                style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
+              />
 
               <div className="relative  z-10 flex h-full flex-col justify-center p-6 md:p-8 ">
                 {/* Text */}

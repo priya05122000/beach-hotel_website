@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
+import { Button } from "@/src/components/common/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -181,7 +182,8 @@ export default function MomentsSectionClient({ items }: Props) {
                   href={item.reelUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute left-4 top-4 z-20 flex h-8 max-w-8 items-center overflow-hidden  backdrop-blur-xl bg-primary-dark/10  text-white no-underline transition-[max-width] duration-500 hover:max-w-50"
+                  className="absolute left-4 top-4 z-20 flex h-8 max-w-8 items-center overflow-hidden  backdrop-blur-xl bg-primary-dark/10 transform-gpu  text-white no-underline transition-[max-width] duration-500 hover:max-w-50"
+                  style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center">
                     <Image src="/icons/instagram.svg" alt="View on Instagram" width={15} height={15} />
@@ -192,6 +194,12 @@ export default function MomentsSectionClient({ items }: Props) {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-16">
+        <Button href="/influencer" className="sm:w-50 whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+          View All
+        </Button>
       </div>
     </Section>
   );

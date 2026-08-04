@@ -69,7 +69,7 @@ const FeaturedHighlightSection = () => {
       </div>
 
       {/* Image + blur panel */}
-      <div className=" min-h-105 sm:min-h-80 md:min-h-100 overflow-hidden">
+      <div className=" min-h-105 sm:min-h-80 md:min-h-100">
         <div ref={containerRef} className="relative h-full overflow-hidden sm:w-[80%] min-h-100 sm:min-h-80 lg:min-h-105">
           <div ref={innerRef} className="absolute -top-8 -bottom-8 inset-x-0">
             <Image
@@ -83,7 +83,10 @@ const FeaturedHighlightSection = () => {
 
           {/* Blur panel — bottom strip on mobile, right third on sm+ */}
           <div className="absolute bottom-0 sm:inset-y-0 right-0 w-full sm:w-1/2 lg:w-1/3 h-1/2 sm:h-auto">
-            <div className="absolute inset-0 backdrop-blur-xl bg-white/10" />
+            <div
+              className="absolute inset-0 backdrop-blur-xl bg-white/10 transform-gpu"
+              style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
+            />
             <div className="relative z-10 flex flex-col justify-between h-full p-6 sm:p-6 lg:p-8">
               <p className="type-body text-white leading-relaxed ">
                 Access your account or create a new profile to manage
