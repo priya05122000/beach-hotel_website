@@ -53,7 +53,6 @@ const FeaturedHighlightSection = () => {
         <div className="col-span-2 flex flex-col text-left sm:text-right">
           <h2 className="mt-2 text-primary-dark type-h2">
             The Soul of Southern India
-
           </h2>
           <p className="max-w-lg sm:ml-auto mt-4 mb-10 type-body text-charcoal">
             Kanyakumari is a destination of many wonders — a sacred shore where

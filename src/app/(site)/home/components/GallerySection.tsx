@@ -166,7 +166,7 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
                 )}
             </div>
             <div className="flex items-center  justify-between mt-3">
-                <h3 className="font-bold text-gray  type-body  leading-snug">
+                <h3 className="font-bold text-gray  uppercase type-body  leading-snug">
                     {item.title || "Gallery"}
                 </h3>
                 {/* <ReadMoreButton /> */}
@@ -193,7 +193,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
             <section className="py-16 lg:py-20 ">
                 <div className="mx-auto">
                     {/* Heading */}
-                    <div className="mb-16 sm:mb-32">
+                    <div className="mb-10 sm:mb-32">
                         <Eyebrow align="center" className="mt-2">
                             Gallery
                         </Eyebrow>
@@ -203,11 +203,15 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                         [text col-3 rows 1-2] [item0 col-5 row-1 LARGE] [item1 col-4 row-1 SMALL]
                                              [item2 col-5 row-2 MEDIUM] [item3 col-4 row-2 LARGE]
                     */}
-                    <div className="grid sm:grid-cols-[1fr_2fr] gap-x-10 gap-y-8">
+                    <div className="grid sm:grid-cols-[1fr_2fr] gap-x-10 sm:gap-y-8">
 
                         {/* Left text — spans both rows on desktop */}
                         <div className="flex  flex-col ">
-                            <p className=" text-primary-dark type-h2 leading-tight">
+                            <p className="hidden sm:block text-primary-dark type-h2 leading-tight">
+                                Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
+                            </p>
+                            <p className="sm:hidden max-w-lg sm:ml-auto mb-10 type-body text-charcoal ">
+
                                 Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
                             </p>
                         </div>

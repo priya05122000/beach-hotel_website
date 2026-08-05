@@ -111,7 +111,7 @@ const AboutUs = () => {
             Our Story
           </Button> */}
 
-          <Button href="/contact-us" className="sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
+          <Button href="/contact-us" className="self-end sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
             Our Story
           </Button>
         </div>
