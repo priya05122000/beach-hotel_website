@@ -112,6 +112,12 @@ export default async function AmenitiesSection() {
               );
             })}
           </div>
+
+          <div className="flex justify-center">
+            <Button href="/facilities" className="mt-6 w-full sm:w-50 font-normal text-primary-dark cursor-pointer">
+              Find Out More
+            </Button>
+          </div>
         </div>
 
         {/* Tablet + Desktop */}

@@ -12,34 +12,47 @@ interface Props {
   section: GalleryCategory;
   galleries: Gallery[];
   index: number;
+  total: number;
 }
 
-export default function GallerySectionBlock({ section, galleries, index }: Props) {
+export default function GallerySectionBlock({ section, galleries, index, total }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     const el = wrapperRef.current;
-    if (!el) return;
+    const content = contentRef.current;
+    if (!el || !content) return;
 
     const prefersReduced = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { scale: 0.85, opacity: 0.5 },
-        {
-          scale: 1,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 90%",
-            end: "top 20%",
-            scrub: 0.5,
+      // Skip the decorative scale/opacity reveal on small screens — same
+      // rule as ParallaxGallery/TeamSection/MomentsSection. Content stayed
+      // stuck at its dim `opacity: 0.5` starting state on mobile whenever
+      // the scrub tween never got the chance to finish, which read as
+      // "content not showing".
+      gsap.matchMedia().add("(min-width: 640px)", () => {
+        // Animate the inner content grid only — the outer wrapper carries
+        // the section's ivory/white background, which shouldn't fade/scale
+        // along with the scroll-in effect.
+        gsap.fromTo(
+          content,
+          { scale: 0.85, opacity: 0.5 },
+          {
+            scale: 1,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              end: "top 20%",
+              scrub: 0.5,
+            },
           },
-        },
-      );
+        );
+      });
 
       if (!prefersReduced) {
         const split = applySplitSlideUp({
@@ -81,6 +94,9 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
   }, []);
 
   const isEven = index % 2 === 0;
+  // Same rule as RoomsList: alternate ivory bands, but flip the parity so
+  // an odd total still ends on an ivory block instead of two whites in a row.
+  const shouldHaveIvory = total % 2 === 0 ? isEven : !isEven;
   const apiBase = process.env.NEXT_PUBLIC_API_URL;
 
   const imageItems = galleries.filter((g) => g.media_type === "image" && g.media_url);
@@ -105,9 +121,10 @@ export default function GallerySectionBlock({ section, galleries, index }: Props
 
   return (
     <div ref={wrapperRef} className="will-change-transform origin-center">
-      <Section className="">
+      <Section className={shouldHaveIvory ? "bg-ivory" : ""}>
         <div
-          className={`relative grid grid-cols-1 ${isEven ? "lg:grid-cols-[0.5fr_1.6fr_1fr]" : "lg:grid-cols-[1fr_1.6fr_0.5fr]"} min-h-130 lg:min-h-150 gap-6 border-b border-silver py-16 lg:py-20`}
+          ref={contentRef}
+          className={`relative grid grid-cols-1 ${isEven ? "lg:grid-cols-[0.5fr_1.6fr_1fr]" : "lg:grid-cols-[1fr_1.6fr_0.5fr]"} min-h-130 lg:min-h-150 gap-6  py-16 lg:py-20`}
         >
           <div className={`hidden lg:block${isEven ? "" : "lg:order-3"}`} />
           <div

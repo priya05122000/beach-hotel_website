@@ -15,7 +15,7 @@ export default function GalleryList({ sections, galleries }: Props) {
   return (
     <div className="flex flex-col">
       <Section className="">
-        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver pb-10 sm:pt-16 lg:py-20 type-body">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]  pb-10 sm:pt-16 lg:py-20 type-body">
           {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
           <Eyebrow as="h1" align="responsive">Gallery</Eyebrow>
 
@@ -48,6 +48,7 @@ export default function GalleryList({ sections, galleries }: Props) {
             (g) => g.category_id === section.id,
           )}
           index={index}
+          total={activeSections.length}
         />
       ))}
     </div>

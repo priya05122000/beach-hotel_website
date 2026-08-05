@@ -42,10 +42,15 @@ const DynamicRoomSlider = dynamic(() => import("./RoomSlider"), {
   ssr: false,
 });
 
-function RoomRow({ room, index }: { room: Room; index: number }) {
+function RoomRow({ room, index, totalRooms }: { room: Room; index: number, totalRooms: number }) {
   const isEven = index % 2 === 0;
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // If total is even -> 1st,3rd... get ivory
+  // If total is odd -> 2nd,4th... get ivory
+  const shouldHaveIvory =
+    totalRooms % 2 === 0 ? isEven : !isEven;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -96,10 +101,11 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
     .filter(Boolean) as { icon: React.ElementType; label: string }[];
 
   return (
-    <div
+    <Section
       data-room-id={room.id}
       ref={sectionRef}
-      className="py-16 md:py-20"
+      className={`py-16 md:py-20 ${shouldHaveIvory ? "bg-ivory" : ""
+        }`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
         <div
@@ -197,50 +203,59 @@ function RoomRow({ room, index }: { room: Room; index: number }) {
           </p>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }
 
 /* main */
 export default function RoomsList({ rooms }: { rooms: Room[] }) {
   return (
-    <Section className="">
-      <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]border-b border-silver pb-10 pt-16 lg:py-20 type-body">
-        {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
-        {/* h2 — the per-room titles below are h3, so this needs to be a
+    <>
+
+
+      <Section>
+        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+          {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
+          {/* h2 — the per-room titles below are h3, so this needs to be a
             real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}
-        <Eyebrow as="h2" align="responsive">Rooms & Suites</Eyebrow>
+          <Eyebrow as="h2" align="responsive">Rooms & Suites</Eyebrow>
 
-        {/* Desktop — uppercase, wide-tracking heading style */}
-        <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
-          At The Beach Hotel, every stay is an invitation to refined indulgence.
-          Our accommodations are appointed with custom furnishings, the finest
-          linens and thoughtful touches at every turn — from serene inland
-          retreats to coveted sea-view rooms, where floor-to-ceiling glass
-          dissolves the line between suite and ocean and the rhythm of the waves
-          becomes your constant companion. Whichever you choose, you are wrapped
-          in quiet grandeur and impeccable comfort — and wake to the most
-          extraordinary edge of India.
+          {/* Desktop — uppercase, wide-tracking heading style */}
+          <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
+            At The Beach Hotel, every stay is an invitation to refined indulgence.
+            Our accommodations are appointed with custom furnishings, the finest
+            linens and thoughtful touches at every turn — from serene inland
+            retreats to coveted sea-view rooms, where floor-to-ceiling glass
+            dissolves the line between suite and ocean and the rhythm of the waves
+            becomes your constant companion. Whichever you choose, you are wrapped
+            in quiet grandeur and impeccable comfort — and wake to the most
+            extraordinary edge of India.
+          </div>
+
+          {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
+          <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
+            At The Beach Hotel, every stay is an invitation to refined indulgence.
+            Our accommodations are appointed with custom furnishings, the finest
+            linens and thoughtful touches at every turn — from serene inland
+            retreats to coveted sea-view rooms, where floor-to-ceiling glass
+            dissolves the line between suite and ocean and the rhythm of the waves
+            becomes your constant companion. Whichever you choose, you are wrapped
+            in quiet grandeur and impeccable comfort — and wake to the most
+            extraordinary edge of India.
+          </p>
         </div>
+      </Section>
 
-        {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
-        <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
-          At The Beach Hotel, every stay is an invitation to refined indulgence.
-          Our accommodations are appointed with custom furnishings, the finest
-          linens and thoughtful touches at every turn — from serene inland
-          retreats to coveted sea-view rooms, where floor-to-ceiling glass
-          dissolves the line between suite and ocean and the rhythm of the waves
-          becomes your constant companion. Whichever you choose, you are wrapped
-          in quiet grandeur and impeccable comfort — and wake to the most
-          extraordinary edge of India.
-        </p>
-      </div>
-      <div className="divide-y divide-silver">
+
+
+      <div >
         {rooms.map((room, index) => (
-          <RoomRow key={room.id} room={room} index={index} />
+          <RoomRow key={room.id} room={room} index={index} totalRooms={rooms.length} />
         ))}
       </div>
-    </Section>
+
+
+    </>
   );
 }

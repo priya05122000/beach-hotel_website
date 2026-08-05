@@ -206,7 +206,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                     <div className="grid sm:grid-cols-[1fr_2fr] gap-x-10 gap-y-8">
 
                         {/* Left text — spans both rows on desktop */}
-                        <div className="hidden md:flex  flex-col ">
+                        <div className="flex  flex-col ">
                             <p className=" text-primary-dark type-h2 leading-tight">
                                 Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
                             </p>

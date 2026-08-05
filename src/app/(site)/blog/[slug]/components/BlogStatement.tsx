@@ -37,18 +37,22 @@ export default function BlogStatement({ blog }: Props) {
   }, []);
 
   return (
-    <Section className="py-16 md:py-20">
-      <div ref={sectionRef} className="flex flex-col justify-between">
-        <div className="w-full md:w-[70%] lg:w-[62%] mt-auto">
-          <h1
-            ref={titleRef}
-            className="type-display-xl leading-none tracking-tight"
-          >
-            {blog.title}
-          </h1>
+    <>
+      <Section className="py-16 md:py-20 bg-ivory">
+        <div ref={sectionRef} className="flex flex-col justify-between">
+          <div className="w-full md:w-[70%] lg:w-[62%] mt-auto">
+            <h1
+              ref={titleRef}
+              className="type-display-xl leading-none tracking-tight"
+            >
+              {blog.title}
+            </h1>
+          </div>
         </div>
+      </Section>
+      <Section className="py-16 md:py-20">
         {blog.description_3 && (
-          <div className="grid sm:grid-cols-2 sm:gap-10 mt-10 lg:mt-20 pt-5 md:pt-5 border-t border-silver">
+          <div className="grid sm:grid-cols-2 sm:gap-10 ">
             <div className="hidden sm:block" />
             <div>
               <h2 className="type-h2 font-semibold text-primary-dark mb-4 sm:text-right">
@@ -61,7 +65,8 @@ export default function BlogStatement({ blog }: Props) {
             </div>
           </div>
         )}
-      </div>
-    </Section>
+      </Section>
+
+    </>
   );
 }

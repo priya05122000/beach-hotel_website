@@ -48,7 +48,7 @@ const TeamSection = () => {
   }, []);
 
   return (
-    <div className="py-16 lg:py-20 bg-primary/4">
+    <div className="py-16 lg:py-20 bg-ivory">
       <Section>
         {/* Content grid */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">

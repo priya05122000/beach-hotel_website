@@ -11,7 +11,7 @@ export default function BlogGrid({ blogs }: Props) {
   return (
 
     <Section className="py-16 lg:py-20">
-      <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver py-16 lg:py-20">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]  py-16 lg:py-20">
         {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
         {/* h2 (not the default p) — BlogCard's per-post titles below are
             h3, so this needs to be a real heading or the outline jumps

@@ -140,7 +140,7 @@ export default function RoomCardsSectionClient({
   }, []);
 
   return (
-    <div className="py-16 lg:py-20">
+    <div className="py-16 lg:py-20 bg-ivory">
       <CenterSection>
         {/* Heading */}
         <div className="mb-8 lg:mb-12 text-center">

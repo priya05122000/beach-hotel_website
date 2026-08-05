@@ -25,8 +25,16 @@ interface Props {
   destinations: NearbyDestination[];
 }
 
-function DestinationItem({ destination, isLast }: { destination: NearbyDestination; isLast?: boolean }) {
-  const sectionRef = useRef<HTMLElement>(null);
+function DestinationItem({
+  destination,
+  isLast,
+  shouldHaveIvory,
+}: {
+  destination: NearbyDestination;
+  isLast?: boolean;
+  shouldHaveIvory: boolean;
+}) {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
@@ -58,7 +66,11 @@ function DestinationItem({ destination, isLast }: { destination: NearbyDestinati
   }, []);
 
   return (
-    <section ref={sectionRef} data-destination-id={destination.id} className="relative py-16 lg:py-20">
+    <Section
+      ref={sectionRef}
+      data-destination-id={destination.id}
+      className={`relative py-16 lg:py-20 ${shouldHaveIvory ? "bg-ivory" : ""}`}
+    >
       <div className="grid grid-cols-1 lg:grid-cols-[0.5fr_1fr_0.8fr]  gap-6 lg:gap-10">
         {/* Destination name — desktop sidebar only */}
         <div className="hidden lg:flex items-center">
@@ -141,8 +153,8 @@ function DestinationItem({ destination, isLast }: { destination: NearbyDestinati
       </div>
 
       {/* Divider */}
-      {!isLast && <div className="absolute bottom-0 left-0 right-0 h-px bg-silver" />}
-    </section>
+      {/* {!isLast && <div className="absolute bottom-0 left-0 right-0 h-px bg-silver" />} */}
+    </Section>
   );
 }
 
@@ -150,42 +162,54 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   if (!destinations.length) return null;
 
   return (
-    <Section className="pt-16 sm:py-16 lg:py-20">
-      <div className="grid sm:grid-cols-2  border-b border-silver pb-10 sm:pt-16 lg:py-20 type-body">
-        {/* h2 — the per-destination titles below are h3, so this needs to
+    <>
+      <Section className="pt-16 sm:py-16 lg:py-20">
+        <div className="grid sm:grid-cols-2  sm:pt-16 lg:pt-20 type-body">
+          {/* h2 — the per-destination titles below are h3, so this needs to
             be a real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}
-        <Eyebrow as="h2" align="responsive">Near By Destinations</Eyebrow>
+          <Eyebrow as="h2" align="responsive">Near By Destinations</Eyebrow>
 
-        {/* Desktop — uppercase, wide-tracking heading style */}
-        <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
-          Kanyakumari is a destination of many wonders — a sacred shore where
-          three oceans meet, revered temples that have drawn pilgrims for two
-          thousand years, and a quiet hinterland of misted mountains and
-          secret waterfalls that most visitors never get to see. From the
-          comfort of The Beach Hotel, all of it lies within easy reach. Let
-          our concierge plan the route; you need only choose where to start.
+          {/* Desktop — uppercase, wide-tracking heading style */}
+          <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
+            Kanyakumari is a destination of many wonders — a sacred shore where
+            three oceans meet, revered temples that have drawn pilgrims for two
+            thousand years, and a quiet hinterland of misted mountains and
+            secret waterfalls that most visitors never get to see. From the
+            comfort of The Beach Hotel, all of it lies within easy reach. Let
+            our concierge plan the route; you need only choose where to start.
+          </div>
+
+          {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
+          <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
+            Kanyakumari is a destination of many wonders — a sacred shore where
+            three oceans meet, revered temples that have drawn pilgrims for two
+            thousand years, and a quiet hinterland of misted mountains and
+            secret waterfalls that most visitors never get to see. From the
+            comfort of The Beach Hotel, all of it lies within easy reach. Let
+            our concierge plan the route; you need only choose where to start.
+          </p>
         </div>
-
-        {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
-        <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
-          Kanyakumari is a destination of many wonders — a sacred shore where
-          three oceans meet, revered temples that have drawn pilgrims for two
-          thousand years, and a quiet hinterland of misted mountains and
-          secret waterfalls that most visitors never get to see. From the
-          comfort of The Beach Hotel, all of it lies within easy reach. Let
-          our concierge plan the route; you need only choose where to start.
-        </p>
-      </div>
+      </Section>
       <div>
-        {destinations.map((destination, i) => (
-          <DestinationItem
-            key={destination.id}
-            destination={destination}
-            isLast={i === destinations.length - 1}
-          />
-        ))}
+        {destinations.map((destination, i) => {
+          const isEven = i % 2 === 0;
+          // Same rule as RoomsList/GallerySectionBlock: alternate ivory
+          // bands, flipping parity so an odd total still ends on ivory
+          // instead of two whites in a row.
+          const shouldHaveIvory =
+            destinations.length % 2 === 0 ? isEven : !isEven;
+
+          return (
+            <DestinationItem
+              key={destination.id}
+              destination={destination}
+              isLast={i === destinations.length - 1}
+              shouldHaveIvory={shouldHaveIvory}
+            />
+          );
+        })}
       </div>
-    </Section>
+    </>
   );
 }

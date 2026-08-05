@@ -54,7 +54,7 @@ export default function HeroLocationSection() {
   }, []);
 
   return (
-    <Section className="bg-white">
+    <Section >
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] xl:grid-cols-2 sm:gap-8 pt-16 lg:py-20">
         {/* Left Panel */}
         <div>
@@ -94,7 +94,7 @@ export default function HeroLocationSection() {
         </div>
       </div>
 
-      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-12 gap-y-10 sm:gap-10 py-16 lg:py-20">
+      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-12 gap-y-10 sm:gap-10 py-16 lg:py-20 ">
         <div className="sm:col-span-6 lg:col-span-4 space-y-5">
           {/* <div className="uppercase font-semibold text-primary-dark type-body-xl leading-tight">GETTING HERE</div> */}
 

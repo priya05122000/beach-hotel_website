@@ -16,7 +16,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
 
   return (
     <Section className=" py-16 lg:py-20">
-      <div className="mb-6 lg:mb-10 flex items-start justify-between gap-4">
+      <div className="mb-6 lg:mb-10 flex flex-col sm:flex-row items-start justify-between gap-4">
         <h3 className="type-h2 font-semibold text-primary-dark leading-tight">
           YOUR QUESTIONS,
           <br />
@@ -25,7 +25,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
           </span>
         </h3>
 
-        <p className="hidden sm:block type-body text-right text-primary-dark max-w-60 leading-snug">
+        <p className="type-body text-left sm:text-right text-charcoal max-w-xs sm:max-w-60 leading-snug">
           We&apos;ve gathered answers to everything you might be wondering about
         </p>
       </div>
