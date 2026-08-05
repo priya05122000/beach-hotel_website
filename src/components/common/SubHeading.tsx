@@ -21,7 +21,7 @@ const SubHeading = React.forwardRef<HTMLElement, SubHeadingProps>(
       Tag,
       {
         ref,
-        className: `type-heading-lg font-bold uppercase tracking-widest font-arizona-flare-regular ${className}`,
+        className: `type-h6  font-semibold uppercase tracking-widest  ${className}`,
         ...rest,
       },
       children

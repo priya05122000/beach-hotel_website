@@ -6,6 +6,7 @@ import Section from "@/src/components/common/Section";
 import gsap from "gsap";
 import { ANIM } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
+import Eyebrow from "@/src/components/common/Eyebrow";
 
 const TeamSection = () => {
   const galleryRef = useRef<HTMLElement>(null);
@@ -52,7 +53,7 @@ const TeamSection = () => {
         {/* Content grid */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
           <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
-            <p className="type-h6 tracking-[73%] text-left lg:tracking-[83%] uppercase">Identity</p>
+            <Eyebrow className="type-h6  text-left uppercase">Identity</Eyebrow>
           </div>
 
           <div className="hidden sm:block sm:col-span-1" />
@@ -63,14 +64,11 @@ const TeamSection = () => {
               ref={revealRef}
               className="text-primary-dark type-display-2xl leading-tight"
             >
-              Design &<br />Technology<br />Enthusiasts
+              Signature &<br />Stay
             </h3>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
-              We are a team of like-minded design enthusiasts and tech aficionados who
-              push the digital frontier with grit and dedication. Intrigued by beauty,
-              fascinated by technology and fuelled with an everlasting devotion to digital
-              craftsmanship and meaningful aesthetics.
+              The Beach Hotel stands as one of Kanyakumari's distinguished hospitality destinations, offering remarkable views of the meeting point of three seas. Created for travellers who value comfort, authenticity, and thoughtful service, our hotel brings together contemporary accommodation, fine dining, and memorable experiences in an exceptional coastal setting.
             </div>
           </div>
         </div>
@@ -88,9 +86,7 @@ const TeamSection = () => {
             </div>
             <hr className="mt-6 mb-4 w-1/2" />
             <p className="type-body-sm w-2/3 text-gray leading-relaxed">
-              We believe in a fluid team approach that allows us to bring together the
-              best designers, developers and agencies in the world in order to serve the
-              needs of today&apos;s clients.
+              Every stay is shaped by genuine care, meticulous attention to detail, and a commitment to creating lasting impressions.
             </p>
           </div>
 

@@ -47,13 +47,20 @@ export default function BlogStatement({ blog }: Props) {
             {blog.title}
           </h1>
         </div>
-        <div className="grid sm:grid-cols-2 sm:gap-10 mt-10 lg:mt-20 pt-5 md:pt-5 border-t border-silver">
-          <div className="hidden sm:block" />
-          <div
-            className="blog-content text-charcoal leading-relaxed sm:text-right"
-            dangerouslySetInnerHTML={{ __html: blog.description_3 }}
-          />
-        </div>
+        {blog.description_3 && (
+          <div className="grid sm:grid-cols-2 sm:gap-10 mt-10 lg:mt-20 pt-5 md:pt-5 border-t border-silver">
+            <div className="hidden sm:block" />
+            <div>
+              <h2 className="type-h2 font-semibold text-primary-dark mb-4 sm:text-right">
+                Frequently Asked Questions
+              </h2>
+              <div
+                className="blog-content text-charcoal leading-relaxed sm:text-right"
+                dangerouslySetInnerHTML={{ __html: blog.description_3 }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </Section>
   );

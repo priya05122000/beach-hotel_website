@@ -341,7 +341,7 @@
 
 .blog-content p {
   font-size: var(--text-body);
-  margin-bottom: 0.75em;
+  margin-bottom: 0.75rem;
 }
 
 .blog-content p:last-child {
@@ -349,24 +349,30 @@
 }
 
 .blog-content h2 {
-  font-family: var(--font-arizona-sans-bold);
+  font-family: var(--font-arizona-sans-regular);
   font-size: var(--text-h2);
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+  font-weight: 600;
 }
 
 .blog-content h3 {
-  font-family: var(--font-arizona-sans-bold);
+  font-family: var(--font-arizona-sans-regular);
   font-size: var(--text-h3);
-  margin-top: 1.25em;
-  margin-bottom: 0.4em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+  font-weight: 600;
 }
 
 .blog-content h4 {
-  font-family: var(--font-arizona-sans-bold);
+  font-family: var(--font-arizona-sans-regular);
   font-size: var(--text-h4);
-  margin-top: 1em;
-  margin-bottom: 0.35em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+  font-weight: 600;
 }
 
 .blog-content strong,

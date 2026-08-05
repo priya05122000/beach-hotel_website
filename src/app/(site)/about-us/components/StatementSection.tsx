@@ -43,7 +43,7 @@ const StatementSection = () => {
             <Section>
                 <div className="grid grid-cols-1 sm:grid-cols-12 sm:gap-y-6 sm:gap-x-[2.2222222222vw] items-start">
                     <div className="sm:col-span-3 lg:col-span-2 flex items-center pt-2">
-                        <Eyebrow as="p" align="left" className="text-gray pb-10">Welcome</Eyebrow>
+                        <Eyebrow as="p" align="left" className="pb-10">Welcome</Eyebrow>
                     </div>
 
                     <div className="hidden sm:block sm:col-span-1" />

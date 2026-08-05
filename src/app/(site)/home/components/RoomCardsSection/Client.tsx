@@ -144,7 +144,7 @@ export default function RoomCardsSectionClient({
       <CenterSection>
         {/* Heading */}
         <div className="mb-8 lg:mb-12 text-center">
-          <Eyebrow align="center" className="mt-2 text-gray">
+          <Eyebrow align="center" className="mt-2">
             Room Types
           </Eyebrow>
           <p className="max-w-xl mx-auto my-10 text-charcoal type-body">

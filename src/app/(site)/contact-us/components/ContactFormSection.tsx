@@ -129,20 +129,9 @@ export default function ContactFormSection() {
           </p>
           <div className="mt-4 space-y-4  border-t flex flex-col justify-end border-white/20 pt-4">
             <SubHeading className="text-primary-dark mb-4">Find Us</SubHeading>
-            <div className="uppercase">
-              <div className="type-body font-arizona-flare-regular">
-                The Beach Hotel
-              </div>
-              <div className="type-body font-arizona-flare-regular">
-                Beach Road, Kanyakumari,
-                <br />
-                Tamil Nadu 629702, India
-              </div>
-            </div>
-
-            <div className="space-y-1 ">
+            <div>
               <div>
-                <span className="type-label-sm font-medium uppercase">
+                <span className="type-label-sm font-medium uppercase text-gray tracking-wide">
                   General Enquiries :
                 </span>{" "}
                 <Link
@@ -154,7 +143,7 @@ export default function ContactFormSection() {
               </div>
 
               <div>
-                <span className="type-label-sm font-medium uppercase">
+                <span className="type-label-sm font-medium uppercase text-gray tracking-wide">
                   Reception :
                 </span>{" "}
                 <Link
@@ -163,6 +152,17 @@ export default function ContactFormSection() {
                 >
                   +91 98765 43210
                 </Link>
+              </div>
+            </div>
+
+            <div className="uppercase">
+              <div className="type-body font-arizona-flare-regular">
+                The Beach Hotel
+              </div>
+              <div className="type-body font-arizona-flare-regular">
+                Beach Road, Kanyakumari,
+                <br />
+                Tamil Nadu 629702, India
               </div>
             </div>
           </div>

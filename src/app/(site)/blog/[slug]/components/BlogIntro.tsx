@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import type { Blog } from "@/src/types";
 import Section from "@/src/components/common/Section";
+import Eyebrow from "@/src/components/common/Eyebrow";
 import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
@@ -38,14 +39,14 @@ export default function BlogIntro({ blog }: Props) {
 
   return (
     <Section className="pt-16 lg:pt-20">
-      <div className="border-b border-silver pb-10">
-        <div className="pt-1 sm:pr-20 sm:float-left">
-          <p className="text-gray type-overline font-arizona-sans-regular tracking-[0.25em] mb-3 sm:mb-0">
+      <div className="border-b border-silver pb-10 sm:flex sm:items-end sm:gap-x-6">
+        <div className="sm:pb-1">
+          <p className="text-gray type-overline font-arizona-sans-regular tracking-[0.25em] mb-3 sm:mb-0 whitespace-nowrap">
             {blog.tag_1 ?? "Article"}
           </p>
         </div>
 
-        <div ref={wrapperRef}>
+        <div ref={wrapperRef} className="">
           {/* Lede/tagline, not a real section heading — the page's actual
               <h1> (blog.title) renders later in BlogStatement, so this must
               not be a heading tag or it would appear before the h1 in DOM
@@ -59,12 +60,12 @@ export default function BlogIntro({ blog }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1fr] pt-10 gap-y-6 gap-x-3">
-        <p className="text-gray tracking-[0.25em] type-body uppercase">{blog.tag_2}</p>
-        <div className="flex flex-col gap-6 md:gap-10">
-          <div className="blog-content text-charcoal leading-snug max-w-md" dangerouslySetInnerHTML={{ __html: blog.description_1 }} />
-          <div className="border-t border-silver" />
-          <div className="blog-content text-charcoal leading-snug pt-5 max-w-md" dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
+      <div className="grid grid-cols-1 md:grid-cols-2 pt-10 gap-y-6 gap-x-3">
+        <Eyebrow className="max-w-md">{blog.tag_2}</Eyebrow>
+        <div className="flex flex-col ">
+          <div className="blog-content text-charcoal leading-snug max-w-xl" dangerouslySetInnerHTML={{ __html: blog.description_1 }} />
+          <div className="border-t mt-8 border-silver" />
+          <div className="blog-content text-charcoal leading-snug max-w-xl" dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
         </div>
       </div>
     </Section>

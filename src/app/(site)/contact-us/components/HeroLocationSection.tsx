@@ -66,7 +66,7 @@ export default function HeroLocationSection() {
               <span ref={(el) => { headingLinesRef.current[1] = el; }} className="block">Starts Right Here</span>
             </div>
           </h1> */}
-          <Eyebrow as="h1" align="left" className="text-gray pb-10">
+          <Eyebrow as="h1" align="left" className="pb-10">
             A Conversation<br />Starts Right Here
           </Eyebrow>
         </div>

@@ -89,7 +89,7 @@ export default async function AmenitiesSection() {
 
   return (
     <CenterSection className="bg-ivory py-16 lg:py-20 relative overflow-hidden">
-      <Eyebrow align="center" className="text-gray pb-10 font-normal">
+      <Eyebrow align="center" className="pb-10 font-normal">
         AMENITIES
       </Eyebrow>
 

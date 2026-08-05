@@ -122,7 +122,7 @@ export default function Testimonials({ reviews }: TestimonialProps) {
 
             {/* Heading */}
             <div className="mb-10">
-                <Eyebrow align="center" className="mt-2 text-gray">
+                <Eyebrow align="center" className="mt-2">
                     Reviews
                 </Eyebrow>
             </div>

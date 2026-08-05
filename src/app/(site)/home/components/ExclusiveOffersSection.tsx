@@ -264,7 +264,7 @@ export default function ExclusiveOffersSection({
 
   return (
     <Section className="pt-16 pb-16  lg:pt-20 lg:pb-20">
-      <Eyebrow align="center" className="text-gray font-normal">
+      <Eyebrow align="center" className="font-normal">
         Exclusive Offers
       </Eyebrow>
 

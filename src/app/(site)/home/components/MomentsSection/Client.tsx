@@ -160,7 +160,7 @@ export default function MomentsSectionClient({ items }: Props) {
       </div> */}
 
       <div className="mb-16 text-center">
-        <Eyebrow align="center" className="mt-2 text-gray">
+        <Eyebrow align="center" className="mt-2">
           Influencer Spotlight
         </Eyebrow>
         <p className="max-w-xl mx-auto my-10 text-charcoal type-body">

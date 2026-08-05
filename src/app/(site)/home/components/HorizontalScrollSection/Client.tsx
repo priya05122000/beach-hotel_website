@@ -147,7 +147,7 @@ export default function HorizontalScrollSectionClient({
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 mx-auto flex max-w-[95%] items-end justify-end px-6 pb-16 sm:max-w-156 sm:px-8 lg:max-w-232 lg:px-16 lg:pb-20 xl:max-w-300 xl:px-4">
-        <Eyebrow className="mt-2 text-gray">
+        <Eyebrow className="mt-2">
           Destination
         </Eyebrow>
       </div>

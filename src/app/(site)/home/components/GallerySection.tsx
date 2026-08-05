@@ -194,7 +194,7 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                 <div className="mx-auto">
                     {/* Heading */}
                     <div className="mb-16 sm:mb-32">
-                        <Eyebrow align="center" className="mt-2 text-gray">
+                        <Eyebrow align="center" className="mt-2">
                             Gallery
                         </Eyebrow>
                     </div>
