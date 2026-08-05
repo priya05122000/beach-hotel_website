@@ -82,7 +82,7 @@ const TeamSection = () => {
               <Image src="/facilities/2.webp" alt="Hotel room at The Beach Hotel" fill className="object-cover" sizes="78vw" />
             </div>
             <div className="relative aspect-4/5 w-[48%] -mt-20">
-              <Image src="/facilities/3.webp" alt="Hotel interior" fill className="object-cover" sizes="48vw" />
+              <Image src="/facilities/1.webp" alt="Hotel facilities" fill className="object-cover" sizes="48vw" />
             </div>
             <hr className="mt-6 mb-4 w-1/2" />
             <p className="type-body-sm w-2/3 text-gray leading-relaxed">
@@ -108,9 +108,7 @@ const TeamSection = () => {
               </div>
               <hr className="mt-8 mb-6" />
               <p className="type-body text-charcoal">
-                We believe in a fluid team approach that allows us to bring together the
-                best designers, developers and agencies in the world in order to serve the
-                needs of today&apos;s clients.
+                Every stay is shaped by genuine care, meticulous attention to detail, and a commitment to creating lasting impressions.
               </p>
             </div>
           </div>
