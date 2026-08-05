@@ -164,7 +164,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
   return (
     <>
       <Section className="pt-16 sm:py-16 lg:py-20">
-        <div className="grid sm:grid-cols-2  sm:pt-16 lg:pt-20 type-body">
+        <div className="grid sm:grid-cols-2 border-b border-silver sm:border-b-0 pb-16  sm:pt-16 lg:pt-20 type-body">
           {/* h2 — the per-destination titles below are h3, so this needs to
             be a real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}

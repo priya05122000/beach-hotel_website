@@ -214,7 +214,7 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
 
 
       <Section>
-        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr]border-b border-silver pb-10 pt-16 lg:py-20 type-body">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver sm:border-b-0 pb-16 pt-16 lg:py-20 type-body">
           {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
           {/* h2 — the per-room titles below are h3, so this needs to be a
             real heading or the outline jumps straight from h1 to h3
