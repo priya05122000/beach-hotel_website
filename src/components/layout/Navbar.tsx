@@ -690,7 +690,7 @@ export default function Header() {
                     <span className="type-overline text-gray tracking-[3px]">Enquiry:</span> +91 54678 98765
                   </a>
                   <p className="text-primary-dark type-body-lg tracking-[3px] uppercase font-light">
-                    <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, TN 629702
+                    <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
                   </p>
                 </div>
                 <div className="self-end shrink-0">

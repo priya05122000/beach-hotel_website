@@ -7,6 +7,8 @@ interface SectionProps {
     style?: React.CSSProperties;
     /** "wide" (default) matches Section's original max-widths; "narrow" matches CenterSection's. */
     width?: "wide" | "narrow";
+    /** Scroll targets (e.g. `data-destination-id`) read by SectionScroller. */
+    [key: `data-${string}`]: string | number | undefined;
 }
 
 const widthClasses: Record<"wide" | "narrow", string> = {
@@ -15,16 +17,17 @@ const widthClasses: Record<"wide" | "narrow", string> = {
 };
 
 const Section = forwardRef<HTMLDivElement | null, SectionProps>(
-    ({ children, className = '', id, style, width = "wide" }, ref) => {
+    ({ children, className = '', id, style, width = "wide", ...dataAttrs }, ref) => {
         return (
             <section
                 className={`relative px-6 sm:px-4 ${className}`}
                 id={id}
                 style={style}
+                {...dataAttrs}
             >
                 <div
                     ref={ref}
-                    className={`${widthClasses[width]} mx-auto px-0 md:px-4 lg:px-12 xl:px-0`}
+                    className={`${widthClasses[width]} mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full`}
                 >
                     {children}
                 </div>

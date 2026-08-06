@@ -8,7 +8,7 @@ const HOTEL_SCHEMA = {
   telephone: "+91-5467-898765",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Beach Road",
+    streetAddress: "Beach Rd",
     addressLocality: "Kanniyakumari",
     addressRegion: "Tamil Nadu",
     postalCode: "629702",

@@ -27,7 +27,7 @@ export default async function DestinationsPage() {
       <Suspense fallback={null}>
         <SectionScroller dataAttr="data-destination-id" />
       </Suspense>
-      <NearbyHeroBanner destinations={activeDestinations.slice(0, 5)} />
+      <NearbyHeroBanner destinations={activeDestinations} />
       <NearbyDestinationsSection destinations={activeDestinations} />
     </div>
   );

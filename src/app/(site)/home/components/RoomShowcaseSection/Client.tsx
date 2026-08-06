@@ -208,6 +208,13 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
   return (
     <Section className="relative">
       <div ref={sectionRef} className="relative  h-screen overflow-hidden">
+        {/* Always visible, independent of which slide is active */}
+        <div className="absolute bottom-6 right-0 lg:bottom-10  z-30">
+          <Button href="/facilities" className="sm:w-50  whitespace-nowrap font-normal text-black cursor-pointer">
+            View All
+          </Button>
+        </div>
+
         <div className="absolute inset-x-0 top-16  lg:top-20 bottom-16 lg:bottom-20 overflow-hidden">
           {/* Right Image Stack */}
           {items.map((item, i) => (

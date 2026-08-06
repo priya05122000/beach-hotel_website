@@ -6,7 +6,8 @@ export default async function HorizontalScrollSection() {
 
   const items = destinations
     .filter((d) => d.is_active !== false)
-    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
+    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+    .slice(0, 8);
 
   return <HorizontalScrollSectionClient items={items} />;
 }

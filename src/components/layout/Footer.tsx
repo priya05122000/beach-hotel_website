@@ -17,7 +17,7 @@ const navLinks = [
 export default function Footer() {
   return (
     <footer id="footer">
-      <Section className="bg-primary w-full relative text-white overflow-hidden z-10 pt-10 lg:pt-20 px-6 sm:px-0">
+      <Section className="bg-primary w-full relative text-white overflow-hidden z-10 pt-10 lg:pt-20 px-6 sm:px-0 lg:min-h-screen">
         <div className="h-full flex flex-col justify-between font-arizona-light space-y-10">
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-6">
             {/* Left: description + CTA + socials + contact */}
@@ -118,14 +118,14 @@ export default function Footer() {
               <div className="sm:mb-4">
                 <div className="flex items-center gap-2 type-overline font-arizona-flare-regular text-white">
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_SITE_URL}/terms-and-conditions`}
+                    href="/terms-and-conditions"
                     className="transition-colors hover:underline underline-offset-4 decoration-white/50  hover:text-white"
                   >
                     Terms &amp; Condition
                   </Link>
                   <span>|</span>
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_SITE_URL}/privacy-policy`}
+                    href="/privacy-policy"
                     className="transition-colors hover:underline underline-offset-4 decoration-white/50  hover:text-white"
                   >
                     Privacy Policy
@@ -135,7 +135,7 @@ export default function Footer() {
             </div>
             <div className=" ">
               <Image
-                src="/footer_logo.svg"
+                src="/big_logo.svg"
                 alt="The Beach Hotel"
                 width={700}
                 height={200}

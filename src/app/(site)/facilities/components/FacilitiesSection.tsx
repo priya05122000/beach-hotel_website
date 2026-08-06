@@ -52,6 +52,10 @@ export default function FacilitiesSection({ facilities }: Props) {
         return () => mm.revert();
     }, []);
 
+    // Sequential display number (1, 2, 3…) by list order, independent of
+    // each facility's actual database id.
+    const orderMap = new Map(facilities.map((f, i) => [f.id, i + 1]));
+
     // Desktop paired rows: image(A), content(A + B stacked), image(B)
     const gridItems: (
         | { type: "image"; facility: Facility }
@@ -70,14 +74,13 @@ export default function FacilitiesSection({ facilities }: Props) {
     }
 
     return (
-        <Section className="pb-16 pt-16 sm:pt-40 lg:pb-20 lg:mb-20 type-body">
+        <Section className="pb-16 pt-16 sm:pt-40 lg:pb-40  type-body">
             {/* Visually hidden — the per-facility titles below are h3, but
                 this section has no visible heading of its own in the design.
                 Without this, the outline jumps straight from h1 to h3
                 ("H2: Missing"). */}
             <h2 className="sr-only">Our Facilities</h2>
             <div ref={sectionRef} className="min-h-screen flex items-center">
-
                 {/* ── Mobile (<768px): single column, image → content, no animation ── */}
                 <div className="md:hidden w-full space-y-10">
                     {facilities.map((facility, i) => (
@@ -93,7 +96,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                 />
                             </LazySection>
                             <div>
-                                <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
+                                <p className="mb-2">{String(orderMap.get(facility.id)).padStart(2, "0")}</p>
                                 <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">                                   {facility.facility_name}
                                 </h3>
                                 <div
@@ -127,7 +130,7 @@ export default function FacilitiesSection({ facilities }: Props) {
 
                         const contentCell = (
                             <div className="">
-                                <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
+                                <p className="mb-2">{String(orderMap.get(facility.id)).padStart(2, "0")}</p>
                                 <h3 className="mb-4 text-primary-dark font-bold uppercase border-primary/10 border-b py-2">
                                     {facility.facility_name}
                                 </h3>
@@ -178,7 +181,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                             key={facility.id}
                                             className={`w-[55%] ${facilityIndex === 1 ? "self-end" : "self-start"}`}
                                         >
-                                            <p className="mb-2">{String(facility.id).padStart(2, "0")}</p>
+                                            <p className="mb-2">{String(orderMap.get(facility.id)).padStart(2, "0")}</p>
                                             <SubHeading className="mb-4 text-primary-dark border-primary/10 border-b py-2">
                                                 {facility.facility_name}
                                             </SubHeading>

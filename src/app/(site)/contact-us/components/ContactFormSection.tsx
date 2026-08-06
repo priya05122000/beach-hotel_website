@@ -160,7 +160,7 @@ export default function ContactFormSection() {
                 The Beach Hotel
               </div>
               <div className="type-body font-arizona-flare-regular">
-                Beach Road, Kanyakumari,
+                Beach Rd, Kanniyakumari,
                 <br />
                 Tamil Nadu 629702, India
               </div>

@@ -29,6 +29,7 @@ export default async function RoomShowcaseSection() {
   const items: ShowcaseItem[] = facilities
     .filter((f) => f.is_active !== false)
     .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+    .slice(0, 4)
     .map((f) => ({
       id: String(f.id),
       title: f.facility_name,

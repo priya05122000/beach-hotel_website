@@ -99,8 +99,7 @@ const AboutUs = () => {
       >
         <div className="max-w-lg flex flex-col gap-6">
           <h2 ref={subtitleRef} className="text-white type-display-sm leading-tight">
-            We believe the sea has a story to tell — and we&apos;ve spent decades making
-            sure you hear it.
+            We believe the sea has a story to tell — and every stay brings you closer to it.
           </h2>
           <p className="text-white/55 type-body leading-relaxed">
             Set at the tip of India where three oceans meet, The Beach Hotel was born

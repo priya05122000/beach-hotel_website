@@ -73,18 +73,38 @@ function DestinationItem({
     >
       <div className="grid grid-cols-1 lg:grid-cols-[0.5fr_1fr_0.8fr]  gap-6 lg:gap-10">
         {/* Destination name — desktop sidebar only */}
-        <div className="hidden lg:flex items-center">
+        <div className="hidden lg:flex flex-col items-start justify-center gap-3">
           <h4 className="type-h6 text-left tracking-widest uppercase">
             {destination.destination_name}
           </h4>
+
+          {destination.distance && (
+            <div className="flex items-center gap-2 text-dusty">
+              <MapPin size={14} strokeWidth={1.5} />
+              <span className="type-body tracking-widest uppercase">
+                {destination.distance} from hotel
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Image + content */}
         <div className="flex flex-col w-full items-start justify-center gap-4 sm:gap-6 lg:gap-10">
           {/* Name visible on mobile & tablet */}
-          <h4 className="type-h6 tracking-widest uppercase lg:hidden">
-            {destination.destination_name}
-          </h4>
+          <div className="flex flex-col gap-3 lg:hidden">
+            <h4 className="type-h6 tracking-widest uppercase">
+              {destination.destination_name}
+            </h4>
+
+            {destination.distance && (
+              <div className="flex items-center gap-2 text-dusty">
+                <MapPin size={14} strokeWidth={1.5} />
+                <span className="type-body tracking-widest uppercase">
+                  {destination.distance} from hotel
+                </span>
+              </div>
+            )}
+          </div>
           <div ref={imageWrapRef} className="will-change-transform w-full lg:w-auto">
             <LazySection
               className="w-full lg:w-90 xl:w-118 aspect-4/3"
@@ -106,14 +126,7 @@ function DestinationItem({
               {destination.short_description}
             </h3>
 
-            {destination.distance && (
-              <div className="flex items-center gap-2 text-dusty">
-                <MapPin size={14} strokeWidth={1.5} />
-                <span className="type-body tracking-widest uppercase">
-                  {destination.distance} from hotel
-                </span>
-              </div>
-            )}
+
 
             <div className="flex flex-wrap items-center gap-x-8 pt-4 gap-y-3">
               <Button

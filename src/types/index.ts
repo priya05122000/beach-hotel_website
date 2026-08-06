@@ -509,6 +509,7 @@ export interface NearbyDestination {
 
   destination_name: string;
   distance?: string;
+  show_distance?: boolean;
 
   image_url?: string | string[];
   destination_link?: string;

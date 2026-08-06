@@ -23,7 +23,7 @@ export default async function FacilitiesPage() {
   const { data: facilities } = await getFacilitiesData();
 
   return (
-    <>
+    <div className="bg-ivory">
       <Suspense fallback={null}>
         <SectionScroller dataAttr="data-facility-id" />
       </Suspense>
@@ -31,6 +31,6 @@ export default async function FacilitiesPage() {
       <div id="facilities">
         <FacilitiesSection facilities={facilities} />
       </div>
-    </>
+    </div>
   );
 }
