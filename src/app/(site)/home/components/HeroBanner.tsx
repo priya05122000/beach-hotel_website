@@ -2,10 +2,13 @@
 
 import { memo, useState } from "react";
 import Image from "next/image";
+import { format } from "date-fns";
 
 import CenterSection from "@/src/components/common/CenterSection";
 import DatePicker from "@/src/components/ui/DatePicker";
 import GuestPicker from "@/src/components/ui/GuestPicker";
+
+const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 
 // Static — never depends on the booking form's date/guest state, so it's
 // split into its own memoized component to avoid re-rendering (and
@@ -27,6 +30,8 @@ const HeroBackgroundImage = memo(function HeroBackgroundImage() {
 export default function HeroBanner() {
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
 
   const handleCheckIn = (date: Date | undefined) => {
     setCheckIn(date);
@@ -35,6 +40,7 @@ export default function HeroBanner() {
       setCheckOut(undefined);
     }
   };
+
 
   return (
     <section className="relative h-[90vh] sm:h-screen">
@@ -56,10 +62,17 @@ export default function HeroBanner() {
         <div className="absolute inset-x-0 bottom-10 z-20 w-full">
           <CenterSection>
             <form
-              onSubmit={(e) => e.preventDefault()}
+              action={BOOKING_URL}
+              method="get"
+              target="_blank"
               className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl transform-gpu"
               style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
             >
+              <input type="hidden" name="bkgfrmdt" value={checkIn ? format(checkIn, "dd-MM-yyyy") : ""} />
+              <input type="hidden" name="bkgtodt" value={checkOut ? format(checkOut, "dd-MM-yyyy") : ""} />
+              <input type="hidden" name="bkgadultc" value={adults} />
+              <input type="hidden" name="bkgchildc" value={children} />
+
               {/* Check In */}
               <DatePicker
                 value={checkIn}
@@ -80,7 +93,13 @@ export default function HeroBanner() {
               />
 
               {/* Guests */}
-              <GuestPicker variant="light" />
+              <GuestPicker
+                variant="light"
+                onChange={(nextAdults, nextChildren) => {
+                  setAdults(nextAdults);
+                  setChildren(nextChildren);
+                }}
+              />
 
               {/* Promo Code */}
               <div className="flex py-2 min-w-45 flex-1 items-center border border-white/40 px-4 text-white">

@@ -11,7 +11,7 @@ import PillLinkButton from "../common/PillLinkButton";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const BOOKING_URL = "https://bookingengine-beachhotel-o3py.vercel.app/booking";
+const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 
 function BookStayButton({ className = "" }: { className?: string }) {
   return (

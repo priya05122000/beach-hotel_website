@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const normalizeImages = (url?: string | string[] | null): string[] => {
   if (!url) return [];
@@ -28,6 +29,7 @@ export default function FacilitySlider({
   sizes: string;
 }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }),
   ]);
@@ -44,14 +46,40 @@ export default function FacilitySlider({
   const prev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const next = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lightboxOpen, prev, next]);
+
   const normalizedImages = normalizeImages(images);
+  const activeSrc = normalizedImages[selectedIndex];
 
   return (
     <div className="relative h-full w-full overflow-hidden group">
       <div ref={emblaRef} className="h-full overflow-hidden">
         <div className="flex h-full">
           {normalizedImages.map((src, i) => (
-            <div key={i} className="relative flex-[0_0_100%] h-full">
+            <button
+              key={i}
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              aria-label={`View larger image: ${name}`}
+              className="relative flex-[0_0_100%] h-full cursor-zoom-in"
+            >
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${src}`}
                 alt={`${name} — image ${i + 1}`}
@@ -60,7 +88,7 @@ export default function FacilitySlider({
                 sizes={sizes}
                 priority={i === 0}
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -99,6 +127,61 @@ export default function FacilitySlider({
             ))}
           </div>
         </>
+      )}
+
+      {lightboxOpen && activeSrc && createPortal(
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${name} — enlarged image`}
+          className="fixed inset-0 z-100 h-screen w-screen bg-black"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(false)}
+            aria-label="Close"
+            className="absolute right-4 top-4 sm:right-6 sm:top-6 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer"
+          >
+            <X size={20} strokeWidth={1.5} />
+          </button>
+
+          {normalizedImages.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prev();
+                }}
+                aria-label="Previous image"
+                className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer"
+              >
+                <ChevronLeft size={20} strokeWidth={1.5} />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  next();
+                }}
+                aria-label="Next image"
+                className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer"
+              >
+                <ChevronRight size={20} strokeWidth={1.5} />
+              </button>
+            </>
+          )}
+
+          <Image
+            src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${activeSrc}`}
+            alt={`${name} — enlarged image`}
+            fill
+            className="object-contain"
+            sizes="100vw"
+          />
+        </div>,
+        document.body
       )}
     </div>
   );

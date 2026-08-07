@@ -4,6 +4,8 @@ import Section from "@/src/components/common/Section";
 import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import { Mail, MapPin, Phone } from "lucide-react";
 
+const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
+
 const navLinks = [
   { label: "HOME", href: "/" },
   { label: "ABOUT US", href: "/about-us" },
@@ -18,7 +20,8 @@ export default function Footer() {
   return (
     <footer id="footer">
       <Section className="bg-primary w-full relative text-white overflow-hidden z-10 pt-10 lg:pt-20 px-6 sm:px-0 lg:min-h-screen">
-        <div className="h-full flex flex-col justify-between font-arizona-light space-y-10">
+        <div className="h-full flex flex-col justify-between
+        font-arizona-light space-y-10">
           <div className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] gap-10 lg:gap-6">
             {/* Left: description + CTA + socials + contact */}
             <div className="flex flex-col gap-5">
@@ -38,9 +41,14 @@ export default function Footer() {
 
                 <div className="animated-border inline-block w-auto relative overflow-hidden">
                   <div className="inline-flex items-center gap-3 px-4 h-10 bg-primary  ">
-                    <button className="type-label cursor-pointer font-medium text-white">
+                    <Link
+                      href={BOOKING_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="type-label cursor-pointer font-medium text-white"
+                    >
                       Book My Stay
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -139,7 +147,7 @@ export default function Footer() {
                 alt="The Beach Hotel"
                 width={700}
                 height={200}
-                className="h-full w-full  opacity-40 pointer-events-none select-none"
+                className="h-full w-full opacity-40 pointer-events-none select-none"
               />
             </div>
           </div>

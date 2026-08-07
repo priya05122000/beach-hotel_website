@@ -31,6 +31,7 @@ import type { Room } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import SubHeading from "@/src/components/common/SubHeading";
+import PillLinkButton from "@/src/components/common/PillLinkButton";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 import Pill from "./Pill";
 
@@ -211,8 +212,6 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
 export default function RoomsList({ rooms }: { rooms: Room[] }) {
   return (
     <>
-
-
       <Section>
         <div className="grid sm:grid-cols-2 xl:grid-cols-[1fr_1.5fr] border-b border-silver sm:border-b-0 pb-16 pt-16 lg:py-20 type-body">
           {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
@@ -221,29 +220,38 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
             ("H2: Missing"). */}
           <Eyebrow as="h2" align="responsive">Rooms & Suites</Eyebrow>
 
-          {/* Desktop — uppercase, wide-tracking heading style */}
-          <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
-            At The Beach Hotel, every stay is an invitation to refined indulgence.
-            Our accommodations are appointed with custom furnishings, the finest
-            linens and thoughtful touches at every turn — from serene inland
-            retreats to coveted sea-view rooms, where floor-to-ceiling glass
-            dissolves the line between suite and ocean and the rhythm of the waves
-            becomes your constant companion. Whichever you choose, you are wrapped
-            in quiet grandeur and impeccable comfort — and wake to the most
-            extraordinary edge of India.
-          </div>
+          <div>
+            {/* Desktop — uppercase, wide-tracking heading style */}
+            <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 mb-4 sm:mt-0 tracking-[0.2rem] leading-8">
+              At The Beach Hotel, every stay is an invitation to refined indulgence.
+              Our accommodations are appointed with custom furnishings, the finest
+              linens and thoughtful touches at every turn — from serene inland
+              retreats to coveted sea-view rooms, where floor-to-ceiling glass
+              dissolves the line between suite and ocean and the rhythm of the waves
+              becomes your constant companion. Whichever you choose, you are wrapped
+              in quiet grandeur and impeccable comfort — and wake to the most
+              extraordinary edge of India.
+            </div>
 
-          {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
-          <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
-            At The Beach Hotel, every stay is an invitation to refined indulgence.
-            Our accommodations are appointed with custom furnishings, the finest
-            linens and thoughtful touches at every turn — from serene inland
-            retreats to coveted sea-view rooms, where floor-to-ceiling glass
-            dissolves the line between suite and ocean and the rhythm of the waves
-            becomes your constant companion. Whichever you choose, you are wrapped
-            in quiet grandeur and impeccable comfort — and wake to the most
-            extraordinary edge of India.
-          </p>
+            {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
+            <p className="lg:hidden mb-4 text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
+              At The Beach Hotel, every stay is an invitation to refined indulgence.
+              Our accommodations are appointed with custom furnishings, the finest
+              linens and thoughtful touches at every turn — from serene inland
+              retreats to coveted sea-view rooms, where floor-to-ceiling glass
+              dissolves the line between suite and ocean and the rhythm of the waves
+              becomes your constant companion. Whichever you choose, you are wrapped
+              in quiet grandeur and impeccable comfort — and wake to the most
+              extraordinary edge of India.
+            </p>
+
+            <PillLinkButton
+              href="/gallery"
+              className="pointer-events-auto w-fit"
+            >
+              View Gallery
+            </PillLinkButton>
+          </div>
         </div>
       </Section>
 

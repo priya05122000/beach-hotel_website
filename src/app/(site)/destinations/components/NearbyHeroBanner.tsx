@@ -98,7 +98,10 @@ export default function NearbyHeroBanner({ destinations }: Props) {
       Autoplay({
         delay: 4000,
         stopOnInteraction: false,
-        stopOnMouseEnter: true,
+        // This carousel fills the whole viewport, so `stopOnMouseEnter`
+        // would pause autoplay almost permanently — the cursor is nearly
+        // always somewhere over it whenever the page is in view.
+        stopOnMouseEnter: false,
       }),
     ]
   );

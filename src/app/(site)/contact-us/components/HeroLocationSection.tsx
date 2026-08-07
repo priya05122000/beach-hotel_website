@@ -82,11 +82,11 @@ export default function HeroLocationSection() {
             <p className="mt-6 type-body">
               However you wish to begin, our team is here — attentive, discreet and delighted to help craft a stay beyond compare.
             </p>
-            <div className="mt-6 md:mt-8 lg:mt-10 flex justify-end">
+            <div className="mt-6 md:mt-8 lg:mt-10 flex justify-end sm:justify-start">
               {/* <Button href="#contact-form" className="text-sm tracking-widest font-arizona-sans-bold">
                 Contact A Manager
               </Button> */}
-              <Button href="#contact-form" className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+              <Button href="tel:+915467898765" className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
                 Contact A Manager
               </Button>
             </div>

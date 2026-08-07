@@ -3,6 +3,7 @@ import Navbar from "../../components/layout/Navbar";
 import LenisProvider from "../../components/LenisProvider";
 import Footer from "../../components/layout/Footer";
 import HotelJsonLd from "../../components/common/JsonLd";
+import FloatingActionButtons from "../../components/common/FloatingActionButtons";
 
 export default function SiteLayout({
   children,
@@ -16,6 +17,7 @@ export default function SiteLayout({
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
+        <FloatingActionButtons />
       </LenisProvider>
     </>
   );

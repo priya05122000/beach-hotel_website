@@ -93,7 +93,7 @@ const FeaturedHighlightSection = () => {
                 The Beach Hotel, Kanniyakumari.
               </p>
               <div className="mt-auto w-fit self-end">
-                <PillLinkButton href="/" variant="light">
+                <PillLinkButton href="https://devnew.skyhms.in/booking_next/signin/" variant="light">
                   Sign In
                 </PillLinkButton>
               </div>

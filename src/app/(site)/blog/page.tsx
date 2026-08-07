@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import CommonBanner from "@/src/components/common/CommonBanner";
-import BlogGrid from "./components/BlogGrid";
+import BlogInfluencerSection from "./components/BlogInfluencerSection";
 import { getBlogList } from "@/src/service/blogs";
+import { getReelsData } from "@/src/service/reels";
 
 export const metadata: Metadata = {
   // `absolute` bypasses the root layout's "%s | The Beach Hotel" template —
@@ -21,8 +22,15 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const { data: blogs } = await getBlogList();
+  const [{ data: blogs }, { data: reels }] = await Promise.all([
+    getBlogList(),
+    getReelsData(),
+  ]);
+
   const activeBlogs = blogs.filter((b) => b.active !== false && b.is_published);
+  const activeReels = reels
+    .filter((r) => r.is_active !== false)
+    .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
 
   return (
     <div>
@@ -31,7 +39,7 @@ export default async function BlogPage() {
         src="/banner/blog.webp"
         alt="Blog — Notes from The Beach Hotel, Kanyakumari"
       />
-      <BlogGrid blogs={activeBlogs} />
+      <BlogInfluencerSection blogs={activeBlogs} reels={activeReels} />
     </div>
   );
 }

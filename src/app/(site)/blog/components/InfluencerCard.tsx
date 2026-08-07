@@ -75,7 +75,7 @@ export default function InfluencerCard({ reel, videoRefs, index }: Props) {
             src={thumbnailUrl}
             alt={reel.title || "Video thumbnail"}
             fill
-            className="object-cover lg:grayscale transition-all duration-500 lg:group-hover:grayscale-0"
+            className="object-cover transition-all duration-500"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         )}

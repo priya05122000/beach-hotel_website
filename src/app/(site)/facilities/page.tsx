@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import FacilitiesSplitHero from "./components/FacilitiesSplitHero";
 import FacilitiesSection from "./components/FacilitiesSection";
+import FacilitiesCtaSection from "./components/FacilitiesCtaSection";
 import { getFacilitiesData } from "@/src/service/facilities";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
@@ -28,6 +29,8 @@ export default async function FacilitiesPage() {
         <SectionScroller dataAttr="data-facility-id" />
       </Suspense>
       <FacilitiesSplitHero />
+      {/* <FacilitiesCtaSection /> */}
+
       <div id="facilities">
         <FacilitiesSection facilities={facilities} />
       </div>

@@ -4,6 +4,10 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
+import PillLinkButton from "@/src/components/common/PillLinkButton";
+import Eyebrow from "@/src/components/common/Eyebrow";
+
+const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 
 const TEXT_LINES = [
     "Signature",
@@ -19,18 +23,18 @@ export default function FacilitiesSplitHero() {
     const imageWrapRef = useRef<HTMLDivElement>(null);
     const imageInnerRef = useRef<HTMLDivElement>(null);
     const desktopPanelRef = useRef<HTMLDivElement>(null);
-    const desktopTaglineRef = useRef<HTMLSpanElement>(null);
+    const desktopTaglineRef = useRef<HTMLElement>(null);
     const desktopHeadlineRef = useRef<HTMLHeadingElement>(null);
     const desktopHeadlineLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
-    const desktopCtaRef = useRef<HTMLAnchorElement>(null);
+    const desktopCtaRef = useRef<HTMLDivElement>(null);
     const desktopParaRef = useRef<HTMLParagraphElement>(null);
 
     // ── Mobile refs ───────────────────────────────────────────────
     const mobilePanelRef = useRef<HTMLDivElement>(null);
-    const mobileTaglineRef = useRef<HTMLSpanElement>(null);
+    const mobileTaglineRef = useRef<HTMLElement>(null);
     const mobileHeadlineRef = useRef<HTMLDivElement>(null);
     const mobileHeadlineLinesRef = useRef<(HTMLSpanElement | null)[]>([]);
-    const mobileCtaRef = useRef<HTMLAnchorElement>(null);
+    const mobileCtaRef = useRef<HTMLDivElement>(null);
     const mobileParaRef = useRef<HTMLParagraphElement>(null);
 
     useLayoutEffect(() => {
@@ -119,13 +123,13 @@ export default function FacilitiesSplitHero() {
 
                 <div ref={mobilePanelRef} className="px-6 py-10 flex flex-col gap-6" style={{ opacity: 0 }}>
                     <div>
-                        <span
+                        <Eyebrow
                             ref={mobileTaglineRef}
-                            className="block type-body uppercase text-gray mb-4"
+                            className="mb-4"
                             style={{ display: "inline-block" }}
                         >
                             Our Facilities
-                        </span>
+                        </Eyebrow>
 
                         <div
                             ref={mobileHeadlineRef}
@@ -143,15 +147,11 @@ export default function FacilitiesSplitHero() {
                             ))}
                         </div>
 
-                        {/* <a
-                            ref={mobileCtaRef}
-                            href="#facilities"
-                            className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-8 group"
-                            style={{ opacity: 0 }}
-                        >
-                            <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
-                            Explore All
-                        </a> */}
+                        <div ref={mobileCtaRef} className="mt-8" style={{ opacity: 0 }}>
+                            <PillLinkButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-fit">
+                                Book Now
+                            </PillLinkButton>
+                        </div>
                     </div>
 
                     <div className="overflow-hidden">
@@ -181,13 +181,13 @@ export default function FacilitiesSplitHero() {
                     <div className="max-w-[95%]  sm:max-w-156  lg:max-w-232 xl:max-w-300 mx-auto px-0 md:px-4 lg:px-12 xl:px-0 h-full">
                         <div className="flex flex-col  h-full justify-evenly w-1/2 pr-6 md:pr-10 lg:pr-0 xl:pr-0">
                             <div>
-                                <span
+                                <Eyebrow
                                     ref={desktopTaglineRef}
-                                    className="block type-body text-gray uppercase mb-4"
+                                    className="mb-4"
                                     style={{ display: "inline-block" }}
                                 >
                                     Our Facilities
-                                </span>
+                                </Eyebrow>
 
                                 <h1
                                     ref={desktopHeadlineRef}
@@ -205,18 +205,14 @@ export default function FacilitiesSplitHero() {
                                     ))}
                                 </h1>
 
-                                {/* <a
-                                    ref={desktopCtaRef}
-                                    href="#facilities"
-                                    className="inline-flex items-center gap-3 text-accent text-[12px] tracking-[0.22em] uppercase font-semibold mt-10 pointer-events-auto group"
-                                    style={{ opacity: 0 }}
-                                >
-                                    <span className="inline-block w-8 h-px bg-accent transition-all duration-300 group-hover:w-14" />
-                                    Explore All
-                                </a> */}
+                                <div ref={desktopCtaRef} className="mt-8 pointer-events-auto" style={{ opacity: 0 }}>
+                                    <PillLinkButton href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-fit">
+                                        Book Now
+                                    </PillLinkButton>
+                                </div>
                             </div>
 
-                            <div className="max-w-xs lg:mx-auto overflow-hidden">
+                            <div className="max-w-sm lg:mx-auto overflow-hidden">
                                 <p ref={desktopParaRef} className="type-body text-charcoal">{PARAGRAPH}</p>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import Section from "@/src/components/common/Section";
 import SubHeading from "@/src/components/common/SubHeading";
@@ -50,40 +51,52 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
           </p>
         </div>
 
-        <div className="divide-y divide-silver">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
+        <div>
+          <div className="divide-y divide-silver">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
 
-            return (
-              <div key={faq.id} className="py-5">
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-4 text-left"
-                >
-                  <SubHeading as="p" className="text-primary-dark">
-                    {faq.question}
-                  </SubHeading>
+              return (
+                <div key={faq.id} className="py-5">
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center justify-between gap-4 text-left"
+                  >
+                    <SubHeading as="p" className="text-primary-dark">
+                      {faq.question}
+                    </SubHeading>
 
-                  <span
-                    className={`shrink-0 flex h-7 w-7 items-center justify-center text-gray transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                    <span
+                      className={`shrink-0 flex h-7 w-7 items-center justify-center text-gray transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                        }`}
+                    >
+                      <ChevronDown size={18} strokeWidth={1.5} />
+                    </span>
+                  </button>
+
+                  <div
+                    className={`transition-all duration-500 ease-in-out ${isOpen ? "mt-3 max-h-40 opacity-100" : "max-h-0 opacity-0"
                       }`}
                   >
-                    <ChevronDown size={18} strokeWidth={1.5} />
-                  </span>
-                </button>
-
-                <div
-                  className={`transition-all duration-500 ease-in-out ${isOpen ? "mt-3 max-h-40 opacity-100" : "max-h-0 opacity-0"
-                    }`}
-                >
-                  <p className="type-body text-charcoal leading-relaxed">
-                    {faq.answer}
-                  </p>
+                    <p className="type-body text-charcoal leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          <p className="type-body text-charcoal mt-6">
+            Still Have Questions?{" "}
+            <Link
+              href="/contact-us"
+              className="text-primary-dark underline underline-offset-2 hover:opacity-70 transition-opacity"
+            >
+              Contact us
+            </Link>
+          </p>
         </div>
       </div>
     </Section>

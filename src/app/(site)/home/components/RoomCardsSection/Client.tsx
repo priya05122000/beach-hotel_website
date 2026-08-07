@@ -14,7 +14,7 @@ import CenterSection from "@/src/components/common/CenterSection";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import Link from "next/link";
 import { Button } from "@/src/components/common/button";
-import { BedDouble, Eye, Ruler, Users } from "lucide-react";
+import { BedDouble, Eye, PawPrint, Ruler, Users } from "lucide-react";
 import SubHeading from "@/src/components/common/SubHeading";
 
 interface RoomCardsSectionProps {
@@ -73,7 +73,7 @@ function RoomCard({ room }: { room: Room }) {
           {room.description}
         </p>
 
-        <ul className="space-y-2 text-gray">
+        <ul className="space-y-2 text-sm text-gray">
           {room.size && (
             <li className="flex items-center gap-2">
               <Ruler size={16} className="" />
@@ -99,6 +99,13 @@ function RoomCard({ room }: { room: Room }) {
             <li className="flex items-center gap-2">
               <Eye size={16} className="" />
               <span>{room.view}</span>
+            </li>
+          )}
+
+          {room.additional_keys?.includes("Pet Friendly") && (
+            <li className="flex items-center gap-2">
+              <PawPrint size={16} />
+              <span>Pet Friendly</span>
             </li>
           )}
         </ul>
@@ -180,7 +187,7 @@ export default function RoomCardsSectionClient({
           </Button> */}
 
           <Button href="/rooms" className="sm:w-50  whitespace-nowrap font-normal text-primary-dark cursor-pointer">
-            View All
+            Find Your Room
           </Button>
         </div>
       </Section>

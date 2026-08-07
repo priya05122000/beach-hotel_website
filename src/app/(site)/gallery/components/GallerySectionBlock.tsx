@@ -124,12 +124,11 @@ export default function GallerySectionBlock({ section, galleries, index, total }
       <Section className={shouldHaveIvory ? "bg-ivory" : ""}>
         <div
           ref={contentRef}
-          className={`relative grid grid-cols-1 ${isEven ? "lg:grid-cols-[0.5fr_1.6fr_1fr]" : "lg:grid-cols-[1fr_1.6fr_0.5fr]"} min-h-130 lg:min-h-150 gap-6  py-16 lg:py-20`}
+          className={`relative grid grid-cols-1 ${isEven ? "lg:grid-cols-[minmax(300px,0.5fr)_1.6fr_1fr]" : "lg:grid-cols-[1fr_1.6fr_minmax(300px,0.5fr)]"} min-h-130 lg:min-h-150 gap-6  py-16 lg:py-20`}
         >
-          <div className={`hidden lg:block${isEven ? "" : "lg:order-3"}`} />
           <div
-            className={` lg:absolute lg:inset-0 lg:z-10
-              flex flex-col ${isEven ? "items-start" : "lg:items-end"} justify-center
+            className={`
+              flex flex-col ${isEven ? "items-start" : "lg:items-end lg:order-3"} justify-center
             `}
           >
             {/* Only the first category section keeps an h2 — the rest are
@@ -137,20 +136,20 @@ export default function GallerySectionBlock({ section, galleries, index, total }
             {index === 0 ? (
               <h2
                 ref={titleRef}
-                className="type-display-lg font-semibold text-primary-dark leading-tight mb-4"
+                className="type-display-lg font-semibold text-primary-dark leading-tight mb-4 wrap-break-word"
               >
                 {section.category_name}
               </h2>
             ) : (
               <h3
                 ref={titleRef}
-                className="type-display-lg font-semibold text-primary-dark leading-tight mb-4"
+                className="type-display-lg font-semibold text-primary-dark leading-tight mb-4 wrap-break-word"
               >
                 {section.category_name}
               </h3>
             )}
 
-            <p className={`text-charcoal type-body font-arizona-flare-regular max-w-lg lg:max-w-37 xl:max-w-50 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
+            <p className={`text-charcoal type-body font-arizona-flare-regular max-w-lg lg:max-w-57 xl:max-w-60 ${isEven ? "lg:text-left" : "lg:text-right"}`}>
               {section.short_description}
             </p>
           </div>

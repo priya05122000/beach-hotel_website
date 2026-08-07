@@ -81,7 +81,7 @@ function DestinationItem({
           {destination.distance && (
             <div className="flex items-center gap-2 text-dusty">
               <MapPin size={14} strokeWidth={1.5} />
-              <span className="type-body tracking-widest uppercase">
+              <span className="type-body-sm tracking-widest uppercase">
                 {destination.distance} from hotel
               </span>
             </div>
@@ -97,9 +97,9 @@ function DestinationItem({
             </h4>
 
             {destination.distance && (
-              <div className="flex items-center gap-2 text-dusty">
+              <div className="flex items-center  gap-2 text-dusty">
                 <MapPin size={14} strokeWidth={1.5} />
-                <span className="type-body tracking-widest uppercase">
+                <span className="type-body-sm tracking-widest uppercase">
                   {destination.distance} from hotel
                 </span>
               </div>
@@ -135,7 +135,7 @@ function DestinationItem({
                 rel={destination.destination_link ? "noopener noreferrer" : undefined}
                 className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer"
               >
-                View Destination<span className="sr-only"> — {destination.destination_name}</span>
+                Get Directions<span className="sr-only"> — {destination.destination_name}</span>
               </Button>
             </div>
           </div>

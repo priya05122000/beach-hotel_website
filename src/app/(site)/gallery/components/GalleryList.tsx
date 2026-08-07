@@ -2,6 +2,9 @@ import GallerySectionBlock from "./GallerySectionBlock";
 import { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
+import PillLinkButton from "@/src/components/common/PillLinkButton";
+
+const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 
 interface Props {
   sections: GalleryCategory[];
@@ -19,24 +22,42 @@ export default function GalleryList({ sections, galleries }: Props) {
           {/* <Sparkle size={10} fill="#012644" className="" />{" "} */}
           <Eyebrow as="h1" align="responsive">Gallery</Eyebrow>
 
-          {/* Desktop — uppercase, wide-tracking heading style */}
-          <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
-            These photos capture what it&apos;s actually like to stay at The
-            Beach Hotel — sunrise over the meeting point of three oceans,
-            quiet mornings by the pool, rooms with a view, and the coast of
-            Kanyakumari beyond our walls. Browse the collection below and
-            picture your own stay here.
+
+          <div>
+            {/* Desktop — uppercase, wide-tracking heading style */}
+            <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 mb-4 sm:mt-0 tracking-[0.2rem] leading-8">
+              These photos capture what it&apos;s actually like to stay at The
+              Beach Hotel — sunrise over the meeting point of three oceans,
+              quiet mornings by the pool, rooms with a view, and the coast of
+              Kanyakumari beyond our walls. Browse the collection below and
+              picture your own stay here.
+            </div>
+
+            {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
+            <p className="lg:hidden mb-4 text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
+              These photos capture what it&apos;s actually like to stay at The
+              Beach Hotel — sunrise over the meeting point of three oceans,
+              quiet mornings by the pool, rooms with a view, and the coast of
+              Kanyakumari beyond our walls. Browse the collection below and
+              picture your own stay here.
+            </p>
+
+
+            <PillLinkButton
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pointer-events-auto w-fit"
+            >
+              Book Your Stay
+            </PillLinkButton>
           </div>
 
-          {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
-          <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
-            These photos capture what it&apos;s actually like to stay at The
-            Beach Hotel — sunrise over the meeting point of three oceans,
-            quiet mornings by the pool, rooms with a view, and the coast of
-            Kanyakumari beyond our walls. Browse the collection below and
-            picture your own stay here.
-          </p>
         </div>
+
+
+
+
 
       </Section>
 
@@ -51,6 +72,8 @@ export default function GalleryList({ sections, galleries }: Props) {
           total={activeSections.length}
         />
       ))}
+
+
     </div>
   );
 }

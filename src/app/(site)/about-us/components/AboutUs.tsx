@@ -56,6 +56,18 @@ const AboutUs = () => {
     return () => ctx.revert();
   }, []);
 
+  const scrollToStory = () => {
+    const target = document.getElementById("our-story");
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 80;
+    const lenis = window.__lenis;
+    if (lenis) {
+      lenis.scrollTo(top, { duration: 1.8 });
+    } else {
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
+
   return (
     <section ref={sectionRef} className="relative overflow-hidden h-[160vh] sm:h-[200vh]">
       {/* Parallax video */}
@@ -78,6 +90,7 @@ const AboutUs = () => {
 
       {/* First panel — left content */}
       <div
+        id="our-story"
         className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20 h-[75vh] sm:h-screen"
       >
         <h1 ref={titleRef} className="text-white type-display-2xl leading-none">
@@ -88,8 +101,8 @@ const AboutUs = () => {
           Scroll to explore
         </p> */}
 
-        <Button href="/gallery" className="sm:w-60 mt-8 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
-          Scroll to view more
+        <Button href="/blog" className="sm:w-60 mt-8 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
+          Explore the Journal
         </Button>
       </div>
 
@@ -110,7 +123,7 @@ const AboutUs = () => {
             Our Story
           </Button> */}
 
-          <Button href="/contact-us" className="self-end sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
+          <Button action={scrollToStory} className="self-end sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
             Our Story
           </Button>
         </div>
