@@ -67,9 +67,8 @@ export default async function RootLayout({
       lang="en"
       className={`${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable}`}
     >
-      <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
-        {/* Injected into <head> regardless of JSX position — beforeInteractive
-            always hoists there, matching GTM's documented head placement. */}
+      <head>
+        {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -80,7 +79,10 @@ export default async function RootLayout({
             })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
-
+        {/* End Google Tag Manager */}
+      </head>
+      <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
+        {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -89,6 +91,7 @@ export default async function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        {/* End Google Tag Manager (noscript) */}
 
         {children}
 
