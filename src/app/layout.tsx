@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import {
@@ -8,6 +9,7 @@ import {
 } from "../lib/font";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachhotel.in";
+const GTM_ID = "GTM-NXXNDDNS";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -66,7 +68,30 @@ export default async function RootLayout({
       className={`${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable}`}
     >
       <body className="antialiased overflow-x-hidden" suppressHydrationWarning>
+        {/* Injected into <head> regardless of JSX position — beforeInteractive
+            always hoists there, matching GTM's documented head placement. */}
+        <Script id="google-tag-manager" strategy="beforeInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `}
+        </Script>
+
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
         {children}
+
         <Toaster
           position="top-center"
           toastOptions={{
