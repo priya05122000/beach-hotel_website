@@ -76,7 +76,7 @@ export default function NearbyHeroBanner({ destinations }: Props) {
   // );
 
   const filteredDestinations = destinations.filter(
-    (item: any) => item.show_distance === true
+    (item) => item.show_distance === true
   );
 
   const slides: Slide[] =
@@ -85,10 +85,6 @@ export default function NearbyHeroBanner({ destinations }: Props) {
       : destinations.length === 0
         ? FALLBACK_SLIDES
         : [];
-
-  if (slides.length === 0) {
-    return null;
-  }
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -126,6 +122,10 @@ export default function NearbyHeroBanner({ destinations }: Props) {
     },
     [emblaApi]
   );
+
+  if (slides.length === 0) {
+    return null;
+  }
 
   const current = slides[selectedIndex];
 

@@ -7,12 +7,6 @@ import Eyebrow from '@/src/components/common/Eyebrow';
 import { ANIM, prefersReducedMotion } from '@/src/lib/gsap/config';
 import { applySplitSlideUp } from '@/src/lib/gsap/useSplitSlideUp';
 
-const SERVICES = [
-    'Beachfront Accommodation',
-    'Fine Dining & Cuisine',
-    'Wellness & Recreation',
-];
-
 const StatementSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const textRef = useRef<HTMLDivElement>(null);

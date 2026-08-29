@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import Image from "next/image";
 import { Play, Pause } from "lucide-react";
@@ -28,10 +28,12 @@ interface Props {
 function UploadedVideo({
   item,
   videoRefs,
+  setVideoRef,
   index,
 }: {
   item: MomentItem;
   videoRefs: React.RefObject<(HTMLVideoElement | null)[]>;
+  setVideoRef: (index: number, el: HTMLVideoElement | null) => void;
   index: number;
 }) {
   const [started, setStarted] = useState(false);
@@ -80,7 +82,7 @@ function UploadedVideo({
       <video
         ref={(el) => {
           videoRef.current = el;
-          videoRefs.current[index] = el;
+          setVideoRef(index, el);
         }}
         src={item.videoUrl}
         poster={item.thumbnailUrl || "/placeholder-video.jpg"}
@@ -116,6 +118,13 @@ export default function MomentsSectionClient({ items }: Props) {
   const containerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const innerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  // Passed to UploadedVideo so it registers its video element instead of
+  // writing into `videoRefs` directly — mutating a ref received as a prop
+  // is what React Compiler's rules flag; owning the mutation here (a plain
+  // local ref, not something this component received) keeps it clean.
+  const setVideoRef = (index: number, el: HTMLVideoElement | null) => {
+    videoRefs.current[index] = el;
+  };
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -183,7 +192,7 @@ export default function MomentsSectionClient({ items }: Props) {
                 }}
                 className="absolute inset-0"
               >
-                <UploadedVideo item={item} videoRefs={videoRefs} index={i} />
+                <UploadedVideo item={item} videoRefs={videoRefs} setVideoRef={setVideoRef} index={i} />
               </div>
 
               {item.reelUrl && (

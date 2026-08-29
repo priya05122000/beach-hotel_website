@@ -4,12 +4,10 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
-import { Button } from "@/src/components/common/button";
 
 const IMAGE_SRC = "/banner/gallery.webp";
 
 const displaySize = "clamp(3.5rem,11vw,8rem)";
-const subSize = "clamp(2.5rem,11vw,8rem)";
 
 const clipStyle = {
     backgroundImage: `url(${IMAGE_SRC})`,

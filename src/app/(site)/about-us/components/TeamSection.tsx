@@ -68,7 +68,7 @@ const TeamSection = () => {
             </h3>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
-              The Beach Hotel stands as one of Kanyakumari's distinguished hospitality destinations, offering remarkable views of the meeting point of three seas. Created for travellers who value comfort, authenticity, and thoughtful service, our hotel brings together contemporary accommodation, fine dining, and memorable experiences in an exceptional coastal setting.
+              The Beach Hotel stands as one of Kanyakumari&apos;s distinguished hospitality destinations, offering remarkable views of the meeting point of three seas. Created for travellers who value comfort, authenticity, and thoughtful service, our hotel brings together contemporary accommodation, fine dining, and memorable experiences in an exceptional coastal setting.
             </div>
           </div>
         </div>

@@ -12,10 +12,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 interface Props {
   reel: Reel;
   videoRefs: React.RefObject<(HTMLVideoElement | null)[]>;
+  setVideoRef: (index: number, el: HTMLVideoElement | null) => void;
   index: number;
 }
 
-export default function InfluencerCard({ reel, videoRefs, index }: Props) {
+export default function InfluencerCard({ reel, videoRefs, setVideoRef, index }: Props) {
   const [started, setStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -59,7 +60,7 @@ export default function InfluencerCard({ reel, videoRefs, index }: Props) {
         <video
           ref={(el) => {
             videoRef.current = el;
-            videoRefs.current[index] = el;
+            setVideoRef(index, el);
           }}
           src={videoUrl}
           poster={thumbnailUrl}

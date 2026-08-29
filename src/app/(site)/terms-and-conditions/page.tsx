@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import CommonBanner from "@/src/components/common/CommonBanner";
-import Section from "@/src/components/common/Section";
 import CenterSection from "@/src/components/common/CenterSection";
 
 export const metadata: Metadata = {

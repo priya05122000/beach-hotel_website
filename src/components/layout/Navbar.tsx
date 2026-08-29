@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -140,27 +140,28 @@ export default function Header() {
   // If the menu is opened in that split-second detach window, runOpen()
   // reads a null ref and silently skips that link's entrance animation —
   // it stays invisible while still occupying layout space, shoving its
-  // sibling over. Caching one stable callback per index eliminates the
-  // churn entirely.
-  const linkRefCallbacks = useRef<Array<(el: HTMLAnchorElement | HTMLSpanElement | null) => void>>([]);
-  const getLinkRefCallback = (i: number) => {
-    let cb = linkRefCallbacks.current[i];
-    if (!cb) {
-      cb = (el) => { linksRef.current[i] = el as HTMLAnchorElement | null; };
-      linkRefCallbacks.current[i] = cb;
-    }
-    return cb;
-  };
+  // sibling over. Precomputing one stable callback per index (NAV_LINKS/
+  // CHILD_LINKS are static module-level constants, so this never needs to
+  // recompute) eliminates the churn without reading a ref during render.
+  const linkRefCallbacks = useMemo(
+    () =>
+      NAV_LINKS.map(
+        (_, i) => (el: HTMLAnchorElement | HTMLSpanElement | null) => {
+          linksRef.current[i] = el as HTMLAnchorElement | null;
+        }
+      ),
+    []
+  );
+  const getLinkRefCallback = (i: number) => linkRefCallbacks[i];
 
-  const childLinkRefCallbacks = useRef<Array<(el: HTMLSpanElement | null) => void>>([]);
-  const getChildLinkRefCallback = (i: number) => {
-    let cb = childLinkRefCallbacks.current[i];
-    if (!cb) {
-      cb = (el) => { childLinksRef.current[i] = el; };
-      childLinkRefCallbacks.current[i] = cb;
-    }
-    return cb;
-  };
+  const childLinkRefCallbacks = useMemo(
+    () =>
+      CHILD_LINKS.map((_, i) => (el: HTMLSpanElement | null) => {
+        childLinksRef.current[i] = el;
+      }),
+    []
+  );
+  const getChildLinkRefCallback = (i: number) => childLinkRefCallbacks[i];
 
   // ── Effects ───────────────────────────────────────────────────────────────
 

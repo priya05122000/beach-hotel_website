@@ -27,11 +27,9 @@ interface Props {
 
 function DestinationItem({
   destination,
-  isLast,
   shouldHaveIvory,
 }: {
   destination: NearbyDestination;
-  isLast?: boolean;
   shouldHaveIvory: boolean;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -165,8 +163,6 @@ function DestinationItem({
         </div>
       </div>
 
-      {/* Divider */}
-      {/* {!isLast && <div className="absolute bottom-0 left-0 right-0 h-px bg-silver" />} */}
     </Section>
   );
 }
@@ -217,7 +213,6 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
             <DestinationItem
               key={destination.id}
               destination={destination}
-              isLast={i === destinations.length - 1}
               shouldHaveIvory={shouldHaveIvory}
             />
           );

@@ -57,12 +57,12 @@ export default function BlogInfluencerSection({ blogs, reels }: Props) {
 
         {/* Desktop — uppercase, wide-tracking heading style */}
         <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 sm:mt-0 tracking-[0.2rem] leading-8">
-          There is a story in every corner of this remarkable land, and our journal is where we tell them. Wander through insider guides to Kanyakumari's coast and countryside, seasonal highlights, and tales from within the walls of The Beach Hotel. We hope these pages inspire you to look further, savour deeper, and dream of the sea.
+          There is a story in every corner of this remarkable land, and our journal is where we tell them. Wander through insider guides to Kanyakumari&apos;s coast and countryside, seasonal highlights, and tales from within the walls of The Beach Hotel. We hope these pages inspire you to look further, savour deeper, and dream of the sea.
         </div>
 
         {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
         <p className="lg:hidden text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
-          There is a story in every corner of this remarkable land, and our journal is where we tell them. Wander through insider guides to Kanyakumari's coast and countryside, seasonal highlights, and tales from within the walls of The Beach Hotel. We hope these pages inspire you to look further, savour deeper, and dream of the sea.
+          There is a story in every corner of this remarkable land, and our journal is where we tell them. Wander through insider guides to Kanyakumari&apos;s coast and countryside, seasonal highlights, and tales from within the walls of The Beach Hotel. We hope these pages inspire you to look further, savour deeper, and dream of the sea.
         </p>
       </div>
 
