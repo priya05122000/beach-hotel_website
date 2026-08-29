@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -27,15 +29,18 @@ export default function FloatingActionButtons() {
 
         <div className="h-px w-full bg-black/20" />
 
-        <Link
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Plain button (not a Link) — wa.me rate-limits/blocks rapid automated
+            requests with 429s, so a static crawlable href here gets this
+            flagged as a "broken external link" by SEO site-audit crawlers on
+            every page, even though it works fine for real users. */}
+        <button
+          type="button"
+          onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")}
           aria-label="Chat with us on WhatsApp"
-          className="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center overflow-hidden transition-transform hover:scale-110"
+          className="relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center overflow-hidden cursor-pointer transition-transform hover:scale-110"
         >
           <Image src="/whatsapp.png" alt="" fill className="object-cover" sizes="40px" />
-        </Link>
+        </button>
       </div>
     </div>
   );
