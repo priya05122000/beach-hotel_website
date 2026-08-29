@@ -66,11 +66,21 @@ export default function BlogInfluencerSection({ blogs, reels }: Props) {
         </p>
       </div>
 
-      {tab === "influencer" ? (
+      {/* Both grids are always rendered — only visibility (via the native
+          `hidden` attribute) toggles with the tab — so every blog post's
+          <Link> exists in the server-rendered HTML regardless of which tab
+          is active by default. Previously this was a JS-only conditional
+          mount defaulting to "influencer", which meant a crawler that
+          doesn't execute JS (Semrush's Site Audit runs with JS rendering
+          disabled) never saw a single link to any blog post, leaving every
+          post "orphaned" — discoverable only via sitemap.xml, not via any
+          crawlable on-page link. */}
+      <div role="tabpanel" hidden={tab !== "influencer"}>
         <InfluencerCardsGrid reels={reels} />
-      ) : (
+      </div>
+      <div role="tabpanel" hidden={tab !== "blog"}>
         <BlogCardsGrid blogs={blogs} />
-      )}
+      </div>
     </Section>
   );
 }

@@ -186,9 +186,9 @@ export default function NearbyHeroBanner({ destinations }: Props) {
         )}
 
         <div className="max-w-xs">
-          <h1 className="text-white type-display-sm leading-tight mb-2">
+          <div className="text-white type-display-sm leading-tight mb-2">
             {current.destination_name}
-          </h1>
+          </div>
 
           {current.short_description && (
             <p className="text-white type-body-sm leading-relaxed line-clamp-3">

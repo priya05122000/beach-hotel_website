@@ -77,6 +77,21 @@ const nextConfig: NextConfig = {
     return config;
   },
 
+  // Canonicalizes the domain: NEXT_PUBLIC_SITE_URL, metadata.canonical, and
+  // sitemap.ts all assume the non-www host, but nothing redirected
+  // www.thebeachhotel.in away — so both hosts served identical content live,
+  // which crawlers (Semrush, Google) treat as full-site duplication.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.thebeachhotel.in" }],
+        destination: "https://thebeachhotel.in/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
