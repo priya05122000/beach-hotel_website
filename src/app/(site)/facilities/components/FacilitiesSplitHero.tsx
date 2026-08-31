@@ -6,8 +6,7 @@ import gsap from "gsap";
 import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import PillLinkButton from "@/src/components/common/PillLinkButton";
 import Eyebrow from "@/src/components/common/Eyebrow";
-
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
 const TEXT_LINES = [
     "Signature",

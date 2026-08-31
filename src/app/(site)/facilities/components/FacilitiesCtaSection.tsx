@@ -2,8 +2,7 @@ import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import SubHeading from "@/src/components/common/SubHeading";
 import PillLinkButton from "@/src/components/common/PillLinkButton";
-
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
 export default function FacilitiesCtaSection() {
   return (

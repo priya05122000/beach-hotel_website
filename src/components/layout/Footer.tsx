@@ -3,8 +3,7 @@ import Image from "next/image";
 import Section from "@/src/components/common/Section";
 import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import { Mail, MapPin, Phone } from "lucide-react";
-
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -143,7 +142,7 @@ export default function Footer() {
             </div>
             <div className=" ">
               <Image
-                src="/big_logo.svg"
+                src="/common/big_logo.svg"
                 alt="The Beach Hotel"
                 width={700}
                 height={200}

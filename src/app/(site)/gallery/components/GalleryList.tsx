@@ -3,8 +3,7 @@ import { GalleryCategory, Gallery } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import PillLinkButton from "@/src/components/common/PillLinkButton";
-
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
 interface Props {
   sections: GalleryCategory[];

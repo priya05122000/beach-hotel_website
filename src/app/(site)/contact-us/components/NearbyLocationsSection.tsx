@@ -4,13 +4,13 @@ import Image from "next/image";
 
 const leftLocations = [
   {
-    icon: "/icons/sunrise.png",
+    icon: "/contact-us/sunrise.png",
     label: "Sun Rise and\nSun Set Point",
     time: "< 1 min",
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/icons/temple.png",
+    icon: "/contact-us/temple.png",
     label: "Kumari Bhagavathi\nAmman Temple",
     time: "6 min",
     length: "md:w-20 lg:w-30 xl:w-40",
@@ -19,13 +19,13 @@ const leftLocations = [
 
 const rightLocations = [
   {
-    icon: "/icons/fort.png",
+    icon: "/contact-us/fort.png",
     label: "Vattakottai\nFort",
     time: "13 min",
     length: "md:w-25 lg:w-35 xl:w-60",
   },
   {
-    icon: "/icons/thiru.png",
+    icon: "/contact-us/thiru.png",
     label: "Thiruvalluvar Statue and\nVivekananda Rock Memorial",
     time: "5 min",
     length: "md:w-20 lg:w-30 xl:w-40",
@@ -93,7 +93,7 @@ export default function NearbyLocationsSection() {
 
         <div className="px-4 lg:px-8">
           <Image
-            src="/blue_logo.png"
+            src="/contact-us/blue_logo.png"
             alt="logo"
             width={200}
             height={200}
@@ -120,7 +120,7 @@ export default function NearbyLocationsSection() {
       <div className="lg:hidden flex flex-col items-center gap-8">
         <div className="flex flex-col items-center">
           <Image
-            src="/blue_logo.png"
+            src="/contact-us/blue_logo.png"
             alt="logo"
             width={120}
             height={120}

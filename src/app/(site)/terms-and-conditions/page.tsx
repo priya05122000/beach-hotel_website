@@ -20,7 +20,7 @@ export default function TermsAndConditionsPage() {
     <div>
       <CommonBanner
         title="TERMS & CONDITIONS"
-        src="/banner/facilities.webp"
+        src="/common/banner/facilities.webp"
         alt="Terms & Conditions — The Beach Hotel, Kanyakumari"
       />
 

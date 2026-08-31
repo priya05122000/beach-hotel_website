@@ -204,7 +204,7 @@ export default function MomentsSectionClient({ items }: Props) {
                   style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center">
-                    <Image src="/icons/instagram.svg" alt="View on Instagram" width={15} height={15} />
+                    <Image src="/common/icons/instagram.svg" alt="View on Instagram" width={15} height={15} />
                   </span>
                   <span className="whitespace-nowrap pr-4 text-xs">View On Instagram</span>
                 </a>

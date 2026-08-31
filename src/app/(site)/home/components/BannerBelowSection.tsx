@@ -45,7 +45,7 @@ const BannerBelowSection = () => {
                     style={{ opacity: 0 }}
                 >
                     <Image
-                        src="/banner_logo.svg"
+                        src="/home/banner_logo.svg"
                         alt="The Beach Hotel"
                         fill
                         className="object-contain object-bottom"

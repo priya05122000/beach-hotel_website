@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description:
       "Learn the story behind The Beach Hotel — our heritage, our team, and our commitment to luxury in Kanyakumari.",
     url: "/about-us",
-    images: [{ url: "/banner/facilities.webp", width: 1600, height: 900 }],
+    images: [{ url: "/common/banner/facilities.webp", width: 1600, height: 900 }],
   },
 };
 

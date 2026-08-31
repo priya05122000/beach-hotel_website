@@ -8,7 +8,7 @@ const SignatureHeadline = () => {
                 <div className="mx-auto max-w-280 text-center">
                     <h1
                         className="
-          bg-[url('/jdjflkajs.jpg')]
+          bg-[url('/home/jdjflkajs.jpg')]
           bg-contain
           bg-clip-text
           text-transparent

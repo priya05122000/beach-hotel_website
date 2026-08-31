@@ -8,10 +8,9 @@ import Image from "next/image";
 
 import Section from "../common/Section";
 import PillLinkButton from "../common/PillLinkButton";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 
 function BookStayButton({ className = "" }: { className?: string }) {
   return (
@@ -456,7 +455,7 @@ export default function Header() {
 
   // ── Derived values ────────────────────────────────────────────────────────
 
-  const logoSrc = isOverDark && !open ? "/toplogowhite.svg" : "/toplogo.svg";
+  const logoSrc = isOverDark && !open ? "/common/toplogowhite.svg" : "/common/toplogo.svg";
   const iconColor = isOverDark && !open ? "text-white" : "text-primary-dark";
 
   // ── Render ────────────────────────────────────────────────────────────────

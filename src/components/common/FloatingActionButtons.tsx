@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 const WHATSAPP_URL = "https://wa.me/915467898765";
 const PHONE_NUMBER = "+915467898765";
 
@@ -26,22 +26,11 @@ export default function FloatingActionButtons() {
       className="
         fixed bottom-6 right-6 z-50
         flex items-center gap-2
-        rounded-full border border-primary-dark/22 bg-white/30 px-3 py-2
+        rounded-full border border-primary-dark/22 bg-white/30 px-4 py-2
         shadow-[0px_4px_12.2px_0px_#00000075] backdrop-blur-[5.3px]
       "
     >
-      <Link
-        href={BOOKING_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Book your stay"
-        className={dockItemClass}
-      >
-        <span className={dockIconClass}>
-          <Image src="/booknow.png" alt="" width={24} height={24} className="object-contain" />
-        </span>
-        <span className={dockLabelClass}>Book Now</span>
-      </Link>
+
 
       {/* Plain button (not a Link) — wa.me rate-limits/blocks rapid automated
           requests with 429s, so a static crawlable href here gets this
@@ -54,7 +43,7 @@ export default function FloatingActionButtons() {
         className={`${dockItemClass} cursor-pointer`}
       >
         <span className={dockIconClass}>
-          <Image src="/whatsapp.png" alt="" width={24} height={24} className="object-contain" />
+          <Image src="/common/whatsapp.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>WhatsApp</span>
       </button>
@@ -65,9 +54,22 @@ export default function FloatingActionButtons() {
         className={dockItemClass}
       >
         <span className={`${dockIconClass} bg-primary-dark text-ivory`}>
-          <Image src="/contact.png" alt="" width={24} height={24} className="object-contain" />
+          <Image src="/common/contact.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Call Us</span>
+      </Link>
+
+      <Link
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Book your stay"
+        className={dockItemClass}
+      >
+        <span className={dockIconClass}>
+          <Image src="/common/booknow.png" alt="" width={24} height={24} className="object-contain" />
+        </span>
+        <span className={dockLabelClass}>Book Now</span>
       </Link>
     </div>
   );

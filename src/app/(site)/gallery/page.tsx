@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
       "Photos and videos of The Beach Hotel, Kanyakumari — rooms, sea views, dining, and the stunning coastline.",
     url: "/gallery",
-    images: [{ url: "/banner/gallery.webp", width: 1600, height: 900 }],
+    images: [{ url: "/gallery/gallery.webp", width: 1600, height: 900 }],
   },
 };
 

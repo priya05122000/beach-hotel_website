@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
 
-const IMAGE_SRC = "/banner/gallery.webp";
+const IMAGE_SRC = "/gallery/gallery.webp";
 
 const displaySize = "clamp(3.5rem,11vw,8rem)";
 

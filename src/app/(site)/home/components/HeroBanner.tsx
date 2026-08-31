@@ -7,8 +7,7 @@ import { format } from "date-fns";
 import CenterSection from "@/src/components/common/CenterSection";
 import DatePicker from "@/src/components/ui/DatePicker";
 import GuestPicker from "@/src/components/ui/GuestPicker";
-
-const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
+import { BOOKING_URL } from "@/src/lib/site-links";
 
 // Static — never depends on the booking form's date/guest state, so it's
 // split into its own memoized component to avoid re-rendering (and
@@ -16,7 +15,7 @@ const BOOKING_URL = "https://devnew.skyhms.in/booking_next/booking/";
 const HeroBackgroundImage = memo(function HeroBackgroundImage() {
   return (
     <Image
-      src="/banner/home.webp"
+      src="/home/home.webp"
       alt="Hero Banner"
       fill
       preload
@@ -68,6 +67,10 @@ export default function HeroBanner() {
               className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl transform-gpu"
               style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
             >
+              {/* A GET form submission replaces the action URL's query
+                  string entirely with these fields, so bkgpropid from
+                  BOOKING_URL has to be repeated here or it gets dropped. */}
+              <input type="hidden" name="bkgpropid" value="1181" />
               <input type="hidden" name="bkgfrmdt" value={checkIn ? format(checkIn, "dd-MM-yyyy") : ""} />
               <input type="hidden" name="bkgtodt" value={checkOut ? format(checkOut, "dd-MM-yyyy") : ""} />
               <input type="hidden" name="bkgadultc" value={adults} />
