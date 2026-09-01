@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CommonBanner from "@/src/components/common/CommonBanner";
 import CenterSection from "@/src/components/common/CenterSection";
+import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions of Stay",
@@ -163,7 +164,7 @@ export default function TermsAndConditionsPage() {
               </a>
             </li>
             <li>
-              Phone: <a href="tel:+915467898765">+91 546 789 8765</a>
+              Phone: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_DISPLAY}</a>
             </li>
             <li>Address: Beach Rd, Kanniyakumari, Tamil Nadu 629702, India</li>
           </ul>

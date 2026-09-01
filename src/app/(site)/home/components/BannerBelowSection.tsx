@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SubHeading from "@/src/components/common/SubHeading";
 import Section from "@/src/components/common/Section";
+import { PHONE_NUMBER_DISPLAY, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,7 +71,7 @@ const BannerBelowSection = () => {
                         </p>
 
                         <p className="mt-2 max-w-70 sm:max-w-80 mx-auto text-sm sm:text-base text-white/40 font-extralight uppercase">
-                            +91 23456 78654 | +91 43567 86547
+                            {PHONE_NUMBER_DISPLAY} | {RECEPTION_PHONE_NUMBER_DISPLAY}
                         </p>
                     </div>
 

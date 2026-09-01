@@ -1,11 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { BOOKING_URL } from "@/src/lib/site-links";
-
-const WHATSAPP_URL = "https://wa.me/915467898765";
-const PHONE_NUMBER = "+915467898765";
+import { BOOKING_URL, PHONE_NUMBER, WHATSAPP_URL } from "@/src/lib/site-links";
 
 
 
@@ -15,12 +14,54 @@ const PHONE_NUMBER = "+915467898765";
 const dockItemClass = "group relative  flex items-center justify-center";
 
 const dockIconClass =
-  "relative z-10 flex h-10 w-10 bg-white p-2  items-center justify-center overflow-hidden rounded-full shadow-[0px_4px_4px_0px_#00000040] transition-transform duration-300 ease-out group-hover:-translate-y-5";
-
-const dockLabelClass =
-  "pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap  px-2.5  text-[10px] text-ivory opacity-0 transition-opacity duration-300 group-hover:opacity-100";
+  "relative z-10 flex h-9 w-9 sm:h-10 sm:w-10  bg-white items-center justify-center overflow-hidden rounded-full shadow-[0px_4px_4px_0px_#00000040] transition-transform duration-300 ease-out group-hover:-translate-y-5";
 
 export default function FloatingActionButtons() {
+  const pathname = usePathname();
+
+  // Tracks whether the bottom-right band these buttons float over currently
+  // overlaps a dark (`bg-primary`) section, so the label text can switch to
+  // ivory for contrast — same `.bg-primary` overlap pattern Navbar.tsx uses
+  // for its own light/dark swap, just sampling the bottom band instead of
+  // the top.
+  const [isOverPrimary, setIsOverPrimary] = useState(false);
+
+  useEffect(() => {
+    const overlapping = new Set<Element>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) overlapping.add(entry.target);
+          else overlapping.delete(entry.target);
+        }
+        setIsOverPrimary(overlapping.size > 0);
+      },
+      {
+        rootMargin: `-${Math.max(0, window.innerHeight - 96)}px 0px -0px 0px`,
+        threshold: 0,
+      }
+    );
+
+    const observe = () => {
+      const targets = document.querySelectorAll(".bg-primary");
+      overlapping.clear();
+      targets.forEach((el) => observer.observe(el));
+      setIsOverPrimary(false);
+    };
+
+    observe();
+    const t = setTimeout(observe, 50);
+
+    return () => {
+      clearTimeout(t);
+      observer.disconnect();
+    };
+  }, [pathname]);
+
+  const dockLabelClass = `pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 text-[10px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${isOverPrimary ? "text-ivory" : "text-primary-dark"
+    }`;
+
   return (
     <div
       className="
@@ -30,7 +71,6 @@ export default function FloatingActionButtons() {
         shadow-[0px_4px_12.2px_0px_#00000075] backdrop-blur-[5.3px]
       "
     >
-
 
       {/* Plain button (not a Link) — wa.me rate-limits/blocks rapid automated
           requests with 429s, so a static crawlable href here gets this
@@ -53,7 +93,7 @@ export default function FloatingActionButtons() {
         aria-label="Call Us"
         className={dockItemClass}
       >
-        <span className={`${dockIconClass} bg-primary-dark text-ivory`}>
+        <span className={`${dockIconClass}  `}>
           <Image src="/common/contact.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Call Us</span>

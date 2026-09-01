@@ -10,6 +10,7 @@ import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSli
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 import SubHeading from "@/src/components/common/SubHeading";
 import Eyebrow from "@/src/components/common/Eyebrow";
+import { PHONE_NUMBER } from "@/src/lib/site-links";
 
 export default function HeroLocationSection() {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -86,7 +87,7 @@ export default function HeroLocationSection() {
               {/* <Button href="#contact-form" className="text-sm tracking-widest font-arizona-sans-bold">
                 Contact A Manager
               </Button> */}
-              <Button href="tel:+915467898765" className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
+              <Button href={`tel:${PHONE_NUMBER}`} className="pointer-events-auto whitespace-nowrap font-normal text-primary-dark cursor-pointer">
                 Contact A Manager
               </Button>
             </div>

@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import Section from "../common/Section";
 import PillLinkButton from "../common/PillLinkButton";
-import { BOOKING_URL } from "@/src/lib/site-links";
+import { BOOKING_URL, PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -684,10 +684,10 @@ export default function Header() {
               >
                 <div className="flex flex-col  gap-3 ">
                   <a
-                    href="tel:+915467898765"
+                    href={`tel:${PHONE_NUMBER}`}
                     className="text-primary-dark type-body-lg uppercase no-underline font-arizona-flare-regular transition-colors duration-200 tracking-[3px]"
                   >
-                    <span className="type-overline text-gray tracking-[3px]">Enquiry:</span> +91 54678 98765
+                    <span className="type-overline text-gray tracking-[3px]">Enquiry:</span> {PHONE_NUMBER_DISPLAY}
                   </a>
                   <p className="text-primary-dark type-body-lg tracking-[3px] uppercase font-light">
                     <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, Tamil Nadu 629702, India

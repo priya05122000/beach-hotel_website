@@ -3,7 +3,7 @@ import Image from "next/image";
 import Section from "@/src/components/common/Section";
 import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { BOOKING_URL } from "@/src/lib/site-links";
+import { BOOKING_URL, PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -99,11 +99,11 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col space-y-2 mt-8">
                   <a
-                    href="tel:+915467898765"
+                    href={`tel:${PHONE_NUMBER}`}
                     className="type-body-sm flex items-center gap-2  hover:text-accent transition-colors"
                   >
                     <Phone size={15} />
-                    +91 54678 98765
+                    {PHONE_NUMBER_DISPLAY}
                   </a>
 
                   <a
