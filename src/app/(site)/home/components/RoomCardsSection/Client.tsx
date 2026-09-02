@@ -2,13 +2,9 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
 import type { Room } from "@/src/types";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
-
-gsap.registerPlugin(ScrollTrigger);
 
 import CenterSection from "@/src/components/common/CenterSection";
 import Eyebrow from "@/src/components/common/Eyebrow";
@@ -130,20 +126,33 @@ export default function RoomCardsSectionClient({
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      cardsRef.current.forEach((card, index) => {
-        applyParallax(card, {
-          trigger: sectionRef.current,
-          from: index === 0 ? 10 : 20,
-          to: index === 0 ? -10 : -20,
-          scrub: 1,
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+
+    (async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+      if (cancelled) return;
+
+      ctx = gsap.context(() => {
+        cardsRef.current.forEach((card, index) => {
+          applyParallax(card, {
+            trigger: sectionRef.current,
+            from: index === 0 ? 10 : 20,
+            to: index === 0 ? -10 : -20,
+            scrub: 1,
+          });
         });
-      });
 
-      ScrollTrigger.refresh();
-    }, sectionRef);
+        ScrollTrigger.refresh();
+      }, sectionRef);
+    })();
 
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

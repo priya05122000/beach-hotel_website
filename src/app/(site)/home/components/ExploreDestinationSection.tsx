@@ -1,11 +1,9 @@
 ﻿"use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import { Button } from "@/src/components/common/button";
 import Section from "@/src/components/common/Section";
 import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
-import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const ExploreDestinationSection = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -14,12 +12,21 @@ const ExploreDestinationSection = () => {
     const [videoInView, setVideoInView] = useState(false);
 
     useLayoutEffect(() => {
-        const prefersReduced = prefersReducedMotion();
-        let split: ReturnType<typeof applySplitSlideUp>;
-        let cancelled = false;
+        // Reduced-motion is checked before any animation library is loaded.
+        if (prefersReducedMotion()) return;
 
-        const ctx = gsap.context(() => {
-            if (prefersReduced) return;
+        let cancelled = false;
+        let ctx: { revert: () => void } | undefined;
+        let split: { revert: () => void } | undefined;
+
+        (async () => {
+            // GSAP / ScrollTrigger / SplitType are pulled in lazily so they
+            // stay out of the home route's initial JS bundle.
+            const gsap = (await import("gsap")).default;
+            const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+            const SplitType = (await import("split-type")).default;
+            gsap.registerPlugin(ScrollTrigger);
+            if (cancelled) return;
 
             // SplitType measures line breaks synchronously against whatever
             // font is painted at that instant. If the Arizona custom font
@@ -29,28 +36,55 @@ const ExploreDestinationSection = () => {
             // below the fold (revealed on scroll), so waiting for fonts to
             // finish loading before splitting costs nothing visible.
             const runSplit = () => {
-                if (cancelled) return;
-                split = applySplitSlideUp({
-                    target: headingRef.current,
-                    trigger: sectionRef.current,
-                    start: ANIM.start.default,
-                    duration: ANIM.duration.base,
-                    stagger: ANIM.stagger.base,
-                    ease: ANIM.ease.default,
-                });
+                const target = headingRef.current;
+                if (cancelled || !target) return;
+
+                ctx = gsap.context(() => {
+                    split = new SplitType(target, {
+                        types: "lines",
+                        lineClass: "split-line",
+                    });
+
+                    const lines = target.querySelectorAll<HTMLElement>(".split-line");
+
+                    lines.forEach((line) => {
+                        const wrapper = document.createElement("div");
+                        wrapper.style.overflow = "hidden";
+                        wrapper.style.display = "block";
+
+                        line.parentNode?.insertBefore(wrapper, line);
+                        wrapper.appendChild(line);
+                    });
+
+                    gsap.set(lines, { yPercent: 110 });
+
+                    gsap.to(lines, {
+                        yPercent: 0,
+                        duration: ANIM.duration.base,
+                        ease: ANIM.ease.default,
+                        stagger: ANIM.stagger.base,
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: ANIM.start.default,
+                            toggleActions: "play none none none",
+                        },
+                    });
+                }, sectionRef);
             };
 
             if (typeof document !== "undefined" && document.fonts && document.fonts.status !== "loaded") {
-                document.fonts.ready.then(runSplit);
+                document.fonts.ready.then(() => {
+                    if (!cancelled) runSplit();
+                });
             } else {
                 runSplit();
             }
-        }, sectionRef);
+        })();
 
         return () => {
             cancelled = true;
             split?.revert();
-            ctx.revert();
+            ctx?.revert();
         };
     }, []);
 

@@ -24,7 +24,6 @@ export default function TermsAndConditionsPage() {
         src="/common/banner/facilities.webp"
         alt="Terms & Conditions — The Beach Hotel, Kanyakumari"
       />
-
       <CenterSection className="py-16 lg:py-20">
         <div className="legal-content mx-auto text-charcoal">
           <h2>Welcome to The Beach Hotel</h2>

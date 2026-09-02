@@ -4,13 +4,9 @@ import { useState, useCallback, useRef, memo } from "react";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import { Offer } from "@/src/types";
 import { Copy } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ExclusiveOffersSectionProps {
   offerDatas: Offer[];
@@ -142,29 +138,42 @@ const OfferCard = memo(function OfferCard({
     const inner = innerRef.current;
     if (!container || !inner) return;
 
-    const ctx = gsap.context(() => {
-      // Skip the decorative parallax on small screens — it's extra
-      // scroll-driven work that competes with everything else animating
-      // at once, and isn't worth the main-thread cost at mobile sizes.
-      gsap.matchMedia().add("(min-width: 768px)", () => {
-        gsap.fromTo(
-          inner,
-          { y: -32 },
-          {
-            y: 32,
-            ease: "none",
-            scrollTrigger: {
-              trigger: container,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          }
-        );
-      });
-    }, container);
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-    return () => ctx.revert();
+    (async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+      if (cancelled) return;
+
+      ctx = gsap.context(() => {
+        // Skip the decorative parallax on small screens — it's extra
+        // scroll-driven work that competes with everything else animating
+        // at once, and isn't worth the main-thread cost at mobile sizes.
+        gsap.matchMedia().add("(min-width: 768px)", () => {
+          gsap.fromTo(
+            inner,
+            { y: -32 },
+            {
+              y: 32,
+              ease: "none",
+              scrollTrigger: {
+                trigger: container,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        });
+      }, container);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

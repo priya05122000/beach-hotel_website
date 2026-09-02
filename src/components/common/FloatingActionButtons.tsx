@@ -6,12 +6,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { BOOKING_URL, PHONE_NUMBER, WHATSAPP_URL } from "@/src/lib/site-links";
 
-
-
 // Each item is `relative` so the label can sit absolutely below the whole
 // pill; the icon itself rises above the pill's top edge on hover (like a
 // macOS dock), which needs the pill's own overflow left visible.
-const dockItemClass = "group relative  flex items-center justify-center";
+const dockItemClass = "group relative flex items-center justify-center";
 
 const dockIconClass =
   "relative z-10 flex h-9 w-9 sm:h-10 sm:w-10  bg-white items-center justify-center overflow-hidden rounded-full shadow-[0px_4px_4px_0px_#00000040] transition-transform duration-300 ease-out group-hover:-translate-y-5";

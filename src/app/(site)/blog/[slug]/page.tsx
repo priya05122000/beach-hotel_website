@@ -1,13 +1,41 @@
 import type { Metadata } from "next";
-import { getBlogBySlug } from "@/src/service/blogs";
+import { getBlogBySlug, getBlogList } from "@/src/service/blogs";
 import { ApiError } from "@/src/lib/api";
 import { notFound } from "next/navigation";
+import type { Blog } from "@/src/types";
 import BlogHero from "./components/BlogHero";
 import BlogStatement from "./components/BlogStatement";
 import BlogIntro from "./components/BlogIntro";
+import RelatedBlogs from "./components/RelatedBlogs";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+const RELATED_LIMIT = 3;
+
+// Prefer posts in the same category, then fill with the most recent of the
+// rest. Current post and unpublished/inactive posts are always excluded.
+function pickRelated(all: Blog[], current: Blog, limit = RELATED_LIMIT): Blog[] {
+  const pool = all.filter(
+    (b) => b.slug !== current.slug && b.active !== false && b.is_published
+  );
+
+  const byDateDesc = (a: Blog, b: Blog) =>
+    new Date(b.published_at ?? b.created_at ?? 0).getTime() -
+    new Date(a.published_at ?? a.created_at ?? 0).getTime();
+
+  const sameCategory = pool.filter(
+    (b) => !!current.category_id && b.category_id === current.category_id
+  );
+  const rest = pool.filter(
+    (b) => !current.category_id || b.category_id !== current.category_id
+  );
+
+  return [...sameCategory.sort(byDateDesc), ...rest.sort(byDateDesc)].slice(
+    0,
+    limit
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -43,6 +71,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params;
 
+  // Kick off the list fetch in parallel; a failure here must not break the
+  // article page, so the related section just renders nothing.
+  const relatedPoolPromise = getBlogList()
+    .then((r) => r.data)
+    .catch(() => [] as Blog[]);
+
   let res;
   try {
     res = await getBlogBySlug(slug);
@@ -59,11 +93,14 @@ export default async function BlogDetailPage({ params }: Props) {
 
   if (!blog) notFound();
 
+  const relatedBlogs = pickRelated(await relatedPoolPromise, blog);
+
   return (
     <div>
       <BlogHero blog={blog} />
       <BlogIntro blog={blog} />
       <BlogStatement blog={blog} />
+      <RelatedBlogs blogs={relatedBlogs} />
     </div>
   );
 }

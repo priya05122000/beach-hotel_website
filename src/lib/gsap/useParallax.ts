@@ -1,7 +1,5 @@
 "use client";
 
-import gsap from "gsap";
-
 export interface ParallaxOptions {
   trigger?: HTMLElement | null;
   /** yPercent to animate from. */
@@ -21,8 +19,16 @@ export interface ParallaxOptions {
 /**
  * applyParallax — scroll-scrubbed yPercent drift, the common "background/card parallax"
  * pattern used across section components. Call inside gsap.context / gsap.matchMedia.
+ *
+ * GSAP + ScrollTrigger are pulled in with a dynamic `import()` so they stay out
+ * of each route's initial JS bundle (they were previously imported at module
+ * scope, which loaded ~all of GSAP eagerly on every page that touched this
+ * helper). The tween is therefore created one microtask later; callers that
+ * wrap this in `gsap.context()` still get their inline styles reverted on
+ * unmount via `ScrollTrigger` teardown, and `LenisProvider` kills every
+ * ScrollTrigger on route change.
  */
-export function applyParallax(
+export async function applyParallax(
   el: HTMLElement | null,
   {
     trigger,
@@ -35,6 +41,10 @@ export function applyParallax(
   }: ParallaxOptions
 ) {
   if (!el) return;
+
+  const gsap = (await import("gsap")).default;
+  const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+  gsap.registerPlugin(ScrollTrigger);
 
   gsap.fromTo(
     el,
