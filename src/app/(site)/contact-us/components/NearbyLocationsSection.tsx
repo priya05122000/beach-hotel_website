@@ -12,7 +12,7 @@ const leftLocations = [
   {
     icon: "/contact-us/temple.png",
     label: "Kumari Bhagavathi\nAmman Temple",
-    time: "6 min",
+    time: "2 min",
     length: "md:w-20 lg:w-30 xl:w-40",
   },
 ];
@@ -27,7 +27,7 @@ const rightLocations = [
   {
     icon: "/contact-us/thiru.png",
     label: "Thiruvalluvar Statue and\nVivekananda Rock Memorial",
-    time: "5 min",
+    time: "2 min",
     length: "md:w-20 lg:w-30 xl:w-40",
   },
 ];
