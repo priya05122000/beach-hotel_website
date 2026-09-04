@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Section from "@/src/components/common/Section";
 import SocialIconLinks from "@/src/components/common/SocialIconLinks";
-import { Mail, MapPin, Phone } from "lucide-react";
+import ScrollLink from "@/src/components/common/ScrollLink";
+import { Mail, MapPin, Phone, ClipboardList } from "lucide-react";
 import { BOOKING_URL, PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 const navLinks = [
@@ -118,6 +119,14 @@ export default function Footer() {
                     <MapPin size={15} className="mt-0.5" />
                     Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
                   </div>
+
+                  <ScrollLink
+                    href="/contact-us#contact-form"
+                    className="type-body-sm flex items-center gap-2 uppercase underline underline-offset-4 hover:text-accent transition-colors w-fit"
+                  >
+                    <ClipboardList size={15} />
+                    Enquiry
+                  </ScrollLink>
                 </div>
               </div>
 
