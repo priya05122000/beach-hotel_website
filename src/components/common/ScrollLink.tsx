@@ -27,6 +27,9 @@ export default function ScrollLink({ href, onClick, ...props }: ScrollLinkProps)
     onClick?.(e);
     if (e.defaultPrevented || !hash) return;
 
+    const isExternal = new URL(href, window.location.origin).origin !== window.location.origin;
+    if (isExternal) return; // let the browser navigate there natively
+
     e.preventDefault();
 
     if (targetPath === pathname) {

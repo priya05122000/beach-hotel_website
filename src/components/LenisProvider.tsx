@@ -11,12 +11,15 @@ let ScrollTriggerRef: typeof import("gsap/ScrollTrigger").ScrollTrigger | null =
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
+  // Hash target still owed a scroll — set by the hash effect, consumed
+  // (and cleared) by whichever of {Lenis-ready, retry loop} gets there first.
+  const pendingHashRef = useRef<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     let rafCallback: ((time: number) => void) | null = null;
 
-   
+
     import("lenis").then(({ default: LenisCtor }) => {
       if (cancelled) return;
 
@@ -30,6 +33,17 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
 
       lenisRef.current = lenis;
       window.__lenis = lenis;
+
+      // Lenis just took over scroll control — if a hash-scroll is still
+      // pending (e.g. the native fallback was mid-animation when Lenis
+      // initialized and got frozen), hand Lenis the real target now.
+      if (pendingHashRef.current) {
+        const el = document.querySelector(pendingHashRef.current);
+        if (el) {
+          lenis.scrollTo(el as HTMLElement, { duration: 1.2 });
+        }
+        pendingHashRef.current = null;
+      }
 
       import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
         if (cancelled) return;
@@ -63,12 +77,15 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     }
 
     if (!hash) {
+      pendingHashRef.current = null;
       window.scrollTo(0, 0);
       lenisRef.current?.scrollTo(0, { immediate: true });
       return () => {
         ScrollTriggerRef?.getAll().forEach((t) => t.kill());
       };
     }
+
+    pendingHashRef.current = hash;
 
     // Undo the browser's own instant jump-to-fragment so every navigation
     // starts from the top and animates down consistently.
@@ -83,7 +100,11 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
       if (el) {
         if (lenisRef.current) {
           lenisRef.current.scrollTo(el as HTMLElement, { duration: 1.2 });
+          pendingHashRef.current = null;
         } else {
+          // Lenis isn't ready yet — scroll natively for now, but leave
+          // pendingHashRef set. If Lenis finishes loading mid-animation,
+          // its init handler will notice and re-issue the scroll itself.
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
         return;
