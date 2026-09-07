@@ -52,10 +52,52 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   }, []);
 
   useLayoutEffect(() => {
+    let hash = window.location.hash;
 
+    // Defensively collapse a malformed/duplicated fragment (e.g. from a
+    // stale history entry like "#contact-form#contact-form") down to the
+    // first valid segment.
+    if (hash.indexOf("#", 1) !== -1) {
+      hash = hash.slice(0, hash.indexOf("#", 1));
+      history.replaceState(null, "", window.location.pathname + window.location.search + hash);
+    }
+
+    if (!hash) {
+      window.scrollTo(0, 0);
+      lenisRef.current?.scrollTo(0, { immediate: true });
+      return () => {
+        ScrollTriggerRef?.getAll().forEach((t) => t.kill());
+      };
+    }
+
+    // Undo the browser's own instant jump-to-fragment so every navigation
+    // starts from the top and animates down consistently.
     window.scrollTo(0, 0);
     lenisRef.current?.scrollTo(0, { immediate: true });
+
+    let cancelled = false;
+    let attempts = 0;
+    const tryScrollToHash = () => {
+      if (cancelled) return;
+      const el = document.querySelector(hash);
+      if (el) {
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(el as HTMLElement, { duration: 1.2 });
+        } else {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        return;
+      }
+      attempts += 1;
+      if (attempts < 20) {
+        setTimeout(tryScrollToHash, 100);
+      }
+    };
+    const startId = setTimeout(tryScrollToHash, 50);
+
     return () => {
+      cancelled = true;
+      clearTimeout(startId);
       ScrollTriggerRef?.getAll().forEach((t) => t.kill());
     };
   }, [pathname]);

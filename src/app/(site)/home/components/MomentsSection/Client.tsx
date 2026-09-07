@@ -4,13 +4,9 @@ import { useRef, useState } from "react";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
 import Image from "next/image";
 import { Play, Pause } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import { Button } from "@/src/components/common/button";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export interface MomentItem {
   id: string;
@@ -127,35 +123,48 @@ export default function MomentsSectionClient({ items }: Props) {
   };
 
   useIsomorphicLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Skip the decorative parallax on small screens — it's extra
-      // scroll-driven work that competes with everything else animating
-      // at once, and isn't worth the main-thread cost at mobile sizes.
-      gsap.matchMedia().add("(min-width: 768px)", () => {
-        containerRefs.current.forEach((container, i) => {
-          const inner = innerRefs.current[i];
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-          if (!container || !inner) return;
+    (async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+      if (cancelled) return;
 
-          gsap.fromTo(
-            inner,
-            { y: -32 },
-            {
-              y: 32,
-              ease: "none",
-              scrollTrigger: {
-                trigger: container,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true,
-              },
-            }
-          );
+      ctx = gsap.context(() => {
+        // Skip the decorative parallax on small screens — it's extra
+        // scroll-driven work that competes with everything else animating
+        // at once, and isn't worth the main-thread cost at mobile sizes.
+        gsap.matchMedia().add("(min-width: 768px)", () => {
+          containerRefs.current.forEach((container, i) => {
+            const inner = innerRefs.current[i];
+
+            if (!container || !inner) return;
+
+            gsap.fromTo(
+              inner,
+              { y: -32 },
+              {
+                y: 32,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: container,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              }
+            );
+          });
         });
       });
-    });
+    })();
 
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, [items]);
 
   if (items.length === 0) return null;

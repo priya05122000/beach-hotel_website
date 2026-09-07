@@ -3,12 +3,8 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "@/src/components/common/Section";
 import { Button } from "@/src/components/common/button";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export interface ShowcaseItem {
   id: string;
@@ -37,8 +33,16 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
     const section = sectionRef.current;
     if (!section || N === 0) return;
 
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-    const ctx = gsap.context(() => {
+    (async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+      if (cancelled) return;
+
+      ctx = gsap.context(() => {
 
       rightWrapRefs.current.forEach((el, i) => {
         if (el) el.style.zIndex = String(N - i);
@@ -195,10 +199,12 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
       tl.to({}, { duration: holdDur });
 
       // ScrollTrigger.refresh();
-    }, section);
+      }, section);
+    })();
 
 
     return () => {
+      cancelled = true;
       ctx?.revert();
     };
   }, [N]);

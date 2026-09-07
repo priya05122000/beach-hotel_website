@@ -5,12 +5,8 @@ import { useIsomorphicLayoutEffect } from "@/src/hooks/useIsomorphicLayoutEffect
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { NearbyDestination } from "@/src/types";
 import Eyebrow from "@/src/components/common/Eyebrow";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
@@ -48,35 +44,47 @@ export default function HorizontalScrollSectionClient({
 
     if (!section || !track) return;
 
-    const ctx = gsap.context(() => {
-      let distance = Math.max(0, track.scrollWidth - window.innerWidth);
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+    let refreshId = 0;
 
-      gsap.to(track, {
-        x: () => -distance,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${Math.max(1, distance)}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          markers: false,
-          onRefreshInit: () => {
-            distance = Math.max(0, track.scrollWidth - window.innerWidth);
+    (async () => {
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+      if (cancelled) return;
+
+      ctx = gsap.context(() => {
+        let distance = Math.max(0, track.scrollWidth - window.innerWidth);
+
+        gsap.to(track, {
+          x: () => -distance,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${Math.max(1, distance)}`,
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            markers: false,
+            onRefreshInit: () => {
+              distance = Math.max(0, track.scrollWidth - window.innerWidth);
+            },
           },
-        },
-      });
-    }, section);
+        });
+      }, section);
 
-    const refreshId = requestAnimationFrame(() => {
-      ScrollTrigger.refresh();
-    });
+      refreshId = requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    })();
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(refreshId);
-      ctx.revert();
+      ctx?.revert();
     };
   }, []);
 

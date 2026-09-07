@@ -3,7 +3,6 @@
 import { useLayoutEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { MapPin } from "lucide-react";
-import gsap from "gsap";
 import type { NearbyDestination } from "@/src/types";
 import Section from "@/src/components/common/Section";
 import Eyebrow from "@/src/components/common/Eyebrow";
@@ -11,7 +10,6 @@ import LazySection from "@/src/components/common/LazySection";
 import { Button } from "@/src/components/common/button";
 import PillLinkButton from "@/src/components/common/PillLinkButton";
 import { ANIM } from "@/src/lib/gsap/config";
-import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 import { applyParallax } from "@/src/lib/gsap/useParallax";
 
 // Each destination renders its own carousel — don't fetch embla-carousel
@@ -38,27 +36,78 @@ function DestinationItem({
 
   useLayoutEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 1024px)", () => {
-      applyParallax(imageWrapRef.current, { trigger: sectionRef.current, from: -8, to: 8 });
-    });
+    let cancelled = false;
+    let mm: { add: (query: string, cb: () => void) => unknown; revert: () => void } | undefined;
+    let splitInstance: { revert: () => void } | undefined;
 
-    let splitInstance: ReturnType<typeof applySplitSlideUp>;
+    (async () => {
+      // Defer GSAP / ScrollTrigger / SplitType so they are not part of the
+      // initial hydration bundle — they are only needed for these
+      // scroll-triggered reveals. Animation config below is unchanged.
+      const gsap = (await import("gsap")).default;
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+      if (cancelled) return;
 
-    if (!prefersReduced) {
-      splitInstance = applySplitSlideUp({
-        target: titleRef.current,
-        trigger: sectionRef.current,
-        start: "top 85%",
-        duration: ANIM.duration.base,
-        stagger: ANIM.stagger.base,
-        ease: ANIM.ease.default,
+      mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        applyParallax(imageWrapRef.current, { trigger: sectionRef.current, from: -8, to: 8 });
       });
-    }
+
+      if (!prefersReduced) {
+        const SplitType = (await import("split-type")).default;
+        if (cancelled) return;
+
+        const target = titleRef.current;
+        if (target) {
+          // Copied verbatim from applySplitSlideUp (src/lib/gsap/useSplitSlideUp.ts)
+          // for the exact options this call site used — SplitType setup, line
+          // wrapping, gsap.set, gsap.to and ScrollTrigger config are unchanged.
+          const split = new SplitType(target, {
+            types: "lines",
+            lineClass: "split-line",
+          });
+
+          const lines = target.querySelectorAll<HTMLElement>(".split-line");
+
+          lines.forEach((line) => {
+            const wrapper = document.createElement("div");
+            wrapper.style.overflow = "hidden";
+            wrapper.style.display = "block";
+
+            line.parentNode?.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+          });
+
+          gsap.set(lines, {
+            yPercent: 110,
+          });
+
+          gsap.to(lines, {
+            yPercent: 0,
+            duration: ANIM.duration.base,
+            ease: ANIM.ease.default,
+            stagger: ANIM.stagger.base,
+            delay: 0,
+            scrollTrigger: sectionRef.current
+              ? {
+                  trigger: sectionRef.current,
+                  start: "top 85%",
+                  toggleActions: "play none none none",
+                }
+              : undefined,
+          });
+
+          splitInstance = split;
+        }
+      }
+    })();
 
     return () => {
-      mm.revert();
+      cancelled = true;
+      mm?.revert();
       splitInstance?.revert();
     };
   }, []);

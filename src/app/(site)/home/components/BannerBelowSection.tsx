@@ -2,38 +2,51 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SubHeading from "@/src/components/common/SubHeading";
 import Section from "@/src/components/common/Section";
 import { PHONE_NUMBER_DISPLAY, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const BannerBelowSection = () => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo(
-                imageRef.current,
-                { opacity: 0, y: 80 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: wrapperRef.current,
-                        start: "bottom 95%",
-                        end: "top 0%",
-                        scrub: 1.5,
-                        // markers: true,
-                    },
-                }
-            );
-        }, wrapperRef);
-        return () => ctx.revert();
+        let cancelled = false;
+        let ctx: { revert: () => void } | undefined;
+
+        (async () => {
+            // GSAP/ScrollTrigger are loaded lazily so they stay out of the
+            // home route's initial JS bundle (previously imported at module
+            // scope).
+            const gsap = (await import("gsap")).default;
+            const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+            gsap.registerPlugin(ScrollTrigger);
+            if (cancelled) return;
+
+            ctx = gsap.context(() => {
+                gsap.fromTo(
+                    imageRef.current,
+                    { opacity: 0, y: 80 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: wrapperRef.current,
+                            start: "bottom 95%",
+                            end: "top 0%",
+                            scrub: 1.5,
+                            // markers: true,
+                        },
+                    }
+                );
+            }, wrapperRef);
+        })();
+
+        return () => {
+            cancelled = true;
+            ctx?.revert();
+        };
     }, []);
 
     return (
