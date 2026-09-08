@@ -10,7 +10,7 @@ import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import FormField from "@/src/components/ui/FormField";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
-import { RECEPTION_PHONE_NUMBER, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 import toast from "react-hot-toast";
 
 const initialForm = {
@@ -148,10 +148,10 @@ export default function ContactFormSection() {
                   Reception :
                 </span>{" "}
                 <Link
-                  href={`tel:${RECEPTION_PHONE_NUMBER}`}
+                  href={`tel:${PHONE_NUMBER}`}
                   className="type-body hover:underline"
                 >
-                  {RECEPTION_PHONE_NUMBER_DISPLAY}
+                  {PHONE_NUMBER_DISPLAY}
                 </Link>
               </div>
             </div>

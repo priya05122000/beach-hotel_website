@@ -25,6 +25,10 @@ import {
   Sparkles,
   Ruler,
   Eye,
+  Sunrise,
+  Sunset,
+  Droplets,
+  Compass,
 } from "lucide-react";
 
 import type { Room } from "@/src/types";
@@ -97,9 +101,21 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
     },
     "Pet Friendly": { icon: PawPrint, label: "Pet Friendly" },
   };
-  const amenities = (room.additional_keys ?? [])
-    .map((key) => AMENITY_MAP[key])
-    .filter(Boolean) as { icon: React.ElementType; label: string }[];
+  const amenities = (room.additional_keys ?? []).map(
+    (key) => AMENITY_MAP[key] ?? { icon: Sparkles, label: key }
+  );
+
+  const VIEW_MAP: Record<string, React.ElementType> = {
+    "Sea View": Waves,
+    "360 Degree Sea View": Compass,
+    "Sunrise View": Sunrise,
+    "Sunset View": Sunset,
+    "Fountain View": Droplets,
+  };
+  const views = (room.view ?? []).map((label) => ({
+    icon: VIEW_MAP[label] ?? Eye,
+    label,
+  }));
 
   return (
     <Section
@@ -124,30 +140,38 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
 
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
             <div className="flex flex-wrap type-body-sm gap-x-6 gap-y-3">
-              <div className="flex items-center gap-2 text-gray">
-                <Ruler size={13} strokeWidth={1.5} />
-                <span className=" tracking-widest uppercase">
-                  {room.size} sq. ft.
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-gray">
-                <Users size={13} strokeWidth={1.5} />
-                <span className=" tracking-widest uppercase">
-                  Up to {room.max_guests} guests
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-gray">
-                <BedDouble size={13} strokeWidth={1.5} />
-                <span className=" tracking-widest uppercase">
-                  {room.bed_type}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-gray">
-                <Eye size={13} strokeWidth={1.5} />
-                <span className=" tracking-widest uppercase">
-                  {room.view}
-                </span>
-              </div>
+              {room.size && (
+                <div className="flex items-center gap-2 text-gray">
+                  <Ruler size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    {room.size} sq. ft.
+                  </span>
+                </div>
+              )}
+              {room.max_guests != null && (
+                <div className="flex items-center gap-2 text-gray">
+                  <Users size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    Up to {room.max_guests} guests
+                  </span>
+                </div>
+              )}
+              {room.bed_type && (
+                <div className="flex items-center gap-2 text-gray">
+                  <BedDouble size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    {room.bed_type}
+                  </span>
+                </div>
+              )}
+              {views.map((v) => (
+                <div key={v.label} className="flex items-center gap-2 text-gray">
+                  <v.icon size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    {v.label}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {amenities.length > 0 && (
@@ -199,9 +223,26 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
 
           {/* <div className="w-2px 300" /> */}
 
-          <p className="text-charcoal leading-relaxed type-body max-w-md">
-            {room.description}
-          </p>
+          {room.description && (
+            <div
+              suppressHydrationWarning
+              className="blog-content text-charcoal max-w-md"
+              dangerouslySetInnerHTML={{ __html: room.description }}
+            />
+          )}
+
+          {room.good_to_know && (
+            <div className="max-w-md">
+              <p className="type-label-sm font-medium uppercase text-gray tracking-wide mb-1.5">
+                Good to Know
+              </p>
+              <div
+                suppressHydrationWarning
+                className="blog-content text-charcoal"
+                dangerouslySetInnerHTML={{ __html: room.good_to_know }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </Section>

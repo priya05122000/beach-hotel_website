@@ -65,9 +65,13 @@ function RoomCard({ room }: { room: Room }) {
           {room.name}
         </SubHeading>
 
-        <p className="mb-4 type-body text-charcoal">
-          {room.description}
-        </p>
+        {room.description && (
+          <div
+            suppressHydrationWarning
+            className="mb-4 type-body text-charcoal"
+            dangerouslySetInnerHTML={{ __html: room.description }}
+          />
+        )}
 
         <ul className="space-y-2 text-sm text-gray">
           {room.size && (

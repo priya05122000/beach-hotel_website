@@ -624,6 +624,7 @@ export interface Room {
 
   image_url: string[] | null;
   description: string | null;
+  good_to_know: string | null;
 
   price_per_night: string | null;
   max_guests: number | null;
@@ -631,7 +632,7 @@ export interface Room {
   bed_type: string | null;
   size: string | null;
   floor: string | null;
-  view: string | null;
+  view: string[] | null;
 
   additional_keys: string[] | null;
 

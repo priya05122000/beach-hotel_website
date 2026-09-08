@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { Phone } from "lucide-react";
 import SubHeading from "@/src/components/common/SubHeading";
 import Section from "@/src/components/common/Section";
-import { PHONE_NUMBER_DISPLAY, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 const BannerBelowSection = () => {
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -83,9 +84,13 @@ const BannerBelowSection = () => {
                             Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
                         </p>
 
-                        <p className="mt-2 max-w-70 sm:max-w-80 mx-auto text-sm sm:text-base text-white/40 font-extralight uppercase">
-                            {PHONE_NUMBER_DISPLAY} | {RECEPTION_PHONE_NUMBER_DISPLAY}
-                        </p>
+                        <a
+                            href={`tel:${PHONE_NUMBER}`}
+                            className="mt-2 max-w-70 sm:max-w-80 mx-auto flex items-center justify-center gap-2 text-sm sm:text-base text-white/40 font-extralight uppercase hover:text-white transition-colors"
+                        >
+                            <Phone size={15} />
+                            {PHONE_NUMBER_DISPLAY}
+                        </a>
                     </div>
 
                 </div>

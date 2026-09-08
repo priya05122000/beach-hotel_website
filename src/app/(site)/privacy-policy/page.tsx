@@ -44,14 +44,19 @@ export default function PrivacyPolicyPage() {
 
           <h2>Information We Collect</h2>
           <p>
-            To provide you with a comfortable and seamless experience, we
-            may collect the following information:
+            To provide you with a comfortable, secure, and seamless
+            experience, we may collect the following information:
           </p>
           <ul>
             <li>Your name, phone number, and email address.</li>
             <li>
               Reservation details, including check-in and check-out dates,
               room preferences, and special requests.
+            </li>
+            <li>
+              Identification information and details from valid
+              government-issued identification documents provided during
+              check-in, where required by applicable laws and regulations.
             </li>
             <li>
               Billing and payment information required to process your
@@ -62,6 +67,11 @@ export default function PrivacyPolicyPage() {
               enquiry forms, email, phone, or social media.
             </li>
             <li>
+              Information relating to guests, visitors, or special
+              requirements where necessary to provide our services and
+              maintain the safety and security of the Hotel.
+            </li>
+            <li>
               Technical information such as your IP address, browser type,
               device information, and website usage statistics collected
               through cookies and similar technologies.
@@ -69,7 +79,9 @@ export default function PrivacyPolicyPage() {
           </ul>
           <p>
             We only collect information that is necessary to provide our
-            services and improve your experience.
+            services, meet applicable legal or regulatory requirements,
+            maintain the safety and security of our guests and property, and
+            improve your overall experience.
           </p>
 
           <h2>How We Use Your Information</h2>
@@ -80,9 +92,19 @@ export default function PrivacyPolicyPage() {
           </p>
           <ul>
             <li>Confirm and manage your reservations.</li>
+            <li>Complete guest registration and check-in requirements.</li>
+            <li>Verify guest identity where required.</li>
             <li>Respond to your enquiries and requests.</li>
             <li>Provide guest support before, during, and after your stay.</li>
             <li>Process payments and issue booking confirmations.</li>
+            <li>
+              Comply with applicable laws, regulations, government
+              requirements, and lawful requests from authorities.
+            </li>
+            <li>
+              Protect the safety, security, rights, and property of our
+              guests, employees, visitors, and the Hotel.
+            </li>
             <li>Improve our website, facilities, and guest experience.</li>
             <li>Share important information relating to your reservation.</li>
             <li>
