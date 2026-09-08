@@ -235,7 +235,7 @@ export default function PrivacyPolicyPage() {
             <li>
               Phone: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_DISPLAY}</a>
             </li>
-            <li>Address: Beach Rd, Kanniyakumari, Tamil Nadu 629702, India</li>
+            <li>Address: Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702</li>
           </ul>
           <p>
             Thank you for choosing The Beach Hotel. We appreciate the trust

@@ -117,7 +117,7 @@ export default function Footer() {
 
                   <div className="type-body-sm flex gap-2  hover:text-accent transition-colors">
                     <MapPin size={15} className="mt-0.5" />
-                    Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
+                    Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
                   </div>
 
                   <ScrollLink

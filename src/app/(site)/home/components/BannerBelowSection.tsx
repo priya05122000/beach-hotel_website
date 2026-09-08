@@ -80,7 +80,7 @@ const BannerBelowSection = () => {
                         </SubHeading>
 
                         <p className="mt-4 max-w-70 sm:max-w-80 mx-auto text-sm sm:text-base text-white/40 font-extralight uppercase">
-                            Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
+                            Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
                         </p>
 
                         <p className="mt-2 max-w-70 sm:max-w-80 mx-auto text-sm sm:text-base text-white/40 font-extralight uppercase">

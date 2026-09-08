@@ -690,7 +690,7 @@ export default function Header() {
                     <span className="type-overline text-gray tracking-[3px]">Enquiry:</span> {PHONE_NUMBER_DISPLAY}
                   </a>
                   <p className="text-primary-dark type-body-lg tracking-[3px] uppercase font-light">
-                    <span className="type-overline text-gray tracking-[3px]">Address:</span> Beach Rd, Kanniyakumari, Tamil Nadu 629702, India
+                    <span className="type-overline text-gray tracking-[3px]">Address:</span> Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
                   </p>
                 </div>
                 <div className="self-end shrink-0">

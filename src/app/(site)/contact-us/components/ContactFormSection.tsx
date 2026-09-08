@@ -161,9 +161,9 @@ export default function ContactFormSection() {
                 The Beach Hotel
               </div>
               <div className="type-body font-arizona-flare-regular">
-                Beach Rd, Kanniyakumari,
+                Erumanayakkanpatti Beach Road,
                 <br />
-                Tamil Nadu 629702, India
+                Kanyakumari, Tamil Nadu 629702
               </div>
             </div>
           </div>

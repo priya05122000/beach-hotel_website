@@ -10,8 +10,8 @@ const HOTEL_SCHEMA = {
   telephone: PHONE_NUMBER,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Beach Rd",
-    addressLocality: "Kanniyakumari",
+    streetAddress: "Erumanayakkanpatti Beach Road",
+    addressLocality: "Kanyakumari",
     addressRegion: "Tamil Nadu",
     postalCode: "629702",
     addressCountry: "IN",

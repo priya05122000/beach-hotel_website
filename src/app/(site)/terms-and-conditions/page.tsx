@@ -165,7 +165,7 @@ export default function TermsAndConditionsPage() {
             <li>
               Phone: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_DISPLAY}</a>
             </li>
-            <li>Address: Beach Rd, Kanniyakumari, Tamil Nadu 629702, India</li>
+            <li>Address: Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702</li>
           </ul>
           <p>
             We appreciate your cooperation and look forward to hosting you
