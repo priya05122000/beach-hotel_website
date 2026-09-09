@@ -115,10 +115,15 @@ export default function Footer() {
                     support@thebeachhotel.in
                   </a>
 
-                  <div className="type-body-sm flex gap-2  hover:text-accent transition-colors">
-                    <MapPin size={15} className="mt-0.5" />
+                  <a
+                    href="https://maps.app.goo.gl/ZSH8BojKYomwLvUSA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="type-body-sm flex gap-2 hover:text-accent transition-colors"
+                  >
+                    <MapPin size={15} className="mt-0.5 shrink-0" />
                     Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
-                  </div>
+                  </a>
 
                   <ScrollLink
                     href="/contact-us#contact-form"

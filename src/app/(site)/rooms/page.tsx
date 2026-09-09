@@ -20,7 +20,13 @@ export const metadata: Metadata = {
 
 export default async function RoomsPage() {
   const { data: rooms } = await getRoomsData();
-  const activeRooms = rooms.filter((room) => room.is_active);
+  const activeRooms = rooms
+    .filter((room) => room.is_active)
+    .sort(
+      (a, b) =>
+        new Date(a.created_at ?? 0).getTime() -
+        new Date(b.created_at ?? 0).getTime()
+    );
 
   return (
     <>

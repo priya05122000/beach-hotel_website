@@ -12,9 +12,9 @@ export default function RelatedBlogs({ blogs }: Props) {
 
   return (
     <Section className="py-16 md:py-20 border-t border-silver">
-      <Eyebrow as="h2">Related Articles</Eyebrow>
+      <div className="type-h2 mb-4 font-semibold text-primary-dark  ">Related Articles</div>
 
-      <ul className="mt-10 ">
+      <ul>
         {blogs.map((blog) => (
           <li key={blog.id}>
             <Link

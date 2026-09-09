@@ -60,12 +60,12 @@ export default function BlogIntro({ blog }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 py-16 sm:py-20 gap-y-6 gap-x-3">
+      <div className="grid grid-cols-1 md:grid-cols-[1.5fr_2fr] py-16 sm:py-20 gap-y-6 gap-x-3">
         <Eyebrow className="max-w-md">{blog.tag_2}</Eyebrow>
         <div className="flex flex-col ">
-          <div className="blog-content text-charcoal leading-snug max-w-xl" dangerouslySetInnerHTML={{ __html: blog.description_1 }} />
+          <div className="blog-content text-charcoal leading-snug " dangerouslySetInnerHTML={{ __html: blog.description_1 }} />
           <div className="border-t mt-8 border-silver" />
-          <div className="blog-content text-charcoal leading-snug max-w-xl" dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
+          <div className="blog-content text-charcoal leading-snug " dangerouslySetInnerHTML={{ __html: blog.description_2 }} />
         </div>
       </div>
     </Section>

@@ -423,6 +423,34 @@
   margin: 1em 0;
 }
 
+.blog-content table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid var(--silver);
+  padding: 0.5em 0.75em;
+  font-size: var(--text-body);
+  text-align: left;
+}
+
+.blog-content th {
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: var(--surface);
+}
+
+.blog-content table tr:first-child td {
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: var(--surface);
+}
+
 /* ─────────────────────────────────────────────
    LEGAL CONTENT (Terms & Conditions, Privacy Policy)
 ───────────────────────────────────────────── */

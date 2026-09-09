@@ -29,6 +29,18 @@ import {
   Sunset,
   Droplets,
   Compass,
+  DoorOpen,
+  Coffee,
+  Shirt,
+  AlarmClock,
+  Expand,
+  Sun,
+  Star,
+  Moon,
+  Armchair,
+  Building2,
+  Clock,
+  Heart,
 } from "lucide-react";
 
 import type { Room } from "@/src/types";
@@ -55,7 +67,7 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
   // If total is even -> 1st,3rd... get ivory
   // If total is odd -> 2nd,4th... get ivory
   const shouldHaveIvory =
-    totalRooms % 2 === 0 ? isEven : !isEven;
+    totalRooms % 2 === 0 ? !isEven : isEven;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -78,39 +90,53 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
     return () => ctx.revert();
   }, []);
 
-  const AMENITY_MAP: Record<
-    string,
-    { icon: React.ElementType; label: string }
-  > = {
-    "Air Conditioning": { icon: Wind, label: "Air Conditioning" },
-    "Wi-Fi": { icon: Wifi, label: "Wi-Fi" },
-    Minibar: { icon: Wine, label: "Minibar" },
-    Balcony: { icon: Waves, label: "Balcony" },
-    Bathtub: { icon: Bath, label: "Bathtub" },
-    "Private Pool": { icon: Waves, label: "Private Pool" },
-    Jacuzzi: { icon: Sparkles, label: "Jacuzzi" },
-    Kitchen: { icon: UtensilsCrossed, label: "Kitchen" },
-    "Living Room": { icon: Sofa, label: "Living Room" },
-    "Smart TV": { icon: Tv, label: "Smart TV" },
-    "Safe Deposit Box": { icon: LockKeyhole, label: "Safe Deposit Box" },
-    "Room Service": { icon: ConciergeBell, label: "Room Service" },
-    "Laundry Service": { icon: WashingMachine, label: "Laundry Service" },
-    "Wheelchair Accessible": {
-      icon: Accessibility,
-      label: "Wheelchair Accessible",
-    },
-    "Pet Friendly": { icon: PawPrint, label: "Pet Friendly" },
-  };
-  const amenities = (room.additional_keys ?? []).map(
-    (key) => AMENITY_MAP[key] ?? { icon: Sparkles, label: key }
-  );
+  // Kept in sync with ADDITIONAL_KEYS_OPTIONS in
+  // beachhotelcmsfrontend/src/app/(protected)/rooms/roomOptions.ts —
+  // every value the CMS lets an admin pick should have an icon here.
+  const AMENITY_MAP: Record<string, React.ElementType> = {
+    "Air Conditioning": Wind,
+    "Wi-Fi": Wifi,
+    Minibar: Wine,
+    Balcony: DoorOpen,
+    Bathtub: Bath,
+    "Private Pool": Waves,
+    Jacuzzi: Droplets,
+    Kitchen: UtensilsCrossed,
+    "Living Room": Sofa,
+    "Smart TV": Tv,
+    "Safe Deposit Box": LockKeyhole,
+    "Room Service": ConciergeBell,
+    "Laundry Service": WashingMachine,
+    "Wheelchair Accessible": Accessibility,
+    "Pet Friendly": PawPrint,
 
+    "Tea Maker / Kettle": Coffee,
+    "Iron Board": Shirt,
+    "Wake Up Call": AlarmClock,
+    "Comfortable Bedding": BedDouble,
+    "Neat Interiors": Sparkles,
+    "Spacious Interiors": Expand,
+    "Large Windows with Natural Light": Sun,
+    "Well-Appointed Bedding": Star,
+    "Restful Bedding Arrangement": Moon,
+    "Private Lounge Access": Armchair,
+    "Rooftop Access": Building2,
+    "Suitable for Short Stays": Clock,
+    "Suitable for Couples and Small Families": Heart,
+  };
+  const amenities = (room.additional_keys ?? []).map((key) => ({
+    icon: AMENITY_MAP[key] ?? Sparkles,
+    label: key,
+  }));
+
+  // Kept in sync with VIEW_OPTIONS in the same CMS file.
   const VIEW_MAP: Record<string, React.ElementType> = {
     "Sea View": Waves,
+    "Fountain View": Droplets,
+    "Rooftop View": Building2,
     "360 Degree Sea View": Compass,
     "Sunrise View": Sunrise,
     "Sunset View": Sunset,
-    "Fountain View": Droplets,
   };
   const views = (room.view ?? []).map((label) => ({
     icon: VIEW_MAP[label] ?? Eye,
@@ -139,7 +165,7 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
           </LazySection>
 
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
-            <div className="flex flex-wrap type-body-sm gap-x-6 gap-y-3">
+            <div className="flex flex-wrap type-label gap-x-6 gap-y-3">
               {room.size && (
                 <div className="flex items-center gap-2 text-gray">
                   <Ruler size={13} strokeWidth={1.5} />
@@ -226,23 +252,11 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
           {room.description && (
             <div
               suppressHydrationWarning
-              className="blog-content text-charcoal max-w-md"
+              className="blog-content text-charcoal max-w-lg"
               dangerouslySetInnerHTML={{ __html: room.description }}
             />
           )}
 
-          {room.good_to_know && (
-            <div className="max-w-md">
-              <p className="type-label-sm font-medium uppercase text-gray tracking-wide mb-1.5">
-                Good to Know
-              </p>
-              <div
-                suppressHydrationWarning
-                className="blog-content text-charcoal"
-                dangerouslySetInnerHTML={{ __html: room.good_to_know }}
-              />
-            </div>
-          )}
         </div>
       </div>
     </Section>
@@ -263,7 +277,7 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
 
           <div>
             {/* Desktop — uppercase, wide-tracking heading style */}
-            <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 mb-4 sm:mt-0 tracking-[0.2rem] leading-8">
+            <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-lg xl:max-w-xl mt-10 mb-4 sm:mt-0 tracking-[0.2rem] leading-8">
               At The Beach Hotel, every stay is an invitation to refined indulgence.
               Our accommodations are appointed with custom furnishings, the finest
               linens and thoughtful touches at every turn — from serene inland
@@ -304,6 +318,24 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
         ))}
       </div>
 
+      <Section className="py-16 lg:py-20 ">
+        <div className="type-h2 mb-4 font-semibold text-primary-dark  ">
+          Good to Know
+        </div>
+        <div className="max-w-3xl type-body text-charcoal space-y-4">
+          <div>
+            <strong className="text-primary-dark uppercase tracking-widest">Pet :</strong>
+            <p className="mt-2">One pet is allowed per room, and dogs only are permitted. Dogs must be well-behaved and kept under control at all times. Only dogs up to 45 cm in height at the shoulder are allowed. Large or aggressive breeds are not permitted.</p>
+          </div>
+          <div>
+            <strong className="text-primary-dark uppercase tracking-widest">Cot :</strong>
+            <ul className="list-disc pl-10 mt-2 ">
+              <li>Extra cot for guests above 8 years: ₹1,000 + taxes.</li>
+              <li>Extra cot for guests below 8 years: ₹700 + taxes.</li>
+            </ul>
+          </div>
+        </div>
+      </Section>
 
     </>
   );
