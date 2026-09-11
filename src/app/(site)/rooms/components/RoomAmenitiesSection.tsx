@@ -114,7 +114,7 @@ function RoomAmenityItemBlock({ item }: { item: RoomAmenityItem }) {
       <item.icon size={32} strokeWidth={1} className="text-ivory mb-3" />
       <div className="flex items-center gap-1.5 mb-1">
         <ChevronRight size={11} strokeWidth={2} className="text-accent shrink-0" />
-        <p className="type-body-sm font-medium text-ivory">{item.title}</p>
+        <p className="type-body-sm uppercase font-medium text-ivory">{item.title}</p>
       </div>
       <p className="type-body-sm text-xs text-ivory/70 leading-relaxed">
         {item.description}
@@ -163,7 +163,7 @@ export default function RoomAmenitiesSection() {
           />
           <div
             ref={gridRef}
-            className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 p-6 sm:p-10 lg:p-14"
+            className="relative z-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 p-6 sm:p-10 lg:p-14"
           >
             {ROOM_AMENITIES.map((item) => (
               <RoomAmenityItemBlock key={item.title} item={item} />

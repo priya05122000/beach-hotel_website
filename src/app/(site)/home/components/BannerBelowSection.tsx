@@ -81,7 +81,7 @@ const BannerBelowSection = () => {
                 className="
         absolute left-4 sm:left-6 lg:left-10
         bottom-0
-        h-[30%] sm:h-[40%]
+        h-[20%] sm:h-[40%]
         w-auto
     "
             />
@@ -96,7 +96,7 @@ const BannerBelowSection = () => {
                 className="
         absolute right-4 sm:right-6 lg:right-10
         bottom-0
-        h-[30%] sm:h-[40%]
+        h-[20%] sm:h-[40%]
         w-auto
         -scale-x-100
     "
