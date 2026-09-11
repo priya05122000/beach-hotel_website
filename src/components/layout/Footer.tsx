@@ -156,11 +156,11 @@ export default function Footer() {
             </div>
             <div className=" ">
               <Image
-                src="/common/big_logo.svg"
+                src="/common/big_logo_1.svg"
                 alt="The Beach Hotel"
                 width={700}
                 height={200}
-                className="h-full w-full opacity-40 pointer-events-none select-none"
+                className="h-full w-full pointer-events-none select-none"
               />
             </div>
           </div>

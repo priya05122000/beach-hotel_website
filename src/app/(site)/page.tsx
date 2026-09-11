@@ -61,6 +61,15 @@ export default async function HomePage() {
   // Embla mounts every slide's DOM upfront (no virtualization), so an
   // unbounded review count directly inflates page DOM size.
   const featuredReviews = guestReviewData.data.slice(0, 10);
+  // Kept in sync with the rooms page's ordering (active rooms, oldest
+  // created first) so the two room listings agree with each other.
+  const activeRooms = roomDatas.data
+    .filter((room) => room.is_active)
+    .sort(
+      (a, b) =>
+        new Date(a.created_at ?? 0).getTime() -
+        new Date(b.created_at ?? 0).getTime()
+    );
 
   return (
     <>
@@ -71,7 +80,7 @@ export default async function HomePage() {
       <ExploreDestinationSection />
       <AmenitiesSection />
       <RoomShowcaseSection />
-      <RoomCardsSection rooms={roomDatas.data} />
+      <RoomCardsSection rooms={activeRooms} />
       <HorizontalScrollSection />
       <FeaturedHighlightSection />
       <GallerySection galleries={randomGalleryItems} />

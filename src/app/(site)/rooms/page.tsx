@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RoomsList from "./components/RoomsList";
+import RoomAmenitiesSection from "./components/RoomAmenitiesSection";
 import { getRoomsData } from "@/src/service/rooms";
 import RoomBanner from "./components/RoomBanner";
 import { Suspense } from "react";
@@ -35,6 +36,7 @@ export default async function RoomsPage() {
       </Suspense>
       <RoomBanner />
       <RoomsList rooms={activeRooms} />
+      <RoomAmenitiesSection />
     </>
   );
 }

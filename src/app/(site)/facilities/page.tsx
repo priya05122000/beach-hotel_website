@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import FacilitiesSplitHero from "./components/FacilitiesSplitHero";
 import FacilitiesSection from "./components/FacilitiesSection";
+import FacilityAmenitiesSection from "./components/FacilityAmenitiesSection";
 import { getFacilitiesData } from "@/src/service/facilities";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
@@ -23,15 +24,22 @@ export default async function FacilitiesPage() {
   const { data: facilities } = await getFacilitiesData();
 
   return (
-    <div className="bg-cream">
-      <Suspense fallback={null}>
-        <SectionScroller dataAttr="data-facility-id" />
-      </Suspense>
-      <FacilitiesSplitHero />
+    <>
+      <div className="bg-cream">
+        <Suspense fallback={null}>
+          <SectionScroller dataAttr="data-facility-id" />
+        </Suspense>
+        <FacilitiesSplitHero />
 
-      <div id="facilities">
-        <FacilitiesSection facilities={facilities} />
+        <div id="facilities">
+          <FacilitiesSection facilities={facilities} />
+        </div>
+
+        <div className="h-24 lg:h-32 bg-linear-to-b from-cream to-white" aria-hidden="true" />
       </div>
-    </div>
+      <div className="bg-white">
+        <FacilityAmenitiesSection />
+      </div>
+    </>
   );
 }
