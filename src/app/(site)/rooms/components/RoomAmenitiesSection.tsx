@@ -28,83 +28,83 @@ interface RoomAmenityItem {
 }
 
 const ROOM_AMENITIES: RoomAmenityItem[] = [
-  {
-    icon: ConciergeBell,
-    title: "Room Service",
-    description:
-      "Room service is available for guests who prefer to dine or request refreshments in the comfort of their room.",
-  },
+  // {
+  //   icon: ConciergeBell,
+  //   title: "Room Service",
+  //   description:
+  //     "Room service is available for guests who prefer to dine or request refreshments in the comfort of their room.",
+  // },
   {
     icon: Coffee,
     title: "Coffee Machine",
     description:
-      "Selected rooms feature a coffee machine for preparing a fresh cup of coffee at your convenience.",
+      "Make yourself a fresh cup anytime, right from the comfort of your room.",
   },
   {
     icon: GlassWater,
     title: "Mineral Water",
     description:
-      "Complimentary mineral water is provided in the room for your convenience.",
+      "Bottled mineral water is placed in your room and refilled daily.",
   },
   {
     icon: Sofa,
     title: "Sofa Chair",
     description:
-      "Selected rooms include a comfortable sofa chair, providing a relaxing space to sit and unwind.",
+      "A cosy corner to sit back, relax, and unwind after a long day.",
   },
   {
     icon: Wine,
     title: "Mini Bar",
     description:
-      "A well-stocked mini bar is available in selected rooms with a range of refreshments.",
+      "A few handy essentials and drinks stocked in your room, just in case.",
   },
   {
     icon: Fan,
     title: "Hair Dryer",
     description:
-      "A hair dryer is provided in the room for convenient personal grooming.",
+      "Every room comes with a hair dryer, ready to use whenever you need it.",
   },
   {
     icon: Snowflake,
     title: "Air Conditioning",
     description:
-      "Air-conditioned rooms provide a cool and comfortable setting throughout your stay.",
+      "Rooms are fitted with air conditioning to keep you comfortable through the day and night.",
   },
   {
     icon: Brush,
     title: "Dental Kit",
     description:
-      "A dental kit is provided with essential personal care items for your convenience.",
+      "A complimentary dental kit is provided in your room for your convenience.",
   },
   {
     icon: Shirt,
     title: "Ironing Board",
     description:
-      "An ironing board is available to help you keep your clothes neat and presentable.",
+      "An ironing board is available on request, so you always look your best.",
   },
   {
     icon: Refrigerator,
     title: "Mini Fridge",
     description:
-      "Selected rooms feature a mini fridge for storing beverages and personal refreshments.",
+      "A mini fridge in your room keeps your snacks and drinks nicely chilled.",
   },
   {
     icon: Droplets,
     title: "Toiletries",
     description:
-      "Essential toiletries are provided in the bathroom for your everyday personal care.",
+      "Quality toiletries are provided in every room for a comfortable stay.",
   },
   {
     icon: LampDesk,
     title: "Work Desk",
     description:
-      "A dedicated work desk provides a convenient space for working, reading or attending to personal tasks.",
+      " A dedicated work desk is set up for guests who need to get a little work done.",
   },
   {
     icon: DoorOpen,
     title: "Interconnected Rooms",
     description:
-      "Interconnected rooms are available in selected room categories, making them a practical choice for families and groups travelling together.",
+      "Interconnected rooms are available in select categories, ideal for families or groups travelling together.",
   },
 ];
 
@@ -113,7 +113,7 @@ function RoomAmenityItemBlock({ item }: { item: RoomAmenityItem }) {
     <div className="flex flex-col items-center text-center">
       <item.icon size={32} strokeWidth={1} className="text-ivory mb-3" />
       <div className="flex items-center gap-1.5 mb-1">
-        <ChevronRight size={11} strokeWidth={2} className="text-accent shrink-0" />
+        {/* <ChevronRight size={11} strokeWidth={2} className="text-accent shrink-0" /> */}
         <p className="type-body-sm uppercase font-medium text-ivory">{item.title}</p>
       </div>
       <p className="type-body-sm text-xs text-ivory/70 leading-relaxed">
@@ -152,7 +152,7 @@ export default function RoomAmenitiesSection() {
         {/* Image + blur panel with amenities */}
         <div className="relative w-full overflow-hidden">
           <Image
-            src="/facilities/1.webp"
+            src="/home/home.webp"
             alt="Room Facilities"
             fill
             className="object-cover"
