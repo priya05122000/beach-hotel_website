@@ -2,7 +2,7 @@ import React from "react";
 import type { JSX } from "react";
 
 type EyebrowTag = "h1" | "h2" | "h3" | "h4" | "p";
-type EyebrowAlign = "left" | "center" | "responsive";
+type EyebrowAlign = "left" | "center" | "responsive" | "right";
 
 interface EyebrowProps extends React.HTMLAttributes<HTMLElement> {
   as?: EyebrowTag;
@@ -15,6 +15,7 @@ const alignClasses: Record<EyebrowAlign, string> = {
   left: "text-left",
   center: "text-center",
   responsive: "text-left",
+  right: "text-right",
 };
 
 /**

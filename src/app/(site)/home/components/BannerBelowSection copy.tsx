@@ -7,10 +7,11 @@ import SubHeading from "@/src/components/common/SubHeading";
 import Section from "@/src/components/common/Section";
 import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
-
 const BannerBelowSection = () => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
+    const leftLogoRef = useRef<HTMLImageElement>(null);
+    const rightLogoRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         let cancelled = false;
@@ -42,6 +43,22 @@ const BannerBelowSection = () => {
                         },
                     }
                 );
+
+                gsap.fromTo(
+                    [leftLogoRef.current, rightLogoRef.current],
+                    { opacity: 0, y: 80 },
+                    {
+                        opacity: 0.4,
+                        y: 0,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: wrapperRef.current,
+                            start: "bottom 95%",
+                            end: "top 0%",
+                            scrub: 1.5,
+                        },
+                    }
+                );
             }, wrapperRef);
         })();
 
@@ -50,26 +67,57 @@ const BannerBelowSection = () => {
             ctx?.revert();
         };
     }, []);
+
     return (
-        <div ref={wrapperRef} className="relative h-[30vh] sm:h-[40vh] lg:h-[50vh] ">
-            <div className="sticky top-[15vh] sm:top-[20vh] lg:top-[25vh] flex h-[30vh] sm:h-[40vh] lg:h-[50vh]  items-center justify-center bg-primary px-4 py-10 text-white overflow-hidden">
+        <Section ref={wrapperRef} className="relative overflow-hidden bg-primary h-[45vh] lg:h-[50vh]">
+
+            <Image
+                ref={leftLogoRef}
+                src="/common/toplogowhite.svg"
+                alt="The Beach Hotel"
+                width={300}
+                height={150}
+                style={{ opacity: 0 }}
+                className="
+        absolute left-4 sm:left-6 lg:left-10
+        bottom-0
+        h-[13%] sm:h-[20%] xl:h-[25%]
+        w-auto
+    "
+            />
+
+            <Image
+                ref={rightLogoRef}
+                src="/common/toplogowhite.svg"
+                alt="The Beach Hotel"
+                width={300}
+                height={150}
+                style={{ opacity: 0 }}
+                className="
+        absolute right-4 sm:right-6  lg:right-10
+        bottom-0
+        h-[13%] sm:h-[20%] xl:h-[25%]
+        w-auto
+        -scale-x-100
+    "
+            />
+            <div className="sticky  top-0 sm:top-[25vh] flex flex-col sm:flex-row h-[45vh] lg:h-[50vh] items-start justify-center px-16 sm:px-4 py-16 text-white overflow-hidden">
                 {/* Image — hidden initially, animated in by GSAP */}
                 <div
                     ref={imageRef}
-                    className="pointer-events-none px-2 xl:px-0  absolute bottom-0 "
+                    className="pointer-events-none absolute  left-1/2 -translate-x-1/2 bottom-0 h-[20%] sm:h-[40%] w-auto aspect-5000/958 sm:aspect-4000/858 lg:aspect-7000/1158 xl:aspect-15000/1958"
                     style={{ opacity: 0 }}
                 >
                     <Image
                         src="/common/thebeachhotel.svg"
                         alt="The Beach Hotel"
-                        width={1920}
-                        height={1200}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-contain object-bottom"
                     />
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative   type-body z-10 text-center flex items-start lg:items-center h-full pt-0 sm:py-0">
+                <div className="relative   type-body z-10 text-center flex items-center pt-0 sm:py-0">
                     {/* Not a heading — it renders before the page's actual
                         <h1> (SignatureHeadline, later in DOM order), so
                         making it an h2 here would put a heading ahead of
@@ -95,10 +143,12 @@ const BannerBelowSection = () => {
                     </div>
 
                 </div>
+
             </div>
-        </div>
+        </Section >
     );
 };
 
 export default BannerBelowSection;
+
 

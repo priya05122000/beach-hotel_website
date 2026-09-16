@@ -368,6 +368,7 @@ export interface Facility {
 
   is_featured?: boolean;
   is_active?: boolean;
+  category?: "inclusive" | "highlighted" | null;
 
   display_order?: number;
 
