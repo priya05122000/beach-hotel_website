@@ -46,8 +46,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
             className="type-label-lg italic text-charcoal leading-relaxed max-w-60"
 
           >
-            « We believe every stay in Kanyakumari should be
-            unforgettable. We make it that way »
+            « We believe every stay in Kanyakumari should be unforgettable. We’re here to make it one. »
           </p>
         </div>
 

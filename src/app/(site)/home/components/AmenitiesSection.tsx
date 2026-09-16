@@ -64,7 +64,7 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
       </SubHeading>
 
       <p className="text-charcoal">
-        Experience a collection of amenities thoughtfully designed to complement every stay at The Beach Hotel. From wellness and recreation to dining and personalized services, our hotel in Kanniyakumari offers facilities designed to provide comfort and convenience for business and leisure travellers alike.
+        Experience a collection of amenities thoughtfully designed to complement every stay at The Beach Hotel. Our hotel in Kanniyakumari offers facilities designed to provide comfort and convenience for business and leisure travellers alike.
       </p>
 
       <hr className="mt-6 w-[calc(100%-30px)] hidden sm:block border border-gray" />

@@ -81,7 +81,7 @@ export default function HeroLocationSection() {
               Your perfect stay begins the moment you reach out.
             </div>
             <p className="mt-6 type-body">
-              However you wish to begin, our team is here — attentive, discreet and delighted to help craft a stay beyond compare.
+              However your journey begins, our team is here — attentive, discreet, and ready to make your stay exceptional.
             </p>
             <div className="mt-6 md:mt-8 lg:mt-10 flex justify-end sm:justify-start">
               {/* <Button href="#contact-form" className="text-sm tracking-widest font-arizona-sans-bold">
