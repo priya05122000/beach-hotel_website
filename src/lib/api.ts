@@ -14,11 +14,6 @@ export async function apiFetch<T>(
   path: string,
   options?: { revalidate?: number | false; tags?: string[] }
 ): Promise<T> {
-  // `revalidate` is a time-based safety net (data self-heals within this
-  // window even if nothing ever calls the on-demand revalidation webhook at
-  // /api/revalidate). `tags` let that webhook invalidate just the affected
-  // resource via revalidateTag() instead of waiting out the window or
-  // nuking the whole site's cache.
   const fetchOptions: RequestInit =
     options?.revalidate !== undefined
       ? { next: { revalidate: options.revalidate, tags: options.tags } }

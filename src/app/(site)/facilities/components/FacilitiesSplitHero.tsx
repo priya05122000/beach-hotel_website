@@ -14,7 +14,7 @@ const TEXT_LINES = [
     "The Land's End.",
 ];
 
-const PARAGRAPH = `True luxury lies in the freedom to simply be. At The Beach Hotel, every amenity — from sea-view dining and the infinity pool to our signature spa and intuitive concierge — is designed to dissolve the everyday and leave only ease in its place. Whatever your heart desires, you will find it has been considered long before you ask.`;
+const PARAGRAPH = `True luxury lies in the freedom to simply be. At The Beach Hotel, every amenity is designed to dissolve the everyday and leave only ease in its place. Whatever your heart desires, you will find it has been considered long before you ask.`;
 
 export default function FacilitiesSplitHero() {
     // ── Desktop refs ──────────────────────────────────────────────

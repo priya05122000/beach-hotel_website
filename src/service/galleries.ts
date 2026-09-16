@@ -4,7 +4,7 @@ import type { ApiListResponse, Gallery } from "@/src/types";
 
 export function getGalleryData(): Promise<ApiListResponse<Gallery>> {
   return apiFetch<ApiListResponse<Gallery>>("/api/galleries/all", {
-    revalidate: 3600,
+    revalidate: 180,
     tags: [CACHE_TAGS.galleries],
   });
 }
