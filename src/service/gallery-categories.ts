@@ -4,7 +4,7 @@ import type { ApiListResponse, GalleryCategory } from "@/src/types";
 
 export function getGalleryCategoriesData(): Promise<ApiListResponse<GalleryCategory>> {
   return apiFetch<ApiListResponse<GalleryCategory>>("/api/gallery-categories/all", {
-    revalidate: 3600,
+    revalidate: 600,
     tags: [CACHE_TAGS.galleryCategories],
   });
 }

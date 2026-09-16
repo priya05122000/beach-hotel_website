@@ -29,6 +29,8 @@ export default async function RoomsPage() {
         new Date(b.created_at ?? 0).getTime()
     );
 
+    console.log("activeRooms", activeRooms);
+
   return (
     <>
       <Suspense fallback={null}>

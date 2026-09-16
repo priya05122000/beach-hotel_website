@@ -4,7 +4,7 @@ import type { ApiListResponse, FaqCategory } from "@/src/types";
 
 export function getFaqCategoryData(): Promise<ApiListResponse<FaqCategory>> {
   return apiFetch<ApiListResponse<FaqCategory>>("/api/faq-categories/all", {
-    revalidate: 3600,
+    revalidate: 600,
     tags: [CACHE_TAGS.faqCategories],
   });
 }
