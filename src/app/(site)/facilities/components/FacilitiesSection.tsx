@@ -99,12 +99,14 @@ export default function FacilitiesSection({ facilities }: Props) {
         return () => mm.revert();
     }, []);
 
-    // Sequential display number (1, 2, 3…) by list order, independent of
-    // each facility's actual database id. Computed across the flattened
-    // groups so numbering stays continuous across a heading break.
-    const orderMap = new Map(
-        groups.flatMap((group) => group.items).map((f, i) => [f.id, i + 1])
-    );
+    // Sequential display number (1, 2, 3…) restarting at the start of each
+    // category group, independent of each facility's actual database id.
+    const orderMap = new Map<number, number>();
+    groups.forEach((group) => {
+        group.items.forEach((f, i) => {
+            orderMap.set(f.id, i + 1);
+        });
+    });
 
     // A running counter for desktopCardsRef slots, shared across every
     // group's desktop grid so parallax applies to every card — independent
