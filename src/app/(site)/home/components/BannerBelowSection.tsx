@@ -51,8 +51,8 @@ const BannerBelowSection = () => {
         };
     }, []);
     return (
-        <div ref={wrapperRef} className="relative h-[30vh] sm:h-[40vh] lg:h-[50vh] ">
-            <div className="sticky top-[15vh] sm:top-[20vh] lg:top-[25vh] flex h-[30vh] sm:h-[40vh] lg:h-[50vh]  items-center justify-center bg-primary px-4 py-10 text-white overflow-hidden">
+        <div ref={wrapperRef} className="relative h-[30vh] sm:h-[40vh]  ">
+            <div className="sticky top-[15vh] sm:top-[20vh] lg:top-[25vh] flex h-[30vh] sm:h-[40vh]   items-center justify-center bg-primary px-4 py-10 text-white overflow-hidden">
                 {/* Image — hidden initially, animated in by GSAP */}
                 <div
                     ref={imageRef}
@@ -69,7 +69,7 @@ const BannerBelowSection = () => {
                 </div>
 
                 {/* Content — always visible */}
-                <div className="relative   type-body z-10 text-center flex items-start lg:items-center h-full pt-0 sm:py-0">
+                <div className="relative   type-body z-10 text-center flex items-start h-full sm:pt-2 xl:pt-6 ">
                     {/* Not a heading — it renders before the page's actual
                         <h1> (SignatureHeadline, later in DOM order), so
                         making it an h2 here would put a heading ahead of
@@ -77,7 +77,7 @@ const BannerBelowSection = () => {
                         brand/decorative text, not a real section heading. */}
 
                     <div className="">
-                        <SubHeading as="p" className="mb-4">
+                        <SubHeading as="p" className="">
                             The Beach Hotel
                         </SubHeading>
 
