@@ -106,7 +106,7 @@ export default function GuestPicker({
       : "border border-silver text-foreground";
 
   return (
-    <div ref={ref} className="relative flex-1 min-w-45">
+    <div ref={ref} className="sm:relative flex-1 min-w-45">
       {/* Trigger — matches DatePicker trigger exactly */}
       <button
         type="button"
@@ -122,7 +122,7 @@ export default function GuestPicker({
 
       {/* Dropdown — matches DatePicker popup style */}
       {open && (
-        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-72 rounded-none bg-white border-primary shadow-2xl border  type-body-sm p-4">
+        <div className="absolute bottom-[calc(100%+0px)] sm:bottom-[calc(100%+16px)] left-0 z-50 w-full sm:w-64 rounded-none bg-white border-primary shadow-2xl border  type-body-sm p-4">
           <p className="pb-3 mb-3 font-medium text-center text-primary-dark uppercase tracking-widest border-b border-silver">
             Guests
           </p>

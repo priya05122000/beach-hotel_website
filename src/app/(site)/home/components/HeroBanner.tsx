@@ -40,7 +40,6 @@ export default function HeroBanner() {
     }
   };
 
-
   return (
     <section className="relative h-[90vh] sm:h-screen">
       {/* Background Image */}
@@ -65,14 +64,25 @@ export default function HeroBanner() {
               method="get"
               target="_blank"
               className="flex flex-wrap items-center justify-center gap-2 bg-primary/14 p-4 backdrop-blur-xl transform-gpu"
-              style={{ WebkitBackdropFilter: "blur(24px)", backdropFilter: "blur(24px)" }}
+              style={{
+                WebkitBackdropFilter: "blur(24px)",
+                backdropFilter: "blur(24px)",
+              }}
             >
               {/* A GET form submission replaces the action URL's query
                   string entirely with these fields, so bkgpropid from
                   BOOKING_URL has to be repeated here or it gets dropped. */}
               <input type="hidden" name="bkgpropid" value="1181" />
-              <input type="hidden" name="bkgfrmdt" value={checkIn ? format(checkIn, "dd-MM-yyyy") : ""} />
-              <input type="hidden" name="bkgtodt" value={checkOut ? format(checkOut, "dd-MM-yyyy") : ""} />
+              <input
+                type="hidden"
+                name="bkgfrmdt"
+                value={checkIn ? format(checkIn, "dd-MM-yyyy") : ""}
+              />
+              <input
+                type="hidden"
+                name="bkgtodt"
+                value={checkOut ? format(checkOut, "dd-MM-yyyy") : ""}
+              />
               <input type="hidden" name="bkgadultc" value={adults} />
               <input type="hidden" name="bkgchildc" value={children} />
 
@@ -90,7 +100,9 @@ export default function HeroBanner() {
                 value={checkOut}
                 onChange={setCheckOut}
                 placeholder="Check-Out"
-                disabled={{ before: checkIn ? addDays(checkIn, 1) : new Date() }}
+                disabled={{
+                  before: checkIn ? addDays(checkIn, 1) : new Date(),
+                }}
                 defaultMonth={checkIn}
                 variant="light"
               />

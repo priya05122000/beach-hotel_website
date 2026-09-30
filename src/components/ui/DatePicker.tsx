@@ -49,14 +49,18 @@ export default function DatePicker({
       : "border border-silver text-foreground";
 
   return (
-    <div ref={ref} className="relative flex-1 min-w-45">
+    <div ref={ref} className="sm:relative flex-1 min-w-45">
       {/* Trigger */}
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="dialog"
-        aria-label={value ? `${placeholder}: ${format(value, "dd MMM yyyy")}` : placeholder}
+        aria-label={
+          value
+            ? `${placeholder}: ${format(value, "dd MMM yyyy")}`
+            : placeholder
+        }
         className={`flex  py-2 w-full items-center px-4  type-overline cursor-pointer ${triggerClass}`}
       >
         <CalendarDays size={16} className="mr-2 shrink-0 opacity-70" />
@@ -67,7 +71,7 @@ export default function DatePicker({
 
       {/* Calendar popup — opens above the trigger */}
       {open && (
-        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-full sm:w-72 rounded-none bg-white shadow-2xl border border-primary">
+        <div className="absolute bottom-[calc(100%+0px)] sm:bottom-[calc(100%+16px)] left-0 z-50 w-full sm:w-72 rounded-none bg-white shadow-2xl border border-primary">
           <DatePickerCalendar
             value={value}
             onSelect={(date) => {
