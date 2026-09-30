@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Blog } from "@/src/types";
 import Section from "@/src/components/common/Section";
-import Eyebrow from "@/src/components/common/Eyebrow";
 
 interface Props {
   blogs: Blog[];

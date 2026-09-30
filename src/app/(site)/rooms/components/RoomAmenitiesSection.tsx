@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import {
-  ConciergeBell,
   Coffee,
   GlassWater,
   Sofa,
@@ -15,7 +14,6 @@ import {
   Droplets,
   LampDesk,
   DoorOpen,
-  ChevronRight,
 } from "lucide-react";
 import Section from "@/src/components/common/Section";
 import { useFadeIn } from "@/src/lib/gsap/useFadeIn";

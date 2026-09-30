@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import SubHeading from "@/src/components/common/SubHeading";
-import Section from "@/src/components/common/Section";
-import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY, RECEPTION_PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
 
 
 const BannerBelowSection = () => {
