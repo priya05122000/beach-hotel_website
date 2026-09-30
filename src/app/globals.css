@@ -42,6 +42,7 @@
   --font-arizona-sans-bold: var(--font-arizona-sans-bold);
   --font-arizona-flare-regular: var(--font-arizona-flare-regular);
   --font-arizona-sans-regular: var(--font-arizona-sans-regular);
+  --font-arizona-light: var(--font-arizona-light);
 
   /* Type scale — display */
   --text-display-2xl: clamp(56px, 8vw, 96px);
@@ -144,6 +145,10 @@
 
   .font-arizona-sans-regular {
     font-family: var(--font-arizona-sans-regular);
+  }
+
+  .font-arizona-light {
+    font-family: var(--font-arizona-light);
   }
 
   /* Shared type-scale font families (avoids repeating per class) */
@@ -461,7 +466,7 @@
   line-height: 1.8;
 }
 
-.legal-content > *:first-child {
+.legal-content>*:first-child {
   margin-top: 0;
 }
 

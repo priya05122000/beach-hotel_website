@@ -67,7 +67,7 @@ export default function DatePicker({
 
       {/* Calendar popup — opens above the trigger */}
       {open && (
-        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-62 sm:w-72 rounded-none bg-primary shadow-2xl border border-silver/60">
+        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-62 sm:w-72 rounded-none bg-white shadow-2xl border border-primary">
           <DatePickerCalendar
             value={value}
             onSelect={(date) => {

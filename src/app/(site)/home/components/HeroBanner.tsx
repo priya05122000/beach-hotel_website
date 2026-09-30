@@ -80,7 +80,7 @@ export default function HeroBanner() {
               <DatePicker
                 value={checkIn}
                 onChange={handleCheckIn}
-                placeholder="Check In"
+                placeholder="Check-In"
                 disabled={{ before: new Date() }}
                 variant="light"
               />
@@ -89,7 +89,7 @@ export default function HeroBanner() {
               <DatePicker
                 value={checkOut}
                 onChange={setCheckOut}
-                placeholder="Check Out"
+                placeholder="Check-Out"
                 disabled={{ before: checkIn ?? new Date() }}
                 defaultMonth={checkIn}
                 variant="light"

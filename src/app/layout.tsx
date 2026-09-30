@@ -6,6 +6,7 @@ import {
   arizonaSansBold,
   arizonaFlareRegular,
   arizonaSansRegular,
+  arizonaLight,
 } from "../lib/font";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachhotel.in";
@@ -65,7 +66,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable}`}
+      className={`${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable} ${arizonaLight.variable}`}
     >
       <head>
         {/* Google Tag Manager */}
