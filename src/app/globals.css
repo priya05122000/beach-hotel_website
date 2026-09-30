@@ -17,6 +17,7 @@
   --silver: #D9D9D9;
   --ivory: #fffbf7;
   --charcoal: #333333;
+  --solitude: #ecedf0;
 }
 
 /* ─────────────────────────────────────────────
@@ -37,6 +38,7 @@
   --color-silver: var(--silver);
   --color-primary-dark: var(--primary-dark);
   --color-charcoal: var(--charcoal);
+  --color-solitude: var(--solitude);
 
   /* Fonts */
   --font-arizona-sans-bold: var(--font-arizona-sans-bold);

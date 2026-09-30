@@ -2,7 +2,7 @@
 
 import { memo, useState } from "react";
 import Image from "next/image";
-import { format } from "date-fns";
+import { addDays, format } from "date-fns";
 
 import CenterSection from "@/src/components/common/CenterSection";
 import DatePicker from "@/src/components/ui/DatePicker";
@@ -90,7 +90,7 @@ export default function HeroBanner() {
                 value={checkOut}
                 onChange={setCheckOut}
                 placeholder="Check-Out"
-                disabled={{ before: checkIn ?? new Date() }}
+                disabled={{ before: checkIn ? addDays(checkIn, 1) : new Date() }}
                 defaultMonth={checkIn}
                 variant="light"
               />

@@ -67,12 +67,14 @@ export default function DatePicker({
 
       {/* Calendar popup — opens above the trigger */}
       {open && (
-        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-62 sm:w-72 rounded-none bg-white shadow-2xl border border-primary">
+        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-full sm:w-72 rounded-none bg-white shadow-2xl border border-primary">
           <DatePickerCalendar
             value={value}
             onSelect={(date) => {
               onChange?.(date);
-              setOpen(false);
+              // Let the selected (blue) style paint before the popup closes,
+              // instead of closing in the same tick as the click.
+              setTimeout(() => setOpen(false), 200);
             }}
             disabled={disabled}
             defaultMonth={defaultMonth}

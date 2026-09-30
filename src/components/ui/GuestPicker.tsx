@@ -4,149 +4,190 @@ import { useState, useRef, useEffect } from "react";
 import { Users, Minus, Plus } from "lucide-react";
 
 interface GuestPickerProps {
-    variant?: "light" | "dark";
-    onChange?: (adults: number, children: number) => void;
+  variant?: "light" | "dark";
+  onChange?: (adults: number, children: number) => void;
 }
 
-export default function GuestPicker({ variant = "light", onChange }: GuestPickerProps) {
-    const [open, setOpen] = useState(false);
-    const [adults, setAdults] = useState(1);
-    const [children, setChildren] = useState(0);
-    const ref = useRef<HTMLDivElement>(null);
+const MAX_ADULTS = 2;
+const MAX_CHILDREN = 3;
 
-    useEffect(() => {
-        function onOutsideClick(e: MouseEvent) {
-            if (ref.current && !ref.current.contains(e.target as Node)) {
-                setOpen(false);
-            }
-        }
-        function onKeyDown(e: KeyboardEvent) {
-            if (e.key === "Escape") setOpen(false);
-        }
-        document.addEventListener("mousedown", onOutsideClick);
-        document.addEventListener("keydown", onKeyDown);
-        return () => {
-            document.removeEventListener("mousedown", onOutsideClick);
-            document.removeEventListener("keydown", onKeyDown);
-        };
-    }, []);
+function Stepper({
+  value,
+  onDecrement,
+  onIncrement,
+  canDecrement,
+  canIncrement,
+  decrementLabel,
+  incrementLabel,
+}: {
+  value: number;
+  onDecrement: () => void;
+  onIncrement: () => void;
+  canDecrement: boolean;
+  canIncrement: boolean;
+  decrementLabel: string;
+  incrementLabel: string;
+}) {
+  return (
+    <div className="flex items-center justify-between w-24 border border-primary">
+      <button
+        type="button"
+        onClick={onDecrement}
+        disabled={!canDecrement}
+        aria-label={decrementLabel}
+        className="flex h-8 w-8 shrink-0 items-center justify-center text-primary hover:bg-solitude transition-colors disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-transparent cursor-pointer"
+      >
+        <Minus size={12} aria-hidden="true" />
+      </button>
+      <span
+        aria-live="polite"
+        aria-atomic="true"
+        className="flex-1 text-center font-medium text-primary-dark"
+      >
+        {value}
+      </span>
+      <button
+        type="button"
+        onClick={onIncrement}
+        disabled={!canIncrement}
+        aria-label={incrementLabel}
+        className="flex h-8 w-8 shrink-0 items-center justify-center text-primary hover:bg-solitude transition-colors disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-transparent cursor-pointer"
+      >
+        <Plus size={12} aria-hidden="true" />
+      </button>
+    </div>
+  );
+}
 
-    const updateAdults = (val: number) => {
-        const next = Math.min(10, Math.max(1, val));
-        setAdults(next);
-        onChange?.(next, children);
+export default function GuestPicker({
+  variant = "light",
+  onChange,
+}: GuestPickerProps) {
+  const [open, setOpen] = useState(false);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function onOutsideClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onOutsideClick);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onOutsideClick);
+      document.removeEventListener("keydown", onKeyDown);
     };
+  }, []);
 
-    const updateChildren = (val: number) => {
-        const next = Math.min(10, Math.max(0, val));
-        setChildren(next);
-        onChange?.(adults, next);
-    };
+  const updateAdults = (val: number) => {
+    const next = Math.min(MAX_ADULTS, Math.max(1, val));
+    setAdults(next);
+    onChange?.(next, children);
+  };
 
-    const total = adults + children;
-    const label = total === 1 ? "1 Guest" : `${total} Guests`;
+  const updateChildren = (val: number) => {
+    const next = Math.min(MAX_CHILDREN, Math.max(0, val));
+    setChildren(next);
+    onChange?.(adults, next);
+  };
 
-    const triggerClass =
-        variant === "light"
-            ? "border border-white/40 text-white "
-            : "border border-silver text-foreground";
+  const total = adults + children;
+  const label = total === 1 ? "1 Guest" : `${total} Guests`;
 
-    return (
-        <div ref={ref} className="relative flex-1 min-w-45">
-            {/* Trigger — matches DatePicker trigger exactly */}
-            <button
-                type="button"
-                onClick={() => setOpen((o) => !o)}
-                aria-expanded={open}
-                aria-haspopup="dialog"
-                aria-label={label}
-                className={`flex py-2 tracking-widest w-full items-center px-4 type-overline  cursor-pointer ${triggerClass}`}
-            >
-                <Users size={16} className="mr-2 shrink-0 opacity-70" />
-                <span className="">{label}</span>
-            </button>
+  const triggerClass =
+    variant === "light"
+      ? "border border-white/40 text-white "
+      : "border border-silver text-foreground";
 
-            {/* Dropdown — matches DatePicker popup style */}
-            {open && (
-                <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-64 rounded-none bg-primary shadow-2xl border border-silver/60 type-overline p-4">
+  return (
+    <div ref={ref} className="relative flex-1 min-w-45">
+      {/* Trigger — matches DatePicker trigger exactly */}
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        aria-label={label}
+        className={`flex py-2 tracking-widest w-full items-center px-4 type-overline  cursor-pointer ${triggerClass}`}
+      >
+        <Users size={16} className="mr-2 shrink-0 opacity-70" />
+        <span className="">{label}</span>
+      </button>
 
-                    {/* Month-caption style header */}
-                    <p className="flex items-center justify-center h-8 mb-3 font-bold text-accent  uppercase tracking-widest">
-                        Guests
-                    </p>
+      {/* Dropdown — matches DatePicker popup style */}
+      {open && (
+        <div className="absolute bottom-[calc(100%+8px)] left-0 z-50 w-72 rounded-none bg-white border-primary shadow-2xl border  type-body-sm p-4">
+          <p className="pb-3 mb-3 font-medium text-center text-primary-dark uppercase tracking-widest border-b border-silver">
+            Guests
+          </p>
 
-                    {/* Adults row */}
-                    <div className="flex items-center justify-between py-3 border-b border-white/10">
-                        <div>
-                            <p className=" font-semibold text-white">Adults</p>
-                            <p className=" text-white/50">Age 13+</p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <button
-                                type="button"
-                                onClick={() => updateAdults(adults - 1)}
-                                disabled={adults <= 1}
-                                aria-label="Remove adult"
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
-                            >
-                                <Minus size={12} aria-hidden="true" />
-                            </button>
-                            <span aria-live="polite" aria-atomic="true" className="w-4 text-center  font-semibold text-white">
-                                {adults}
-                            </span>
-                            <button
-                                type="button"
-                                onClick={() => updateAdults(adults + 1)}
-                                disabled={adults >= 10}
-                                aria-label="Add adult"
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
-                            >
-                                <Plus size={12} aria-hidden="true" />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Children row */}
-                    <div className="flex items-center justify-between py-3 border-b border-white/10">
-                        <div>
-                            <p className=" font-semibold text-white">Children</p>
-                            <p className=" text-white/50">Age 0–12</p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <button
-                                type="button"
-                                onClick={() => updateChildren(children - 1)}
-                                disabled={children <= 0}
-                                aria-label="Remove child"
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
-                            >
-                                <Minus size={12} aria-hidden="true" />
-                            </button>
-                            <span aria-live="polite" aria-atomic="true" className="w-4 text-center font-semibold text-white">
-                                {children}
-                            </span>
-                            <button
-                                type="button"
-                                onClick={() => updateChildren(children + 1)}
-                                disabled={children >= 10}
-                                aria-label="Add child"
-                                className="flex h-7 w-7 items-center justify-center rounded text-white border border-white/30 hover:bg-soft-accent hover:text-primary-dark transition-colors disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
-                            >
-                                <Plus size={12} aria-hidden="true" />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Done */}
-                    <button
-                        type="button"
-                        onClick={() => setOpen(false)}
-                        className="mt-3 w-full h-9 bg-accent  font-semibold uppercase tracking-widest text-white hover:opacity-90 transition cursor-pointer"
-                    >
-                        Done
-                    </button>
-                </div>
+          {/* Adults row */}
+          <div className="py-2 ">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium tracking-widest text-primary-dark uppercase">
+                  Adults
+                </p>
+              </div>
+              <Stepper
+                value={adults}
+                onDecrement={() => updateAdults(adults - 1)}
+                onIncrement={() => updateAdults(adults + 1)}
+                canDecrement={adults > 1}
+                canIncrement={adults < MAX_ADULTS}
+                decrementLabel="Remove adult"
+                incrementLabel="Add adult"
+              />
+            </div>
+            {adults >= MAX_ADULTS && (
+              <p className="mt-1 text-[10px]  text-red-500">
+                Max {MAX_ADULTS} adults for 1 room.
+              </p>
             )}
+          </div>
+
+          {/* Children row */}
+          <div className="py-2 ">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium  text-primary-dark uppercase">
+                  Children
+                </p>
+                <p className="text-gray text-[10px]">0-17 Years</p>
+              </div>
+              <Stepper
+                value={children}
+                onDecrement={() => updateChildren(children - 1)}
+                onIncrement={() => updateChildren(children + 1)}
+                canDecrement={children > 0}
+                canIncrement={children < MAX_CHILDREN}
+                decrementLabel="Remove child"
+                incrementLabel="Add child"
+              />
+            </div>
+            {children >= MAX_CHILDREN && (
+              <p className="mt-1 text-[10px]  text-red-500">
+                Max {MAX_CHILDREN} children for 1 room.
+              </p>
+            )}
+          </div>
+
+          {/* Done */}
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="mt-4 w-full h-9 bg-primary  font-medium uppercase tracking-widest text-white hover:opacity-90 transition cursor-pointer"
+          >
+            Done
+          </button>
         </div>
-    );
+      )}
+    </div>
+  );
 }
