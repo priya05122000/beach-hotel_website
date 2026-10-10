@@ -18,7 +18,7 @@ const SignatureHeadline = () => {
           animate-glass
         "
                     >
-                        Kanniyakumari&apos;s most extraordinary{" "}
+                        Kanyakumari&apos;s most extraordinary{" "}
                         <span className="text-gray opacity-80">
                             luxury address
                         </span>{" "}

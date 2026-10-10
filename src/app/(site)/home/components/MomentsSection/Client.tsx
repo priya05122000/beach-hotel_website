@@ -82,7 +82,7 @@ function UploadedVideo({
         }}
         src={item.videoUrl}
         poster={item.thumbnailUrl || "/placeholder-video.jpg"}
-        preload="auto"
+        preload="none"
         playsInline
         onPlay={handlePlay}
         onPause={() => setIsPlaying(false)}

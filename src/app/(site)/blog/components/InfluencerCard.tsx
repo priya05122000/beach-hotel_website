@@ -64,7 +64,7 @@ export default function InfluencerCard({ reel, videoRefs, setVideoRef, index }: 
           }}
           src={videoUrl}
           poster={thumbnailUrl}
-          preload="auto"
+          preload="none"
           playsInline
           onPlay={handlePlay}
           onPause={() => setIsPlaying(false)}

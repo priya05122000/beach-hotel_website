@@ -19,7 +19,7 @@ export const arizonaSansRegular = localFont({
 });
 
 export const arizonaLight = localFont({
-    src: "../fonts/ABCArizona-FlareLight.otf",
+    src: "../fonts/ABCArizona-FlareLight.woff2",
     variable: "--font-arizona-light",
     display: "swap",
 });

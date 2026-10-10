@@ -106,13 +106,13 @@ export default function HeroLocationSection() {
             Set at the southernmost tip of the Indian peninsula, The Beach Hotel is closer than you imagine — and worth every mile.
           </p>
           <p className="type-body">
-            <b className="text-primary-dark font-bold mb-4 tracking-widest font-arizona-flare-regular">By Air</b> - The nearest international gateway is Trivandrum (Thiruvananthapuram) International Airport, approximately [90 km / a 2–2.5 hour scenic drive] away. Thoothukudi International Airport offers an alternative connection from within India.
+            <b className="text-primary-dark font-bold mb-4 tracking-widest font-arizona-flare-regular">By Air</b> - The nearest international gateway is Trivandrum (Thiruvananthapuram) International Airport, approximately 90 km away — a 2–2.5 hour scenic drive. Thoothukudi International Airport offers an alternative connection from within India.
           </p>
           <p className="type-body">
             <b className="text-primary-dark font-bold mb-4  tracking-widest font-arizona-flare-regular">By Rail</b> - Kanyakumari Railway Station, the final stop on India&apos;s longest rail route, lies just 1KM from the hotel and connects to major cities across. Nagercoil Junction offers further connections nearby.
           </p>
           <p className="type-body">
-            <b className="text-primary-dark font-bold mb-4  tracking-widest font-arizona-flare-regular">By Road</b> - Reach us via NH44, the legendary Kashmir-to-Kanyakumari highway that ends where the land meets the sea. The town of Nagercoil is approximately [20 km] away. Chauffeur-driven transfers can be arranged for an easy arrival.
+            <b className="text-primary-dark font-bold mb-4  tracking-widest font-arizona-flare-regular">By Road</b> - Reach us via NH44, the legendary Kashmir-to-Kanyakumari highway that ends where the land meets the sea. The town of Nagercoil is approximately 20 km away. Chauffeur-driven transfers can be arranged for an easy arrival.
           </p>
         </div>
 

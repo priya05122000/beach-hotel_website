@@ -273,7 +273,10 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
                         opacity: i === 0 ? 1 : 0,
                       }}
                     >
-                      <h3 className="type-h1 tracking-wider leading-tight text-white">
+                      <h3 className="type-h1 tracking-wider hidden sm:block leading-tight text-white">
+                        {item.title}
+                      </h3>
+                      <h3 className="type-h2 tracking-wider block sm:hidden leading-tight text-white">
                         {item.title}
                       </h3>
 

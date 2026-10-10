@@ -105,7 +105,7 @@ export default function FloatingActionButtons() {
         className={dockItemClass}
       >
         <span className={dockIconClass}>
-          <Image src="/common/booknow.png" alt="" width={24} height={24} className="object-contain" />
+          <Image src="/common/Booking.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Book Now</span>
       </Link>

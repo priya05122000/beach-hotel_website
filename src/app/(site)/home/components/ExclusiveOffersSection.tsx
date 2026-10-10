@@ -224,8 +224,8 @@ const OfferCard = memo(function OfferCard({
 
         {/* 2nd: Weekday badge + Number side by side */}
         <div className="flex items-center  justify-between gap-4">
-          <div className={`inline-flex h-8 text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent ${isActive ? "bg-transparent" : ""}`}>
-            <p className="type-body-sm flex  items-center px-2 transition-all duration-700 uppercase text-white">
+          <div className={`inline-flex  text-white bg-primary/20 transition-colors duration-700 lg:group-hover:bg-transparent ${isActive ? "bg-transparent" : ""}`}>
+            <p className="type-caption flex  items-center px-2 py-2 transition-all duration-700 uppercase text-white">
               Weekday 50% off
             </p>
           </div>
@@ -278,11 +278,11 @@ export default function ExclusiveOffersSection({
       </Eyebrow>
 
       <p className={`max-w-lg  ml-auto my-10 type-body sm:text-right text-charcoal`}>
-        Exceptional stays begin with exceptional value. Browse our exclusive offers and enjoy special privileges, seasonal savings, and thoughtfully selected packages designed to make your time at The Beach Hotel, Kanniyakumari even more memorable.
+        Exceptional stays begin with exceptional value. Browse our exclusive offers and enjoy special privileges, seasonal savings, and thoughtfully selected packages designed to make your time at The Beach Hotel, Kanyakumari even more memorable.
 
       </p>
 
-      <div className="grid gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 lg:gap-6 type-body xl:gap-10 md:grid-cols-2 lg:grid-cols-3">
         {offerDatas.map((offer, index) => (
           <OfferCard
             key={offer.id}

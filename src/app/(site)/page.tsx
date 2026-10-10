@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Book your stay at The Beach Hotel Kanyakumari. Enjoy luxury sea view rooms, infinity pool, beachfront location and the best direct rates today.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Best Beach Hotel in Kanniyakumari for Sea View Stay",
+    title: "Best Beach Hotel in Kanyakumari for Sea View Stay",
     description:
       "Experience unmatched luxury at The Beach Hotel, Kanyakumari — where three oceans meet.",
     url: "/",

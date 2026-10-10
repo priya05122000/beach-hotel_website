@@ -10,7 +10,10 @@ import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import FormField from "@/src/components/ui/FormField";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
-import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import {
+  RECEPTION_PHONE_NUMBER,
+  RECEPTION_PHONE_NUMBER_DISPLAY,
+} from "@/src/lib/site-links";
 import toast from "react-hot-toast";
 
 const initialForm = {
@@ -136,10 +139,10 @@ export default function ContactFormSection() {
                   General Enquiries :
                 </span>{" "}
                 <Link
-                  href="mailto:info@thebeachhotel.com"
+                  href="mailto:support@thebeachhotel.in"
                   className="type-body hover:underline"
                 >
-                  info@thebeachhotel.com
+                  support@thebeachhotel.in
                 </Link>
               </div>
 
@@ -148,10 +151,10 @@ export default function ContactFormSection() {
                   Reception :
                 </span>{" "}
                 <Link
-                  href={`tel:${PHONE_NUMBER}`}
+                  href={`tel:${RECEPTION_PHONE_NUMBER}`}
                   className="type-body hover:underline"
                 >
-                  {PHONE_NUMBER_DISPLAY}
+                  {RECEPTION_PHONE_NUMBER_DISPLAY}
                 </Link>
               </div>
             </div>

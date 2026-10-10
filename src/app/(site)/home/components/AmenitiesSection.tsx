@@ -34,7 +34,7 @@ function IconCard({
         hover:bg-right"
       >
         <div className="bg-ivory transition-all duration-300 w-full h-full rounded-full flex items-center justify-center">
-          <div className="relative w-full h-auto p-4 sm:p-6">
+          <div className="relative w-full h-auto p-1.5 sm:p-4 lg:p-6">
             <Image
               src={iconUrl}
               alt={title}
@@ -64,7 +64,7 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
       </SubHeading>
 
       <p className="text-charcoal">
-        Experience a collection of amenities thoughtfully designed to complement every stay at The Beach Hotel. Our hotel in Kanniyakumari offers facilities designed to provide comfort and convenience for business and leisure travellers alike.
+        Experience a collection of amenities thoughtfully designed to complement every stay at The Beach Hotel. Our hotel in Kanyakumari offers facilities designed to provide comfort and convenience for business and leisure travellers alike.
       </p>
 
       <hr className="mt-6 w-[calc(100%-30px)] hidden sm:block border border-gray" />
