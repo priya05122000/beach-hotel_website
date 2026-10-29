@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { getNearbyDestinationData } from "@/src/service/nearbyDestination";
+import { getActiveNearbyDestinations } from "@/src/service/nearbyDestination";
 import NearbyHeroBanner from "./components/NearbyHeroBanner";
 import NearbyDestinationsSection from "./components/NearbyDestinationsSection";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
@@ -19,13 +19,12 @@ export const metadata: Metadata = {
 };
 
 export default async function DestinationsPage() {
-  const { data: destinations } = await getNearbyDestinationData();
-  const activeDestinations = destinations.filter((d) => d.is_active !== false);
+  const activeDestinations = await getActiveNearbyDestinations();
 
   return (
     <div>
       <Suspense fallback={null}>
-        <SectionScroller dataAttr="data-destination-id" />
+        <SectionScroller dataAttr="data-destination-order" />
       </Suspense>
       <NearbyHeroBanner destinations={activeDestinations} />
       <NearbyDestinationsSection destinations={activeDestinations} />

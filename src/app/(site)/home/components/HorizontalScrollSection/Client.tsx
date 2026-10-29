@@ -106,7 +106,7 @@ export default function HorizontalScrollSectionClient({
               className="relative flex flex-col w-60 shrink-0 sm:w-80"
             >
               <Link
-                href={`/destinations?to=${item.id}`}
+                href={`/destinations?to=${i + 1}`}
                 className={`relative block w-full ${imgHeightClass}`}
               >
                 <Image
@@ -140,7 +140,7 @@ export default function HorizontalScrollSectionClient({
                       {item.short_description}
                     </p>
                     <Link
-                      href={`/destinations?to=${item.id}`}
+                      href={`/destinations?to=${i + 1}`}
                       aria-label={`View ${item.destination_name}`}
                       className="absolute bottom-0 right-4 flex items-center bg-linear-to-l from-white via-white to-transparent pl-4 text-gray"
                     >

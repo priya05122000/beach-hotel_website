@@ -25,9 +25,12 @@ interface Props {
 
 function DestinationItem({
   destination,
+  order,
   shouldHaveIvory,
 }: {
   destination: NearbyDestination;
+  /** 1-based position, matched against `?to=` from the home page cards. */
+  order: number;
   shouldHaveIvory: boolean;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -115,7 +118,7 @@ function DestinationItem({
   return (
     <Section
       ref={sectionRef}
-      data-destination-id={destination.id}
+      data-destination-order={order}
       className={`relative py-16 lg:py-20 ${shouldHaveIvory ? "bg-ivory" : ""}`}
     >
       <div className="grid grid-cols-1 lg:grid-cols-[0.5fr_1fr_0.8fr]  gap-6 lg:gap-10">
@@ -262,6 +265,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
             <DestinationItem
               key={destination.id}
               destination={destination}
+              order={i + 1}
               shouldHaveIvory={shouldHaveIvory}
             />
           );

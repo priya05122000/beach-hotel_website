@@ -7,7 +7,7 @@ interface SectionProps {
     style?: React.CSSProperties;
     /** "wide" (default) matches Section's original max-widths; "narrow" matches CenterSection's. */
     width?: "wide" | "narrow";
-    /** Scroll targets (e.g. `data-destination-id`) read by SectionScroller. */
+    /** Scroll targets (e.g. `data-destination-order`) read by SectionScroller. */
     [key: `data-${string}`]: string | number | undefined;
 }
 
