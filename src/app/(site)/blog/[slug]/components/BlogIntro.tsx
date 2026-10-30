@@ -39,9 +39,9 @@ export default function BlogIntro({ blog }: Props) {
 
   return (
     <Section className="pt-16 lg:pt-20">
-      <div className="border-b border-silver pb-10 sm:flex sm:items-end sm:gap-x-6">
-        <div className="sm:pb-1">
-          <p className="text-gray type-overline font-arizona-sans-regular tracking-[0.25em] mb-3 sm:mb-0 whitespace-nowrap">
+      <div className="border-b border-silver pb-10">
+        <div>
+          <p className="text-gray type-overline font-arizona-sans-regular tracking-[0.25em] mb-3">
             {blog.tag_1 ?? "Article"}
           </p>
         </div>

@@ -43,7 +43,7 @@ export default function BlogStatement({ blog }: Props) {
           <div className="w-full md:w-[70%] lg:w-[62%] mt-auto">
             <h1
               ref={titleRef}
-              className="type-display-xl leading-none tracking-tight"
+              className="type-display-xl leading-tight tracking-tight wrap-break-word"
             >
               {blog.title}
             </h1>
