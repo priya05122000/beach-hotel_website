@@ -3,7 +3,7 @@ import Eyebrow from "@/src/components/common/Eyebrow";
 import SubHeading from "@/src/components/common/SubHeading";
 import Image from "next/image";
 import Link from "next/link";
-import { getFacilitiesData } from "@/src/service/facilities";
+import { getActiveFacilities } from "@/src/service/facilities";
 import { Button } from "@/src/components/common/button";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
@@ -73,19 +73,18 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
 }
 
 export default async function AmenitiesSection() {
-  const { data: facilities } = await getFacilitiesData();
+  const active = await getActiveFacilities();
 
-  const active = facilities
-    .filter((f) => f.is_active !== false)
-    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
-
-  const toCard = (f: (typeof active)[number]) => ({
+  // `?to=` is the 1-based position in the full list, so this is built before
+  // the rows below slice it up.
+  const cards = active.map((f, i) => ({
+    id: f.id,
     title: f.facility_name,
     iconUrl: f.icon_url
       ? `${API_URL}/uploads/${f.icon_url}`
       : "/placeholder.jpg",
-    href: `/facilities?to=${f.id}`,
-  });
+    href: `/facilities?to=${i + 1}`,
+  }));
 
   return (
     <CenterSection className="bg-ivory py-16 lg:py-20 relative overflow-hidden">
@@ -99,18 +98,14 @@ export default async function AmenitiesSection() {
           <Editorial align="left" />
 
           <div className="grid grid-cols-4 gap-5">
-            {active.slice(0, 8).map((item) => {
-              const { title, iconUrl, href } = toCard(item);
-
-              return (
-                <IconCard
-                  key={item.id}
-                  iconUrl={iconUrl}
-                  title={title}
-                  href={href}
-                />
-              );
-            })}
+            {cards.slice(0, 8).map(({ id, title, iconUrl, href }) => (
+              <IconCard
+                key={id}
+                iconUrl={iconUrl}
+                title={title}
+                href={href}
+              />
+            ))}
           </div>
 
           <div className="flex justify-end">
@@ -127,36 +122,28 @@ export default async function AmenitiesSection() {
             <Editorial align="left" />
 
             <div className="grid grid-cols-5 w-3/4 ml-auto lg:w-full gap-5">
-              {active.slice(0, 5).map((item) => {
-                const { title, iconUrl, href } = toCard(item);
-
-                return (
-                  <IconCard
-                    key={item.id}
-                    iconUrl={iconUrl}
-                    title={title}
-                    href={href}
-                  />
-                );
-              })}
+              {cards.slice(0, 5).map(({ id, title, iconUrl, href }) => (
+                <IconCard
+                  key={id}
+                  iconUrl={iconUrl}
+                  title={title}
+                  href={href}
+                />
+              ))}
             </div>
           </div>
 
           {/* Row 2 */}
           <div className="grid grid-cols-1 lg:grid-cols-[5fr_3fr] gap-5 items-end">
             <div className="grid grid-cols-5 w-3/4 lg:w-full gap-5">
-              {active.slice(5, 10).map((item) => {
-                const { title, iconUrl, href } = toCard(item);
-
-                return (
-                  <IconCard
-                    key={item.id}
-                    iconUrl={iconUrl}
-                    title={title}
-                    href={href}
-                  />
-                );
-              })}
+              {cards.slice(5, 10).map(({ id, title, iconUrl, href }) => (
+                <IconCard
+                  key={id}
+                  iconUrl={iconUrl}
+                  title={title}
+                  href={href}
+                />
+              ))}
             </div>
 
             <div className="hidden lg:flex justify-end ">

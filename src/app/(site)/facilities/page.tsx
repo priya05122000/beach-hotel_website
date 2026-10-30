@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import FacilitiesSplitHero from "./components/FacilitiesSplitHero";
 import FacilitiesSection from "./components/FacilitiesSection";
 import FacilityAmenitiesSection from "./components/FacilityAmenitiesSection";
-import { getFacilitiesData } from "@/src/service/facilities";
+import { getActiveFacilities } from "@/src/service/facilities";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
 };
 
 export default async function FacilitiesPage() {
-  const { data: facilities } = await getFacilitiesData();
+  const facilities = await getActiveFacilities();
 
   return (
     <>
       <div className="bg-cream">
         <Suspense fallback={null}>
-          <SectionScroller dataAttr="data-facility-id" />
+          <SectionScroller dataAttr="data-facility-order" />
         </Suspense>
         <FacilitiesSplitHero />
 

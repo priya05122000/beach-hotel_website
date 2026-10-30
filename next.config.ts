@@ -89,6 +89,25 @@ const nextConfig: NextConfig = {
         destination: "https://thebeachhotel.in/:path*",
         permanent: true,
       },
+
+      // A stray "&" in a Nearby Destination's "Destination Link" CMS field
+      // resolves as a relative href on /destinations and / (its last path
+      // segment is replaced by "&"), producing this broken /& URL — Google
+      // found it via both pages. Redirect it home until the CMS data is
+      // cleaned up.
+      {
+        source: "/&",
+        destination: "/",
+        permanent: true,
+      },
+
+      // Blog slug renamed.
+      {
+        source:
+          "/blog/a-complete-kanyakumari-travel-guide-for-first-time-visitors",
+        destination: "/blog/kanyakumari-travel-guide-for-first-time-visitors",
+        permanent: true,
+      },
     ];
   },
 
@@ -161,6 +180,23 @@ const nextConfig: NextConfig = {
         // noindex wins for PDF paths (Next.js applies same-key headers from
         // later-matching rules last).
         source: "/images/pdf/:path*",
+
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
+          },
+        ],
+      },
+
+      {
+        // Same override pattern as /images/pdf above: next/font preloads
+        // these on every page, so Google crawls them and files them under
+        // "Crawled - currently not indexed". Font files are never pages —
+        // mark them noindex instead of inheriting the global "index, follow".
+        // Scoped to font extensions so static image imports (also emitted
+        // to /_next/static/media/) stay indexable.
+        source: "/_next/static/media/:file*(woff2|woff|otf|ttf)",
 
         headers: [
           {

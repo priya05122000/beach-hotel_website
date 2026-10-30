@@ -8,3 +8,12 @@ export function getFacilitiesData(): Promise<ApiListResponse<Facility>> {
     tags: [CACHE_TAGS.facilities],
   });
 }
+
+// Home page cards link to `/facilities?to=<position>`, so every page must
+// build its list through this one function to agree on what each position is.
+export async function getActiveFacilities(): Promise<Facility[]> {
+  const { data } = await getFacilitiesData();
+  return data
+    .filter((f) => f.is_active !== false)
+    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
+}

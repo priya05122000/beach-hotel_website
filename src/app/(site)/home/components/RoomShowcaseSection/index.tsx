@@ -1,4 +1,4 @@
-import { getFacilitiesData } from "@/src/service/facilities";
+import { getActiveFacilities } from "@/src/service/facilities";
 import RoomShowcaseSectionClient, { type ShowcaseItem } from "./Client";
 import type { Facility } from "@/src/types";
 
@@ -24,18 +24,14 @@ function getPrimaryImage(f: Facility): string {
 }
 
 export default async function RoomShowcaseSection() {
-  const { data: facilities } = await getFacilitiesData();
-
-  const items: ShowcaseItem[] = facilities
-    .filter((f) => f.is_active !== false)
-    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+  const items: ShowcaseItem[] = (await getActiveFacilities())
     .slice(0, 4)
-    .map((f) => ({
+    .map((f, i) => ({
       id: String(f.id),
       title: f.facility_name,
       description: f.short_description ?? f.description ?? "",
       image: getPrimaryImage(f),
-      href: `/facilities?to=${f.id}`,
+      href: `/facilities?to=${i + 1}`,
     }));
 
   return <RoomShowcaseSectionClient items={items} />;

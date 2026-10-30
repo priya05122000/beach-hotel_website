@@ -108,6 +108,10 @@ export default function FacilitiesSection({ facilities }: Props) {
         });
     });
 
+    // 1-based position in the full display_order list, matched against `?to=`
+    // from the home page cards. Unlike orderMap, this doesn't restart per group.
+    const positionMap = new Map(facilities.map((f, i) => [f.id, i + 1]));
+
     // A running counter for desktopCardsRef slots, shared across every
     // group's desktop grid so parallax applies to every card — independent
     // of each group's own (restarting) mtClasses/alignClasses stagger index.
@@ -135,7 +139,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                             {/* ── Mobile (<768px): single column, image → content, no animation ── */}
                             <div className="md:hidden w-full space-y-10">
                                 {group.items.map((facility) => (
-                                    <div key={facility.id} data-facility-id={facility.id} className="flex flex-col gap-4">
+                                    <div key={facility.id} data-facility-order={positionMap.get(facility.id)} className="flex flex-col gap-4">
                                         <LazySection
                                             className="relative overflow-hidden h-60 w-full"
                                             placeholder={<div className="relative overflow-hidden h-60 w-full bg-silver/20" />}
@@ -165,7 +169,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                     const isOdd = i % 2 === 1;
 
                                     const imageCell = (
-                                        <div data-facility-id={facility.id} className="relative overflow-hidden h-80 w-full">
+                                        <div data-facility-order={positionMap.get(facility.id)} className="relative overflow-hidden h-80 w-full">
                                             <LazySection
                                                 className="h-full w-full"
                                                 placeholder={<div className="h-full w-full bg-silver/20" />}
@@ -211,7 +215,7 @@ export default function FacilitiesSection({ facilities }: Props) {
                                         <div
                                             key={index}
                                             ref={(el) => { desktopCardsRef.current[slot] = el; }}
-                                            data-facility-id={item.type === "image" ? item.facility.id : undefined}
+                                            data-facility-order={item.type === "image" ? positionMap.get(item.facility.id) : undefined}
                                             className={`${item.type === "image" ? "col-span-3" : "col-span-6"} ${mtClasses[index % 3]} ${alignClasses[index % 3]} flex`}
                                         >
                                             {item.type === "image" ? (
