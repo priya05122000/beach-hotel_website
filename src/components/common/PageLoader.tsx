@@ -1,10 +1,17 @@
+import Image from "next/image";
+
 export default function PageLoader() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-cream">
-            <div
-                role="status"
-                aria-label="Loading"
-                className="h-12 w-12 animate-spin rounded-full border-4 border-primary-dark/20 border-t-primary-dark"
+        <div role="status" aria-label="Loading" className="min-h-screen flex items-center justify-center bg-cream">
+            {/* Served as-is so the GIF keeps its animation. */}
+            <Image
+                src="/loader.gif"
+                alt=""
+                width={426}
+                height={426}
+                unoptimized
+                priority
+                className="h-24 w-24 sm:h-32 sm:w-32"
             />
         </div>
     );
