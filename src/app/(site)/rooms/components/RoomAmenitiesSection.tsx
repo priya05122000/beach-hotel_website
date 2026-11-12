@@ -150,7 +150,7 @@ export default function RoomAmenitiesSection() {
         {/* Image + blur panel with amenities */}
         <div className="relative w-full overflow-hidden">
           <Image
-            src="/home/home.webp"
+            src="/home/beachfront-hotel-pool-ocean-view.webp"
             alt="Room Facilities"
             fill
             className="object-cover"

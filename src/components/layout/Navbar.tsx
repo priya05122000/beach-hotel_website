@@ -589,7 +589,7 @@ export default function Header() {
               style={{ clipPath: "inset(100% 0 0 0)", transform: "scale(1.08)", opacity: 0 }}
             >
               <Image
-                src="/contact-us/contact.jpg"
+                src="/contact-us/hotel-entrance-outdoor-cafe-seating.jpg"
                 alt="The Beach Hotel"
                 fill
                 className="object-cover"

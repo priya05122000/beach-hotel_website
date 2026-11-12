@@ -14,7 +14,7 @@ interface TestimonialProps {
 }
 
 const getImageSrc = (img?: string | null) => {
-    const fallback = "/home/default.jpg";
+    const fallback = "/home/default-guest-avatar.jpg";
     if (!img) return fallback;
     const s = String(img).trim();
     if (!s) return fallback;

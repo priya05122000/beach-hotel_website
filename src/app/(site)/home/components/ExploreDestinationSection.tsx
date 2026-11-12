@@ -148,7 +148,7 @@ const ExploreDestinationSection = () => {
                 {/* Image */}
                 <div ref={videoContainerRef} className="relative overflow-hidden h-65  sm:h-screen ">
                     {/* <Image
-                        src="/home/kanyakumari-statue.webp"
+                        src="/home/thiruvalluvar-statue-vivekananda-rock-kanyakumari-sunrise.webp"
                         alt="Kanyakumari"
                         fill
                         className="h-full w-full object-cover object-top-right"

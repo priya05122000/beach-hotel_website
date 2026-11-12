@@ -125,7 +125,7 @@ export default function HeroLocationSection() {
               className="absolute inset-[-12%] will-change-transform"
             >
               <Image
-                src="/contact-us/contact.jpg"
+                src="/contact-us/hotel-entrance-outdoor-cafe-seating.jpg"
                 alt="The Beach Hotel exterior"
                 fill
                 sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"

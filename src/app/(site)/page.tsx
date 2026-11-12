@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Experience unmatched luxury at The Beach Hotel, Kanyakumari — where three oceans meet.",
     url: "/",
     type: "website",
-    images: [{ url: "/home/hero-1.webp", width: 1600, height: 900, alt: "The Beach Hotel, Kanyakumari" }],
+    images: [{ url: "/home/hotel-poolside-exterior-dusk.webp", width: 1600, height: 900, alt: "The Beach Hotel, Kanyakumari" }],
   },
 };
 

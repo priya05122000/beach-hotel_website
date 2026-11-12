@@ -235,7 +235,7 @@ function AmenityFeature({ item }: { item: AmenityItem }) {
     <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,320px)_1fr] gap-8 sm:gap-12 items-center">
       <div className="relative w-full aspect-4/3 overflow-hidden">
         <Image
-          src="/facilities/3.webp"
+          src="/facilities/housekeeping-staff-preparing-hotel-room.webp"
           alt={item.title}
           fill
           className="object-cover"
@@ -366,7 +366,7 @@ function CategoryBlock({ category }: { category: AmenityCategory }) {
           </div>
           <div className="relative w-full aspect-4/3 overflow-hidden bg-ivory">
             <Image
-              src="/facilities/2.webp"
+              src="/facilities/guest-check-in-hotel-front-desk.webp"
               alt={category.title}
               fill
               className="object-cover"

@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
     <div>
       <CommonBanner
         title="PRIVACY POLICY"
-        src="/common/banner/facilities.webp"
+        src="/common/banner/sea-view-hotel-suite-sunset.webp"
         alt="Privacy Policy — The Beach Hotel, Kanyakumari"
       />
 

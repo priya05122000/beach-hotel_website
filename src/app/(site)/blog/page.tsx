@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description:
       "Stories, travel tips, and insider insights from The Beach Hotel, Kanyakumari.",
     url: "/blog",
-    images: [{ url: "/blog/blog.webp", width: 1600, height: 900 }],
+    images: [{ url: "/blog/beachfront-hotel-lobby-reception-sea-view.webp", width: 1600, height: 900 }],
   },
 };
 
@@ -36,7 +36,7 @@ export default async function BlogPage() {
     <div>
       <CommonBanner
         title="NOTES FROM THE BEACH HOTEL"
-        src="/blog/blog.webp"
+        src="/blog/beachfront-hotel-lobby-reception-sea-view.webp"
         alt="Blog — Notes from The Beach Hotel, Kanyakumari"
       />
       <BlogInfluencerSection blogs={activeBlogs} reels={activeReels} />

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description:
       "World-class facilities including infinity pool, spa, fine dining, and more at The Beach Hotel, Kanyakumari.",
     url: "/facilities",
-    images: [{ url: "/common/banner/facilities.webp", width: 1600, height: 900 }],
+    images: [{ url: "/common/banner/sea-view-hotel-suite-sunset.webp", width: 1600, height: 900 }],
   },
 };
 

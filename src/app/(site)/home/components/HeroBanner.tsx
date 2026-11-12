@@ -15,7 +15,7 @@ import { BOOKING_URL } from "@/src/lib/site-links";
 const HeroBackgroundImage = memo(function HeroBackgroundImage() {
   return (
     <Image
-      src="/home/home.webp"
+      src="/home/beachfront-hotel-pool-ocean-view.webp"
       alt="Hero Banner"
       fill
       preload

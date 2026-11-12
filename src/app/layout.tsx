@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "The Beach Hotel",
     images: [
       {
-        url: "/home/hero-1.webp",
+        url: "/home/hotel-poolside-exterior-dusk.webp",
         width: 1600,
         height: 900,
         alt: "The Beach Hotel, Kanyakumari — aerial sea view",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@thebeachhotel",
-    images: ["/home/hero-1.webp"],
+    images: ["/home/hotel-poolside-exterior-dusk.webp"],
   },
 };
 

@@ -28,7 +28,7 @@ const FALLBACK_SLIDES: Slide[] = [
     destination_name: "Paradise Nearby",
     short_description:
       "Experience the beauty of pristine beaches and crystal clear waters.",
-    image_url: "/home/hero-1.webp",
+    image_url: "/home/hotel-poolside-exterior-dusk.webp",
     show_distance: true,
   },
   {
@@ -36,7 +36,7 @@ const FALLBACK_SLIDES: Slide[] = [
     destination_name: "Coastal Escapes",
     short_description:
       "Relax in nature's most striking coastal destinations.",
-    image_url: "/home/herobanner.webp",
+    image_url: "/home/tropical-beach-view-from-hotel.webp",
     show_distance: true,
   },
   {
@@ -44,7 +44,7 @@ const FALLBACK_SLIDES: Slide[] = [
     destination_name: "Local Favourites",
     short_description:
       "Secluded spots just moments from your doorstep.",
-    image_url: "/home/hero-1.webp",
+    image_url: "/home/hotel-poolside-exterior-dusk.webp",
     show_distance: true,
   },
 ];
@@ -59,7 +59,7 @@ function getFirstImage(imageUrl: string): string {
 }
 
 function resolveImageSrc(url: string): string {
-  if (!url) return "/home/hero-1.webp";
+  if (!url) return "/home/hotel-poolside-exterior-dusk.webp";
 
   if (url.startsWith("/") || url.startsWith("http")) {
     return url;

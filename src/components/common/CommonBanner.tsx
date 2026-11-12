@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CommonBanner = ({
   title,
-  src = "/home/hero-1.webp",
+  src = "/home/hotel-poolside-exterior-dusk.webp",
   alt,
   className = "h-[50vh]",
 }: {

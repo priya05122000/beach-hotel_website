@@ -22,7 +22,7 @@ export default function TermsAndConditionsPage() {
     <div>
       <CommonBanner
         title="TERMS & CONDITIONS"
-        src="/common/banner/facilities.webp"
+        src="/common/banner/sea-view-hotel-suite-sunset.webp"
         alt="Terms & Conditions — The Beach Hotel, Kanyakumari"
       />
       <CenterSection className="py-16 lg:py-20">
