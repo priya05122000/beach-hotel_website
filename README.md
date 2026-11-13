@@ -1,4 +1,4 @@
-# Beach Hotel Website
+# Beach Bay Website
 
 Modern hotel website built with Next.js, TypeScript and Tailwind CSS.
 

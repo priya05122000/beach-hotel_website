@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachhotel.in";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachbay.in";
 
 // A crawler that matches a named group ignores the `*` group entirely, so the
 // named groups repeat these rather than inheriting them.

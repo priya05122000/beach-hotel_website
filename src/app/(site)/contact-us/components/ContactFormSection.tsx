@@ -136,10 +136,10 @@ export default function ContactFormSection() {
                   General Enquiries :
                 </span>{" "}
                 <Link
-                  href="mailto:support@thebeachhotel.in"
+                  href="mailto:support@thebeachbay.in"
                   className="type-body hover:underline"
                 >
-                  support@thebeachhotel.in
+                  support@thebeachbay.in
                 </Link>
               </div>
 
@@ -160,12 +160,12 @@ export default function ContactFormSection() {
 
             <div className="uppercase">
               <div className="type-body font-arizona-flare-regular">
-                The Beach Bay
+                The Beach Bay Resort &amp; Spa
               </div>
               <div className="type-body font-arizona-flare-regular">
-                Erumanayakkanpatti Beach Road,
+                6/61H, Beach Road,
                 <br />
-                Kanyakumari, Tamil Nadu 629702
+                Kanyakumari - 629702
               </div>
             </div>
           </div>

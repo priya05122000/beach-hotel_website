@@ -3,14 +3,14 @@ import { PHONE_NUMBER } from "@/src/lib/site-links";
 const HOTEL_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Hotel",
-  name: "The Beach Bay",
+  name: "The Beach Bay Resort & Spa",
   description:
     "A luxury hotel in Kanyakumari at the confluence of the Arabian Sea, Bay of Bengal, and Indian Ocean.",
-  url: "https://thebeachhotel.in",
+  url: "https://thebeachbay.in",
   telephone: PHONE_NUMBER,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Erumanayakkanpatti Beach Road",
+    streetAddress: "6/61H, Beach Road",
     addressLocality: "Kanyakumari",
     addressRegion: "Tamil Nadu",
     postalCode: "629702",

@@ -7,7 +7,7 @@ export const TERMS_URL = `${SITE_URL}/terms-and-conditions`;
 export const PRIVACY_URL = `${SITE_URL}/privacy-policy`;
 
 /** Hotel homepage — logo links. */
-export const HOTEL_HOME_URL = "https://thebeachhotel.in/";
+export const HOTEL_HOME_URL = "https://thebeachbay.in/";
 
 /** Main number — wherever only one fits: call buttons, WhatsApp, structured data. */
 export const PHONE_NUMBER = "+919384938420";
@@ -19,7 +19,7 @@ export const PHONE_NUMBERS = [
 ];
 
 /** Guest support email — Footer and invoices. */
-export const SUPPORT_EMAIL = "support@thebeachhotel.in";
+export const SUPPORT_EMAIL = "support@thebeachbay.in";
 
 const WHATSAPP_PREFILLED_MESSAGE =
   "Hi there! Welcome to The Beach Bay, Kanyakumari. \nHow can we help you today?";

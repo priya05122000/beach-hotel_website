@@ -9,7 +9,7 @@ import {
   arizonaLight,
 } from "../lib/font";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachhotel.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thebeachbay.in";
 const GTM_ID = "GTM-NXXNDDNS";
 
 export const metadata: Metadata = {

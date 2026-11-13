@@ -347,8 +347,8 @@ export default function TermsAndConditionsPage() {
           <ul>
             <li>
               Email:{" "}
-              <a href="mailto:support@thebeachhotel.in">
-                support@thebeachhotel.in
+              <a href="mailto:support@thebeachbay.in">
+                support@thebeachbay.in
               </a>
             </li>
             <li>
@@ -361,8 +361,7 @@ export default function TermsAndConditionsPage() {
               ))}
             </li>
             <li>
-              Address: Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu
-              629702
+              Address: 6/61H, Beach Road, Kanyakumari - 629702
             </li>
           </ul>
           <p>

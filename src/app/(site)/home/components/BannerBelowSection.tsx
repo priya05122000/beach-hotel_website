@@ -77,11 +77,11 @@ const BannerBelowSection = () => {
 
                     <div className="">
                         <SubHeading as="p" className="">
-                            The Beach Bay
+                            The Beach Bay Resort &amp; Spa
                         </SubHeading>
 
                         <p className="mt-4  sm:max-w-80 mx-auto text-sm sm:text-base  text-white/40 font-extralight uppercase">
-                            Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
+                            6/61H, Beach Road, Kanyakumari - 629702
                         </p>
 
                         <div className="mt-2 mx-auto flex flex-wrap items-center justify-center gap-x-2 text-sm sm:text-base text-white/40 font-extralight uppercase">

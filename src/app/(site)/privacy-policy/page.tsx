@@ -250,8 +250,8 @@ export default function PrivacyPolicyPage() {
           <ul>
             <li>
               Email:{" "}
-              <a href="mailto:support@thebeachhotel.in">
-                support@thebeachhotel.in
+              <a href="mailto:support@thebeachbay.in">
+                support@thebeachbay.in
               </a>
             </li>
             <li>
@@ -263,7 +263,7 @@ export default function PrivacyPolicyPage() {
                 </span>
               ))}
             </li>
-            <li>Address: Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702</li>
+            <li>Address: 6/61H, Beach Road, Kanyakumari - 629702</li>
           </ul>
           <p>
             Thank you for choosing The Beach Bay. We appreciate the trust

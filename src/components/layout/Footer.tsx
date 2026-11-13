@@ -123,11 +123,11 @@ export default function Footer() {
                   </div>
 
                   <a
-                    href="mailto:support@thebeachhotel.in"
+                    href="mailto:support@thebeachbay.in"
                     className="type-body-sm flex items-center gap-2 hover:text-accent transition-colors"
                   >
                     <Mail size={15} />
-                    support@thebeachhotel.in
+                    support@thebeachbay.in
                   </a>
 
                   <a
@@ -137,8 +137,7 @@ export default function Footer() {
                     className="type-body-sm flex gap-2 hover:text-accent transition-colors"
                   >
                     <MapPin size={15} className="mt-0.5 shrink-0" />
-                    Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu
-                    629702
+                    6/61H, Beach Road, Kanyakumari - 629702
                   </a>
 
                   <ScrollLink

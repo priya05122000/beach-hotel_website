@@ -695,7 +695,7 @@ export default function Header() {
                     ))}
                   </p>
                   <p className="text-primary-dark type-body-lg tracking-[3px] uppercase font-light">
-                    <span className="type-overline text-gray tracking-[3px]">Address:</span> Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
+                    <span className="type-overline text-gray tracking-[3px]">Address:</span> 6/61H, Beach Road, Kanyakumari - 629702
                   </p>
                 </div>
                 <div className="self-end shrink-0">

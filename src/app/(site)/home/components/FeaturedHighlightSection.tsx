@@ -82,7 +82,7 @@ const FeaturedHighlightSection = () => {
           <div ref={innerRef} className="absolute -top-8 -bottom-8 inset-x-0">
             <Image
               src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
-              alt="Luxury beach hotel view"
+              alt="Luxury Beach Bay view"
               fill
               className="object-cover"
               sizes="(max-width: 640px) 100vw, 66vw"

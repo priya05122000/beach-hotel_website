@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const CANONICAL_HOST = "thebeachhotel.in";
-const WWW_HOST = "www.thebeachhotel.in";
+const CANONICAL_HOST = "thebeachbay.in";
+
+// Hosts that must 301 to the canonical host: the www variant, plus the old
+// thebeachhotel.in domain (so existing links/rankings carry over).
+const REDIRECT_HOSTS = new Set([
+  "www.thebeachbay.in",
+  "thebeachhotel.in",
+  "www.thebeachhotel.in",
+]);
 
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host");
 
-  if (host === WWW_HOST || host === CANONICAL_HOST) {
+  if (host === CANONICAL_HOST || (host && REDIRECT_HOSTS.has(host))) {
     const protocol =
       request.headers.get("x-forwarded-proto") ??
       request.nextUrl.protocol.replace(":", "");

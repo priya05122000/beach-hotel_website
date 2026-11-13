@@ -36,6 +36,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "api.thebeachbay.in",
+        pathname: "/**",
+      },
+      {
+        // Old API host — kept so CMS content that still stores absolute
+        // image URLs on the previous domain keeps rendering.
+        protocol: "https",
         hostname: "api.thebeachhotel.in",
         pathname: "/**",
       },
@@ -79,16 +86,19 @@ const nextConfig: NextConfig = {
 
   // Canonicalizes the domain: NEXT_PUBLIC_SITE_URL, metadata.canonical, and
   // sitemap.ts all assume the non-www host, but nothing redirected
-  // www.thebeachhotel.in away — so both hosts served identical content live,
+  // www.thebeachbay.in away — so both hosts served identical content live,
   // which crawlers (Semrush, Google) treat as full-site duplication.
+  // The old thebeachhotel.in domain (www and bare) is folded in as well.
   async redirects() {
     return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.thebeachhotel.in" }],
-        destination: "https://thebeachhotel.in/:path*",
-        permanent: true,
-      },
+      ...["www.thebeachbay.in", "thebeachhotel.in", "www.thebeachhotel.in"].map(
+        (host) => ({
+          source: "/:path*",
+          has: [{ type: "host" as const, value: host }],
+          destination: "https://thebeachbay.in/:path*",
+          permanent: true,
+        })
+      ),
 
       // A stray "&" in a Nearby Destination's "Destination Link" CMS field
       // resolves as a relative href on /destinations and / (its last path
