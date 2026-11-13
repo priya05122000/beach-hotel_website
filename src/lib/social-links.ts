@@ -8,7 +8,7 @@ export interface SocialLink {
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/thebeachhotel_/",
+    href: "https://www.instagram.com/the_beach_bay/",
     icon: { dark: "/common/icons/instagram-icon-white.svg", light: "/common/icons/instagram-icon-blue.svg" },
   },
   {
