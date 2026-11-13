@@ -93,7 +93,7 @@ export default function NearbyLocationsSection() {
 
         <div className="px-4 lg:px-8">
           <Image
-            src="/contact-us/the-beach-hotel-kanyakumari-logo.png"
+            src="/contact-us/the-beach-bay-kanyakumari-logo.png"
             alt="logo"
             width={200}
             height={200}
@@ -120,7 +120,7 @@ export default function NearbyLocationsSection() {
       <div className="lg:hidden flex flex-col items-center gap-8">
         <div className="flex flex-col items-center">
           <Image
-            src="/contact-us/the-beach-hotel-kanyakumari-logo.png"
+            src="/contact-us/the-beach-bay-kanyakumari-logo.png"
             alt="logo"
             width={120}
             height={120}

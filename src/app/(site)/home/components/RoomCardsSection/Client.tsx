@@ -257,7 +257,7 @@ export default function RoomCardsSectionClient({
             Room Types
           </Eyebrow>
           <p className="max-w-xl mx-auto my-10 text-charcoal type-body">
-            Every room at The Beach Hotel is furnished for comfort and quiet
+            Every room at The Beach Bay is furnished for comfort and quiet
             grandeur. Choose your perfect room and wake to the most
             extraordinary edge of India.
           </p>

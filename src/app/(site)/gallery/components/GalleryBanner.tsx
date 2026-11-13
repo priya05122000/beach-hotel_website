@@ -74,7 +74,7 @@ export default function GalleryBanner() {
                         src={IMAGE_SRC}
                         fill
                         priority
-                        alt="The Beach Hotel"
+                        alt="The Beach Bay"
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/35" />
@@ -114,7 +114,7 @@ export default function GalleryBanner() {
                                 ...clipStyle,
                             }}
                         >
-                            HOTEL
+                            BAY
                         </span>
                     </div>
 

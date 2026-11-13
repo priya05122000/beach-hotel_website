@@ -15,23 +15,23 @@ const GTM_ID = "GTM-NXXNDDNS";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "The Beach Hotel — Kanyakumari",
-    template: "%s | The Beach Hotel",
+    default: "The Beach Bay — Kanyakumari",
+    template: "%s | The Beach Bay",
   },
   description:
-    "The Beach Hotel, Kanyakumari — a luxury hotel at the confluence of three oceans, with fine rooms, amenities, dining, and sea views.",
+    "The Beach Bay, Kanyakumari — a luxury hotel at the confluence of three oceans, with fine rooms, amenities, dining, and sea views.",
   keywords: [
-    "Beach Hotel Kanyakumari",
+    "The Beach Bay Kanyakumari",
     "luxury hotel Kanyakumari",
     "hotel three oceans",
     "sea view hotel Kanyakumari",
     "resort Kanyakumari",
   ],
-  authors: [{ name: "The Beach Hotel", url: SITE_URL }],
+  authors: [{ name: "The Beach Bay", url: SITE_URL }],
   // No dedicated `publisher` field in Next's Metadata type — `other` emits
   // arbitrary <meta name="..."> tags for cases like this.
   other: {
-    publisher: "The Beach Hotel",
+    publisher: "The Beach Bay",
   },
   robots: {
     index: true,
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "The Beach Hotel",
+    siteName: "The Beach Bay",
     images: [
       {
         url: "/home/hotel-poolside-exterior-dusk.webp",
         width: 1600,
         height: 900,
-        alt: "The Beach Hotel, Kanyakumari — aerial sea view",
+        alt: "The Beach Bay, Kanyakumari — aerial sea view",
       },
     ],
   },

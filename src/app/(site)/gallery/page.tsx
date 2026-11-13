@@ -7,12 +7,12 @@ import GalleryBanner from "./components/GalleryBanner";
 export const metadata: Metadata = {
   title: "Gallery — Photos & Videos",
   description:
-    "Browse photos and videos of The Beach Hotel, Kanyakumari — our rooms, sea views, dining, and the stunning coastline where three oceans converge.",
+    "Browse photos and videos of The Beach Bay, Kanyakumari — our rooms, sea views, dining, and the stunning coastline where three oceans converge.",
   alternates: { canonical: "/gallery" },
   openGraph: {
-    title: "Gallery — The Beach Hotel",
+    title: "Gallery — The Beach Bay",
     description:
-      "Photos and videos of The Beach Hotel, Kanyakumari — rooms, sea views, dining, and the stunning coastline.",
+      "Photos and videos of The Beach Bay, Kanyakumari — rooms, sea views, dining, and the stunning coastline.",
     url: "/gallery",
     images: [{ url: "/gallery/beachfront-hotel-infinity-pool-sunset.webp", width: 1600, height: 900 }],
   },

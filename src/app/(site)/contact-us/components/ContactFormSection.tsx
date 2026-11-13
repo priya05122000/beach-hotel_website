@@ -10,7 +10,7 @@ import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import FormField from "@/src/components/ui/FormField";
 import { submitAppointmentEnquiry } from "@/src/service/appointment-request";
 import Link from "next/link";
-import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBERS } from "@/src/lib/site-links";
 import toast from "react-hot-toast";
 
 const initialForm = {
@@ -147,18 +147,20 @@ export default function ContactFormSection() {
                 <span className="type-label-sm font-medium uppercase text-gray tracking-wide">
                   Reception :
                 </span>{" "}
-                <Link
-                  href={`tel:${PHONE_NUMBER}`}
-                  className="type-body hover:underline"
-                >
-                  {PHONE_NUMBER_DISPLAY}
-                </Link>
+                {PHONE_NUMBERS.map(({ tel, display }, i) => (
+                  <span key={tel} className="type-body">
+                    {i > 0 && " / "}
+                    <Link href={`tel:${tel}`} className="hover:underline whitespace-nowrap">
+                      {display}
+                    </Link>
+                  </span>
+                ))}
               </div>
             </div>
 
             <div className="uppercase">
               <div className="type-body font-arizona-flare-regular">
-                The Beach Hotel
+                The Beach Bay
               </div>
               <div className="type-body font-arizona-flare-regular">
                 Erumanayakkanpatti Beach Road,

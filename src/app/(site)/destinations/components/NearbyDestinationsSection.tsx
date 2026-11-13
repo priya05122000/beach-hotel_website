@@ -237,7 +237,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
             three oceans meet, revered temples that have drawn pilgrims for two
             thousand years, and a quiet hinterland of misted mountains and
             secret waterfalls that most visitors never get to see. From the
-            comfort of The Beach Hotel, all of it lies within easy reach. Let
+            comfort of The Beach Bay, all of it lies within easy reach. Let
             our concierge plan the route; you need only choose where to start.
           </div>
 
@@ -247,7 +247,7 @@ export default function NearbyDestinationsSection({ destinations }: Props) {
             three oceans meet, revered temples that have drawn pilgrims for two
             thousand years, and a quiet hinterland of misted mountains and
             secret waterfalls that most visitors never get to see. From the
-            comfort of The Beach Hotel, all of it lies within easy reach. Let
+            comfort of The Beach Bay, all of it lies within easy reach. Let
             our concierge plan the route; you need only choose where to start.
           </p>
         </div>

@@ -3,7 +3,7 @@ import { PHONE_NUMBER } from "@/src/lib/site-links";
 const HOTEL_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Hotel",
-  name: "The Beach Hotel",
+  name: "The Beach Bay",
   description:
     "A luxury hotel in Kanyakumari at the confluence of the Arabian Sea, Bay of Bengal, and Indian Ocean.",
   url: "https://thebeachhotel.in",

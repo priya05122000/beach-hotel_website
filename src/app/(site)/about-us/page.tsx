@@ -9,12 +9,12 @@ import { getFaqData } from "@/src/service/faqs";
 export const metadata: Metadata = {
   title: "About Us — Our Story & Team",
   description:
-    "Learn the story behind The Beach Hotel — our heritage, our team, and our commitment to delivering an extraordinary luxury experience in Kanyakumari.",
+    "Learn the story behind The Beach Bay — our heritage, our team, and our commitment to delivering an extraordinary luxury experience in Kanyakumari.",
   alternates: { canonical: "/about-us" },
   openGraph: {
-    title: "About The Beach Hotel",
+    title: "About The Beach Bay",
     description:
-      "Learn the story behind The Beach Hotel — our heritage, our team, and our commitment to luxury in Kanyakumari.",
+      "Learn the story behind The Beach Bay — our heritage, our team, and our commitment to luxury in Kanyakumari.",
     url: "/about-us",
     images: [{ url: "/common/banner/sea-view-hotel-suite-sunset.webp", width: 1600, height: 900 }],
   },

@@ -155,7 +155,7 @@ export default function RoomBanner() {
                 >
                     <Image
                         src={IMAGE_SRC}
-                        alt="The Beach Hotel"
+                        alt="The Beach Bay"
                         fill
                         sizes="100vw"
                         className="object-cover"
@@ -193,7 +193,7 @@ export default function RoomBanner() {
                     <div ref={imageInnerRef} className="absolute inset-0">
                         <Image
                             src={IMAGE_SRC}
-                            alt="The Beach Hotel"
+                            alt="The Beach Bay"
                             fill
                             sizes="100vw"
                             className="object-cover"

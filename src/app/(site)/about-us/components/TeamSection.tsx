@@ -68,7 +68,7 @@ const TeamSection = () => {
             </h3>
 
             <div className="type-body-xl text-charcoal max-w-full sm:max-w-75 lg:max-w-sm xl:max-w-md">
-              The Beach Hotel stands as one of Kanyakumari&apos;s distinguished hospitality destinations, offering remarkable views of the meeting point of three seas. Created for travellers who value comfort, authenticity, and thoughtful service, our hotel brings together contemporary accommodation, fine dining, and memorable experiences in an exceptional coastal setting.
+              The Beach Bay stands as one of Kanyakumari&apos;s distinguished hospitality destinations, offering remarkable views of the meeting point of three seas. Created for travellers who value comfort, authenticity, and thoughtful service, our hotel brings together contemporary accommodation, fine dining, and memorable experiences in an exceptional coastal setting.
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ const TeamSection = () => {
           {/* ── Mobile ─────────── */}
           <div className="sm:hidden flex flex-col">
             <div className="relative aspect-3/2 w-[78%] ml-auto">
-              <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Hotel room at The Beach Hotel" fill className="object-cover" sizes="78vw" />
+              <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Hotel room at The Beach Bay" fill className="object-cover" sizes="78vw" />
             </div>
             <div className="relative aspect-4/5 w-[48%] -mt-20">
               <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel facilities" fill className="object-cover" sizes="48vw" />

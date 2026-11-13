@@ -217,11 +217,11 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                         {/* Left text — spans both rows on desktop */}
                         <div className="flex  flex-col ">
                             <p className="hidden sm:block text-primary-dark type-h2 leading-tight">
-                                Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
+                                Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Bay.
                             </p>
                             <p className="sm:hidden max-w-lg sm:ml-auto mb-10 type-body text-charcoal ">
 
-                                Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Hotel.
+                                Take a closer look at the places and moments that make every stay distinctive. Our gallery reflects beautifully appointed spaces, coastal landscapes and the welcoming atmosphere that defines The Beach Bay.
                             </p>
                         </div>
 

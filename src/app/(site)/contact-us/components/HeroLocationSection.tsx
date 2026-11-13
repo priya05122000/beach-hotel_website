@@ -103,7 +103,7 @@ export default function HeroLocationSection() {
             GETTING HERE
           </SubHeading>
           <p className="type-body">
-            Set at the southernmost tip of the Indian peninsula, The Beach Hotel is closer than you imagine — and worth every mile.
+            Set at the southernmost tip of the Indian peninsula, The Beach Bay is closer than you imagine — and worth every mile.
           </p>
           <p className="type-body">
             <b className="text-primary-dark font-bold mb-4 tracking-widest font-arizona-flare-regular">By Air</b> - The nearest international gateway is Trivandrum (Thiruvananthapuram) International Airport, approximately 90 km away — a 2–2.5 hour scenic drive. Thoothukudi International Airport offers an alternative connection from within India.
@@ -126,7 +126,7 @@ export default function HeroLocationSection() {
             >
               <Image
                 src="/contact-us/hotel-entrance-outdoor-cafe-seating.jpg"
-                alt="The Beach Hotel exterior"
+                alt="The Beach Bay exterior"
                 fill
                 sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
                 className="object-cover"

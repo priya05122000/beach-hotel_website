@@ -18,7 +18,7 @@ export default function FacilitiesCtaSection() {
           </SubHeading>
 
           <p className="text-charcoal type-body max-w-md">
-            Book your stay and enjoy every facility The Beach Hotel has to offer.
+            Book your stay and enjoy every facility The Beach Bay has to offer.
           </p>
 
           <PillLinkButton

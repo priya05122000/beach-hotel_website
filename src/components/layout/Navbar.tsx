@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import Section from "../common/Section";
 import PillLinkButton from "../common/PillLinkButton";
-import { BOOKING_URL, PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { BOOKING_URL, PHONE_NUMBERS } from "@/src/lib/site-links";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -493,7 +493,7 @@ export default function Header() {
                   <Link href="/">
                     <Image
                       src={logoSrc}
-                      alt="The Beach Hotel"
+                      alt="The Beach Bay"
                       width={300}
                       height={150}
                       className="h-10 w-auto"
@@ -527,7 +527,7 @@ export default function Header() {
                 <Link href="/" onClick={open ? handleLinkClick : undefined}>
                   <Image
                     src={logoSrc}
-                    alt="The Beach Hotel"
+                    alt="The Beach Bay"
                     width={300}
                     height={150}
                     className="h-10 w-auto"
@@ -590,7 +590,7 @@ export default function Header() {
             >
               <Image
                 src="/contact-us/hotel-entrance-outdoor-cafe-seating.jpg"
-                alt="The Beach Hotel"
+                alt="The Beach Bay"
                 fill
                 className="object-cover"
               />
@@ -683,12 +683,17 @@ export default function Header() {
                 style={{ opacity: 0, transform: "translateY(20px)" }}
               >
                 <div className="flex flex-col  gap-3 ">
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className="text-primary-dark type-body-lg uppercase no-underline font-arizona-flare-regular transition-colors duration-200 tracking-[3px]"
-                  >
-                    <span className="type-overline text-gray tracking-[3px]">Enquiry:</span> {PHONE_NUMBER_DISPLAY}
-                  </a>
+                  <p className="text-primary-dark type-body-lg uppercase font-arizona-flare-regular tracking-[3px]">
+                    <span className="type-overline text-gray tracking-[3px]">Enquiry:</span>{" "}
+                    {PHONE_NUMBERS.map(({ tel, display }, i) => (
+                      <span key={tel}>
+                        {i > 0 && " / "}
+                        <a href={`tel:${tel}`} className="no-underline transition-colors duration-200 whitespace-nowrap">
+                          {display}
+                        </a>
+                      </span>
+                    ))}
+                  </p>
                   <p className="text-primary-dark type-body-lg tracking-[3px] uppercase font-light">
                     <span className="type-overline text-gray tracking-[3px]">Address:</span> Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
                   </p>

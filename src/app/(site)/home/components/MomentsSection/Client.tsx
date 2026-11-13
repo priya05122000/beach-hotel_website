@@ -182,7 +182,7 @@ export default function MomentsSectionClient({ items }: Props) {
           Influencer Spotlight
         </Eyebrow>
         <p className="max-w-xl mx-auto my-10 text-charcoal type-body">
-          See how people experienced and shared unforgettable moments at The Beach Hotel Kanyakumari.
+          See how people experienced and shared unforgettable moments at The Beach Bay Kanyakumari.
         </p>
       </div>
 

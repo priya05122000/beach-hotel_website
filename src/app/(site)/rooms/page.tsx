@@ -9,10 +9,10 @@ import { SectionScroller } from "@/src/components/common/SectionScroller";
 export const metadata: Metadata = {
   title: "Affordable Rooms in Kanyakumari",
   description:
-    "Affordable luxury meets stunning sea views at The Beach Hotel Kanyakumari. Book direct today for the best rates and exclusive offers!",
+    "Affordable luxury meets stunning sea views at The Beach Bay Kanyakumari. Book direct today for the best rates and exclusive offers!",
   alternates: { canonical: "/rooms" },
   openGraph: {
-    title: "Rooms & Suites — The Beach Hotel",
+    title: "Rooms & Suites — The Beach Bay",
     description:
       "Rooms and suites designed for comfort with wide ocean views in Kanyakumari.",
     url: "/rooms",

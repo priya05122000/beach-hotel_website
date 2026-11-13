@@ -115,7 +115,7 @@ const AboutUs = () => {
             We believe the sea has a story to tell — and every stay brings you closer to it.
           </h2>
           <p className="text-white/55 type-body leading-relaxed">
-            Set at the tip of India where three oceans meet, The Beach Hotel was born
+            Set at the tip of India where three oceans meet, The Beach Bay was born
             from a simple dream: to let every guest wake up to the sound of waves and fall
             asleep under a sky full of stars.
           </p>

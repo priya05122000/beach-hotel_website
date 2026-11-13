@@ -99,7 +99,7 @@ const FeaturedHighlightSection = () => {
               <p className="type-body text-white leading-relaxed ">
                 Access your account or create a new profile to manage
                 bookings, view offers and enjoy a smoother stay experience at
-                The Beach Hotel, Kanyakumari.
+                The Beach Bay, Kanyakumari.
               </p>
               <div className="mt-auto w-fit self-end">
                 <PillLinkButton href="https://bookings.skyrooms.in/bookapp/signin/" variant="light">

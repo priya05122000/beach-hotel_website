@@ -9,12 +9,12 @@ import { SectionScroller } from "@/src/components/common/SectionScroller";
 export const metadata: Metadata = {
   title: "Luxury Hotel Facilities in Kanyakumari",
   description:
-    "World-class facilities at The Beach Hotel, Kanyakumari — from infinity pools and fine dining to a fully equipped spa and conference centre.",
+    "World-class facilities at The Beach Bay, Kanyakumari — from infinity pools and fine dining to a fully equipped spa and conference centre.",
   alternates: { canonical: "/facilities" },
   openGraph: {
-    title: "Facilities — The Beach Hotel",
+    title: "Facilities — The Beach Bay",
     description:
-      "World-class facilities including infinity pool, spa, fine dining, and more at The Beach Hotel, Kanyakumari.",
+      "World-class facilities including infinity pool, spa, fine dining, and more at The Beach Bay, Kanyakumari.",
     url: "/facilities",
     images: [{ url: "/common/banner/sea-view-hotel-suite-sunset.webp", width: 1600, height: 900 }],
   },

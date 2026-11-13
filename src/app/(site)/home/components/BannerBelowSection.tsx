@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import SubHeading from "@/src/components/common/SubHeading";
-import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBERS } from "@/src/lib/site-links";
 
 
 const BannerBelowSection = () => {
@@ -59,8 +59,8 @@ const BannerBelowSection = () => {
                     style={{ opacity: 0 }}
                 >
                     <Image
-                        src="/common/thebeachhotel.svg"
-                        alt="The Beach Hotel"
+                        src="/common/the-beach-bay-logo.svg"
+                        alt="The Beach Bay"
                         width={1920}
                         height={1200}
                         className="w-full h-full object-cover"
@@ -77,20 +77,24 @@ const BannerBelowSection = () => {
 
                     <div className="">
                         <SubHeading as="p" className="">
-                            The Beach Hotel
+                            The Beach Bay
                         </SubHeading>
 
                         <p className="mt-4  sm:max-w-80 mx-auto text-sm sm:text-base  text-white/40 font-extralight uppercase">
                             Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702
                         </p>
 
-                        <a
-                            href={`tel:${PHONE_NUMBER}`}
-                            className="mt-2 sm:max-w-80 mx-auto flex items-center justify-center gap-2 text-sm sm:text-base text-white/40 font-extralight uppercase hover:text-white transition-colors"
-                        >
+                        <div className="mt-2 mx-auto flex flex-wrap items-center justify-center gap-x-2 text-sm sm:text-base text-white/40 font-extralight uppercase">
                             <Phone size={15} />
-                            {PHONE_NUMBER_DISPLAY}
-                        </a>
+                            {PHONE_NUMBERS.map(({ tel, display }, i) => (
+                                <span key={tel} className="flex items-center gap-2">
+                                    {i > 0 && "/"}
+                                    <a href={`tel:${tel}`} className="hover:text-white transition-colors whitespace-nowrap">
+                                        {display}
+                                    </a>
+                                </span>
+                            ))}
+                        </div>
                     </div>
 
                 </div>

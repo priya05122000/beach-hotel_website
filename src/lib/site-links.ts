@@ -9,13 +9,18 @@ export const PRIVACY_URL = `${SITE_URL}/privacy-policy`;
 /** Hotel homepage — logo links. */
 export const HOTEL_HOME_URL = "https://thebeachhotel.in/";
 
-/** The only contact number — Navbar, Footer, contact page, floating action dock, WhatsApp, legal pages. */
+/** Main number — wherever only one fits: call buttons, WhatsApp, structured data. */
 export const PHONE_NUMBER = "+919384938420";
-export const PHONE_NUMBER_DISPLAY = "+91 93849 38420";
+
+/** Every contact number, in display order — Navbar, Footer, home banner, contact page, legal pages. */
+export const PHONE_NUMBERS = [
+  { tel: PHONE_NUMBER, display: "+91 93849 38420" },
+  { tel: "+919384938440", display: "+91 93849 38440" },
+];
 
 /** Guest support email — Footer and invoices. */
 export const SUPPORT_EMAIL = "support@thebeachhotel.in";
 
 const WHATSAPP_PREFILLED_MESSAGE =
-  "Hi there! Welcome to The Beach Hotel, Kanyakumari. \nHow can we help you today?";
+  "Hi there! Welcome to The Beach Bay, Kanyakumari. \nHow can we help you today?";
 export const WHATSAPP_URL = `https://wa.me/${PHONE_NUMBER.replace("+", "")}?text=${encodeURIComponent(WHATSAPP_PREFILLED_MESSAGE)}`;

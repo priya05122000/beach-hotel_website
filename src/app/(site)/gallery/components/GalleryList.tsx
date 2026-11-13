@@ -26,7 +26,7 @@ export default function GalleryList({ sections, galleries }: Props) {
             {/* Desktop — uppercase, wide-tracking heading style */}
             <div className="hidden lg:block uppercase type-h6 text-primary-dark lg:max-w-md xl:max-w-xl mt-10 mb-4 sm:mt-0 tracking-[0.2rem] leading-8">
               These photos capture what it&apos;s actually like to stay at The
-              Beach Hotel — sunrise over the meeting point of three oceans,
+              Beach Bay — sunrise over the meeting point of three oceans,
               quiet mornings by the pool, rooms with a view, and the coast of
               Kanyakumari beyond our walls. Browse the collection below and
               picture your own stay here.
@@ -35,7 +35,7 @@ export default function GalleryList({ sections, galleries }: Props) {
             {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
             <p className="lg:hidden mb-4 text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
               These photos capture what it&apos;s actually like to stay at The
-              Beach Hotel — sunrise over the meeting point of three oceans,
+              Beach Bay — sunrise over the meeting point of three oceans,
               quiet mornings by the pool, rooms with a view, and the coast of
               Kanyakumari beyond our walls. Browse the collection below and
               picture your own stay here.

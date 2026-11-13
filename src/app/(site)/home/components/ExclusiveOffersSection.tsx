@@ -278,7 +278,7 @@ export default function ExclusiveOffersSection({
       </Eyebrow>
 
       <p className={`max-w-lg  ml-auto my-10 type-body sm:text-right text-charcoal`}>
-        Exceptional stays begin with exceptional value. Browse our exclusive offers and enjoy special privileges, seasonal savings, and thoughtfully selected packages designed to make your time at The Beach Hotel, Kanyakumari even more memorable.
+        Exceptional stays begin with exceptional value. Browse our exclusive offers and enjoy special privileges, seasonal savings, and thoughtfully selected packages designed to make your time at The Beach Bay, Kanyakumari even more memorable.
 
       </p>
 

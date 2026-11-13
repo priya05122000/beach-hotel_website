@@ -60,7 +60,7 @@ const ParallaxGallery = () => {
         {/* ── Mobile: two overlapping images, no animation ─────────── */}
         <div className="sm:hidden relative pb-25">
           <div className="relative aspect-3/2 w-[85%] overflow-hidden">
-            <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Hotel room at The Beach Hotel" fill className="object-cover" sizes="85vw" />
+            <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Hotel room at The Beach Bay" fill className="object-cover" sizes="85vw" />
           </div>
           <div className="absolute bottom-0 right-0 w-[48%]">
             <div className="relative aspect-4/5 overflow-hidden">
@@ -73,7 +73,7 @@ const ParallaxGallery = () => {
         <div className="hidden sm:grid grid-cols-12 gap-10 items-start">
           <div ref={imgLeftRef} className="col-span-4 will-change-transform">
             <div className="relative aspect-3/4 overflow-hidden">
-              <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel facilities at The Beach Hotel" fill className="object-cover" sizes="33vw" />
+              <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel facilities at The Beach Bay" fill className="object-cover" sizes="33vw" />
             </div>
           </div>
 

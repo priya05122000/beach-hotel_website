@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CommonBanner from "@/src/components/common/CommonBanner";
 import CenterSection from "@/src/components/common/CenterSection";
-import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBERS } from "@/src/lib/site-links";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions of Stay",
   description:
-    "Read the terms and conditions for booking and staying at The Beach Hotel, Kanyakumari, including cancellations and payments.",
+    "Read the terms and conditions for booking and staying at The Beach Bay, Kanyakumari, including cancellations and payments.",
   alternates: { canonical: "/terms-and-conditions" },
   openGraph: {
-    title: "Terms & Conditions — The Beach Hotel",
+    title: "Terms & Conditions — The Beach Bay",
     description:
-      "Booking, cancellation, payment, and stay policies for The Beach Hotel, Kanyakumari.",
+      "Booking, cancellation, payment, and stay policies for The Beach Bay, Kanyakumari.",
     url: "/terms-and-conditions",
   },
 };
@@ -23,13 +23,13 @@ export default function TermsAndConditionsPage() {
       <CommonBanner
         title="TERMS & CONDITIONS"
         src="/common/banner/sea-view-hotel-suite-sunset.webp"
-        alt="Terms & Conditions — The Beach Hotel, Kanyakumari"
+        alt="Terms & Conditions — The Beach Bay, Kanyakumari"
       />
       <CenterSection className="py-16 lg:py-20">
         <div className="legal-content mx-auto text-charcoal">
-          <h2>Welcome to The Beach Hotel</h2>
+          <h2>Welcome to The Beach Bay</h2>
           <p>
-            Welcome to The Beach Hotel. By continuing to browse and use this
+            Welcome to The Beach Bay. By continuing to browse and use this
             website, you agree to comply with and be bound by the following
             terms and conditions of use. If you disagree with any part of these
             terms, please refrain from using our website.
@@ -188,7 +188,7 @@ export default function TermsAndConditionsPage() {
 
           <h2>Pet Policy</h2>
           <p>
-            The Beach Hotel is pleased to welcome guests travelling with their
+            The Beach Bay is pleased to welcome guests travelling with their
             cherished companions and offers a pet-friendly stay by the sea. To
             ensure the comfort, safety, and enjoyment of all guests, the
             following pet policy applies:
@@ -226,7 +226,7 @@ export default function TermsAndConditionsPage() {
           <h2>Intellectual Property &amp; Copyright</h2>
           <p>
             All content, including text, design, graphics, photographs, and
-            code, is the exclusive property of The Beach Hotel unless otherwise
+            code, is the exclusive property of The Beach Bay unless otherwise
             stated. Reproduction, redistribution, or modification of any
             material from this site in any form is prohibited without our prior
             written permission.
@@ -248,7 +248,7 @@ export default function TermsAndConditionsPage() {
             information are reliable, we cannot guarantee that the website will
             always be available, uninterrupted, or error-free. Use of this
             website is at your own risk. To the extent permitted by applicable
-            law, The Beach Hotel shall not be held liable for any direct,
+            law, The Beach Bay shall not be held liable for any direct,
             indirect, special, punitive, incidental, or consequential damages
             arising from your use of this website or any linked websites.
           </p>
@@ -257,7 +257,7 @@ export default function TermsAndConditionsPage() {
           <p>
             Our website may occasionally include links to other websites for
             your convenience. These links do not signify our endorsement of
-            those websites, products, or services. The Beach Hotel does not
+            those websites, products, or services. The Beach Bay does not
             control and is not responsible for the content, availability,
             security, or privacy practices of external websites.
           </p>
@@ -328,13 +328,13 @@ export default function TermsAndConditionsPage() {
           <p>
             These Terms and Conditions, together with our Privacy Policy and any
             booking-specific terms communicated to the guest, constitute the
-            agreement between you and The Beach Hotel regarding your use of this
+            agreement between you and The Beach Bay regarding your use of this
             website and your stay at the Hotel, subject to applicable law.
           </p>
 
           <h2>Governing Law &amp; Contact</h2>
           <p>
-            Your use of this website, your stay at The Beach Hotel, and any
+            Your use of this website, your stay at The Beach Bay, and any
             disputes arising in connection with these matters shall be governed
             by the applicable laws of India. Subject to applicable law, disputes
             shall be subject to the jurisdiction of the competent courts in
@@ -352,7 +352,13 @@ export default function TermsAndConditionsPage() {
               </a>
             </li>
             <li>
-              Phone: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_DISPLAY}</a>
+              Phone:{" "}
+              {PHONE_NUMBERS.map(({ tel, display }, i) => (
+                <span key={tel}>
+                  {i > 0 && " / "}
+                  <a href={`tel:${tel}`}>{display}</a>
+                </span>
+              ))}
             </li>
             <li>
               Address: Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu
@@ -361,7 +367,7 @@ export default function TermsAndConditionsPage() {
           </ul>
           <p>
             We appreciate your cooperation and look forward to welcoming you to
-            The Beach Hotel.
+            The Beach Bay.
           </p>
         </div>
       </CenterSection>

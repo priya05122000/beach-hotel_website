@@ -5,17 +5,17 @@ import { getBlogList } from "@/src/service/blogs";
 import { getReelsData } from "@/src/service/reels";
 
 export const metadata: Metadata = {
-  // `absolute` bypasses the root layout's "%s | The Beach Hotel" template —
+  // `absolute` bypasses the root layout's "%s | The Beach Bay" template —
   // this title already contains the brand name, so templating it would
-  // double it up ("...Tips | The Beach Hotel").
-  title: { absolute: "The Beach Hotel Blog — Travel Notes & Tips" },
+  // double it up ("...Tips | The Beach Bay").
+  title: { absolute: "The Beach Bay Blog — Travel Notes & Tips" },
   description:
-    "Stories, travel tips, and insider insights from The Beach Hotel, Kanyakumari. Read our journal and get inspired for your next coastal escape.",
+    "Stories, travel tips, and insider insights from The Beach Bay, Kanyakumari. Read our journal and get inspired for your next coastal escape.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Blog — Notes from the Beach Hotel",
+    title: "Blog — Notes from the Beach Bay",
     description:
-      "Stories, travel tips, and insider insights from The Beach Hotel, Kanyakumari.",
+      "Stories, travel tips, and insider insights from The Beach Bay, Kanyakumari.",
     url: "/blog",
     images: [{ url: "/blog/beachfront-hotel-lobby-reception-sea-view.webp", width: 1600, height: 900 }],
   },
@@ -35,9 +35,9 @@ export default async function BlogPage() {
   return (
     <div>
       <CommonBanner
-        title="NOTES FROM THE BEACH HOTEL"
+        title="NOTES FROM THE BEACH BAY"
         src="/blog/beachfront-hotel-lobby-reception-sea-view.webp"
-        alt="Blog — Notes from The Beach Hotel, Kanyakumari"
+        alt="Blog — Notes from The Beach Bay, Kanyakumari"
       />
       <BlogInfluencerSection blogs={activeBlogs} reels={activeReels} />
     </div>

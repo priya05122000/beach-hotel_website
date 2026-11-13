@@ -4,11 +4,7 @@ import Section from "@/src/components/common/Section";
 import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import ScrollLink from "@/src/components/common/ScrollLink";
 import { Mail, MapPin, Phone, ClipboardList, PawPrint } from "lucide-react";
-import {
-  BOOKING_URL,
-  PHONE_NUMBER,
-  PHONE_NUMBER_DISPLAY,
-} from "@/src/lib/site-links";
+import { BOOKING_URL, PHONE_NUMBERS } from "@/src/lib/site-links";
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -114,13 +110,17 @@ export default function Footer() {
                   <SocialIconLinks variant="dark" />
                 </div>
                 <div className="flex flex-col space-y-2 mt-8">
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className="type-body-sm flex items-center gap-2  hover:text-accent transition-colors"
-                  >
+                  <div className="type-body-sm flex flex-wrap items-center gap-x-2">
                     <Phone size={15} />
-                    {PHONE_NUMBER_DISPLAY}
-                  </a>
+                    {PHONE_NUMBERS.map(({ tel, display }, i) => (
+                      <span key={tel} className="flex items-center gap-2">
+                        {i > 0 && "/"}
+                        <a href={`tel:${tel}`} className="hover:text-accent transition-colors whitespace-nowrap">
+                          {display}
+                        </a>
+                      </span>
+                    ))}
+                  </div>
 
                   <a
                     href="mailto:support@thebeachhotel.in"
@@ -173,7 +173,7 @@ export default function Footer() {
             <div className=" relative">
               <Image
                 src="/common/big_logo_1.svg"
-                alt="The Beach Hotel"
+                alt="The Beach Bay"
                 width={700}
                 height={200}
                 className="h-full w-full pointer-events-none select-none"

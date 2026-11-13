@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import CommonBanner from "@/src/components/common/CommonBanner";
 import CenterSection from "@/src/components/common/CenterSection";
-import { PHONE_NUMBER, PHONE_NUMBER_DISPLAY } from "@/src/lib/site-links";
+import { PHONE_NUMBERS } from "@/src/lib/site-links";
 
 export const metadata: Metadata = {
   title: "How We Protect Your Privacy",
   description:
-    "Learn how The Beach Hotel, Kanyakumari collects, uses, and protects your personal information when you book or visit us.",
+    "Learn how The Beach Bay, Kanyakumari collects, uses, and protects your personal information when you book or visit us.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
-    title: "Privacy Policy — The Beach Hotel",
+    title: "Privacy Policy — The Beach Bay",
     description:
-      "How The Beach Hotel, Kanyakumari collects, uses, and protects your personal information.",
+      "How The Beach Bay, Kanyakumari collects, uses, and protects your personal information.",
     url: "/privacy-policy",
   },
 };
@@ -22,14 +22,14 @@ export default function PrivacyPolicyPage() {
       <CommonBanner
         title="PRIVACY POLICY"
         src="/common/banner/sea-view-hotel-suite-sunset.webp"
-        alt="Privacy Policy — The Beach Hotel, Kanyakumari"
+        alt="Privacy Policy — The Beach Bay, Kanyakumari"
       />
 
       <CenterSection className="py-16 lg:py-20">
         <div className="legal-content  mx-auto text-charcoal">
-          <h2>Welcome to The Beach Hotel</h2>
+          <h2>Welcome to The Beach Bay</h2>
           <p>
-            At The Beach Hotel, your privacy is important to us. We
+            At The Beach Bay, your privacy is important to us. We
             understand that when you choose to stay with us or visit our
             website, you place your trust in us. We are committed to
             protecting your personal information and ensuring that it is
@@ -195,7 +195,7 @@ export default function PrivacyPolicyPage() {
           <p>
             Please note that these websites operate independently and have
             their own privacy practices. We encourage you to review their
-            privacy policies, as The Beach Hotel is not responsible for the
+            privacy policies, as The Beach Bay is not responsible for the
             content, security, or privacy practices of external websites.
           </p>
 
@@ -246,7 +246,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy or the way your information is handled, we would
             be happy to assist you.
           </p>
-          <p>The Beach Hotel</p>
+          <p>The Beach Bay</p>
           <ul>
             <li>
               Email:{" "}
@@ -255,12 +255,18 @@ export default function PrivacyPolicyPage() {
               </a>
             </li>
             <li>
-              Phone: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_DISPLAY}</a>
+              Phone:{" "}
+              {PHONE_NUMBERS.map(({ tel, display }, i) => (
+                <span key={tel}>
+                  {i > 0 && " / "}
+                  <a href={`tel:${tel}`}>{display}</a>
+                </span>
+              ))}
             </li>
             <li>Address: Erumanayakkanpatti Beach Road, Kanyakumari, Tamil Nadu 629702</li>
           </ul>
           <p>
-            Thank you for choosing The Beach Hotel. We appreciate the trust
+            Thank you for choosing The Beach Bay. We appreciate the trust
             you place in us and look forward to welcoming you with warmth,
             comfort, and memorable hospitality.
           </p>
