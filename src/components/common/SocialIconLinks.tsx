@@ -22,7 +22,7 @@ export default function SocialIconLinks({ variant = "dark", className = "" }: So
         >
           <Image
             src={item.icon[variant]}
-            alt={item.label}
+            alt={`The Beach Bay on ${item.label}`}
             width={28}
             height={28}
             className="w-4 h-4"

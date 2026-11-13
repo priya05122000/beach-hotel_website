@@ -44,7 +44,7 @@ function LocationNode({ icon, label, side }: LocationNodeProps) {
       className={`flex flex-col items-center text-center gap-1 ${side === "left" ? "mr-2" : "ml-2"
         }`}
     >
-      <Image src={icon} alt="Icon" width={24} height={24} className="w-10 h-10" />
+      <Image src={icon} alt={`${label.replace("\n", " ")} icon`} width={24} height={24} className="w-10 h-10" />
       <p className=" text-primary-dark uppercase tracking-wide  whitespace-pre-line">
         {label}
       </p>
@@ -94,7 +94,7 @@ export default function NearbyLocationsSection() {
         <div className="px-4 lg:px-8">
           <Image
             src="/contact-us/the-beach-bay-kanyakumari-logo.png"
-            alt="logo"
+            alt="The Beach Bay Resort &amp; Spa, Kanyakumari logo"
             width={200}
             height={200}
             className="h-60 w-60 xl:w-80 object-contain"
@@ -121,7 +121,7 @@ export default function NearbyLocationsSection() {
         <div className="flex flex-col items-center">
           <Image
             src="/contact-us/the-beach-bay-kanyakumari-logo.png"
-            alt="logo"
+            alt="The Beach Bay Resort &amp; Spa, Kanyakumari logo"
             width={120}
             height={120}
             className=" object-contain"
@@ -136,7 +136,7 @@ export default function NearbyLocationsSection() {
             >
               <Image
                 src={loc.icon}
-                alt="Icon"
+                alt={`${loc.label.replace("\n", " ")} icon`}
                 width={32}
                 height={32}
                 className="w-8 h-8"

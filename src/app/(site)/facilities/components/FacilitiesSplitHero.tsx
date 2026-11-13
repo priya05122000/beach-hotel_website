@@ -116,7 +116,7 @@ export default function FacilitiesSplitHero() {
             {/* ── Mobile layout (< md) ─────────────────────────────────── */}
             <div className="flex flex-col md:hidden w-full">
                 <div className="relative w-full" style={{ height: "50vh", minHeight: 240 }}>
-                    <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel Facilities" fill priority className="object-cover" />
+                    <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Lobby lounge seating at The Beach Bay, Kanyakumari" fill priority className="object-cover" />
                     <div className="absolute inset-0 bg-black/20" />
                 </div>
 
@@ -167,7 +167,7 @@ export default function FacilitiesSplitHero() {
                     style={{ width: "100%", height: "120vh", willChange: "transform" }}
                 >
                     <div ref={imageInnerRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-                        <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel Facilities" fill priority className="object-cover" />
+                        <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Lobby lounge seating at The Beach Bay, Kanyakumari" fill priority className="object-cover" />
                         <div className="absolute inset-0 bg-black/20" />
                     </div>
                 </div>

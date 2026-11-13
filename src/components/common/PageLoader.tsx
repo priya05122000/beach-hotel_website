@@ -5,7 +5,7 @@ export default function PageLoader() {
         <div role="status" aria-label="Loading" className="min-h-screen flex items-center justify-center bg-cream">
             {/* Served as-is so the GIF keeps its animation. */}
             <Image
-                src="/loader.gif"
+                src="/the-beach-bay-loader.gif"
                 alt=""
                 width={426}
                 height={426}

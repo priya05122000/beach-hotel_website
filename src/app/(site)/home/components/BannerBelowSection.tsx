@@ -59,8 +59,8 @@ const BannerBelowSection = () => {
                     style={{ opacity: 0 }}
                 >
                     <Image
-                        src="/common/the-beach-bay-logo.svg"
-                        alt="The Beach Bay"
+                        src="/common/the-beach-bay-wordmark.svg"
+                        alt="The Beach Bay Resort &amp; Spa"
                         width={1920}
                         height={1200}
                         className="w-full h-full object-cover"

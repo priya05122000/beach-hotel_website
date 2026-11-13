@@ -74,7 +74,7 @@ export default function GalleryBanner() {
                         src={IMAGE_SRC}
                         fill
                         priority
-                        alt="The Beach Bay"
+                        alt="Beachfront infinity pool at sunset, The Beach Bay Kanyakumari"
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/35" />

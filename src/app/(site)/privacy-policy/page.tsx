@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
       <CommonBanner
         title="PRIVACY POLICY"
         src="/common/banner/sea-view-hotel-suite-sunset.webp"
-        alt="Privacy Policy — The Beach Bay, Kanyakumari"
+        alt="Sea view suite at sunset, The Beach Bay Kanyakumari"
       />
 
       <CenterSection className="py-16 lg:py-20">

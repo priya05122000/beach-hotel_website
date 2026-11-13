@@ -35,7 +35,7 @@ export default function FAQAboutSection({ faqs }: FAQAboutSectionProps) {
           <div className="overflow-hidden">
             <Image
               src="/home/staff-assisting-guest.webp"
-              alt="Got Questions"
+              alt="Hotel staff assisting guests at The Beach Bay, Kanyakumari"
               width={700}
               height={600}
               className="h-72 w-full object-cover sm:h-96 lg:h-105"

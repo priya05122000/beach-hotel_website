@@ -16,7 +16,7 @@ const HeroBackgroundImage = memo(function HeroBackgroundImage() {
   return (
     <Image
       src="/home/beachfront-hotel-pool-ocean-view.webp"
-      alt="Hero Banner"
+      alt="Beachfront pool overlooking the ocean at The Beach Bay, Kanyakumari"
       fill
       preload
       fetchPriority="high"

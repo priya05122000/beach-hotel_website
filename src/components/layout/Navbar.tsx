@@ -455,7 +455,7 @@ export default function Header() {
 
   // ── Derived values ────────────────────────────────────────────────────────
 
-  const logoSrc = isOverDark && !open ? "/common/toplogowhite.svg" : "/common/toplogo.svg";
+  const logoSrc = isOverDark && !open ? "/common/the-beach-bay-logo-icon-white.svg" : "/common/the-beach-bay-logo-icon.svg";
   const iconColor = isOverDark && !open ? "text-white" : "text-primary-dark";
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -493,7 +493,7 @@ export default function Header() {
                   <Link href="/">
                     <Image
                       src={logoSrc}
-                      alt="The Beach Bay"
+                      alt="The Beach Bay Resort &amp; Spa, Kanyakumari logo"
                       width={300}
                       height={150}
                       className="h-10 w-auto"
@@ -527,7 +527,7 @@ export default function Header() {
                 <Link href="/" onClick={open ? handleLinkClick : undefined}>
                   <Image
                     src={logoSrc}
-                    alt="The Beach Bay"
+                    alt="The Beach Bay Resort &amp; Spa, Kanyakumari logo"
                     width={300}
                     height={150}
                     className="h-10 w-auto"
@@ -590,7 +590,7 @@ export default function Header() {
             >
               <Image
                 src="/contact-us/hotel-entrance-outdoor-cafe-seating.jpg"
-                alt="The Beach Bay"
+                alt="Hotel entrance with outdoor café seating at The Beach Bay, Kanyakumari"
                 fill
                 className="object-cover"
               />

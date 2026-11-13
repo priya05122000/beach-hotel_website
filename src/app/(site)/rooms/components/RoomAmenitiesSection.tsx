@@ -151,7 +151,7 @@ export default function RoomAmenitiesSection() {
         <div className="relative w-full overflow-hidden">
           <Image
             src="/home/beachfront-hotel-pool-ocean-view.webp"
-            alt="Room Facilities"
+            alt="Beachfront pool overlooking the ocean at The Beach Bay, Kanyakumari"
             fill
             className="object-cover"
           />

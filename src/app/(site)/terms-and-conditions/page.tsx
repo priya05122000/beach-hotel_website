@@ -23,7 +23,7 @@ export default function TermsAndConditionsPage() {
       <CommonBanner
         title="TERMS & CONDITIONS"
         src="/common/banner/sea-view-hotel-suite-sunset.webp"
-        alt="Terms & Conditions — The Beach Bay, Kanyakumari"
+        alt="Sea view suite at sunset, The Beach Bay Kanyakumari"
       />
       <CenterSection className="py-16 lg:py-20">
         <div className="legal-content mx-auto text-charcoal">

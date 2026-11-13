@@ -9,10 +9,10 @@ import { ANIM, prefersReducedMotion } from "@/src/lib/gsap/config";
 import { applySplitSlideUp } from "@/src/lib/gsap/useSplitSlideUp";
 
 const partners = [
-  { name: "Seashore & Co", logo: "/contact-us/seashore.png" },
-  { name: "GT Holidays", logo: "/contact-us/gtholidays.png" },
-  { name: "Sri Maniya College", logo: "/contact-us/srimaniya.png" },
-  { name: "Follicle", logo: "/contact-us/follicle.png" },
+  { name: "Seashore & Co", logo: "/contact-us/the-seashore-hotel-kanyakumari-logo.png" },
+  { name: "GT Holidays", logo: "/contact-us/gt-holidays-logo.png" },
+  { name: "Sri Maniya College", logo: "/contact-us/sri-maniya-institute-of-hotel-management-logo.png" },
+  { name: "Follicle", logo: "/contact-us/follicle-logo.png" },
 ];
 
 // Grayscale-until-hover is a desktop-only affordance — touch devices have
@@ -22,7 +22,7 @@ function PartnerLogo({ partner }: { partner: { name: string; logo: string } }) {
     <div className="mx-10 relative h-16 w-16 lg:h-22 lg:w-36 shrink-0 transition-all duration-300 lg:opacity-40 lg:grayscale lg:hover:opacity-70 lg:hover:grayscale-0">
       <Image
         src={partner.logo}
-        alt={partner.name}
+        alt={`${partner.name} logo`}
         fill
         sizes="(max-width: 1024px) 64px, 144px"
         className="object-contain"

@@ -37,7 +37,7 @@ export default async function BlogPage() {
       <CommonBanner
         title="NOTES FROM THE BEACH BAY"
         src="/blog/beachfront-hotel-lobby-reception-sea-view.webp"
-        alt="Blog — Notes from The Beach Bay, Kanyakumari"
+        alt="Beachfront hotel lobby and reception with sea view at The Beach Bay, Kanyakumari"
       />
       <BlogInfluencerSection blogs={activeBlogs} reels={activeReels} />
     </div>

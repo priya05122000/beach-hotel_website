@@ -9,21 +9,21 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/thebeachhotel_/",
-    icon: { dark: "/common/icons/instagram.svg", light: "/common/icons/instagramblue.svg" },
+    icon: { dark: "/common/icons/instagram-icon-white.svg", light: "/common/icons/instagram-icon-blue.svg" },
   },
   {
     label: "Facebook",
     href: "https://www.facebook.com/profile.php?id=61590909593058",
-    icon: { dark: "/common/icons/facebook.svg", light: "/common/icons/facebookblue.svg" },
+    icon: { dark: "/common/icons/facebook-icon-white.svg", light: "/common/icons/facebook-icon-blue.svg" },
   },
   {
     label: "YouTube",
     href: "https://www.youtube.com/@The_Beach_Hotel",
-    icon: { dark: "/common/icons/youtube.svg", light: "/common/icons/youtubeblue.svg" },
+    icon: { dark: "/common/icons/youtube-icon-white.svg", light: "/common/icons/youtube-icon-blue.svg" },
   },
   {
     label: "X (Twitter)",
     href: "https://x.com/TheBeachHotel_",
-    icon: { dark: "/common/icons/x.svg", light: "/common/icons/xblue.svg" },
+    icon: { dark: "/common/icons/x-icon-white.svg", light: "/common/icons/x-icon-blue.svg" },
   },
 ];

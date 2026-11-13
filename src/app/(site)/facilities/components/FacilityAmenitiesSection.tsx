@@ -236,7 +236,7 @@ function AmenityFeature({ item }: { item: AmenityItem }) {
       <div className="relative w-full aspect-4/3 overflow-hidden">
         <Image
           src="/facilities/housekeeping-staff-preparing-hotel-room.webp"
-          alt={item.title}
+          alt="Housekeeping staff preparing a guest room at The Beach Bay, Kanyakumari"
           fill
           className="object-cover"
         />
@@ -367,7 +367,7 @@ function CategoryBlock({ category }: { category: AmenityCategory }) {
           <div className="relative w-full aspect-4/3 overflow-hidden bg-ivory">
             <Image
               src="/facilities/guest-check-in-hotel-front-desk.webp"
-              alt={category.title}
+              alt="Guest checking in at the front desk of The Beach Bay, Kanyakumari"
               fill
               className="object-cover"
             />

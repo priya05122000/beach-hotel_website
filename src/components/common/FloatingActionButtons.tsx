@@ -81,7 +81,7 @@ export default function FloatingActionButtons() {
         className={`${dockItemClass} cursor-pointer`}
       >
         <span className={dockIconClass}>
-          <Image src="/common/whatsapp.png" alt="" width={24} height={24} className="object-contain" />
+          <Image src="/common/icons/whatsapp-icon.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>WhatsApp</span>
       </button>
@@ -92,7 +92,7 @@ export default function FloatingActionButtons() {
         className={dockItemClass}
       >
         <span className={`${dockIconClass}  `}>
-          <Image src="/common/contact.png" alt="" width={24} height={24} className="object-contain" />
+          <Image src="/common/icons/phone-call-icon.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Call Us</span>
       </Link>
@@ -105,7 +105,7 @@ export default function FloatingActionButtons() {
         className={dockItemClass}
       >
         <span className={dockIconClass}>
-          <Image src="/common/Booking.png" alt="" width={24} height={24} className="object-contain" />
+          <Image src="/common/icons/book-now-icon.png" alt="" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Book Now</span>
       </Link>

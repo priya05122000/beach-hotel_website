@@ -79,10 +79,10 @@ const TeamSection = () => {
           {/* ── Mobile ─────────── */}
           <div className="sm:hidden flex flex-col">
             <div className="relative aspect-3/2 w-[78%] ml-auto">
-              <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Hotel room at The Beach Bay" fill className="object-cover" sizes="78vw" />
+              <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Guest checking in at the front desk of The Beach Bay, Kanyakumari" fill className="object-cover" sizes="78vw" />
             </div>
             <div className="relative aspect-4/5 w-[48%] -mt-20">
-              <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel facilities" fill className="object-cover" sizes="48vw" />
+              <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Lobby lounge seating at The Beach Bay, Kanyakumari" fill className="object-cover" sizes="48vw" />
             </div>
             <hr className="mt-6 mb-4 w-1/2" />
             <p className="type-body-sm w-2/3 text-gray leading-relaxed">
@@ -95,7 +95,7 @@ const TeamSection = () => {
             <div className="relative col-span-6 mt-[30%]">
               <div ref={imgRightRef} className="will-change-transform">
                 <div className="relative aspect-3/2">
-                  <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Hotel room" fill className="object-cover" sizes="50vw" />
+                  <Image src="/facilities/guest-check-in-hotel-front-desk.webp" alt="Guest checking in at the front desk of The Beach Bay, Kanyakumari" fill className="object-cover" sizes="50vw" />
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@ const TeamSection = () => {
 
             <div ref={imgLeftRef} className="col-span-5 lg:col-span-4 will-change-transform">
               <div className="relative aspect-3/4">
-                <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Hotel facilities" fill className="object-cover" sizes="40vw" />
+                <Image src="/facilities/hotel-lobby-lounge-seating.webp" alt="Lobby lounge seating at The Beach Bay, Kanyakumari" fill className="object-cover" sizes="40vw" />
               </div>
               <hr className="mt-8 mb-6" />
               <p className="type-body text-charcoal">

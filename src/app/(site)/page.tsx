@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Experience unmatched luxury at The Beach Bay, Kanyakumari — where three oceans meet.",
     url: "/",
     type: "website",
-    images: [{ url: "/home/hotel-poolside-exterior-dusk.webp", width: 1600, height: 900, alt: "The Beach Bay, Kanyakumari" }],
+    images: [{ url: "/home/hotel-poolside-exterior-dusk.webp", width: 1600, height: 900, alt: "Poolside exterior of The Beach Bay, Kanyakumari at dusk" }],
   },
 };
 

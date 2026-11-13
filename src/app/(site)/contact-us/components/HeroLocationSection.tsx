@@ -126,7 +126,7 @@ export default function HeroLocationSection() {
             >
               <Image
                 src="/contact-us/hotel-entrance-outdoor-cafe-seating.jpg"
-                alt="The Beach Bay exterior"
+                alt="Hotel entrance with outdoor café seating at The Beach Bay, Kanyakumari"
                 fill
                 sizes="(min-width: 1024px) 42vw, (min-width: 640px) 50vw, 100vw"
                 className="object-cover"
