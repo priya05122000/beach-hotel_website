@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import SitePreloader from "../components/common/SitePreloader";
+import { PRELOADER_BOOT_SCRIPT } from "../lib/site-reveal";
 import {
   arizonaSansBold,
   arizonaFlareRegular,
@@ -67,8 +69,13 @@ export default async function RootLayout({
     <html
       lang="en"
       className={`${arizonaSansBold.variable} ${arizonaFlareRegular.variable} ${arizonaSansRegular.variable} ${arizonaLight.variable}`}
+      // The preloader boot script adds a class to <html> before hydration.
+      suppressHydrationWarning
     >
       <head>
+        {/* First-load preloader boot — must run during parse, before paint. */}
+        <script dangerouslySetInnerHTML={{ __html: PRELOADER_BOOT_SCRIPT }} />
+
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
@@ -93,6 +100,12 @@ export default async function RootLayout({
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+
+        {/* Without JS nothing would ever dismiss the loader. */}
+        <noscript>
+          <style>{`#site-preloader{display:none}`}</style>
+        </noscript>
+        <SitePreloader />
 
         {children}
 

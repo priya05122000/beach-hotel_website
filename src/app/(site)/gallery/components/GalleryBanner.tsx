@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { applySlideUp } from "@/src/lib/gsap/useSlideUp";
+import { isSiteRevealed, onSiteRevealed } from "@/src/lib/site-reveal";
 
 const IMAGE_SRC = "/gallery/beachfront-hotel-infinity-pool-sunset.webp";
 
@@ -22,6 +23,7 @@ export default function GalleryBanner() {
     const rightRef = useRef<HTMLSpanElement>(null);
 
     useLayoutEffect(() => {
+        let offReveal: (() => void) | undefined;
         const ctx = gsap.context(() => {
             const leftLines = leftRefs.current.filter(Boolean) as HTMLSpanElement[];
             const rightLine = rightRef.current;
@@ -29,7 +31,10 @@ export default function GalleryBanner() {
             gsap.set(".leftReveal", { clipPath: "inset(0 100% 0 0)" });
             gsap.set(".readReveal", { yPercent: 100 });
 
-            const tl = gsap.timeline();
+            // Hold the intro while the first-load preloader covers the page.
+            const revealed = isSiteRevealed();
+            const tl = gsap.timeline({ paused: !revealed });
+            if (!revealed) offReveal = onSiteRevealed(() => tl.restart(true));
 
             // Left image reveal
             tl.to(".leftReveal", {
@@ -57,7 +62,10 @@ export default function GalleryBanner() {
             );
         }, container);
 
-        return () => ctx.revert();
+        return () => {
+            offReveal?.();
+            ctx.revert();
+        };
     }, []);
 
     return (

@@ -7,6 +7,7 @@ import { applySplitSlideUp, applyLinesSlideUp } from "@/src/lib/gsap/useSplitSli
 import PillLinkButton from "@/src/components/common/PillLinkButton";
 import Eyebrow from "@/src/components/common/Eyebrow";
 import { BOOKING_URL } from "@/src/lib/site-links";
+import { isSiteRevealed, onSiteRevealed } from "@/src/lib/site-reveal";
 
 const TEXT_LINES = [
     "Signature",
@@ -42,11 +43,15 @@ export default function FacilitiesSplitHero() {
         // ── Mobile animation (< 768 px) ───────────────────────────
         mm.add("(max-width: 767px)", () => {
             gsap.set(mobilePanelRef.current, { opacity: 1 });
-            const tl = gsap.timeline({ delay: 0.2 });
+            // Hold the intro while the first-load preloader covers the page;
+            // restart(true) keeps the original 0.2s delay.
+            const revealed = isSiteRevealed();
+            const tl = gsap.timeline({ delay: 0.2, paused: !revealed });
             applySplitSlideUp({ target: mobileTaglineRef.current, timeline: tl, duration: 0.5 });
             applyLinesSlideUp({ lines: mobileHeadlineLinesRef.current, timeline: tl, position: ">-0.1", stagger: 0.1, duration: 0.55 });
             tl.fromTo(mobileCtaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, ">-0.1");
             tl.fromTo(mobileParaRef.current, { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: "power4.out" }, ">-0.1");
+            if (!revealed) return onSiteRevealed(() => tl.restart(true));
         });
 
         // ── Desktop animation (≥ 768 px) ──────────────────────────

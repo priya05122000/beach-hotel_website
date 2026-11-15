@@ -679,3 +679,12 @@ div.Header {
     opacity: 0;
   }
 }
+
+/* First-load preloader (classes set by the boot script in app/layout.tsx). */
+html.preloading {
+  overflow: hidden;
+}
+
+html.preloader-skip #site-preloader {
+  display: none;
+}
