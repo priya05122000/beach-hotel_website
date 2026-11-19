@@ -211,7 +211,7 @@ function RoomRow({
                 <div className="flex items-center gap-2 text-gray">
                   <Users size={13} strokeWidth={1.5} />
                   <span className=" tracking-widest uppercase">
-                    Up to {room.max_guests} guests
+                    Max. {room.max_guests} {room.max_guests === 1 ? "Guest" : "Guests"}
                   </span>
                 </div>
               )}
