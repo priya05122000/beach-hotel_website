@@ -92,7 +92,9 @@ const DesktopNavLinks = memo(function DesktopNavLinks({
 
   const linkCls = (href: string) => {
     const active = isActive(href);
-    const base = "text-[11px] tracking-[3px] uppercase transition-colors";
+    // Explicit font: <body> sets no font-family, so without this the links
+    // fell back to the system UI font.
+    const base = "text-[11px] font-arizona-sans-regular tracking-[3px] uppercase transition-colors";
     if (isOverDark) return `${base} text-white`;
     return `${base} ${active ? "text-primary-dark font-semibold" : "text-primary-dark/70 hover:text-primary-dark"}`;
   };

@@ -539,6 +539,7 @@ export interface Blog {
   slug: string;
   image_url: string;
   sub_title: string;
+  meta_description: string | null;
   tag_1: string;
   tag_2: string;
   description_1: string;

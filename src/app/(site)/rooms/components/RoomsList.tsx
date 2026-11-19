@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LazySection from "@/src/components/common/LazySection";
 
 import {
+  Layers,
   Users,
   BedDouble,
   Wifi,
@@ -228,6 +229,14 @@ function RoomRow({
                   <span className=" tracking-widest uppercase">
                     {room.room_quantity}{" "}
                     {room.room_quantity === 1 ? "room" : "rooms"}
+                  </span>
+                </div>
+              )}
+              {room.floor?.trim() && (
+                <div className="flex items-center gap-2 text-gray">
+                  <Layers size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    {room.floor.trim()}
                   </span>
                 </div>
               )}

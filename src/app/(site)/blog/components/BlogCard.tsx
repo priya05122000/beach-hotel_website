@@ -17,12 +17,10 @@ export default function BlogCard({ blog }: Props) {
     })
     : null;
 
-  // Card excerpt shows the subtitle (falls back to description_1 for posts
-  // without one). Always plain text, not rendered HTML — description_1 is a
-  // CMS rich-text field that can contain arbitrary tags (including
-  // <h2>/<h3>), and rendering those raw here injected uncontrolled extra
-  // headings into the /blog listing page once per card ("H2: Multiple").
-  const excerpt = (blog.sub_title?.trim() || blog.description_1 || "").replace(/<[^>]+>/g, "");
+  // Card excerpt is the admin-entered meta description only (a required
+  // field in the CMS). Plain text, never rendered HTML — rendering CMS
+  // rich text here once injected extra headings into /blog ("H2: Multiple").
+  const excerpt = blog.meta_description?.replace(/<[^>]+>/g, "").trim() ?? "";
 
   return (
     <article className="group flex flex-col">
@@ -51,9 +49,11 @@ export default function BlogCard({ blog }: Props) {
           </SubHeading>
         </Link>
 
-        <p className="text-charcoal leading-relaxed mb-4 line-clamp-3">
-          {excerpt}
-        </p>
+        {excerpt && (
+          <p className="text-charcoal leading-relaxed mb-4 line-clamp-3">
+            {excerpt}
+          </p>
+        )}
 
         {/* <Link
           href={`/blog/${blog.slug}`}
