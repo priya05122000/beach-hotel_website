@@ -50,7 +50,7 @@ export default function BlogCard({ blog }: Props) {
         </Link>
 
         {excerpt && (
-          <p className="text-charcoal leading-relaxed mb-4 line-clamp-3">
+          <p className="text-charcoal leading-relaxed mb-4 ">
             {excerpt}
           </p>
         )}
