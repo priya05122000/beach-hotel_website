@@ -62,15 +62,22 @@ const DynamicRoomSlider = dynamic(() => import("./RoomSlider"), {
   ssr: false,
 });
 
-function RoomRow({ room, index, totalRooms }: { room: Room; index: number, totalRooms: number }) {
+function RoomRow({
+  room,
+  index,
+  totalRooms,
+}: {
+  room: Room;
+  index: number;
+  totalRooms: number;
+}) {
   const isEven = index % 2 === 0;
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   // If total is even -> 1st,3rd... get ivory
   // If total is odd -> 2nd,4th... get ivory
-  const shouldHaveIvory =
-    totalRooms % 2 === 0 ? isEven : !isEven;
+  const shouldHaveIvory = totalRooms % 2 === 0 ? isEven : !isEven;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -155,8 +162,7 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
     <Section
       data-room-id={room.id}
       ref={sectionRef}
-      className={`py-16 md:py-20 ${shouldHaveIvory ? "bg-ivory" : ""
-        }`}
+      className={`py-16 md:py-20 ${shouldHaveIvory ? "bg-ivory" : ""}`}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
         <div
@@ -175,10 +181,19 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
             <div className="flex flex-wrap type-label gap-x-6 gap-y-3">
               {hasPrice && price != null && (
-                <div className="flex items-center gap-2 text-gray">
-                  <IndianRupee size={13} strokeWidth={1.5} />
-                  <span className=" tracking-widest uppercase">
-                    {price.toLocaleString("en-IN", { maximumFractionDigits: 2 })}{" "}
+                <div className="flex items-center gap-1.5 text-gray">
+                  {/* Amount highlighted; the "/ night" note keeps the muted style. */}
+                  <IndianRupee
+                    size={17}
+                    strokeWidth={2}
+                    className="text-primary-dark"
+                  />
+                  <span className="tracking-widest uppercase">
+                    <span className="text-lg sm:text-xl font-arizona-sans-bold font-bold text-primary-dark tracking-wide">
+                      {price.toLocaleString("en-IN", {
+                        maximumFractionDigits: 2,
+                      })}
+                    </span>{" "}
                     / night (incl. taxes)
                   </span>
                 </div>
@@ -217,11 +232,12 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
                 </div>
               )}
               {views.map((v) => (
-                <div key={v.label} className="flex items-center gap-2 text-gray">
+                <div
+                  key={v.label}
+                  className="flex items-center gap-2 text-gray"
+                >
                   <v.icon size={13} strokeWidth={1.5} />
-                  <span className=" tracking-widest uppercase">
-                    {v.label}
-                  </span>
+                  <span className=" tracking-widest uppercase">{v.label}</span>
                 </div>
               ))}
             </div>
@@ -230,18 +246,18 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
               room.breakfast_included ||
               room.food_beverage_offer) && (
               <div className="flex flex-wrap gap-x-2 gap-y-3">
-                {amenities.map((a) => (
-                  <Pill key={a.label} icon={a.icon} label={a.label} />
-                ))}
-                {room.breakfast_included && (
-                  <Pill icon={Coffee} label="Breakfast Included" />
-                )}
                 {room.food_beverage_offer && (
                   <Pill
                     icon={Tag}
                     label={`F&B Offer: ${room.food_beverage_offer}`}
                   />
                 )}
+                {room.breakfast_included && (
+                  <Pill icon={Coffee} label="Breakfast Included" />
+                )}
+                {amenities.map((a) => (
+                  <Pill key={a.label} icon={a.icon} label={a.label} />
+                ))}
               </div>
             )}
 
@@ -293,7 +309,6 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
               dangerouslySetInnerHTML={{ __html: room.description }}
             />
           )}
-
         </div>
       </div>
     </Section>
@@ -310,31 +325,35 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
           {/* h2 — the per-room titles below are h3, so this needs to be a
             real heading or the outline jumps straight from h1 to h3
             ("H2: Missing"). */}
-          <Eyebrow as="h2" align="responsive">Rooms & Suites</Eyebrow>
+          <Eyebrow as="h2" align="responsive">
+            Rooms & Suites
+          </Eyebrow>
 
           <div>
             {/* Desktop — uppercase, wide-tracking heading style */}
             <div className="hidden sm:block uppercase type-h6 text-primary-dark lg:max-w-lg xl:max-w-xl mt-10 mb-4 sm:mt-0 tracking-[0.2rem] leading-8">
-              At The Beach Bay, every stay is an invitation to refined indulgence.
-              Our accommodations are appointed with custom furnishings, the finest
-              linens and thoughtful touches at every turn — from serene inland
-              retreats to coveted sea-view rooms, where floor-to-ceiling glass
-              dissolves the line between suite and ocean and the rhythm of the waves
-              becomes your constant companion. Whichever you choose, you are wrapped
-              in quiet grandeur and impeccable comfort — and wake to the most
-              extraordinary edge of India.
+              At The Beach Bay, every stay is an invitation to refined
+              indulgence. Our accommodations are appointed with custom
+              furnishings, the finest linens and thoughtful touches at every
+              turn — from serene inland retreats to coveted sea-view rooms,
+              where floor-to-ceiling glass dissolves the line between suite and
+              ocean and the rhythm of the waves becomes your constant companion.
+              Whichever you choose, you are wrapped in quiet grandeur and
+              impeccable comfort — and wake to the most extraordinary edge of
+              India.
             </div>
 
             {/* Mobile/tablet — plain body-text style, easier to read at small sizes */}
             <p className="lg:hidden mb-4 text-xl text-charcoal type-body-xl mt-10 sm:mt-0 leading-relaxed">
-              At The Beach Bay, every stay is an invitation to refined indulgence.
-              Our accommodations are appointed with custom furnishings, the finest
-              linens and thoughtful touches at every turn — from serene inland
-              retreats to coveted sea-view rooms, where floor-to-ceiling glass
-              dissolves the line between suite and ocean and the rhythm of the waves
-              becomes your constant companion. Whichever you choose, you are wrapped
-              in quiet grandeur and impeccable comfort — and wake to the most
-              extraordinary edge of India.
+              At The Beach Bay, every stay is an invitation to refined
+              indulgence. Our accommodations are appointed with custom
+              furnishings, the finest linens and thoughtful touches at every
+              turn — from serene inland retreats to coveted sea-view rooms,
+              where floor-to-ceiling glass dissolves the line between suite and
+              ocean and the rhythm of the waves becomes your constant companion.
+              Whichever you choose, you are wrapped in quiet grandeur and
+              impeccable comfort — and wake to the most extraordinary edge of
+              India.
             </p>
 
             <PillLinkButton
@@ -347,16 +366,16 @@ export default function RoomsList({ rooms }: { rooms: Room[] }) {
         </div>
       </Section>
 
-
-
-      <div >
+      <div>
         {rooms.map((room, index) => (
-          <RoomRow key={room.id} room={room} index={index} totalRooms={rooms.length} />
+          <RoomRow
+            key={room.id}
+            room={room}
+            index={index}
+            totalRooms={rooms.length}
+          />
         ))}
       </div>
-
-
-
     </>
   );
 }
