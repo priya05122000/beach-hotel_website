@@ -181,10 +181,13 @@ export default function RoomAmenitiesSection() {
           </div>
           <div>
             <strong className="text-primary-dark uppercase tracking-widest">Cot :</strong>
-            <ul className="list-disc pl-10 mt-2 ">
+            {/* <ul className="list-disc pl-10 mt-2 ">
+              <li>Extra bed for guests : ₹1,500 + taxes </li>
               <li>Extra cot for guests above 8 years: ₹1,000 + taxes.</li>
               <li>Extra cot for guests below 8 years: ₹700 + taxes.</li>
-            </ul>
+            </ul> */}
+
+              <p className="mt-2">Extra bed for guests : ₹1,500 + taxes</p>
           </div>
         </div>
       </Section>
