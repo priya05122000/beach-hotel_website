@@ -17,11 +17,12 @@ export default function BlogCard({ blog }: Props) {
     })
     : null;
 
-  // Card excerpt is plain text, not rendered HTML — description_1 is a
+  // Card excerpt shows the subtitle (falls back to description_1 for posts
+  // without one). Always plain text, not rendered HTML — description_1 is a
   // CMS rich-text field that can contain arbitrary tags (including
   // <h2>/<h3>), and rendering those raw here injected uncontrolled extra
   // headings into the /blog listing page once per card ("H2: Multiple").
-  const excerpt = blog.description_1.replace(/<[^>]+>/g, "");
+  const excerpt = (blog.sub_title?.trim() || blog.description_1 || "").replace(/<[^>]+>/g, "");
 
   return (
     <article className="group flex flex-col">

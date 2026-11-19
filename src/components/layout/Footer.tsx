@@ -18,7 +18,7 @@ const navLinks = [
 ];
 
 const workingHours = [
-  "Check-In — 1:00 PM",
+  "Check-In — 2:00 PM",
   "Check-Out — 11:00 AM",
   "Front Desk — 24 / 7",
   "Room Service — 24 / 7",

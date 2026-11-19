@@ -629,6 +629,9 @@ export interface Room {
 
   price_per_night: string | null;
   max_guests: number | null;
+  room_quantity: number | null;
+  breakfast_included: boolean;
+  food_beverage_offer: string | null;
 
   bed_type: string | null;
   size: string | null;

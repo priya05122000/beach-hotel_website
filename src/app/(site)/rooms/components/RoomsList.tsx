@@ -41,6 +41,9 @@ import {
   Building2,
   Clock,
   Heart,
+  Hotel,
+  IndianRupee,
+  Tag,
 } from "lucide-react";
 
 import type { Room } from "@/src/types";
@@ -143,6 +146,11 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
     label,
   }));
 
+  // price_per_night comes from the API as a DECIMAL string (e.g. "6500.00")
+  // and is entered in the CMS as the tax-inclusive price.
+  const price = room.price_per_night ? Number(room.price_per_night) : null;
+  const hasPrice = price != null && !Number.isNaN(price) && price > 0;
+
   return (
     <Section
       data-room-id={room.id}
@@ -166,6 +174,15 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
 
           <div className="flex flex-col gap-4 pt-5 xl:pt-8">
             <div className="flex flex-wrap type-label gap-x-6 gap-y-3">
+              {hasPrice && price != null && (
+                <div className="flex items-center gap-2 text-gray">
+                  <IndianRupee size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    {price.toLocaleString("en-IN", { maximumFractionDigits: 2 })}{" "}
+                    / night (incl. taxes)
+                  </span>
+                </div>
+              )}
               {room.size && (
                 <div className="flex items-center gap-2 text-gray">
                   <Ruler size={13} strokeWidth={1.5} />
@@ -190,6 +207,15 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
                   </span>
                 </div>
               )}
+              {room.room_quantity != null && room.room_quantity > 0 && (
+                <div className="flex items-center gap-2 text-gray">
+                  <Hotel size={13} strokeWidth={1.5} />
+                  <span className=" tracking-widest uppercase">
+                    {room.room_quantity}{" "}
+                    {room.room_quantity === 1 ? "room" : "rooms"}
+                  </span>
+                </div>
+              )}
               {views.map((v) => (
                 <div key={v.label} className="flex items-center gap-2 text-gray">
                   <v.icon size={13} strokeWidth={1.5} />
@@ -200,11 +226,22 @@ function RoomRow({ room, index, totalRooms }: { room: Room; index: number, total
               ))}
             </div>
 
-            {amenities.length > 0 && (
+            {(amenities.length > 0 ||
+              room.breakfast_included ||
+              room.food_beverage_offer) && (
               <div className="flex flex-wrap gap-x-2 gap-y-3">
                 {amenities.map((a) => (
                   <Pill key={a.label} icon={a.icon} label={a.label} />
                 ))}
+                {room.breakfast_included && (
+                  <Pill icon={Coffee} label="Breakfast Included" />
+                )}
+                {room.food_beverage_offer && (
+                  <Pill
+                    icon={Tag}
+                    label={`F&B Offer: ${room.food_beverage_offer}`}
+                  />
+                )}
               </div>
             )}
 

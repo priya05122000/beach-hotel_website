@@ -43,9 +43,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const res = await getBlogBySlug(slug);
     const blog = res.data;
-    const description = blog.description_1
-      ? blog.description_1.replace(/<[^>]+>/g, "").slice(0, 155)
-      : blog.sub_title;
+    // Meta description = the post's subtitle, in full (no description
+    // fallback, no length limit).
+    const description =
+      blog.sub_title?.replace(/<[^>]+>/g, "").trim() || undefined;
 
     return {
       title: blog.title,
