@@ -141,10 +141,12 @@ export default function HorizontalScrollSectionClient({
                     </p>
                     <Link
                       href={`/destinations#destination-${i + 1}`}
-                      aria-label={`View ${item.destination_name}`}
                       className="absolute bottom-0 right-4 flex items-center bg-linear-to-l from-white via-white to-transparent pl-4 text-gray"
                     >
-                      <ChevronRight size={14} strokeWidth={1.5} />
+                      {/* Hidden text (not aria-label) so crawlers see anchor
+                          text ("Internal Outlinks With No Anchor Text"). */}
+                      <span className="sr-only">View {item.destination_name}</span>
+                      <ChevronRight size={14} strokeWidth={1.5} aria-hidden="true" />
                     </Link>
                   </div>
                 )}

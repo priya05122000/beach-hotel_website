@@ -221,7 +221,7 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
         {/* Always visible, independent of which slide is active */}
         <div className="absolute bottom-6 right-0 lg:bottom-10  z-30">
           <Button href="/facilities" className="sm:w-50  whitespace-nowrap font-normal text-black cursor-pointer">
-            View All
+            View All<span className="sr-only"> Facilities</span>
           </Button>
         </div>
 

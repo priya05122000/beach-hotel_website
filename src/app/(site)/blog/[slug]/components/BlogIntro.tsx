@@ -14,7 +14,7 @@ interface Props {
 
 export default function BlogIntro({ blog }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLParagraphElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     const prefersReduced = prefersReducedMotion();
@@ -47,20 +47,19 @@ export default function BlogIntro({ blog }: Props) {
         </div>
 
         <div ref={wrapperRef} className="">
-          {/* Lede/tagline, not a real section heading — the page's actual
-              <h1> (blog.title) renders later in BlogStatement, so this must
-              not be a heading tag or it would appear before the h1 in DOM
-              order ("H1: Non-Sequential" in SEO audits). */}
-          <p
+          {/* The page's only <h1>. Must stay before the article HTML below,
+              which contains <h2>s, so the h1 is the first heading on the page
+              ("H1: Non-Sequential" in SEO audits). */}
+          <h1
             ref={titleRef}
             className="type-h2 text-primary-dark leading-snug"
           >
-            {blog.sub_title}
-          </p>
+            {blog.title}
+          </h1>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1.5fr_2fr] py-16 sm:py-20 gap-y-6 gap-x-3">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2.5fr] py-16 sm:py-20 gap-y-6 gap-x-3">
         <Eyebrow className="max-w-md">{blog.tag_2}</Eyebrow>
         <div className="flex flex-col ">
           <div className="blog-content text-charcoal leading-snug " dangerouslySetInnerHTML={{ __html: blog.description_1 }} />

@@ -203,7 +203,7 @@ function RoomCard({ room }: { room: Room }) {
           href={`/rooms#room-${room.id}`}
           className="flex items-center gap-1 type-label-sm tracking-[2px] text-gray uppercase mt-6 underline underline-offset-2"
         >
-          View Details
+          View Details<span className="sr-only"> of {room.name}</span>
         </Link>
       </div>
     </div>

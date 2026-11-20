@@ -385,6 +385,7 @@
 .blog-content strong,
 .blog-content b {
   font-weight: 600;
+  color: var(--primary-dark);
 }
 
 .blog-content em,
@@ -430,12 +431,20 @@
   margin: 1em 0;
 }
 
+/* Full-width table. `display: block` (for sideways scroll) makes the cells
+   shrink to their content, so it's only used on small screens. */
 .blog-content table {
-  display: block;
-  overflow-x: auto;
+  display: table;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1em;
+}
+
+@media (max-width: 639px) {
+  .blog-content table {
+    display: block;
+    overflow-x: auto;
+  }
 }
 
 .blog-content th,

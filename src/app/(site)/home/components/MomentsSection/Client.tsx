@@ -225,7 +225,7 @@ export default function MomentsSectionClient({ items }: Props) {
 
       <div className="flex justify-end mt-16">
         <Button href="/blog" className="sm:w-50 whitespace-nowrap font-normal text-primary-dark cursor-pointer">
-          View All
+          View All<span className="sr-only"> Blog Posts</span>
         </Button>
       </div>
     </Section>
