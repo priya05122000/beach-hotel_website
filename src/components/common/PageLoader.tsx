@@ -7,7 +7,8 @@ export default function PageLoader({ gifId }: { gifId?: string } = {}) {
             <Image
                 id={gifId}
                 src="/the-beach-bay-loader.gif"
-                alt=""
+                alt="The Beach Bay, Kanyakumari logo animation"
+                aria-hidden="true"
                 width={426}
                 height={426}
                 unoptimized

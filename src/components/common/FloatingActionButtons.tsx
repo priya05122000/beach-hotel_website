@@ -80,8 +80,8 @@ export default function FloatingActionButtons() {
         aria-label="Chat with us on WhatsApp"
         className={`${dockItemClass} cursor-pointer`}
       >
-        <span className={dockIconClass}>
-          <Image src="/common/icons/whatsapp-icon.png" alt="" width={24} height={24} className="object-contain" />
+        <span className={dockIconClass} aria-hidden="true">
+          <Image src="/common/icons/whatsapp-icon.png" alt="WhatsApp icon" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>WhatsApp</span>
       </button>
@@ -91,8 +91,8 @@ export default function FloatingActionButtons() {
         aria-label="Call Us"
         className={dockItemClass}
       >
-        <span className={`${dockIconClass}  `}>
-          <Image src="/common/icons/phone-call-icon.png" alt="" width={24} height={24} className="object-contain" />
+        <span className={dockIconClass} aria-hidden="true">
+          <Image src="/common/icons/phone-call-icon.png" alt="Phone call icon" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Call Us</span>
       </Link>
@@ -104,8 +104,8 @@ export default function FloatingActionButtons() {
         aria-label="Book your stay"
         className={dockItemClass}
       >
-        <span className={dockIconClass}>
-          <Image src="/common/icons/book-now-icon.png" alt="" width={24} height={24} className="object-contain" />
+        <span className={dockIconClass} aria-hidden="true">
+          <Image src="/common/icons/book-now-icon.png" alt="Book now icon" width={24} height={24} className="object-contain" />
         </span>
         <span className={dockLabelClass}>Book Now</span>
       </Link>

@@ -46,6 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Meta description = the admin-entered meta description only (required
     // in the CMS).
     const description = blog.meta_description?.trim() || undefined;
+    // image_url is a path on the API's uploads dir (e.g. "images/foo.png").
+    // It must be made absolute here, otherwise Next resolves it against
+    // metadataBase (the website domain), where the file doesn't exist.
+    const ogImage = blog.image_url
+      ? `${process.env.NEXT_PUBLIC_API_URL}/uploads/${blog.image_url.replace(/^\/+/, "")}`
+      : undefined;
 
     return {
       title: blog.title,
@@ -57,11 +63,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url: `/blog/${slug}`,
         type: "article",
         publishedTime: blog.published_at ?? undefined,
-        images: blog.image_url
-          ? [{ url: blog.image_url, width: 1200, height: 630, alt: blog.title }]
+        images: ogImage
+          ? [{ url: ogImage, width: 1200, height: 630, alt: blog.title }]
           : [],
       },
-      twitter: { card: "summary_large_image", title: blog.title, description },
+      twitter: {
+        card: "summary_large_image",
+        title: blog.title,
+        description,
+        images: ogImage ? [ogImage] : undefined,
+      },
     };
   } catch {
     return { title: "Blog Post" };
