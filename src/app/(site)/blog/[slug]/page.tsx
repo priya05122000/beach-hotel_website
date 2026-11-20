@@ -52,24 +52,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const ogImage = blog.image_url
       ? `${process.env.NEXT_PUBLIC_API_URL}/uploads/${blog.image_url.replace(/^\/+/, "")}`
       : undefined;
+    // CMS titles can carry double/trailing spaces.
+    const title = blog.title.replace(/\s+/g, " ").trim();
+    // The layout template adds " | The Beach Bay" (16 chars), which pushed
+    // 60-char CMS titles over 60 ("Page Titles: Over 60 Characters").
+    // Keep the suffix only when the full title still fits in 60.
+    const SUFFIX = " | The Beach Bay";
+    const pageTitle =
+      title.length + SUFFIX.length <= 60 ? `${title}${SUFFIX}` : title;
 
     return {
-      title: blog.title,
+      title: { absolute: pageTitle },
       description,
       alternates: { canonical: `/blog/${slug}` },
       openGraph: {
-        title: blog.title,
+        title,
         description,
         url: `/blog/${slug}`,
         type: "article",
         publishedTime: blog.published_at ?? undefined,
         images: ogImage
-          ? [{ url: ogImage, width: 1200, height: 630, alt: blog.title }]
+          ? [{ url: ogImage, width: 1200, height: 630, alt: title }]
           : [],
       },
       twitter: {
         card: "summary_large_image",
-        title: blog.title,
+        title,
         description,
         images: ogImage ? [ogImage] : undefined,
       },
