@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { baseOpenGraph } from "@/src/lib/seo";
 import Link from "next/link";
 import CommonBanner from "@/src/components/common/CommonBanner";
 import CenterSection from "@/src/components/common/CenterSection";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     "Read the terms and conditions for booking and staying at The Beach Bay, Kanyakumari, including cancellations and payments.",
   alternates: { canonical: "/terms-and-conditions" },
   openGraph: {
+    ...baseOpenGraph,
     title: "Terms & Conditions — The Beach Bay",
     description:
       "Booking, cancellation, payment, and stay policies for The Beach Bay, Kanyakumari.",

@@ -27,7 +27,7 @@ export default async function FacilitiesPage() {
     <>
       <div className="bg-cream">
         <Suspense fallback={null}>
-          <SectionScroller dataAttr="data-facility-order" />
+          <SectionScroller dataAttr="data-facility-order" hashPrefix="facility-" />
         </Suspense>
         <FacilitiesSplitHero />
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { baseOpenGraph } from "@/src/lib/seo";
 import RoomsList from "./components/RoomsList";
 import RoomAmenitiesSection from "./components/RoomAmenitiesSection";
 import { getRoomsData } from "@/src/service/rooms";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     "Affordable luxury meets stunning sea views at The Beach Bay Kanyakumari. Book direct today for the best rates and exclusive offers!",
   alternates: { canonical: "/rooms" },
   openGraph: {
+    ...baseOpenGraph,
     title: "Rooms & Suites — The Beach Bay",
     description:
       "Rooms and suites designed for comfort with wide ocean views in Kanyakumari.",
@@ -34,7 +36,7 @@ export default async function RoomsPage() {
   return (
     <>
       <Suspense fallback={null}>
-        <SectionScroller dataAttr="data-room-id" />
+        <SectionScroller dataAttr="data-room-id" hashPrefix="room-" />
       </Suspense>
       <RoomBanner />
       <RoomsList rooms={activeRooms} />

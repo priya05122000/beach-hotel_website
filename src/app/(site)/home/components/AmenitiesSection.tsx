@@ -75,7 +75,7 @@ function Editorial({ align = "left" }: { align?: "left" | "right" }) {
 export default async function AmenitiesSection() {
   const active = await getActiveFacilities();
 
-  // `?to=` is the 1-based position in the full list, so this is built before
+  // `#facility-N` is the 1-based position in the full list, so this is built before
   // the rows below slice it up.
   const cards = active.map((f, i) => ({
     id: f.id,
@@ -83,7 +83,7 @@ export default async function AmenitiesSection() {
     iconUrl: f.icon_url
       ? `${API_URL}/uploads/${f.icon_url}`
       : "/placeholder.jpg",
-    href: `/facilities?to=${i + 1}`,
+    href: `/facilities#facility-${i + 1}`,
   }));
 
   return (

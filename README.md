@@ -8,6 +8,10 @@ Modern hotel website built with Next.js, TypeScript and Tailwind CSS.
 - TypeScript
 - Tailwind CSS
 
+## SEO
+
+See [SEO_FIXES.md](SEO_FIXES.md) for Screaming Frog audit fixes and a pre-launch SEO checklist to reuse on new projects.
+
 ## Getting Started
 
 ```bash

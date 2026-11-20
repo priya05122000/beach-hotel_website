@@ -9,7 +9,7 @@ export function getNearbyDestinationData(): Promise<ApiListResponse<NearbyDestin
   });
 }
 
-// Home page cards link to `/destinations?to=<position>`, so both pages must
+// Home page cards link to `/destinations#destination-<position>`, so both pages must
 // build their list through this one function to agree on what each position is.
 export async function getActiveNearbyDestinations(): Promise<NearbyDestination[]> {
   const { data } = await getNearbyDestinationData();

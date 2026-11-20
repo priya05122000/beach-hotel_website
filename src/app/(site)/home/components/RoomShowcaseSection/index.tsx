@@ -31,7 +31,7 @@ export default async function RoomShowcaseSection() {
       title: f.facility_name,
       description: f.short_description ?? f.description ?? "",
       image: getPrimaryImage(f),
-      href: `/facilities?to=${i + 1}`,
+      href: `/facilities#facility-${i + 1}`,
     }));
 
   return <RoomShowcaseSectionClient items={items} />;

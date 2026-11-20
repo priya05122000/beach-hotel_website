@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { baseOpenGraph } from "@/src/lib/seo";
 import CommonBanner from "@/src/components/common/CommonBanner";
 import CenterSection from "@/src/components/common/CenterSection";
 import { PHONE_NUMBERS } from "@/src/lib/site-links";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     "Learn how The Beach Bay, Kanyakumari collects, uses, and protects your personal information when you book or visit us.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
+    ...baseOpenGraph,
     title: "Privacy Policy — The Beach Bay",
     description:
       "How The Beach Bay, Kanyakumari collects, uses, and protects your personal information.",

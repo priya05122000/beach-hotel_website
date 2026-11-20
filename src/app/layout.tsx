@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import SitePreloader from "../components/common/SitePreloader";
 import { PRELOADER_BOOT_SCRIPT } from "../lib/site-reveal";
+import { baseOpenGraph, DEFAULT_OG_IMAGE } from "../lib/seo";
 import {
   arizonaSansBold,
   arizonaFlareRegular,
@@ -40,23 +41,15 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    siteName: "The Beach Bay",
-    images: [
-      {
-        url: "/home/hotel-poolside-exterior-dusk.webp",
-        width: 1600,
-        height: 900,
-        alt: "Poolside exterior of The Beach Bay, Kanyakumari at dusk",
-      },
-    ],
-  },
+  // Pages that set their own `openGraph` must spread `baseOpenGraph` too;
+  // see src/lib/seo.ts.
+  openGraph: baseOpenGraph,
   twitter: {
     card: "summary_large_image",
-    site: "@thebeachhotel",
-    images: ["/home/hotel-poolside-exterior-dusk.webp"],
+    // Must match the X profile in src/lib/social-links.ts (x.com/TheBeachHotel_).
+    site: "@TheBeachHotel_",
+    creator: "@TheBeachHotel_",
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

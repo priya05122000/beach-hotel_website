@@ -108,7 +108,7 @@ export default function FacilitiesSection({ facilities }: Props) {
         });
     });
 
-    // 1-based position in the full display_order list, matched against `?to=`
+    // 1-based position in the full display_order list, matched against `#facility-N`
     // from the home page cards. Unlike orderMap, this doesn't restart per group.
     const positionMap = new Map(facilities.map((f, i) => [f.id, i + 1]));
 

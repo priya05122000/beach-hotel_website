@@ -9,7 +9,7 @@ export function getFacilitiesData(): Promise<ApiListResponse<Facility>> {
   });
 }
 
-// Home page cards link to `/facilities?to=<position>`, so every page must
+// Home page cards link to `/facilities#facility-<position>`, so every page must
 // build its list through this one function to agree on what each position is.
 export async function getActiveFacilities(): Promise<Facility[]> {
   const { data } = await getFacilitiesData();

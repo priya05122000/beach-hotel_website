@@ -29,7 +29,7 @@ function DestinationItem({
   shouldHaveIvory,
 }: {
   destination: NearbyDestination;
-  /** 1-based position, matched against `?to=` from the home page cards. */
+  /** 1-based position, matched against `#destination-N` from the home page cards. */
   order: number;
   shouldHaveIvory: boolean;
 }) {
