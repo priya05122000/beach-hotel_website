@@ -188,6 +188,7 @@ export default function TermsAndConditionsPage() {
             manner.
           </p>
 
+          {/* Pet-friendly hidden for now.
           <h2>Pet Policy</h2>
           <p>
             The Beach Bay is pleased to welcome guests travelling with their
@@ -224,6 +225,7 @@ export default function TermsAndConditionsPage() {
               the current pet policy and any applicable requirements or charges.
             </li>
           </ul>
+          */}
 
           <h2>Intellectual Property &amp; Copyright</h2>
           <p>

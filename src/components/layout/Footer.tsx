@@ -3,7 +3,7 @@ import Image from "next/image";
 import Section from "@/src/components/common/Section";
 import SocialIconLinks from "@/src/components/common/SocialIconLinks";
 import ScrollLink from "@/src/components/common/ScrollLink";
-import { Mail, MapPin, Phone, ClipboardList, PawPrint } from "lucide-react";
+import { Mail, MapPin, Phone, ClipboardList /* , PawPrint */ } from "lucide-react";
 import { BOOKING_URL, PHONE_NUMBERS } from "@/src/lib/site-links";
 
 const navLinks = [
@@ -60,10 +60,11 @@ export default function Footer() {
                 refined comfort.
               </h3>
 
+              {/* Pet-friendly hidden for now.
               <p className="type-body-lg  inline-flex items-center gap-4 text-white uppercase">
                 <PawPrint size={30} className="shrink-0" />
                 Pet-friendly accommodation available.
-              </p>
+              </p> */}
 
               <div>
                 {/* <Link

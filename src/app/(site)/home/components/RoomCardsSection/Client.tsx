@@ -28,7 +28,7 @@ import {
   ConciergeBell,
   WashingMachine,
   Accessibility,
-  PawPrint,
+  // PawPrint, // pet-friendly hidden for now
   Coffee,
   Shirt,
   AlarmClock,
@@ -67,7 +67,7 @@ const AMENITY_MAP: Record<string, React.ElementType> = {
   "Room Service": ConciergeBell,
   "Laundry Service": WashingMachine,
   "Wheelchair Accessible": Accessibility,
-  "Pet Friendly": PawPrint,
+  // "Pet Friendly": PawPrint, // pet-friendly hidden for now
   "Tea Maker / Kettle": Coffee,
   "Iron Board": Shirt,
   "Wake Up Call": AlarmClock,
@@ -117,7 +117,10 @@ const resolveImage = (url?: string | string[] | null): string => {
 };
 
 function RoomCard({ room }: { room: Room }) {
-  const amenities = (room.additional_keys ?? []).map((key) => ({
+  const amenities = (room.additional_keys ?? [])
+    // Pet-friendly hidden for now; remove this filter to show it again.
+    .filter((key) => key !== "Pet Friendly")
+    .map((key) => ({
     icon: AMENITY_MAP[key] ?? Sparkles,
     label: key,
   }));

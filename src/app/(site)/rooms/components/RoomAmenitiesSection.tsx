@@ -175,10 +175,11 @@ export default function RoomAmenitiesSection() {
           Good to Know
         </div>
         <div className="max-w-3xl type-body text-charcoal space-y-4">
+          {/* Pet-friendly hidden for now.
           <div>
             <strong className="text-primary-dark uppercase tracking-widest">Pet :</strong>
             <p className="mt-2">One pet is allowed per room, and dogs only are permitted. Dogs must be well-behaved and kept under control at all times. Only dogs up to 45 cm in height at the shoulder are allowed. Large or aggressive breeds are not permitted.</p>
-          </div>
+          </div> */}
           <div>
             <strong className="text-primary-dark uppercase tracking-widest">Cot :</strong>
             {/* <ul className="list-disc pl-10 mt-2 ">
