@@ -69,7 +69,10 @@ const AboutUs = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden h-[160vh] sm:h-[200vh]">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden h-[160vh] sm:h-[200vh]"
+    >
       {/* Parallax video */}
       <div
         ref={bgRef}
@@ -94,36 +97,47 @@ const AboutUs = () => {
         className="absolute inset-x-0 top-0 z-10 flex flex-col justify-end px-8 lg:px-16 pb-16 lg:pb-20 h-[75vh] sm:h-screen"
       >
         <h1 ref={titleRef} className="text-white type-display-2xl leading-none">
-          Where Every<br />Wave Tells<br />Our Story
+          Where Every
+          <br />
+          Wave Tells
+          <br />
+          Our Story
         </h1>
         {/* <p className="text-white/50 type-body uppercase mt-8 flex items-center gap-3">
           <span className="inline-block w-8 h-px bg-white/40" />
           Scroll to explore
         </p> */}
 
-        <Button href="/blog" className="sm:w-60 mt-8 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
+        <Button
+          href="/blog"
+          className="sm:w-60 mt-8 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer"
+        >
           Explore the Journal
         </Button>
       </div>
 
       {/* Second panel — right content */}
-      <div
-        className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-end px-8 lg:px-16 h-[75vh] sm:h-screen"
-      >
+      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-end px-8 lg:px-16 h-[75vh] sm:h-screen">
         <div className="max-w-lg flex flex-col gap-6">
-          <h2 ref={subtitleRef} className="text-white type-display-sm leading-tight">
-            We believe the sea has a story to tell — and every stay brings you closer to it.
+          <h2
+            ref={subtitleRef}
+            className="text-white type-display-sm leading-tight"
+          >
+            The sea has a story to tell — every stay brings you closer.
           </h2>
           <p className="text-white/55 type-body leading-relaxed">
-            Set at the tip of India where three oceans meet, The Beach Bay was born
-            from a simple dream: to let every guest wake up to the sound of waves and fall
-            asleep under a sky full of stars.
+            Set at the tip of India where three oceans meet, The Beach Bay was
+            born from a simple dream: to let every guest wake up to the sound of
+            waves and fall asleep under a sky full of stars.
           </p>
           {/* <Button href="/contact-us" className="text-accent text-[12px] tracking-[0.22em] font-semibold">
             Our Story
           </Button> */}
 
-          <Button action={scrollToStory} className="self-end sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer">
+          <Button
+            action={scrollToStory}
+            className="self-end sm:w-50 pointer-events-auto whitespace-nowrap font-normal text-white cursor-pointer"
+          >
             Our Story
           </Button>
         </div>

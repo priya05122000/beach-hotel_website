@@ -60,9 +60,11 @@ const FeaturedHighlightSection = () => {
       <div className="grid sm:grid-cols-[1fr_1fr_1fr] gap-2">
         <div className="hidden sm:block" />
         <div className="col-span-2 flex flex-col text-left sm:text-right">
-          <h2 className="mt-2 text-primary-dark type-h2">
+          {/* h3: the home page keeps a single h2 ("Featured Facilities").
+              Size comes from type-h2. */}
+          <h3 className="mt-2 text-primary-dark type-h2">
             The Soul of Southern India
-          </h2>
+          </h3>
           <p className="max-w-lg sm:ml-auto mt-4 mb-10 type-body text-charcoal">
             Kanyakumari is a destination of many wonders — a sacred shore where
             sunrise, sunset and moonrise can all be witnessed over the sea,

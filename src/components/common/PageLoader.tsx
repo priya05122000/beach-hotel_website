@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function PageLoader({ gifId }: { gifId?: string } = {}) {
     return (
-        <div role="status" aria-label="Loading" className="min-h-screen flex items-center justify-center bg-cream">
+        <div role="status" aria-label="Loading" className="min-h-screen flex items-center justify-center bg-white">
             {/* Served as-is so the GIF keeps its animation. */}
             <Image
                 id={gifId}

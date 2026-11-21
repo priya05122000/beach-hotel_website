@@ -139,7 +139,9 @@ export default function RoomAmenitiesSection() {
         <div className="grid sm:grid-cols-[1fr_1fr_1fr] gap-2 mb-10 lg:mb-14">
           <div className="hidden sm:block" />
           <div className="col-span-2 flex flex-col text-left sm:text-right">
-            <h2 className="mt-2 text-primary-dark type-h2">Room Facilities</h2>
+            {/* h3, not h2: the Rooms page keeps a single h2 ("Rooms &
+                Suites"). Size comes from type-h2, so it looks the same. */}
+            <h3 className="mt-2 text-primary-dark type-h2">Room Facilities</h3>
             <p className="max-w-lg sm:ml-auto mt-4 type-body text-charcoal">
               Everything you need for a comfortable stay — thoughtfully placed
               in every room, from morning coffee to a well-deserved rest.

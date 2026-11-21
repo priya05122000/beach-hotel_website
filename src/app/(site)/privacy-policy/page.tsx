@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
             agree to the practices described in this policy.
           </p>
 
-          <h2>Information We Collect</h2>
+          <h3>Information We Collect</h3>
           <p>
             To provide you with a comfortable, secure, and seamless
             experience, we may collect the following information:
@@ -86,7 +86,7 @@ export default function PrivacyPolicyPage() {
             improve your overall experience.
           </p>
 
-          <h2>How We Use Your Information</h2>
+          <h3>How We Use Your Information</h3>
           <p>
             The information we collect helps us provide you with
             exceptional hospitality and personalized service. We may use
@@ -119,7 +119,7 @@ export default function PrivacyPolicyPage() {
             purposes.
           </p>
 
-          <h2>Cookies &amp; Website Analytics</h2>
+          <h3>Cookies &amp; Website Analytics</h3>
           <p>
             Our website uses cookies and similar technologies to enhance
             your browsing experience.
@@ -134,7 +134,7 @@ export default function PrivacyPolicyPage() {
             However, doing so may affect certain features of the website.
           </p>
 
-          <h2>Information Sharing</h2>
+          <h3>Information Sharing</h3>
           <p>
             We respect your privacy and treat your personal information
             with the utmost care.
@@ -160,7 +160,7 @@ export default function PrivacyPolicyPage() {
             to maintain appropriate confidentiality and security standards.
           </p>
 
-          <h2>Data Security</h2>
+          <h3>Data Security</h3>
           <p>
             Protecting your information is a responsibility we take
             seriously.
@@ -177,7 +177,7 @@ export default function PrivacyPolicyPage() {
             security.
           </p>
 
-          <h2>Retention of Information</h2>
+          <h3>Retention of Information</h3>
           <p>
             We retain your personal information only for as long as
             necessary to fulfil the purposes outlined in this Privacy
@@ -189,7 +189,7 @@ export default function PrivacyPolicyPage() {
             or anonymize it whenever reasonably possible.
           </p>
 
-          <h2>Third-Party Websites</h2>
+          <h3>Third-Party Websites</h3>
           <p>
             Our website may contain links to third-party websites for your
             convenience.
@@ -201,7 +201,7 @@ export default function PrivacyPolicyPage() {
             content, security, or privacy practices of external websites.
           </p>
 
-          <h2>Your Rights</h2>
+          <h3>Your Rights</h3>
           <p>
             We believe you should have control over your personal
             information.
@@ -218,7 +218,7 @@ export default function PrivacyPolicyPage() {
             details provided below.
           </p>
 
-          <h2>Children&apos;s Privacy</h2>
+          <h3>Children&apos;s Privacy</h3>
           <p>
             Our website is intended for general audiences and is not
             designed to knowingly collect personal information from
@@ -230,7 +230,7 @@ export default function PrivacyPolicyPage() {
             action can be taken.
           </p>
 
-          <h2>Updates to This Privacy Policy</h2>
+          <h3>Updates to This Privacy Policy</h3>
           <p>
             As our services continue to evolve, we may update this Privacy
             Policy from time to time.
@@ -242,7 +242,7 @@ export default function PrivacyPolicyPage() {
             about how we protect your information.
           </p>
 
-          <h2>Contact Us</h2>
+          <h3>Contact Us</h3>
           <p>
             If you have any questions, concerns, or requests regarding this
             Privacy Policy or the way your information is handled, we would

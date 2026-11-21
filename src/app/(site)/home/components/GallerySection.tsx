@@ -175,9 +175,9 @@ function GalleryCard({ item, imageClassName }: { item: MediaItem; imageClassName
                 )}
             </div>
             <div className="flex items-center  justify-between mt-3">
-                <h3 className="font-bold text-gray  uppercase type-body  leading-snug">
+                <h4 className="font-bold text-gray  uppercase type-body  leading-snug">
                     {item.title || "Gallery"}
-                </h3>
+                </h4>
                 {/* <ReadMoreButton /> */}
             </div>
         </div>
@@ -203,7 +203,8 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                 <div className="mx-auto">
                     {/* Heading */}
                     <div className="mb-10 sm:mb-32">
-                        <Eyebrow as="h2" align="center" className="mt-2">
+                        {/* h3: the home page keeps a single h2 ("Featured Facilities"). */}
+                        <Eyebrow as="h3" align="center" className="mt-2">
                             Gallery
                         </Eyebrow>
                     </div>

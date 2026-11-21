@@ -37,7 +37,7 @@ export default function TermsAndConditionsPage() {
             terms, please refrain from using our website.
           </p>
 
-          <h2>Use of Website Information</h2>
+          <h3>Use of Website Information</h3>
           <p>
             The content provided on this website is for your general information
             and personal use only. While we strive to ensure that all
@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
             website information.
           </p>
 
-          <h2>Website Usage Guidelines</h2>
+          <h3>Website Usage Guidelines</h3>
           <p>
             To ensure a positive experience for all our guests, we kindly ask
             that you observe the following:
@@ -79,7 +79,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Check-in, Identification &amp; Payment</h2>
+          <h3>Check-in, Identification &amp; Payment</h3>
           <p>
             To ensure the safety, security, and comfort of all our guests, the
             following check-in requirements apply:
@@ -115,7 +115,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Visitors &amp; Guest Conduct</h2>
+          <h3>Visitors &amp; Guest Conduct</h3>
           <ul>
             <li>
               For the safety, security, and comfort of all guests, visitors who
@@ -138,7 +138,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Guest Conduct &amp; Zero-Tolerance Policy</h2>
+          <h3>Guest Conduct &amp; Zero-Tolerance Policy</h3>
           <p>
             We are committed to providing a safe, comfortable, and welcoming
             environment for all our guests.
@@ -157,7 +157,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Damage to Hotel Property</h2>
+          <h3>Damage to Hotel Property</h3>
           <ul>
             <li>
               Guests are responsible for any loss, damage, or destruction caused
@@ -176,7 +176,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Guest Complaints</h2>
+          <h3>Guest Complaints</h3>
           <p>
             We value our guests&rsquo; feedback and are committed to addressing
             concerns as promptly as possible.
@@ -189,7 +189,7 @@ export default function TermsAndConditionsPage() {
           </p>
 
           {/* Pet-friendly hidden for now.
-          <h2>Pet Policy</h2>
+          <h3>Pet Policy</h3>
           <p>
             The Beach Bay is pleased to welcome guests travelling with their
             cherished companions and offers a pet-friendly stay by the sea. To
@@ -227,7 +227,7 @@ export default function TermsAndConditionsPage() {
           </ul>
           */}
 
-          <h2>Intellectual Property &amp; Copyright</h2>
+          <h3>Intellectual Property &amp; Copyright</h3>
           <p>
             All content, including text, design, graphics, photographs, and
             code, is the exclusive property of The Beach Bay unless otherwise
@@ -246,7 +246,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Limitation of Liability</h2>
+          <h3>Limitation of Liability</h3>
           <p>
             While we make every reasonable effort to ensure that our website and
             information are reliable, we cannot guarantee that the website will
@@ -257,7 +257,7 @@ export default function TermsAndConditionsPage() {
             arising from your use of this website or any linked websites.
           </p>
 
-          <h2>Third-Party Links</h2>
+          <h3>Third-Party Links</h3>
           <p>
             Our website may occasionally include links to other websites for
             your convenience. These links do not signify our endorsement of
@@ -266,7 +266,7 @@ export default function TermsAndConditionsPage() {
             security, or privacy practices of external websites.
           </p>
 
-          <h2>Cancellation &amp; Refund Policy</h2>
+          <h3>Cancellation &amp; Refund Policy</h3>
           <ul>
             <li>
               <b>Flexible Cancellations:</b> Enjoy a full refund for
@@ -286,7 +286,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Privacy &amp; Data</h2>
+          <h3>Privacy &amp; Data</h3>
           <p>
             We value your privacy. We use information such as IP addresses and
             website usage information to understand how our website is used and
@@ -298,7 +298,7 @@ export default function TermsAndConditionsPage() {
             <Link href="/privacy-policy">Privacy Policy</Link>.
           </p>
 
-          <h2>Compliance with Laws &amp; Government Regulations</h2>
+          <h3>Compliance with Laws &amp; Government Regulations</h3>
           <ul>
             <li>
               Guests are requested to observe, comply with, and be bound by all
@@ -319,7 +319,7 @@ export default function TermsAndConditionsPage() {
             </li>
           </ul>
 
-          <h2>Management Rights &amp; Updates</h2>
+          <h3>Management Rights &amp; Updates</h3>
           <p>
             The Hotel Management reserves the right to add, alter, amend, or
             update these Terms, Conditions, and Hotel Rules from time to time.
@@ -328,7 +328,7 @@ export default function TermsAndConditionsPage() {
             these terms periodically to remain informed of the current policies.
           </p>
 
-          <h2>Entire Agreement</h2>
+          <h3>Entire Agreement</h3>
           <p>
             These Terms and Conditions, together with our Privacy Policy and any
             booking-specific terms communicated to the guest, constitute the
@@ -336,7 +336,7 @@ export default function TermsAndConditionsPage() {
             website and your stay at the Hotel, subject to applicable law.
           </p>
 
-          <h2>Governing Law &amp; Contact</h2>
+          <h3>Governing Law &amp; Contact</h3>
           <p>
             Your use of this website, your stay at The Beach Bay, and any
             disputes arising in connection with these matters shall be governed

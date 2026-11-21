@@ -490,7 +490,10 @@
   margin-bottom: 0;
 }
 
-.legal-content h2 {
+/* Each legal page has one h2 (intro); later section headings are h3 and
+   share the same look. */
+.legal-content h2,
+.legal-content h3 {
   font-family: var(--font-arizona-flare-regular);
   font-size: var(--text-h4);
   text-transform: uppercase;

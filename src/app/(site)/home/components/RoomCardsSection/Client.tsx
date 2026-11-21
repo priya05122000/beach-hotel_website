@@ -149,7 +149,7 @@ function RoomCard({ room }: { room: Room }) {
           </p>
         )}
 
-        <SubHeading as="h3" className="text-primary-dark">
+        <SubHeading as="h4" className="text-primary-dark">
           {room.name}
         </SubHeading>
 
@@ -256,7 +256,9 @@ export default function RoomCardsSectionClient({
       <CenterSection>
         {/* Heading */}
         <div className="mb-8 lg:mb-12 text-center">
-          <Eyebrow as="h2" align="center" className="mt-2">
+          {/* h3: the home page's single h2 is "Featured Facilities"
+              (RoomShowcaseSection), earlier in the page. */}
+          <Eyebrow as="h3" align="center" className="mt-2">
             Room Types
           </Eyebrow>
           <p className="max-w-xl mx-auto my-10 text-charcoal type-body">

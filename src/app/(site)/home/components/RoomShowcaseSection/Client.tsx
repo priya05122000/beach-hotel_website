@@ -215,7 +215,8 @@ export default function RoomShowcaseSectionClient({ items }: Props) {
     <Section className="relative">
       {/* Visually hidden — this section has no visible heading of its own
           in the design, but the per-item titles below are h3, so this needs
-          to be a real heading or the outline jumps from h1 to h3. */}
+          to be a real heading or the outline jumps from h1 to h3. It is the
+          home page's only h2; later section headings are h3. */}
       <h2 className="sr-only">Featured Facilities</h2>
       <div ref={sectionRef} className="relative  h-screen overflow-hidden">
         {/* Always visible, independent of which slide is active */}
