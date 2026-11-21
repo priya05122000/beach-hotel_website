@@ -7,15 +7,16 @@ import NearbyDestinationsSection from "./components/NearbyDestinationsSection";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Nearby Places to Visit",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Places to Visit Near The Beach Bay, Kanyakumari" },
   description:
-    "See the must-visit spots near The Beach Bay, Kanyakumari — from ancient temples to iconic landmarks, all within easy reach.",
+    "Plan your Kanyakumari sightseeing with nearby attractions from The Beach Bay, including the Glass Bridge, temples, memorials and popular local landmarks.",
   alternates: { canonical: "/destinations" },
   openGraph: {
     ...baseOpenGraph,
-    title: "Nearby Destinations — The Beach Bay",
+    title: "Places to Visit Near The Beach Bay, Kanyakumari",
     description:
-      "See must-visit destinations near The Beach Bay, Kanyakumari — ancient temples, iconic landmarks, and stunning coastlines.",
+      "Plan your Kanyakumari sightseeing with nearby attractions from The Beach Bay, including the Glass Bridge, temples, memorials and popular local landmarks.",
     url: "/destinations",
     images: [
       {

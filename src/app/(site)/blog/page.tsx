@@ -5,17 +5,15 @@ import { getBlogList } from "@/src/service/blogs";
 import { getReelsData } from "@/src/service/reels";
 
 export const metadata: Metadata = {
-  // `absolute` bypasses the root layout's "%s | The Beach Bay" template —
-  // this title already contains the brand name, so templating it would
-  // double it up ("...Tips | The Beach Bay").
-  title: { absolute: "The Beach Bay Blog — Travel Notes & Tips" },
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Kanyakumari Travel Guides & Tips | The Beach Bay" },
   description:
-    "Stories, travel tips, and insider insights from The Beach Bay, Kanyakumari. Read our journal and get inspired for your next coastal escape.",
+    "Read Kanyakumari travel guides from The Beach Bay, covering temple timings, sightseeing, Glass Bridge tickets, family itineraries and local food.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Blog — Notes from the Beach Bay",
+    title: "Kanyakumari Travel Guides & Tips | The Beach Bay",
     description:
-      "Stories, travel tips, and insider insights from The Beach Bay, Kanyakumari.",
+      "Read Kanyakumari travel guides from The Beach Bay, covering temple timings, sightseeing, Glass Bridge tickets, family itineraries and local food.",
     url: "/blog",
     images: [{ url: "/blog/beachfront-hotel-lobby-reception-sea-view.webp", width: 1600, height: 900 }],
   },

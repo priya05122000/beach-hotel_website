@@ -6,14 +6,15 @@ import ContactFormSection from "./components/ContactFormSection";
 import LazyTrustedBySection from "./components/LazyTrustedBySection";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Get in Touch",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Contact The Beach Bay | Kanyakumari Resort & Spa" },
   description:
-    "Get in touch with The Beach Bay, Kanyakumari. Plan your visit, make a reservation, or enquire about special packages. We'd love to hear from you.",
+    "Contact The Beach Bay Resort & Spa in Kanyakumari for room bookings and enquiries. Find our address, phone numbers, directions and guest assistance.",
   alternates: { canonical: "/contact-us" },
   openGraph: {
-    title: "Contact The Beach Bay",
+    title: "Contact The Beach Bay | Kanyakumari Resort & Spa",
     description:
-      "Plan your visit, make a reservation, or enquire about special packages at The Beach Bay, Kanyakumari.",
+      "Contact The Beach Bay Resort & Spa in Kanyakumari for room bookings and enquiries. Find our address, phone numbers, directions and guest assistance.",
     url: "/contact-us",
     images: [{ url: "/contact-us/hotel-entrance-outdoor-cafe-seating.jpg", width: 1200, height: 800 }],
   },

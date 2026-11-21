@@ -5,14 +5,15 @@ import { getGalleryCategoriesData } from "@/src/service/gallery-categories";
 import GalleryBanner from "./components/GalleryBanner";
 
 export const metadata: Metadata = {
-  title: "Gallery — Photos & Videos",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "The Beach Bay Gallery | Resort & Spa in Kanyakumari" },
   description:
-    "Browse photos and videos of The Beach Bay, Kanyakumari — our rooms, sea views, dining, and the stunning coastline where three oceans converge.",
+    "View The Beach Bay Resort & Spa in Kanyakumari, including sea-view rooms, the infinity pool, dining spaces, interiors and property views.",
   alternates: { canonical: "/gallery" },
   openGraph: {
-    title: "Gallery — The Beach Bay",
+    title: "The Beach Bay Gallery | Resort & Spa in Kanyakumari",
     description:
-      "Photos and videos of The Beach Bay, Kanyakumari — rooms, sea views, dining, and the stunning coastline.",
+      "View The Beach Bay Resort & Spa in Kanyakumari, including sea-view rooms, the infinity pool, dining spaces, interiors and property views.",
     url: "/gallery",
     images: [{ url: "/gallery/beachfront-hotel-infinity-pool-sunset.webp", width: 1600, height: 900 }],
   },

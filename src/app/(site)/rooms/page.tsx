@@ -8,15 +8,16 @@ import { Suspense } from "react";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Affordable Rooms in Kanyakumari",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Sea View Rooms in Kanyakumari | The Beach Bay" },
   description:
-    "Affordable luxury meets stunning sea views at The Beach Bay Kanyakumari. Book direct today for the best rates and exclusive offers!",
+    "Explore sea-view rooms at The Beach Bay in Kanyakumari, with Economy, Deluxe, Executive and Jacuzzi options, breakfast, room service and guest amenities.",
   alternates: { canonical: "/rooms" },
   openGraph: {
     ...baseOpenGraph,
-    title: "Rooms & Suites — The Beach Bay",
+    title: "Sea View Rooms in Kanyakumari | The Beach Bay",
     description:
-      "Rooms and suites designed for comfort with wide ocean views in Kanyakumari.",
+      "Explore sea-view rooms at The Beach Bay in Kanyakumari, with Economy, Deluxe, Executive and Jacuzzi options, breakfast, room service and guest amenities.",
     url: "/rooms",
   },
 };

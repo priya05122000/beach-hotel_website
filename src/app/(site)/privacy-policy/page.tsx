@@ -5,15 +5,16 @@ import CenterSection from "@/src/components/common/CenterSection";
 import { PHONE_NUMBERS } from "@/src/lib/site-links";
 
 export const metadata: Metadata = {
-  title: "How We Protect Your Privacy",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Privacy Policy | The Beach Bay Resort" },
   description:
-    "Learn how The Beach Bay, Kanyakumari collects, uses, and protects your personal information when you book or visit us.",
+    "Read The Beach Bay's privacy policy to understand how personal information is collected, used, stored and protected when you use our website.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
     ...baseOpenGraph,
-    title: "Privacy Policy — The Beach Bay",
+    title: "Privacy Policy | The Beach Bay Resort",
     description:
-      "How The Beach Bay, Kanyakumari collects, uses, and protects your personal information.",
+      "Read The Beach Bay's privacy policy to understand how personal information is collected, used, stored and protected when you use our website.",
     url: "/privacy-policy",
   },
 };

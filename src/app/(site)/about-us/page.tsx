@@ -7,14 +7,15 @@ import TeamSection from "./components/TeamSection";
 import { getFaqData } from "@/src/service/faqs";
 
 export const metadata: Metadata = {
-  title: "About Us — Our Story & Team",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "About The Beach Bay | Kanyakumari Resort & Spa" },
   description:
-    "Learn the story behind The Beach Bay — our heritage, our team, and our commitment to delivering an extraordinary luxury experience in Kanyakumari.",
+    "Learn about The Beach Bay Resort & Spa in Kanyakumari, its sea-view accommodation, infinity pool, spa, dining and hospitality by the southern coast.",
   alternates: { canonical: "/about-us" },
   openGraph: {
-    title: "About The Beach Bay",
+    title: "About The Beach Bay | Kanyakumari Resort & Spa",
     description:
-      "Learn the story behind The Beach Bay — our heritage, our team, and our commitment to luxury in Kanyakumari.",
+      "Learn about The Beach Bay Resort & Spa in Kanyakumari, its sea-view accommodation, infinity pool, spa, dining and hospitality by the southern coast.",
     url: "/about-us",
     images: [{ url: "/common/banner/sea-view-hotel-suite-sunset.webp", width: 1600, height: 900 }],
   },

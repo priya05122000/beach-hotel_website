@@ -7,14 +7,15 @@ import { getActiveFacilities } from "@/src/service/facilities";
 import { SectionScroller } from "@/src/components/common/SectionScroller";
 
 export const metadata: Metadata = {
-  title: "Luxury Hotel Facilities in Kanyakumari",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Resort Facilities & Spa in Kanyakumari | The Beach Bay" },
   description:
-    "World-class facilities at The Beach Bay, Kanyakumari — from infinity pools and fine dining to a fully equipped spa and conference centre.",
+    "Explore resort facilities at The Beach Bay in Kanyakumari, including an infinity swimming pool, spa, restaurant, room service, parking and guest services.",
   alternates: { canonical: "/facilities" },
   openGraph: {
-    title: "Facilities — The Beach Bay",
+    title: "Resort Facilities & Spa in Kanyakumari | The Beach Bay",
     description:
-      "World-class facilities including infinity pool, spa, fine dining, and more at The Beach Bay, Kanyakumari.",
+      "Explore resort facilities at The Beach Bay in Kanyakumari, including an infinity swimming pool, spa, restaurant, room service, parking and guest services.",
     url: "/facilities",
     images: [{ url: "/common/banner/sea-view-hotel-suite-sunset.webp", width: 1600, height: 900 }],
   },

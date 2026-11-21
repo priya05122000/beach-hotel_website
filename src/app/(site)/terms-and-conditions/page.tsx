@@ -6,15 +6,16 @@ import CenterSection from "@/src/components/common/CenterSection";
 import { PHONE_NUMBERS } from "@/src/lib/site-links";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions of Stay",
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Terms & Conditions | The Beach Bay Resort" },
   description:
-    "Read the terms and conditions for booking and staying at The Beach Bay, Kanyakumari, including cancellations and payments.",
+    "Read The Beach Bay's terms and conditions covering website use, reservations, check-in requirements, guest policies and cancellations.",
   alternates: { canonical: "/terms-and-conditions" },
   openGraph: {
     ...baseOpenGraph,
-    title: "Terms & Conditions — The Beach Bay",
+    title: "Terms & Conditions | The Beach Bay Resort",
     description:
-      "Booking, cancellation, payment, and stay policies for The Beach Bay, Kanyakumari.",
+      "Read The Beach Bay's terms and conditions covering website use, reservations, check-in requirements, guest policies and cancellations.",
     url: "/terms-and-conditions",
   },
 };

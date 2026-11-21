@@ -20,18 +20,15 @@ import { getOfferData } from "@/src/service/offers";
 import { getRoomsData } from "@/src/service/rooms";
 
 export const metadata: Metadata = {
-  // `absolute` bypasses the root layout's "%s | The Beach Bay" template —
-  // this title already contains the brand name, so templating it would
-  // double up ("...Address | The Beach Bay") and push it well past 60
-  // characters.
-  title: { absolute: "The Beach Bay Kanyakumari — Luxury Address" },
+  // Title already contains the brand name, so bypass the "%s | The Beach Bay" template.
+  title: { absolute: "Resort & Spa in Kanyakumari | The Beach Bay" },
   description:
-    "Book your stay at The Beach Bay Kanyakumari. Enjoy luxury sea view rooms, infinity pool, beachfront location and the best direct rates today.",
+    "Stay at The Beach Bay Resort & Spa in Kanyakumari, with sea-view rooms, an infinity pool, spa, restaurant and guest facilities near popular attractions.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Best Beach Bay in Kanyakumari for Sea View Stay",
+    title: "Resort & Spa in Kanyakumari | The Beach Bay",
     description:
-      "Experience unmatched luxury at The Beach Bay, Kanyakumari — where three oceans meet.",
+      "Stay at The Beach Bay Resort & Spa in Kanyakumari, with sea-view rooms, an infinity pool, spa, restaurant and guest facilities near popular attractions.",
     url: "/",
     type: "website",
     images: [{ url: "/home/hotel-poolside-exterior-dusk.webp", width: 1600, height: 900, alt: "Poolside exterior of The Beach Bay, Kanyakumari at dusk" }],
