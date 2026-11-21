@@ -13,6 +13,7 @@ with before/after code. The checklist at the end is for the next project.
 | 5 | H2 › Multiple | 14 | 0 (reviewed, no change) | n/a |
 | 6 | Open Graph › Incomplete OG Tags (missing `og:image`) | 4 | 6 | not committed yet |
 | 7 | X Cards › Incomplete X Cards | 4 (same pages as #6) | 1 | not committed yet |
+| 8 | Images › Missing Image Title / Missing Size Attributes | 96 / 62 | 0 (reviewed, no change) | n/a |
 
 ---
 
@@ -496,6 +497,32 @@ handle now points at the real account. `npx tsc --noEmit` passes.
 
 ---
 
+## 8. Images: Missing Image Title / Missing Size Attributes: reviewed, no change
+
+Checked against the live home page HTML (65 `<img>` tags).
+
+### Missing Image Title (96)
+- No image has a `title` attribute. `title` only adds a hover tooltip; Google doesn't use it
+  for image SEO. It uses **`alt`** (already set), the filename and the surrounding text.
+- Adding `title` to every image would put tooltips on every photo. **No change.**
+
+### Missing Size Attributes (62)
+- All 31 flagged images on the home page are `next/image` with the **`fill`** prop
+  (`data-nimg="fill"`). `fill` outputs no `width` / `height` on purpose: the image fills a
+  parent box whose size is set by CSS (`relative` + a height or aspect-ratio class).
+- The space is reserved before the image loads, so there's **no layout shift (CLS)**, which is
+  the only reason size attributes matter. Images that use `width` / `height` props (logos,
+  icons) already output both attributes.
+- Converting ~32 `fill` usages to fixed sizes would mean guessing aspect ratios for CMS
+  uploads and could break cropping. **No change.**
+
+### When to act
+- A `fill` image's parent has no fixed height / aspect ratio (it would collapse or jump).
+- A plain `<img>` (not `next/image`) is added without `width` / `height`.
+- Lighthouse reports CLS above 0.1 on a page.
+
+---
+
 ## Also changed
 - `README.md`: added an "SEO" section linking to this file.
 - `SEO_FIXES.md`: this file (new).
@@ -531,6 +558,8 @@ handle now points at the real account. `npx tsc --noEmit` passes.
       Use `#fragment` or component state instead.
 - [ ] One `<h1>` per page; `<h2>` for sections, `<h3>` for sub-items; no skipped levels;
       no headings used just for styling (CMS content included).
+- [ ] Images: `alt` on every image (`title` not needed). `next/image` with `fill` sits inside a
+      parent with a fixed height / aspect ratio; other images pass `width` and `height`.
 - [ ] External links reviewed: only own socials, booking engine, maps and relevant references.
       Paid/affiliate links use `rel="sponsored"`; user-generated links use `rel="ugc"`.
 - [ ] Crawl with Screaming Frog and clear: 4xx, Missing Alt Text, Canonicalised,
